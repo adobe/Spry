@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Sliding Panels API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="intro">
+  <h3>Sliding Panels</h3>
+  <h4>Description</h4>
+  <p>The Spry Sliding Panels is a disclosure widget that consists of a  'window' element, and a set of content panels behind the window. Clicking links (or other triggers) will move the requested panel into the window.</p>
+  <p>The content container  (the element that holds the series of content panels) can be any size: one column horizontal or vertical, a lager rectangle, or any possible shape. The widget will move to the requested panel in the shortest possible distance, be that horzontally, vertically or diagonally.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/slidingpanels/SprySlidingPanels.js">SprySlidingPanels.js</a></p>
+    <p><a href="../../../widgets/slidingpanels/SprySlidingPanels.css">SprySlidingPanels.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/slidingpanels/SprySlidingPanels.html">SprySlidingPanels.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/slidingpanels/SlidingPanelsSample.html">SlidingPanelsSample.html</a></p>
+    <p><a href="../../../samples/slidingpanels/SlidingPanelsSample2.html">SlidingPanelsSample2.html</a></p>
+    <p><a href="../../../samples/slidingpanels/SlidingPanelsFromData.html">SlidingPanelsFromData.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container- the window&gt;
+      &lt;content panels container&gt;<br />        &lt;content panel&gt;
+        &lt;content panel&gt;<br />   &lt;/widget container&gt;<br /></pre>
+  <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+<pre>&lt;div id=&quot;example1&quot; class=&quot;SlidingPanels&quot; tabindex=&quot;0&quot;&gt;
+   &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+     &lt;div id=&quot;ex1_p1&quot; class=&quot;SlidingPanelsContent p1&quot;&gt;Panel 1&lt;/div&gt;
+     &lt;div id=&quot;ex1_p2&quot; class=&quot;SlidingPanelsContent p2&quot;&gt;Panel 2&lt;/div&gt;
+     &lt;div id=&quot;ex1_p3&quot; class=&quot;SlidingPanelsContent p3&quot;&gt;Panel 3&lt;/div&gt;
+   &lt;/div&gt;<br />&lt;/div&gt;<br />&lt;script type=&quot;text/javascript&quot;&gt;<br />    var sp1 = new Spry.Widget.SlidingPanels('example1');<br />&lt;/script&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;    
+   var SlidingPanels1 = new Spry.Widget.SlidingPanels(&quot;sp1&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.SlidingPanels(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.SlidingPanels(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+</pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>defaultPanel</td>
+      <td>number </td>
+      <td>0</td>
+      <td>The number of the panel that should show when the page loads.</td>
+    </tr>
+    <tr>
+      <td>duration</td>
+      <td>number of milliseconds</td>
+      <td>500 milliseconds</td>
+      <td>Defines how long it will take to move to the requested panel.</td>
+    </tr>
+    <tr>
+      <td>enableAnimation</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>By default, the panel smoothly moves around. Setting enableAnimation:false will cause the panel to  instantly show the requested panel, with no animation.</td>
+    </tr>
+    <tr>
+      <td>enableKeyboardNavigation</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>By default, the Previous and Next arrow keys will move the panels. Setting this option to false will disable that ability.</td>
+    </tr>
+    <tr>
+      <td>fps</td>
+      <td>number</td>
+      <td>&nbsp;</td>
+      <td>This value determines the frames per second of the animation. This can be used to smooth the animation if needed.</td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.SlidingPanels(&quot;mySlidingPanels&quot;,{defaultPanel:3, duration:200});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Sliding Panels Methods</h2>
+  <div id="showpanel">
+    <h3><strong>showPanel</strong></h3>
+    <p>Goes to the specified panel, using the panel number or the ID of the content container.</p>
+    <h4>Format</h4>
+    <p>widgetname.showPanel(panel number or container ID);</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;sp1.showPanel(3);&quot;&gt;Panel 3&lt;/a&gt; 
+ or
+&lt;a href=&quot;#&quot; onclick=&quot;sp1.showPanel('panel3');&quot;&gt;Panel 3&lt;/a&gt; </pre>
+  </div>
+</div>
+<div id="showfirstpanel">
+  <h3><strong>showFirstPanel</strong></h3>
+  <p>Goes to the first panel, that content that appears first in the markup.</p>
+  <h4>Format</h4>
+  <p>widgetname.showFirstPanel();</p>
+  <h4>Example</h4>
+  <pre> &lt;a href=&quot;#&quot; onclick=&quot;sp1.showFirstPanel();&quot;&gt;First Panel&lt;/a&gt;  </pre>
+</div>
+<div id="showlastpanel">
+  <h3><strong>showLastPanel</strong></h3>
+  <p>Goes to the last panel, that content that appears last in the markup.</p>
+  <h4>Format</h4>
+  <p>widgetname.showLastPanel();</p>
+  <h4>Example</h4>
+  <pre> &lt;a href=&quot;#&quot; onclick=&quot;sp1.showLastPanel();&quot;&gt;Last Panel&lt;/a&gt;  </pre>
+</div>
+<div id="shownextpanel">
+  <h3><strong>showNextPanel</strong></h3>
+  <p>Goes to the next panel.</p>
+  <h4>Format</h4>
+  <p>widgetname.showNextPanel();</p>
+  <h4>Example</h4>
+  <pre> &lt;a href=&quot;#&quot; onclick=&quot;sp1.showNextPanel();&quot;&gt;Next Panel&lt;/a&gt;  </pre>
+</div>
+<div id="showpreviouspanel">
+  <h3><strong>showPreviousPanel</strong></h3>
+  <p>Goes to the previous panel.</p>
+  <h4>Format</h4>
+  <p>widgetname.showPreviousPanel();</p>
+  <h4>Example</h4>
+  <pre> &lt;a href=&quot;#&quot; onclick=&quot;sp1.showPreviousPanel();&quot;&gt;Previous Panel&lt;/a&gt;  </pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

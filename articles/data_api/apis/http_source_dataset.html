@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" /></head>
+<body>
+<div id="httpsourcedataset">
+	<h3><a name="httpsourcedataset"></a>HTTP Source Data Set</h3>
+	<h4>Description</h4>
+	<p>The Spry.Data.HTTPSourceDataSet class dervies from the base DataSet class. The HTTPSourceDataSet is an abstract class that provides the functionality necessary to load and cache data via the XMLHttpRequest object. It is not meant to be instantiated directly. Instead, other classes derive from it and override specific HTTPSourceDataSet methods to load and process a specific data format. The XMLDataSet and JSONDataSet classes are two examples of classes that derive from the HTTPSourceDataSet.</p>
+	<h4>File</h4>
+	<p><a href="../../../includes/SpryData.js">SpryData.js</a></p>
+	<h4>Inheritance</h4>
+	<p><a href="notifier.html">Notifier</a> --&gt;<a href="dataset.html">DataSet</a> --&gt; HTTPSourceDataSet</p>
+</div>
+<div id="constructor">
+	<h3><a name="constructor"></a>HTTPSourceDataSet constructor</h3>
+  	<h4>Description</h4>
+  <p>Spry.Data.HTTPSourceDataSet is the constructor function for the HTTP Source Data Set.</p>
+  <h4>Format</h4>
+  <p>Spry.Data.HTTPSourceDataSet(url, options)</p>
+  <h4>Arguments</h4>
+  <ul>
+    <li>url - The URL to the data to be loaded. This URL can be absolute, or relative to the HTML document that created the data set.</li>
+    <li>options - An optional argument which if specified, must be an object with the option names as properties with values. Properties that can be specified are:	
+    	<br />
+    	<br />
+    	<ul>
+    		<li><strong>useCache</strong> - Boolean. If true attempts to retrieve the requested data from the internal HTTPSourceDataSet cache before hitting the server. If false, it bypasses the cache and makes a request for the data from the server. If not specified, the default is true.</li>
+			</ul>
+    	</li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+// An example of a class that derives from the HTTPSourceDataSet:
+
+Spry.Data.XMLDataSet = function(url, xpath, options)<br />
+{
+  ...
+
+  Spry.Data.HTTPSourceDataSet.call(this, url, options);<br />
+
+  ...
+}
+
+  Spry.Data.XMLDataSet.prototype = new Spry.Data.HTTPSourceDataSet();
+  Spry.Data.XMLDataSet.prototype.constructor = Spry.Data.XMLDataSet;
+</pre>
+  <h4>Sample</h4>
+	<p>N/A<br /></p>
+</div>
+<div id="geturl">
+	<h3><a name="geturl"></a>getURL</h3>
+  <h4>Description</h4>
+  <p>This function returns the current URL.</p>
+  <h4>Format</h4>
+  <p>getURL()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>String or null. Returns the URL that will be used to fetch the data. This may also return a null if one is not present.</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+var url = ds.getURL();</pre>
+</div>
+<div id="loaddataintodataset">
+	<h3><a name="loaddataintodataset"></a>loadDataIntoDataSet</h3>
+	<h4>Description</h4>
+  <p>This function must be overwritten by the derived class. The function is meant to take the raw data from the HTTPRequest object and translate it into the internal row/column tabular structure expected by the data set. This function is not meant to be called directly by developers.</p>
+  <h4>Format</h4>
+  	<p>loadDataIntoDataSet(rawDataDoc)</p>
+  	<h4>Arguments</h4>
+  	<p>rawDataDoc - The data received from the server. The format of the rawDataDoc is not defined. It is up to the derived class to deal with the data format.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">ds.loadDataIntoDocument(rawdata);</pre>
+</div>
+<div id="sessionexpiredchecker">
+	<h3><a name="sessionexpiredchecker"></a>sessionExpiredChecker</h3>
+  <h4>Description</h4>
+  <p>This function is called automatically by the HTTPSourceDataSet's internal mechanism and is intended as a hook for derived classes and developers so they can figure out if the data they recieved from the server was real data, or a message  from the server stating that the user's session has expired. Classes that derive from HTTPSourceDataSet should override this method so they can analyze the data</p>
+  <h4>Format</h4>
+  <p>sessionExpiredChecker(req);</p>
+  <h4>Arguments</h4>
+  <p>req - Object. An instance of a Spry.URL.loadURL.Request object.</p>
+  <h4>Returns</h4>
+  <p>Boolean. true if the server session has expired. false if ok to proceed.</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+// The default implementation of sessionExpiredChecker looks like this:
+
+Spry.Data.HTTPSourceDataSet.prototype.sessionExpiredChecker = function(req)
+{
+  if (req.xhRequest.responseText == 'session expired')
+    return true;
+  return false;
+};
+ </pre>
+  <h4>Sample</h4>
+  <p>N/A</p>
+</div>
+<div id="setsessionexpiredchecker">
+	<h3><a name="setsessionexpiredchecker"></a>setSessionExpiredChecker</h3>
+  <h4>Description</h4>
+  <p>This function allows the caller to dynamically change the sessionExpiredChecker function.</p>
+  <p>The  function passed in must have the following interface:</p>
+  <pre>function mySessionChecker(req)
+{
+  var sessionDidExpire = false;
+
+  ...
+
+  // Code to check the data from the server.
+  // The data can be found in: req.xhRequest.responseText
+
+  ...
+
+  return sessionDidExpire;
+}</pre>
+	<h4>Format</h4>
+  <p>setSessionExpiredChecker(sessionExpiredCheckerFunc);</p>
+  <h4>Arguments</h4>
+  <p>sessionExpiredCheckerFunc - Function Reference. The function to use to determine if the server response is a session expired message.</p>
+  <h4>Returns</h4>
+  <p>Boolean. true if the session has expired. false if it is ok to proceed with normal processing.</p>
+  <h4>Example </h4>
+  <pre class="codeSample">function mySessionExpiredChecker(req)
+{
+  return /^\s*session expired: please login\s*$/.test(req.xhRequest.responseText);
+}
+
+
+ds.setSessionExpiredChecker(mySessionExpiredChecker);</pre>
+  <h4>Samples</h4>
+  <p>N/A</p>
+</div>
+<div id="setdatafromdoc">
+  <h3><a name="setdatafromdoc"></a>setDataFromDoc</h3>
+  <h4>Description</h4>
+  <p>This function allows the developer to pass in an in-memory copy of the raw data for processing. It calls <a href="#loaddataintodataset">loadDataIntoDataSet()</a> internally to process/flatten the data. It is also called by the HTTPSourceDataSet to process data received from the server.</p>
+  <h4>Format</h4>
+  <p>setDataFromDoc(rawDataDoc)</p>
+  <h4>Arguments</h4>
+  <p>rawDataDoc - The exact format of the data is unknown to the HTTPSourceDataSet. Derived classes define and override methods on the HTTPSourceDataSet so that it can process the data.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// An example of calling the setDataFromDoc method, on the
+// JSON Data Set, with a raw JSON string for processing.
+
+
+var ds = new Spry.Data.JSONDataSet(null);
+
+...
+
+ds.setDataFromDoc(&quot;{ msg: 'hello world' }&quot;);</pre>
+</div>
+<div id="seturl">
+  <h3><a name="seturl"></a>setURL</h3>
+  <h4>Description</h4>
+  <p>Change the URL to the data for the data set. This method does not load the data into the data set, it merely sets the internal URL and clears the data inside the data set, in preparation for loading. The developer must call loadData() to actually trigger the data loading.</p>
+  <h4>Format</h4>
+  <p>setURL(url, options);</p>
+  <h4>Arguments</h4>
+  <p>url - String. The URL to the data.</p>
+  <p>options - Object. This argument is optional. Possible option properties:</p>
+  <ul>
+  	<li>headers</li>
+  	<li>method - &quot;GET&quot; or &quot;POST&quot;</li>
+  	<li>password</li>
+  	<li>postData</li>
+  	<li>username</li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds = new Spry.Data.XMLDataSet(&quot;foo.xml&quot;, &quot;/foo/bar&quot;);
+
+...
+ds.setURL(&quot;bar.php&quot;, { method: &quot;POST&quot;, postData: &quot;name1=foo&amp;name22=bar&quot;, headers: {  &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot; });
+ds.loadData();<br /></pre>
+</div>
+<div id="xhrequestprocessor">
+  <h3><a name="xhrequestprocessor"></a>xhRequestProcessor</h3>
+  <h4>Description</h4>
+  <p>This function is called automatically by the HTTPSourceDataSet upon receiving a response from the server. The purpose of this function is to extract out the data from the response from the server and return it in the format the derived data set expects to process. The default implementation of this function returns the responseText field of the XMLHttpRequest object. If the derived data set expects to extract the data from some other field of the XMLHttpRequest object, for example the responseXML, or must do some preprocessing so that the data is in some other format, it must override this method.</p>
+  <h4>Format</h4>
+  <p>xhRequestProcessor(xhreq);</p>
+  <h4>Arguments</h4>
+  <p>xhreq - Object. The Browser's native XMLHttpRequest object.</p>
+  <h4>Returns</h4>
+  <p>By default, returns a string that is the responseText field of the XMLHttpRequest object. Classes that override this method may return other types of values.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+// The default implementation of xhRequestProcessor:
+
+Spry.Data.HTTPSourceDataSet.prototype.xhRequestProcessor = function(xhRequest)
+{
+	// This method needs to be overwritten by the descendent classes if other objects (like responseXML)
+	// are going to be used as a data source
+	// This implementation returns the responseText from xhRequest
+
+	var resp = xhRequest.responseText;
+
+	if (xhRequest.status == 200 || xhRequest.status == 0)
+		return resp;
+	return null;
+};
+</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

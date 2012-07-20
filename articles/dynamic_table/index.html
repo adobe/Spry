@@ -1,0 +1,617 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Template $Revision: 1.7 $ applied. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Adobe Labs -  Spry Dynamic Tables Tutorial</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1><a name="tabtop" id="tabtop"></a>Dynamic Table Tutorial</h1>
+<p>The aim of this document is to give you an overview of how our Spry data framework works by walking you through the conversion of an HTML table containing static data to one that can load its data dynamically.</p>
+<p>Here's what the table we'll be working with looks like:</p>
+<table border="1">
+  <tr>
+    <th scope="col">Employee ID </th>
+    <th scope="col">Last Name </th>
+    <th scope="col">First Name </th>
+    <th scope="col">Phone</th>
+    <th scope="col">Username</th>
+  </tr>
+  <tr>
+    <td>123456</td>
+    <td>Smith </td>
+    <td>Edward</td>
+    <td>(415) 333-0235 </td>
+    <td>esmith</td>
+  </tr>
+  <tr>
+    <td>127937</td>
+    <td>Johnson</td>
+    <td>Neil</td>
+    <td>(415) 333-9475 </td>
+    <td>njohnson</td>
+  </tr>
+  <tr>
+    <td>126474</td>
+    <td>Williams</td>
+    <td>Steve</td>
+    <td>(415) 333-4573 </td>
+    <td>swilliams</td>
+  </tr>
+  <tr>
+    <td>120585</td>
+    <td>Jones</td>
+    <td>John</td>
+    <td>(415) 333-9345 </td>
+    <td>jjones</td>
+  </tr>
+  <tr>
+    <td>127493</td>
+    <td>Brown</td>
+    <td>Joe</td>
+    <td>(415) 333-5938 </td>
+    <td>jbrown</td>
+  </tr>
+</table>
+<p>The markup for this table would look like this:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;123456&lt;/td&gt;
+		&lt;td&gt;Smith &lt;/td&gt;
+		&lt;td&gt;Edward&lt;/td&gt;
+
+		&lt;td&gt;(415) 333-0235 &lt;/td&gt;
+		&lt;td&gt;esmith&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;127937&lt;/td&gt;
+
+		&lt;td&gt;Johnson&lt;/td&gt;
+		&lt;td&gt;Neil&lt;/td&gt;
+		&lt;td&gt;(415) 333-9475 &lt;/td&gt;
+		&lt;td&gt;njohnson&lt;/td&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;126474&lt;/td&gt;
+		&lt;td&gt;Williams&lt;/td&gt;
+		&lt;td&gt;Steve&lt;/td&gt;
+
+		&lt;td&gt;(415) 333-4573 &lt;/td&gt;
+		&lt;td&gt;swilliams&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;120585&lt;/td&gt;
+
+		&lt;td&gt;Jones&lt;/td&gt;
+		&lt;td&gt;John&lt;/td&gt;
+		&lt;td&gt;(415) 333-9345 &lt;/td&gt;
+		&lt;td&gt;jjones&lt;/td&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;127493&lt;/td&gt;
+		&lt;td&gt;Brown&lt;/td&gt;
+		&lt;td&gt;Joe&lt;/td&gt;
+
+		&lt;td&gt;(415) 333-5938 &lt;/td&gt;
+		&lt;td&gt;jbrown&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - This is the initial markup of our static table. </p>
+<h3>Setting up a data set: </h3>
+<p>The first thing we want to do is to extract the data out into an XML file named <a href="../../data/employees-01.xml" target="sample">employees-01.xml</a> so we can load the data dynamically from the browser:</p>
+<pre>
+&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;employees xmlns="http://www.foo.com/employees"&gt;
+
+	&lt;employee id="123456"&gt;
+		&lt;lastname&gt;Smith&lt;/lastname&gt;
+		&lt;firstname&gt;Edward&lt;/firstname&gt;
+		&lt;phone&gt;(415) 333-0235 &lt;/phone&gt;
+
+		&lt;username&gt;esmith&lt;/username&gt;
+	&lt;/employee&gt;
+	&lt;employee id="127937"&gt;
+		&lt;lastname&gt;Johnson&lt;/lastname&gt;
+		&lt;firstname&gt;Neil&lt;/firstname&gt;
+
+		&lt;phone&gt;(415) 333-9475 &lt;/phone&gt;
+		&lt;username&gt;njohnson&lt;/username&gt;
+	&lt;/employee&gt;
+	&lt;employee id="126474"&gt;
+		&lt;lastname&gt;Williams&lt;/lastname&gt;
+
+		&lt;firstname&gt;Steve&lt;/firstname&gt;
+		&lt;phone&gt;(415) 333-4573 &lt;/phone&gt;
+		&lt;username&gt;swilliams&lt;/username&gt;
+	&lt;/employee&gt;
+
+	&lt;employee id="120585"&gt;
+		&lt;lastname&gt;Jones&lt;/lastname&gt;
+		&lt;firstname&gt;John&lt;/firstname&gt;
+		&lt;phone&gt;(415) 333-9345 &lt;/phone&gt;
+
+		&lt;username&gt;jjones&lt;/username&gt;
+	&lt;/employee&gt;
+	&lt;employee id="127493"&gt;
+		&lt;lastname&gt;Brown&lt;/lastname&gt;
+		&lt;firstname&gt;Joe&lt;/firstname&gt;
+
+		&lt;phone&gt;(415) 333-5938 &lt;/phone&gt;
+		&lt;username&gt;jbrown&lt;/username&gt;
+	&lt;/employee&gt;
+&lt;/employees&gt;
+        </pre>
+<p class="caption">Source Listing - The data from our static table in an XML format. </p>
+<p>The names of the tags and attributes you use in your XML is up to you, but what is important, is that all of the data, for each row of the original table, is structured the same way and at the same level of the XML tag structure.</p>
+<p>Now that our data is in an XML file, we'll need to modify our original file so that it can find the XML file.  Since we no longer need all of the static data in the table, I've removed all but one row of static data, which we'll be using later on. First, we'll need to include the JavaScript files that define our data framework:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;123456&lt;/td&gt;
+		&lt;td&gt;Smith &lt;/td&gt;
+		&lt;td&gt;Edward&lt;/td&gt;
+		&lt;td&gt;(415) 333-0235 &lt;/td&gt;
+		&lt;td&gt;esmith&lt;/td&gt;
+
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - To use the data framework, you must first include xpath.js and SpryData.js. </p>
+<p>Next, we'll add some JavaScript to define a data set that can load our data:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table border="1"&gt;
+
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;123456&lt;/td&gt;
+		&lt;td&gt;Smith &lt;/td&gt;
+		&lt;td&gt;Edward&lt;/td&gt;
+		&lt;td&gt;(415) 333-0235 &lt;/td&gt;
+		&lt;td&gt;esmith&lt;/td&gt;
+
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - Create an XMLDataSet with the JS 'new' keyword. </p>
+<p>The example above creates an Spry.Data.XMLDataSet object named &quot;dsEmployees&quot;. The first argument to the XMLDataSet constructor is a URL to the data you want to load. In this particular case, it is a relative URL to our xml file named &quot;employees-01.xml&quot;, but this first argument can also be a fully qualified or relative URL to some web service/application within your domain that requires URL arguments, so it doesn't have to be a static XML file.</p>
+<p>The second argument to the XMLDataSet constructor is an <a href="http://www.w3.org/TR/xpath" target="_blank">XPath</a> expression that describes where in the XML structure the data you are interested in lives. For our XML data, all of our data is in the &quot;employee&quot; node, so the result of our XPath expression &quot;employees/employee&quot; is the set of XML employee nodes.</p>
+<p>Since data sets are tabular, the data in each of the employee nodes is flattened, producing an array of objects (rows) who's properties (columns) are the names of the tags or attributes:</p>
+<pre>[
+    { &quot;@id&quot;: &quot;123456&quot;, &quot;lastname&quot;: &quot;Smith&quot;, &quot;firstname&quot;: &quot;Edward&quot;, &quot;phone&quot;: &quot;(415) 333-0235&quot;, &quot;username&quot;: &quot;esmith&quot;},
+
+    ...
+
+    { &quot;@id&quot;: &quot;127493&quot;, &quot;lastname&quot;: &quot;Brown&quot;, &quot;firstname&quot;: &quot;Joe&quot;, &quot;phone&quot;: &quot;(415) 333-5938&quot;, &quot;username&quot;: &quot;jbrown&quot;},
+]
+
+        </pre>
+<p>which can be visualized as a lookup table that looks something like this: </p>
+<table border="1">
+  <tr>
+    <th scope="col">@id </th>
+    <th scope="col">lastname </th>
+    <th scope="col">firstname </th>
+    <th scope="col">phone</th>
+    <th scope="col">username</th>
+  </tr>
+  <tr>
+    <td>123456</td>
+    <td>Smith </td>
+    <td>Edward</td>
+    <td>(415) 333-0235 </td>
+    <td>esmith</td>
+  </tr>
+  <tr>
+    <td>127937</td>
+    <td>Johnson</td>
+    <td>Neil</td>
+    <td>(415) 333-9475 </td>
+    <td>njohnson</td>
+  </tr>
+  <tr>
+    <td>126474</td>
+    <td>Williams</td>
+    <td>Steve</td>
+    <td>(415) 333-4573 </td>
+    <td>swilliams</td>
+  </tr>
+  <tr>
+    <td>120585</td>
+    <td>Jones</td>
+    <td>John</td>
+    <td>(415) 333-9345 </td>
+    <td>jjones</td>
+  </tr>
+  <tr>
+    <td>127493</td>
+    <td>Brown</td>
+    <td>Joe</td>
+    <td>(415) 333-5938 </td>
+    <td>jbrown</td>
+  </tr>
+</table>
+<p>Attributes on tags are prefixed with an &quot;@&quot; character, so in the example above, we have a column named &quot;@id&quot; which represents the &quot;id&quot; attribute on the employee tag. If the firstname tag had a nickname attribute (example: &lt;firstname nickname=&quot;Eddie&quot;&gt;Edward&lt;/firstname&gt;) on it, there would be a column named &quot;firstname&quot; with a value of &quot;Edward&quot; and another column named &quot;firstname/@nickname&quot; with a value of &quot;Eddie&quot;.</p>
+<h3>Setting up a dynamic region: </h3>
+<p>Now that we have our data set all set up, lets turn our table into a dynamic region that has the ability to automatically regenerate itself as the data in the data set is loaded or changed. To do this, we first need to wrap our table with a div: </p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+<span class="hilite">&lt;div spry:region="dsEmployees"&gt;</span>
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;123456&lt;/td&gt;
+		&lt;td&gt;Smith &lt;/td&gt;
+		&lt;td&gt;Edward&lt;/td&gt;
+		&lt;td&gt;(415) 333-0235 &lt;/td&gt;
+		&lt;td&gt;esmith&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+<span class="hilite">&lt;/div&gt;</span>
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - Use an &quot;spry:region&quot; attribute to turn some markup on the page into a dynamic region. </p>
+<p>The &quot;spry:region&quot; attribute on the div we just added, tells our data framework that the contents of the div should be treated as a dynamic region. The value of the &quot;spry:region&quot; attribute is &quot;dsEmployees&quot; which tells our framework that this region is bound to data in the &quot;dsEmployees&quot; data set, and that this region should be regenerated anytime the data in &quot;dsEmployees&quot; is changed. If the dynamic region is bound to more than one data set, you would simply list the data set names, separated by spaces, as the value of the &quot;spry:region&quot; attribute (example: spry:region=&quot;dsEmployees1 dsEmployees2 dsEmployees3&quot;).</p>
+<p>Now that we have a dynamic region defined, we can insert data from our data set into the region by using data references of the form &quot;{&lt;dataSetName::columnName&gt;}&quot;:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+&lt;table border=&quot;1&quot;&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;<span class="hilite">{dsEmployees::@id}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{dsEmployees::lastname}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{dsEmployees::firstname}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{dsEmployees::phone}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{dsEmployees::username}</span>&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - Use data references to insert data from a data set. </p>
+<p>If the dynamic region is only bound to one data set, you can leave off the data set name in the data reference. For example:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;<span class="hilite">{@id}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{lastname}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{firstname}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{phone}</span>&lt;/td&gt;
+		&lt;td&gt;<span class="hilite">{username}</span>&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - You can leave off the data set name in a data reference if the region is bound to a single data set. </p>
+<p>If you load the code above into a browser, you should see the following: </p>
+<table border="1">
+  <tr>
+    <th scope="col">Employee ID </th>
+    <th scope="col">Last Name </th>
+    <th scope="col">First Name </th>
+    <th scope="col">Phone</th>
+    <th scope="col">Username</th>
+  </tr>
+  <tr>
+    <td>123456</td>
+    <td>Smith </td>
+    <td>Edward</td>
+    <td>(415) 333-0235 </td>
+    <td>esmith</td>
+  </tr>
+</table>
+<p>Every data set has a notion of a current row. By default, the current row is zero, so with the code above the data framework replaced our data references with the values in the current row of the &quot;dsEmployees&quot; data set. We actually want our table to list all of the data in our data set, so we need to use a looping construct to iterate over all of the rows in our data set.</p>
+<p>You tell the data framework to iterate over the rows of a data set by specifying an &quot;spry:repeat&quot; attribute, on the node you want to repeat for each row in the data set. The value of the &quot;spry:repeat&quot; attribute should be the name of the data set you want to iterate over:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"&gt;Username&lt;/th&gt;
+
+	&lt;/tr&gt;
+	&lt;tr <span class="hilite">spry:repeat="dsEmployees"</span>&gt;
+		&lt;td&gt;{@id}&lt;/td&gt;
+		&lt;td&gt;{lastname}&lt;/td&gt;
+		&lt;td&gt;{firstname}&lt;/td&gt;
+		&lt;td&gt;{phone}&lt;/td&gt;
+		&lt;td&gt;{username}&lt;/td&gt;
+	&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+<p class="caption">Source Listing - Use &quot;spry:repeat&quot; to repeat an element and its contents for every row of a data set. </p>
+<p>If you load  the code above into a browser, you should see:</p>
+<table border="1">
+  <tr>
+    <th scope="col">Employee ID </th>
+    <th scope="col">Last Name </th>
+    <th scope="col">First Name </th>
+    <th scope="col">Phone</th>
+    <th scope="col">Username</th>
+  </tr>
+  <tr>
+    <td>123456</td>
+    <td>Smith </td>
+    <td>Edward</td>
+    <td>(415) 333-0235 </td>
+    <td>esmith</td>
+  </tr>
+  <tr>
+    <td>127937</td>
+    <td>Johnson</td>
+    <td>Neil</td>
+    <td>(415) 333-9475 </td>
+    <td>njohnson</td>
+  </tr>
+  <tr>
+    <td>126474</td>
+    <td>Williams</td>
+    <td>Steve</td>
+    <td>(415) 333-4573 </td>
+    <td>swilliams</td>
+  </tr>
+  <tr>
+    <td>120585</td>
+    <td>Jones</td>
+    <td>John</td>
+    <td>(415) 333-9345 </td>
+    <td>jjones</td>
+  </tr>
+  <tr>
+    <td>127493</td>
+    <td>Brown</td>
+    <td>Joe</td>
+    <td>(415) 333-5938 </td>
+    <td>jbrown</td>
+  </tr>
+</table>
+<p>Congratulations, you've converted your static table into a dynamic table that can load external data!</p>
+Before we conclude, let's take this example one step further by adding the ability to sort the items in the table based on a click in a specific column header. To do this, we add a spry:sort attribute to each column header:
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col" <span class="hilite">spry:sort="@id"</span>&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col" <span class="hilite">spry:sort="lastname"</span>Last Name &lt;/th&gt;
+		&lt;th scope="col" <span class="hilite">spry:sort="firstname"</span>&gt;First Name &lt;/th&gt;
+		&lt;th scope="col" <span class="hilite">spry:sort="phone"&gt;</span>Phone&lt;/th&gt;
+		&lt;th scope="col" <span class="hilite">spry:sort="username"</span>&gt;Username&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr spry:repeat="dsEmployees"&gt;
+		&lt;td&gt;{@id}&lt;/td&gt;
+		&lt;td&gt;{lastname}&lt;/td&gt;
+		&lt;td&gt;{firstname}&lt;/td&gt;
+		&lt;td&gt;{phone}&lt;/td&gt;
+		&lt;td&gt;{username}&lt;/td&gt;
+
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre>
+<p class="caption">Source Listing - Use the sort() method to sort the data in a data set. Any regions bound to the data set will automatically regenerate themselves. </p>
+<p>The sort method on the &quot;dsEmployees&quot; data set takes the name of the data set column to use for the sorting operation. Sorting causes the order of the data in the data set to change, so anytime it is invoked, the dynamic region  automatically regenerates itself to reflect the new ordering of the data. To see it in action, load the code above into a browser, and click on any of the column headers.</p>
+<p>Aside from sorting, we can also completely change the data we display by simply changing the URL on the data set and telling it to reload its data:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Static Table Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml", "employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+<span class="hilite">&lt;select onchange="dsEmployees.setURL(this.value); dsEmployees.loadData();"&gt;
+
+	&lt;option value=&quot;../../data/employees-01.xml" selected&gt;Set 1&lt;/option&gt;
+	&lt;option value=&quot;../../data/employees-02.xml"&gt;Set 2&lt;/option&gt;
+&lt;/select&gt;</span>
+&lt;div spry:region="dsEmployees"&gt;
+&lt;table border="1"&gt;
+	&lt;tr&gt;
+		&lt;th scope="col" spry:sort="@id"&gt;Employee ID &lt;/th&gt;
+		&lt;th scope="col"  spry:sort="lastname"&gt;Last Name &lt;/th&gt;
+		&lt;th scope="col"  spry:sort="firstname"&gt;First Name &lt;/th&gt;
+		&lt;th scope="col"  spry:sort="phone"&gt;Phone&lt;/th&gt;
+		&lt;th scope="col"  spry:sort="username"&gt;Username&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr spry:repeat="dsEmployees"&gt;
+		&lt;td&gt;{@id}&lt;/td&gt;
+		&lt;td&gt;{lastname}&lt;/td&gt;
+
+		&lt;td&gt;{firstname}&lt;/td&gt;
+		&lt;td&gt;{phone}&lt;/td&gt;
+		&lt;td&gt;{username}&lt;/td&gt;
+	&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre>
+<p class="caption">Source Listing - You can load new data by changing the URL on the data set and calling loadData(). </p>
+<p>When running the <a href="samples/table-tutorial-sample-05.html" target="sample">code</a> above in a browser, you can use the select form widget to switch between two different sets of data.</p>
+<p>Congratulations! With a few lines of JavaScript, you've turned your static table page into something that can load and display data from any number of XML files. Keep in mind that you can turn almost any HTML element on the page into a dynamic region. Take a look at some of the demos that are distributed with the framework to get an idea of just how flexible it is. </p>
+<hr />
+<p>Copyright © 2006. Adobe Systems Incorporated. <br />
+  All rights reserved.</p>
+<div class="nav-up"><a href="#tabtop">back to top</a></div>
+</body>
+</html>

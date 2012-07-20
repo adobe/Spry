@@ -1,0 +1,1730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Periodic Table</title>
+<link href="periodic_table.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../includes/SpryData.js"></script>
+<script type="text/javascript" src="../../includes/SpryHTMLDataSet.js"></script>
+<script type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+<script type="text/javascript" src="../../widgets/tooltip/SpryTooltip.js"></script>
+<script type="text/javascript" src="periodic_table.js"></script>
+<script type="text/javascript">
+var ds1 = new Spry.Data.HTMLDataSet(null,"atoms");
+var types = new Spry.Data.HTMLDataSet(null,"atoms",{distinctOnLoad:true, distinctFieldsOnLoad:['Element_Type']});
+var periods = new Spry.Data.HTMLDataSet(null,"atoms",{distinctOnLoad:true, distinctFieldsOnLoad:['Period']});
+var groups = new Spry.Data.HTMLDataSet(null,"atoms",{distinctOnLoad:true, distinctFieldsOnLoad:['Group'],sortOnLoad:"Group",sortOrderOnLoad:"ascending"});
+groups.setColumnType("Group","number");
+
+ds1.addObserver({onPostLoad: function(ds, data) {
+      Spry.Utils.removeClassName("wholeContainer", "SpryHiddenClass");
+}});
+</script>
+</head>
+<body>
+<div id="wholeContainer" class="SpryHiddenClass">
+  <!-- Filters -->
+  <div id="filters">
+		<div>
+			<span class="redText">Element Types:</span> <span spry:region="types" spry:repeat="types" class="SpryHiddenRegion"><a href="#" onclick="GrayOutTable('{Element_Type}'); return false;">{Element_Type}</a>&nbsp; </span></div>
+    <div class="floatElements"><span class="redText">Periods (rows):</span> <span spry:region="periods" spry:repeat="periods" class="SpryHiddenRegion"> <a href="#" onclick="GrayOutTable('{Period}');">{Period}</a>&nbsp; </span> </div>
+    <br class="clear" />
+    <div class="floatElements"><span class="redText">Groups (columns):</span> <span spry:region="groups" spry:repeatchildren="groups" spry:test="{Group} &lt;= 18" class="SpryHiddenRegion"> <a class="groupList" href="#" onclick="GrayOutTable('{Group}'); return false;" >{Group}</a>&nbsp; </span></div>
+    <br class="clear" />
+    <a href="#" onclick="clearGray(); return false;">Show All</a>
+</div>
+<br class="clear" />
+
+<!-- Main element block -->
+<div spry:region="ds1" spry:repeatchildren="ds1" class="SpryHiddenRegion" id="mainRegion"> <br spry:if="({No} == 3) || ({No} == 11) || ({No} == 19) || ({No} == 37) || ({No} == 55) || ({No} == 87)" class="clear" />
+  <div tabindex="{No}" class="elementBlock {Element_Type} {Period} {Name} {Group}"  spry:if="({No} &lt; 58 || ({No} &gt; 71 &amp;&amp; {No} &lt; 90) || {No} &gt; 103)" onmouseover="ds1.setCurrentRow('{ds_RowID}');" spry:hover="hover"> <span class="number">{No}</span> <span class="group"> {Group} </span>
+    <p>{Symbol}</p>
+    <span class="weight">{Atomicweight}</span> </div>
+</div>
+<br class="clear" />
+<br />
+
+<!-- Lanthanide/Actinide block -->
+<div id="Lanthanide" spry:region="ds1" spry:repeatchildren="ds1" class="SpryHiddenRegion">
+<br spry:if="{No} == 90" class="clear" />
+  <div class="elementBlock {Element_Type} {Period} {Name} {Group}" spry:if="({No} &gt;= 58 &amp;&amp; {No} &lt;= 71) || ({No} &gt;= 90 &amp;&amp; {No} &lt;= 103)" onmouseover="ds1.setCurrentRow('{ds_RowID}');" spry:hover="hover"> <span class="number">{No}</span> <span class="group"> {Group} </span>
+    <p>{Symbol}</p>
+    <span class="weight">{Atomicweight}</span> </div>
+</div>
+<!-- Tooltip -->
+<div spry:detailregion="ds1" id="tooltip" class="SpryHiddenRegion"> 
+	Name: 			<span class="value">{Name}</span><br />
+  Type: 			<span class="value">{Element_Type}</span><br />
+  Group: 			<span class="value">{Group}</span><br />
+  Symbol: 		<span class="value">{Symbol}</span><br />
+  Period: 		<span class="value">{Period}</span><br />
+  Boiling Point:<span class="value">{BP}</span><br />
+  Melting Point:<span class="value">{MP}</span><br />
+  Density: 		<span class="value">{Density}</span><br />
+  Atomic Weight:<span class="value">{Atomicweight}</span><br />
+  Electron Config:<span class="value">{Electron_configuration}</span><br />
+  Year Discovered:<span class="value">{DiscoveryYear}</span> </div>
+	<script type="text/javascript">
+			Spry.Data.Region.addObserver('mainRegion',{onPostUpdate:function(){var tt1 = new Spry.Widget.Tooltip('tooltip','#mainRegion .elementBlock',{showDelay:750, hideDelay:500});}});
+			Spry.Data.Region.addObserver('Lanthanide',{onPostUpdate:function(){var tt2 = new Spry.Widget.Tooltip('tooltip','#Lanthanide .elementBlock',{showDelay:750, hideDelay:500});}});
+	</script>
+</div>
+
+<table cellpadding="5" cellspacing="0" id="atoms">
+  <tr class="header">
+    <th>No</th>
+    <th>Atomicweight</th>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>MP</th>
+    <th> BP</th>
+    <th>Density</th>
+    <th>Earthcrust</th>
+    <th>DiscoveryYear</th>
+    <th>Group</th>
+    <th>Period</th>
+    <th>Electron_configuration</th>
+    <th>Element_Type</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1.0079</td>
+    <td>Hydrogen</td>
+    <td>H</td>
+    <td>-259</td>
+    <td>-253</td>
+    <td>0.09</td>
+    <td>0.14</td>
+    <td>1776</td>
+    <td>1</td>
+    <td>one</td>
+    <td>1s1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="nobel">
+    <td>2</td>
+    <td>4.0026</td>
+    <td>Helium</td>
+    <td>He</td>
+    <td>-272</td>
+    <td>-269</td>
+    <td></td>
+    <td></td>
+    <td>1895</td>
+    <td>18</td>
+    <td>one</td>
+    <td>1s2</td>
+    <td>Inert</td>
+  </tr>
+  <tr class="metal">
+    <td>3</td>
+    <td>6.941</td>
+    <td>Lithium</td>
+    <td>Li</td>
+    <td>180</td>
+    <td>1347</td>
+    <td>0.53</td>
+    <td></td>
+    <td>1817</td>
+    <td>1</td>
+    <td>two</td>
+    <td>[He] 2s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr class="metal">
+    <td>4</td>
+    <td>9.0122</td>
+    <td>Beryllium</td>
+    <td>Be</td>
+    <td>1278</td>
+    <td>2970</td>
+    <td>1.85</td>
+    <td></td>
+    <td>1797</td>
+    <td>2</td>
+    <td>two</td>
+    <td>[He] 2s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>10.811</td>
+    <td>Boron</td>
+    <td>B</td>
+    <td>2300</td>
+    <td>2550</td>
+    <td>2.34</td>
+    <td></td>
+    <td>1808</td>
+    <td>13</td>
+    <td>two</td>
+    <td>[He] 2s2 2p1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>12.01</td>
+    <td>Carbon</td>
+    <td>C</td>
+    <td>3500</td>
+    <td>4827</td>
+    <td>2.26</td>
+    <td>0.094</td>
+    <td> ancient</td>
+    <td>14</td>
+    <td>two</td>
+    <td>[He] 2s2 2p2</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>14.00</td>
+    <td>Nitrogen</td>
+    <td>N</td>
+    <td>-210</td>
+    <td>-196</td>
+    <td>1.25</td>
+    <td></td>
+    <td>1772</td>
+    <td>15</td>
+    <td>two</td>
+    <td>[He] 2s2 2p3</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>15.99</td>
+    <td>Oxygen</td>
+    <td>O</td>
+    <td>-218</td>
+    <td>-183</td>
+    <td>1.43</td>
+    <td>46.71</td>
+    <td>1774</td>
+    <td>16</td>
+    <td>two</td>
+    <td>[He] 2s2 2p4</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="halogen">
+    <td>9</td>
+    <td>18.99</td>
+    <td>Fluorine</td>
+    <td>F</td>
+    <td>-220</td>
+    <td>-188</td>
+    <td>1.7</td>
+    <td>0.029</td>
+    <td>1886</td>
+    <td>17</td>
+    <td>two</td>
+    <td>[He] 2s2 2p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr class="nobel">
+    <td>10</td>
+    <td>20.17</td>
+    <td>Neon</td>
+    <td>Ne</td>
+    <td>-249</td>
+    <td>-246</td>
+    <td></td>
+    <td></td>
+    <td>1898</td>
+    <td>18</td>
+    <td>two</td>
+    <td>[He] 2s2 2p6</td>
+    <td>Inert</td>
+  </tr>
+  <tr class="metal">
+    <td>11</td>
+    <td>22.98</td>
+    <td>Sodium</td>
+    <td>Na</td>
+    <td>98</td>
+    <td>883</td>
+    <td>0.97</td>
+    <td>2.75</td>
+    <td>1807</td>
+    <td>1</td>
+    <td>three</td>
+    <td>[Ne] 3s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr class="metal">
+    <td>12</td>
+    <td>24.30</td>
+    <td>Magnesium</td>
+    <td>Mg</td>
+    <td>639</td>
+    <td>1090</td>
+    <td>1.74</td>
+    <td>2.08</td>
+    <td>1755</td>
+    <td>2</td>
+    <td>three</td>
+    <td>[Ne] 3s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>13</td>
+    <td>26.981</td>
+    <td>Aluminum</td>
+    <td>Al</td>
+    <td>660</td>
+    <td>2467</td>
+    <td>2.7</td>
+    <td>8.07</td>
+    <td>1825</td>
+    <td>13</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p1</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>28.085</td>
+    <td>Silicon</td>
+    <td>Si</td>
+    <td>1410</td>
+    <td>2355</td>
+    <td>2.33</td>
+    <td>27.69</td>
+    <td>1824</td>
+    <td>14</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p2</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>30.973</td>
+    <td>Phosphorus</td>
+    <td>P</td>
+    <td>44</td>
+    <td>280</td>
+    <td>1.82</td>
+    <td>0.13</td>
+    <td>1669</td>
+    <td>15</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p3</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>32.065</td>
+    <td>Sulfur</td>
+    <td>S</td>
+    <td>113</td>
+    <td>445</td>
+    <td>2.07</td>
+    <td>0.052</td>
+    <td> ancient</td>
+    <td>16</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p4</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="halogen">
+    <td>17</td>
+    <td>35.453</td>
+    <td>Chlorine</td>
+    <td>Cl</td>
+    <td>-101</td>
+    <td>-35</td>
+    <td>3.21</td>
+    <td>0.045</td>
+    <td>1774</td>
+    <td>17</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr class="nobel">
+    <td>18</td>
+    <td>39.948</td>
+    <td>Argon</td>
+    <td>Ar</td>
+    <td>-189</td>
+    <td>-186</td>
+    <td></td>
+    <td></td>
+    <td>1894</td>
+    <td>18</td>
+    <td>three</td>
+    <td>[Ne] 3s2 3p6</td>
+    <td>Inert</td>
+  </tr>
+  <tr class="metal">
+    <td>19</td>
+    <td>39.098</td>
+    <td>Potassium</td>
+    <td>K</td>
+    <td>64</td>
+    <td>774</td>
+    <td>0.86</td>
+    <td>2.58</td>
+    <td>1807</td>
+    <td>1</td>
+    <td>four</td>
+    <td>[Ar] 4s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>40.078</td>
+    <td>Calcium</td>
+    <td>Ca</td>
+    <td>839</td>
+    <td>1484</td>
+    <td>1.55</td>
+    <td>3.65</td>
+    <td>1808</td>
+    <td>2</td>
+    <td>four</td>
+    <td>[Ar] 4s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>44.95</td>
+    <td>Scandium</td>
+    <td>Sc</td>
+    <td>1539</td>
+    <td>2832</td>
+    <td>2.99</td>
+    <td></td>
+    <td>1879</td>
+    <td>3</td>
+    <td>four</td>
+    <td>[Ar] 3d1 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>22</td>
+    <td>47.867</td>
+    <td>Titanium</td>
+    <td>Ti</td>
+    <td>1660</td>
+    <td>3287</td>
+    <td>4.54</td>
+    <td>0.62</td>
+    <td>1791</td>
+    <td>4</td>
+    <td>four</td>
+    <td>[Ar] 3d2 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>23</td>
+    <td>50.941</td>
+    <td>Vanadium</td>
+    <td>V</td>
+    <td>1890</td>
+    <td>3380</td>
+    <td>6.11</td>
+    <td></td>
+    <td>1830</td>
+    <td>5</td>
+    <td>four</td>
+    <td>[Ar] 3d3 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>24</td>
+    <td>51.996</td>
+    <td>Chromium</td>
+    <td>Cr</td>
+    <td>1857</td>
+    <td>2672</td>
+    <td>7.19</td>
+    <td>0.035</td>
+    <td>1797</td>
+    <td>6</td>
+    <td>four</td>
+    <td>[Ar] 3d5 4s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>25</td>
+    <td>54.938</td>
+    <td>Manganese</td>
+    <td>Mn</td>
+    <td>1245</td>
+    <td>1962</td>
+    <td>7.43</td>
+    <td>0.09</td>
+    <td>1774</td>
+    <td>7</td>
+    <td>four</td>
+    <td>[Ar] 3d5 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>26</td>
+    <td>55.845</td>
+    <td>Iron</td>
+    <td>Fe</td>
+    <td>1535</td>
+    <td>2750</td>
+    <td>7.87</td>
+    <td>5.05</td>
+    <td> ancient</td>
+    <td>8</td>
+    <td>four</td>
+    <td>[Ar] 3d6 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>27</td>
+    <td>58.933</td>
+    <td>Cobalt</td>
+    <td>Co</td>
+    <td>1495</td>
+    <td>2870</td>
+    <td>8.9</td>
+    <td></td>
+    <td>1735</td>
+    <td>9</td>
+    <td>four</td>
+    <td>[Ar] 3d7 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>28</td>
+    <td>58.6934</td>
+    <td>Nickel</td>
+    <td>Ni</td>
+    <td>1453</td>
+    <td>2732</td>
+    <td>8.9</td>
+    <td>0.019</td>
+    <td>1751</td>
+    <td>10</td>
+    <td>four</td>
+    <td>[Ar] 3d8 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>29</td>
+    <td>63.546</td>
+    <td>Copper</td>
+    <td>Cu</td>
+    <td>1083</td>
+    <td>2567</td>
+    <td>8.96</td>
+    <td></td>
+    <td> ancient</td>
+    <td>11</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>30</td>
+    <td>65.39</td>
+    <td>Zinc</td>
+    <td>Zn</td>
+    <td>420</td>
+    <td>907</td>
+    <td>7.13</td>
+    <td></td>
+    <td> ancient</td>
+    <td>12</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>31</td>
+    <td>69.723</td>
+    <td>Gallium</td>
+    <td>Ga</td>
+    <td>30</td>
+    <td>2403</td>
+    <td>5.91</td>
+    <td></td>
+    <td>1875</td>
+    <td>13</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p1</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>32</td>
+    <td>72.64</td>
+    <td>Germanium</td>
+    <td>Ge</td>
+    <td>937</td>
+    <td>2830</td>
+    <td>5.32</td>
+    <td></td>
+    <td>1886</td>
+    <td>14</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p2</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>33</td>
+    <td>74.9216</td>
+    <td>Arsenic</td>
+    <td>As</td>
+    <td>81</td>
+    <td>613</td>
+    <td>5.72</td>
+    <td></td>
+    <td> ancient</td>
+    <td>15</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p3</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>34</td>
+    <td>78.96</td>
+    <td>Selenium</td>
+    <td>Se</td>
+    <td>217</td>
+    <td>685</td>
+    <td>4.79</td>
+    <td></td>
+    <td>1817</td>
+    <td>16</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p4</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="halogen">
+    <td>35</td>
+    <td>79.904</td>
+    <td>Bromine</td>
+    <td>Br</td>
+    <td>-7</td>
+    <td>59</td>
+    <td>3.12</td>
+    <td></td>
+    <td>1826</td>
+    <td>17</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr class="nobel">
+    <td>36</td>
+    <td>83.8</td>
+    <td>Krypton</td>
+    <td>Kr</td>
+    <td>-157</td>
+    <td>-153</td>
+    <td></td>
+    <td></td>
+    <td>1898</td>
+    <td>18</td>
+    <td>four</td>
+    <td>[Ar] 3d10 4s2 4p6</td>
+    <td>Inert</td>
+  </tr>
+  <tr>
+    <td>37</td>
+    <td>85.467</td>
+    <td>Rubidium</td>
+    <td>Rb</td>
+    <td>39</td>
+    <td>688</td>
+    <td>1.63</td>
+    <td></td>
+    <td>1861</td>
+    <td>1</td>
+    <td>five</td>
+    <td>[Kr] 5s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>38</td>
+    <td>87.62</td>
+    <td>Strontium</td>
+    <td>Sr</td>
+    <td>769</td>
+    <td>1384</td>
+    <td>2.54</td>
+    <td></td>
+    <td>1790</td>
+    <td>2</td>
+    <td>five</td>
+    <td>[Kr] 5s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>39</td>
+    <td>88.905</td>
+    <td>Yttrium</td>
+    <td>Y</td>
+    <td>1523</td>
+    <td>3337</td>
+    <td>4.47</td>
+    <td></td>
+    <td>1794</td>
+    <td>3</td>
+    <td>five</td>
+    <td>[Kr] 4d1 5s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>40</td>
+    <td>91.224</td>
+    <td>Zirconium</td>
+    <td>Zr</td>
+    <td>1852</td>
+    <td>4377</td>
+    <td>6.51</td>
+    <td>0.025</td>
+    <td>1789</td>
+    <td>4</td>
+    <td>five</td>
+    <td>[Kr] 4d2 5s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>41</td>
+    <td>92.906</td>
+    <td>Niobium</td>
+    <td>Nb</td>
+    <td>2468</td>
+    <td>4927</td>
+    <td>8.57</td>
+    <td></td>
+    <td>1801</td>
+    <td>5</td>
+    <td>five</td>
+    <td>[Kr] 4d4 5s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>42</td>
+    <td>95.94</td>
+    <td>Molybdenum</td>
+    <td>Mo</td>
+    <td>2617</td>
+    <td>4612</td>
+    <td>10.22</td>
+    <td></td>
+    <td>1781</td>
+    <td>6</td>
+    <td>five</td>
+    <td>[Kr] 4d5 5s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>43</td>
+    <td>98</td>
+    <td>Technetium</td>
+    <td>Tc</td>
+    <td>2200</td>
+    <td>4877</td>
+    <td>11.5</td>
+    <td></td>
+    <td>1937</td>
+    <td>7</td>
+    <td>five</td>
+    <td>[Kr] 4d5 5s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>44</td>
+    <td>101.07</td>
+    <td>Ruthenium</td>
+    <td>Ru</td>
+    <td>2250</td>
+    <td>3900</td>
+    <td>12.37</td>
+    <td></td>
+    <td>1844</td>
+    <td>8</td>
+    <td>five</td>
+    <td>[Kr] 4d7 5s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>45</td>
+    <td>102.90</td>
+    <td>Rhodium</td>
+    <td>Rh</td>
+    <td>1966</td>
+    <td>3727</td>
+    <td>12.41</td>
+    <td></td>
+    <td>1803</td>
+    <td>9</td>
+    <td>five</td>
+    <td>[Kr] 4d8 5s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">46</td>
+    <td class="metal">106.42</td>
+    <td class="metal">Palladium</td>
+    <td class="metal">Pd</td>
+    <td class="metal">1552</td>
+    <td class="metal">2927</td>
+    <td class="metal">12.02</td>
+    <td class="metal"></td>
+    <td class="metal">1803</td>
+    <td class="metal">10</td>
+    <td class="metal">five</td>
+    <td class="metal">[Kr] 4d10</td>
+    <td class="metal">TransitionMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">47</td>
+    <td class="metal">107.86</td>
+    <td class="metal">Silver</td>
+    <td class="metal">Ag</td>
+    <td class="metal">962</td>
+    <td class="metal">2212</td>
+    <td class="metal">10.5</td>
+    <td class="metal"></td>
+    <td class="metal"> ancient</td>
+    <td class="metal">11</td>
+    <td class="metal">five</td>
+    <td class="metal">[Kr] 4d10 5s1</td>
+    <td class="metal">TransitionMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">48</td>
+    <td class="metal">112.411</td>
+    <td class="metal">Cadmium</td>
+    <td class="metal">Cd</td>
+    <td class="metal">321</td>
+    <td class="metal">765</td>
+    <td class="metal">8.65</td>
+    <td class="metal"></td>
+    <td class="metal">1817</td>
+    <td class="metal">12</td>
+    <td class="metal">five</td>
+    <td class="metal">[Kr] 4d10 5s2</td>
+    <td class="metal">TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>49</td>
+    <td>114.81</td>
+    <td>Indium</td>
+    <td>In</td>
+    <td>157</td>
+    <td>2000</td>
+    <td>7.31</td>
+    <td></td>
+    <td>1863</td>
+    <td>13</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p1</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr class="metal">
+    <td>50</td>
+    <td>118.71</td>
+    <td>Tin</td>
+    <td>Sn</td>
+    <td>232</td>
+    <td>2270</td>
+    <td>7.31</td>
+    <td></td>
+    <td> ancient</td>
+    <td>14</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p2</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>51</td>
+    <td>121.76</td>
+    <td>Antimony</td>
+    <td>Sb</td>
+    <td>630</td>
+    <td>1750</td>
+    <td>6.68</td>
+    <td></td>
+    <td> ancient</td>
+    <td>15</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p3</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>52</td>
+    <td>127.6</td>
+    <td>Tellurium</td>
+    <td>Te</td>
+    <td>449</td>
+    <td>990</td>
+    <td>6.24</td>
+    <td></td>
+    <td>1783</td>
+    <td>16</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p4</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="halogen">
+    <td>53</td>
+    <td>126.90</td>
+    <td>Iodine</td>
+    <td>I</td>
+    <td>114</td>
+    <td>184</td>
+    <td>4.93</td>
+    <td></td>
+    <td>1811</td>
+    <td>17</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr class="nobel">
+    <td>54</td>
+    <td>131.293</td>
+    <td>Xenon</td>
+    <td>Xe</td>
+    <td>-112</td>
+    <td>-108</td>
+    <td></td>
+    <td></td>
+    <td>1898</td>
+    <td>18</td>
+    <td>five</td>
+    <td>[Kr] 4d10 5s2 5p6</td>
+    <td>Inert</td>
+  </tr>
+  <tr class="metal">
+    <td>55</td>
+    <td>132.905</td>
+    <td>Cesium</td>
+    <td>Cs</td>
+    <td>29</td>
+    <td>678</td>
+    <td>1.87</td>
+    <td></td>
+    <td>1860</td>
+    <td>1</td>
+    <td>six</td>
+    <td>[Xe] 6s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>56</td>
+    <td>137.327</td>
+    <td>Barium</td>
+    <td>Ba</td>
+    <td>725</td>
+    <td>1140</td>
+    <td>3.59</td>
+    <td>0.05</td>
+    <td>1808</td>
+    <td>2</td>
+    <td>six</td>
+    <td>[Xe] 6s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>57</td>
+    <td>138.905</td>
+    <td>Lanthanum</td>
+    <td>La</td>
+    <td>920</td>
+    <td>3469</td>
+    <td>6.15</td>
+    <td></td>
+    <td>1839</td>
+    <td>3</td>
+    <td>six</td>
+    <td>[Xe] 5d1 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>58</td>
+    <td>140.116</td>
+    <td>Cerium</td>
+    <td>Ce</td>
+    <td>795</td>
+    <td>3257</td>
+    <td>6.77</td>
+    <td></td>
+    <td>1803</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f1 5d1 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>59</td>
+    <td>140.90</td>
+    <td>Praseodymium</td>
+    <td>Pr</td>
+    <td>935</td>
+    <td>3127</td>
+    <td>6.77</td>
+    <td></td>
+    <td>1885</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f3 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>60</td>
+    <td>144.24</td>
+    <td>Neodymium</td>
+    <td>Nd</td>
+    <td>1010</td>
+    <td>3127</td>
+    <td>7.01</td>
+    <td></td>
+    <td>1885</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f4 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>61</td>
+    <td>145</td>
+    <td>Promethium</td>
+    <td>Pm</td>
+    <td>1100</td>
+    <td>3000</td>
+    <td>7.3</td>
+    <td></td>
+    <td>1945</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f5 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>62</td>
+    <td>150.36</td>
+    <td>Samarium</td>
+    <td>Sm</td>
+    <td>1072</td>
+    <td>1900</td>
+    <td>7.52</td>
+    <td></td>
+    <td>1879</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f6 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>63</td>
+    <td>151.964</td>
+    <td>Europium</td>
+    <td>Eu</td>
+    <td>822</td>
+    <td>1597</td>
+    <td>5.24</td>
+    <td></td>
+    <td>1901</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f7 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>64</td>
+    <td>157.25</td>
+    <td>Gadolinium</td>
+    <td>Gd</td>
+    <td>1311</td>
+    <td>3233</td>
+    <td>7.9</td>
+    <td></td>
+    <td>1880</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f7 5d1 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>65</td>
+    <td>158.92</td>
+    <td>Terbium</td>
+    <td>Tb</td>
+    <td>1360</td>
+    <td>3041</td>
+    <td>8.23</td>
+    <td></td>
+    <td>1843</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f9 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>66</td>
+    <td>162.5</td>
+    <td>Dysprosium</td>
+    <td>Dy</td>
+    <td>1412</td>
+    <td>2562</td>
+    <td>8.55</td>
+    <td></td>
+    <td>1886</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f10 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>67</td>
+    <td>164.93</td>
+    <td>Holmium</td>
+    <td>Ho</td>
+    <td>1470</td>
+    <td>2720</td>
+    <td>8.8</td>
+    <td></td>
+    <td>1867</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f11 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>68</td>
+    <td>167.259</td>
+    <td>Erbium</td>
+    <td>Er</td>
+    <td>1522</td>
+    <td>2510</td>
+    <td>9.07</td>
+    <td></td>
+    <td>1842</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f12 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>69</td>
+    <td>168.93</td>
+    <td>Thulium</td>
+    <td>Tm</td>
+    <td>1545</td>
+    <td>1727</td>
+    <td>9.32</td>
+    <td></td>
+    <td>1879</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f13 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>70</td>
+    <td>173.04</td>
+    <td>Ytterbium</td>
+    <td>Yb</td>
+    <td>824</td>
+    <td>1466</td>
+    <td>6.9</td>
+    <td></td>
+    <td>1878</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f14 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>71</td>
+    <td>174.967</td>
+    <td>Lutetium</td>
+    <td>Lu</td>
+    <td>1656</td>
+    <td>3315</td>
+    <td>9.84</td>
+    <td></td>
+    <td>1907</td>
+    <td>101</td>
+    <td>lanthanide</td>
+    <td>[Xe] 4f14 5d1 6s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>72</td>
+    <td>178.49</td>
+    <td>Hafnium</td>
+    <td>Hf</td>
+    <td>2150</td>
+    <td>5400</td>
+    <td>13.31</td>
+    <td></td>
+    <td>1923</td>
+    <td>4</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d2 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>73</td>
+    <td>180.94</td>
+    <td>Tantalum</td>
+    <td>Ta</td>
+    <td>2996</td>
+    <td>5425</td>
+    <td>16.65</td>
+    <td></td>
+    <td>1802</td>
+    <td>5</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d3 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>74</td>
+    <td>183.84</td>
+    <td>Tungsten</td>
+    <td>W</td>
+    <td>3410</td>
+    <td>5660</td>
+    <td>19.35</td>
+    <td></td>
+    <td>1783</td>
+    <td>6</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d4 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>75</td>
+    <td>186.207</td>
+    <td>Rhenium</td>
+    <td>Re</td>
+    <td>3180</td>
+    <td>5627</td>
+    <td>21.04</td>
+    <td></td>
+    <td>1925</td>
+    <td>7</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d5 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>76</td>
+    <td>190.23</td>
+    <td>Osmium</td>
+    <td>Os</td>
+    <td>3045</td>
+    <td>5027</td>
+    <td>22.6</td>
+    <td></td>
+    <td>1803</td>
+    <td>8</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d6 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>77</td>
+    <td>192.217</td>
+    <td>Iridium</td>
+    <td>Ir</td>
+    <td>2410</td>
+    <td>4527</td>
+    <td>22.4</td>
+    <td></td>
+    <td>1803</td>
+    <td>9</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d7 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>78</td>
+    <td>195.078</td>
+    <td>Platinum</td>
+    <td>Pt</td>
+    <td>1772</td>
+    <td>3827</td>
+    <td>21.45</td>
+    <td></td>
+    <td>1735</td>
+    <td>10</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d9 6s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>79</td>
+    <td>196.96</td>
+    <td>Gold</td>
+    <td>Au</td>
+    <td>1064</td>
+    <td>2807</td>
+    <td>19.32</td>
+    <td></td>
+    <td> ancient</td>
+    <td>11</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s1</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr class="metal">
+    <td>80</td>
+    <td>200.59</td>
+    <td>Mercury</td>
+    <td>Hg</td>
+    <td>-39</td>
+    <td>357</td>
+    <td>13.55</td>
+    <td></td>
+    <td> ancient</td>
+    <td>12</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>81</td>
+    <td>204.38</td>
+    <td>Thallium</td>
+    <td>Tl</td>
+    <td>303</td>
+    <td>1457</td>
+    <td>11.85</td>
+    <td></td>
+    <td>1861</td>
+    <td>13</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p1</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr class="metal">
+    <td>82</td>
+    <td>207.2</td>
+    <td>Lead</td>
+    <td>Pb</td>
+    <td>327</td>
+    <td>1740</td>
+    <td>11.35</td>
+    <td></td>
+    <td> ancient</td>
+    <td>14</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p2</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>83</td>
+    <td>208.98</td>
+    <td>Bismuth</td>
+    <td>Bi</td>
+    <td>271</td>
+    <td>1560</td>
+    <td>9.75</td>
+    <td></td>
+    <td> ancient</td>
+    <td>15</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p3</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr>
+    <td>84</td>
+    <td>209</td>
+    <td>Polonium</td>
+    <td>Po</td>
+    <td>254</td>
+    <td>962</td>
+    <td>9.3</td>
+    <td></td>
+    <td>1898</td>
+    <td>16</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p4</td>
+    <td>OtherMetals</td>
+  </tr>
+  <tr class="halogen">
+    <td>85</td>
+    <td>210</td>
+    <td>Astatine</td>
+    <td>At</td>
+    <td>302</td>
+    <td>337</td>
+    <td></td>
+    <td></td>
+    <td>1940</td>
+    <td>17</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr class="nobel">
+    <td>86</td>
+    <td>222</td>
+    <td>Radon</td>
+    <td>Rn</td>
+    <td>-71</td>
+    <td>-62</td>
+    <td></td>
+    <td></td>
+    <td>1900</td>
+    <td>18</td>
+    <td>six</td>
+    <td>[Xe] 4f14 5d10 6s2 6p6</td>
+    <td>Inert</td>
+  </tr>
+  <tr class="metal">
+    <td>87</td>
+    <td>223</td>
+    <td>Francium</td>
+    <td>Fr</td>
+    <td>27</td>
+    <td>677</td>
+    <td></td>
+    <td></td>
+    <td>1939</td>
+    <td>1</td>
+    <td>seven</td>
+    <td>[Rn] 7s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr class="metal">
+    <td>88</td>
+    <td>226</td>
+    <td>Radium</td>
+    <td>Ra</td>
+    <td>700</td>
+    <td>1737</td>
+    <td>5.5</td>
+    <td></td>
+    <td>1898</td>
+    <td>2</td>
+    <td>seven</td>
+    <td>[Rn] 7s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>89</td>
+    <td>227</td>
+    <td>Actinium</td>
+    <td>Ac</td>
+    <td>1050</td>
+    <td>3200</td>
+    <td>10.07</td>
+    <td></td>
+    <td>1899</td>
+    <td>3</td>
+    <td>seven</td>
+    <td>[Rn] 6d1 7s2</td>
+    <td>TransitionMetal</td>
+  </tr>
+  <tr>
+    <td>90</td>
+    <td>232.03</td>
+    <td>Thorium</td>
+    <td>Th</td>
+    <td>1750</td>
+    <td>4790</td>
+    <td>11.72</td>
+    <td></td>
+    <td>1829</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td>[Rn] 6d2 7s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>91</td>
+    <td>231.03</td>
+    <td>Protactinium</td>
+    <td>Pa</td>
+    <td>1568</td>
+    <td></td>
+    <td>15.4</td>
+    <td></td>
+    <td>1913</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td>[Rn] 5f2 6d1 7s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">92</td>
+    <td class="metal">238.02</td>
+    <td class="metal">Uranium</td>
+    <td class="metal">U</td>
+    <td class="metal">1132</td>
+    <td class="metal">3818</td>
+    <td class="metal">18.95</td>
+    <td class="metal"></td>
+    <td class="metal">1789</td>
+    <td class="metal">102</td>
+    <td class="metal">actinide</td>
+    <td class="metal">[Rn] 5f3 6d1 7s2</td>
+    <td class="metal">RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">93</td>
+    <td class="metal">237</td>
+    <td class="metal">Neptunium</td>
+    <td class="metal">Np</td>
+    <td class="metal">640</td>
+    <td class="metal">3902</td>
+    <td class="metal">20.2</td>
+    <td class="metal"></td>
+    <td class="metal">1940</td>
+    <td class="metal">102</td>
+    <td class="metal">actinide</td>
+    <td class="metal">[Rn] 5f4 6d1 7s2</td>
+    <td class="metal">RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td class="metal">94</td>
+    <td class="metal">244</td>
+    <td class="metal">Plutonium</td>
+    <td class="metal">Pu</td>
+    <td class="metal">640</td>
+    <td class="metal">3235</td>
+    <td class="metal">19.84</td>
+    <td class="metal"></td>
+    <td class="metal">1940</td>
+    <td class="metal">102</td>
+    <td class="metal">actinide</td>
+    <td class="metal">[Rn] 5f6 7s2</td>
+    <td class="metal">RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>95</td>
+    <td>243</td>
+    <td>Americium</td>
+    <td>Am</td>
+    <td>994</td>
+    <td>2607</td>
+    <td>13.67</td>
+    <td></td>
+    <td>1944</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td>[Rn] 5f7 7s2</td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>96</td>
+    <td>247</td>
+    <td>Curium</td>
+    <td>Cm</td>
+    <td>1340</td>
+    <td></td>
+    <td>13.5</td>
+    <td></td>
+    <td>1944</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>97</td>
+    <td>247</td>
+    <td>Berkelium</td>
+    <td>Bk</td>
+    <td>986</td>
+    <td></td>
+    <td>14.78</td>
+    <td></td>
+    <td>1949</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>98</td>
+    <td>251</td>
+    <td>Californium</td>
+    <td>Cf</td>
+    <td>900</td>
+    <td></td>
+    <td>15.1</td>
+    <td></td>
+    <td>1950</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>99</td>
+    <td>252</td>
+    <td>Einsteinium</td>
+    <td>Es</td>
+    <td>860</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1952</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>100</td>
+    <td>257</td>
+    <td>Fermium</td>
+    <td>Fm</td>
+    <td>1527</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1952</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>101</td>
+    <td>258</td>
+    <td>Mendelevium</td>
+    <td>Md</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1955</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>102</td>
+    <td>259</td>
+    <td>Nobelium</td>
+    <td>No</td>
+    <td>827</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1958</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>103</td>
+    <td>262</td>
+    <td>Lawrencium</td>
+    <td>Lr</td>
+    <td>1627</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1961</td>
+    <td>102</td>
+    <td>actinide</td>
+    <td></td>
+    <td>RareEarthMetal</td>
+  </tr>
+  <tr>
+    <td>104</td>
+    <td>261</td>
+    <td>Rutherfordium</td>
+    <td>Rf</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1964</td>
+    <td>4</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+  <tr>
+    <td>105</td>
+    <td>262</td>
+    <td>Dubnium</td>
+    <td>Db</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1967</td>
+    <td>5</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+  <tr>
+    <td>106</td>
+    <td>266</td>
+    <td>Seaborgium</td>
+    <td>Sg</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1974</td>
+    <td>6</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+  <tr>
+    <td>107</td>
+    <td>264</td>
+    <td>Bohrium</td>
+    <td>Bh</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1981</td>
+    <td>7</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+  <tr>
+    <td>108</td>
+    <td>277</td>
+    <td>Hassium</td>
+    <td>Hs</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1984</td>
+    <td>8</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+  <tr>
+    <td>109</td>
+    <td>268</td>
+    <td>Meitnerium</td>
+    <td>Mt</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>1982</td>
+    <td>9</td>
+    <td>seven</td>
+    <td></td>
+    <td>Theoretical</td>
+  </tr>
+</table>
+<script type="text/javascript">
+	Spry.$("atoms").style.display='none';
+</script>
+</body>
+</html>

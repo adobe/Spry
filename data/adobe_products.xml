@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<products>
+	
+	<product>
+		<name>Adobe Photoshop CS2</name>
+		<category>Digital Imaging</category>
+		<boximage>images/photoshop.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>450</price>
+		<descheader><![CDATA[The professional standard in desktop digital imaging]]></descheader>
+		<desc><![CDATA[Adobe&reg; Photoshop&reg; CS2 software, the professional image-editing standard and leader of the Photoshop digital imaging line, delivers more of what you crave. Groundbreaking creative tools help you achieve extraordinary results. Unprecedented adaptability lets you custom-fit Photoshop to the way you work. And with more efficient editing, processing, and file handling, there's no slowing you down.]]></desc>
+		<features>
+			<feature><![CDATA[Revolutionary Vanishing Point]]></feature>
+			<feature><![CDATA[Multiple layer control]]></feature>
+			<feature><![CDATA[Smart Objects]]></feature>
+			<feature><![CDATA[Multi-image digital camera raw file processing]]></feature>
+			<feature><![CDATA[Image Warp]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Illustrator CS2</name>
+		<category>Print Publishing</category>
+		<boximage>images/illustrator.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>550</price>
+		<descheader><![CDATA[Vector graphics reinvented]]></descheader>
+		<desc><![CDATA[Adobe&reg; Illustrator&reg; CS2 software gives you new creative freedom that lets you realize your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.]]></desc>
+		<features>
+			<feature><![CDATA[Live Trace]]></feature>
+			<feature><![CDATA[Live Paint]]></feature>
+			<feature><![CDATA[Control palette]]></feature>
+			<feature><![CDATA[Custom workspaces]]></feature>
+			<feature><![CDATA[Photoshop layer comp support]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe InDesign CS2</name>
+		<category>Print Publishing</category>
+		<boximage>images/indesign.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>960</price>
+		<descheader><![CDATA[A new standard in professional layout and design]]></descheader>
+		<desc><![CDATA[Join the growing ranks of creative professionals discovering new levels of creative freedom and productivity using Adobe&reg; InDesign&reg; CS2 software. Tightly integrated with the Adobe applications you use most, InDesign CS2 delivers faster production workflows and a more fluid creative environment for designing professional layouts with sophisticated graphics and typography.]]></desc>
+		<features>
+			<feature><![CDATA[Object styles]]></feature>
+			<feature><![CDATA[Adobe Photoshop and Adobe PDF layer support]]></feature>
+			<feature><![CDATA[InDesign snippets]]></feature>
+			<feature><![CDATA[Adobe InCopy CS2 assignments]]></feature>
+			<feature><![CDATA[Save backwards to InDesign CS]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe GoLive CS2</name>
+		<category>Web Publishing</category>
+		<boximage>images/golive.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>490</price>
+		<descheader><![CDATA[Professional, standards-based Web and mobile authoring]]></descheader>
+		<desc><![CDATA[Adobe&reg; GoLive&reg; CS2 software lets you unlock the power of CSS with intuitive visual tools such as prebuilt CSS objects that you can drag and drop to build sophisticated sites. Jump-start your designs by easily converting Adobe InDesign&reg; layouts into Web pages. Or, design Web and mobile content in an advanced, standards-based coding environment.]]></desc>
+		<features>
+			<feature><![CDATA[Enhanced live rendering]]></feature>
+			<feature><![CDATA[Simple visual tools to build and edit CSS-based pages]]></feature>
+			<feature><![CDATA[Visual CSS authoring for mobile devices]]></feature>
+			<feature><![CDATA[Visual SVG-t inspection and authoring for mobile]]></feature>
+			<feature><![CDATA[Total site management]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Dreamweaver 8</name>
+		<category>Web Publishing</category>
+		<boximage>images/dreamweaver.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>495</price>
+		<descheader><![CDATA[Dreamweaver 8 is the industry-leading web development tool, enabling users to efficiently design, develop and maintain standards-based websites and applications.]]></descheader>
+		<desc><![CDATA[With Dreamweaver 8, web developers go from start to finish, creating and maintaining basic websites to advanced applications that support best practices and the latest technologies.]]></desc>
+		<features>
+			<feature><![CDATA[Visual authoring with XML data]]></feature>
+			<feature><![CDATA[New, unified CSS panel]]></feature>
+			<feature><![CDATA[CSS layout visualization]]></feature>
+			<feature><![CDATA[Style rendering toolbar]]></feature>
+			<feature><![CDATA[CSS rendering improvements]]></feature>
+			<feature><![CDATA[Support for WCAG/W3C priority 2 checkpoints]]></feature>
+			<feature><![CDATA[Improved WebDAV]]></feature>
+			<feature><![CDATA[Background file transfer]]></feature>
+			<feature><![CDATA[Zoom]]></feature>
+			<feature><![CDATA[Guides]]></feature>
+			<feature><![CDATA[Coding toolbar]]></feature>
+			<feature><![CDATA[Code collapse]]></feature>
+			<feature><![CDATA[Workspace layouts]]></feature>
+			<feature><![CDATA[Tabbed documents for the Mac]]></feature>
+			<feature><![CDATA[New starter pages]]></feature>
+			<feature><![CDATA[ Improved site synchronize and check in and check out]]></feature>
+			<feature><![CDATA[Compare files]]></feature>
+			<feature><![CDATA[Paste special]]></feature>
+			<feature><![CDATA[ Site relative references]]></feature>
+			<feature><![CDATA[ Code editing improvements]]></feature>
+			<feature><![CDATA[ Support for ColdFusion MX 7]]></feature>
+			<feature><![CDATA[ Support for PHP 5]]></feature>
+			<feature><![CDATA[ Flash Video]]></feature>
+			<feature><![CDATA[Macromedia Web Publishing System notification and event logging]]></feature>
+			<feature><![CDATA[Updated reference material from O'Reilly]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Flash 8 Professional</name>
+		<category>Web Publishing</category>
+		<boximage>images/flash_pro.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>495</price>
+		<descheader><![CDATA[Introducing Macromedia's biggest Flash release to date.]]></descheader>
+		<desc><![CDATA[Flash&reg; Professional 8 is the industry's most advanced authoring environment for creating interactive websites, digital experiences and mobile content. With Flash Professional 8, creative professionals design and author interactive content rich with video, graphics, and animation for truly unique, engaging websites, presentations or mobile content.]]></desc>
+		<features>
+			<feature><![CDATA[Filters]]></feature>
+		 	<feature><![CDATA[Blend modes]]></feature>
+			<feature><![CDATA[FlashType high-quality font rendering engine]]></feature>
+			<feature><![CDATA[Bitmap caching]]></feature>
+			<feature><![CDATA[Custom easing control]]></feature>
+			<feature><![CDATA[Improved text tool]]></feature>
+			<feature><![CDATA[Enhanced stroke properties]]></feature>
+			<feature><![CDATA[Advanced gradient control]]></feature>
+			<feature><![CDATA[Higher-quality video codec]]></feature>
+			<feature><![CDATA[Alpha channel support]]></feature>
+			<feature><![CDATA[Advanced video encoding options]]></feature>
+			<feature><![CDATA[Stand-alone video encoder]]></feature>
+			<feature><![CDATA[Video Encoder plug-in for professional video editing tools]]></feature>
+			<feature><![CDATA[Embedded cue points]]></feature>
+			<feature><![CDATA[Video import workflow]]></feature>
+			<feature><![CDATA[Improved, easily-skinnable video component]]></feature>
+			<feature><![CDATA[Script Assist (formerly called Normal Mode)]]></feature>
+			<feature><![CDATA[Advanced library]]></feature>
+			<feature><![CDATA[Object drawing model]]></feature>
+			<feature><![CDATA[Improved panel management]]></feature>
+			<feature><![CDATA[Stage pasteboard expansion]]></feature>
+			<feature><![CDATA[Undo/redo options]]></feature>
+			<feature><![CDATA[SWF Metadata]]></feature>
+			<feature><![CDATA[Interactive mobile device emulator]]></feature>
+			<feature><![CDATA[Improved actions panel]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Fireworks 8</name>
+		<category>Web Publishing</category>
+		<boximage>images/fireworks.gif</boximage>
+		<price>695</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, edit and optimize images for the web with precise control.]]></descheader>
+		<desc><![CDATA[Create animated rollovers and pop-up menus with Fireworks 8's intuitive visual tools, and utilize round-trip editing capabilities with Dreamweaver 8 and Flash Professional 8 for greater efficiency.]]></desc>
+		<features>
+			<feature><![CDATA[Get top-quality design results.]]></feature>
+			<feature><![CDATA[Produce highly optimized files that still look great.]]></feature>
+			<feature><![CDATA[Slice and export page comps.]]></feature>
+			<feature><![CDATA[Create sophisticated web navigation.]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Premiere 2.0</name>
+		<category>Audio and Video</category>
+		<boximage>images/premiere.gif</boximage>
+		<price>995</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Real-time editing for HD, SD, and DV]]></descheader>
+		<desc><![CDATA[Make every frame count with Adobe&reg; Premiere&reg; Pro 2.0 software, the essential tool for professional video editing. Capture and edit virtually any format, from DV to uncompressed HD, and output to tape, DVD, and the web. Providing unparalleled integration with other Adobe applications, Adobe Premiere Pro 2.0 sets new standards for efficient digital filmmaking.]]></desc>
+		<features>
+			<feature><![CDATA[Multicam editing]]></feature>
+			<feature><![CDATA[Accelerated client review and approval]]></feature>
+			<feature><![CDATA[DVD authoring from the timeline]]></feature>
+			<feature><![CDATA[Native HDV editing]]></feature>
+			<feature><![CDATA[Native SD and HD support]]></feature>
+			<feature><![CDATA[Enhanced color-correction tools]]></feature>
+			<feature><![CDATA[10-bit and 16-bit color resolution support]]></feature>
+			<feature><![CDATA[32-bit internal color processing]]></feature>
+			<feature><![CDATA[GPU-accelerated rendering]]></feature>
+			<feature><![CDATA[Adobe Bridge]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe After Effects 7.0 Professional</name>
+		<category>Audio and Video</category>
+		<boximage>images/aftereffects_pro.gif</boximage>
+		<price>1495</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The industry standard for motion graphics and visual effects]]></descheader>
+		<desc><![CDATA[Animate your ideas. Adobe&reg; After Effects&reg; 7.0 software helps you create compelling motion graphics and blockbuster visual effects with efficiency, precision, and infinite variety. Take advantage of unmatched integration with other Adobe software, flexible 2D and 3D compositing, and hundreds of effects and Animation Presets to bring a new dimension to your film, video, DVD, and Macromedia&reg; Flash&reg; productions.]]></desc>
+		<features>
+			<feature><![CDATA[Redesigned, unified user interface]]></feature>
+			<feature><![CDATA[Graph Editor]]></feature>
+			<feature><![CDATA[HDR color support]]></feature>
+			<feature><![CDATA[Timesaving Animation and Behavior Presets plus project templates]]></feature>
+			<feature><![CDATA[Real-time, high-fidelity OpenGL support]]></feature>
+			<feature><![CDATA[Timewarp]]></feature>
+			<feature><![CDATA[Adobe Bridge]]></feature>
+			<feature><![CDATA[Expanded file format support]]></feature>
+			<feature><![CDATA[Unmatched Adobe integration]]></feature>
+			<feature><![CDATA[Macromedia&reg; Flash&reg; Video (FLV) export]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe After Effects 7.0 Standard</name>
+		<category>Audio and Video</category>
+		<boximage>images/aftereffects_std.gif</boximage>
+		<price>1295</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The industry standard for motion graphics and visual effects]]></descheader>
+		<desc><![CDATA[Animate your ideas. Adobe&reg; After Effects&reg; 7.0 software helps you create compelling motion graphics and blockbuster visual effects with efficiency, precision, and infinite variety. Take advantage of unmatched integration with other Adobe software, flexible 2D and 3D compositing, and hundreds of effects and Animation Presets to bring a new dimension to your film, video, DVD, and Macromedia&reg; Flash&reg; productions.]]></desc>
+		<features>
+			<feature><![CDATA[Flexible 2D and 3D compositing environment]]></feature>
+			<feature><![CDATA[Unrivaled creative text animation tools]]></feature>
+			<feature><![CDATA[Powerful animation and keyframing]]></feature>
+			<feature><![CDATA[Visual effects plug-ins]]></feature>
+			<feature><![CDATA[Vector Paint support]]></feature>
+			<feature><![CDATA[Professional output options for film, video, DVD, Macromedia&reg; Flash&reg;, and other streaming media formats for the web]]></feature>
+			<feature><![CDATA[Masking tools]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Encore DVD 2.0</name>
+		<category>Audio and Video</category>
+		<boximage>images/encore.gif</boximage>
+		<price>495</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The essential tool for DVD creation]]></descheader>
+		<desc><![CDATA[Create DVDs that reflect your best work. Packed with a rich set of creative tools, Adobe&reg; Encore&reg; DVD 2.0 software helps you create striking DVD titles for film, business, training, events, and more. With unmatched Adobe Photoshop&reg; software integration and a flexible and intelligent workflow, Encore DVD 2.0 is the right choice for easy production of full-featured, menu-driven DVDs.]]></desc>
+		<features>
+			<feature><![CDATA[Slideshow Editor]]></feature>
+			<feature><![CDATA[Flowchart]]></feature>
+			<feature><![CDATA[Updated user interface with workspace panels that dock and group]]></feature>
+			<feature><![CDATA[Adobe Bridge]]></feature>
+			<feature><![CDATA[Automated chapter menus]]></feature>
+			<feature><![CDATA[Chapter Playlists]]></feature>
+			<feature><![CDATA[Royalty-free templates and menu art]]></feature>
+			<feature><![CDATA[Multiple clips on a timeline]]></feature>
+			<feature><![CDATA[XMP metadata support]]></feature>
+			<feature><![CDATA[DTS audio support]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Audition 2.0</name>
+		<category>Audio and Video</category>
+		<boximage>images/audition.gif</boximage>
+		<price>295</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Integrated audio recording, mixing, editing, and mastering]]></descheader>
+		<desc><![CDATA[Record, mix, edit, and master digital audio files with powerful tools that bring flexibility and control to your desktop studio. Easily create music, produce radio spots, and restore imperfect recordings. Bring audio and video together using smart integration with Adobe video applications. Get professional results in real time with Adobe&reg; Audition&reg; 2.0 software.]]></desc>
+		<features>
+			<feature><![CDATA[Low-latency mixing with unlimited tracks]]></feature>
+			<feature><![CDATA[ASIO support]]></feature>
+			<feature><![CDATA[Audible scrubbing]]></feature>
+			<feature><![CDATA[Analog-modeled Multiband Compressor]]></feature>
+			<feature><![CDATA[Recordable parameter automation with external hardware support]]></feature>
+			<feature><![CDATA[New tools for mastering]]></feature>
+			<feature><![CDATA[New Spectral Frequency Display tools]]></feature>
+			<feature><![CDATA[Broader video format support]]></feature>
+			<feature><![CDATA[Optimized performance]]></feature>
+			<feature><![CDATA[Intuitive user interface]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Studio 8</name>
+		<category>Web Publishing</category>
+		<boximage>images/studio.gif</boximage>
+		<price>1545</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Studio 8 is the essential software suite used to design, develop and maintain interactive online experiences.]]></descheader>
+		<desc><![CDATA[With the latest releases of Dreamweaver, Flash Professional, Fireworks, Contribute and FlashPaper, Studio 8 offers web designers and developers a new level of expressiveness, efficiency and simplified workflow to create websites, interactive experiences and mobile content.]]></desc>
+		<features>
+			<feature><![CDATA[Get the complete toolset.
+Studio 8 is the essential suite for start-to-finish design, development and maintenance tools of websites, applications, games, interactive presentations, and mobile content. Studio 8 includes Flash Professional 8, Dreamweaver 8, Fireworks 8, Contribute 3, and FlashPaper 2 all the necessary tools to create code and easily maintain interactive projects.]]></feature>
+			<feature><![CDATA[Get more done.
+Studio 8 speeds the design, development, and maintenance process with integrated round-tripping between Macromedia products, new time-saving features like batch rendering for media assets and batch encoding for video, faster user interface workflows, and boosted integration with third-party products.]]></feature>
+			<feature><![CDATA[Pick any platform.
+Support for Windows and Mac OS X enables development and deployment on any platform. Deliver projects that support the widest range of operating systems, browsers, and server technologies. Develop applications using HTML, XHTML, XML, ColdFusion, ASP, ASP.NET, JSP, or PHP with drag-and-drop visual tools and components, code libraries, and extensive code-editing support.]]></feature>
+			<feature><![CDATA[Take advantage of industry-standard workflows and technologies.
+Studio 8 makes the best practices of web design and development available to everyone, from users working on their first website to those developing advanced web applications. Design and develop with confidence that Studio projects will integrate with and support the latest technologies, platforms, operating systems, and industry standards from CSS and XML to the latest Flash Player 8 client runtime.]]></feature>
+			<feature><![CDATA[Bring video to the web.
+Studio 8 makes integrating video into projects easier than ever. Drag and drop Flash Video in Dreamweaver 8 to quickly incorporate video to websites and applications. The new high-quality video encoder in Flash Professional 8 is integrated (or works standalone) for distributed batch encoding. New run-time support for Alpha channels, embedded cue points in Flash Video files, and the improved, easily-skinnable video playback component will engage more viewers. Going from on-screen to online is effortless using many nonlinear editing systems that export natively to the Flash Video format.]]></feature>
+			<feature><![CDATA[Maximize reach.
+Deliver rich content efficiently and consistently with the Flash standard file format (SWF); its structure (and compact size) is optimized for streaming to web users at all connection speeds. The Macromedia Flash Player, installed on over 98% of desktops globally reaches the widest possible audience. Studio 8 parallels the introduction of Flash Player 8, which now hosts more interactive features, lightweight experiences, better performance, and easy auto-updating for the ultimate viewing experience.]]></feature>
+			<feature><![CDATA[Plays well with others.
+In addition to its integrated workflows across Macromedia products, Studio 8 supports optimized workflows with third-party applications. Import graphical elements, EPS and PDF files from Adobe Photoshop, Illustrator, or Creative Suite. Add content from Microsoft Office products with design accuracy using the improved copy and paste in Dreamweaver or use FlashPaper to convert Microsoft files into PDF or FlashPaper files with one click. Easily work in a family of design and development applications using powerful import/export capabilities.]]></feature>
+			<feature><![CDATA[Go mobile.
+Use Studio 8 to take the web experience farther and create content for millions of mobile handheld devices and phones. Author, test, and preview mobile content using the advanced authoring environment in Flash Professional 8, complete with an interactive emulator for Flash Lite.]]></feature>
+			<feature><![CDATA[Join a developer community millions strong.
+Benefit from extensive Studio 8 product resources including the Studio Development Center, developer certification programs, training and seminars, user forums, and independent community support sites. Enrich your copy of Dreamweaver, Fireworks, and Flash with thousands of free downloadable extensions from the Macromedia Exchange.]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Creative Suite 2 Premium</name>
+		<category>Creative Suite</category>
+		<boximage>images/creativesuite_prem.gif</boximage>
+		<price>1695</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The complete design environment for print, web, and mobile publishing]]></descheader>
+		<desc><![CDATA[Adobe&reg; Creative Suite 2 Premium software is a unified design environment that combines full new versions of Adobe Photoshop&reg; CS2, Illustrator&reg; CS2, InDesign&reg; CS2, GoLive&reg; CS2, and Acrobat&reg; 7.0 Professional software with new Version Cue&reg; CS2, Adobe Bridge, and Adobe Stock Photos. Delivering the next level of integration in creative software, Adobe Creative Suite 2 enables you to realize your ideas anywhere in print, on the web, or on mobile devices.]]></desc>
+		<features>
+			<feature><![CDATA[Image editing with Adobe Photoshop&reg; CS2]]></feature>
+			<feature><![CDATA[Drawing and illustration with Adobe Illustrator&reg; CS2]]></feature>
+			<feature><![CDATA[Page layout with Adobe InDesign&reg; CS2]]></feature>
+			<feature><![CDATA[Web design with Adobe GoLive&reg; CS2]]></feature>
+			<feature><![CDATA[Client review and print output with Adobe Acrobat&reg; 7.0 Professional]]></feature>
+			<feature><![CDATA[File sharing and versioning with Version Cue CS2]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[Royalty-free images with Adobe Stock Photos]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Creative Suite 2 Standard</name>
+		<category>Creative Suite</category>
+		<boximage>images/creativesuite_std.gif</boximage>
+		<bkgimage></bkgimage>
+		<price>1495</price>
+		<descheader><![CDATA[The complete design environment for print, web, and mobile publishing]]></descheader>
+		<desc><![CDATA[Adobe&reg; Creative Suite 2 Premium software is a unified design environment that combines full new versions of Adobe Photoshop&reg; CS2, Illustrator&reg; CS2, InDesign&reg; CS2, GoLive&reg; CS2, and Acrobat&reg; 7.0 Professional software with new Version Cue&reg; CS2, Adobe Bridge, and Adobe Stock Photos. Delivering the next level of integration in creative software, Adobe Creative Suite 2 enables you to realize your ideas anywhere in print, on the web, or on mobile devices.]]></desc>
+		<features>
+			<feature><![CDATA[Image editing with Adobe Photoshop&reg; CS2]]></feature>
+			<feature><![CDATA[Drawing and illustration with Adobe Illustrator&reg; CS2]]></feature>
+			<feature><![CDATA[Page layout with Adobe InDesign&reg; CS2]]></feature>
+			<feature><![CDATA[File sharing and versioning with Version Cue CS2]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[Royalty-free images with Adobe Stock Photos]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Creative Suite Production Studio Premium</name>
+		<category>Audio and Video</category>
+		<boximage>images/productionstudio.gif</boximage>
+		<price>455</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The complete post-production solution]]></descheader>
+		<desc><![CDATA[Bring new power and efficiency to your film, video, DVD, and web workflows with Adobe&reg; Production Studio Premium software. Part of the Adobe Creative Suite family, this complete audio and video post-production solution combines Adobe After Effects&reg; 7.0 Professional, Adobe Premiere&reg; Pro 2.0, Adobe Photoshop&reg; CS2, Adobe Audition&reg; 2.0, Adobe Encore&reg; DVD 2.0, and Adobe Illustrator&reg; CS2 software with the timesaving workflow features Adobe Dynamic Link and Adobe Bridge.]]></desc>
+		<features>
+			<feature><![CDATA[Motion graphics and visual effects with Adobe After Effects 7.0]]></feature>
+			<feature><![CDATA[Real-time video editing with Adobe Premiere Pro 2.0]]></feature>
+			<feature><![CDATA[Greater control over images in Adobe Photoshop CS2]]></feature>
+			<feature><![CDATA[Audio recording, mixing, editing, and mastering with Adobe Audition 2.0 (Premium edition only)]]></feature>
+			<feature><![CDATA[Professional DVD production with Adobe Encore DVD 2.0 (Premium edition only)]]></feature>
+			<feature><![CDATA[New power for vectors in Adobe Illustrator CS2 (Premium edition only)]]></feature>
+			<feature><![CDATA[Eliminate rendering with Adobe Dynamic Link, only in Production Studio]]></feature>
+			<feature><![CDATA[Increased productivity from unmatched Adobe integration]]></feature>
+			<feature><![CDATA[A unified design environment for higher productivity]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[HD video for the highest production standards]]></feature>
+			<feature><![CDATA[Broad support for industry standards and formats]]></feature>
+			<feature><![CDATA[Macromedia Flash integration]]></feature>
+			<feature><![CDATA[Pristine, high-quality color]]></feature>
+			<feature><![CDATA[Superior audio production]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Design Bundle</name>
+		<category>Creative Studio</category>
+		<boximage>images/designbundle.gif</boximage>
+		<price>795</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[]]>Adobe Design Bundle</descheader>
+		<desc><![CDATA[The Adobe&reg; Design Bundle offers the unified design environment of Adobe Creative Suite 2 Premium software with Macromedia&reg; Flash&reg; Professional 8 software, the industry's choice for creating advanced interactive content. Now with one package, you can design, develop, manage, and deliver a consistent experience using industry standards such as Adobe PDF and Macromedia Flash format to millions of people around the world in print, on the web, and on mobile devices.]]></desc>
+		<features>
+			<feature><![CDATA[Image editing with Adobe Photoshop&reg; CS2]]></feature>
+			<feature><![CDATA[Drawing and illustration with Adobe Illustrator&reg; CS2]]></feature>
+			<feature><![CDATA[Page layout with Adobe InDesign&reg; CS2]]></feature>
+			<feature><![CDATA[Web design with Adobe GoLive&reg; CS2]]></feature>
+			<feature><![CDATA[Client review and print output with Adobe Acrobat&reg; 7.0 Professional]]></feature>
+			<feature><![CDATA[File sharing and versioning with Version Cue CS2]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[Royalty-free images with Adobe Stock Photos]]></feature>
+			<feature><![CDATA[Macromedia Flash 8]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Web Bundle</name>
+		<category>Creative Studio</category>
+		<boximage>images/webbundle.gif</boximage>
+		<price>895</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Adobe Web Bundle]]></descheader>
+		<desc><![CDATA[The Adobe&reg; Web Bundle offers Macromedia&reg; Studio 8, the essential solution for web design and development, with the unified design environment of Adobe Creative Suite 2 Premium software. Now with one package, you can design, develop, manage, and maintain rich, interactive experiences for easy delivery to millions of viewers on the web, on mobile devices, and in print using industry standards such as Macromedia Flash&reg; format and Adobe PDF.]]></desc>
+		<features>
+			<feature><![CDATA[Image editing with Adobe Photoshop&reg; CS2]]></feature>
+			<feature><![CDATA[Drawing and illustration with Adobe Illustrator&reg; CS2]]></feature>
+			<feature><![CDATA[Page layout with Adobe InDesign&reg; CS2]]></feature>
+			<feature><![CDATA[Web design with Adobe GoLive&reg; CS2]]></feature>
+			<feature><![CDATA[Client review and print output with Adobe Acrobat&reg; 7.0 Professional]]></feature>
+			<feature><![CDATA[File sharing and versioning with Version Cue CS2]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[Royalty-free images with Adobe Stock Photos]]></feature>
+			<feature><![CDATA[Get the complete toolset.
+Studio 8 is the essential suite for start-to-finish design, development and maintenance tools of websites, applications, games, interactive presentations, and mobile content. Studio 8 includes Flash Professional 8, Dreamweaver 8, Fireworks 8, Contribute 3, and FlashPaper 2 all the necessary tools to create code and easily maintain interactive projects.]]></feature>
+			<feature><![CDATA[Get more done.
+Studio 8 speeds the design, development, and maintenance process with integrated round-tripping between Macromedia products, new time-saving features like batch rendering for media assets and batch encoding for video, faster user interface workflows, and boosted integration with third-party products.]]></feature>
+			<feature><![CDATA[Pick any platform.
+Support for Windows and Mac OS X enables development and deployment on any platform. Deliver projects that support the widest range of operating systems, browsers, and server technologies. Develop applications using HTML, XHTML, XML, ColdFusion, ASP, ASP.NET, JSP, or PHP with drag-and-drop visual tools and components, code libraries, and extensive code-editing support.]]></feature>
+			<feature><![CDATA[Take advantage of industry-standard workflows and technologies.
+Studio 8 makes the best practices of web design and development available to everyone, from users working on their first website to those developing advanced web applications. Design and develop with confidence that Studio projects will integrate with and support the latest technologies, platforms, operating systems, and industry standards from CSS and XML to the latest Flash Player 8 client runtime.]]></feature>
+			<feature><![CDATA[Bring video to the web.
+Studio 8 makes integrating video into projects easier than ever. Drag and drop Flash Video in Dreamweaver 8 to quickly incorporate video to websites and applications. The new high-quality video encoder in Flash Professional 8 is integrated (or works standalone) for distributed batch encoding. New run-time support for Alpha channels, embedded cue points in Flash Video files, and the improved, easily-skinnable video playback component will engage more viewers. Going from on-screen to online is effortless using many nonlinear editing systems that export natively to the Flash Video format.]]></feature>
+			<feature><![CDATA[Maximize reach.
+Deliver rich content efficiently and consistently with the Flash standard file format (SWF); its structure (and compact size) is optimized for streaming to web users at all connection speeds. The Macromedia Flash Player, installed on over 98% of desktops globally reaches the widest possible audience. Studio 8 parallels the introduction of Flash Player 8, which now hosts more interactive features, lightweight experiences, better performance, and easy auto-updating for the ultimate viewing experience.]]></feature>
+			<feature><![CDATA[Plays well with others.
+In addition to its integrated workflows across Macromedia products, Studio 8 supports optimized workflows with third-party applications. Import graphical elements, EPS and PDF files from Adobe Photoshop, Illustrator, or Creative Suite. Add content from Microsoft Office products with design accuracy using the improved copy and paste in Dreamweaver or use FlashPaper to convert Microsoft files into PDF or FlashPaper files with one click. Easily work in a family of design and development applications using powerful import/export capabilities.]]></feature>
+			<feature><![CDATA[Go mobile.
+Use Studio 8 to take the web experience farther and create content for millions of mobile handheld devices and phones. Author, test, and preview mobile content using the advanced authoring environment in Flash Professional 8, complete with an interactive emulator for Flash Lite.]]></feature>
+			<feature><![CDATA[Join a developer community millions strong.
+Benefit from extensive Studio 8 product resources including the Studio Development Center, developer certification programs, training and seminars, user forums, and independent community support sites. Enrich your copy of Dreamweaver, Fireworks, and Flash with thousands of free downloadable extensions from the Macromedia Exchange.]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Video Bundle</name>
+		<category>Audio and Video</category>
+		<boximage>images/videobundle.gif</boximage>
+		<price>1125</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Adobe Video Bundle]]></descheader>
+		<desc><![CDATA[The Adobe&reg; Video Bundle brings together Adobe Production Studio Premium software, the complete audio and video post-production solution for film, video, and DVD, with Macromedia&reg; Flash&reg; Professional 8 software, the industry's choice for authoring rich interactive content for the web. Now with one value-priced package, you can design, develop, and produce professional results for film, video, and DVD, plus easily incorporate interactive video for rich online experiences.
+		]]></desc>
+		<features>
+			<feature><![CDATA[Motion graphics and visual effects with Adobe After Effects 7.0]]></feature>
+			<feature><![CDATA[Real-time video editing with Adobe Premiere Pro 2.0]]></feature>
+			<feature><![CDATA[Greater control over images in Adobe Photoshop CS2]]></feature>
+			<feature><![CDATA[Audio recording, mixing, editing, and mastering with Adobe Audition 2.0 (Premium edition only)]]></feature>
+			<feature><![CDATA[Professional DVD production with Adobe Encore DVD 2.0 (Premium edition only)]]></feature>
+			<feature><![CDATA[New power for vectors in Adobe Illustrator CS2 (Premium edition only)]]></feature>
+			<feature><![CDATA[Eliminate rendering with Adobe Dynamic Link, only in Production Studio]]></feature>
+			<feature><![CDATA[Increased productivity from unmatched Adobe integration]]></feature>
+			<feature><![CDATA[A unified design environment for higher productivity]]></feature>
+			<feature><![CDATA[File browsing and organizing with Adobe Bridge]]></feature>
+			<feature><![CDATA[HD video for the highest production standards]]></feature>
+			<feature><![CDATA[Broad support for industry standards and formats]]></feature>
+			<feature><![CDATA[Macromedia Flash integration]]></feature>
+			<feature><![CDATA[Pristine, high-quality color]]></feature>
+			<feature><![CDATA[Superior audio production]]></feature>
+			<feature><![CDATA[Macromedia Flash Professional 8]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Acrobat Professional</name>
+		<category>Acrobat Family</category>
+		<boximage>images/acrobat_pro.gif</boximage>
+		<price>445</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Collect, produce, and share Intelligent Documents]]></descheader>
+		<desc><![CDATA[Adobe&reg; Acrobat&reg; 7.0 Professional software is the advanced way to create, control, and deliver more secure, high-quality Adobe PDF documents. Assemble electronic or paper files even Web sites, engineering drawings, and e-mail into reliable PDF documents that are easy to share with others using free Adobe Reader&reg; 7.0 software.]]></desc>
+		<features>
+			<feature><![CDATA[Enjoy improved performance]]></feature>
+			<feature><![CDATA[Extend commenting capabilities]]></feature>
+			<feature><![CDATA[Easily design Adobe PDF forms]]></feature>
+			<feature><![CDATA[Enjoy improved attachment capabilities]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Acrobat Standard</name>
+		<category>Acrobat Family</category>
+		<boximage>images/acrobat_std.gif</boximage>
+		<price>495</price>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Transform PDF files into Intelligent Documents]]></descheader>
+		<desc><![CDATA[Adobe&reg; Acrobat&reg; 7.0 Standard software is the simple way to create and share more secure and reliable Adobe PDF documents. Generate Adobe PDF files that accurately represent the original document, and take advantage of robust tools for sharing information and commenting on electronic files.]]></desc>
+		<features>
+			<feature><![CDATA[Create Adobe PDF documents from Microsoft Outlook]]></feature>
+			<feature><![CDATA[Enjoy improved performance]]></feature>
+			<feature><![CDATA[Use enhanced headers, footers, and watermarks]]></feature>
+			<feature><![CDATA[Enjoy improved attachment capabilities]]></feature>
+			<feature><![CDATA[Organize Adobe PDF documents]]></feature>
+		</features>
+	</product>
+	
+</products>
+

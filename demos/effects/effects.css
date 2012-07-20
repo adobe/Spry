@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+/* Select Controls
+----------------------------------------------- */
+#effectsSelect { width: 180px; }
+#effectsControls {	margin:0 auto 10px auto;}
+#effectsGalleries {	margin:0 auto 20px auto; }
+#effectsGalleries label { padding-bottom: 2px; }
+
+.effectsTransport {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.effectsTransport li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.effectsTransport_1 {
+  position:absolute;
+  top: 0px;
+}
+.effectsTransport_2 {
+  position:absolute;
+  top: 25px;
+}
+.effectsTransport_3 {
+  position:absolute;
+  top: 50px;
+}
+.effectsTransport_4 {
+  position:absolute;
+  top: 75px;
+}
+.effectsTransport_5 {
+  position:absolute;
+  top: 100px;
+}
+.effectsTransport_6 {
+  position:absolute;
+  top: 125px;
+}
+.effectsTransport_7 {
+  position:absolute;
+  top: 150px;
+}
+.effectsTransport_8 {
+  position:absolute;
+  top: 175px;
+}
+.effectsTransport_9 {
+  position:absolute;
+  top: 200px;
+}
+.effectsTransport_10 {
+  position:absolute;
+  top: 225px;
+}
+.effectsTransport_11 {
+  position:absolute;
+  top: 250px;
+}
+.effectsTransport_12 {
+  position:absolute;
+  top: 275px;
+}
+.effectsTransport_13 {
+  position:absolute;
+  top: 300px;
+}
+
+.effectsTransport a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 75%;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	margin: 0 1px 0 0;
+	padding: 4px 8px;
+	width: 120px;
+	float: left;
+	display: block;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+.effectsTransport a:link {
+	background: #666 url('../images/bg_grad_gray1.gif') repeat-x;
+	color: #fff;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+.effectsTransport a:visited {
+	background: #666 url('../images/bg_grad_gray1.gif') repeat-x;
+	color: #fff;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+.effectsTransport a:hover {
+	background: #666 url('../images/bg_grad_gray2.gif') repeat-x;
+	color: #000;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+.effectsTransport a:focus {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+
+.effectsReload_0 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position:absolute;
+  top: 325px;
+  left: 0px;
+}
+
+#effectsReload a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 75%;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	margin: 0 1px 0 0;
+	padding: 4px 8px;
+	width: 120px;
+	float: left;
+	display: block;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+#effectsReload a:link {
+	background: #666 url('../images/bg_grad_gray1.gif') repeat-x;
+	color: #eee;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+#effectsReload a:visited {
+	background: #666 url('../images/bg_grad_gray1.gif') repeat-x;
+	color: #eee;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+#effectsReload a:hover {
+	background: #666 url('../images/bg_grad_gray2.gif') repeat-x;
+	color: #333;
+	border-top: solid 1px #999;
+	border-right: solid 1px #404040;
+	border-bottom: solid 1px #3a3a3a;
+	border-left: solid 1px #404040;
+}
+#effectsReload a:focus {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+
+/* Boxes
+----------------------------------------------- */
+.navigation_pane {
+  width:138px;
+  height:451px;
+  position:absolute;
+  left: 21px;
+  top: 105px;
+  border-top: solid 1px #999;
+  border-right: solid 1px #404040;
+  border-bottom: solid 1px #3a3a3a;
+  border-left: solid 1px #404040;
+}
+
+.content_panel {
+  width:604px;
+  height:404px;
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  border-top: solid 1px #999;
+  border-right: solid 1px #404040;
+  border-bottom: solid 1px #3a3a3a;
+  border-left: solid 1px #404040;
+}
+
+.container {
+  width:606px;
+  height:406px;
+  position:absolute;
+  left: 169px;
+  top: 105px;
+  background-color:#000000;
+  z-index:10;
+}
+
+#text_pane {
+  width:604px;
+  height:40px;
+  position:absolute;
+  left: 169px;
+  top: 516px;
+  border-top: solid 1px #999;
+  border-right: solid 1px #404040;
+  border-bottom: solid 1px #3a3a3a;
+  border-left: solid 1px #404040;
+  text-indent:5px;
+}
+
+/* Effect Boxes
+----------------------------------------------- */
+#content_box{
+	background-image:url(product_box_shots.gif)
+}

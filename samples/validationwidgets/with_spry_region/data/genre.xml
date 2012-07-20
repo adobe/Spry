@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<genre-list>
+	<genre>
+			<id>1</id>
+			<name>Crime</name>
+	</genre>
+	<genre>
+			<id>2</id>
+			<name>Mystery</name>
+	</genre>
+	<genre>
+			<id>3</id>
+			<name>Drama</name>
+	</genre>
+
+	<genre>
+			<id>4</id>
+			<name>Romance</name>
+	</genre>
+
+	<genre>
+			<id>5</id>
+			<name>Comedy</name>
+	</genre>
+</genre-list>

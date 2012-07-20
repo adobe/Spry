@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks ("Marks") displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Products Demo</title>
+<script type="text/javascript" src="../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../includes/SpryData.js"></script>
+<script type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"></script>
+<script type="text/javascript" src="../../widgets/accordion/SpryAccordion.js"></script>
+<script type="text/javascript">
+<!--
+var dsProducts = new Spry.Data.XMLDataSet("products.xml", "products/product");
+var dsProductFeatures = new Spry.Data.NestedXMLDataSet(dsProducts, "features/feature");
+-->
+</script>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<noscript>
+<h1>This page requires JavaScript. Please enable JavaScript in your browser and reload this page.</h1>
+</noscript>
+<div id="wrap">
+  <div id="header">
+    <h1>Products Demo<span class="return"><a href="../index.html">Back to Demos</a></span><span class="source"><a href="source.html">View Source </a></span></h1>
+  </div>
+  <div spry:region="dsProducts" id="content">
+    <table id="products">
+      <caption>
+      Adobe Software
+      </caption>
+      <tbody>
+        <tr>
+          <th scope="col" spry:sort="name">Product</th>
+          <th scope="col" spry:sort="category">Category</th>
+        </tr>
+      </tbody>
+      <tbody spry:repeatchildren="dsProducts" spry:choose="choose">
+        <tr spry:when="{ds_RowID} == {ds_CurrentRowID}" class="{ds_EvenOddRow}" spry:setrow="dsProducts" spry:hover="rowHover" spry:select="rowSelected" spry:selected="selected">
+          <td>{name}</td>
+          <td>{category}</td>
+        </tr>
+        <tr spry:default="default" class="{ds_EvenOddRow}" spry:setrow="dsProducts" spry:hover="rowHover" spry:select="rowSelected">
+          <td>{name}</td>
+          <td>{category}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="sidebar">
+    <p spry:detailregion="dsProducts" id="boxshot"><img src="{boximage}" alt="product box shot" width="238" height="130" /></p>
+    <div id="Acc1" class="Accordion" tabindex="0">
+      <div class="AccordionPanel">
+        <div class="AccordionPanelTab">
+          <h3>Product Overview</h3>
+        </div>
+        <div spry:detailregion="dsProducts" class="AccordionPanelContent">
+          <div>{desc}</div>
+        </div>
+      </div>
+      <div class="AccordionPanel">
+        <div class="AccordionPanelTab">
+          <h3>New Features </h3>
+        </div>
+        <div spry:region="dsProductFeatures" class="AccordionPanelContent">
+          <div>
+            <ul>
+              <li spry:repeat="dsProductFeatures">{feature}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="clear"></p>
+</div>
+<script type="text/javascript">
+<!--
+var Acc1 = new Spry.Widget.Accordion("Acc1");
+-->
+</script>
+</body>
+</html>

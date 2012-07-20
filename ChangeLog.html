@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Template $Revision: 1.7 $ applied. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Adobe Labs -  Spry framework for Ajax Change Log</title>
+<link href="css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="layoutLogic" class="partial-width with-pod dynamicUI">
+  <div id="gecko">
+    <h1><a name="tabtop" id="tabtop"></a>Spry framework for Ajax Change Log </h1>
+    <div id="contentBody">
+      <p>This document contains information regarding changes that have been made to the Spry framework from one release to another. See the <a href="Readme.html">Spry Readme</a> for general information regarding this technology. </p>
+      <h3>Changes for Spry 1.6.1 - 2008/02/23</h3>
+      <ul>
+      	<li>Data
+      		<ul>
+      			<li>Fixed a bug in the JSONDataSet that occured when the pathIsObjectOfArrays:true constructor option was used, which caused the data set's dataHash array to be incorrectly setup.</li>
+      			<li>Fixed a bug in Spry.Data.Region.DSContext.syncDataWithParentRow() that was causing the nested data set to show the data for its real current row for its internal data set when the one currently being processed by the region had no data.</li>
+      			<li>Removed check for bogus variable in the filter() and filterData() methods of the Nested XML and JSON data sets.</li>
+      		    <li>Fixed performance problem related to too many notifications being dispatched from Nested XML and JSON data sets.</li>
+      		    <li>Fixed Nested data sets so that they preserve active filter and sort settings when new data is loaded into the master data set.</li>
+      		    <li>Fixed typo in syncColumnTypesToData() that was preventing it from doing the actual setColumnType() call.</li>
+      		    <li>Fixed a bug in the HTMLDataSet that caused the value contained in cell with a rowspan to be shifted over one column for each row in the rowspan.</li>
+      		    <li>Fixed a bug in the XHRFormSubmit that didn't worked properly when the form contained an element with the name submit.</li>
+      		    <li>Added the ability to specify a function to be called from spry:if, spry:test, and spry:when. This allows the spry conditional attributes to be used in browser environments where eval() is disabled.</li>
+      		    <li>Added the ability to use a data reference as a placeholder for a function call. Everytime that data reference is processed, the specified function will be called, and the value it returns is inserted in place of the data reference.</li>
+      		    <li>Fixed a bug in SpryDataExtensions.js that was preventing multi-filter support from working with nested data sets.</li>
+      		    <li>Added setXPath() api call to Spry.Data.NestedXMLDataSet.</li>
+      		</ul>
+      	</li>
+      	<li>Effects
+					<ul>
+						<li></li>
+					</ul>
+				</li>
+      	<li>Widgets
+      		<ul>
+      			<li>Accordion
+      			  <ul>
+      			    <li>Set the height of the open panel to auto after the open animation stops to allow for dynamic resizing when the content inside the accordion is dynamically changed.</li>
+   			      </ul>
+      			</li>
+      			<li>MenuBar
+      			  <ul>
+      			    <li>Fixed a bug that caused the menubar to accidentally remove iframes that were underneath the menubar's parent element.</li>
+                  <li>Fixed keyboard navigation bugs.</li>
+   					    </ul>
+   			  </li>
+      			<li>Auto Suggest
+      				<ul>
+      					<li>Fixed a bug for dynamic URL loading where some special characters like + and & where not sent correctly to the server.</li>
+                <li>Fixed a bug with suggestion list showing when pressing some special characters.</li>
+      					</ul>
+      			</li>
+            <li>Added Rating Widget (/widgets/rating)</li>
+            <li>Textarea Validation
+              <ul>
+                <li>Fixed a bug with hints that were not removed when submitting a textarea that had isRequired option set to false.</li>
+              </ul>
+            </li>       
+            <li>Textfield Validation
+              <ul>
+                <li>Fixed a bug when computing a date validity based on a minimum date provided by the user</li>
+                <li>Fixed Visa check, to strictly permit 13 and 16 digits</li>
+              </ul>
+            </li>   
+          </ul>
+      	</li>
+      	<li>Docs
+      		<ul>
+      			<li>Rating Widget - Added the article for the Rating widget</li>
+            <li>Rating Widget - added API docs</li>
+      			<li>Updated API documentation for spry:if, spry:when, and spry:test to refelect the new &quot;function::&quot; functionality</li>
+            <li>Fixed broken links in Data API</li>
+      		</ul>
+      	</li>
+      	<li>Demos
+      		<ul>
+      			<li>Added Photo Gallery Demo for AIR</li>
+      			</ul>
+      	</li>
+      	<li>Samples
+      		<ul>
+      			<li>Sliding Panels: <a href="samples/slidingpanels/SlidingPanels_withTabs.html">Sliding panels with tabs</a></li>
+      			<li><a href="samples/tooltip/Tootlip_with_HTML_Panel.html">Tooltip with HTML panel</a></li>
+      		    <li>Page navigation for html data set sample</li>
+              <li>Added samples for <a href="samples/rating/RatingSample.html">Rating Widget</a>.</li>
+              <li>Added <a href="samples/effects/fade_grow_sample.html">Fade & Grow</a> parallel effects samples</li>
+              <li>Fixed a bug in the PHP file for the AutoSuggest sample that caused an empty output when the request contained some special chars</li>
+              <li>Escaped regexps in the SuggestSample and ZuggestSample</li>
+              <li>Removed the utils/getNodeText sample</li>
+              <li>To avoid confusion with the real AutoSuggest widget, renamed the samples/includes/SpryAutoSuggest.js to SimpleAutoSuggest.js; in the code, Spry.Widget.AutoSuggest became Spry.Widget.SimpleAutoSuggest.</li>
+      		  <li>Added <a href="samples/data_region/Function_colon.html">Function_colon.html</a> sample to show custom functions and data references.</li>
+      		  <li>Added <a href="samples/data_region/CSV_sample.html">CSV Data Set</a> sample.</li>
+      		</ul>
+      	</li>
+        </ul>
+      <h3>Changes for Spry 1.6 - 2007/10/01</h3>
+      <ul>
+      	<li>Data
+      		<ul>
+      			<li>By default, the XMLDataSet now entity encodes #text and #cdata strings before storing them in a data set column. This has a significant impact if you are embedding HTML fragments within CDATA, in your XML files, to inject content into a spry:region or spry:detailregion. A  backwards compatibility mode is provided. See the <a href="samples/data_region/XMLDataSetStringHandlingSample.html">XML Data Set String Handling</a> and <a href="samples/data_region/HTMLFragsInXMLSample.html">HTML Frags in XML</a> samples.</li>
+      			<li>The following Spry.Utils functions have been moved under the Spry.Data.XMLDataSet namespace:
+      				<ul>
+      					<li>Spry.Utils.nodeContainsElementNode</li>
+      					<li>Spry.Utils.getNodeText</li>
+      					<li>Spry.Utils.CreateObjectForNode</li>
+      					<li>Spry.Utils.getRecordSetFromXMLDoc</li>
+      					</ul>
+      			</li>
+      			<li>Detection of MSXML is now limitied to versions 6.0 and 3.0, based on recommendations from the MS IE and XML teams. More info can be found <a href="http://blogs.msdn.com/ie/archive/2007/04/25/this-website-wants-to-run-the-following-add-on.aspx">here</a> and <a href="http://blogs.msdn.com/xmlteam/archive/2006/10/23/using-the-right-version-of-msxml-in-internet-explorer.aspx">here</a>.</li>
+      			<li>Upgraded Google AJAXSLT XPath support from version 0.4 to 0.7 to pick up bug fixes and stay current.
+      				<ul>
+      					<li>Upgrade fixes infinite loop bug with xpaths like: //folder/ancestor::folder, which was reported on the forum.</li>
+      					</ul>
+      			</li>
+      			<li>JSONDataSet
+      				<ul>
+      					<li>Fixed a bug in the pathIsObjectOfArrays code path that was assigning the same ds_RowID to every row that was flattened.</li>
+      					</ul>
+      			</li>
+      			<li>NestedJSONDataSet
+      				<ul>
+      					<li>Fixed loadData() so that it calls loadData() on the parent data set when necessary. This fixes the case where a nested data set is bound to a region but the parend data set isn't.</li>
+      					</ul>
+      			</li>
+      			<li>NestedXMLDataSet
+      				<ul>
+      					<li>Fixed loadData() so that it calls loadData() on the parent data set when necessary. This fixes the case where a nested data set is bound to a region but the parend data set isn't.</li>
+      					</ul>
+      			</li>
+      			<li>Added support for &quot;and&quot; and &quot;or&quot; <a href="samples/data_region/MultipleFiltersModeSample.html">multi-filter modes</a>.</li>
+      			<li>Added Spry.Data.initRegionsOnLoad flag. If set to true (the default value), regions are processed automatically when the onload event is fired. If false, developers must manually call Spry.Data.initRegions() manually to trigger processing.</li>
+      			<li>Modified Spry.Data.initRegions() so that it only triggers updates for regions it processed. This allows us to call initRegions() multiple times for dynamically added regions without affecting existing regions.</li>
+      			<li>Modified Spry.Data.DataSet.prototype.loadData(), Spry.Data.HTTPSourceDataSet.prototype.setDataFromDoc(), and Spry.Data.HTMLDataSet.prototype.loadData() so that they disable notifications before calling filterAndSortData(). This prevents an extra onDataChanged notfication from being fired off in the case where the data set must apply an existing filterDataFunc, filterFunc, sortOnLoad, or distinctOnLoad behavior.</li>
+      		</ul>
+      	</li>
+      	<li>Effects
+					<ul>
+						<li>Removed the unused class Spry.Effect.Utils.PositionedRectangle.</li>
+						<li>Toggle doesn't work correctly with the Do* wrappers when the first argument is an id.</li>
+						<li>DropOut
+							<ul>
+								<li>Added dropIn option to change the droping direction to top of the page.</li>
+							</ul>
+						</li>
+						<li>Size
+							<ul>
+								<li>Fixed an error message for IE when the useCSSbox was enabled and the element was initially invisible.</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+      	<li>Widgets
+      		<ul>
+      			<li>Accordion
+      				<ul>
+      					<li>Changed &quot;returnResult&quot; references to &quot;returnValue&quot;. Events should now properly prevent default actions in IE.</li>
+      					</ul>
+      			</li>
+      			<li>Autosuggest
+      				<ul>
+      					<li>The list of suggestions will appear now on top of select/flash movies on IE (IE bug).</li>
+							</ul>
+      				</li>
+      			<li>CollapsiblePanel
+      				<ul>
+      					<li>Fixed attachBehaviors so that it adds the openClass name to the collapsible panel if the panel is open by default.</li>
+      					<li>Changed &quot;returnResult&quot; references to &quot;returnValue&quot;. Events should now properly prevent default actions in IE.</li>
+      				</ul>
+      			</li>
+      			<li>HTMLPanel
+      				<ul>
+      					<li>A widget that allows you to load HTML fragments into an element.</li>
+      					<li>This widget supports observers, and alternate markup for loading and error states.</li>
+      					<li>Samples:
+      						<ul>
+      							<li><a href="samples/htmlpanel/html_panel_sample.html">HTMLPanel Sample</a></li>
+      							<li><a href="samples/htmlpanel/product-0.html">HIJAX Sample</a> that uses an HTMLPanel.</li>
+      						</ul>
+      					</li>
+      					</ul>
+      			</li>
+      			<li>Menu Bar
+      				<ul>
+      					<li>IE IFrame hack is now used for IE6 browsers only. The CSS for the IFrame was also modified to render with an opacity of .1 to minimize interference with menus that have an opacity less than 1.</li>
+						</ul>
+			  </li>
+      		    <li>Sliding Panels
+      		    	<ul>
+      		    		<li>Changed &quot;returnResult&quot; references to &quot;returnValue&quot;. Events should now properly prevent default actions in IE.</li>
+      		    		</ul>
+      		    </li>
+      		    <li>TabbedPanels
+      		    	<ul>
+      		    		<li>Changed &quot;returnResult&quot; references to &quot;returnValue&quot;. Events should now properly prevent default actions in IE.</li>
+      		    		</ul>
+      		    </li>
+      		    <li>Tooltip
+      		      <ul>
+      		        <li>Introducing the <a href="widgets/tooltip/SpryTooltip.html">Tooltip</a> widget.</li>
+	              </ul>
+   		      </li>
+     		    <li>Password Validation
+      		      <ul>
+      		        <li>Introducing the <a href="widgets/passwordvalidation/SpryValidationPassword.html">Password Validation</a> widget.</li>
+	              </ul>
+   		      </li>
+     		    <li>Confirm Validation
+      		      <ul>
+      		        <li>Introducing the <a href="widgets/confirmvalidation/SpryValidationConfirm.html">Confirm Validation</a> widget.</li>
+	              </ul>
+   		      </li>
+                <li>Added Validation <a href="widgets/textareavalidation/SpryValidationTextArea.html">TextArea Reference</a> file.</li>
+   		        <li>Added Validation <a href="widgets/textfieldvalidation/SpryValidationTextField.html">Textfield Reference</a> file.</li>
+   		        <li>Added Validation <a href="widgets/checkboxvalidation/SpryValidationCheckbox.html">Checkbox Reference</a> file.</li>
+   		        <li>Added Validation <a href="widgets/selectvalidation/SpryValidationSelect.html">Select Reference</a> file.</li>
+   		        <li>Added Validation <a href="widgets/radiovalidation/SpryValidationRadio.html">Radio Button Reference</a> file.</li>
+   		  		</ul>
+      	</li>
+      	<li>Docs
+      		<ul>
+      			<li>Fixed incorrect variable name in one of the code samples used in <a href="articles/effects_migration/effects_migration.htm">effects_migration.htm</a>.</li>
+      			<li>Added the <a href="articles/tooltip_overview/index.html">Tooltip widget overview</a>.</li>
+      			<li>Fixed a couple of code sample typos for getMappedState() and getState() in the <a href="articles/data_api/apis/region.html">Region API</a> doc.</li>
+      		    <li>Added a <a href="articles/spry_primer/index.html">Spry Primer</a>.</li>
+      		    <li>Adding API docs for:
+      		      <ul>
+      		        <li>Accordion</li>
+   		            <li>Collapsible Panel</li>
+      		        <li>Tabbed Panel</li>
+      		        <li>Autosuggest</li>
+      		        <li>Sliding Panels</li>
+      		        <li>Radio Validation</li>
+      		        <li>Checkbox Validation</li>
+      		        <li>Textarea Validation</li>
+      		        <li>Textfield Validation</li>
+      		        <li>Nested XML Data Set</li>
+      		        <li>Nested JSON Data Set</li>
+      		        <li>Menu Bar </li>
+      		        <li>Element Selector, in the Data Utils section.</li>
+   		          </ul>
+   		      </li>
+      		    <li>Added <a href="articles/confirm_overview/index.html">Confirm Validation Overview</a></li>
+      		    <li>Added <a href="articles/password_overview/index.html">Password Validation Overview</a></li>
+      		    <li>Added <a href="articles/html_panel/index.html">HTML Panel widget Overview</a></li>
+      		    <li>Added <a href="articles/element_selector/index.html">Element Selector Overview</a> and <a href="articles/element_selector/selector_examples.html">Selector Examples</a></li>
+	            <li>Added <a href="articles/periodic_table/caseStudy.htm">Periodic Table case study</a>.</li>
+	            <li>Added articles/best practices folder to contain the articles.</li>
+	            <li>Added <a href="articles/best_practices/index.html">index page</a> for best practices.</li>
+	            <li>Added <a href="articles/best_practices/standards.html">Web Standards</a> doc.</li>
+	            <li>Moved <a href="articles/best_practices/validating_spry.html">Validating Spry Pages</a> to 'best_practices folder.</li>
+	            <li>Added Spry <a href="siteMap.html">Site Map</a>.</li>
+	            <li>Added <a href="widgets/widgets.html">Widgets Landing Page</a>.</li>
+   		  		<li>Added <a href="articles/best_practices/progressive_enhancement.html">Progressive Enhancement Article</a></li>
+      			<li>Added <a href="articles/best_practices/separating_behavior.html">Separating Behavior from Structure Article</a></li>
+      		</ul>
+      	</li>
+      	<li>Demos
+      		<ul>
+      			<li>Products Demo
+      				<ul>
+      					<li>Converted all CDATA blocks into normal text.</li>
+      					<li>Added a call to set the column types to &quot;html&quot;.</li>
+   				    </ul>
+   			  </li>
+      			<li>Added <a href="demos/periodic_table/periodic_table.htm">Periodic Table </a>as a demo.</li>
+   		  		<li>Added new versions of the Products and Gallery demos that demonstrate progressive enhancement and unobtrusive JavaScript.
+   		  			<ul>
+   		  				<li><a href="demos/products_pe/index.html">Products Demo (Static Content + HTMLDataSet)</a>
+   		  					<ul>
+   		  						<li>Demonstrates how to transform static content into a new format by using the HTMLDataSet and Spry Regions.</li>
+   		  						</ul>
+   		  				</li>
+   		  				<li><a href="demos/gallery_pe/static/china.html">Gallery Demo (Static Content)</a>
+   		  					<ul>
+   		  						<li>Demonstrates how to attach widget behaviors to static content.</li>
+   		  						</ul>
+   		  				</li>
+   		  				<li><a href="demos/gallery_pe/static_hd/china.html">Gallery Demo (Static Content + HTMLDataSet)
+   		  					</a>
+   		  					<ul>
+   		  						<li>Demonstrates how to transform static gallery content into a new format by using the HTMLDataSet and Spry Regions.</li>
+   		  						</ul>
+   		  				</li>
+   		  				<li><a href="demos/gallery_pe/dynamic/index.html">Gallery Demo (Original Version)</a>
+   		  					<ul>
+   		  						<li>The original demo modified to work with the widget behaviors used by the 2 demos listed above. The older gallery demo from previous releases can be found <a href="demos/gallery/index.html">here</a>.</li>
+	  						</ul>
+	  				  </li>
+  				  </ul>
+	  		  </li>
+      			<li>Added a separate page for the <a href="demos/pe_demos.html">best practices demos</a>.</li>
+   		  </ul>
+      	</li>
+      	<li>Samples
+      		<ul>
+      			<li>Added Menu Bar styling samples.
+      				<ul>
+      					<li><a href="samples/menubar/AutoWidthHorizontalMenuBarSample.html">Auto Width Horizontal Menu Bar</a></li>
+      					<li><a href="samples/menubar/AutoWidthVerticalMenuBarSample.html">Auto Width Vertical Menu Bar</a></li>
+      					<li><a href="samples/menubar/CenteringHorizontalMenuBarSample.html">Centering a Horizontal Menu Bar</a></li>
+      					</ul>
+      			</li>
+      			<li>Fixed missing # in CSS rule used in <a href="samples/slidingpanels/SlidingPanelsSample2.html">SlidingPanelsSample2.html</a>. This was resulting in a giant black border in certain cases when folks tried to use the CSS in IE6.</li>
+      			<li><a href="samples/products-hijax/index.html">Progressive Enhanced Version of the Products Demo</a>
+      				<ul>
+      					<li>Modified the products.xml file to use entity encoded HTML fragments instead of HTML fragments embedded in CDATA.</li>
+      					<li>Added a call to setColumnType() in all related HTML sample files to set the columns for the data set to &quot;html&quot; so the fragments appear properly.</li>
+      					</ul>
+      			</li>
+      			<li><a href="samples/data_region/HTMLFragsInXMLSample.html">HTML Frags In XML Sample</a>
+      				<ul>
+      					<li>Updated content to take into account the fact that the XMLDataSet now entity encodes all #text/#cdata strings it extracts from XML.</li>
+      				</ul>
+      			</li>
+      			<li>Added <a href="samples/data_region/XMLDataSetStringHandlingSample.html">XML Data Set String Handling</a> Sample.</li>
+      		    <li>Added sample for <a href="samples/tooltip/SpryTooltipSample.html">Tooltip</a> and <a href="samples/data_region/TooltipwithData.html">Tooltip from Spry Data</a>.</li>
+      		    <li>Added a sample for <a href="samples/validationwidgets/SelectWithData.html">Validation Select with Data</a>.</li>
+      		    <li>Added a sample of <a href="samples/menubar/MenuFromNestedData.html">Menu Bar from Spry Data</a>.</li>
+      		    <li>Added a <a href="samples/data_region/DataReferences.html">Built In Data Reference</a> sample.</li>
+      		    <li>Added <a href="samples/collapsiblepanel/collapsible_panel_unobtrusive.htm">Unobtrusive Collapsible Panel</a> sample.</li>
+      		    <li>Added <a href="samples/accordion/Accordion_unobtrusive.html">Unobtrusive Accordion</a> sample.</li>
+      		    <li>Added <a href="samples/htmlregion/html_region_sample.html">HTML Region</a> sample.</li>
+      		    <li>Added <a href="samples/validationwidgets/ConfirmValidationSample.html">Confirm Validation</a> sample.</li>
+      		    <li>Added <a href="samples/validationwidgets/PasswordValidationSample.html">Password Validation</a> sample.</li>
+      		    <li>Added <a href="samples/utils/updateContent_TabbedPanels.html">Tabbed Panels with updateContent</a> sample.</li>
+      		    <li>Updated <a href="samples/autosuggest/SuggestSample.html">AutoSuggest with JSON data set</a> sample.</li>
+      		    <li>Added unobtrusive samples for <a href="samples/slidingpanels/SlidingPanels_unobtrusive.html">Sliding Panels</a> and <a href="samples/tabbedpanels/tabbed_panel_unobtrusive.htm">Tabbed Panels</a>.</li>
+      		    <li>Added <a href="samples/dom_utils/unobtrusive_spry_data.html">basic unobtrusive sample for Spry Data</a>.</li>
+      			<li>Added <a href="samples/dom_utils/add_event_listener.html">add/removeEventHandler sample</a>.</li>
+      		    <li>Added Alt Row Samples for Element Selector. <a href="samples/dom_utils/altColorRows.html">Sample 1</a> | <a href="samples/dom_utils/table_row_colors.html">Sample 2</a>.</li>
+      		    <li>Added advanced <a href="samples/htmlpanel/html_panel_two.html">HTML Panel sample</a>.</li>
+      		    <li>Added advanced <a href="samples/dom_utils/unobtrusive_spry_data2.html">Element Selector with Spry Data</a> sample.</li>
+      		    <li>Added sample for single error message on submit - validation widgets - <a href="samples/validationwidgets/Single_error_message_onSubmit.html">sample</a></li>
+      			<li>Added a <a href="samples/data_region/MultipleFiltersModeSample.html">Multiple Filters Mode Sample</a>.</li>
+      		    <li>Added <a href="samples/dom_utils/hide_columns.html">table manipulation Element Selector</a> sample.</li>
+	            <li>Added <a href="samples/menubar/MenuBar_unobtrusive.html">unobtrusive Menu Bar</a> sample.</li>
+      		    <li>Added <a href="samples/autosuggest/Styling_SuggestSample.html">styling autosuggest</a> sample </li>
+      		</ul>
+      	</li>
+        <li>Compressed files
+          <ul>
+            <li>Introduced a set of compressed and minimized javascript files for all our data, widget and effects. Used the <a href="http://dean.edwards.name/packer/" target="_blank">Packer</a> method for compression. These substantially reduce the file size of the assets.</li>
+          </ul>
+        </li>
+        <li>Dreamweaver CS3 Updater
+          <ul>
+            <li>Added an extension that updates the existing features in Dreamweaver CS3 to use the latest Spry files. The overview document is <a href="dreamweaver/updater_overview.html">here</a>.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Changes for Spry PreRelease 1.5 - 2007/5/17</h3>
+      <ul>
+        <li>Data
+          <ul>
+            <li>Renamed $() to Spry.$() to avoid problems when integrating other toolkits that define their own $() functions. Folks who wish to keep using $() can simply add &quot;var $ = Spry.$;&quot; at the bottom of SpryData.js to restore functionality.</li>
+            <li>Fixed a bug where findRowsWithColumnValues() was returning an empty array instead of null when no matching row was found and firstMatchOnly was specified. </li>
+            <li>Added Session Expired hook for data loading to allow developers to catch session expired server messages and handle the response appropriately.</li>
+            <li>Added SpryUtils.js file that contains Spry.Utils.submitForm function to allow developers to send form data via the XMLHTTPRequest object.</li>
+            <li>Added for DataSet.distinct() a list of fields. The Data set constructor has a new parameter distinctFieldsOnLoad.</li>
+            <li>Added HTMLDataSet support. Implementation uses a separate file SpryHTMLDataSet.js, but SpryData.js is still required.</li>
+            <li>Added SpryPagedView class to make paging of data easier.</li>
+            <li>Added Spry.Data.DataSet.prototype.setDataFromArray() to make it easier for folks to initialize a base data set from an Array.</li>
+            <li>Added missing onPostLoad notification to Spry.Data.DataSet.prototype.loadData(). </li>
+            <li> Modified createXMLHttpRequest() so that it tries to use the ActiveX version of the XMLHttpRequest object first, so that developers can still load file:// urls when running IE7 in the local zone.</li>
+            <li>Modified processTokens() and processTokenChildren() so that they always use an output array to collect the generated strings. This boosts the performance of the transformation process 35% on IE 6.</li>
+            <li>Column Types:
+              <ul>
+                <li>Added Spry.Data.DataSet.prototype.applyColumnTypes() which gets invoked after the data in a data set is loaded. It runs through all rows of the data set and converts its values to match the column types.</li>
+                <li>Added an &quot;html&quot; column type which results in the automatic entity decoding of values stored in a column of that type.</li>
+                <li>setColumnType() now takes a column name string *or* an array of column name strings as its first argument. </li>
+              </ul>
+            </li>
+            <li>Added SpryDataExtensions.js which contains advanced features that *some* developers may want to take advantage of.
+              <ul>
+                <li>Added support for multiple non-destructive filters for a data set. </li>
+              </ul>
+            </li>
+            <li>Modified sort functions to account for possible undefined values. This allows us to handle XML formats where certain child tags are optional.</li>
+            <li>XMLDataSet
+              <ul>
+                <li>Modified the XMLDataSet so that it manually parses the XML string it receives from the server when an XML Dom is not auto-created by the browser. This will allow us to load XML that is returned by the server with a Content-Type that is not 'text/xml' or 'application/xml'.</li>
+                <li>Added support for controlling the flattening process via the &quot;subPaths&quot; constructor option.</li>
+                <li>Added support for Spry.Data.NestedXMLDataSet .</li>
+                <li>Removed optimization that was preventing rows from being created for nodes selected by an XPath that had no value and no attributes.</li>
+              </ul>
+            </li>
+            <li>Added Spry.Data.JSONDataSet and Spry.Data.NestedJSONDataSet.
+              <ul>
+                <li>Includes the JSON parser reference implementation from json.org.</li>
+              </ul>
+            </li>
+            <li>Added utility functions for extracting values embedded within the URL search and hash components.</li>
+          	<li>Modified setURL() so that when the URL matches the current URL, it takes into account the method and any postData before bailing early.</li>
+          	<li>Fixed Spry.Utils.loadURL() so that it calls the request's errorCallback() if it exists and an exception was thrown. This allows us to notify observers during sync loads.</li>
+          	<li>Modified Spry.Utils.updateContent() so that it makes an asynchronous &quot;GET&quot; request by default. Developers can switch to &quot;POST&quot; or synchronous requests by specifying method:&quot;POST&quot; and/or async:false options in the call to updateContent().</li>
+          </ul>
+        </li>
+        <li>Effects
+          <ul>
+            <li>Fixed a Cluster chaining bug that caused every effect in the chain, that was before the current one executing, to fire their animation() method for every animation step of the current effect.</li>
+            <li>Rename of AppearFade effect to Fade and GrowShrink effect to Grow.</li>
+            <li>The Fade, Grow, Slide, Shake, Squish, Highligh, Blind effects were transformed from simple functions in classes. This will not allow you to call the effects without the 'new' keyword.</li>
+            <li>The new created classes are extending the Cluster class. This means they are able to be clustered them self after. They can be also started, canceled, stoped.</li>
+            <li>The effects are no longer auto-starting on instantiation. After the desired effect is instantiated you should call the start() method for the effect to run.</li>
+            <li>The Effect.direction is default false for the Cluster effects (in the past was Spry.forward)</li>
+            <li>The start() is automatically run in reverse in case the toggle option is enabled.</li>
+            <li>The effects registered to a Cluster are runned in the reversed order. If you have a Move() than a Size() in toggle the Size() run first.</li>
+            <li>For compatibility reasons with previous versions of Spry we added a number of Do* wrappers (DoBlind, DoFade, DoSquish ...). They are designed to preserve the old functionalities with a minimal effort in migration. However future releases may drop these functions.</li>
+            <li>All the effects (Animators and Clusters) are supporting notifications. You can now register an Observer either as a function or as an Object and it will be automatically be called onPreEffect, onStep, onPostEffect, onCancel</li>
+            <li>MoveSlide Animator dropped. It was transformed into a Cluster and moved inside the Slide Cluster.</li>
+            <li>Size Animator has a new flag useCSSBox accepting boolean values (default false). When resizing an element this will also resize the margin, padding and the border of the element with the same proportion it use for width and height. All our Cluster Effects have this setting too (Squish, Slide, Blind, Grow ...)</li>
+            <li>The Registry class changed the API and functionality. It was kept for compatibility reasons with the Do* wrappers but is possible to disappear in future.</li>
+            <li>The initial offset and box dimentions where incorrectly computed when they where set in &lt;style&gt; or external CSS for FF, Opera and Safari browsers.</li>
+            <li>The Puff, Pulsate, DropOut and Fold are now accepting most of the common Spry Effects options like duration, from, to, toggle.</li>
+            <li>The duration for the Shake can be specified.</li>
+            <li>Highlight is no longer requiring a from: option to work on Firefox.</li>
+            <li>Highlight is supporting the values for from: and to: in short CSS version format like #CCC and in the rgb format. Eg: rgb(208, 205, 125)</li>
+            <li>Spry.Effect.getColor() renamed to Spry.Effect.getBgColor()</li>
+            <li>Added 6 new transitions algorithms for smoother effects</li>
+            <li>FPS (Frames per second) is a new option for all effects</li>
+            <li>Changed the default transitions for each effect for better smoothness</li>
+            <li>Default FPS increased to ~60FPS</li>
+          </ul>
+        </li>
+        <li>Widgets
+          <ul>
+            <li>Accordion
+              <ul>
+                <li>Fixed a bug where the useFixedHeightPanels and fixedPanelHeight were ignored on page load. This caused the default panel to be incorrectly sized in some situations.</li>
+                <li>Updated animator code to smooth out animation and add support for transition functions.</li>
+              	<li>Added support for closing all panels in variable panel heights mode.</li>
+              	<li>Modified all event handlers to return false and preventDefault when necessary. This opens the doors for using links as a means of keyboard navigation between panels.</li>
+              </ul>
+            </li>
+            <li>CollapsiblePanel
+              <ul>
+                <li>Modified the default CollapsiblePanel CSS so that the .CollapsiblePanel rule draws both the top and bottom borders around the widget to avoid the IE &quot;Bleeding Background and Borders Bug&quot; which appears when the panel is closed.</li>
+                <li>Updated animator code to smooth out animation and add support for transition functions.</li>
+              </ul>
+            </li>
+            <li>TabbedPanels
+              <ul>
+                <li>Modified the default TabbedPanels CSS so that the .TabbedPanels rule floats the widget container left to make sure that any floating or clearing done with any of its child elements are contained completely within the TabbedPanels container. This minimizes any impact or undesireable interaction with other floated elements on the page that may be used for layout.</li>
+              </ul>
+            </li>
+            <li>Textarea Validation Widget
+              <ul>
+                <li>Fixed a conflict with prototype.js</li>
+              </ul>
+            </li>
+            <li>Textfield Validation Widget
+              <ul>
+                <li>Added support for IDN (International Domain Names) for URL validation</li>
+                <li>The URI validation is compliant with RFC 3986</li>
+                <li>The focus was incorrectly passed to the &lt;form&gt; element sometime when leaving an Textfield Validation using the Tab key</li>
+              </ul>
+            </li>
+            <li>New Widgets:
+              <ul>
+                <li>Auto Suggest Widget</li>
+                <li>Collapsible Panel Group Widget</li>
+                <li>Radio Validation Widget</li>
+                <li>Sliding Panels Widget</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Docs
+          <ul>
+            <li>Added <a href="articles/html_dataset/index.html">HTML data set overview</a>.</li>
+            <li>Added <a href="articles/json_primer/json_primer.html">JSON primer</a>.</li>
+            <li>Added <a href="articles/json_dataset/index.html">JSON Data Set</a> overview.</li>
+            <li>Added <a href="articles/xml_primer/xml_primer.html">XML primer</a>.</li>
+            <li>Added <a href="articles/menu_bar/index.html">Menu Bar overview</a>.</li>
+            <li>Added <a href="articles/data_api/index.html">Spry API</a>.</li>
+            <li>Added the <a href="articles/effects_migration/effects_migration.htm">Effects Migration</a> doc.</li>
+            <li>Added the <a href="articles/validation/validating_spry.html">Validation</a> doc.</li>
+            <li>Added the <a href="articles/sliding_panels/index.html">Sliding Panel</a> overview.</li>
+            <li>Added the <a href="articles/pager/index.html">Spry Pager</a> overview.</li>
+            <li>Moved Effects API to the Spry API.</li>
+            <li>Merged the Effects Overview into the <a href="articles/effects_coding/index.html">Effects Coding</a> doc and updated to new effects method.</li>
+            <li>Changed TabbedPanel to TabbedPanels references that were confusing folks and were just plain wrong. </li>
+            <li>Added a <a href="docs.html">docs.html</a> page that links to all the articles.</li>
+          </ul>
+        </li>
+        <li>Demos
+          <ul>
+            <li>Effects
+              <ul>
+                <li>The JS code moved outside of the HTML file.</li>
+                <li>The Fade&amp;Blind and Fade&amp;Slide transformed into real Cluster classes as proof of concept how you may reuse the existing effects and create your own</li>
+                <li>Added observers. onPreEffect will cancel the other effects running, onCancel the elements are restored to their normal state, onPostEffect the element will run a second time toggled to prepare the elements for a new effect demo.</li>
+                <li>Included the Puff, DropOut, Pulsate and Fold effects</li>
+              </ul>
+            </li>
+            <li>Gallery
+              <ul>
+                <li>Modified SetMainImage() to remove any opacity related style properties on the image after the animations complete. This is a workaround that forces IE to re-render the image to get rid of the white dots/holes it creates in the image when animating opacity.</li>
+              </ul>
+            </li>
+            <li>Products
+              <ul>
+                <li>Switched the dsProductFeatures data set to being a NestedXMLDataSet instead of relying on a templated XPath.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Samples
+          <ul>
+            <li>Added <a href="samples/data_region/CustomColumnsSample.html">CustomColumnsSample.html</a>.</li>
+            <li>Added <a href="samples/data_region/HTMLFragsInXMLSample.html">HTMLFragsInXMLSample.html</a>.</li>
+            <li>Added <a href="samples/data_region/SpryPagedViewSample.html">SpryPagedViewSample.html</a>.</li>
+            <li>Added <a href="samples/utils/XMLDocToObject.html">XMLDocToObject.html</a>.</li>
+            <li>Added <a href="samples/htmldataset/index.html">HTMLDataSet samples</a>.</li>
+            <li>Added a horizontal <a href="samples/effects/slide_sample.html">slider sample</a>.</li>
+            <li>Added <a href="samples/session_handling/index.html">Session Handling</a> samples.</li>
+            <li>Added Form Submission samples for <a href="samples/form_submission/SubmitFormWithXHRSample.cfm.html">Coldfusion</a>, <a href="samples/form_submission/SubmitFormWithXHRSample.php.html">PHP</a> and <a href="samples/form_submission/SubmitFormWithXHRSample.asp.html">ASP</a>.</li>
+            <li>Added <a href="samples/data_region/JSONDataSetSample.html">JSON Data Set Sample</a>.</li>
+            <li>Added <a href="samples/data_region/JSONParserSample.html">JSON Parser Sample</a>.</li>
+            <li>Added <a href="samples/data_region/NestedXMLDataSample.html">Nested XML Data Sample</a>.</li>
+            <li>Added <a href="samples/collapsiblepanel/CollapsiblePanelGroupSample.html">Collapsible Panel Group Sample</a>.</li>
+            <li>Added <a href="samples/utils/URLUtilsSample.html">URL Utilities Sample</a>.</li>
+            <li>Added <a href="samples/data_region/DataWithURLParams.html">URL with Data Sample</a>.</li>
+            <li>Fixed some samples to solve W3C validation issues.</li>
+            <li>Updated Effects samples rewritten to new method.</li>
+            <li>Added spry:sort to <a href="samples/data_region/SortSample.html">Sort sample</a>.</li>
+            <li>Added sample for<a href="samples/data_region/FilterXPath_with_params.html"> XPath filtering with URL Params</a>.</li>
+          	<li>Added <a href="samples/data_region/SharingDataBetweenDataSets.html">Sharing Data Between Data Sets Sample</a>.</li>
+          	<li>Added <a href="samples/data_region/MultipleFiltersSample.html">Multiple Filters Sample</a>.</li>
+          	<li>Modified the <a href="samples/data_region/DetailRegionEffectsSample.html">Detail Region Effects Sample</a> so that it has smooth transitions even when the user is rapidly clicking items.</li>
+          	<li>Modified the <a href="samples/data_region/DataSetSample.html">Data Set Sample</a> to use setDataFromArray().</li>
+          	<li>Added a <a href="samples/utils/loadURL.html">loadURL()</a> Sample.</li>
+          	<li>Added <a href="samples/slidingpanels/SlidingPanelsSample.html">Sliding Panels</a>, <a href="samples/slidingpanels/SlidingPanelsSample2.html">Sliding Panels 2 Pane Layout</a>, and <a href="samples/slidingpanels/SlidingPanelsFromData.html">Sliding Panels from Data</a> Samples.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Changes for Spry PreRelease 1.4 - 2006/12/14</h3>
+      <ul>
+        <li>Data
+          <ul>
+            <li>Added function Spry.Utils.serializeObject() for serializing a JS Object into JSON format.</li>
+            <li>Added Spry.XML.nodeToObject() and 
+              Spry.XML.documentToObject() utility methods which allow developers to access XML data as JS properties on an object in a manner which is similar to E4X.</li>
+            <li>Added Spry.Utils.updateContent() for dynamically loading an HTML fragment into an element. </li>
+            <li>Added Spry.Utils.setInnerHTML() for setting the innerHTML of an element and executing any scripts within the content string. This method is now used by Spry regions when regenerating their content. </li>
+            <li>Added support for mapping a region state name to another state name. This can be useful for overriding the built-in states, like &quot;ready&quot;, &quot;loading&quot;, and &quot;error&quot;, so that they use markup from a custom state when they fire. </li>
+            <li>Added support for more attributes:
+              <ul>
+                <li>spry:even - Conditionally adds the user specified CSS class name to an element based on the current row number used at the time that element was re-generated.</li>
+                <li>spry:odd - Conditionally adds the user specified CSS class name to an element based on the current row number used at the time that element was re-generated. </li>
+                <li>spry:setrow - Attaches a non-destructive onclick handler that sets the current row by row ID. </li>
+                <li>spry:setrownumber - Attaches a non-destructive onclick handler that sets the current row by row number. </li>
+                <li>spry:sort - Attaches a non-destructive onclick handler that sorts a specific data set based on columns specified by the user.</li>
+                <li>spry:readystate - Maps the &quot;ready&quot; state name to the name specified in its value. </li>
+                <li>spry:errorstate - Maps the &quot;error&quot; state name to the name specified in its value.</li>
+                <li>spry:loadingstate - Maps the &quot;loading&quot; state name to the name specified in its value.</li>
+              </ul>
+            </li>
+            <li>Added code to report and error when nested regions and detail regions are detected. </li>
+            <li>Added new methods to the DataSet API:
+              <ul>
+                <li>getRowCount()</li>
+                <li>getRowByID()</li>
+                <li>getRowByRowNumber()</li>
+                <li> findRowsWithColumnValues()</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Effects
+          <ul>
+            <li>Minor updates of documentation (effects_api and effects_coding, especially of the allowed elements to which the effects can be applied to).</li>
+            <li>Fixed bugs:
+              <ul>
+                <li>GrowShrink effect: if border is set, width&amp;height style doesn't get reset to the original value after you toggled the target element</li>
+                <li>GrowShrink effect: text size inside the target element is alternated after the effect has been finished</li>
+                <li>Slide and Blind effect: Scrollbar disappears if overflow:scroll is set and you toggle the element</li>
+                <li>GrowShrink effect: nested image elements doesn't grow if you grow the target element</li>
+                <li>Slide effect: Text inside sliding element doesn't appear once you toggle the effect (IE 7 only)</li>
+                <li>Shake effect: doesn't work perperly in Opera 9.0</li>
+                <li>AppearFade effect: not working for content of a &lt;div&gt; inside a &lt;td&gt; (IE only)<br />
+                </li>
+              </ul>
+            </li>
+            <li>new feature:
+              <ul>
+                <li>GrowShrink effect: added options 'referHeight' and 'growCenter'<br />
+                </li>
+              </ul>
+            </li>
+            <li>IE 7 related fixes also take effect on Windows Vista (not only on XP)</li>
+            <li>new feature:
+              <ul>
+                <li>Slide effect: added option 'horizontal' to allow horizontal sliding </li>
+              </ul>
+            </li>
+            <li>Slightly updated documentation to reflect new slide option</li>
+            <li> Simplified cluster  construction: cluster now is an effect, too, which accepts  setup and finish callbacks as option arguments of its constructor</li>
+            <li>Base effects (like Move, Size, etc.) can be called without from argument. Instead of passing element, fromPos, toPos, options as arguments, the effects can be called with element, toPos, options. The fromPos is calculated on the fly based on the current position. </li>
+            <li>AppearFade, Blind, GrowShrink, Slide and Squish effects now can be triggered for initially invisible elements ('display:none' or 'visibility:hidden')</li>
+          </ul>
+        </li>
+        <li>Widgets
+          <ul>
+            <li>Added <a href="samples/menubar/MenuBarSample.html">Menu Bar widget</a></li>
+            <li>Added <a href="samples/tabbedpanels/tabbed_panel_sample.htm">Tabbed Panels widget</a></li>
+            <li>Added <a href="samples/collapsiblepanel/collapsible_panel_sample.htm">Collapsible Panel widget</a></li>
+            <li>Added Form Validation Widgets
+              <ul>
+                <li><a href="samples/validationwidgets/CheckboxValidationSample.html">Check Box</a></li>
+                <li><a href="samples/validationwidgets/TextareaValidationSample.html">Text Area</a></li>
+                <li><a href="samples/validationwidgets/TextfieldValidationSample.html">Text Field</a></li>
+                <li><a href="samples/validationwidgets/SelectValidationSample.html">Select </a></li>
+              </ul>
+            </li>
+            <li>Accordion:
+              <ul>
+                <li>Added support for variable height panels.</li>
+                <li>Added some new constructor options:
+                  <ul>
+                    <li>useFixedHeightPanels - This value is true by default. If false allows for variable height panels. </li>
+                    <li>fixedPanelHeight - Number of pixels to use as the height of each panel when animating. By default this is the same as the first open panel. </li>
+                    <li>duration - Number of milliseconds it takes to open/close a panel. Default is 500 msecs. </li>
+                  </ul>
+                </li>
+                <li>Fixed bug that prevented panels from animating properly when the accordion started out with a display:none style.</li>
+                <li>Removed addNewPanel(), getNewPanelSnippet(), getNewAccordionSnippet(), and getNewAccordionConstructorSnippet() methods. They don't work cross-browser, and should've never seen the light of day. </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Docs
+          <ul>
+            <li>Added overview for Tabbed Panels widget.</li>
+            <li>Added overview for Collapsible Panel widget. </li>
+            <li>Added overview docs for each Form widget. </li>
+          </ul>
+        </li>
+        <li>Demos
+          <ul>
+            <li>Gallery
+              <ul>
+                <li>Switch from using an interval timer to manually firing off the slide show timer after each image loads. This will allow images loading over slow connections to completely load. </li>
+              </ul>
+            </li>
+            <li>Products
+              <ul>
+                <li>index.html to use spry:sort and spry:setrow. </li>
+                <li>Use a spry:choose attribute to show/preserve the currently selected product on initial load and after a sort.</li>
+              </ul>
+            </li>
+            <li>RSS Reader
+              <ul>
+                <li>Modified index.{html,cfm,php} to use spry:setrow. </li>
+              </ul>
+            </li>
+            <li>Added <a href="demos/formsvalidation/index.html">Form Validation demo</a>. </li>
+          </ul>
+        </li>
+        <li>Samples
+          <ul>
+            <li>Added sample for Tabbed Panels widget.</li>
+            <li>Added sample for Collapsible Panel widget.</li>
+            <li>Added samples for 4 Form widgets. </li>
+            <li>Moved data set and region examples to the samples/data_region folder.</li>
+            <li>Changed Effects sample files to use standard samples.css file. </li>
+            <li>Added a samples/utils folder with samples of Spry utility functions.</li>
+            <li>Released a query-to-XML sample page that shows how to convert dynamic data into XML. </li>
+            <li>Added to <a href="samples/data_region/EvenOddRowSample.html">EvenOddRowSample.html</a> to include spry:even and spry:odd. </li>
+            <li>Added <a href="samples/data_region/SprySetRowSample.html">SprySetRowSample.html</a>. </li>
+            <li>Modified the AccordionSample:
+              <ul>
+                <li>Added sample for changing the duration of animations.</li>
+                <li>Modified variable height accordion sample to use animation.</li>
+                <li>Added a style for spans used as content panels so that they animate properly. </li>
+              </ul>
+            </li>
+            <li>Added <a href="samples/data_region/SetCurrentRowByValueSample.html">SetCurrentRowByValueSample.html</a> to show how to select a row based on some column values. </li>
+            <li>Added <a href="samples/data_region/StateMappingSample.html">StateMappingSample.html</a> to show how to map the built-in region states to your own custom states. </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Changes for Spry PreRelease 1.3.1 - 2006/08/11</h3>
+      <ul>
+        <li>Fixed Accordion openNextPanel() and openPrevPanel() so that they work cross-browser.</li>
+        <li>Added samples/effects/menu_sample.html.</li>
+        <li>Removed:
+          <ul>
+            <li>demos/products/index_test.html</li>
+            <li>samples/data</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Changes for Spry PreRelease 1.3 - 2006/08/10</h3>
+      <ul>
+        <li>Introduced Spry Effects, the 3rd portion of the Spry Framework.
+          <ul>
+            <li>Provided SpryEffects.js in the includes folder.</li>
+            <li>Provided Effects sample files in Effect folder. </li>
+            <li>Effects Overview doc posted online. (Removed in Spry 1.5. Combined into Effects Coding doc)</li>
+            <li><a href="articles/effects_coding/index.html">Effects Coding</a><strong> </strong>doc posted online. </li>
+            <li><a href="articles/data_api/index.html">Effects API </a></li>
+          </ul>
+        </li>
+        <li>Removed documentation from the zip. All docs will be available online on Labs site as HTML and PDF. </li>
+        <li>Changes to SpryData.js:
+          <ul>
+            <li>Fix the loop in Spry.Utils.createXMLHttpRequest() so that it doesn't skip the next progID in the array after removing a non-existent one.</li>
+            <li>Make sure all initialization of the Spry.Utils.loadURL.Request headers property uses an object so that it works properly when used with Prototype 1.5 rc0. </li>
+            <li>Fix Spry.Utils.Notifier.prototype.notifyObservers() so that it uses a normal for loop instead of a &quot;for in&quot; loop. </li>
+            <li>Added support for {ds_UnfilteredRowCount}. </li>
+          </ul>
+        </li>
+        <li>Updates to SpryAccordion.js
+          <ul>
+            <li>Added panel opening function: openNextPanel(), openPreviousPanel(), openFirstPanel, and openLastPanel()</li>
+            <li>Added current panel accessor: getCurrentPanel() - return the panel, getCurrentPanelIndex() - returns the index of the current panel in the getPanels() array.</li>
+            <li>Added addNewPanel(tab, content) function to dynamically add new panels in Javascript. Panels get added after the current panel. </li>
+          </ul>
+        </li>
+        <li>Gallery Demo updated to use new SpryEffects.js. </li>
+      </ul>
+      <h3>Changes for Spry PreRelease 1.2 - 2006/07/10</h3>
+      <ul>
+        <li>Spry is now compatible with frameworks based on Prototype 1.5 rc0 or later.
+          <ul>
+            <li>Switched all hash tables (associative arrays) to use Object instead of Array.</li>
+            <li>Removed all Spry.Utils.propertyIsEnumerable() calls from all for/in loops.</li>
+            <li>Small fix to xpath.js to switch a loop from for/in to a normal for loop.</li>
+          </ul>
+        </li>
+        <li>Spry:content can now be used inside a spry:region or spry:detailregion, as well as on the region element itself. </li>
+        <li>Auto stripping of the SpryHiddenRegion class name from region containers on load to aid in the hiding of data references. </li>
+        <li>Added  support for the spry:state attribute which can be used by a designer  tell Spry what markup to use when the region is in its &quot;loading&quot;,  &quot;error&quot; or &quot;ready&quot; state. Spry will automatically swap in the correct  markup as the region's state changes. </li>
+        <li>Added  ordered processing of spry: attributes to allow combined use to reduce  the need for using wrapper nodes to add logic. You can see an example within /samples/AttributeComboSample.html. </li>
+        <li>Added  Spry.Data.Region.debug variable. When set to true, it allows developers  to see what the final template for the region looks like, as well as  the markup that is being generated for each region. You can see an  example /samples/AttributeComboSample.html. </li>
+        <li>Accordion Widget
+          <ul>
+            <li>Moved SpryAccordion.js into widgets/accordion directory, along with a reference HTML sample and CSS file.</li>
+            <li>Added support for keyboard navigation.</li>
+            <li>Re-wrote parts of the PanelAnimator to allow for rapid switching between panels via keyboard navigation. </li>
+          </ul>
+        </li>
+        <li>Integrated patches from the community:
+          <ul>
+            <li>Added keepSorted constructor option to the Data Set to allow the sort order to be preserved between loads. </li>
+            <li>Added new built-in data references:
+              <ul>
+                <li>{ds_EvenOddRow} - Writes out &quot;even&quot; or &quot;odd&quot; based on the row index of the current row being processed. </li>
+                <li>{ds_RowNumberPlus1} - Writes out the current row index plus one. </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Misc Bug Fixes:
+          <ul>
+            <li>Spry.Utils.createXMLHttpRequest creates more than one request for a single call on IE 6. </li>
+            <li>Auto setup of Master/Detail between data sets fails if only POST data contains data refs. </li>
+            <li>Sorting should sort all data, not just the result of a non-destructive filter. </li>
+            <li>Spry.Data.DataSet.prototype.filterData bugs:
+              <ul>
+                <li>&quot;unfiltredData&quot; typo causes data loss.</li>
+                <li>filterFunc overridden instead of filterDataFunc.</li>
+                <li>null arg removes data filter but doesn't re-apply an existing view filter. </li>
+              </ul>
+            </li>
+            <li>IE removes quotes around attribute values that contain a single data reference.</li>
+          </ul>
+        </li>
+        <li>Gallery Demo
+          <ul>
+            <li>Cleaned up Spry code used by the select form element.</li>
+            <li>Modified  gallery.js to use the region observer callback to set the main image  and select the first thumbnail instead of using timers. </li>
+            <li>Added CSS workaround for IE &quot;doubled margin&quot; bug. </li>
+          </ul>
+        </li>
+        <li>RSS Reader Demo
+          <ul>
+            <li>Added error and loading feedback with region region states.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Changes for Spry Prerelease 1.1</h3>
+      <ul>
+        <li>Switched  to using namespaced attributes. Attributes are now of the form spry:*.  The Spry namespace is defined by adding the the following attribute to  the HTML tag of the document: xmlns:spry=&quot;http://ns.adobe.com/spry&quot;.</li>
+        <li> Added support for the new spry:content attribute, which allows the  replacement of static content with dynamic content when JavaScript is  enabled. This allows pages to work in a non scripting environment. </li>
+        <li>Added region state notification mechanism.</li>
+        <li>Added Prototype's $() convenience function. </li>
+        <li>Added support for descending and toggle sort.</li>
+        <li>Added support for non-destructive filtering.</li>
+        <li>Added data set load interval.</li>
+        <li>Added built-in references:
+          <ul>
+            <li>{ds_CurrentRowNumber}</li>
+            <li>{ds_CurrentRowID}</li>
+            <li>{ds_SortOrder}</li>
+            <li>{ds_SortColumn}</li>
+          </ul>
+        </li>
+        <li>Filter  callback functions now have the following args passed to them: function  myFilterFunc(dataset, rowObj, rowNumber). Filter callback functions  must now return the rowObj passed in, a new rowObj, or null.</li>
+        <li>Added data set support for retrieving XML data via the POST method and specifying HTTP headers.</li>
+        <li>Added a samples directory  to the  framework ZIP file. It's pretty bare right now, but over time will contain  examples of things asked most frequently in the forums. One of the more  useful samples is the Data Set Explorer page. </li>
+        <li>Misc bug fixes:
+          <ul>
+            <li>Text data not stored entity encoded.</li>
+            <li> Data reference values need to be escaped in JS expressions.</li>
+            <li> RegExp object forces Spry.Data.Region.processDataRefString() to bail early in IE.</li>
+            <li> Spry attributes still exist in generated region output.</li>
+            <li> Data set column (node text value) missing when node has an attribute.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

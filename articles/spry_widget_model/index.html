@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Template $Revision: 1.7 $ applied. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Adobe Labs -  Spry Widget Model</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1><a name="about" id="title"></a>Spry Widget Model</h1>
+<p>Widgets  are a common feature of Ajax frameworks. While not technically Ajax, meaning  they generally don&rsquo;t use the XMLHTTP request object, widgets are called &ldquo;Ajax&rdquo; referring  to next generation web UI. The Spry team is designing the framework in such a  way that widgets are easy to understand and build. We hope to enable the  community to start building and sharing their own widgets.</p>
+<h3>Define: Widget</h3>
+<p>A  widget is a block of HTML, CSS and JavaScript that encapsulates a piece of  advanced user interface. Common widgets are accordions, trees and tabbed  interfaces. These objects have been difficult to build, requiring advanced coding  skills. The benefit of prebuilt widgets is that the difficult coding is taken  care of and users can easily incorporate these advanced interface objects into  their pages. </p>
+<h3>Spry Philosophy</h3>
+<p>The  Spry team, as a subset of the Dreamweaver team, has taken advantage of our  insight and research into web page development and applied it to the Spry  framework. We have developed a set of guiding principles in creating the Spry  framework.</p>
+<ul>
+  <li>Use clear markup. Spry consists of  HTML and CSS and custom Spry attributes. We have not introduced a set of custom  tags that users must learn. This makes Spry easy to understand and build. With  Widgets, we use standard HTML markup to build the widget structure. A small JavaScript  call is used to pass an ID to Spry and it does the rest. </li>
+  <li>Don&rsquo;t inject markup  programmatically. By this we mean that Spry doesn&rsquo;t write out tags that aren&rsquo;t  already in the source code. Other frameworks insert DIVS and styles  programmatically. This makes editing the resultant source code difficult. We  want to make sure that code is not hidden. </li>
+</ul>
+<p>The benefits of  the above 2 items is that Spry Widgets should be easy to edit. This model is  familiar to designers and editing: To change the look and feel, simply change  the CSS. To add a new accordion panel simply copy and paste an existing code  block. </p>
+<h3>Types of widgets</h3>
+<p>Many  widgets are &lsquo;disclosure&rsquo; objects, meaning that they hide and show content per  user interactions. Examples of disclosure widgets are:</p>
+<ul>
+  <li>Accordion</li>
+  <li>Tabs</li>
+  <li>Tree</li>
+  <li>Collapsible Panel</li>
+  <li>Drop Down Menus</li>
+</ul>
+<p>Other  widgets embody common patterns in a discrete package:</p>
+<ul>
+  <li>Sliders</li>
+  <li>Form Elements (with built in  validation and data masking)</li>
+  <li>Calendars</li>
+  <li>Charts</li>
+</ul>
+<h3>Example of  a Spry Widget </h3>
+<p>It is  easy to talk about code, but it&rsquo;s even easier to understand by looking at code.
+  Simple  3 panel accordion looks like:</p>
+<pre class="codeSample">&lt;div id=&quot;Acc1&quot;  class=&quot;Accordion&quot;&gt;
+  &nbsp;&nbsp;&nbsp; &lt;div class=&quot;Panel&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Header&quot;&gt;Panel Header  1&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Content&quot;&gt;Panel  1 Content &lt;/div&gt;
+  &nbsp;&nbsp; &lt;/div&gt;
+  &nbsp;&nbsp;&nbsp; &lt;div class=&quot;Panel&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Header&quot;&gt;Panel Header  2&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Content&quot;&gt;Panel  2 Content&lt;/div&gt;
+  &nbsp;&nbsp; &lt;/div&gt;
+  &nbsp;&nbsp; &lt;div class=&quot;Panel&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Header&quot;&gt;Panel Header  3&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;Content&quot;&gt;Panel  3 Content&lt;/div&gt;
+  &nbsp;&nbsp; &lt;/div&gt;
+&lt;/div&gt;
+ &lt;script&gt;
+   var acc1 = new  Hanzo.Widget.Accordion(&quot;Acc1&quot;);
+ &lt;/script&gt;</pre>
+<p>Using  class names above, it is easy to figure out how to build an accordion.
+  There  is a:</p>
+<ul>
+  <li>Main  accordion container DIV</li>
+  <li>A DIV for  each panel</li>
+  <li>A DIV for  the panel header.</li>
+  <li>A DIV for  the content.</li>
+</ul>
+<p>The  classes shown here are for clarity only. They are not required for functionality.  That being said, CSS can be used to create accordions with very different styles.  In the browser, the simply changing the &lsquo;Header&rsquo; class &nbsp;code can give you these varieties:<br />
+  <img width="386" height="278" src="widget_philosophy_image002.gif" alt="Styling the Accordion headers differently." /><br />
+  There  is a JavaScript object associated with a widget. It attaches behaviors and  handles&nbsp; the user interaction. This  JavaScript is kept in a external file.</p>
+<h3>Accessibility and JavaScript Degradation</h3>
+<p>It  is critical to the usability of the widget that it be accessible when following  established web navigation conventions. We can&rsquo;t assume a mouse and therefore  we take steps to ensure that all aspects of our widgets are accessible through  the keyboard. In the accordion, up and down arrow keys can be used to open panes.  We encourage all widget builders to build in this functionality.</p>
+<p>We  also can&rsquo;t control the end user&rsquo;s environment. We build our widgets to ensure  that when JavaScript is turned off, all the content of the widget is available  on the screen. While this will most likely affect the page layout, it is more  important that the content of the widget be available, especially with  disclosure widgets. We ensure that default CSS states do not set visibility to  &lsquo;hidden&rsquo; and markup is not positioned off the screen.</p>
+<h3>Coding Guidelines for Spry Widgets</h3>
+<p>One  of the goals of Spry is to enable the user community to build and share  widgets. We have a set of guidelines that we use when authoring widgets for  public consumption. We are publishing these guidelines in the hope that all  widgets will have consistent base functionality.</p>
+<ul>
+  <li>Use  standard HTML markup for structure.</li>
+  <li>Don&rsquo;t  require CSS unless necessary.</li>
+  <li>If you  require CSS for functionality, clearly document the requirements.</li>
+  <li>Use a  single line (if possible) of JavaScript to enable the widget functionality.</li>
+  <li>Keyboard  Navigation should be written in and function by default. </li>
+  <li>When JavaScript  is turned off, the content should still appear on the page.</li>
+  <li>Widgets  should be self-contained. Everything needed for the widget is provided in the  markup, JavaScript and CSS files. </li>
+</ul>
+<p>Keeping  to these guidelines will help ensure that widgets are easy to understand and  use, plus consistency strengthens the framework for everyone.</p>
+<p>Using standard markup is important  because users know it already and it increases learnability. It also makes it  easy to use these widgets within WYSIWYG editors.</p>
+<p>CSS is used in some widgets to show  and hide content by toggling the visibility rule in CSS. This would be a  required use of CSS. That&rsquo;s acceptable because that is the obvious mechanism  for showing and hiding content. CSS that is pure styling should not be  required. The widget should function without styling. Document required CSS  rules with comments in the CSS file and if further documentation is provided,  mention it there.</p>
+<p>Most widgets are fired off with a  single line of JavaScript just below the actual widget markup. Try to keep the  arguments to a minimum. Widths and heights of widgets should be set in CSS, no JavaScript,  unless there is no other way.</p>
+<p>Keyboard Navigation and  accessibility are important to users and to Spry. Write keyboard navigation so  that users can use common workflow (arrow keys, space bar) to access all parts  of your widget. Use things like tab order where appropriate.</p>
+<p>It is vital that content not be  hidden in non-scripting environments. Ensure that when JavaScript is turned  off, you content is not hidden with CSS via visibility turned off or  positioning content off the screen.</p>
+<h3>Conclusion</h3>
+<p>With  Spry, Adobe is hoping to make Ajax accessible to designers and those that have  been daunted by the steep learning curve. Remembering that the goal of  computers is to do heavy calculations that would be difficult or tedious to do  by hand, Spry does the heavy lifting and allows web page designers to focus on  designing. With widgets, it will be easy to add advanced functionality to all  pages. Sticking to the widget model, all Spry widgets should have a similar  ease of use that will make Spry a strong and stable framework for designing  next generation web pages.</p>
+<hr />
+<p>Copyright &copy; 2006. Adobe Systems Incorporated.  All rights reserved.</p>
+<div class="nav-up"><a href="#title">back to top</a></div>
+</body>
+</html>

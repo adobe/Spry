@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Paging Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.selected {
+	background-color: #999999;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var pageOffset = 0;
+var pageSize = 10;
+var pageStop = pageOffset + pageSize;
+
+var dsStates1 = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state", { filterFunc: MyPagingFunc });
+var dsStates2 = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state");
+var dsStates3 = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state[position() >=" + (pageOffset+1) + " and position() < " + (pageStop+1) + "]");
+
+function MyPagingFunc(ds, row, rowNumber)
+{
+	if (rowNumber < pageOffset || rowNumber >= pageStop)
+		return null;
+	return row;
+}
+
+function UpdatePage(offset)
+{
+	var numRows = dsStates1.getUnfilteredData().length;
+	
+	if (offset > (numRows - pageSize))
+		offset = numRows - pageSize;
+	if (offset < 0)
+		offset = 0;
+
+	pageOffset = offset;
+	pageStop = offset + pageSize;
+
+	// Re-apply our non-destructive filter on dsStates1:
+	dsStates1.filter(MyPagingFunc);
+
+	// Tell our 2nd region to update because we've adjusted
+	// some of the variables it uses in its spry:if expressions.
+	Spry.Data.updateRegion("list2");
+
+	// Change the XPath for the 3rd data set so that the 3rd
+	// region updates. Remember, position() starts at one and not
+	// zero, so we have to add one to our pageOffset and pageStop.
+	dsStates3.setXPath("/states/state[position() >=" + (pageOffset+1) + " and position() < " + (pageStop+1) + "]");
+}
+-->
+</script>
+
+</head>
+
+<body>
+<h3>Paging   Sample </h3>
+<p>Here's three examples of how to page through some data . Click on the &quot;Prev&quot; and &quot;Next&quot; buttons to page through the data.</p>
+<hr />
+<p>
+	<input type="button" value="Prev" onclick="UpdatePage(pageOffset - pageSize);" />
+	<input type="button" value="Next" onclick="UpdatePage(pageOffset + pageSize);" />
+</p>
+<p>You can use a non-destructive filter to page through the data: </p>
+<ul spry:region="dsStates1">
+	<li spry:repeat="dsStates1">{name}</li>
+</ul>
+<p>Or you can filter while doing a spry:repeat:</p>
+<ul id="list2" spry:region="dsStates2">
+	<li spry:repeat="dsStates2" spry:test="{ds_RowNumber} &gt;= pageOffset &amp;&amp; {ds_RowNumber} &lt; pageStop">{name}</li>
+</ul>
+<p>Or you can filter using the data set's XPath:</p>
+<ul spry:region="dsStates3">
+	<li spry:repeat="dsStates3">{name}</li>
+</ul>
+</body>
+</html>

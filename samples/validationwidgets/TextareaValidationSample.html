@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Textarea Validation Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../widgets/textareavalidation/SpryValidationTextarea.js" type="text/javascript"></script>
+<link href="../../widgets/textareavalidation/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.tablecontainer {
+	width: 900px;
+	clear: both;
+}
+.tablecell {
+	width: 33%;
+	height: 140px;
+	float: left;
+}
+.submitContainer {
+	clear: both;
+	margin-top: 5px;
+}
+label {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#error_mess.textareaMaxCharsState .textareaMaxCharsMsg, #error_mess.textareaMinCharsState .textareaMinCharsMsg, #error_mess.textareaRequiredState .textareaRequiredMsg {
+	display: inline;
+	color: #0033CC;
+	border: 1px solid #0033CC;
+}
+#err_textarea {
+	height: 130px;
+}
+#err_textarea.textareaMaxCharsState, #err_textarea.textareaMinCharsState, #err_textarea.textareaRequiredState {
+	font-size: 14px;
+	color: #0033CC;
+	font-weight: bold;
+}
+#err_textarea.textareaMaxCharsState textarea, #err_textarea.textareaMinCharsState textarea, #err_textarea.textareaRequiredState textarea {
+	border: 1px solid #0033CC;
+}
+</style>
+</head>
+<body>
+<h3>Spry Validation Textarea Samples</h3>
+<p>This page gives examples of the textarea widget capabilities.</p>
+<hr />
+<!--
+
+	First Example - Different validation moments - Change, Blur, Submit
+	
+-->
+<p>This is an example of a textarea validation widget. There are three validation techniques:  validation can occur as-you-type (Change), when the textarea looses focus (Blur) or only when the form is submitted (Submit). The Submit validation occurs always, regardless of the other options chosen. </p>
+<form id="form1" name="form1" method="get" action="TextareaValidationSample.html">
+  <div class="tablecontainer">
+    <div class="tablecell">
+      <label for="textarea1">Change - Submit</label>
+      <span id="comments1">
+      <textarea name="textarea1" id="textarea1" cols="32" rows="5"></textarea>
+      <br/>
+      <span class="textareaRequiredMsg">The value is required.</span> </span> </div>
+    <div class="tablecell">
+      <label for="textarea2">Blur - Submit</label>
+      <span id="comments2">
+      <textarea name="textarea2" id="textarea2" cols="32" rows="5"></textarea>
+      <br/>
+      <span class="textareaRequiredMsg">The value is required.</span> </span> </div>
+    <div class="tablecell">
+      <label for="textarea3">Submit</label>
+      <span id="comments3">
+      <textarea name="textarea3" id="textarea3" cols="32" rows="5"></textarea>
+      <br/>
+      <span class="textareaRequiredMsg">The value is required.</span> </span> </div>
+    <br style="clear:both;" />
+  </div>
+  <div class="submitContainer">
+    <input type="submit" name="submit1" id="submit1" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var comments1 = new Spry.Widget.ValidationTextarea("comments1", {hint:"validates on change", validateOn:["change"]});
+		var comments2 = new Spry.Widget.ValidationTextarea("comments2", {hint:"validates on blur", validateOn:["blur"]});
+		var comments3 = new Spry.Widget.ValidationTextarea("comments3", {hint:"validates on submit"});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+	Second Example - Character counter and enforce max chars
+	
+-->
+<p>The next example shows two more of the textarea widget's features: the character
+  counter, and the enforce max characters option.</p>
+<form id="form2" name="form2" method="get" action="TextareaValidationSample.html">
+  <label for="textarea4">Enter no more than 30 characters:</label>
+  <span id="textarea_counter_up">
+  <textarea name="textarea4" id="textarea4" cols="45" rows="5"></textarea>
+  <span id="Counttextarea_counter">&nbsp;</span> <span class="textareaRequiredMsg">The value is required.</span> <span class="textareaMaxCharsMsg">The maximum number of characters exceeded.</span> </span>
+  <div class="submitContainer">
+    <input type="submit" name="submit2" id="submit2" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var textarea_counter_up = new Spry.Widget.ValidationTextarea("textarea_counter_up", {maxChars:30, counterType:"chars_remaining", counterId:"Counttextarea_counter", validateOn:["change"]});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+	Third Example - minimum number of characters and counter upward
+
+-->
+<p>Also, you can define a minimum number of characters to be entered, and the
+  counter can have an upward direction.</p>
+<form id="form3" name="form3" method="get" action="TextareaValidationSample.html">
+  <label for="textarea5">Enter at least 3 characters:</label>
+  <span id="textarea_min_chars">
+  <textarea name="textarea5" id="textarea5" cols="45" rows="5"></textarea>
+  <span id="Counttextarea_min_chars">&nbsp;</span> <span class="textareaRequiredMsg">The value is required.</span> <span class="textareaMinCharsMsg">The minimum number of characters not met.</span> </span>
+  <div class="submitContainer">
+    <input type="submit" name="submit3" id="submit3" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var textarea_min_chars = new Spry.Widget.ValidationTextarea("textarea_min_chars", {counterType:"chars_count", counterId:"Counttextarea_min_chars", validateOn:["blur", "change"], minChars:3});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Fourth Example - visual feedback through error messages 
+
+-->
+<p>The user will receive visual feedback whenever one of his actions conflicts with the expected behavior. For example, try to enter less than 10 characters or more than 20 in the textareas below. You will receive error messages for the first one, and you won't be able to enter any more characters in the second one.</p>
+<form id="form4" name="form4" method="get" action="TextareaValidationSample.html">
+  <label for="textarea6">Enter between 10 and 20 characters:</label>
+  <span id="min_max_1">
+  <textarea name="textarea6" id="textarea6" cols="45" rows="5"></textarea>
+  <span id="Counttextarea_max_chars1">&nbsp;</span> <span class="textareaRequiredMsg">The value is required.</span> <span class="textareaMinCharsMsg">The minimum number of characters not met.</span> <span class="textareaMaxCharsMsg">The maximum number of characters exceeded.</span> </span>
+  <label for="textarea7">Enter between 10 and 20 characters:</label>
+  <span id="min_max_2">
+  <textarea name="textarea7" id="textarea7" cols="45" rows="5"></textarea>
+  <span id="Counttextarea_max_chars2">&nbsp;</span> <span class="textareaRequiredMsg">The value is required.</span> <span class="textareaMinCharsMsg">The minimum number of characters not met.</span> <span class="textareaMaxCharsMsg">The maximum number of characters exceeded.</span> </span>
+  <div class="submitContainer">
+    <input type="submit" name="submit4" id="submit4" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var min_max_1 = new Spry.Widget.ValidationTextarea("min_max_1", {minChars:10, maxChars:20, validateOn:["change"], counterType:"chars_remaining", counterId:"Counttextarea_max_chars1", useCharacterMasking:false});
+		var min_max_2 = new Spry.Widget.ValidationTextarea("min_max_2", {minChars:10, maxChars:20, validateOn:["blur", "change"], counterType:"chars_remaining", counterId:"Counttextarea_max_chars2"});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Fifth Example - Show error messages in a different zone
+
+-->
+<p>You can define a separate HTML element to display the error messages for this widget.</p>
+<form id="form10" name="form10" method="get" action="TextareaValidationSample.html">
+  <label for="textarea20">Enter between 10 and 20 characters:</label>
+  <span id="min_max_duplicate">
+  <textarea name="textarea20" id="textarea20" cols="45" rows="5"></textarea>
+	<span id="Count_max_chars20">&nbsp;</span> <span class="textareaRequiredMsg">The value is required.</span> <span class="textareaMinCharsMsg">The minimum number of characters not met.</span> <span class="textareaMaxCharsMsg">The maximum number of characters exceeded.</span> </span>
+<br />
+	<span id="additionalErrorsZone">
+		<span>Errors:</span>
+		<span class="textareaRequiredMsg">The value for the textarea is required.</span> <span class="textareaMinCharsMsg">The minimum number of characters criteria not met.</span> <span class="textareaMaxCharsMsg">The maximum number of characters criteria exceeded.</span>
+	</span>
+	<div class="submitContainer">
+    <input type="submit" name="submit20" id="submit20" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var min_max_20 = new Spry.Widget.ValidationTextarea("min_max_duplicate", {minChars:10, maxChars:20, validateOn:["change"], counterType:"chars_remaining", counterId:"Count_max_chars20", useCharacterMasking:false, additionalError: 'additionalErrorsZone'});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Fifth Example - Changing error messages
+
+-->
+<p>The following example shows how to change error messages. You can edit them
+  directly in page, change the css class for them or remove them completely.</p>
+<form id="form5" name="form5" method="get" action="TextareaValidationSample.html">
+  <label for="textarea8">Enter between 10 and 20 characters:</label>
+  <span id="error_mess">
+  <textarea name="textarea8" id="textarea8" cols="45" rows="5"></textarea>
+  <span id="Counterror_mess">&nbsp;</span> <span class="textareaRequiredMsg">Enter your comment.</span> <span class="textareaMinCharsMsg">You must enter at least 10 characters.</span> <span class="textareaMaxCharsMsg">Character limit exceeded.</span> </span>
+  <div class="submitContainer">
+    <input type="submit" name="submit5" id="submit5" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var error_mess = new Spry.Widget.ValidationTextarea("error_mess", {minChars:10, maxChars:20, useCharacterMasking:false, counterType:"chars_count", counterId:"Counterror_mess", validateOn:["change"]});
+	//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+	Sixth Example - Styling the textarea label, no error messages
+
+-->
+<p>Also, you can change the widget container to use directly the textarea label,
+  and don't use any error messages.</p>
+<form id="form6" name="form6" method="get" action="TextareaValidationSample.html">
+  <label for="textarea9" id="err_textarea">Enter between 10 and 20 characters:<br />
+  <textarea name="textarea9" id="textarea9" cols="45" rows="5"></textarea>
+  </label>
+  <div class="submitContainer">
+    <input type="submit" name="submit6" id="submit6" value="Submit" />
+  </div>
+</form>
+<script type="text/javascript">
+	<!--
+		var err_textarea = new Spry.Widget.ValidationTextarea("err_textarea", {minChars:10, maxChars:20, useCharacterMasking:false, validateOn:["change"]});
+	//-->
+</script>
+</body>
+</html>

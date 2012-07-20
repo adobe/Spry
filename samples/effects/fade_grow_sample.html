@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Cluster effects & Spry Data</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+	
+.animationContainer{
+	height: 250px;
+	width: 670px;
+}
+
+.demoDiv{
+	background-color: #CCC; 
+	height: 230px;
+	width: 350px;
+	border: 1px solid black;
+	margin-left: 1px;
+	overflow: hidden;
+}
+
+#img_detail2{
+	float: left;  
+}
+
+.thumb{
+	margin: 5px;
+}
+
+.detailContainer{
+	height: 300px;
+}
+
+</style>
+
+<script src="../../includes/xpath.js"  type="text/javascript" ></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<script type="text/javascript">
+//define custom cluster effect for parallel fade & grow
+FadeGrow = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	var toggle = false;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+		if (options.toggle != null) toggle = options.toggle;
+	}
+	var fadeEffect = new Spry.Effect.Fade(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	var growEffect = new Spry.Effect.Grow(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	this.addParallelEffect(fadeEffect);
+	this.addParallelEffect(growEffect);
+};
+FadeGrow.prototype = new Spry.Effect.Cluster();
+FadeGrow.prototype.constructor = FadeGrow;
+
+//image dataset for sample 2
+var dsImages2 = new Spry.Data.XMLDataSet("../../data/photos.xml", "gallery/photos/photo");
+
+//utility function called by the observer - fade & grow the second image
+function fadeInAndGrow()
+{
+		var img = document.getElementById('img_detail2');
+		if (!img)
+		{
+			return;
+		}
+			
+		//reset styles altered by effects
+			img.style.visibility='hidden';
+			img.style.width='';
+			img.style.height='';
+			img.style.opacity='';
+			img.style.filter='';
+			img.style.top='';
+			img.style.left='';
+			img.style.fontSize='';
+		
+		//Use an image loader to make sure we only fade in the new image after
+		//it is completely loaded.
+		var gImageLoader = new Image();
+		gImageLoader.onload = function()
+		{
+		myFadeGrow2b = new FadeGrow("img_detail2", {from: "0", to: "100%", duration: 1000});
+		myFadeGrow2b.start();
+}
+		var curRow = dsImages2.getCurrentRow();
+		var imgPath =  '../../demos/gallery/galleries/paris/images/' + curRow["@path"];
+		gImageLoader.src = imgPath;
+}
+
+//observer object for sample 2
+var obs2 = new Object;
+obs2.onPostUpdate = function(notifier, data)
+{
+		//use this flag to avoid the effect running on load
+		if (typeof firstTime == 'undefined')
+		{
+		  firstTime = true;
+		}
+		else
+		{
+      fadeInAndGrow();
+		}
+};
+
+//data region observer for sample 2
+Spry.Data.Region.addObserver('img_detail2', obs2);
+
+//store the current image number so I can later detect mouse over on it
+var oldRow = 0;
+
+//mouseover handler for sample 2 - fade & shrink the first image
+//uses a finish function that sets the current row, causing the observer to call the reverse effect
+var changePic = function(row)
+{
+    //if it's the same picture, do nothing
+		if(oldRow==row)
+		{
+      return;
+		}
+      
+		oldRow = row;
+      
+		//if any effects are running, cancel them
+		if(myFadeGrow2a && myFadeGrow2a.isRunning)
+		{
+			myFadeGrow2a.cancel();
+		}
+		if(myFadeGrow2b && myFadeGrow2b.isRunning){
+			myFadeGrow2b.cancel();                
+		}
+		
+    myFadeGrow2a = new FadeGrow("img_detail2", {from: "100%", to: "0", duration: 1000, finish: function(){dsImages2.setCurrentRow(row);}});
+		myFadeGrow2a.start();
+}
+
+</script>
+
+
+</head>
+<body>
+	<h3>Spry Parallel Cluster effects</h3>
+	
+<!-- 
+Sample 1: Using the FadeGrow cluster effect
+-->
+
+<strong>Fade & Grow parallel cluster effect</strong>
+<p> 
+The Cluster allow you to run multiple Animation in parallel. You'll have to define these animations and register using the addParallelEffect() method to a cluster. 
+When you'll call the start() method all the effects will be executed at the same time. If the cluster is allowed to toggle the effects will be run in the reverse order. 
+Every cluster registered effect should also receive the toggle parameter to know that can run in reverse too.
+The observers register to the cluster will work as for any other effect. 
+</p>
+
+<p><a onclick="myFadeGrow1.start(); return false;" href="#">Click here to apply Fade and Grow to the below paragraph.</a></p>
+<div class="animationContainer">
+	<div id="content" class="demoDiv">
+			<h3>Lore Ipsum Content</h3>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel 
+			sem nec massa cursus interdum. Class aptent taciti sociosqu ad litora 
+			torquent per conubia nostra, per inceptos hymenaeos. Duis euismod eros 
+			consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus vel, 
+			aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis 
+			bibendum consequat, odio erat volutpat ipsum, sed dignissim ligula mi 
+			in justo. Nam placerat. Nullam fringilla tortor. Quisque lacinia, 
+			mi non iaculis adipiscing, turpis lacus eleifend velit, dictum facilisis 
+			pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis, 
+			faucibus sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus. </p>		
+	</div>
+</div>
+
+<script type="text/javascript">
+	var myFadeGrow1 = new FadeGrow("content", {from: "100%", to: "0", duration: 1500, toggle: true});
+</script>
+
+<!-- 	
+Sample 2: Transition between the images of a master/detail region    
+-->
+
+<hr />
+
+<strong>Using the parallel cluster effect as a transition between images</strong>
+<p>Suppose that once we have the above effect in place, we want to use it as a transition between the images in a slideshow,
+when the user mouses over the images. We need to apply this effect twice: 
+<ul>
+<li>when the user leaves an image and is hovering another one, we fade out & shrink the initial image</li>
+<li>after this effect finishes, we fade in and grow the new image</li>
+</ul>
+The images are loaded with an XML data set and used in a master/detail region. The region shows the thumbnails of the images, 
+while the detail region is used for a bigger version of the image being currently hovered with the mouse.</p>
+
+<p>The step-by-step approach is as follows:
+<ul>
+<li>we first register a function as the handler for the onmouseover event on the thumbnail images.</li>
+<li>In the handler, we test if the mouse is over a different image than before, using the value of ds_RowID, 
+then cancel any effects that are currently running (to handle the case in which the user moves the mouse fast
+over several images, we want to see the transition between the first and last image), and then start the fade & grow 
+effect, from 100% to 0</li>
+<li>when the first effect finishes, using a finsih function we manually advance the current row in the images data set</li>
+<li>an observer object that is registered on the data region calls a function named fadeInAndGrow()</li>
+<li>this function starts the second effect, using an image loader to make sure the new image is already loaded</li>
+</ul>
+<p> To see the effect, move your mouse over the images.</p>
+
+<div id="img_list2" spry:region="dsImages2">
+	<img spry:repeat="dsImages2" class="thumb" src="../../demos/gallery/galleries/paris/thumbnails/{@path}"/ onmouseover="changePic('{ds_RowID}')">
+</div>
+<div class="detailContainer">
+<div id="img_detail2" spry:detailregion="dsImages2">
+	<img class="main" src="../../demos/gallery/galleries/paris/images/{@path}"/>
+</div>
+</div>
+
+<script type="text/javascript">
+  //define these as globals to reuse them later
+  var myFadeGrow2a;
+  var myFadeGrow2b;
+</script>    
+
+</body>
+</html>

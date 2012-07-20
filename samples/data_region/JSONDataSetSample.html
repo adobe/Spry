@@ -1,0 +1,858 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JSON Data Set Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.dataTable {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+.dataTable th, .dataTable td {
+	border: solid 1px black;
+	padding: 4px;
+}
+.dataTable th {
+	background-color: #CCCCCC;
+	color: black;
+}
+.hover {
+	background-color: #FFCCFF;
+}
+.select {
+	background-color: black;
+	color: white;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryJSONDataSet.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedJSONDataSet.js"></script>
+<script type="text/javascript">
+var dsExample1 = new Spry.Data.JSONDataSet("../../data/json/array-01.js");
+var dsExample2 = new Spry.Data.JSONDataSet("../../data/json/array-02.js");
+var dsExample3 = new Spry.Data.JSONDataSet("../../data/json/object-01.js");
+var dsExample4 = new Spry.Data.JSONDataSet("../../data/json/object-02.js", { path: "batters.batter" });
+var dsExample5 = new Spry.Data.JSONDataSet("../../data/json/array-03.js", { path: "batters.batter" });
+var dsExample6 = new Spry.Data.JSONDataSet("../../data/json/object-03.js", { subPaths: "image" });
+var dsExample7 = new Spry.Data.JSONDataSet("../../data/json/object-03.js", { subPaths: [ "image", "thumbnail" ] });
+var dsExample8 = new Spry.Data.JSONDataSet("../../data/json/donuts.js", { path: "items.item" });
+var dsExample9 = new Spry.Data.JSONDataSet("../../data/json/donuts.js", { path: "items.item", subPaths: "batters.batter" });
+var dsExample10 = new Spry.Data.JSONDataSet("../../data/json/donuts.js", { path: "items.item", subPaths: [ "batters.batter", "topping" ] });
+
+var dsExample11_Items = new Spry.Data.JSONDataSet("../../data/json/donuts.js", { path: "items.item" });
+var dsExample11_Batters = new Spry.Data.NestedJSONDataSet(dsExample11_Items, "batters.batter");
+var dsExample11_Toppings = new Spry.Data.NestedJSONDataSet(dsExample11_Items, "topping");
+
+var dsExample12_Items = new Spry.Data.JSONDataSet("../../data/json/donuts.js", { path: "items.item" });
+var dsExample12_Batters = new Spry.Data.NestedJSONDataSet(dsExample12_Items, "batters.batter");
+</script>
+</head>
+<body>
+<h3>JSON Data Set Sample</h3>
+<p>The JSON output from different Server APIs can range from simple to highly nested and complex. The examples on this page attempt to illustrate how the JSON Data Set treats specific formats, and gives examples of the different constructor options that allow the user to tweak its behavior. See our <a href="../../articles/json_primer/json_primer.html">JSON Primer</a> for more information.</p>
+<ul>
+  <li><a href="#Example1">Example 1</a> - JSON Array with simple data types as elements.</li>
+  <li><a href="#Example2">Example 2</a> - JSON Array with objects as elements</li>
+  <li><a href="#Example3">Example 3</a> - JSON Object</li>
+  <li><a href="#Example4">Example 4</a> - The &quot;path&quot; constructor option.</li>
+  <li><a href="#Example5">Example 5</a> - The &quot;path&quot; constructor option and JSON Array with objects as elements.</li>
+  <li><a href="#Example6">Example 6</a> - The &quot;subPaths&quot; constructor option with a single path.</li>
+  <li><a href="#Example7">Example 7</a> - The &quot;subPaths&quot; constructor option with multiple paths.</li>
+  <li><a href="#Example8">Example 8</a> - &quot;path&quot; constructor option example.</li>
+  <li><a href="#Example9">Example 9</a> - Multiple matches for a single sub path.</li>
+  <li><a href="#Example10">Example 10</a> - Multiple matches for multiple sub paths.</li>
+  <li><a href="#Example11">Example 11</a> - The JSON Nested Data Set.</li>
+  <li><a href="#Example12">Example 12</a> - Sorting with the JSON Nested Data Set</li>
+</ul>
+<p>Be sure to check out the &quot;<a href="#NotSupported">What's Not Supported</a>&quot; section.</p>
+<hr />
+<h4><a name="Example1" id="Example1"></a>Example 1</h4>
+<p>If the JSON data describes an array, and each element of that array is of a basic type (number, string, boolean, or null):</p>
+<pre>[ 100, 500, 300, 200, 400 ]</pre>
+<p>the JSON DataSet will create a row for each element in the JSON array, and store its value in a column named &quot;column0&quot;.</p>
+<pre>var dsExample1 = new Spry.Data.JSONDataSet(&quot;../../data/json/array-01.js&quot;);
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample1&quot;&gt;
+	Values from array: &lt;span spry:repeatchildren=&quot;dsExample1&quot;&gt;{column0} &lt;/span&gt;
+&lt;/div&gt;
+</pre>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample1"> Values from array: <span spry:repeatchildren="dsExample1">{column0} </span></div>
+<hr />
+<h4><a name="Example2" id="Example2"></a>Example 2</h4>
+<p>If the JSON data describes an array, and each element of that array is an object:</p>
+<pre>[
+	{
+		color: &quot;red&quot;,
+		value: &quot;#f00&quot;
+	},
+	{
+		color: &quot;green&quot;,
+		value: &quot;#0f0&quot;
+	},
+	{
+		color: &quot;blue&quot;,
+		value: &quot;#00f&quot;
+	},
+	{
+		color: &quot;cyan&quot;,
+		value: &quot;#0ff&quot;
+	},
+	{
+		color: &quot;magenta&quot;,
+		value: &quot;#f0f&quot;
+	},
+	{
+		color: &quot;yellow&quot;,
+		value: &quot;#ff0&quot;
+	},
+	{
+		color: &quot;black&quot;,
+		value: &quot;#000&quot;
+	}
+]
+</pre>
+<p>the JSON Data Set will create a row for each object in the array, and each property on the object will become a column.</p>
+<pre>var dsExample2 = new Spry.Data.JSONDataSet(&quot;../../data/json/array-02.js&quot;);<br />
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample2&quot;&gt;
+	Values from array: &lt;span spry:repeatchildren=&quot;dsExample2&quot;&gt;{color}({value}) &lt;/span&gt;
+&lt;/div&gt;
+</pre>
+<p>Here's a live example:</p>
+<div class="liveSample" spry:region="dsExample2"> Values from array: <span spry:repeatchildren="dsExample2">{color}({value}) </span></div>
+<br />
+<br />
+<hr />
+<h4><a name="Example3" id="Example3"></a>Example 3</h4>
+<p>If the JSON data describes an object:</p>
+<pre>
+{
+	color: &quot;red&quot;,
+	value: &quot;#f00&quot;
+}
+</pre>
+<p>the JSON Data Set will create a single row for the object, and each property on the object will become a column. The data set will only contain one row of data.</p>
+<pre>var dsExample3 = new Spry.Data.JSONDataSet(&quot;../../data/json/array-03.js&quot;);<br />
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample3&quot;&gt;
+Values from object: {color}({value})
+&lt;/div&gt;
+</pre>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample3"> Values from object: {color}({value}) </div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example4" id="Example4"></a>Example 4</h4>
+<p>The objects returned from most Server APIs are highly nested:</p>
+<pre>
+{
+	&quot;id&quot;: &quot;0001&quot;,
+	&quot;type&quot;: &quot;donut&quot;,
+	&quot;name&quot;: &quot;Cake&quot;,
+	&quot;ppu&quot;: 0.55,
+	&quot;batters&quot;:
+		{
+			&quot;batter&quot;:
+				[
+					{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+					{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+					{ &quot;id&quot;: &quot;1003&quot;, &quot;type&quot;: &quot;Blueberry&quot; },
+					{ &quot;id&quot;: &quot;1004&quot;, &quot;type&quot;: &quot;Devil's Food&quot; }
+				]
+		},
+	&quot;topping&quot;:
+		[
+			{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+			{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+			{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+			{ &quot;id&quot;: &quot;5007&quot;, &quot;type&quot;: &quot;Powdered Sugar&quot; },
+			{ &quot;id&quot;: &quot;5006&quot;, &quot;type&quot;: &quot;Chocolate with Sprinkles&quot; },
+			{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+			{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+		]
+}
+</pre>
+<p>If the data you want to extract out is not at the top-level of the JSON object, you can tell the JSON data set where to find it by using the &quot;path&quot; constructor option. In this example, we want to extract out all of the &quot;batter&quot; data:</p>
+<pre>var dsExample4 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-02.js&quot;, { path: &quot;batters.batter&quot; });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample4&quot;&gt;
+&lt;p&gt;Batters:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li spry:repeat=&quot;dsExample4&quot;&gt;{type} ({id})&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</pre>
+<p>The path is simply the set of properties used to traverse the object's structure, separated by dots. Here's a live example:</p>
+<div class="liveSample" spry:region="dsExample4">
+  <p>Batters:</p>
+  <ul>
+    <li spry:repeat="dsExample4">{type} ({id})</li>
+  </ul>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example5" id="Example5"></a>Example 5</h4>
+<p>In the case where you have an array of highly nested objects:</p>
+<pre>
+[
+	{
+		&quot;id&quot;: &quot;0001&quot;,
+		&quot;type&quot;: &quot;donut&quot;,
+		&quot;name&quot;: &quot;Cake&quot;,
+		&quot;ppu&quot;: 0.55,
+		&quot;batters&quot;:
+			{
+				&quot;batter&quot;:
+					[
+						{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+						{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+						{ &quot;id&quot;: &quot;1003&quot;, &quot;type&quot;: &quot;Blueberry&quot; },
+						{ &quot;id&quot;: &quot;1004&quot;, &quot;type&quot;: &quot;Devil's Food&quot; }
+					]
+			},
+		&quot;topping&quot;:
+			[
+				{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+				{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+				{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+				{ &quot;id&quot;: &quot;5007&quot;, &quot;type&quot;: &quot;Powdered Sugar&quot; },
+				{ &quot;id&quot;: &quot;5006&quot;, &quot;type&quot;: &quot;Chocolate with Sprinkles&quot; },
+				{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+				{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+			]
+	},
+	{
+		&quot;id&quot;: &quot;0002&quot;,
+		&quot;type&quot;: &quot;donut&quot;,
+		&quot;name&quot;: &quot;Raised&quot;,
+		&quot;ppu&quot;: 0.55,
+		&quot;batters&quot;:
+			{
+				&quot;batter&quot;:
+					[
+						{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; }
+					]
+			},
+		&quot;topping&quot;:
+			[
+				{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+				{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+				{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+				{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+				{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+			]
+	},
+	{
+		&quot;id&quot;: &quot;0003&quot;,
+		&quot;type&quot;: &quot;donut&quot;,
+		&quot;name&quot;: &quot;Old Fashioned&quot;,
+		&quot;ppu&quot;: 0.55,
+		&quot;batters&quot;:
+			{
+				&quot;batter&quot;:
+					[
+						{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+						{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; }
+					]
+			},
+		&quot;topping&quot;:
+			[
+				{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+				{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+				{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+				{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+			]
+	}
+]
+</pre>
+<p> the JSON data set uses the &quot;path&quot; constructor option to extract  the matching data out from each object in the array. Each match then becomes a row in the data set. In this example, we want the data set to select all of the &quot;batter&quot; objects and flatten them into rows:</p>
+<pre>var dsExample5 = new Spry.Data.JSONDataSet(&quot;../../data/json/array-03.js&quot;, { path: &quot;batters.batter&quot; });<br />
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample5&quot;&gt;
+	&lt;p&gt;Batters:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat=&quot;dsExample5&quot;&gt;{type} ({id})&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p>Here's a live example:</p>
+<div class="liveSample" spry:region="dsExample5">
+  <p>Batters:</p>
+  <ul>
+    <li spry:repeat="dsExample5">{type} ({id})</li>
+  </ul>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example6" id="Example6"></a>Example 6</h4>
+<p>Some JSON formats use nested structures to simply group data together. An example of this would be the &quot;image&quot; and &quot;thumbnail&quot; properties in the following example:</p>
+<pre>
+{
+	&quot;id&quot;: &quot;0001&quot;,
+	&quot;type&quot;: &quot;donut&quot;,
+	&quot;name&quot;: &quot;Cake&quot;,
+	&quot;image&quot;:
+		{
+			&quot;url&quot;: &quot;images/0001.jpg&quot;,
+			&quot;width&quot;: 200,
+			&quot;height&quot;: 200
+		},
+	&quot;thumbnail&quot;:
+		{
+			&quot;url&quot;: &quot;images/thumbnails/0001.jpg&quot;,
+			&quot;width&quot;: 32,
+			&quot;height&quot;: 32
+		}
+}
+</pre>
+<p> It is sometimes desirable to flatten these structures so they are also available as columns in the data set. You can use the &quot;subPaths&quot; constructor option to tell the JSON Data Set to include these nested structures when it flattens the top-level JSON object, or the data selected by the &quot;path&quot; constructor option. In this particular example, because we have not specified a &quot;path&quot; constructor option, the JSON data set will attempt to flatten the top-level object. Since we want to also include the data from the &quot;image&quot; nested structure, we specify the path to the data which is simply &quot;image&quot;.</p>
+<pre>var dsExample6 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-03.js&quot;, { subPaths: &quot;image&quot; });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample6&quot;&gt;
+&lt;table class=&quot;dataTable&quot;&gt;
+	&lt;tr&gt;
+		&lt;th&gt;id&lt;/th&gt;
+		&lt;th&gt;type&lt;/th&gt;
+		&lt;th&gt;name&lt;/th&gt;
+		&lt;th&gt;image.width&lt;/th&gt;
+		&lt;th&gt;image.height&lt;/th&gt;
+		&lt;th&gt;image.url&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;{id}&lt;/td&gt;
+		&lt;td&gt;{type}&lt;/td&gt;
+		&lt;td&gt;{name}&lt;/td&gt;
+		&lt;td&gt;{image.width}&lt;/td&gt;
+		&lt;td&gt;{image.height}&lt;/td&gt;
+		&lt;td&gt;{image.url}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>The properties within the nested &quot;image&quot; structure are now accessible from within the data set. Notice that the names of the columns are all prefixed by &quot;image.&quot;. Here's a live example:</p>
+<div class="liveSample" spry:region="dsExample6">
+  <table class="dataTable">
+    <tr>
+      <th>id</th>
+      <th>type</th>
+      <th>name</th>
+      <th>image.width</th>
+      <th>image.height</th>
+      <th>image.url</th>
+    </tr>
+    <tr>
+      <td>{id}</td>
+      <td>{type}</td>
+      <td>{name}</td>
+      <td>{image.width}</td>
+      <td>{image.height}</td>
+      <td>{image.url}</td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example7" id="Example7"></a>Example 7</h4>
+<p>You can specify multiple paths in the &quot;subPaths&quot; constructor option. So if you wanted to include both &quot;image&quot; and &quot;thumbnail&quot; in the flattening process, you simply pass an array of strings:</p>
+<pre>var dsExample7 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-03.js&quot;, { subPaths: [ &quot;image&quot;, &quot;thumbnail&quot; ] });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample7&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th&gt;id&lt;/th&gt;
+			&lt;th&gt;type&lt;/th&gt;
+			&lt;th&gt;name&lt;/th&gt;
+			&lt;th&gt;image.width&lt;/th&gt;
+			&lt;th&gt;image.height&lt;/th&gt;
+			&lt;th&gt;image.url&lt;/th&gt;
+			&lt;th&gt;thumbnail.width&lt;/th&gt;
+			&lt;th&gt;thumbnail.height&lt;/th&gt;
+			&lt;th&gt;thumbnail.url&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;{id}&lt;/td&gt;
+			&lt;td&gt;{type}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+			&lt;td&gt;{image.width}&lt;/td&gt;
+			&lt;td&gt;{image.height}&lt;/td&gt;
+			&lt;td&gt;{image.url}&lt;/td&gt;
+			&lt;td&gt;{thumbnail.width}&lt;/td&gt;
+			&lt;td&gt;{thumbnail.height}&lt;/td&gt;
+			&lt;td&gt;{thumbnail.url}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample7">
+  <table class="dataTable">
+    <tr>
+      <th>id</th>
+      <th>type</th>
+      <th>name</th>
+      <th>image.width</th>
+      <th>image.height</th>
+      <th>image.url</th>
+      <th>thumbnail.width</th>
+      <th>thumbnail.height</th>
+      <th>thumbnail.url</th>
+    </tr>
+    <tr>
+      <td>{id}</td>
+      <td>{type}</td>
+      <td>{name}</td>
+      <td>{image.width}</td>
+      <td>{image.height}</td>
+      <td>{image.url}</td>
+      <td>{thumbnail.width}</td>
+      <td>{thumbnail.height}</td>
+      <td>{thumbnail.url}</td>
+    </tr>
+  </table>
+</div>
+<p></p>
+<hr />
+<h4><a name="Example8" id="ExampleX2"></a>Example 8</h4>
+<p>This example shows the use of the &quot;path&quot; constructor option to extract out the data items. This is nothing different from some of the previous examples, but we will build on this in the next example. An abbreviated version of the JSON data is included here for reference. You can see the full JSON data used by this example <a href="../../data/json/donuts.js">here</a>.</p>
+<pre>
+{
+	&quot;items&quot;:
+		{
+			<span class="highlited">&quot;item&quot;</span>:
+				[
+					{
+						&quot;id&quot;: &quot;0001&quot;,
+						&quot;type&quot;: &quot;donut&quot;,
+						&quot;name&quot;: &quot;Cake&quot;,
+						&quot;ppu&quot;: 0.55,
+						&quot;batters&quot;:
+							{
+								&quot;batter&quot;:
+									[
+										{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+										{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+										{ &quot;id&quot;: &quot;1003&quot;, &quot;type&quot;: &quot;Blueberry&quot; },
+										{ &quot;id&quot;: &quot;1004&quot;, &quot;type&quot;: &quot;Devil's Food&quot; }
+									]
+							},
+						&quot;topping&quot;:
+							[
+								{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+								{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+								{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+								{ &quot;id&quot;: &quot;5007&quot;, &quot;type&quot;: &quot;Powdered Sugar&quot; },
+								{ &quot;id&quot;: &quot;5006&quot;, &quot;type&quot;: &quot;Chocolate with Sprinkles&quot; },
+								{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+								{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+							]
+					},
+
+					...
+
+				]
+		}
+}
+</pre>
+<p>In this example, we are simply going to list the types of items in our JSON object. We are going to use the &quot;path&quot; constructor option to select out all of the &quot;item&quot; objects, and then display the info we get in a table:</p>
+<pre>var dsExample8 = new Spry.Data.JSONDataSet(&quot;../../data/json/donuts.js&quot;, { path: &quot;items.item&quot; });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample8&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th spry:sort=&quot;id&quot;&gt;id&lt;/th&gt;
+			&lt;th spry:sort=&quot;type&quot;&gt;type&lt;/th&gt;
+			&lt;th spry:sort=&quot;name&quot;&gt;name&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsExample8&quot;&gt;
+			&lt;td&gt;{id}&lt;/td&gt;
+			&lt;td&gt;{type}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Using the path &quot;items.item&quot; will result in a data set that has the following columns defined for each row:</p>
+<table class="dataTable">
+  <tr>
+    <th>ds_RowID</th>
+    <th>id</th>
+    <th>type</th>
+    <th>name</th>
+    <th>ppu</th>
+  </tr>
+</table>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample8">
+  <table class="dataTable">
+    <tr>
+      <th spry:sort="id">id</th>
+      <th spry:sort="type">type</th>
+      <th spry:sort="name">name</th>
+    </tr>
+    <tr spry:repeat="dsExample8">
+      <td>{id}</td>
+      <td>{type}</td>
+      <td>{name}</td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example9" id="ExampleX3"></a>Example 9</h4>
+<p>This example builds on <a href="#Example8">Example 8</a> to show what happens when you select a set of repeating structures with the &quot;subPaths&quot; constructor option.</p>
+<pre>
+{
+	&quot;items&quot;:
+		{
+			&quot;item&quot;:
+				[
+					{
+						&quot;id&quot;: &quot;0001&quot;,
+						&quot;type&quot;: &quot;donut&quot;,
+						&quot;name&quot;: &quot;Cake&quot;,
+						&quot;ppu&quot;: 0.55,
+						<span class="highlited">&quot;batters&quot;</span>:
+							{
+								&quot;batter&quot;:
+									[
+										{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+										{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+										{ &quot;id&quot;: &quot;1003&quot;, &quot;type&quot;: &quot;Blueberry&quot; },
+										{ &quot;id&quot;: &quot;1004&quot;, &quot;type&quot;: &quot;Devil's Food&quot; }
+									]
+							},
+						&quot;topping&quot;:
+							[
+								{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+								{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+								{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+								{ &quot;id&quot;: &quot;5007&quot;, &quot;type&quot;: &quot;Powdered Sugar&quot; },
+								{ &quot;id&quot;: &quot;5006&quot;, &quot;type&quot;: &quot;Chocolate with Sprinkles&quot; },
+								{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+								{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+							]
+					},
+
+					...
+
+				]
+		}
+}
+</pre>
+<p>In this example, we are going to also select the &quot;batter&quot; objects with our &quot;subPaths&quot; constructor option, then display all of our data set rows in a table.</p>
+<pre>var dsExample9 = new Spry.Data.JSONDataSet(&quot;../../data/json/donuts.js&quot;, { path: &quot;items.item&quot;, subPaths: &quot;batters.batter&quot; });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample9&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th spry:sort=&quot;id&quot;&gt;id&lt;/th&gt;
+			&lt;th spry:sort=&quot;type&quot;&gt;type&lt;/th&gt;
+			&lt;th spry:sort=&quot;name&quot;&gt;name&lt;/th&gt;
+			&lt;th spry:sort=&quot;batters.batter.type&quot;&gt;batter&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsExample9&quot;&gt;
+			&lt;td&gt;{id}&lt;/td&gt;
+			&lt;td&gt;{type}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+			&lt;td&gt;{batters.batter.type}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Using the path &quot;items.item&quot; and subPath &quot;batters.batter&quot; will result in a data set that has the following columns defined for each row:</p>
+<table class="dataTable">
+  <tr>
+    <th>ds_RowID</th>
+    <th>id</th>
+    <th>type</th>
+    <th>name</th>
+    <th>ppu</th>
+    <th>batters.batter.id</th>
+    <th>batters.batter.type</th>
+  </tr>
+</table>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample9">
+  <table class="dataTable">
+    <tr>
+      <th spry:sort="id">id</th>
+      <th spry:sort="type">type</th>
+      <th spry:sort="name">name</th>
+      <th spry:sort="batters.batter.type">batter</th>
+    </tr>
+    <tr spry:repeat="dsExample9">
+      <td>{id}</td>
+      <td>{type}</td>
+      <td>{name}</td>
+      <td>{batters.batter.type}</td>
+    </tr>
+  </table>
+</div>
+<p>If you compare the results above against what you see in <a href="#Example8">Example 8</a>, the first thing you will notice is that we now have more rows then we used to. What is basically happening here is that each top-level object matched by the &quot;path&quot; constructor option is merged with any objects that were matched by the paths in the &quot;subPaths&quot; constructor option. If more than one object is matched below a given top-level object, a row is created for every object matched so that its data can be accommodated.</p>
+<hr />
+<h4><a name="Example10" id="ExampleX4"></a>Example 10</h4>
+<p>This example builds on <a href="#Example9">Example 9</a> to show what happens when you select another set of repeating structures with the &quot;subPaths&quot; constructor option.</p>
+<pre>
+9{
+	&quot;items&quot;:
+		{
+			&quot;item&quot;:
+				[
+					{
+						&quot;id&quot;: &quot;0001&quot;,
+						&quot;type&quot;: &quot;donut&quot;,
+						&quot;name&quot;: &quot;Cake&quot;,
+						&quot;ppu&quot;: 0.55,
+						<span class="highlited">&quot;batters&quot;</span>:
+							{
+								&quot;batter&quot;:
+									[
+										{ &quot;id&quot;: &quot;1001&quot;, &quot;type&quot;: &quot;Regular&quot; },
+										{ &quot;id&quot;: &quot;1002&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+										{ &quot;id&quot;: &quot;1003&quot;, &quot;type&quot;: &quot;Blueberry&quot; },
+										{ &quot;id&quot;: &quot;1004&quot;, &quot;type&quot;: &quot;Devil's Food&quot; }
+									]
+							},
+						<span class="highlited">&quot;topping&quot;</span>:
+							[
+								{ &quot;id&quot;: &quot;5001&quot;, &quot;type&quot;: &quot;None&quot; },
+								{ &quot;id&quot;: &quot;5002&quot;, &quot;type&quot;: &quot;Glazed&quot; },
+								{ &quot;id&quot;: &quot;5005&quot;, &quot;type&quot;: &quot;Sugar&quot; },
+								{ &quot;id&quot;: &quot;5007&quot;, &quot;type&quot;: &quot;Powdered Sugar&quot; },
+								{ &quot;id&quot;: &quot;5006&quot;, &quot;type&quot;: &quot;Chocolate with Sprinkles&quot; },
+								{ &quot;id&quot;: &quot;5003&quot;, &quot;type&quot;: &quot;Chocolate&quot; },
+								{ &quot;id&quot;: &quot;5004&quot;, &quot;type&quot;: &quot;Maple&quot; }
+							]
+					},
+
+					...
+
+				]
+		}
+}
+</pre>
+<p>In this example, we are going to also select the &quot;topping&quot; objects with our &quot;subPaths&quot; constructor option, then display all of our data set rows in a table.</p>
+<pre>var dsExample10 = new Spry.Data.JSONDataSet(&quot;../../data/json/donuts.js&quot;, { path: &quot;items.item&quot;, subPaths: [ &quot;batters.batter&quot;, &quot;topping&quot; ] });
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample10&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th spry:sort=&quot;id&quot;&gt;id&lt;/th&gt;
+			&lt;th spry:sort=&quot;type&quot;&gt;type&lt;/th&gt;
+			&lt;th spry:sort=&quot;name&quot;&gt;name&lt;/th&gt;
+			&lt;th spry:sort=&quot;batters.batter.type&quot;&gt;batter&lt;/th&gt;
+			&lt;th spry:sort=&quot;topping.type&quot;&gt;topping&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsExample10&quot;&gt;
+			&lt;td&gt;{id}&lt;/td&gt;
+			&lt;td&gt;{type}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+			&lt;td&gt;{batters.batter.type}&lt;/td&gt;
+			&lt;td&gt;{topping.type}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Using the path &quot;items.item&quot; and sub paths &quot;batters.batter&quot; and &quot;topping&quot;, will result in a data set that has the following columns defined for each row:</p>
+<table class="dataTable">
+  <tr>
+    <th>ds_RowID</th>
+    <th>id</th>
+    <th>type</th>
+    <th>name</th>
+    <th>ppu</th>
+    <th>batters.batter.id</th>
+    <th>batters.batter.type</th>
+    <th>topping.id</th>
+    <th>topping.type</th>
+  </tr>
+</table>
+<p>Here is a live example:</p>
+<div class="liveSample" spry:region="dsExample10">
+  <table class="dataTable">
+    <tr>
+      <th spry:sort="id">id</th>
+      <th spry:sort="type">type</th>
+      <th spry:sort="name">name</th>
+      <th spry:sort="batters.batter.type">batter</th>
+      <th spry:sort="topping.type">topping</th>
+    </tr>
+    <tr spry:repeat="dsExample10">
+      <td>{id}</td>
+      <td>{type}</td>
+      <td>{name}</td>
+      <td>{batters.batter.type}</td>
+      <td>{topping.type}</td>
+    </tr>
+  </table>
+</div>
+<p>We get even more rows than we had in <a href="#Example9">Example 9</a> because the &quot;topping&quot; path also selected multiple objects in some cases. So for every top-level object matched by the &quot;paths&quot; constructor option, we get 'm*n' rows, where 'm' is the number of matches by the &quot;batters.batter&quot; sub path, and 'n' is the number of matches by the &quot;topping&quot; sub path.</p>
+<hr />
+<h4><a name="Example11" id="Example11"></a>Example 11 - Nested JSON Data Sets</h4>
+<p>Sometimes you want to work with nested structures, but you don't want to deal with the explosion of rows as shown in <a href="#Example10">Example 10</a>. Imagine you want to show a list of the different types of items, and under each item, you also want to list the different types of batters and toppings available. Doing that with the data set used in <a href="#Example10">Example 10</a> would require some JavaScript logic embedded in spry attribute conditionals to control when things showed up. A simpler approach would be to use NestedJSONDataSets.</p>
+<p>In this example we use the same JSON data used in <a href="#Example10">Example 10</a>, but we will use 2 nested JSON data sets to track the &quot;batter&quot; and &quot;topping&quot; data. Nested data sets are special data sets that stay in sync with the current row of their parent data set. As the current row of the parent data set changes, so does the data inside of the nested data set.</p>
+<pre>
+var dsExample11_Items = new Spry.Data.JSONDataSet(&quot;../../data/json/donuts.js&quot;, { path: &quot;items.item&quot; });
+var dsExample11_Batters = new Spry.Data.NestedJSONDataSet(dsExample11_Items, &quot;batters.batter&quot;);
+var dsExample11_Toppings = new Spry.Data.NestedJSONDataSet(dsExample11_Items, &quot;topping&quot;);
+
+...
+
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsExample11_Items dsExample11_Batters dsExample11_Toppings&quot;&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat=&quot;dsExample11_Items&quot;&gt;
+			{dsExample11_Items::name}
+			&lt;ul&gt;
+				&lt;li&gt;Batters:
+					&lt;ul&gt;
+						&lt;li spry:repeat=&quot;dsExample11_Batters&quot;&gt;{dsExample11_Batters::type}&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;
+					Toppings:
+					&lt;ul&gt;
+						&lt;li spry:repeat=&quot;dsExample11_Toppings&quot;&gt;{dsExample11_Toppings::type}&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p>The other interesting thing about nested data sets is that if their parent data set is used in a spry:repeat or spry:repeatchildren context, any data references from the nested data set are kept in sync with whatever the current row is that is being processed by the loop.</p>
+<p>Here is a live example.</p>
+<div class="liveSample" spry:region="dsExample11_Items dsExample11_Batters dsExample11_Toppings">
+  <ul>
+    <li spry:repeat="dsExample11_Items"> {dsExample11_Items::name}
+      <ul>
+        <li>Batters:
+          <ul>
+            <li spry:repeat="dsExample11_Batters">{dsExample11_Batters::type}</li>
+          </ul>
+        </li>
+        <li> Toppings:
+          <ul>
+            <li spry:repeat="dsExample11_Toppings">{dsExample11_Toppings::type}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="Example12" id="Example12"></a>Example 12</h4>
+<p>Although you can use nested data sets to produce a table that looks like the one in <a href="#Example9">Example 9</a>, there's an important difference. Nested data sets can only sort and filter within groups constrained by the parent's row it is associated with. It is easier to illustrate this with an example. In this example, we have a table that looks like the one in <a href="#Example9">Example 9</a> on the left side, and on the right side, we have the same data presented as a set of nested lists.</p>
+<pre>
+var dsExample12_Items = new Spry.Data.JSONDataSet(&quot;../../data/json/donuts.js&quot;, { path: &quot;items.item&quot; });
+var dsExample12_Batters = new Spry.Data.NestedJSONDataSet(dsExample12_Items, &quot;batters.batter&quot;);
+
+...
+
+&lt;div class=&quot;liveSample&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td spry:region=&quot;dsExample12_Items dsExample12_Batters&quot;&gt;
+				&lt;table class=&quot;dataTable&quot;&gt;
+					&lt;tr&gt;
+						&lt;th spry:sort=&quot;dsExample12_Items id&quot;&gt;id&lt;/th&gt;
+						&lt;th spry:sort=&quot;dsExample12_Items type&quot;&gt;type&lt;/th&gt;
+						&lt;th spry:sort=&quot;dsExample12_Items name&quot;&gt;name&lt;/th&gt;
+						&lt;th spry:sort=&quot;dsExample12_Batters type&quot;&gt;batter&lt;/th&gt;
+					&lt;/tr&gt;
+					&lt;tbody spry:repeatchildren=&quot;dsExample12_Items&quot;&gt;
+						&lt;tr spry:repeat=&quot;dsExample12_Batters&quot;&gt;
+							&lt;td&gt;{dsExample12_Items::id}&lt;/td&gt;
+							&lt;td&gt;{dsExample12_Items::type}&lt;/td&gt;
+							&lt;td&gt;{dsExample12_Items::name}&lt;/td&gt;
+							&lt;td&gt;{dsExample12_Batters::type}&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			&lt;/td&gt;
+			&lt;td spry:region=&quot;dsExample12_Items dsExample12_Batters&quot;&gt;
+				&lt;ul&gt;
+					&lt;li spry:repeat=&quot;dsExample12_Items&quot;&gt;
+						{dsExample12_Items::name}
+						&lt;ul&gt;
+							&lt;li&gt;Batters:
+								&lt;ul&gt;
+									&lt;li spry:repeat=&quot;dsExample12_Batters&quot;&gt;{dsExample12_Batters::type}&lt;/li&gt;
+								&lt;/ul&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Here's the live example:</p>
+<div class="liveSample">
+  <table>
+    <tr>
+      <td spry:region="dsExample12_Items dsExample12_Batters"><table class="dataTable">
+          <tbody>	 
+            <tr>
+              <th spry:sort="dsExample12_Items id">id</th>
+              <th spry:sort="dsExample12_Items type">type</th>
+              <th spry:sort="dsExample12_Items name">name</th>
+              <th spry:sort="dsExample12_Batters type">batter</th>
+            </tr>
+          </tbody>
+          <tbody spry:repeatchildren="dsExample12_Items">
+            <tr spry:repeat="dsExample12_Batters">
+              <td>{dsExample12_Items::id}</td>
+              <td>{dsExample12_Items::type}</td>
+              <td>{dsExample12_Items::name}</td>
+              <td>{dsExample12_Batters::type}</td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td spry:region="dsExample12_Items dsExample12_Batters"><ul>
+          <li spry:repeat="dsExample12_Items"> {dsExample12_Items::name}
+            <ul>
+              <li>Batters:
+                <ul>
+                  <li spry:repeat="dsExample12_Batters">{dsExample12_Batters::type}</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+<p>Notice that when you sort any column associated with the parent data set, all of the rows in the table shift around, whereas when you click on the batter column, it seems as if only the data in the batter column is moving around. If you look at what happens in the list on the right as you sort, it becomes more apparent what is happening.</p>
+<hr />
+<h4><a name="NotSupported" id="NotSupported"></a>What is not yet supported:</h4>
+<ul>
+  <li>Arrays of arrays.</li>
+  <li>Arrays that contain elements of different types. Example: [ 100, { &quot;foo&quot;: &quot;bar&quot; }, true, null ]</li>
+</ul>
+</body>
+</html>

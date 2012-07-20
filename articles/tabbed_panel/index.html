@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Template $Revision: 1.7 $ applied. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Adobe Labs -  Tabbed Panel Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1><a name="about" id="title"></a>Using Spry Widgets: Tabbed Panels Overview </h1>
+<h2>Working with the Tabbed Panels widget</h2>
+<!-- -->
+<h3>Tabbed Panels widget overview and structure</h3>
+<p>A version of this file is available on <a href="http://livedocs.adobe.com/en_US/Spry/SDG/index.html" target="_blank">Adobe LiveDocs</a>. Please check it for comments and updates. </p>
+<p>A Tabbed Panels widget is a set of panels that can store content in a compact 
+  space. Site viewers hide or reveal the content stored in the Tabbed Panels by 
+  clicking the tab of the panel they want to access. The panels of the widget open 
+  accordingly as the visitor clicks different tabs. In a Tabbed Panels widget, 
+  only one content panel is open at a given time. The following example shows a 
+  Tabbed Panels widget, with the third panel open.</p>
+<img alt="Tabbed Panel structure" 
+src="images/tabbed_panels_07.png" /> <br />
+<p>The HTML code for the Tabbed Panels widget is made up of an outer div tag that contains all of the panels, a list for the 
+  tabs, a div tag to contain the content panels, and a div tag for each content panel. The HTML code for the 
+  Tabbed Panels widget also includes script tags in the 
+  head of the document and after the Tabbed Panel widget’s HTML code. </p>
+<p>The script tag in the head of the document defines 
+  all of the JavaScript functions related to the Tabbed Panel widget. The script tag after the Tabbed Panel widget code creates a 
+  JavaScript object that makes the Tabbed Panel interactive. Following is the HTML 
+  code for a Tabbed Panel widget: </p>
+<pre>&lt;head&gt;
+. . .
+	&lt;!--Link the CSS style  sheet that styles the tabbed panel--&gt;
+	&lt;link href=&quot;SpryAssets/SpryTabbedPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+	&lt;!--Link the Spry TabbedPanels JavaScript library--&gt;
+	&lt;script src=&quot;SpryAssets/SpryTabbedPanels.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body&gt;
+	&lt;!--Create the Tabbed Panel widget and assign classes to each element--&gt;
+	&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+		&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 3&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 4&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 1 Content&lt;/div&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 2 Content&lt;/div&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 3 Content&lt;/div&gt; 
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 4 Content&lt;/div&gt; 
+		&lt;/div&gt; 
+	&lt;/div&gt;
+&lt;!--Initialize the Tabbed Panel widget object--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);
+&lt;/script&gt; 
+&lt;/body&gt; </pre>
+<p>In the code, the new JavaScript operator 
+  initializes the Tabbed Panel widget object, and transforms the div content with the ID of TabbedPanels1 from static HTML code into an interactive page 
+  element. The Spry.Widget.TabbedPanels method is a 
+  constructor in the Spry framework that creates Tabbed Panel objects, and the 
+  information necessary to initialize the object is contained in the 
+  SpryTabbedPanels.js JavaScript library that you linked to in the head of the 
+  document.</p>
+<p>Each of the elements in the Tabbed Panel widget contains a CSS class. These 
+  classes control the style of the Tabbed Panel widget, and exist in the 
+  accompanying SpryTabbedPanels.css file.</p>
+<p>You can change the appearance of any given part of the Tabbed Panel widget by 
+  editing the CSS rule that corresponds to the class names assigned to it in the 
+  HTML code. For example, to change the background color of the Tabbed Panel’s 
+  tabs, edit the TabbedPanelsTab rule in the 
+  SpryTabbedPanels.css file. Keep in mind that changing the CSS code in the 
+  SpryTabbedPanels.css file will affect all tabbed panels that are linked to that 
+  file.</p>
+<p>In addition to the classes shown in the HTML code, the Tabbed Panel widget 
+  includes certain default behaviors that are attached to the widget. These 
+  behaviors are a built‑in part of the Spry framework, and are in the 
+  SpryTabbedPanels.js JavaScript library file. The Tabbed Panel library includes 
+  behaviors related to hovering, tab clicking (to open panels), panel focus, and 
+  keyboard navigation.</p>
+<p>You can change the look of the Tabbed Panel as it relates to these behaviors 
+  by editing the appropriate classes in the SpryTabbedPanels.css file. If you want 
+  to remove a given behavior, you can delete the CSS rules that correspond to that 
+  behavior.</p>
+<span class="notetitle">Note: </span>While you can change the look 
+        of the Tabbed Panel as it relates to a certain behavior, you cannot alter the 
+        built‑in behaviors themselves. For example, Spry still places a 
+        TabbedPanelsContentVisible class on the currently open panel, even if no 
+        properties are set for the TabbedPanelsContentVisible class in the 
+        SpryTabbedPanels.css file.
+<h4>Variation on tags used for Tabbed Panels widget 
+  structure</h4>
+<p>In the preceding example, div tags and list items 
+  create a nested tag structure for the widget:</p>
+<pre>Container &lt;div&gt;
+	Tabs &lt;ul&gt;
+		Tab &lt;li&gt;
+	Content container &lt;div&gt;
+		Content &lt;div&gt;</pre>
+<p>This 3-level, 5-container structure is essential for the Tabbed Panels widget 
+  to work properly; the structure, however, is more important than the actual tags 
+  you decide to use. Spry reads the structure (not div tags necessarily) and builds the widget accordingly. As long as the 3-level, 
+  4-container structure is in place, you can use any block-level element to create 
+  the widget:</p>
+<pre>Container &lt;div&gt;
+	Tabs &lt;div&gt;
+		Tab &lt;h3&gt;
+	Content container &lt;div&gt;
+		Content &lt;p&gt;</pre>
+<p>The div tags in the example are flexible and can 
+  contain other block-level elements. A p tag (or any 
+  other inline tag), however, cannot contain other block-level elements, so you 
+  cannot use it as a container or panel tag for the tabbed 
+  panel.</p>
+<!-- -->
+<h3>CSS code for the Tabbed Panels widget</h3>
+<p>The SpryTabbedPanels.css file contains the rules that style the Tabbed Panels 
+  widget. You can edit these rules to style the tabbed panels’ look and feel. The 
+  names of the rules in the CSS file correspond directly to the names of the 
+  classes specified in the Tabbed Panels widget’s HTML code.</p>
+<span class="notetitle">Note: </span>You can replace style-related 
+        class names in the SpryTabbedPanels.css file and HTML code with class names of 
+        your own. Doing so does not affect the functionality of the widget, as CSS code 
+        is not required for widget functionality.
+<p>The default functionality for the behaviors classes at the end of the style 
+  sheet are defined in the SpryTabbedPanels.js JavaScript library file. You can 
+  change the default functionality by adding properties and values to the behavior 
+  rules in the style sheet.</p>
+<p>The following is the CSS code for the SpryTabbedPanels.css file. The first 
+  half of the file contains styling rules for horizontal tabbed panels. The second 
+  half of the file contains styling rules for vertical tabbed panels.</p>
+<pre>/* Horizontal Tabbed Panels */
+.TabbedPanels {
+	margin: 0px;
+	padding: 0px;
+	clear: both;
+	width: 100%; /* IE Hack to force proper layout when preceded by a paragraph. (hasLayout Bug)*/
+}
+.TabbedPanelsTabGroup {
+	margin: 0px;
+	padding: 0px;
+}
+.TabbedPanelsTab {
+	position: relative;
+	top: 1px;
+	float: left;
+	padding: 4px 10px;
+	margin: 0px 1px 0px 0px;
+	font: bold 0.7em sans-serif;
+	background-color: #DDD;
+	list-style: none;
+	border-left: solid 1px #CCC;
+	border-bottom: solid 1px #999;
+	border-top: solid 1px #999;
+	border-right: solid 1px #999;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	cursor: pointer;
+}
+.TabbedPanelsTabHover {
+	background-color: #CCC;
+}
+.TabbedPanelsTabSelected {
+	background-color: #EEE;
+	border-bottom: 1px solid #EEE;
+}
+.TabbedPanelsTab a {
+	color: black;
+	text-decoration: none;
+}
+.TabbedPanelsContentGroup {
+	clear: both;
+	border-left: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+	border-top: solid 1px #999;
+	border-right: solid 1px #999;
+	background-color: #EEE;
+}
+.TabbedPanelsContent {
+	padding: 4px;
+}
+.TabbedPanelsContentVisible {
+}
+/* Vertical Tabbed Panels */
+.VTabbedPanels .TabbedPanelsTabGroup {
+	float: left;
+	width: 10em;
+	height: 20em;
+	background-color: #EEE;
+	position: relative;
+	border-top: solid 1px #999;
+	border-right: solid 1px #999;
+	border-left: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+}
+.VTabbedPanels .TabbedPanelsTab {
+	float: none;
+	margin: 0px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+.VTabbedPanels .TabbedPanelsTabSelected {
+	background-color: #EEE;
+	border-bottom: solid 1px #999;
+}
+.VTabbedPanels .TabbedPanelsContentGroup {
+	clear: none;
+	float: left;
+	padding: 0px;
+	width: 30em;
+	height: 20em;
+}</pre>
+<p>The SpryTabbedPanels.css file contains extensive comments, explaining the 
+  code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<!-- -->
+<h3>Insert the Tabbed Panels widget</h3>
+<ol>
+  <li><span>Locate the SpryTabbedPanels.js file and add it to 
+    your web site. You can find the SpryTabbedPanels.js file in the 
+    widgets/tabbedpanels directory, located in the Spry directory that you 
+    downloaded from Adobe Labs. </span>
+    <p>For example, create a folder called <dfn>SpryAssets</dfn> in the 
+        root folder of your web site, and move the SpryTabbedPanels.js file to it. The 
+        SpryTabbedPanels.js file contains all of the information necessary for making 
+        the Tabbed Panels widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryTabbedPanels.css file and add it to 
+    your web site. You might choose to add it to the main directory, a SpryAssets 
+    directory, or to a CSS directory if you have one.</span> </li>
+  <li><span>Open the web page to add the Tabbed Panels widget 
+    to and link the SpryTabbedPanels.js file to the page by inserting the 
+    following script tag in the page’s head tag:</span>
+      <pre>&lt;script src=&quot;SpryAssets/SpryTabbedPanels.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+      <p>Make sure that the file path to the SpryTabbedPanels.js file is correct. 
+        This path varies depending on where you’ve placed the file in your web 
+        site.</p>
+  </li>
+  <li><span>Link the SpryTabbedPanels.css file to your web page 
+    by inserting the following link tag in the page’s 
+    head tag:</span>
+      <pre>&lt;link href=&quot;SpryAssets/SpryTabbedPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+      <p>Make sure that the file path to the SpryTabbedPanels.css file is correct. 
+        This path varies depending on where you’ve placed the file in your web 
+        site.</p>
+  </li>
+  <li><span>To add the tabbed panels widget to your web page, 
+    insert the following div tag where you want the 
+    accordion to appear on the page:</span>
+      <pre>&lt;div id=&quot;TabbedPanels1&quot; class=&quot;TabbedPanels&quot;&gt;
+&lt;/div&gt; </pre>
+  </li>
+  <li><span>To add tabs to the tabbed panel, insert a ul class=&quot;TabbedPanelsTabGroup&quot; tag inside the div id=&quot;TabbedPanels1&quot;... tag, and an li class=&quot;TabbedPanelsTab&quot; tag for each tab to add, as 
+    follows:</span>
+      <pre>&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+	&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 3&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 4&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</pre>
+      <p>The preceding code adds four tabs to the widget. You can add unlimited 
+        tabs.</p>
+  </li>
+  <li><span>To add a content area (or panel) for each of the 
+    tabs, insert a div class=&quot;TabbedPanelsContentGroup&quot; container tag after the ul tag, and a div class=&quot;TabbedPanelsContent&quot; tag for each content 
+    panel, as follows:</span>
+      <pre>&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+	&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 3&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 4&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 1 Content&lt;/div&gt;
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 2 Content&lt;/div&gt;
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 3 Content&lt;/div&gt; 
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 4 Content&lt;/div&gt; 
+	&lt;/div&gt; 
+&lt;/div&gt; </pre>
+      <p>Insert the content between the opening and closing TabbedPanelsContent tags (for example, Tab 1 Content, as in the preceding example). The content 
+        can be any valid HTML code, including HTML form elements</p>
+  </li>
+  <li><span>To initialize the Spry tabbed panels object, insert 
+    the following script block after the HTML code for 
+    the Tabbed Panels widget:</span>
+      <pre>&lt;div id=&quot;TabbedPanels1&quot; class=&quot;TabbedPanels&quot;&gt;
+. . .
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);
+&lt;/script&gt; </pre>
+      <p>The new JavaScript operator initializes the 
+        Tabbed Panels widget object, and transforms the div content with the ID of TabbedPanels1 from static 
+        HTML code into an interactive tabbed panels object. The Spry.Widget.TabbedPanels method is a constructor in the 
+        Spry framework that creates tabbed panels objects. The information necessary 
+        to initialize the object is contained in the SpryTabbedPanels.js JavaScript 
+        library that you linked to at the beginning of this procedure.</p>
+    <p>Make sure that the ID of the tabbed panels’ div tag matches the ID parameter you specified in the Spry.Widgets.TabbedPanels method. Make sure that the 
+      JavaScript call comes after the HTML code for the widget.</p>
+  </li>
+  <li><span>Save the page.</span>
+      <p>The complete code looks as follows:</p>
+    <pre>&lt;head&gt;
+. . .
+	&lt;link href=&quot;SpryAssets/SpryTabbedPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+	&lt;script src=&quot;SpryAssets/SpryTabbedPanels.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body&gt;
+	&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+		&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 3&lt;/li&gt; 
+			&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 4&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 1 Content&lt;/div&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 2 Content&lt;/div&gt;
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 3 Content&lt;/div&gt; 
+			&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 4 Content&lt;/div&gt; 
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);
+&lt;/script&gt; 
+&lt;/body&gt;&lt;/body&gt;</pre>
+  </li>
+</ol>
+<!-- -->
+<h3>Add a panel to a Tabbed Panels widget</h3>
+<span>&nbsp;Add an li class=&quot;TabbedPanelsTab&quot; tag to the ul list of tabs, and a div 
+        class=&quot;TabbedPanelsContent&quot; tag to the panel content container div tag. Do not forget to add the closing /li and /div tags when you add the 
+        code. For example:</span>
+<pre>&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+	&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt; 
+	&lt;/ul&gt;
+	&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 1 Content&lt;/div&gt;
+		&lt;div class=&quot;TabbedPanelsContent&quot;&gt;Tab 2 Content&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>You can add unlimited panels. The ratio between the number of TabbedPanelsTab li items and the 
+  number of TabbedPanelsContent div tags must always be 1:1.</p>
+<!-- -->
+<h3>Delete a panel from a Tabbed Panels widget</h3>
+<span>&nbsp;Delete the desired li class=&quot;TabbedPanelsTab&quot; tag and corresponding &lt;div class=&quot;TabbedPanelsContent&quot;&gt; from the code. Do 
+        not forget to delete the closing &lt;/li&gt; and &lt;/div&gt; tags when you delete the 
+        code.</span>
+<!-- -->
+<h3>Enable keyboard navigation</h3>
+<p>Making widgets accessible for keyboard navigation is an important part of 
+  every widget. Keyboard navigation lets the user control the widget with arrow 
+  keys or custom keys.</p>
+<p>The foundation of keyboard navigation is the tabIndex attribute. This attribute tells the browser how to 
+  use the tabs to navigate through the document.</p>
+<span>&nbsp;To enable keyboard 
+        navigation on the tabbed panels, add a TabIndex value 
+        to each li tag, as follows:</span>
+<pre>&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+	&lt;li class=&quot;TabbedPanelTab&quot; tabIndex=&quot;0&quot;&gt;Tab&lt;/li&gt;
+	&lt;li class=&quot;TabbedPanelTab&quot; tabIndex=&quot;0&quot;&gt;Tab&lt;/li&gt;
+&lt;/ul&gt;</pre>
+<p>If the tabIndex attribute has a value of zero (0), 
+  the browser determines the order. If it has a positive integer value, that order 
+  value is used.</p>
+<span class="notetitle">Note: </span>Using tabIndex on a div tag 
+          is not XHTML 1.0 compliant.
+<!-- -->
+<h3>Change the orientation of tabbed panels</h3>
+<p>By default, tabbed panels appear horizontally, but you can easily create 
+  vertical tabbed panels as well.</p>
+<span>&nbsp;To change from a 
+        horizontal to a vertical Tabbed Panel widget, change the class on the main 
+        container div tag from TabbedPanels to VTabbedPanels, 
+        as follows:</span>
+<pre>&lt;div class=&quot;VTabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;
+	&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 1&lt;/li&gt; 
+		&lt;li class=&quot;TabbedPanelsTab&quot;&gt;Tab 2&lt;/li&gt;
+. . .
+&lt;/div&gt;</pre>
+<!-- -->
+<h3>Set default open panel</h3>
+<p>You can set a panel to be open when the page containing the Tabbed Panels 
+  widget loads in a browser.</p>
+<span>&nbsp;Set the defaultTab 
+        option in the constructor as follows:</span>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;, { defaultTab: 2 });
+&lt;/script&gt;</pre>
+<span class="notetitle">Note: </span>The Tabbed Panels widget uses 
+          a zero-based counting system, so setting the value to 2 opens the third tabbed 
+          panel.
+<!-- -->
+<h3>Open panels programatically</h3>
+<p>Use JavaScript functions to programatically open specific panels. For 
+  example, you might have a button on your page that opens a particular tabbed 
+  panel when the user clicks the button.</p>
+<p>Remember, Spry uses a zero-based counting system, so 0 indicates the first, 
+  leftmost tabbed panel. If the tabbed panel has an ID, you can also use the ID to 
+  refer to panels.</p>
+<span>&nbsp;Use the following 
+        functions to open specific tabbed panels:</span>
+<pre>&lt;button onclick=&quot;TabbedPanels1.showPanel(0)&quot; &gt;open first panel&lt;/button&gt;
+&lt;button onclick=&quot;TabbedPanels1.showPanel('<em>tabID</em>')&quot;&gt;open panel&lt;/button&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Customize the Tabbed Panels widget</h3>
+<p>The SpryTabbedPanels.css file provides the default styling for the Tabbed 
+  Panels widget. You can, however, easily customize the widget by changing the 
+  appropriate CSS rule. The CSS rules in the SpryTabbedPanels.css file use the 
+  same class names as the related elements in the accordion’s HTML code, so it’s 
+  easy for you to know which CSS rules correspond to the different sections of the 
+  Tabbed Panels widget. Additionally, the SpryTabbedPanels.css file contains class 
+  names for behaviors that are related to the widget (for example, hovering and 
+  clicking behaviors).</p>
+<p>The SpryTabbedPanels.css file should already be a included in your website 
+  before you start customizing. </p>
+<span class="notetitle">Note: </span>Internet Explorer up to and 
+          including version 6 does not support sibling and child contextual selectors (for 
+          example, .TabbedPanels + .TabbedPanels or .TabbedPanels &gt; .TabbedPanels).
+          <!-- -->
+          <h4>Style an Tabbed Panels widget (general instructions)</h4>
+          <p>Set properties for the entire Tabbed Panels widget container, or set 
+            properties for the components of the widget individually.</p>
+          <ol>
+            <li><span>Open the SpryTabbedPanels.css file.</span> </li>
+            <li><span>Locate the CSS rule for the part of the tabbed panel to change. For 
+              example, to change the background color of the tabbed panels’ tabs, edit the TabbedPanelsTab rule in the SpryTabbedPanels.css 
+              file.</span> </li>
+            <li><span>Make your changes to the CSS rule and save the file.</span> </li>
+          </ol>
+          <p>You can replace style-related class names in the SpryTabbed Panels.css file 
+            and HTML code with class names of your own. Doing so does not affect the 
+            functionality of the widget. </p>
+          <p>The SpryAccordion.css file contains extensive comments, explaining the code 
+            and the purpose for certain rules. For further information, see the comments in 
+            the file.</p>
+          <!-- -->
+          <h4>Style Tabbed Panels widget text</h4>
+          <p>Set properties for the entire Tabbed Panels widget container, or set 
+            properties for the components of the widget individually.</p>
+          <span>&nbsp;Use the following table 
+          to locate the appropriate CSS rule, and then add your own text-styling 
+          properties and values.</span>
+          <table>
+            <thead align="left">
+              <tr>
+                <th> <p>Text to change</p></th>
+                <th> <p>Relevant CSS rule</p></th>
+                <th> <p>Example of properties and values to add</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><p>Text in the entire widget</p></td>
+                <td><p>.TabbedPanels</p></td>
+                <td><p>font: Arial; font-size:medium;</p></td>
+              </tr>
+              <tr>
+                <td><p>Text in panel tabs only</p></td>
+                <td><p>.TabbedPanelsTabGroup or .TabbedPanelsTab</p></td>
+                <td><p>font: Arial; font-size:medium;</p></td>
+              </tr>
+              <tr>
+                <td><p>Text in content panels only</p></td>
+                <td><p>.TabbedPanelsContentGroup or .TabbedPanelsContent</p></td>
+                <td><p>font: Arial; 
+                  font-size:medium;</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- -->
+          <h4>Change Tabbed Panels widget background colors</h4>
+          <span>&nbsp;Use the following table 
+          to locate the appropriate CSS rule, and then add or change background-color 
+          properties and values.</span>
+          <table>
+            <thead align="left">
+              <tr>
+                <th> <p>Color to change</p></th>
+                <th> <p>Relevant CSS rule</p></th>
+                <th> <p>Example of property and value to add or change</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><p>Background color of panel tabs</p></td>
+                <td><p>.TabbedPanelsTabGroup or .TabbedPanelsTab</p></td>
+                <td><p>background-color: #DDD; (This is the default value.)</p></td>
+              </tr>
+              <tr>
+                <td><p>Background color of content panels</p></td>
+                <td><p>.Tabbed PanelsContentGroup or .TabbedPanelsContent</p></td>
+                <td><p>background-color: #EEE; (This is the default value.)</p></td>
+              </tr>
+              <tr>
+                <td><p>Background color of selected tab</p></td>
+                <td><p>.TabbedPanelsTabSelected</p></td>
+                <td><p>background-color: #EEE; (This is the default value.)</p></td>
+              </tr>
+              <tr>
+                <td><p>Background color of panel tabs when the mouse pointer moves over 
+                  them</p></td>
+                <td><p>.TabbedPanelsTabHover</p></td>
+                <td><p>background-color: #CCC; (This is the default 
+                  value.)</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- -->
+          <h4>Constrain the width of tabbed panels</h4>
+          <p>By default, the Tabbed Panels widget expands to fill available space. To 
+            constrain the width of a Tabbed Panels widget, set a width property for the 
+            accordion container.</p>
+          <ol>
+            <li><span>Locate the TabbedPanels CSS rule in the 
+              SpryTabbedPanels.css file. This rule defines properties for the main container 
+              element of the Tabbed Panels widget.</span> </li>
+            <li><span>Add a width property and value to the rule, for example width: 300px;.</span> </li>
+          </ol>
+          <!-- -->
+          <h4>Change tabbed panels height</h4>
+          <p>By default, the height of tabbed panels expands according to content. To set 
+            a specific height for panels, add a height property to the TabbedPanelsContent rule.</p>
+          <ol>
+            <li><span>Locate the TabbedPanelsContent CSS rule in 
+              the SpryTabbedPanels.css file.</span> </li>
+            <li><span>Add a height property and value to the rule, for example width: 300px;.</span> </li>
+          </ol>
+          <!-- -->
+          <h4>Change tabbed panels behaviors</h4>
+          <p>The Tabbed Panels widget includes a few predefined behaviors. These behaviors 
+            consist of changing CSS classes when a particular event occurs. For example, 
+            when a mouse pointer hovers over a panel tab, Spry applies the 
+            TabbedPanelsTabHover class to the widget. (This behavior is similar to a:hover for links.) The behaviors are blank by default; to 
+            change them, add properties and values to the rules.</p>
+          <ol>
+            <li><span>Open the SpryTabbedPanels.css file and locate the 
+              CSS rule for the tabbed panels behavior to change. The Tabbed Panels widget 
+              includes four built-in rules for behaviors.</span>
+                <table>
+                  <thead align="left">
+                    <tr>
+                      <th> <p>Behavior</p></th>
+                      <th> <p>Description</p></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><p>.Tabbed PanelsTabHover</p></td>
+                      <td><p>Activates when hovering over the panel tab</p></td>
+                    </tr>
+                    <tr>
+                      <td><p>.Tabbed PanelsTabFocused</p></td>
+                      <td><p>Activates when a tab has keyboard focus</p></td>
+                    </tr>
+                    <tr>
+                      <td><p>.Tabbed PanelsTabSelected</p></td>
+                      <td><p>Activates on currently selected tab</p></td>
+                    </tr>
+                    <tr>
+                      <td><p>.TabbedPanelsContentVisible</p></td>
+                      <td><p>Activates on content area of currently selected 
+                        tab</p></td>
+                    </tr>
+                  </tbody>
+                </table>
+              <p>For examples, see the Tabbed Panels sample file located in the samples 
+                directory of the Spry directory that you downloaded from Adobe Labs. </p>
+            </li>
+            <li><span>Add CSS rules for any of the behaviors you want to 
+              enable.</span> </li>
+          </ol>
+          <span class="notetitle">Note: </span>You cannot replace 
+            behavior-related class names in the SpryTabbedPanels.css file with class names 
+            of your own because the behaviors are hard coded as part of the Spry framework. 
+            To override the default class with your class names, send the new values as 
+            arguments to the tabbed panels constructor:
+          <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;, { tabHoverClass: &quot;hover&quot;, panelVisibleClass: &quot;open&quot;, tabSelectedClass: &quot;selected&quot;, tabFocusedClass: &quot;focused&quot; });
+&lt;/script&gt;</pre>
+          <!-- -->
+          <p>Copyright © 2006. Adobe Systems Incorporated.  All rights reserved.</p>
+          <div class="nav-up"><a href="#title">back to top</a></div>
+</body>
+</html>

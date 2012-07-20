@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Washington</name>
+	<cities>
+		<city>
+			<name>Aberdeen</name>
+		</city>
+		<city>
+			<name>Airway Heights</name>
+		</city>
+		<city>
+			<name>Albion</name>
+		</city>
+		<city>
+			<name>Alderwood Manor-Bothell North</name>
+		</city>
+		<city>
+			<name>Algona</name>
+		</city>
+		<city>
+			<name>Allyn-Grapeview</name>
+		</city>
+		<city>
+			<name>Almira</name>
+		</city>
+		<city>
+			<name>Anacortes</name>
+		</city>
+		<city>
+			<name>Arlington</name>
+		</city>
+		<city>
+			<name>Artondale</name>
+		</city>
+		<city>
+			<name>Asotin</name>
+		</city>
+		<city>
+			<name>Auburn</name>
+		</city>
+		<city>
+			<name>Ault Field</name>
+		</city>
+		<city>
+			<name>Bangor Trident Base</name>
+		</city>
+		<city>
+			<name>Battle Ground</name>
+		</city>
+		<city>
+			<name>Beaux Arts Village</name>
+		</city>
+		<city>
+			<name>Bellevue</name>
+		</city>
+		<city>
+			<name>Bellingham</name>
+		</city>
+		<city>
+			<name>Benton City</name>
+		</city>
+		<city>
+			<name>Bingen</name>
+		</city>
+		<city>
+			<name>Birch Bay</name>
+		</city>
+		<city>
+			<name>Black Diamond</name>
+		</city>
+		<city>
+			<name>Blaine</name>
+		</city>
+		<city>
+			<name>Bonney Lake</name>
+		</city>
+		<city>
+			<name>Bothell</name>
+		</city>
+		<city>
+			<name>Bremerton</name>
+		</city>
+		<city>
+			<name>Brewster</name>
+		</city>
+		<city>
+			<name>Bridgeport</name>
+		</city>
+		<city>
+			<name>Brier</name>
+		</city>
+		<city>
+			<name>Brush Prairie</name>
+		</city>
+		<city>
+			<name>Bryn Mawr-Skyway</name>
+		</city>
+		<city>
+			<name>Buckley</name>
+		</city>
+		<city>
+			<name>Bucoda</name>
+		</city>
+		<city>
+			<name>Burbank</name>
+		</city>
+		<city>
+			<name>Burien</name>
+		</city>
+		<city>
+			<name>Burlington</name>
+		</city>
+		<city>
+			<name>Camas</name>
+		</city>
+		<city>
+			<name>Carbonado</name>
+		</city>
+		<city>
+			<name>Carnation</name>
+		</city>
+		<city>
+			<name>Carson River Valley</name>
+		</city>
+		<city>
+			<name>Cascade Park East</name>
+		</city>
+		<city>
+			<name>Cascade Park West</name>
+		</city>
+		<city>
+			<name>Cascade Valley</name>
+		</city>
+		<city>
+			<name>Cascade-Fairwood</name>
+		</city>
+		<city>
+			<name>Cashmere</name>
+		</city>
+		<city>
+			<name>Castle Rock</name>
+		</city>
+		<city>
+			<name>Cathan</name>
+		</city>
+		<city>
+			<name>Cathlamet</name>
+		</city>
+		<city>
+			<name>Central Park</name>
+		</city>
+		<city>
+			<name>Centralia</name>
+		</city>
+		<city>
+			<name>Chehalis</name>
+		</city>
+		<city>
+			<name>Chehalis Village</name>
+		</city>
+		<city>
+			<name>Chelan</name>
+		</city>
+		<city>
+			<name>Cheney</name>
+		</city>
+		<city>
+			<name>Chewelah</name>
+		</city>
+		<city>
+			<name>Clarkston</name>
+		</city>
+		<city>
+			<name>Clarkston Heights-Vineland</name>
+		</city>
+		<city>
+			<name>Cle Elum</name>
+		</city>
+		<city>
+			<name>Clinton</name>
+		</city>
+		<city>
+			<name>Clyde Hill</name>
+		</city>
+		<city>
+			<name>Colfax</name>
+		</city>
+		<city>
+			<name>College Place</name>
+		</city>
+		<city>
+			<name>Colton</name>
+		</city>
+		<city>
+			<name>Colville</name>
+		</city>
+		<city>
+			<name>Conconully</name>
+		</city>
+		<city>
+			<name>Concrete</name>
+		</city>
+		<city>
+			<name>Connell</name>
+		</city>
+		<city>
+			<name>Cosmopolis</name>
+		</city>
+		<city>
+			<name>Coulee City</name>
+		</city>
+		<city>
+			<name>Coulee Dam</name>
+		</city>
+		<city>
+			<name>Country Homes</name>
+		</city>
+		<city>
+			<name>Coupeville</name>
+		</city>
+		<city>
+			<name>Covington-Sawyer-Wilderness</name>
+		</city>
+		<city>
+			<name>Creston</name>
+		</city>
+		<city>
+			<name>Cusick</name>
+		</city>
+		<city>
+			<name>Darrington</name>
+		</city>
+		<city>
+			<name>Davenport</name>
+		</city>
+		<city>
+			<name>Dayton</name>
+		</city>
+		<city>
+			<name>Deer Park</name>
+		</city>
+		<city>
+			<name>Des Moines</name>
+		</city>
+		<city>
+			<name>Dishman</name>
+		</city>
+		<city>
+			<name>DuPont</name>
+		</city>
+		<city>
+			<name>Duvall</name>
+		</city>
+		<city>
+			<name>East Hill-Meridian</name>
+		</city>
+		<city>
+			<name>East Port Orchard</name>
+		</city>
+		<city>
+			<name>East Renton Highlands</name>
+		</city>
+		<city>
+			<name>East Wenatchee</name>
+		</city>
+		<city>
+			<name>East Wenatchee Bench</name>
+		</city>
+		<city>
+			<name>Eastgate</name>
+		</city>
+		<city>
+			<name>Eatonville</name>
+		</city>
+		<city>
+			<name>Edgewood-North Hill</name>
+		</city>
+		<city>
+			<name>Edmonds</name>
+		</city>
+		<city>
+			<name>Electric City</name>
+		</city>
+		<city>
+			<name>Elk Plain</name>
+		</city>
+		<city>
+			<name>Ellensburg</name>
+		</city>
+		<city>
+			<name>Ellsworth North</name>
+		</city>
+		<city>
+			<name>Ellsworth South</name>
+		</city>
+		<city>
+			<name>Elma</name>
+		</city>
+		<city>
+			<name>Elmer City</name>
+		</city>
+		<city>
+			<name>Endicott</name>
+		</city>
+		<city>
+			<name>Entiat</name>
+		</city>
+		<city>
+			<name>Enumclaw</name>
+		</city>
+		<city>
+			<name>Ephrata</name>
+		</city>
+		<city>
+			<name>Erlands Point-Kitsap Lake</name>
+		</city>
+		<city>
+			<name>Esperance</name>
+		</city>
+		<city>
+			<name>Everett</name>
+		</city>
+		<city>
+			<name>Evergreen</name>
+		</city>
+		<city>
+			<name>Everson</name>
+		</city>
+		<city>
+			<name>Fairchild AFB</name>
+		</city>
+		<city>
+			<name>Fairfield</name>
+		</city>
+		<city>
+			<name>Fairview-Sumach</name>
+		</city>
+		<city>
+			<name>Fairwood</name>
+		</city>
+		<city>
+			<name>Fall City</name>
+		</city>
+		<city>
+			<name>Farmington</name>
+		</city>
+		<city>
+			<name>Federal Way</name>
+		</city>
+		<city>
+			<name>Felida</name>
+		</city>
+		<city>
+			<name>Ferndale</name>
+		</city>
+		<city>
+			<name>Fife</name>
+		</city>
+		<city>
+			<name>Finley</name>
+		</city>
+		<city>
+			<name>Fircrest</name>
+		</city>
+		<city>
+			<name>Five Corners</name>
+		</city>
+		<city>
+			<name>Fords Prairie</name>
+		</city>
+		<city>
+			<name>Forks</name>
+		</city>
+		<city>
+			<name>Fort Lewis</name>
+		</city>
+		<city>
+			<name>Fox Island</name>
+		</city>
+		<city>
+			<name>Frederickson</name>
+		</city>
+		<city>
+			<name>Freeland</name>
+		</city>
+		<city>
+			<name>Friday Harbor</name>
+		</city>
+		<city>
+			<name>Fruitvale</name>
+		</city>
+		<city>
+			<name>Garfield</name>
+		</city>
+		<city>
+			<name>Garrett</name>
+		</city>
+		<city>
+			<name>George</name>
+		</city>
+		<city>
+			<name>Gig Harbor</name>
+		</city>
+		<city>
+			<name>Gold Bar</name>
+		</city>
+		<city>
+			<name>Goldendale</name>
+		</city>
+		<city>
+			<name>Grand Coulee</name>
+		</city>
+		<city>
+			<name>Grand Mound</name>
+		</city>
+		<city>
+			<name>Grandview</name>
+		</city>
+		<city>
+			<name>Granger</name>
+		</city>
+		<city>
+			<name>Granite Falls</name>
+		</city>
+		<city>
+			<name>Green Acres</name>
+		</city>
+		<city>
+			<name>Hadlock-Irondale</name>
+		</city>
+		<city>
+			<name>Hamilton</name>
+		</city>
+		<city>
+			<name>Harbour Pointe</name>
+		</city>
+		<city>
+			<name>Harrah</name>
+		</city>
+		<city>
+			<name>Harrington</name>
+		</city>
+		<city>
+			<name>Hartline</name>
+		</city>
+		<city>
+			<name>Hatton</name>
+		</city>
+		<city>
+			<name>Hazel Dell North</name>
+		</city>
+		<city>
+			<name>Hazel Dell South</name>
+		</city>
+		<city>
+			<name>Highland</name>
+		</city>
+		<city>
+			<name>Hoquiam</name>
+		</city>
+		<city>
+			<name>Hunts Point</name>
+		</city>
+		<city>
+			<name>Ilwaco</name>
+		</city>
+		<city>
+			<name>Inchelium</name>
+		</city>
+		<city>
+			<name>Index</name>
+		</city>
+		<city>
+			<name>Indianola</name>
+		</city>
+		<city>
+			<name>Inglewood-Finn Hill</name>
+		</city>
+		<city>
+			<name>Ione</name>
+		</city>
+		<city>
+			<name>Issaquah</name>
+		</city>
+		<city>
+			<name>John Sam Lake</name>
+		</city>
+		<city>
+			<name>Kahlotus</name>
+		</city>
+		<city>
+			<name>Kalama</name>
+		</city>
+		<city>
+			<name>Kelso</name>
+		</city>
+		<city>
+			<name>Kenmore</name>
+		</city>
+		<city>
+			<name>Kennewick</name>
+		</city>
+		<city>
+			<name>Kent</name>
+		</city>
+		<city>
+			<name>Kettle Falls</name>
+		</city>
+		<city>
+			<name>Kingsgate</name>
+		</city>
+		<city>
+			<name>Kingston</name>
+		</city>
+		<city>
+			<name>Kirkland</name>
+		</city>
+		<city>
+			<name>Kittitas</name>
+		</city>
+		<city>
+			<name>Krupp</name>
+		</city>
+		<city>
+			<name>La Center</name>
+		</city>
+		<city>
+			<name>La Conner</name>
+		</city>
+		<city>
+			<name>La Crosse</name>
+		</city>
+		<city>
+			<name>Lacey</name>
+		</city>
+		<city>
+			<name>Lake Forest North</name>
+		</city>
+		<city>
+			<name>Lake Forest Park</name>
+		</city>
+		<city>
+			<name>Lake Goodwin</name>
+		</city>
+		<city>
+			<name>Lake Serene-North Lynnwood</name>
+		</city>
+		<city>
+			<name>Lake Shore</name>
+		</city>
+		<city>
+			<name>Lake Stevens</name>
+		</city>
+		<city>
+			<name>Lakeland North</name>
+		</city>
+		<city>
+			<name>Lakeland South</name>
+		</city>
+		<city>
+			<name>Lakewood</name>
+		</city>
+		<city>
+			<name>Lamont</name>
+		</city>
+		<city>
+			<name>Langley</name>
+		</city>
+		<city>
+			<name>Latah</name>
+		</city>
+		<city>
+			<name>Lea Hill</name>
+		</city>
+		<city>
+			<name>Leavenworth</name>
+		</city>
+		<city>
+			<name>Liberty Lake</name>
+		</city>
+		<city>
+			<name>Lind</name>
+		</city>
+		<city>
+			<name>Long Beach</name>
+		</city>
+		<city>
+			<name>Longview</name>
+		</city>
+		<city>
+			<name>Longview Heights</name>
+		</city>
+		<city>
+			<name>Lyman</name>
+		</city>
+		<city>
+			<name>Lynden</name>
+		</city>
+		<city>
+			<name>Lynnwood</name>
+		</city>
+		<city>
+			<name>Mabton</name>
+		</city>
+		<city>
+			<name>Malden</name>
+		</city>
+		<city>
+			<name>Manchester</name>
+		</city>
+		<city>
+			<name>Mansfield</name>
+		</city>
+		<city>
+			<name>Maple Valley</name>
+		</city>
+		<city>
+			<name>Marcus</name>
+		</city>
+		<city>
+			<name>Marietta-Alderwood</name>
+		</city>
+		<city>
+			<name>Martha Lake</name>
+		</city>
+		<city>
+			<name>Marysville</name>
+		</city>
+		<city>
+			<name>Mattawa</name>
+		</city>
+		<city>
+			<name>McChord AFB</name>
+		</city>
+		<city>
+			<name>McCleary</name>
+		</city>
+		<city>
+			<name>Meadow Glade</name>
+		</city>
+		<city>
+			<name>Medical Lake</name>
+		</city>
+		<city>
+			<name>Medina</name>
+		</city>
+		<city>
+			<name>Mercer Island</name>
+		</city>
+		<city>
+			<name>Mesa</name>
+		</city>
+		<city>
+			<name>Metaline</name>
+		</city>
+		<city>
+			<name>Metaline Falls</name>
+		</city>
+		<city>
+			<name>Midland</name>
+		</city>
+		<city>
+			<name>Mill Creek</name>
+		</city>
+		<city>
+			<name>Millwood</name>
+		</city>
+		<city>
+			<name>Milton</name>
+		</city>
+		<city>
+			<name>Minnehaha</name>
+		</city>
+		<city>
+			<name>Mirrormont</name>
+		</city>
+		<city>
+			<name>Monroe</name>
+		</city>
+		<city>
+			<name>Montesano</name>
+		</city>
+		<city>
+			<name>Morton</name>
+		</city>
+		<city>
+			<name>Moses Lake</name>
+		</city>
+		<city>
+			<name>Moses Lake North</name>
+		</city>
+		<city>
+			<name>Mossyrock</name>
+		</city>
+		<city>
+			<name>Mount Vernon</name>
+		</city>
+		<city>
+			<name>Mountlake Terrace</name>
+		</city>
+		<city>
+			<name>Moxee</name>
+		</city>
+		<city>
+			<name>Mukilteo</name>
+		</city>
+		<city>
+			<name>Naches</name>
+		</city>
+		<city>
+			<name>Napavine</name>
+		</city>
+		<city>
+			<name>Navy Yard City</name>
+		</city>
+		<city>
+			<name>Neah Bay</name>
+		</city>
+		<city>
+			<name>Nespelem</name>
+		</city>
+		<city>
+			<name>Nespelem Community</name>
+		</city>
+		<city>
+			<name>Newport</name>
+		</city>
+		<city>
+			<name>Newport Hills</name>
+		</city>
+		<city>
+			<name>Nisqually Indian Community</name>
+		</city>
+		<city>
+			<name>Nooksack</name>
+		</city>
+		<city>
+			<name>Normandy Park</name>
+		</city>
+		<city>
+			<name>North Bend</name>
+		</city>
+		<city>
+			<name>North Bonneville</name>
+		</city>
+		<city>
+			<name>North City-Ridgecrest</name>
+		</city>
+		<city>
+			<name>North Creek-Canyon Park</name>
+		</city>
+		<city>
+			<name>North Hill</name>
+		</city>
+		<city>
+			<name>North Marysville</name>
+		</city>
+		<city>
+			<name>North Omak</name>
+		</city>
+		<city>
+			<name>North Puyallup</name>
+		</city>
+		<city>
+			<name>North Yelm</name>
+		</city>
+		<city>
+			<name>Northport</name>
+		</city>
+		<city>
+			<name>Oak Harbor</name>
+		</city>
+		<city>
+			<name>Oakesdale</name>
+		</city>
+		<city>
+			<name>Oakville</name>
+		</city>
+		<city>
+			<name>Ocean Park</name>
+		</city>
+		<city>
+			<name>Ocean Shores</name>
+		</city>
+		<city>
+			<name>Odessa</name>
+		</city>
+		<city>
+			<name>Okanogan</name>
+		</city>
+		<city>
+			<name>Olympia</name>
+		</city>
+		<city>
+			<name>Omak</name>
+		</city>
+		<city>
+			<name>Opportunity</name>
+		</city>
+		<city>
+			<name>Orchards North</name>
+		</city>
+		<city>
+			<name>Orchards South</name>
+		</city>
+		<city>
+			<name>Oroville</name>
+		</city>
+		<city>
+			<name>Orting</name>
+		</city>
+		<city>
+			<name>Othello</name>
+		</city>
+		<city>
+			<name>Otis Orchards-East Farms</name>
+		</city>
+		<city>
+			<name>Pacific</name>
+		</city>
+		<city>
+			<name>Paine Field-Lake Stickney</name>
+		</city>
+		<city>
+			<name>Palouse</name>
+		</city>
+		<city>
+			<name>Parkland</name>
+		</city>
+		<city>
+			<name>Parkwood</name>
+		</city>
+		<city>
+			<name>Pasco</name>
+		</city>
+		<city>
+			<name>Pateros</name>
+		</city>
+		<city>
+			<name>Pe Ell</name>
+		</city>
+		<city>
+			<name>Pine Lake</name>
+		</city>
+		<city>
+			<name>Pomeroy</name>
+		</city>
+		<city>
+			<name>Port Angeles</name>
+		</city>
+		<city>
+			<name>Port Angeles East</name>
+		</city>
+		<city>
+			<name>Port Orchard</name>
+		</city>
+		<city>
+			<name>Port Townsend</name>
+		</city>
+		<city>
+			<name>Poulsbo</name>
+		</city>
+		<city>
+			<name>Prairie Ridge</name>
+		</city>
+		<city>
+			<name>Prescott</name>
+		</city>
+		<city>
+			<name>Priest Point</name>
+		</city>
+		<city>
+			<name>Prosser</name>
+		</city>
+		<city>
+			<name>Pullman</name>
+		</city>
+		<city>
+			<name>Puyallup</name>
+		</city>
+		<city>
+			<name>Quincy</name>
+		</city>
+		<city>
+			<name>Rainier</name>
+		</city>
+		<city>
+			<name>Raymond</name>
+		</city>
+		<city>
+			<name>Reardan</name>
+		</city>
+		<city>
+			<name>Redmond</name>
+		</city>
+		<city>
+			<name>Renton</name>
+		</city>
+		<city>
+			<name>Republic</name>
+		</city>
+		<city>
+			<name>Richland</name>
+		</city>
+		<city>
+			<name>Richmond Beach-Innis Arden</name>
+		</city>
+		<city>
+			<name>Richmond Highlands</name>
+		</city>
+		<city>
+			<name>Ridgefield</name>
+		</city>
+		<city>
+			<name>Ritzville</name>
+		</city>
+		<city>
+			<name>Riverside</name>
+		</city>
+		<city>
+			<name>Riverton-Boulevard Park</name>
+		</city>
+		<city>
+			<name>Rochester</name>
+		</city>
+		<city>
+			<name>Rock Island</name>
+		</city>
+		<city>
+			<name>Rockford</name>
+		</city>
+		<city>
+			<name>Rosalia</name>
+		</city>
+		<city>
+			<name>Roslyn</name>
+		</city>
+		<city>
+			<name>Roy</name>
+		</city>
+		<city>
+			<name>Royal City</name>
+		</city>
+		<city>
+			<name>Ruston</name>
+		</city>
+		<city>
+			<name>Sahalee</name>
+		</city>
+		<city>
+			<name>Salmon Creek</name>
+		</city>
+		<city>
+			<name>Satus</name>
+		</city>
+		<city>
+			<name>Sea-Tac</name>
+		</city>
+		<city>
+			<name>Seattle</name>
+		</city>
+		<city>
+			<name>Sedro-Woolley</name>
+		</city>
+		<city>
+			<name>Selah</name>
+		</city>
+		<city>
+			<name>Sequim</name>
+		</city>
+		<city>
+			<name>Shaker Church</name>
+		</city>
+		<city>
+			<name>Shelter Bay</name>
+		</city>
+		<city>
+			<name>Shelton</name>
+		</city>
+		<city>
+			<name>Sheridan Beach</name>
+		</city>
+		<city>
+			<name>Silver Lake-Fircrest</name>
+		</city>
+		<city>
+			<name>Silverdale</name>
+		</city>
+		<city>
+			<name>Skokomish</name>
+		</city>
+		<city>
+			<name>Skykomish</name>
+		</city>
+		<city>
+			<name>Smokey Point</name>
+		</city>
+		<city>
+			<name>Snee Oosh</name>
+		</city>
+		<city>
+			<name>Snohomish</name>
+		</city>
+		<city>
+			<name>Snoqualmie</name>
+		</city>
+		<city>
+			<name>Soap Lake</name>
+		</city>
+		<city>
+			<name>South Bend</name>
+		</city>
+		<city>
+			<name>South Broadway</name>
+		</city>
+		<city>
+			<name>South Cle Elum</name>
+		</city>
+		<city>
+			<name>South Hill</name>
+		</city>
+		<city>
+			<name>South Prairie</name>
+		</city>
+		<city>
+			<name>South Wenatchee</name>
+		</city>
+		<city>
+			<name>Spanaway</name>
+		</city>
+		<city>
+			<name>Spangle</name>
+		</city>
+		<city>
+			<name>Spokane</name>
+		</city>
+		<city>
+			<name>Sprague</name>
+		</city>
+		<city>
+			<name>Springdale</name>
+		</city>
+		<city>
+			<name>St. John</name>
+		</city>
+		<city>
+			<name>Stanwood</name>
+		</city>
+		<city>
+			<name>Starbuck</name>
+		</city>
+		<city>
+			<name>Steilacoom</name>
+		</city>
+		<city>
+			<name>Stevenson</name>
+		</city>
+		<city>
+			<name>Stimson Crossing</name>
+		</city>
+		<city>
+			<name>Sudden Valley</name>
+		</city>
+		<city>
+			<name>Sultan</name>
+		</city>
+		<city>
+			<name>Sumas</name>
+		</city>
+		<city>
+			<name>Summit</name>
+		</city>
+		<city>
+			<name>Sumner</name>
+		</city>
+		<city>
+			<name>Sunnyside</name>
+		</city>
+		<city>
+			<name>Sunnyslope</name>
+		</city>
+		<city>
+			<name>Suquamish</name>
+		</city>
+		<city>
+			<name>Swinomish Village</name>
+		</city>
+		<city>
+			<name>Tacoma</name>
+		</city>
+		<city>
+			<name>Taholah</name>
+		</city>
+		<city>
+			<name>Tanglewilde-Thompson Place</name>
+		</city>
+		<city>
+			<name>Tekoa</name>
+		</city>
+		<city>
+			<name>Tenino</name>
+		</city>
+		<city>
+			<name>Terrace Heights</name>
+		</city>
+		<city>
+			<name>Tieton</name>
+		</city>
+		<city>
+			<name>Toledo</name>
+		</city>
+		<city>
+			<name>Tonasket</name>
+		</city>
+		<city>
+			<name>Toppenish</name>
+		</city>
+		<city>
+			<name>Town and Country</name>
+		</city>
+		<city>
+			<name>Tracyton</name>
+		</city>
+		<city>
+			<name>Trentwood</name>
+		</city>
+		<city>
+			<name>Tukwila</name>
+		</city>
+		<city>
+			<name>Tulalip Bay</name>
+		</city>
+		<city>
+			<name>Tumwater</name>
+		</city>
+		<city>
+			<name>Twisp</name>
+		</city>
+		<city>
+			<name>Union Gap</name>
+		</city>
+		<city>
+			<name>Uniontown</name>
+		</city>
+		<city>
+			<name>University Place</name>
+		</city>
+		<city>
+			<name>Vader</name>
+		</city>
+		<city>
+			<name>Vancouver</name>
+		</city>
+		<city>
+			<name>Vancouver Mall</name>
+		</city>
+		<city>
+			<name>Veradale</name>
+		</city>
+		<city>
+			<name>Waitsburg</name>
+		</city>
+		<city>
+			<name>Walla Walla</name>
+		</city>
+		<city>
+			<name>Walla Walla East</name>
+		</city>
+		<city>
+			<name>Waller</name>
+		</city>
+		<city>
+			<name>Walnut Grove</name>
+		</city>
+		<city>
+			<name>Wapato</name>
+		</city>
+		<city>
+			<name>Warden</name>
+		</city>
+		<city>
+			<name>Washougal</name>
+		</city>
+		<city>
+			<name>Washtucna</name>
+		</city>
+		<city>
+			<name>Waterville</name>
+		</city>
+		<city>
+			<name>Waverly</name>
+		</city>
+		<city>
+			<name>Weallup Lake</name>
+		</city>
+		<city>
+			<name>Wenatchee</name>
+		</city>
+		<city>
+			<name>West Clarkston-Highland</name>
+		</city>
+		<city>
+			<name>West Lake Sammamish</name>
+		</city>
+		<city>
+			<name>West Lake Stevens</name>
+		</city>
+		<city>
+			<name>West Longview</name>
+		</city>
+		<city>
+			<name>West Pasco</name>
+		</city>
+		<city>
+			<name>West Richland</name>
+		</city>
+		<city>
+			<name>West Side Highway</name>
+		</city>
+		<city>
+			<name>West Valley</name>
+		</city>
+		<city>
+			<name>West Wenatchee</name>
+		</city>
+		<city>
+			<name>Westport</name>
+		</city>
+		<city>
+			<name>White Center-Shorewood</name>
+		</city>
+		<city>
+			<name>White Salmon</name>
+		</city>
+		<city>
+			<name>White Swan</name>
+		</city>
+		<city>
+			<name>Wilbur</name>
+		</city>
+		<city>
+			<name>Wilkeson</name>
+		</city>
+		<city>
+			<name>Wilson Creek</name>
+		</city>
+		<city>
+			<name>Winlock</name>
+		</city>
+		<city>
+			<name>Winslow</name>
+		</city>
+		<city>
+			<name>Winthrop</name>
+		</city>
+		<city>
+			<name>Woodinville</name>
+		</city>
+		<city>
+			<name>Woodland</name>
+		</city>
+		<city>
+			<name>Woodmont Beach</name>
+		</city>
+		<city>
+			<name>Woodway</name>
+		</city>
+		<city>
+			<name>Yacolt</name>
+		</city>
+		<city>
+			<name>Yakima</name>
+		</city>
+		<city>
+			<name>Yarrow Point</name>
+		</city>
+		<city>
+			<name>Yelm</name>
+		</city>
+		<city>
+			<name>Zillah</name>
+		</city>
+	</cities>
+</state>

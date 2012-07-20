@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sliding Panels Sample</title>
+<script  type="text/javascript" src="../../widgets/slidingpanels/SprySlidingPanels.js"></script>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+.widget {
+	width: 500px;
+	height: 230px;
+	border: solid 1px black;
+	background-color: #CCCCCC;
+}
+.SlidingPanels {
+	width: 500px;
+	height: 230px;
+	overflow: visible;
+	position: relative;
+	float: left;
+	padding: 0px;
+}
+.SlidingPanelsContainer {
+	width:8000em;
+	height:230px;
+	position: absolute;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+}
+.SlidingPanelsContent {
+	width: 250px;
+	height: 230px;
+	float: left;
+}
+.content {
+	width: 241px;
+	height: 200px;
+	float: left;
+	overflow: hidden;
+	padding: 4px;
+	border-right: solid 1px #999999;
+}
+.panelnav {
+	clear: both;
+	height: 42px;
+}
+.left {
+	text-align: left;
+	margin-left: 4px;
+}
+.right {
+	text-align: right;
+	margin-right: 4px;
+}
+-->
+</style>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "/products/product");
+
+function TruncateStrIfNeeded(str, maxChars)
+{
+	// Decode our string so when we count characters, we aren't counting
+	// the chars in an entity name.
+
+	str = Spry.Utils.decodeEntities(str);
+	if (str.length > maxChars)
+		str = str.substr(0, maxChars - 4) + " ...";
+	return Spry.Utils.encodeEntities(str);
+}
+
+ds1.addObserver({ onPostLoad: function() {
+	var numberOfPanelsPerView = 2;
+	var rows = ds1.getData();
+	var numRows = rows.length;
+
+	// Add some custom columns to our data set.
+
+	for (var i = 0; i < numRows; i++)
+	{
+		var row = rows[i];
+
+		// Add a 'teaser' column which is basically the description,
+		// but truncated so it can fit within our panel.
+
+		row.teaser = TruncateStrIfNeeded(row.desc, 400);
+
+		// Add a 'viewStartIndex' column that indicates what view this row
+		// belongs to.
+
+		row.viewNumber = Math.floor(i / numberOfPanelsPerView) + 1;
+		row.viewStartIndex = i - (i % numberOfPanelsPerView);
+		row.prevStartIndex = row.viewStartIndex - numberOfPanelsPerView;
+		row.nextStartIndex = row.viewStartIndex + numberOfPanelsPerView;
+	}
+}});
+//-->
+</script>
+</head>
+<body>
+<h3>Building a Sliding Panels widget with Spry Data</h3>
+<p>This sample creates a Sliding Panels widget by using Spry Data to build the repeating markup. In this sample the content panels are generated dynamically and the photo in each panel comes from Spry Data. The text is static, which is just there for example.</p>
+<p>The content panel is generated in a Spry:repeat region. An important thing in the panel widget is that each panel should have a unique ID. This ID is generated with a Spry data reference. Using the same method, the Panel links are generated the same way, using the same data values. This ensures that the panel links and IDs match up correctly. In this sample, the visible window is twice as wide as the content panel. This allows for 2 panels to show at once. The links, therefore, need to show only every other panel number. This will allow the panel to move by 2 content panels each time. To do this, a spry:if is used to only display the even number panel numbers.</p>
+<p>Note: Since this sample depends on Spry Data for the content and markup, it will not degrade when JavaScript is turned off. This sample shows how to construct this widget with Data. Determine if this method fits your needs with degredation and accessibility in mind. Also, this sample is more complicated only because we are showing 2 panels at once and there are differing lengths of text in the panels.</p>
+<p>Page: <span spry:region="ds1" spry:repeatchildren="ds1"> <a spry:if="{ds_RowNumber} % 2 == 0" href="#" onclick="sp1.showPanel('p{viewStartIndex}'); return false;">{viewNumber}</a> </span></p>
+<div class="widget">
+<div id="apDiv1" class="SlidingPanels" spry:region="ds1">
+  <div class="SlidingPanelsContainer">
+    <div id="p{ds_RowNumber}" class="SlidingPanelsContent"  spry:repeat="ds1">
+      <div class="content"> <img src="../../demos/products/{boximage}" width="75" height="56" hspace="5" vspace="5" align="left" alt="Sample Images from Spry Data." />
+        <p>{desc}</p>
+      </div>
+      <div class="panelnav left"  spry:if="{ds_RowNumber} % 2 == 0 &amp;&amp; {prevStartIndex} &gt;= 0"><a href="#" onclick="sp1.showPanel('p{prevStartIndex}'); return false;">&lt;&lt; Previous</a></div>
+      <div class="panelnav right" spry:if="{ds_RowNumber} % 2 != 0 &amp;&amp; {nextStartIndex} &lt; {ds_RowCount}"><a href="#" onclick="sp1.showPanel('p{nextStartIndex}'); return false;">Next &gt;&gt;</a></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+var sp1 = new Spry.Widget.SlidingPanels("apDiv1");
+</script>
+</div>
+</div>
+</body>
+</html>

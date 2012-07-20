@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Validation Confirm Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#insert_widget pre{
+	margin-left: -45px;
+}
+</style>
+</head>
+<body>
+<h1 id="overview">Using Spry Widgets: Validation Confirm Overview</h1>
+<p>The Validation Confirm Widget is a textfield or a password form field in an HTML code form that display valid or invalid states when the user re-type or fails to re-type a value typed in another similar field from the same form. For example you can add a Validation Confirm Widget to a form in which a user should type twice the same password. If the user fails to type the same password in both fields, the widget returns a message stating that the password retype condition was not met.</p>
+<h3 id="about_confirm">About Spry Widgets</h3>
+<p>A Spry widget is a page element containing built-in behaviors and functions that provide a richer user experience by enabling user interaction. These behaviors can include functionality that lets users show or hide content on the page, change the appearance (such as color of the input) in the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You can easily insert these widgets &mdash; the code is HTML and JavaScript at its simplest &mdash; and then style the widget according to your liking.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and JavaScript files. The CSS file contains everything necessary for styling the widget, and the JavaScript file gives the widget its functionality. You must link both of these files to the page on which you want the widget to function and appear styled. Otherwise, the widget won&rsquo;t have any functionality or styling. For more information, see the appropriate sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JavaScript files associated with a given widget are named after the widget, so it&rsquo;s easy for you to know which files correspond to which widgets. (For example, the files associated with the Validation Confirm widget are called SpryValidationConfirm.css and SpryValidationConfirm.js). </p>
+<ul>
+  <li><a href="#anatomy">Anatomy of the Validation Confirm widget</a></li>
+  <li><a href="#css">CSS for the Validation Confirm widget</a></li>
+  <li><a href="#using">Using the Validation Confirm widget</a></li>
+  <li><a href="#behaviors">Validation Confirm Behaviors</a></li>
+  <li><a href="#methods">Validation Confirm Methods</a></li>
+</ul>
+<p>See the Validation <a href="../../widgets/confirmvalidation/SpryValidationConfirm.html">Confirm reference</a> file and <a href="../../samples/validationwidgets/ConfirmValidationSample.html">sample</a>.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="anatomy">Anatomy of the Validation Confirm widget</h3>
+<p>The Validation Confirm widget enables a commonly used pattern of verifying passwords by having users repeat the password or other field and 'confirming' they are identical before proceeding with the form submit. The Confirm widget is the second field that confirms the first.</p>
+<p>Password:
+  <input type="text" name="textfield" id="textfield" style="margin-left: 3.3em;"/> 
+- A password field or Spry Password Validation widget.</p>
+<p>Retype Password: 
+  <input type="text" name="textfield2" id="textfield2" /> 
+  - This is the confirm widget. 
+</p>
+<p>To create a Validation Confirm widget, a text field can be turned into a Spry Validation Confirm widget by adding a few elements to it. </p>
+<p>You can create a widget by simply adding a HTML tag container (e.g. &lt;SPAN&gt;) around text field. The container tag must have an ID. Any error messages go within this container. A small constructor script is added after the markup.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="structure">Spry Validation Confirm widget Structure</h4>
+<p>A basic Confirm Validation widget, with multiple error messages, looks like:</p>
+<pre>Password:&lt;input type=&quot;password&quot; name=&quot;password1&quot; id=&quot;password1&quot; /&gt;
+
+&lt;span id=&quot;spryconfirm1&quot;&gt;<br />	&lt;label for=&quot;confirm1&quot;&gt;Confirm:&lt;/label&gt;<br />	&lt;input type=&quot;password&quot; name=&quot;confirm1&quot; id=&quot;confirm1&quot; /&gt;<br />	&lt;span class=&quot;confirmRequiredMsg&quot;&gt;A value is required.&lt;/span&gt;<br />	&lt;span class=&quot;confirmInvalidMsg&quot;&gt;The values do not match&lt;/span&gt;<br />&lt;/span&gt;
+
+...
+&lt;script type=&quot;text/javascript&quot;&gt;<br />var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;spryconfirm1&quot;, &quot;password1&quot;, {validateOn: ['blur']});<br />&lt;/script&gt;</pre>
+<p>In the constructor script, the values are: (&quot;id of the widget container&quot;, &quot;id of the field to confirm&quot;,{options})</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="css">CSS for the Validation Confirm widget</h3>
+<p>The SpryValidationConfirm.css file contains rules which trigger the messages to display. The rules in the CSS file correspond to the class names specified in the HTML markup for the error messages. However, more complex selectors are required, which take into account the fact that a parent container can have a state class applied to it.</p>
+<p>The following is the CSS code for SpryValidationConfirm.css file:</p>
+<pre>   .confirmRequiredMsg, 
+   .confirmInvalidMsg, 
+   .confirmValidMsg {
+      display: none;
+   }
+
+   .confirmRequiredState .confirmRequiredMsg,
+   .confirmInvalidState .confirmInvalidMsg {
+      display: inline;
+      color: #CC3333;
+      border: 1px solid #CC3333;
+   }
+   .confirmValidState input, input.confirmValidState {
+      background-color: #B8F5B1;
+   }
+   input.confirmRequiredState, .confirmRequiredState input, 
+   input.confirmInvalidState, .confirmInvalidState input{
+      background-color: #FF9F9F;
+   }
+   .confirmFocusState input, input.confirmFocusState {
+      background-color: #FFFFCC;
+   }
+</pre>
+<p>As you can see, most of the rules simply handle the error states.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="using">Using Validation Confirm widget</h3>
+<p> This section contains the following topics:</p>
+<ul>
+  <li>Inserting a Validation Confirm widget<br /><br />
+  </li>
+  <li>Styling the Validation Confirm widget<br />
+  </li>
+</ul>
+<h4 id="insert_widget">Inserting a Validation Confirm widget</h4>
+<ol>
+	<li>
+	 <p>Locate the SpryValidationConfirm.js and add it to your site, if you didn't do it already. You can find the SpryValidationConfirm.js file in the 'widgets/confirmvalidation' folder in the Spry zip.</p>
+	</li>
+	<li><p>Locate the SpryValidationConfirm.css file and add it to your site, if you haven't done so already. You might choose to add it to the root folder or to a CSS folder, if you have one.</p></li>
+	<li><p>In the page code, link the SpryValidationConfirm.js file to your web page by inserting a script tag in the page&rsquo;s head section:</p>
+<pre> &lt;script src=&quot;includes/SpryValidationConfirm.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+<p>Make sure the file path to the SpryValidationConfirm.js file is correct. This path will vary depending on where you include the file in your web site.</p>
+</li>
+	<li>Link the SpryValidationConfirm.css file to your web page by inserting a link tag in the page&rsquo;s head tag:
+<pre> &lt;link href=&quot;includes/SpryValidationConfirm.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+<p>Make sure the file path to the SpryValidationConfirm.css file is correct. This path will vary depending on where you put the file in your web site. </p>
+	</li>
+<li>Add the password field that is going to be confirmed.<br />
+  <pre>&lt;input type=&quot;password&quot; id=&quot;password1&quot; name="password1" /&gt;</pre>
+</li>
+	<li>Insert a password text field where the user will confirm the text.
+	<pre>&lt;input type=&quot;password&quot; id=&quot;password1&quot; name="password1" /&gt;<br />&lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;
+</pre>
+</li>
+<li>Add a container by inserting the span tag around the confirm input. Give the container an ID attribute.
+<pre>&lt;input type=&quot;password&quot; id=&quot;password1&quot; name="password1" /&gt;<br />&lt;span id=&quot;ConfirmWidget&quot;&gt;<br />
+  &nbsp; &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;<br />
+&lt;/span&gt;</pre>
+</li>
+<li>Add any error messages that are needed.<br />
+ <pre>&lt;input type=&quot;password&quot; id=&quot;password1&quot; name="password1" /&gt;<br />&lt;span id=&quot;ConfirmWidget&quot;&gt;
+  &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;
+  &lt;span class=&quot;confirmInvalidMsg&quot;&gt;The values do not match&lt;/span&gt;
+&lt;/span&gt;</pre></li>
+<li>Initialize the Spry Validation Confirm object by inserting the following script block in the HTML source code, after the container. The var name is the name of the widget. The first value in the constructor is the ID of the widget container. The second value is the ID of the password field that is being confirmed.
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;spryconfirm1&quot;, &quot;password1&quot;);
+&lt;/script&gt;
+</pre>
+<p>It is important that you make sure the ID of the container span tag matches the ID parameter you specified in the Spry.Widgets.ValidationConfirm method. It is also important that you make sure the JavaScript call comes after the HTML code for the widget.</p>
+</li>
+<li>Save the page. The complete code looks as follows:
+<pre>&lt;head&gt;
+  &nbsp;...
+  &nbsp;&lt;script src=&quot;includes/SpryValidationConfirm.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+  &nbsp;&lt;link href=&quot;includes/SpryValidationConfirm.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+  ...
+&lt;/head&gt;
+&lt;body&gt;
+...<br />&lt;input type=&quot;password&quot; id=&quot;password1&quot; name="password1" /&gt;
+&lt;span id=&quot;ConfirmWidget&quot;&gt;
+  &nbsp; &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt; <br />    &lt;span class=&quot;confirmInvalidMsg&quot;&gt;The values do not match&lt;/span&gt;
+&lt;/span&gt;<br />
+&nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+ &nbsp;&nbsp; var ConfirmWidgetObject &nbsp;= new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;,&quot;password1&quot;);
+&nbsp;&lt;/script&gt;
+  ...
+&lt;/body&gt; </pre>
+</li>
+</ol>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="style_confirm">Styling the Validation Confirm widget </h4>
+<p >Styling the Validation Confirm widget means changing the appearance of the error messages for different states.</p>
+<p>The Validation Confirm widget comes with a CSS file (SpryValidationConfirm.css) that provides default styling for the error messages. You can easily style the error messages to your liking by simply changing the appropriate CSS rules.</p>
+<p class="style6">To change the state appearance of the Confirm Validation widget:</p>
+<ol>
+	<li>
+	  <p>Open the SpryValidationConfirm.css file. You can find the SpryValidationConfirm.css file in the 'widgets/confirmvalidation' directory.</p></li>
+	<li><p>The Confirm Validation widget comes with built-in CSS rules for the states and also for the elements (in this case, the error messages) that can be displayed for these states.</p> 
+	  States define the look of the actual password field. 'Msg' classes control the look of the actual error messages.
+	    <p>The following classes define the look of the error messages associated to the Validation Confirm widget:</p>
+      <pre>   .confirmRequiredMsg, 
+   .confirmInvalidMsg, 
+   .confirmValidMsg {
+      display: none;
+   }
+
+   .confirmRequiredState .confirmRequiredMsg,
+   .confirmInvalidState .confirmInvalidMsg {
+      display: inline;
+      color: #CC3333;
+      border: 1px solid #CC3333;
+   }
+   .confirmValidState input, input.confirmValidState {
+      background-color: #B8F5B1;
+   }
+   input.confirmRequiredState, .confirmRequiredState input, 
+   input.confirmInvalidState, .confirmInvalidState input{
+      background-color: #FF9F9F;
+   }
+   .confirmFocusState input, input.confirmFocusState {
+      background-color: #FFFFCC;
+   }<br />
+      </pre>
+      <p>These styles can be changed to whatever is required. The regular rules of CSS apply, so they can be split up or edited as needed.<br />
+        <br />
+      </p>
+    </li>
+<li>Add/change CSS rules for any of the behaviors you want.
+<p>You cannot rename/replace class names associated with states in the SpryValidationConfirm.css file only with class names of your own, because the behaviors are hard-coded into the Spry framework. However, you can replace the default class with your desired class name by sending the new value as argument to the text field widget constructor. This does not apply for the error messages classes, as mentioned above. <br />
+  Here is an example on how you can change the required state's CSS class name, without breaking its functionality: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;, &quot;password1&quot;, {requiredClass: &quot;required&quot;, invalidClass: &quot;invalid&quot; ,validClass: &quot;valid&quot;});
+&lt;/script&gt; </pre>
+  <p>The SpryValidationConfirm.css file has comments, explaining the selectors and the logic behind certain rules. Check it out for further information on styling.</p>
+</li>
+</ol>
+<h3 id="options">Validation Confirm Defaults and Options</h3>
+<p>There are a few options for the widget that will let you customize the behavior of the validation confirm.</p>
+  <table>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr id="isRequired">
+      <td>isRequired</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>The user must fill in the confirm text field or password field in order to submit the form</td>
+    </tr>
+    <tr id="validateOn">
+      <td>validateOn</td>
+      <td>[&quot;blur&quot;]; [&quot;change&quot;];</td>
+      <td>[&quot;change&quot;]</td>
+      <td>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;]).</td>
+    </tr>
+    <tr id="additionalError">
+      <td>additionalError</td>
+      <td>string</td>
+      <td>none</td>
+      <td>The id of an element in the page where the classes that applies to the main container also are added.</td>
+    </tr>
+    <tr id="focusClass">
+      <td>focusClass</td>
+      <td>string</td>
+      <td>&nbsp;</td>
+      <td>Custom CSS class to use for the focus state. Replaces the default .ConfirmFocusState class.</td>
+    </tr>
+    <tr id="invalidClass">
+      <td>invalidClass</td>
+      <td>string</td>
+      <td>&nbsp;</td>
+      <td>Custom CSS class to use for the invalid state. Replaces the default .ConfirmInvalidState class.</td>
+    </tr>
+    <tr id="requiredClass">
+      <td>requiredClass</td>
+      <td>string</td>
+      <td>&nbsp;</td>
+      <td>Custom CSS class to use for the required state. Replaces the default .ConfirmFocusState class.</td>
+    </tr>
+    <tr id="validClass">
+      <td>validClass</td>
+      <td>string</td>
+      <td>&nbsp;</td>
+      <td>Custom CSS class to use for the valid state. Replaces the default .ConfirmValidState class.</td>
+    </tr>
+  </table>
+
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="behaviors">Validation Confirm widget Behaviors</h3>
+<p>The behavior of the Validation Confirm widget consists of:</p>
+<ul>
+  <li>Blocking form submission if the Confirm criteria is not met</li>
+  <li>Changing the CSS classes applied on the widget top container in order to trigger validation messages. </li>
+</ul>
+<p>For instance, when users try to submit the form with the incorrect Confirm strength, the form submission is blocked and the ConfirmRequiredState class is applied to the widget container.</p>
+<h4 id="not_required">Make the Validation Confirm widget not required </h4>
+<p>By default, the 'isRequired' property is set to true - that means that the user must fill in the text field in order to submit the form. In order to allow the user to submit an empty field, the widget should have 'isRequired: false' as a property of the optional parameters.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;, &quot;password1&quot;, {isRequired:false});
+&lt;/script&gt; </pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="validate_on">Define what action will trigger the validation process</h4>
+<p>The 'submit' action always checks the validity of the widget's selections. Besides the validation on submit, you can define other two options for the validation process:</p>
+<ul>
+  <li>validateOn: &quot;blur&quot;</li>
+  <li>validateOn: &quot;change&quot;. </li>
+</ul>
+<p>The validateOn:&quot;blur&quot; option will trigger the validation process when the Confirm widget loses its focus. The validateOn: &quot;change&quot; option will trigger the validation process when the user is making the changes for the Confirm widget.
+  You can add these options as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;, &quot;password1&quot;, {validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+&lt;/script&gt;</pre>
+<h4 id="combine_attributes">Combining Attributes</h4>
+<p>To combine multiple attributes, simple include them within the {}, separated by commas. </p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;, &quot;password1&quot;, {requiredClass:&quot;myclassname&quot;, validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+ &lt;/script&gt; </pre>
+<h3 id="methods">Confirm Methods</h3>
+<p>The Confirm validation widget has 2 methods.</p>
+<p id="reset_func"><strong>Reset</strong></p>
+<p>Used if you want to set the validation widget back to its default state.</p>
+<pre>&lt;input type=&quot;button&quot; value=&quot;Reset&quot; onclick=&quot;ConfirmWidgetObject.reset();&quot;&gt;</pre>
+<p id="validate_func"><strong>Validate</strong></p>
+<p>Used if you want to validate the widget from some other object or event.</p>
+<pre>&lt;input type=&quot;button&quot; value=&quot;Validate the field&quot; onclick=&quot;ConfirmWidgetObject.validate();&quot;&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a>
+<br />
+<br /></div>
+<hr />
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

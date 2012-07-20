@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unobtrusive Spry Data</title>
+<script src="../../includes/xpath.js" type="text/javascript" language="javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript" language="javascript"></script>
+<script src="../../includes/SpryNestedXMLDataSet.js" language="javascript" type="text/javascript"></script>
+<script src="../../includes/SpryDOMUtils.js" type="text/javascript" language="javascript"></script>
+<script src="../../widgets/accordion/SpryAccordion.js" type="text/javascript"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/accordion/SpryAccordion.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.Accordion {
+	width:369px;
+	height:240px;
+}
+.even{
+	background-color:#FFFFCC;
+}
+-->
+</style>
+<script src="unobtrusive_spry_data2.js" type="text/javascript" language="javascript">
+</script>
+</head>
+<body>
+<h3>Unobtrusive Spry Data sample</h3>
+<p>This sample shows  how to use SpryDOMUtils.js (our Element Selector) to create unobtrusive Spry Data pages by removing the Spry custom attributes to an external javascript file. This  allows the page to pass validation with no extra effort.</p>
+<p>Note that to use this technique, IDs are places on the elements that would have had Spry attributes.</p>
+<p>This data comes from a standard XML data set and clicking the headers should sort the columns.</p>
+<p><strong>Note:</strong> This sample uses Spry.Utils.setAttribute to set namespaced attributes (spry:region, etc). This is a bug in Safari 2.0 and earlier, but appears to have been fixed in version 3.0. <br />
+This function should work fine for regular, non-namespaced attributes.</p>
+<div id="myTable" style="float:left;">
+  <table>
+    <tr>
+      <th id="theName">Name</th>
+      <th id="theCategory">Category</th>
+    </tr>
+    <tr id="repeatRow">
+      <td>{name}</td>
+      <td>{category}</td>
+    </tr>
+  </table>
+</div>
+<div>
+  <div id="Accordion1" class="Accordion" tabindex="0">
+    <div class="AccordionPanel">
+      <div class="AccordionPanelTab">Product</div>
+      <div class="AccordionPanelContent">{name}<br />
+        {category}</div>
+    </div>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelTab">Features</div>
+      <div class="AccordionPanelContent" id="panel">{dsFeatures::feature}<br />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

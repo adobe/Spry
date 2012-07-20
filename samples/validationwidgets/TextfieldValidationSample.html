@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Textfield Validation Widget</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/textfieldvalidation/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<script src="../../widgets/textfieldvalidation/SpryValidationTextField.js" type="text/javascript"></script>
+
+<style type="text/css">
+.tablecontainer{
+	width:540px;
+}
+.tablecell input{
+	width:150px;
+}
+.tablecell{
+	width:33%;
+	float:left;
+	height:60px;
+}
+.submitContainer{
+	clear:both;
+}
+.container{
+	clear:both;
+}
+label{
+	display:block;
+	margin-bottom:7px;
+}
+#form2 label{
+	display:inline;
+}
+#form2 input{
+	margin-top:7px;
+}
+td{
+	vertical-align:top;
+	padding:2px;
+}
+#min_max_char.textfieldRequiredState .textfieldRequiredMsg,
+#min_max_char.textfieldMaxCharsState .textfieldMaxCharsMsg ,
+#min_max_char.textfieldMinCharsState .textfieldMinCharsMsg{
+	display:inline;
+	color:#0033CC;
+	border:1px blue solid;
+}
+.first_textfield{
+	padding-left:4px;
+
+}
+.second_textfield{
+	padding-left:2px;
+	
+}
+.third_textfield3{
+	padding-left:0px;
+}
+</style>
+
+</head>
+<body>
+<h3>Spry Textfield Validation Samples</h3>
+<p>This page gives examples of the textfield widget capabilities.</p>
+<hr />
+<!--
+
+	First Example - Different validation moments - Change, Blur, Submit
+
+-->
+
+<p>Here we have an example of a textfield widget that validates if the entered value is numeric. There are three validation techniques: validation can occur as-you-type (Change), when the textfield looses focus (Blur) or only when the form is submitted (Submit). The Submit validation occurs always, regardless of the other options chosen. There is also a character masking option in place, the user can only enter numeric characters.</p>
+
+<form id="form1" name="form1" method="get" action="TextfieldValidationSample.html">
+  <div class="tablecontainer">
+	<div class="tablecell">
+		<label for="text1">Change - Submit</label>
+
+		<span id="number1">
+				<input type="text" name="text1" id="text1" /> <br/>
+	  		<span class="textfieldRequiredMsg">The value is required.</span>
+	  		<span class="textfieldInvalidFormatMsg">Invalid format.</span>
+	  </span>
+	 </div>
+<div class="tablecell">
+    	<label for="text2">Blur - Submit</label>
+
+	  <span id="number2">
+					<input type="text" name="text2" id="text2" /> <br/>
+	  <span class="textfieldRequiredMsg">The value is required.</span>
+	  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+	  </span>
+		
+	</div>  
+  <div class="tablecell">
+      <label for="text3">Submit</label>
+
+			<span id="number3">
+				<input type="text" name="text3" id="text3" /> <br/>
+			<span class="textfieldRequiredMsg">The value is required.</span>
+			<span class="textfieldInvalidFormatMsg">Invalid format.</span>
+	  </span> 
+
+  </div>
+  <br style="clear:both;" />
+	</div>
+
+	<div class="submitContainer">
+    <input type="submit" name="submit1" id="submit1" value="Submit" />
+	<hr />
+	</div>
+
+</form>
+<script type="text/javascript">
+<!--
+var number1 = new Spry.Widget.ValidationTextField("number1", "integer", {validateOn:["change"]});
+var number2 = new Spry.Widget.ValidationTextField("number2", "integer", {validateOn:["blur"]});
+var number3 = new Spry.Widget.ValidationTextField("number3", "integer");
+//-->
+</script>
+
+
+<!--
+
+	Second Example - date and time
+
+-->
+<p>
+</p>
+<p>The same validation widget can be used for other formats, like date or time validation. Notice the different date/time formats, the default hint strings that can be added and character masking. All the dates are validated on change, blur and submit.</p>
+
+<form id="form2" name="form2" method="get" action="TextfieldValidationSample.html">
+    <label for="text4">Date1:</label> 
+		<span id="date1">
+				<input type="text" name="text4" id="text4" />
+		<span class="textfieldRequiredMsg">The value is required.</span>
+		<span class="textfieldInvalidFormatMsg">Invalid format.</span>
+</span>
+
+		<br />
+    <label for="text5">Date2:</label> 
+		<span id="date2">
+				 <input type="text" name="text5" id="text5" />
+	    <span class="textfieldRequiredMsg">The value is required.</span>
+	    <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+</span>
+
+		<br />
+    <label for="text6">Date3:</label>
+		<span id="date3">
+					<input type="text" name="text6" id="text6" />
+					No Masking
+		<span class="textfieldRequiredMsg">The value is required.</span>
+		<span class="textfieldInvalidFormatMsg">Invalid format.</span>
+</span>
+
+		<br />
+    <label for="text7">Time1:</label>
+		<span id="time1">
+					<input type="text" name="text7" id="text7" />
+		<span class="textfieldRequiredMsg">The value is required.</span>
+		<span class="textfieldInvalidFormatMsg">Invalid format.</span>
+</span>
+
+		<br />
+		<input type="submit" name="submit2" id="submit2" value="Submit" />
+</form>
+
+<script type="text/javascript">
+<!--
+var date1 = new Spry.Widget.ValidationTextField("date1", "date", {format:"mm/dd/yyyy", hint:"mm/dd/yyyy", validateOn:["blur", "change"], useCharacterMasking:true});
+var date2 = new Spry.Widget.ValidationTextField("date2", "date", {format:"yyyy-mm-dd", hint:"yyyy-mm-dd", validateOn:["blur", "change"], useCharacterMasking:true});
+var date3 = new Spry.Widget.ValidationTextField("date3", "date", {hint:"mm/dd/yy", validateOn:["blur", "change"], useCharacterMasking:false});
+var date4 = new Spry.Widget.ValidationTextField("time1", "time", {format:"hh:mm:ss tt", hint:"hh:mm:ss tt", validateOn:["blur", "change"], useCharacterMasking:true});
+//-->
+</script>
+<!--
+	
+Third Example - more validation formats: e-mail, URL, IP, min/max number of characters
+
+-->
+<hr />
+<p>The following is an example of a registration page. User must enter a valid e-mail address, a password between 6 and 10 characters, website URL and IP address. Each text input has a validation textfield widget applied, so that only correct values are entered. Also, the widget container is not span (as in the example above), but directly the &lt;tr&gt; tag from the table.</p>
+
+<form id="form4" name="form4" method="get" action="TextfieldValidationSample.html">
+  <table>
+    <tr id="email">
+      <td>E-mail:</td>
+			<td>
+
+          <input name="text10" type="text" id="text10" />
+          <span class="textfieldRequiredMsg">The value is required.</span>
+			  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+      </td>
+    </tr>
+	<tr id="password">
+	  <td>Password:</td>
+		<td>
+
+          <input name="text11" type="password" id="text11" />
+          <span class="textfieldRequiredMsg">The value is required.</span>
+          <span class="textfieldMinCharsMsg">The minimum number of characters not met.</span>
+		  <span class="textfieldMaxCharsMsg">The maximum number of characters exceeded.</span>
+	  </td>
+	</tr>
+	<tr id="site">
+	  <td>Website:</td>
+		<td>
+
+          <input name="text12" type="text" id="text12" />
+          <span class="textfieldRequiredMsg">The value is required.</span>
+		  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+   	  </td>
+    </tr>
+    <tr id="IP">
+   	  <td>IP:</td>
+    	<td>
+          <input name="text13" type="text" id="text13" />
+          <span class="textfieldRequiredMsg">The value is required.</span>
+          <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+   	  </td>
+    </tr>
+    <tr>
+   	  <td colspan="2">
+          <input type="submit" name="submit4" id="submit4" value="Submit" />
+          <input name="Reset" type="reset" value="Reset" />
+   	  </td>      
+    </tr>
+  </table>
+</form>
+
+<script type="text/javascript">
+<!--
+var email = new Spry.Widget.ValidationTextField("email", "email", {validateOn:["blur"]});
+var password = new Spry.Widget.ValidationTextField("password", "none", {minChars:6, maxChars:10, validateOn:["blur"]});
+var site = new Spry.Widget.ValidationTextField("site", "url", {validateOn:["blur"]});
+var IP = new Spry.Widget.ValidationTextField("IP", "ip", {validateOn:["blur"]});
+//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Fourth Example - integer and float validation
+
+-->
+<p>Here's an example of another type of validation: the first text input supports integer values between -10 and 10, while the second one validates if the entered input is a float value (it also supports  scientific notation). The integer textfield allows you to enter invalid content (char masking is off), but it won't be submitted. Also, the widget supports default values.</p>
+<p>The last textfield contains currency validation. In this case, the supported format is comma_dot (1,000,000.00). </p>
+<form id="form3" name="form3" method="get" action="TextfieldValidationSample.html">
+<p>Change the default values:</p>
+	<label for="text8">Integer (allow negative): 
+	<span id="integer1" class="first_textfield">
+        <input name="text8" type="text" id="text8" value="-10"/>
+    <span class="textfieldRequiredMsg">The value is required.</span>
+    <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+	</span>
+  </label>
+	<label for="text9" >Float (scientific notation):  
+	<span id="float1" class="second_textfield">
+        <input name="text9" type="text" id="text9" value="3.23"/>
+    <span class="textfieldRequiredMsg">The value is required.</span>
+    <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+	</span>
+  	</label>
+  <label for="text112">Currency (1,000,000.00):
+  <span id="currency" class="third_textfield">
+        <input name="text112" type="text" id="text112"/>
+  <span class="textfieldRequiredMsg">The value is required.</span>
+  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+  </span>
+  </label>
+	<br />
+  <input type="submit" name="submit3" id="submit3" value="Submit" />
+</form>
+
+<script type="text/javascript">
+<!--
+var integer1 = new Spry.Widget.ValidationTextField("integer1", "integer", {validateOn:["blur", "change"], useCharacterMasking:false, minValue:"-10", maxValue:"10"});
+var float1 = new Spry.Widget.ValidationTextField("float1", "real", {validateOn:["blur"], useCharacterMasking:true});
+var currency = new Spry.Widget.ValidationTextField("currency", "currency", {format:"comma_dot",validateOn:["blur"], useCharacterMasking:true});
+//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Fifth Example - Credit card, phone and zip
+
+-->
+<p>The following is an example of a check-out form, with credit card, phone and zip validation. Moreover, phone and zip validatin have defined custom patterns and the character masking is enabled. (The text in bold represents the auto-complete sequence). Notice that the reset button resets the form to the original state, including validation. </p>
+
+<form id="form5" name="form5" method="get" action="TextfieldValidationSample.html">
+  <table>
+    <tr>
+			<td><label for="text14">Credit card (Visa):</label></td>
+			<td id="cc_visa">
+			
+				<input type="text" name="text14" id="text14" />
+              <span class="textfieldRequiredMsg">The value is required.</span>
+           	  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+				
+	  </td>
+    </tr>
+    <tr>
+			<td><label for="text15">Credit card (Mastercard):</label></td>
+      		<td id="cc_mastercard">
+
+				<input type="text" name="text15" id="text15" />
+	          <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+			  <span class="textfieldRequiredMsg">The value is required.</span>
+
+	  </td>
+    </tr>
+    <tr>
+			<td><label for="text16">Phone:</label></td>
+     		<td id="phone">
+
+				<input type="text" name="text16" id="text16" />
+			  <span class="textfieldRequiredMsg">The value is required.</span>
+			  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+	  </td>
+    </tr>
+		<tr>
+			<td><label for="text17">Phone with custom pattern:</label></td>
+     		<td id="phone_custom">
+
+				<input type="text" name="text17" id="text17" />
+				Pattern: <strong>0040</strong>-000 000 000
+			  <span class="textfieldRequiredMsg">The value is required.</span>
+			  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+  		  </td>
+    </tr>
+    <tr>
+			<td><label for="text18">Zip:</label></td>
+      		<td id="zip">
+
+              <input type="text" name="text18" id="text18" />
+              <span class="textfieldRequiredMsg">The value is required.</span>
+              <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+	  </td>
+    </tr>
+		<tr>
+			<td><label for="text119">Zip with custom pattern:</label></td>
+      		<td id="zip_custom">
+
+              <input type="text" name="text119" id="text119" />
+							Pattern: <strong>(</strong>000<strong>)-(</strong>AA<strong>)</strong>-0000
+              <span class="textfieldRequiredMsg">The value is required.</span>
+              <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+
+ 		  </td>
+    </tr>
+    <tr>
+	  		<td colspan="2">
+				  <input type="submit" name="submit5" id="submit5" value="Submit" />
+				  <input name="reset" type="reset" value="Reset" />
+	  		</td>
+    </tr>
+  </table>
+
+</form>
+
+<script type="text/javascript">
+<!--
+var cc_visa = new Spry.Widget.ValidationTextField("cc_visa", "credit_card", {format:"visa", validateOn:["blur"]});
+var cc_mastercard = new Spry.Widget.ValidationTextField("cc_mastercard", "credit_card", {format:"mastercard", validateOn:["blur", "change"]});
+var phone = new Spry.Widget.ValidationTextField("phone", "phone_number", {validateOn:["blur"], useCharacterMasking:true});
+var phone_custom = new Spry.Widget.ValidationTextField("phone_custom", "phone_number", {format: "phone_custom", pattern:"\\0\\0\\4\\0-000 000 000",useCharacterMasking:true, validateOn:["blur"]});
+var zip = new Spry.Widget.ValidationTextField("zip", "zip_code", {format:"zip_us5", validateOn:["blur"], useCharacterMasking:true});
+var zip_custom = new Spry.Widget.ValidationTextField("zip_custom", "zip_code", {format:"zip_custom", pattern:"(000)-(AA)-0000", useCharacterMasking:true,validateOn:["blur"]});
+//-->
+</script>
+<hr />
+<p></p>
+<!--
+
+Sixth Example - Changing error messages
+
+-->
+<p>The following example shows how to customize error messages. You can edit them directly in page, change the css class for them or remove them completely. Also, if you change the widget container id directly to the page element (Integer #2, which should validate the same as Integer #1), it will preserve the functionality, but the error messages will be ignored. </p>
+  
+<form id="form6" name="form6" method="get" action="TextfieldValidationSample.html">
+  <table>
+    <tr>
+      <td>Integer #1:</td>
+      <td>
+          <span id="int_min_max">
+              <input type="text" name="text118" id="text118" />(Between 100 and 999)
+          <span class="textfieldRequiredMsg">You must enter a value!</span>
+          <span class="textfieldInvalidFormatMsg">You must enter an integer value!</span>
+          <span class="textfieldMinValueMsg">The entered value is less than 100.</span>
+          <span class="textfieldMaxValueMsg">The entered value is greater than the maximum required (999).</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Min 2 chars/max 10 chars:</td>
+      <td>
+          <span id="min_max_char">
+              <input type="text" name="text19" id="text19" />
+          <span class="textfieldRequiredMsg">The value is required.</span>
+          <span class="textfieldMinCharsMsg">You must enter at least 2 characters!!</span>
+          <span class="textfieldMaxCharsMsg">You can't enter more then 10 characters!!</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td>
+          <span id="date_no_error">
+              <input type="text" name="text20" id="text20" />(No error message)
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Integer #2:</td>
+      <td>
+          <span>
+              <input type="text" id="int_min_max_no_error"/>
+              <span class="textfieldRequiredMsg">The value is required.</span>
+              <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+              <span class="textfieldMinValueMsg">The entered value is less than minimum required.</span>
+              <span class="textfieldMaxValueMsg">The entered value is greater than the maximum required.</span>
+          </span>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+          <input type="submit" name="submit6" id="submit6" value="Submit" />
+      </td>
+    </tr>
+  </table>
+ </form>
+ 
+<script type="text/javascript">
+<!--
+var ValidTF1 = new Spry.Widget.ValidationTextField("int_min_max", "integer", {minValue:10, maxValue:999, useCharacterMasking:false, validateOn:["blur", "change"]});
+var ValidTF2 = new Spry.Widget.ValidationTextField("min_max_char", "none", {minChars:2, maxChars:10,validateOn:["blur", "change"]});
+var ValidTF1 = new Spry.Widget.ValidationTextField("date_no_error", "date", {validateOn:["blur", "change"], useCharacterMasking:true});
+var ValidTF1 = new Spry.Widget.ValidationTextField("int_min_max_no_error", "integer", {minValue:10, maxValue:100, validateOn:["blur", "change"]});
+//-->
+</script>
+
+<hr />
+
+<!--
+
+Seventh Example - Use Custom Pattern
+-->
+<p>The following example shows how to validate a custom pattern. You can define your own pattern using the following pattern characters: 0 - any digit between 0-9, (A,a) - alphabetic characters, (X,x)  - alpha-numeric characters, ? - any character. The character masking is enabled for this validation. (The text in bold represents the auto-complete sequence). </p>
+  
+<form id="form7" name="form7" method="get" action="TextfieldValidationSample.html">
+  <table>
+    <tr>
+      <td>Custom validation:</td>
+      <td>
+          <span id="custom">
+              <input type="text" name="text21" id="text21" />
+			Pattern:000-000 <strong>AA</strong> 00
+          <span class="textfieldRequiredMsg">You must enter a value!</span>
+		  <span class="textfieldInvalidFormatMsg">Invalid format.</span>
+		</span>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+          <input type="submit" name="submit7" id="submit7" value="Submit" />
+      </td>
+    </tr>
+  </table>
+ </form>
+ 
+<script type="text/javascript">
+<!--
+var custom = new Spry.Widget.ValidationTextField("custom","custom", {pattern:"000-000 \\A\\A 00",useCharacterMasking:true, validateOn:["blur", "change"]});
+//-->
+</script>
+
+<hr />
+<!--
+
+Eight Example - Use Custom validation callback functions to validate passwords
+
+-->
+<p>The following example shows how to validate using a custom made validation function. You can define your own javascript validation function that can validate a password strength or the password to be correcly retyped.</p>
+  
+<form id="form8" name="form8" method="get" action="TextfieldValidationSample.html">
+  <table border="0">
+    <tr>
+      <td>Password:</td>
+      <td style="width: 600px;">
+          <span id="customPasswordFunction">
+						<input type="password" name="text212" id="text212" />
+          	<span class="textfieldRequiredMsg">You must enter a value!</span>
+						<span class="textfieldInvalidFormatMsg">2 numbers, 2 chars and a non alpha numeric, length between 8 and 10.</span>
+					</span>
+			</td>
+		</tr>
+		<tr>
+			<td>Retype:</td>
+			<td style="width: 600px;">
+	        <span id="dupFunction">
+						<input type="password" name="text213" id="text213" />
+          	<span class="textfieldRequiredMsg">You must enter a value!</span>
+						<span class="textfieldInvalidFormatMsg">The passwords not match.</span>
+					</span>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+          <input type="submit" name="submit713" id="submit713" value="Submit" />
+      </td>
+    </tr>
+  </table>
+ </form>
+ 
+<script type="text/javascript">
+<!--
+var passwordStrength = function(value, options){
+
+	if (value.length < 8 || value.length > 10)
+		return false;
+
+	if (value.replace(/[^0-9]*/ig, '').length < 2)
+		return false;
+	
+	if (value.replace(/[^a-z]/ig, '').length < 2)
+		return false;
+
+	if (value.replace(/[0-9a-z]/ig, '').length == 0)
+		return false;
+
+	return true;
+}
+
+var passwordTheSame = function(value, options){
+	var other_value = document.getElementById('text212').value;
+	if (value != other_value){
+		return false;
+	}
+	return true;
+}
+
+var customFunction = new Spry.Widget.ValidationTextField("customPasswordFunction", "custom", {validation: passwordStrength, validateOn:["blur", "change"]});
+var passwordDuplication = new Spry.Widget.ValidationTextField("dupFunction", "custom", {validation: passwordTheSame, validateOn:["change", "blur"]});
+//-->
+</script>
+<hr />
+<!--
+
+Nine Example - Use a different zone on page to display error messages
+
+-->
+<p>The textfield validation widget is able to display the error messages that are not in the same container as the validation input. The same classes mechanism that apply to the input form field container is applied to this second region too.</p>
+  
+<form id="form9" name="form9" method="get" action="TextfieldValidationSample.html">
+  <table border="0">
+    <tr>
+      <td>Integer:</td>
+      <td style="width: 600px;">
+      	<span id="int_min_max2">
+					<input type="text" name="textfield9" id="textfield9" />(Between 100 and 999)
+					<span class="textfieldRequiredMsg">You must enter a value!</span>
+					<span class="textfieldInvalidFormatMsg">You must enter an integer value!</span>
+					<span class="textfieldMinValueMsg">The entered value is less than 100.</span>
+					<span class="textfieldMaxValueMsg">The entered value is greater than the maximum required (999).</span>
+      	</span>
+			</td>
+		</tr>
+		<tr>
+			<td>Errors:</td>
+			<td style="width: 600px;">
+      	<span id="additionalErrorZone">
+					<span class="textfieldRequiredMsg">You must enter a value!</span>
+					<span class="textfieldInvalidFormatMsg">You must enter an integer value!</span>
+					<span class="textfieldMinValueMsg">The entered value is less than 100.</span>
+					<span class="textfieldMaxValueMsg">The entered value is greater than the maximum required (999).</span>
+      	</span>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+          <input type="submit" name="submit9" id="submit9" value="Submit" />
+      </td>
+    </tr>
+  </table>
+ </form>
+ 
+<script type="text/javascript">
+<!--
+var InvalidZones = new Spry.Widget.ValidationTextField("int_min_max2", "integer", {minValue:10, maxValue:999, useCharacterMasking:false, validateOn:["blur", "change"], additionalError: 'additionalErrorZone'});
+//-->
+</script>
+
+<hr />
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Element Selector API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="intro">
+  <h3>SpryDOMUtils.js</h3>
+  <h4>Description</h4>
+  <p>SpryDOMUtils.js contains utility functions that make common DOM manipulation tasks a bit easier.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../includes/SpryDOMUtils.js">SpryDOMUtils.js</a></p>
+  </blockquote>
+</div>
+<div id="elementselector">
+	<h3>$$</h3>
+	<h4>Description</h4>
+	<p>Nicknamed the &quot;Element Selector&quot;, this utility function returns an array of elements within the document that match the specified CSS selector.</p>
+	<h4>Format</h4>
+	<p>Spry.$$(cssSelectorString)</p>
+	<h4>Arguments</h4>
+	<p>cssSelectorString - String. A CSS selector sequence or comma separated set of selector sequences to use to find elements within the document. For the list of supported CSS 3 selectors, checkout the <a href="../../element_selector/index.html">Element Selector Overview</a>.</p>
+	<h4>Returns</h4>
+	<p>Array. An array containing the elements matched with the specified CSS selector. The array returned is augmented with additional utility functions that operate on all elements within the array. Each of these utility functions returns the array itself, which makes it possible to chain successive function calls with dot notation. The list of functions are as follows:</p>
+	<ul>
+		<li>addClassName</li>
+		<li>addEventListener</li>
+		<li>forEach</li>
+		<li>removeAttribute</li>
+		<li>removeClassName</li>
+		<li>removeEventListener</li>
+		<li>setAttribute</li>
+		<li>setProperty</li>
+		<li>setStyle</li>
+		<li>toggleClassName</li>
+	</ul>
+	<h4>Example</h4>
+	<pre>// Add a class to every span.
+
+var spans = Spry.$$(&quot;span&quot;);
+spans.addClassName(&quot;foo&quot;);
+
+// Since the functions added to the array returned by $$ also return the
+// array itself, it is possible to chain the functions together with dot notation.
+
+Spry.$$(&quot;div&quot;).addClassName(&quot;address&quot;).addEventListener(&quot;click&quot;, function(){ alert(&quot;clicked!&quot;); }, false);</pre>
+	<h4>Required Files</h4>
+	<blockquote>
+		<p><a href="../../../includes/SpryDOMUtils.js">SpryDOMUtils.js</a></p>
+	</blockquote>
+</div>
+<div id="addClassName">
+  <h3> addClassName</h3>
+  <h4>Description</h4>
+  <p>Adds a class name to the class attribute of the  elements returned by the $$() function.</p>
+  <p>Opposite of removeClassName.</p>
+  <h4>Format</h4>
+  <p>  	Spry.$$(cssSelector).addClassName(className);<br />
+  	</p>
+  <h4>Arguments</h4>
+  <p>className - String. The name of the class to add to the class attribute of every element returned by the $$() function.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.</p>
+  <h4>Example</h4>
+  <pre>// Find all spans and add the class &quot;foo&quot; to each one.
+
+Spry.$$(&quot;span&quot;).addClassName(&quot;foo&quot;);</pre>
+</div>
+<div id="addEventListener">
+  <h3> addEventListener</h3>
+  <h4>Description</h4>
+  <p>Registers a handler/callback for a specific event on all elements returned by the $$() function.</p>
+  <p>Opposite of removeEventListener.</p>
+  <h4>Format</h4>
+  <p>Spry.$$(cssSelector).addEventListener(eventType, handler, capture);<br />
+  	</p>
+  <h4>Arguments</h4>
+  <p>eventType - String. The name of the event that will trigger the specified handler/callback.</p>
+  <p>handler - Function. The handler to call when the specified event is triggered. When called, the browser's native event object is passed as the 1st argument to the handler. When called, the 'this' reference within the handler will be the element the handler was registered on. The handler can return a value of false to prevent the event from propagating any further and to prevent the default event action from executing.</p>
+  <p>capture - Boolean. If true, the handler is triggered during the &quot;capture&quot; phase of the event processing. If false, the handler is triggered during the propagation (bubble up) phase of event processing.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.</p>
+  <h4>Example</h4>
+  <pre>// Define a handler function.
+
+function MyOnClickHandler(e)
+{
+	alert(&quot;Link was clicked!&quot;);
+	return false;
+}
+
+// Add a click listener on all links on the page.
+
+Spry.$$(&quot;a&quot;).addEventListener(&quot;click&quot;, MyOnClickHandler, false);</pre>
+</div>
+
+<div id="forEach">
+  <h3> forEach</h3>
+  <h4>Description</h4>
+  <p>Calls the specified function for each element returned from the $$() function.</p>
+  <h4>Format</h4>
+  <p>  	Spry.$$(cssSelector).forEach(elementFunc)<br />
+  	</p>
+  <h4>Arguments</h4>
+  <p>elementFunc - Function. A reference to a function that will be invoked for each element in the array returned by the $$() function. When invoked, an element from the array returned by $$() will be passed as the first argument to the function.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.</p>
+  <h4>Example</h4>
+  <pre>
+// Find all elements with a class of &quot;Accordion&quot; and invoke the Accordion widget
+// constructor for each match.
+
+Spry.$$(&quot;.Accordion&quot;).forEach(function(n) {  var a = new Spry.Widget.Accordion(n); });
+</pre>
+</div>
+<div id="removeAttribute">
+  <h3> removeAttribute</h3>
+  <h4>Description</h4>
+  <p>Removes the specified attribute from all  elements returned by the $$() function.</p>
+  <p>Opposite of setAttribute.</p>
+  <h4>Format</h4>
+  <p>Spry.$$(cssSelector).removeAttribute(attributeName)</p>
+  <h4>Arguments</h4>
+  <p>attributeName - String. The name of the attribute to remove from each element.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.<br />
+  	</p>
+  <h4>Example</h4>
+  <pre>// Remove the border attribute from all table tags.
+
+Spry.$$(&quot;table&quot;).removeAttribute(&quot;border&quot;);</pre>
+</div>
+<div id="removeEventListener">
+  <h3> removeEventListener</h3>
+  <h4>Description</h4>
+  <p>Removes  a handler/callback function, that was previously registered with addEventListener(), for a specific event from all elements returned by the $$() function.</p>
+  <p>Opposite of addEventListener.</p>
+  <h4>Format</h4>
+  <p>Spry.$$(cssSelector).removeEventListener(eventType, handler, capture)</p>
+  <h4>Arguments</h4>
+  <p>eventType - String. The name of the event that triggers the specified handler/callback.</p>
+  <p>handler - Function. The handler/callback function to remove. This function must be the *exact* same function that was used when addEventListener() was called to register the handler with the element.</p>
+  <p>capture - Boolean. If true, the handler was to be triggered during the &quot;capture&quot; phase of  event processing. If false, the handler was to be triggered during the propagation (bubble up) phase of event processing. The value here must match the value that was used at the time addEventListener() was called.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.<br />
+  	</p>
+  <h4>Example</h4>
+  <pre>
+function MyClickHandler(e)
+{
+	alert(&quot;MyClickHandler was called!&quot;);
+}
+
+// Register the MyClickHandler as an event listener on all divs.
+
+Spry.$$(&quot;div&quot;).addEventListener(&quot;click&quot;, MyClickHandler, &quot;false&quot;);
+
+...
+
+// INCORRECT: The following example specifies a different event so
+// nothing is removed.
+
+Spry.$$(&quot;div&quot;).removeEventListener(&quot;mouseover&quot;, MyClickHandler, &quot;false&quot;);
+
+// INCORRECT: The following example specifies a different capture value
+// so nothing is removed.
+
+Spry.$$(&quot;div&quot;).removeEventListener(&quot;click&quot;, MyClickHandler, &quot;true&quot;);
+
+// CORRECT: The following example specifies the exact same set of arguments
+// that were used when addEventListener() was called so the MyClickHandler
+// is removed from the listener queue of each element.
+
+Spry.$$(&quot;div&quot;).removeEventListener(&quot;click&quot;, MyClickHandler, &quot;false&quot;);</pre>
+</div>
+<div id="removeClassName">
+  <h3> removeClassName</h3>
+  <h4>Description</h4>
+  <p>Removes the specified class name from the class attribute of all the elements returned from the $$() function. If the class attribute of a given element contains more than one class name, this function will only remove the specified class name, leaving all other class names in tact. If you want to remove *all* classes from and element, use removeAttribute(&quot;class&quot;) instead.</p>
+  <p>Opposite of addClassName.</p>
+  <h4>Format</h4>
+  <p>Spry.$$(cssSelector).removeClassName(className)</p>
+  <h4>Arguments</h4>
+  <p>className - String. The name of the class to remove from the class attribute of each element.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.<br />
+  	</p>
+  <h4>Example</h4>
+  <pre>// Look for all elements that have a class name of &quot;foo&quot; and &quot;bar&quot; on them
+// and remove only the &quot;foo&quot; class name from each element.
+
+Spry.$$(&quot;.foo.bar&quot;).removeClassName(&quot;foo&quot;);</pre>
+</div>
+<div id="setAttribute">
+  <h3> setAttribute</h3>
+  <h4>Description</h4>
+  <p>Sets the specified attribute and value on each element returned from the $$() function. If a given element already has the specified attribute defined, this function will override its value with the specified value.</p>
+  <p>To remove an attribute from each element, use the removeAttribute() function.</p>
+  <p>Special Note:</p>
+  <p>The underlying implementation of setAttribute() uses the DOM setAttribute() method on each element. In Safari 2.x browsers, calling this function with an attribute that is namespaced results in an attribute being added to the element *without* the prefix. So for example, if you called setAttribute(&quot;spry:region&quot;, &quot;ds1&quot;), Safari 2.x browsers treat it as if you called setAttribute(&quot;region&quot;, &quot;ds1&quot;). This behavior is different from all other browsers, and seems to have been fixed in the latest Safari 3.0 beta.</p>
+  <h4>Format</h4>
+  <p>  	Spry.$$(cssSelector).setAttribute(name, value)</p>
+  <h4>Arguments</h4>
+  <p>name - String. The name of the attribute to set on each element.</p>
+  <p>value - String. The value of the attribute to set on each element.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.<br />
+  	</p>
+  <h4>Example</h4>
+  <pre>// Find the element that has an id of &quot;mainImage&quot; and add a tabindex attribute to it.
+
+Spry.$$(&quot;#mainImage&quot;).setAttribute(&quot;tabindex&quot;, &quot;0&quot;);
+
+// WARNING: The following attempts to set a namespaced attribute on an element
+// this will not work on Safari 2.x browsers.
+
+Spry.$$(&quot;#content&quot;).setAttribute(&quot;spry:region&quot;, &quot;ds1&quot;);</pre>
+  <div id="setProperty">
+    <h3> setProperty</h3>
+    <h4>Description</h4>
+    <p>Sets the specified property and value on the elements returned by the $$() function. It's important to note that properties are *NOT* the same as attributes on a given element.</p>
+    <h4>Format</h4>
+    <p>Spry.$$(cssSelector).setProperty(name, value)</p>
+    <h4>Arguments</h4>
+    <p>name - String. The name of the property to set on each element.</p>
+    <p>value - String. The value of the property to set on each element.</p>
+    <h4>Returns</h4>
+    <p>Array. Returns the array it operated on.<br />
+    	</p>
+    <h4>Example</h4>
+    <pre>
+// The following example creates a tooltip widget and then uses the element
+// selector and setProperty() functions to store a handle to the widget object
+// on each element that has a class of 'tooltipTrigger'.
+
+var tt = new Spry.Widget.Tooltip(&quot;foo&quot;);
+
+Spry.$$.(&quot;[class='tooltipTrigger']&quot;).setProperty(&quot;spryToolTip&quot;, tt);</pre>
+  </div>
+  <div id="setStyle">
+  <h3> setStyle</h3>
+  <h4>Description</h4>
+  <p>Adds the specified CSS properties and values to all of the elements returned by the $$() function.</p>
+  <h4>Format</h4>
+  <p><br />
+  	Spry.$$(cssSelector).setStyle(cssProperties)</p>
+  <h4>Arguments</h4>
+  <p>cssProperties - String. The CSS properties and values to set on each element. The format of this string is identical to the format that is used by the style attribute.</p>
+  <h4>Returns</h4>
+  <p>Array. Returns the array it operated on.<br />
+  	</p>
+  <h4>Example</h4>
+  <pre>
+// Change the background color, top and left margin to all divs with a class of &quot;indented&quot;.
+
+Spry.$$(&quot;div.indented&quot;).setStyle(&quot;margin-left: 8em; margin-top: 2em; background-color: #FF00FF;&quot;)</pre>
+</div>
+  <div id="toggleClassName">
+    <h3> toggleClassName</h3>
+    <h4>Description</h4>
+    <p>Adds the specified class name to the class attribute of all the elements returned by the $$() function if the class attribute does not already contain it. Removes the class name from a given element if it was already present. </p>
+    <h4>Format</h4>
+    <p>Spry.$$(cssSelector).toggleClassName(className)</p>
+    <h4>Arguments</h4>
+    <p>className - String. The name of the class to add or remove from the class attribute of each element.</p>
+    <h4>Returns</h4>
+    <p>Array. Returns the array it operated on.<br />
+    	</p>
+         	<h4>Example</h4>
+    <pre>// The following example illustrates a scenario where a class name of &quot;selected&quot;
+// is added to elements on the page to give it the appearance of being selected.
+// The following code simulates a situation where the developer wants to invert
+// what is selected, that is, anything that is already selected on screen becomes
+// unselected, and anything that was not previously selected becomes selected.
+
+Spry.$$(&quot;div.item&quot;).toggleClassName(&quot;selected&quot;);</pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

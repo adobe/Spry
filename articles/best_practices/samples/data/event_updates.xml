@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<update>
+		<header>Aquo-Thon</header>
+		<content><![CDATA[	
+			<div class="location">Whistler, British Columbia</div>
+			<div class="date">May 26th</div>
+			<p class="description">Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</p>
+			<a href="#">directions...</a>
+		]]>
+		</content>
+	</update>
+	<update>
+		<header>Aquo Swing</header>
+		<content><![CDATA[	
+			<div class="location">Sacramento, CA</div>
+			<div class="date">June 10th</div>
+			<p class="description">Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.</p>
+			<a href="#">directions...</a>
+		]]>
+		</content>
+	</update>
+	<update>
+		<header>Aquo Ultra Marathon</header>
+		<content><![CDATA[	
+			<div class="location">Whistler, British Columbia</div>
+			<div class="date">June 22nd</div>
+			<p class="description">Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.</p>
+			<a href="#">directions...</a>
+		]]>
+		</content>
+	</update>
+	<update>
+		<header>Aquo Extreme Ski</header>
+		<content><![CDATA[	
+			<div class="location">Jackson Hole, WY</div>
+			<div class="date">December 17th</div>
+			<p class="description">Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.</p>
+			<a href="#">directions...</a>
+		]]>
+		</content>
+	</update>
+</updates>

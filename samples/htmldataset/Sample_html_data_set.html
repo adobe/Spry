@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML Data Set sample </title>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryPagedView.js"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var html_ds = new Spry.Data.HTMLDataSet("../../data/products.html", "productsTable", {firstRowAsHeaders:true, columnNames:["Product", , "ShortD", , ,]});	
+	var page = new Spry.Data.PagedView(html_ds, {pageSize: 5});	
+	Spry.Data.initRegions();
+	pageInfo = page.getPagingInfo();
+
+	ToggleFilter = function()
+	{
+		if (!this.filtered){
+			page.filter(function(ds, row, rowNum) { 
+				if (rowNum % 2)
+					return row;
+
+				return null; 
+			});
+		}else{
+			page.filter(null);
+		}
+		this.filtered = !this.filtered;
+	};
+</script>
+
+
+
+</head>
+
+<body>
+
+<h3>Spry HTML Data Set sample</h3>
+<p> This sample shows how to add navigation on a HTML Data Set. The data displayed on the table is provided by a html data set and the navigation through the data is made using Page Data iew feature.</p>
+<p spry:region="pageInfo" spry:repeatchildren="pageInfo">
+	<a spry:if="{ds_CurrentRowNumber} != {ds_RowNumber}" href="#" onclick="page.goToPage('{ds_PageNumber}'); return false;">{ds_PageNumber}</a>
+	<span spry:if="{ds_CurrentRowNumber} == {ds_RowNumber}" class="currentPage">{ds_PageNumber}</span>
+</p>
+<p spry:region="pageInfo" spry:repeatchildren="pageInfo">
+	<a spry:if="{ds_CurrentRowNumber} != {ds_RowNumber}" href="#" onclick="page.goToPage('{ds_PageNumber}'); return false;">{ds_PageFirstItemNumber}-{ds_PageLastItemNumber}</a>
+	<span spry:if="{ds_CurrentRowNumber} == {ds_RowNumber}" class="currentPage">{ds_PageFirstItemNumber}-{ds_PageLastItemNumber}</span>
+</p>
+<div spry:region="page pageInfo"> 
+	<table width="70%" border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <th>ID</th>
+      <th spry:sort="page">Product Name</th>
+        <th>Product Description</th>
+    </tr>
+	  <tr spry:repeat="page" spry:hover="data_hover" spry:odd="selected">
+        <td>{ds_RowID}</td>
+        <td nowrap="nowrap">{Product}</td>
+        <td>{ShortD}</td>
+      </tr>		
+	</table>
+</div>
+<p>
+  <input type="button" value="First" onclick="page.firstPage();" />
+  <input type="button" value="Prev" onclick="page.previousPage();" />
+  <input type="button" value="Next" onclick="page.nextPage();" />
+  <input type="button" value="Last" onclick="page.lastPage();" />
+</p>
+<form method="get" action="">
+	<input type="button" value="Show the even rows" onclick="ToggleFilter();"/>
+</form>
+</body>
+</html>

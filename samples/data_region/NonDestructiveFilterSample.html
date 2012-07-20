@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Non-Destructive Filter Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "states/state")
+
+function FilterData()
+{
+	var tf = document.getElementById("filterTF");
+	if (!tf.value)
+	{
+		// If the text field is empty, remove any filter
+		// that is set on the data set.
+
+		dsStates.filter(null);
+		return;
+	}
+
+	// Set a filter on the data set that matches any row
+	// that begins with the string in the text field.
+
+	var regExpStr = tf.value;
+	
+	if (!document.getElementById("containsCB").checked)
+		regExpStr = "^" + regExpStr;
+
+	var regExp = new RegExp(regExpStr, "i");
+	
+	var filterFunc = function(ds, row, rowNumber)
+	{
+		var str = row["name"];
+		if (str && str.search(regExp) != -1)
+			return row;
+		return null;
+	};
+
+	dsStates.filter(filterFunc);
+}
+
+function StartFilterTimer()
+{
+	if (StartFilterTimer.timerID)
+		clearTimeout(StartFilterTimer.timerID);
+	StartFilterTimer.timerID = setTimeout(function() { StartFilterTimer.timerID = null; FilterData(); }, 100);
+}
+-->
+</script>
+</head>
+
+<body>
+<h3>Non-Destructive Filter Sample </h3>
+<p>This is a simple example of using non-destructive filtering to adjust what is displayed in a spry:region based on user input. </p>
+<hr />
+<p>Enter the name of a state: 
+	<input type="text" id="filterTF" onkeyup="StartFilterTimer();" /> 
+	Contains: 
+	<input type="checkbox" id="containsCB" />
+</p>
+<div spry:region="dsStates">
+	<p>Matching States ({ds_RowCount} of {ds_UnfilteredRowCount}):</p>
+	<ul>
+		<li spry:repeat="dsStates">{name}</li>
+	</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<events>
+	<event><![CDATA[
+		<h2 class="name">Aquo-Thon</h2>
+		<div class="info">		
+			<div class="location">Whistler, British Columbia</div>
+			<div class="date">May 26th</div>
+			<p class="description">Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</p>
+			<a href="#">directions...</a>
+		</div>
+	]]></event>
+
+	<event><![CDATA[
+		<h2 class="name">Aquo Swing</h2>
+		<div class="info">		
+			<div class="location">Sacramento, CA</div>
+			<div class="date">June 10th</div>
+			<p class="description">Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.</p>
+			<a href="#">directions...</a>
+		</div>
+	]]></event>
+
+	<event><![CDATA[	
+		<h2 class="name">Aquo Ultra Marathon</h2>
+		<div class="info">		
+			<div class="location">Whistler, British Columbia</div>
+			<div class="date">June 22nd</div>
+			<p class="description">Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.</p>
+			<a href="#">directions...</a>
+		</div>
+		]]></event>
+
+	<event><![CDATA[
+		<h2 class="name">Aquo Extreme Ski</h2>
+		<div class="info">		
+			<div class="location">Jackson Hole, WY</div>
+			<div class="date">December 17th</div>
+			<p class="description">Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.</p>
+			<a href="#">directions...</a>
+		</div>
+	]]></event>
+
+	<event><![CDATA[	
+		<h2 class="name">Aquo Baja 400</h2>
+		<div class="info">		
+			<div class="location">San Filipe, Baja California</div>
+			<div class="date">October 3rd</div>
+			<p class="description">Come south of the border and watch the dirt fly. This Baja 400 promises to be the best yet, with all the top seeds being there.</p>
+			<a href="#">directions...</a>
+		</div>
+	]]></event>
+
+	<event><![CDATA[
+		<h2 class="name">Big Wave Challenge</h2>
+		<div class="info">		
+			<div class="location">Mavericks, CA</div>
+			<div class="date">November 8th</div>
+			<p class="description">Watch the worlds best big wave surfers take on the legendary break at Mavericks.</p>
+			<a href="#">directions...</a>
+		</div>
+		<h2 class="name">Aquo Classic</h2>
+	]]></event>
+
+	<event><![CDATA[
+		<div class="info">		
+			<div class="location">Carlsbad, CA</div>
+			<div class="date">August 15th</div>
+			<p class="description">Join us for the 10th annual Aquo Classic at Alvaro Pines in sunny Carlsbad California.</p>
+			<a href="#">directions...</a>
+		</div>
+	]]></event>
+</events>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data Shell Sample 2</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../widgets/accordion/SpryAccordion.js" type="text/javascript"></script>
+<link href="../../widgets/accordion/SpryAccordion.css" rel="stylesheet" type="text/css" />
+<br />
+<style type="text/css">
+.SpryHiddenRegion {
+	display: none;
+}
+.dataTable th {
+	background-color: #CCCCCC;
+	padding: 4px;
+}
+table.dataTable {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+.dataTable th, .dataTable td {
+	border: solid 1px black;
+}
+#Accordion1{width:300px;float:left;}
+</style>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script src="../../includes/SpryDataSetShell.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.HTMLDataSet(null, "empData");
+var ds2 = new Spry.Data.XMLDataSet("../../data/employees-02.xml", "employees/employee");
+var dsShell = new Spry.Data.DataSetShell(ds1);
+//-->
+</script>
+</head>
+
+<body>
+<h3>Data Shell Sample</h3>
+<p>This sample demonstrates the use of the Shell Data Set. The Shell Data Set can be bound to a region like any other data set, but its purpose is to serve as a placeholder for other data sets so that developers can &quot;hot swap&quot;  them.</p>
+<p>The example below demonstrates the hot swapping of an HTML Data Set with an XML Data Set. The first panel uses the HTML data set (ds1). The second panel uses a XML data set (ds2). The table is a detail region bound to the data set shell (dsShell).</p>
+<p>Each accordion tab has on onclick event that changes the data set shell value. That allows the singe detail region to share data sets. </p>
+<hr />
+<div id="Accordion1" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab" >West Office Employees</div>
+    <div class="AccordionPanelContent" spry:region="ds1"><p spry:repeat="ds1" spry:setrow="ds1" onclick="dsShell.setInternalDataSet(ds1, true);">{firstname} {lastname}</p></div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">East Office Employess</div>
+    <div class="AccordionPanelContent" spry:region="ds2"><p spry:repeat="ds2" spry:setrow="ds2" onclick="dsShell.setInternalDataSet(ds2, true);">{firstname} {lastname}</p></div>
+  </div>
+</div>
+<div spry:detailregion="dsShell" class="SpryHiddenRegion">
+	<table border="1" class="dataTable">
+		<tr>
+			<th>@id</th>
+			<th>firstname</th>
+			<th>lastname</th>
+			<th>username</th>
+		</tr>
+		<tr>
+			<td>{@id}</td>
+			<td>{firstname}</td>
+			<td>{lastname}</td>
+			<td>{username}</td>
+		</tr>
+	</table>
+</div>
+<table id="empData" class="dataTable">
+<script type="text/javascript">
+// If JS is enabled, we want to prevent the table from flashing
+// when the page is first loaded.
+Spry.$("empData").style.display = "none";
+</script>
+	<tbody>
+		<tr>
+			<th>@id</th>
+			<th>firstname</th>
+			<th>lastname</th>
+			<th>username</th>
+		</tr>
+		<tr>
+			<td>123456</td>
+			<td>Edward</td>
+
+			<td>Smith</td>
+			<td>esmith</td>
+		</tr><tr>
+			<td>127937</td>
+			<td>Neil</td>
+			<td>Johnson</td>
+
+			<td>njohnson</td>
+		</tr><tr>
+			<td>126474</td>
+			<td>Steve</td>
+			<td>Williams</td>
+			<td>swilliams</td>
+
+		</tr><tr>
+			<td>120585</td>
+			<td>John</td>
+			<td>Jones</td>
+			<td>jjones</td>
+		</tr><tr>
+			<td>127493</td>
+
+			<td>Joe</td>
+			<td>Brown</td>
+			<td>jbrown</td>
+		</tr>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+var Accordion1 = new Spry.Widget.Accordion("Accordion1");
+//-->
+</script>
+</body>
+</html>

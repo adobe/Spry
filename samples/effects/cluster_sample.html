@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Effects Notification mechanism Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<style type="text/css">
+	
+.animationContainer{
+	height: 250px;
+	width: 670px;
+}
+
+.demoDiv{
+	background-color: #CCC; 
+	height: 230px;
+	width: 350px;
+	border: 1px solid black;
+	margin-left: 1px;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<h3>Spry Effect Cluster</h3>
+	
+<!-- 
+
+Sample 1: Using consecutive effects into your own cluster
+
+-->
+<p> 
+
+The Cluster allow you to run multiple Animation one after the other. You'll have to define these animations and register using the addNextEffect() method to a cluster. When you'll call the start() method all the effects will be executed in the order you specified. If the cluster is allowed to toggle the effects will be run in the reverse order. Every cluster registered effect should also receive the toggle parameter to know that can run in reverse too.
+
+The observers register to the cluster will work as for any other effect. 
+
+</p>
+<form method="get" action="observers_sample.html">
+	<input type="button" onclick="cluster.start();" value="Click Me" />
+</form>
+<br />
+<div class="animationContainer">
+	<div id="first_cluster" class="demoDiv">
+			<h3>Lore Ipsum Content</h3>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel 
+			sem nec massa cursus interdum. Class aptent taciti sociosqu ad litora 
+			torquent per conubia nostra, per inceptos hymenaeos. Duis euismod eros 
+			consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus vel, 
+			aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis 
+			bibendum consequat, odio erat volutpat ipsum, sed dignissim ligula mi 
+			in justo. Nam placerat. Nullam fringilla tortor. Quisque lacinia, 
+			mi non iaculis adipiscing, turpis lacus eleifend velit, dictum facilisis 
+			pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis, 
+			faucibus sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus. </p>		
+	</div>
+</div>
+<script type="text/javascript">
+	var my_cluster = function(element)
+	{
+		Spry.Effect.Cluster.call(this, {toggle: true});
+
+		this.name = 'my_cluster';
+		var resize_hor = new Spry.Effect.Size(element, {width:10, height: 10, units:'px'}, {width:350, height: 10, units:'px'}, {duration: 500, toggle: true});
+		this.addNextEffect(resize_hor);
+
+		var resize_ver = new Spry.Effect.Size(element, {width:350, height: 10, units:'px'}, {width:350, height: 230, units:'px'}, {duration: 500, toggle: true});
+		this.addNextEffect(resize_ver);
+	}
+	
+	my_cluster.prototype = new Spry.Effect.Cluster();
+	my_cluster.prototype.constructor = my_cluster;
+
+	var cluster = new my_cluster("first_cluster");
+</script>
+<hr />
+<!-- 
+	
+		Sample 2: Reusing Clustered effects
+
+-->
+<p>
+	The clusters can be reused. The next sample will add to the previous cluster we created a new Highlight effect.
+	</p>
+<form method="get" action="observers_sample.html">
+	<input type="button" onclick="reuse_cluster.start();" value="Click Me" />
+</form>
+<br />
+<div class="animationContainer">
+	<div id="second_cluster" class="demoDiv">
+			<h3>Lore Ipsum Content</h3>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel 
+			sem nec massa cursus interdum. Class aptent taciti sociosqu ad litora 
+			torquent per conubia nostra, per inceptos hymenaeos. Duis euismod eros 
+			consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus vel, 
+			aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis 
+			bibendum consequat, odio erat volutpat ipsum, sed dignissim ligula mi 
+			in justo. Nam placerat. Nullam fringilla tortor. Quisque lacinia, 
+			mi non iaculis adipiscing, turpis lacus eleifend velit, dictum facilisis 
+			pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis, 
+			faucibus sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus. </p>		
+	</div>
+</div>
+<script type="text/javascript">
+	var reuse_cluster = new Spry.Effect.Cluster({toggle:true});
+	
+	var previous_cluster = new my_cluster("second_cluster");
+	reuse_cluster.addNextEffect(previous_cluster);
+
+	var hilite = new Spry.Effect.Highlight("second_cluster", {duration: 500, to: "#FFCC33", toggle: true});
+	reuse_cluster.addNextEffect(hilite);
+
+</script>
+<hr />
+<!-- 
+	
+		Sample 3: Cluster effect using parallel animation
+
+-->
+<p>
+	The animations registered to a cluster may run in parallel. The sample here will reuse the first cluster and will do the highlight in parallel.
+</p>
+<form method="get" action="observers_sample.html">
+	<input type="button" onclick="parallel_cluster.start();" value="Click Me" />
+</form>
+<br />
+<div class="animationContainer">
+	<div id="parallel_cluster" class="demoDiv">
+			<h3>Lore Ipsum Content</h3>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel 
+			sem nec massa cursus interdum. Class aptent taciti sociosqu ad litora 
+			torquent per conubia nostra, per inceptos hymenaeos. Duis euismod eros 
+			consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus vel, 
+			aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis 
+			bibendum consequat, odio erat volutpat ipsum, sed dignissim ligula mi 
+			in justo. Nam placerat. Nullam fringilla tortor. Quisque lacinia, 
+			mi non iaculis adipiscing, turpis lacus eleifend velit, dictum facilisis 
+			pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis, 
+			faucibus sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus. </p>		
+	</div>
+</div>
+<script type="text/javascript">
+	var parallel_cluster = new Spry.Effect.Cluster({toggle:true});
+	
+	var previous_cluster = new my_cluster("parallel_cluster");
+	parallel_cluster.addParallelEffect(previous_cluster);
+
+	var hilite = new Spry.Effect.Highlight("parallel_cluster", {duration: 1000, to: "#FFCC33", toggle: true});
+	parallel_cluster.addParallelEffect(hilite);
+</script>
+
+</body>
+</html>

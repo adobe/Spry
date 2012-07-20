@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML Panel Sample</title>
+<script src="../../widgets/htmlpanel/SpryHTMLPanel.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../../css/samples.css" />
+<style type="text/css">
+/* This class is placed on the HTML Panel Container element
+ * whenever it is loading data.
+ */
+
+.HTMLPanelLoading {
+	background-color:#999999;
+}
+/* This class is placed on the HTML Panel Container element
+ * when a load request has failed.
+ */
+
+.HTMLPanelError {
+	background-color:#FF0000;
+}
+/* These classes are used to hide any HTML Panel state markup
+ * within an HTML Panel container.
+ */
+.HTMLPanelLoadingContent, .HTMLPanelErrorContent {
+	display: none;
+}
+</style>
+</head>
+<body>
+<h3>HTML Panel Sample</h3>
+<p>The HTML Panel widget allows users to load in HTML fragments as content. This sample shows how to implement this feature.</p>
+<h4>Basic Sample</h4>
+<pre> &lt;a href=&quot;#&quot; onclick=&quot;mine.loadContent('htmlpanel/frag.html');&quot;&gt;Click&lt;/a&gt;
+ &lt;div id=&quot;me&quot;&gt;This is static content.&lt;/div&gt;
+ &lt;script&gt;
+   var mine = new Spry.Widget.HTMLPanel(&quot;me&quot;);
+ &lt;/script&gt;</pre>
+<p><a href="#" onclick="mine.loadContent('frag-0.html');return false;">Clicking this link loads the contents of 'frag-0.html' into the 'me' DIV</a></p>
+<div class="liveSample" id="me">
+  <p>This is static content.</p>
+</div>
+<hr />
+<h4>Progressive Enhancement</h4>
+<p>With progressive enhancement, we ensure that the page will work correctly when Javascript is turned off. To do this, we make a real link to the fragment. </p>
+<p>If javascript is on,  the link is not followed, but instead, the onclick handler is used. If javascript if off, the onclick is ignored and clicking the link will take you to the fragment page directly.</p>
+<p><a href="frag-0.html" onclick="pe.loadContent(this.href);return false;">Click this link</a><br />
+</p>
+<div class="liveSample" id="prog">
+  <p>This is static content.</p>
+</div>
+<hr />
+<h4>Setting States</h4>
+<p>Using specific CSS classes, users can specify 2 states of the HTML Panel: Loading and Error. The Loading class will be added while the data request processing is happening and removed when the new content is loaded. The error class will be displayed if something went wrong with the data loading. </p>
+<p>The loading class is 'HTMLPanelLoadingContent' and the error class is 'HTMLPanelErrorContent'. The element with this class name (there should be only one each.) will be displayed in the panel at the correct time. The default stylesheet sets them to display:none by default.</p>
+<p>A quick gray flash is the loading content. Error class turns the content red.</p>
+<p><a href="frag-0.html" onclick="pe2.loadContent(this.href);return false;">Loading Class</a> | <a href="badpath/frag-0.html" onclick="pe2.loadContent(this.href);return false;">Error Class</a></p>
+<div class="liveSample" id="prog2">
+  <p>This is static content.</p>
+<div class="HTMLPanelLoadingContent"> This is loading content.</div>
+<div class="HTMLPanelErrorContent">Some error occurred.</div>
+</div>
+
+<hr />
+<script type="text/javascript">
+var mine = new Spry.Widget.HTMLPanel("me");
+var pe = new Spry.Widget.HTMLPanel("prog");
+var pe2 = new Spry.Widget.HTMLPanel("prog2");
+</script>
+</body>
+</html>

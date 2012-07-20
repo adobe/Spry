@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<update>
+	<header>Aquo-Thon</header>
+	<content><![CDATA[	
+		<div class="location">Whistler, British Columbia</div>
+		<div class="date">May 26th</div>
+		<p class="description">Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</p>
+		<a href="#">directions...</a>
+	]]>
+	</content>
+</update>

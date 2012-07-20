@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Rating API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" /></head>
+
+<body>
+<div id="accordion">
+  <h3>Rating Widget</h3>
+  <h4>Description</h4>
+  <p>The Rating Widget can be used to rate some content by a single mouse click or using a keyboard.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/rating/SpryRating.js">SpryRating.js</a></p>
+    <p><a href="../../../widgets/rating/SpryRating.css">SpryRating.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/rating/SpryRating.html">SpryRating.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/rating/RatingSample.html">SpryRatingSample.html</a></p>
+  </blockquote>
+  </div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container&gt;<br />      &lt;star container&gt;
+      ...
+      &lt;star container&gt;
+	  &lt;messaage  container&gt;<br />   &lt;/widget container&gt;<br /></pre>
+  <p>The Rating Widget supports two or more star containers  per widget. The number of star containers determines the maximum value of the rated value.</p>
+  <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;span id=&quot;rating1&quot; class=&quot;ratingContainer&quot;&gt;<br />
+    &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;    
+    &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;ratingRatedMsg&quot;&gt;Thanks for your rating!&lt;/span&gt;
+&lt;/span&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />var rating1 = new Spry.Widget.Rating(&quot;spryrating1&quot;);<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.Rating(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.Rating(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <p>Below are listed all options available for the Rating widget.<br />
+    <br />
+</p>
+  <table width="817" cellpadding="4" id="options">
+    <tr>
+      <th width="110">Option</th>
+      <th width="446">Definition</th>
+      <th width="105">Default</th>
+      <th width="104">Values</th>
+    </tr>
+    <tr id="containsString">
+      <td>ratingValue </td>
+      <td>Sets the number of stars that will appear as &quot;already rated&quot; when page loads.</td>
+      <td>0</td>
+      <td>number</td>
+    </tr>
+    <tr id="minCharsType">
+      <td>ratingValueElement </td>
+      <td>This option provides an id for an HTML element (this can be: text field,  hidden field) whose &quot;value&quot; attribute will be used as initial value  when page loads. This HTML element can be udated with the a value comming from the server after rating.</td>
+      <td>-</td>
+      <td>string</td>
+    </tr>
+    <tr id="maxListItems">
+      <td>afterRating </td>
+      <td>This option provides the Rating widget value after the user makes a rating.</td>
+      <td>currentValue</td>
+      <td><ul>
+          <li>currentValue</li>
+        <li>serverValue</li>
+      </ul></td>
+    </tr>
+    <tr id="hoverSuggestClass">
+      <td>allowMultipleRating</td>
+      <td>Using this option you can  leave the widget enabled or read-only  after the first rating.</td>
+      <td>true</td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr id="loadFromServer">
+      <td>readOnly </td>
+      <td>Sets the widget in read-only mode, where the user can't rate. Only display already collected information.</td>
+      <td>false</td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr id="urlParam">
+      <td>saveURL</td>
+      <td><p>The URL used for saving data on the server. It may contain the placeholder for the rated value, in the form @@ratingValue@@. If no postData option, the data will be sent on GET.</p></td>
+      <td>-</td>
+      <td>string</td>
+    </tr>
+
+    <tr id="movePrevKeyCode">
+      <td>postData </td>
+      <td><p>This option allows the user to specify a string containing url encoded form arguments or any value, that will get submitted by POST. It may contain the placeholder for the rated value, in the form @@ratingValue@@. It is always send in conjunction with saveURL. If this option is present, the data will be  automatically send by POST.</p>      </td>
+      <td>-</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>counter</td>
+      <td>By  adding this option you can  display the rate value when mouse hover the stars -e.g: a counter like [3.5 / 10].</td>
+      <td>false </td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>rateHandler </td>
+      <td>In this option the user can specify a function  to be called  when the user makes a rating. If a saveUrl is present, this function will be called after the data has been sent on the server specified in saveURL.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>enableKeyboardNavigation </td>
+      <td>This option allows to the user to vote using keyboard keys.</td>
+      <td>true</td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>moveNextKeyCode</td>
+      <td>This option allows the user to assign a specific key to go to the next star. The value of the option is the keyboard code number.</td>
+      <td>number</td>
+      <td>39 (left arrow key)</td>
+    </tr>
+    <tr>
+      <td>movePrevtKeyCode</td>
+      <td>This option allows the user to assign a specific key to go to the previous star. The value of the option is the keyboard code number.</td>
+      <td>number</td>
+      <td><p>37 (right arrow key)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>doRatingKeyCode</td>
+      <td>This option allows  the users to make a rating by pressing a key.</td>
+      <td>number</td>
+      <td>13 (Enter key)</td>
+    </tr>
+    <tr>
+      <td>starFullClass</td>
+      <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingFull&quot;.</td>
+      <td>ratingFull</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>starHalfClass</td>
+      <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingHalf&quot;.</td>
+      <td>ratingHalf</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>starEmptyClass</td>
+      <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingEmpty&quot;.</td>
+      <td>ratingEmpty</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>starHoverClass </td>
+      <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingHover.&quot;</td>
+      <td>ratingHover</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>containerReadOnlyClass</td>
+      <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingReadOnlyState.&quot;.
+      Note that this applied on the widget container and if you change it or the above star classes, you must also change the other rules that uses them,
+      e.g. <em>.ratingReadOnlyState .ratingFull</em>, in the CSS file.</td>
+      <td>ratingReadOnlyState</td>
+      <td>string</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var rating1 = new Spry.Widget.Rating(&quot;rating1&quot;,{allowMultipleRating: false, ratingValueElement: 'rating1_val', saveUrl: 'SpryRating.php', postData: 'id=spryrating2&amp;val=@@ratingValue@@', afterRating: 'serverValue'});
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="notifications">
+  <h2>Notifications</h2>
+  <table border="0">
+    <tr>
+      <th>Notification</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>onPreRate</td>
+      <td>
+      	<p>The rating wigdet has just been used (via mouse or keyboard).</p>
+        <p>No other data will be passed to the observers.</p>      
+      </tr>
+    <tr>
+      <td>onPostRate</td>
+      <td>
+      	<p>The rating widget has finished all processing required (including sendind data to a server, aclling a user function, updating its value).</p>
+		<p>No other data will be passed to the observers.</p>
+    </tr>   
+    <tr>
+      <td>onServerUpdate</td>
+      <td><p>The server request to compute the new value for the Rating widget completed succesfuly and holds the new value.</p>
+        <p>An object that describes the load request will be passed to all observers. This object contains the following properties:</p>
+        <ul>
+          <li><strong>xhRequest</strong>
+            <ul>
+              <li>The native XMLHttpRequest object used to load the data</li>
+            </ul>
+          </li>
+          </li>          
+          <li><strong>method</strong>
+            <ul>
+              <li>A string with the value of &quot;GET&quot; or &quot;POST&quot;</li>
+            </ul>
+           </li>
+           <li><strong>url</strong>
+            <ul>
+              <li>The saveURL constructor parameter, used for saving data on a server.</li>
+            </ul>
+          </li>
+          <li><strong>postData</strong>
+            <ul>
+              <li>postData constructor parameter, if specified.</li>
+            </ul>
+          </li>
+          </ul>
+       </td>
+    </tr>
+    <tr>
+      <td>onServerError</td>
+      <td><p>The server request to compute the new value for the Rating widget failed.</p>
+        <p>An object that describes the load request will be passed to all observers. This object contains the following properties:</p>
+         <ul>
+          <li><strong>xhRequest</strong>
+            <ul>
+              <li>The native XMLHttpRequest object used to load the data</li>
+            </ul>
+          </li>
+          <li><strong>method</strong>
+            <ul>
+              <li>A string with the value of &quot;GET&quot; or &quot;POST&quot;</li>
+            </ul>
+           </li>
+           <li><strong>url</strong>
+            <ul>
+              <li>The saveURL constructor parameter, used for saving data on a server.</li>
+            </ul>
+          </li>
+          <li><strong>postData</strong>
+            <ul>
+              <li>postData constructor parameter, if specified.</li>
+            </ul>
+          </li>
+          </ul>
+         </td>
+    </tr>   
+  </table>
+</div>
+<div id="methods">
+  <h2>Rating Widget Methods</h2> 
+    <div id="addobserver">
+    <h3><strong>addObserver</strong></h3>
+    <p>Adds an observer to the region. As with other components within Spry, the observer can be either an object or a function callback.</p>
+    <h4>Format</h4>
+    <p>widgetName.addObserver(observer);</p>
+    <h4>Example</h4>
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   // Create an rating widget and bind it to the element with
+   // the id of &quot;firstRating&quot;.
+
+   var rating1 = new Spry.Widget.Rating(&quot;firstRating&quot;);
+
+   // Add a function as an observer of the widget.
+
+   function myObserverFunc(notificationType, notifier, data)
+   {
+      if (notificationType == &quot;onServerUpdate&quot;)
+         alert(&quot;onServertUpdate fired!&quot;);
+   }
+
+   rating1.addObserver(myObserverFunc);
+
+   // Add an object as an observer of the widget.
+
+   var obs = new Object;
+   obs.onServerUpdate = function(notifier, data) { alert(&quot;onServerUpdate was fired!&quot;); };
+   rating1.addObserver(obs);
+&lt;/script&gt;</pre>
+  </div>
+  <div id="removeobserver">
+    <h3><strong>removeObserver</strong></h3>
+    <p>Removes the specified observer from the widget's list of observers. The same observer function or object that was used for the addObserver() call must be used in a call to removeObserver().</p>
+    <h4>Format</h4>
+    <p>widgetName.removeObserver(observer);</p>
+    <h4>Example</h4>
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   // Create a Rating widget and bind it to the element with
+   // the id of &quot;firstRating&quot;.
+
+   var rating1 = new Spry.Widget.Rating(&quot;firstRating&quot;);
+
+   // Add a function as an observer of the widget.
+
+   function myObserverFunc(notificationType, notifier, data)
+   {
+      if (notificationType == &quot;onServerUpdate&quot;)
+         alert(&quot;onServerUpdate fired!&quot;);
+   }
+
+   rating1.addObserver(myObserverFunc);
+
+   // Add an object as an observer of the widget.
+
+   var obs = new Object;
+   obs.onServerUpdate = function(notifier, data) { alert(&quot;onServerUpdate was fired!&quot;); };
+   rating1.addObserver(obs);
+
+   ...
+
+   // Remove the observers that were added.
+
+  rating1.removeObserver(myObserverFunc);
+  rating1.removeObserver(obs);
+  &lt;/script&gt;</pre>
+  </div>
+   <div id="disablenotifications">
+    <h3><strong>disableNotifications</strong></h3>
+    <p>Disables the notification of observers.</p>
+    <h4>Format</h4>
+    <p>widgetName.disableNotifications();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;rating1.<strong>disableNotifications</strong>(); return false;&quot;&gt;Disable Notifications&lt;/a&gt;</pre>
+  </div>
+  <div id="enablenotifications">
+    <h3><strong>enableNotifications</strong></h3>
+    <p>Enables observer notifications. </p>
+    <p>Notifications are enabled by default within an HTML Panel.</p>
+    <h4>Format</h4>
+    <p>widgetName.enableNotifications();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;rating1.enableNotifications(); return false;&quot;&gt;Enable Notifications&lt;/a&gt;</pre>
+  </div>
+   <div id="getstate">
+    <h3><strong>getState</strong></h3>
+    <p>Get the widget current state; possible values:</p>
+    <ul>
+      <li>'initial' - rating allowed, but the user did not do a rating</li>
+      <li>'readonly' - rating not allowed, either by default or after the user made a rating and the widget doesn't allow multiple rating</li>
+      <li>'rated' - (multiple) rating allowed, user did a rating</li>
+    </ul>
+    <h4>Format</h4>
+    <p>widgetName.getState();</p>
+    <h4>Example</h4>
+    <pre>
+ &lt;a href=&quot;#&quot; onclick=&quot;alert(spryrating1.getState()); return false;&quot;&gt;Get current state&lt;/a&gt; </pre>
+  </div>
+  <div id="setstate">
+    <h3><strong>setState</strong></h3>
+    <p>Set the state of the widget. See getState() for possible options.</p>
+    <h4>Format</h4>
+    <p>widgetName.setState(newState);</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;rating1.setState('readonly'); return false;&quot;&gt;Set state&lt;/a&gt; </pre>
+  </div>
+  <div id="getvalue">
+    <h3><strong>getValue</strong></h3>
+    <p>Get the widget current value. This can be:<br />
+     </p>
+    <ul>
+      <li>the initial value, if the did not use the widget</li>
+      <li>the rated value / server computed value, if the usew used the widget<br />
+      </li>
+    </ul>
+    <h4>Format</h4>
+    <p>widgetName.getValue();</p>
+    <h4>Example</h4>
+    <pre>
+ &lt;a href=&quot;#&quot; onclick=&quot;alert(rating1.getValue()); return false;&quot;&gt;Get current value&lt;/a&gt; </pre>
+  </div>  
+  <div id="setvalue">
+    <h3><strong>setValue</strong></h3>
+    <p>Set the widget value. newValue must be a float number between 0 and the number of stars in the wigdet. This method is also used when the user actually makes a rating.</p>
+    <h4>Format</h4>
+    <p>widgetName.setValue(newValue);</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;rating1.setValue(2); return false;&quot;&gt;Set a value of 2&lt;/a&gt; </pre>
+  </div>
+   
+  <div id="removemessage">
+    <h3><strong>removeMessage</strong></h3>
+    <p>Removes a message from the widget. By default, error messages such as when the widhet is read-only and user tries to rate, or the thank you message after rating, remain on screen, next to the widget. If you want to delete them you can use this method.</p>
+    <ul>
+      <li>className - a the CSS class name that controls the display of the message; currently supported are:</li>
+      <li> 'ratingRatedState' for the 'thanks for rating' message</li>
+      <li>'ratingReadOnlyErrState' for the read only message</li>
+      <li>when - an optional paramater that specifies a delay to perform the action, in milliseconds (1 sec = 1000 ms)</li>
+    </ul>
+    <h4>Format</h4>
+    <p>widgetName.removeMessage(className, timeout);</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;rating1.removeMessage('ratingReadOnlyErrState',1000); return false;&quot;&gt;Remove error message&lt;/a&gt;</pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sliding Panel Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Sliding Panels Widget Overview</h1>
+<h3>About Spry widgets</h3>
+<p>A Spry widget is a page  element containing built-in behaviors that provide a richer  experience by  enabling user interaction. These behaviors can include functionality that lets  users show or hide content on the page, change the appearance (such as color)  of the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a  set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You  can easily insert these widgets - the code is HTML and CSS at its simplest - and  then style the widget according to your liking.</p>
+<p>Each widget in the Spry  framework is associated with unique CSS and JavaScript files. The CSS file  contains everything necessary for styling the widget, and the JavaScript file  gives the widget its functionality. You must link both of these file to the  page on which you want the widget to appear, otherwise the widget won't have  any functionality or styling. For more information, see the appropriate  sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JS files  associated with a given widget are named after the widget, so it's easy for you  to know which files correspond to which widgets. (For example, the files  associated with the Sliding Panels widget are called SprySlidingPanels.css and  SprySlidingPanels.js). The associated files for Spry widgets are located in  widgets/accordion directory.</p>
+<h3>Anatomy of the Sliding Panels Widget</h3>
+<p>The Spry Sliding Panels widget is a disclosure widget that works by providing a 'frame' through which content is viewed and a content 'panel' which contains the page information. The panel is a block of content separated into discrete blocks or panels. When a user clicks on an element to show a specific block of content, the entire panel will move behind the frame until the selected content is in the window. The interesting part of this widget is that the content panel can use any layout and the widget will slide the content panel up, down or diagonally. </p>
+<table width="200">
+  <tr>
+    <td><img src="panel_start.png" width="266" height="460" alt="Starting Panel position" /></td>
+    <td valign="bottom"><img src="panel_mid.png" width="287" height="410" alt="Panel on the move." /></td>
+    <td valign="bottom"><img src="panel_end.png" width="389" height="418" alt="Finished Panel position" /></td>
+  </tr>
+</table>
+<p>The content panel can be laid out in any way the user desires. Spry will figure out the best way to get there. Panels, can be in a straight line horizontally or vertically, in a grid as shown or any other layout.</p>
+<p>The markup of the Sliding Panels widget is straightforward:</p>
+<ul>
+  <li>Main widget element
+    -This is the visible window element.
+    <ul>
+      <li>Sliding Panels container
+        - This holds all the individual panels and can be any height or width.
+        <ul>
+          <li>Content Panel- Best that container size matches the visible window size.</li>
+          <li>Content Panel- As many content panels as you wish.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>As with our other widgets, Spry only cares about the correct nesting structure. The actual tags don't matter. Also, the content blocks can be whatever you wish, but they all need to have an ID. As with all Spry widgets, the widget is activated by a script tag below the markup that contains the widget constructor and its options.</p>
+<p>The Sliding Panels widget uses CSS to define the look and feel of the widget. Critical elements are the size of the visible window and the size of the content blocks. It is best if they are the same size, or coordinated to ensure that the content is visible. The basic code looks like (CSS added for convenience):</p>
+<pre>&lt;style&gt;<br />
+.SlidingPanels {
+   position: relative;
+   width: 200px;
+   height: 200px;
+   padding: 0px;
+   }
+.SlidingPanelsContentGroup {
+   position: relative;
+   height:600px;
+   margin: 0px;
+   padding: 0px;
+   }
+.SlidingPanelsContent {
+   width: 100%;
+   height: 400px;
+   overflow: hidden;
+   margin: 0px;
+   padding: 0px;
+   }
+&lt;/style&gt;
+
+&lt;a href=&quot;#&quot; onclick=&quot;sp1.showPanel(0);&quot;&gt;Panel 1&lt;/a&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;sp1.showPanel(1);&quot;&gt;Panel 2&lt;/a&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;sp1.showPanel(2);&quot;&gt;Panel 3&lt;/a&gt;
+
+&lt;div id=&quot;apDiv1&quot; class=&quot;SlidingPanels&quot;&gt;
+ &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+   &lt;div id=&quot;first&quot;&gt;Content 1&lt;/div&gt;
+   &lt;div id=&quot;second&quot;&gt;Content 2&lt;/div&gt;
+   &lt;div id=&quot;third&quot;&gt;Content 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+ var sp1 = new Spry.Widget.SlidingPanels(&quot;apDiv1&quot;);
+&lt;/script&gt;</pre>
+<p>In this example, the &lt;a&gt; tags are used to change between panels. The showPanel behavior is used to select the panel. Spry uses a zero based counting system, so the first panel is '0'.</p>
+<h3>Building a Sliding Panels widget</h3>
+<ol>
+  <li>In a page, attaching the javascript file and CSS file.<br />
+    <pre>
+&lt;head&gt;<br />&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot; src=&quot;SprySlidingPanels.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;SprySlidingPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;</pre>
+  </li>
+  <li>In the body, add the main container &lt;div&gt; and give it an ID. Attach the class &quot;SlidingPanels&quot;. The &quot;SlidingPanels' class defines the size of the visible window.<br />
+    <pre>&lt;body&gt;
+  <span class="hilite">&lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+  &lt;/div&gt;</span>
+&lt;/body&gt;</pre>
+  </li>
+  <li>Within the &lt;div&gt; add another &lt;div&gt;. This is the visible window container. Give the &lt;div&gt;a class name of  &quot;SlidingPanelsContentGroup&quot;. This class defines the layout of the hidden content container.
+    <pre>&lt;body&gt;
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     <span class="hilite">&lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+     &lt;/div&gt;</span>
+  &lt;/div&gt;
+&lt;/body&gt;</pre>
+  </li>
+  <li>Add the content containers. You can have as many as you want. Each content container should have its own ID. This ID can be used for the panel buttons. We  use CSS to give the content containers a size. For consistency, we will use a class for that.
+    <pre>&lt;body&gt;
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+        <span class="hilite">&lt;div id=&quot;content1&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 1&lt;/div&gt;
+        &lt;div id=&quot;content2&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 2&lt;/div&gt;
+        &lt;div id=&quot;content3&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 3&lt;/div&gt;</span>
+     &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</pre>
+  </li>
+  <li>Add the constructor script block below the markup. The required parameter of the constructor is the ID of the main container tag.
+    The variable name can be whatever you wish. It will be used to refer to the widget in the panel buttons.
+    Remember that javascript is case sensitive.
+    <pre>&lt;body&gt;
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+        &lt;div id=&quot;content1&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 1&lt;/div&gt;
+        &lt;div id=&quot;content2&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 2&lt;/div&gt;
+        &lt;div id=&quot;content3&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 3&lt;/div&gt;
+     &lt;/div&gt;
+  &lt;/div&gt;
+
+<span class="hilite">&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+   var sp1 = new Spry.Widget.SlidingPanels(&quot;slidingPanel_1&quot;);
+&lt;/script&gt;</span>
+&lt;/body&gt;</pre>
+    That is the only markup required for the widget, but we need to add buttons to switch between panel. </li>
+  <li>Add an &lt;a&gt; tag for each panel.
+    <pre>&lt;body&gt;
+<span class="hilite">&lt;a href=&quot;#&quot;&gt;Panel 1&lt;/a&gt;
+&lt;a href=&quot;#&quot;&gt;Panel 2&lt;/a&gt;
+&lt;a href=&quot;#&quot;&gt;Panel 3&lt;/a&gt;</span>
+
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+        &lt;div id=&quot;content1&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 1&lt;/div&gt;
+        &lt;div id=&quot;content2&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 2&lt;/div&gt;
+        &lt;div id=&quot;content3&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 3&lt;/div&gt;
+     &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+   var sp1 = new Spry.Widget.SlidingPanels(&quot;slidingPanel_1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+  </li>
+  <li>To these &lt;a&gt; tags, add an onClick behavior that will select the panel.
+    <pre>&lt;body&gt;
+&lt;a href=&quot;#&quot; <span class="hilite">onClick=&quot;sp1.showPanel(0);&quot;</span>&gt;Panel 1&lt;/a&gt;
+&lt;a href=&quot;#&quot; <span class="hilite">onClick=&quot;sp1.showPanel(1);&quot;</span>&gt;Panel 2&lt;/a&gt;
+&lt;a href=&quot;#&quot; <span class="hilite">onClick=&quot;sp1.showPanel(2);&quot;</span>&gt;Panel 3&lt;/a&gt;
+
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+        &lt;div id=&quot;content1&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 1&lt;/div&gt;
+        &lt;div id=&quot;content2&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 2&lt;/div&gt;
+        &lt;div id=&quot;content3&quot; class=&quot;SlidingPanelsContent&quot;&gt;The Content 3&lt;/div&gt;
+     &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+   var sp1 = new Spry.Widget.SlidingPanels(&quot;slidingPanel_1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+    Remember that Spry uses a zero based counting system, so the first panel is number '0'. </li>
+  <li>Test in the browser.</li>
+</ol>
+<h3>Sliding Panels Options</h3>
+<p>There are options that can be set for the widget that control things like the duration of the sliding and the transition type. Options are added to the constructor script. Behaviors activate the widget and are added to other page elements.</p>
+<p><strong>Constructor Options</strong></p>
+<table width="1052">
+  <tr>
+    <th width="127">name</th>
+    <th width="66">type</th>
+    <th width="134">default value</th>
+    <th width="705">description</th>
+  </tr>
+  <tr>
+    <td>defaultPanel</td>
+    <td>panel number or ID</td>
+    <td>first panel</td>
+    <td>This determines the panel that is displayed when the page loads.</td>
+  </tr>
+  <tr>
+    <td>duration</td>
+    <td>integer </td>
+    <td>500 milliseconds</td>
+    <td>In milliseconds. Determines the length of time to get to the selected panel. The same duration is used regardless of the distance to the specified content container. This means that the speed of the animation will be slower for closer panels and quicker for further panels, but the duration is always the same.</td>
+  </tr>
+  <tr>
+    <td>enableKeyboardNavigation</td>
+    <td>true/false</td>
+    <td>true</td>
+    <td>Setting to false will allow the widget to get focus, but will disable the previous and next keys:</td>
+  </tr>
+  <tr>
+    <td>enableAnimation</td>
+    <td>true/false</td>
+    <td>true</td>
+    <td>Setting to false will remove the panel animation. Panels will show up instantly.</td>
+  </tr>
+  <tr>
+    <td>fps </td>
+    <td>integer</td>
+    <td>60</td>
+    <td>Frames per second. Use fps and duration to fine tune the smoothness of the transition. A higher fps is generally smoother. Setting too high might affect performance. </td>
+  </tr>
+</table>
+<pre>var sp1 = new Spry.Widget.SlidingPanels(&quot;panels&quot;,{duration:1000, fps:80, defaultPanel:4, enableAnimation:false, enableKeyboardAnimation:false});</pre>
+<h3><strong>Behaviors</strong></h3>
+<p>The Sliding Panels widget only has one behavior. The 'showPanel' behavior is used to switch between panels.</p>
+<blockquote>
+  <p><strong>widgetname.showPanel(panel # or ID);</strong> - This behavior will advance the widget to display the specified panel. The value of the showPanel behavior is the number of the panel (using the zero based counting system, in order of the panel markup) or the ID of the panel to be shown. Use the var name of the widget to tell the browser which widget is being controlled. </p>
+<ul style="list-style-type: circle">
+    <li>&lt;a href=&quot;#&quot; onClick=&quot;sp1.showPanel(4);&quot;&gt;</li>
+    <li>&lt;button onMouseOver=&quot;sp2.showPanel('panelID');&quot;</li>
+</ul>
+</blockquote>
+<h3>Styling the Sliding Panel Widget</h3>
+<p>A guiding principle of Spry Widgets is that users should use CSS to define the look of the widget. The Spry team provides a CSS file as a starting point for styling, and we try to name classes so they are helpful in understanding the workings of the widget. Users may use the default style names or create their own. </p>
+<blockquote>
+  <p><strong>.SlidingPanels</strong> - This class goes on the outer container of the widget. This class sets the size of the visible window. Generally, you will want this window size to match your content container size.</p>
+  <p><strong>.SlidingPanelsContentGroup</strong> - This class goes on the first inner tag that contains all the content panels. This class defines the size of the Sliding Panel. Setting the width, height and float of this panel will determine how the panel moves: horizontally, vertically or diagonally. Spry determines the shortest path to the chosen panel. Panels can be stacked horizontally, vertically or in a block of rows.</p>
+  <p><strong>.SlidingPanelsContent</strong> - This class determines the size of the individual content panel. This should match the size of the visible window, but style however needed for the design.</p>
+</blockquote>
+<p><strong>Note:</strong> Due to differences in browser implementation, the Sliding Panels widget cannot handle margin and padding on the widget structure elements. If you want to use margin and padding in the content, apply it to a tag <em>within</em> the content container, not <em>on</em> the content container.</p>
+<h3>Keyboard Navigation and Accessibility</h3>
+<p>Keyboard navigation can be enabled by adding the 'tabindex' attribute on the top level container of the widget. </p>
+<pre>&lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot; tabindex=&quot;0&quot;&gt;</pre>
+<p>While the tabindex attribute is not W3C valid on non-form elements, IE and Mozilla-based browsers all support tabindex on page elements specifically for enabling keyboard navigation. This helps with accessibility concerns. The Spry team feels that the added benefit of accessibility is worth the invalid use of the attribute. Of course, it is not required for widget functionality and therefore is optional.</p>
+<h3>Widgets and Spry Data</h3>
+<p>There are 2 scenarios in which Spry data can be used with widgets. The first scenario is to use Spry data to populate the content of the widget. The second scenario is to use Spry data to generate the content AND the markup.</p>
+<p><strong>Scenario 1</strong></p>
+<p>Spry data can be used to generate the content of the widget. For this case, the content containers should be spry:regions and the script is placed at the bottom of the page as usual.</p>
+<pre>&lt;body&gt;
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot;&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot;&gt;
+        &lt;div id=&quot;content1&quot; class=&quot;SlidingPanelsContent&quot; <span class="hilite">spry:detailregion=&quot;ds1&quot;</span>&gt;{content}&lt;/div&gt;
+        &lt;div id=&quot;content2&quot; class=&quot;SlidingPanelsContent&quot; <span class="hilite">spry:detailregion=&quot;ds2&quot;</span>&gt;{description}&lt;/div&gt;
+        &lt;div id=&quot;content3&quot; class=&quot;SlidingPanelsContent&quot; <span class="hilite">spry:detailregion=&quot;ds3&quot;</span>&gt;{photo}&lt;/div&gt;
+     &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+   var sp1 = new Spry.Widget.SlidingPanels(&quot;slidingPanel_1&quot;);
+&lt;/script&gt;</pre>
+<p><strong>Scenario 2</strong></p>
+<p>Spry data can be used to generate the widget markup by building out the structure in a spry:region or detailregion. In this case, the script tag should be put <em>inside</em> the spry:region, at the bottom after the markup. Remember that each content container needs an unique ID.</p>
+<pre>&lt;body&gt;
+&lt;div spry;region=&quot;ds1&quot; spry:repeatchildren=&quot;ds1&quot;&gt;&lt;a href=&quot;#&quot; onClick=&quot;sp1.showPanel('content<span class="hilite">{_ds_rowID}</span>');&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;slidingPanel_1&quot; class=&quot;SlidingPanels&quot; <span class="hilite">spry:region=&quot;ds1&quot;</span>&gt;
+     &lt;div class=&quot;SlidingPanelsContentGroup&quot; <span class="hilite">spry:repeat=&quot;ds1&quot;</span>&gt;
+        &lt;div id=&quot;content<span class="hilite">{_ds_rowID}</span>&quot; class=&quot;SlidingPanelsContent&quot;&gt;{content}&lt;/div&gt;
+     &lt;/div&gt;
+   <span class="hilite">&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+      var sp1 = new Spry.Widget.SlidingPanels(&quot;slidingPanel_1&quot;);
+   &lt;/script&gt;</span>
+ &lt;/div&gt;</pre>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated.  All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<update>
+	<header>Aquo Extreme Ski</header>
+	<content><![CDATA[	
+		<div class="location">Jackson Hole, WY</div>
+		<div class="date">December 17th</div>
+		<p class="description">Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.</p>
+		<a href="#">directions...</a>
+	]]>
+	</content>
+</update>

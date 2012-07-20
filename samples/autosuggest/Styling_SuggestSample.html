@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Auto Suggest Widget</title>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../widgets/autosuggest/SpryAutoSuggest.js"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/autosuggest/SpryAutoSuggest.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript">
+var dsProducts1 = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "/products/product", { sortOnLoad: "name" });
+
+</script>
+<style type="text/css">
+.container {
+	width: 300px;
+	height: 100px;
+	border: 1px solid #DDDDDD;
+	padding-left: 5px;
+}
+#desc {
+	margin-left:16px;
+}
+#other {
+	margin-left:48px;
+}
+#name_prd {
+	position:absolute;
+	left:86px;
+	top:19px;
+}
+#with_position_relative {
+	position:absolute;
+}
+</style>
+</head>
+<body>
+<h3>Styling the Autosuggest widget</h3>
+<p>By default, the Autosuggest widget shows the suggested list IN the page flow. This means that any content below the Autosuggest textfield will be pushed down to accommodate this suggest list. This sample provides code for raising the suggest list above the page flow, so the content does not shift.</p>
+<p>There are 2 main techniques for controlling page flow:</p>
+<ul>
+  <li>Leave enough room in the default page for the suggestions.</li>
+  <li>Use CSS to have the suggestions flow over the page content.</li>
+</ul>
+<p>Note: Type &quot;A&quot; to activate these suggest fields.</p>
+<h4>Issue</h4>
+<p>If you don't reserve  space for the suggestions and you have page elements below the autosuggest field, the page elements below the autosuggest widget will push down and it is likely that the page layout will shift to accommodate the suggestions.</p>
+<div id="no_position_relative">
+  <form method="get" action="SuggestSample.html">
+    Product Name:
+    <input type="text" id="productname" />
+      <div id="product_name" spry:region="dsProducts1">
+        <div spry:repeat="dsProducts1" spry:suggest="{name}">
+          <div class="list">
+            {name}
+          </div>
+        </div>
+      </div>
+  </form>
+</div>
+Description:
+<input type="text"/>
+<p></p>
+<h4>Leaving Room for Suggestions</h4>
+<p>Product Name:<br />
+</p>
+<div id="keyboard" class="container">
+  <form method="get" action="SuggestSample.html">
+    <input type="text" id="product" />
+    <div id="productMenu_" spry:region="dsProducts1">
+      <div spry:repeat="dsProducts1" spry:suggest="{name}">
+        <div class="list">
+          {name}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<p>You can also use the 'maxListItems' option in the widget constructor to limit the number of returned suggestions. This will make your suggest list height more predictable. See this <a href="SuggestSample.html">sample</a> and the <a href="../../articles/autosuggest_overview/index.htm">overview documentation</a>.</p>
+<h4>CSS Flow</h4>
+<p> To avoid corrupting the page flow, you should style the autosuggest container to use position:absolute. This takes the suggest widget out of the page flow and the suggestions will cover the content.</p>
+<p>Make sure that the z-index value for the autosuggest is higher than the other z-indexed elements, otherwise the suggestion list will not be displayed on top.</p>
+<div id="with_position_relative">
+  <form method="get" action="SuggestSample.html">
+    <div id="prd">
+      Product Name:
+      <input type="text" id="product2"  />
+    </div>
+    <div id="name_prd" spry:region="dsProducts1">
+      <div spry:repeat="dsProducts1" spry:suggest="{name}">
+        <div class="list">
+          {name}
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div id="desc">
+      Description:
+      <input type="text" />
+    </div>
+    <br/>
+    <div id="other">
+      Other:
+      <input name="" type="text" />
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+	var as1 = new Spry.Widget.AutoSuggest('keyboard', 'productMenu_', 'dsProducts1', 'name',{moveNextKeyCode:34, movePrevKeyCode: 33});
+	var pos = new Spry.Widget.AutoSuggest('with_position_relative', 'name_prd', 'dsProducts1', 'name');
+	var no_pos = new Spry.Widget.AutoSuggest('no_position_relative', 'product_name', 'dsProducts1', 'name');
+
+  </script>
+</body>
+</html>

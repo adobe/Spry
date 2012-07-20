@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<title>Aquo Energy Drink - Events</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link type="text/css" rel="stylesheet" href="css/global.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="css/events.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="css/basic.css" media="screen" />
+
+<script src="../../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var dsEvents = new Spry.Data.HTMLDataSet(null, "staticcontent", {firstRowAsHeaders:false, rowSelector:".event", dataSelector:".eventimage, h2, .location, .date, .description", columnNames:["eventimage","name","location","displaydate","description"]});
+//-->
+</script>
+</head>
+<body>
+<div id="container">		
+	<div id="header">	
+		<div id="header_left">			
+			<h1><a href="#" title="Aquo"><span>Aquo</span></a></h1>
+		</div><!-- close header_left -->			
+	</div><!-- close header -->	
+	
+	<div id="title"></div>	
+	
+	<div id="staticcontent">
+
+		<div class="event">
+			<div class="eventimage"><img src="i/photo_events_aquothon.jpg" alt="Aquo-Thon" /></div>
+			<div class="eventinfo">		
+				<h2 class="name">Aquo-Thon</h2>
+				<div class="location">Whistler, British Columbia</div>
+				<div class="date">May 26th</div>
+				<p class="description">Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/photo_events_swingsacramento.jpg" alt="Aquo Swing" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Aquo Swing</h2>
+				<div class="location">Sacramento, CA</div>
+				<div class="date">June 10th</div>
+				<p class="description">Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/photo_events_ultramarathon.jpg" alt="Aquo Ultra Marathon" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Aquo Ultra Marathon</h2>
+				<div class="location">Whistler, British Columbia</div>
+				<div class="date">June 22nd</div>
+				<p class="description">Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/photo_events_extremeski.jpg" alt="Aquo Extreme Ski" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Aquo Extreme Ski</h2>
+				<div class="location">Jackson Hole, WY</div>
+				<div class="date">December 17th</div>
+				<p class="description">Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/motocross.jpg" alt="Aquo Baja 400" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Aquo Baja 400</h2>
+				<div class="location">San Filipe, Baja California</div>
+
+				<div class="date">October 3rd</div>
+				<p class="description">Come south of the border and watch the dirt fly. This Baja 400 promises to be the best yet, with all the top seeds being there.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/surf.jpg" alt="Big Wave Challenge" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Big Wave Challenge</h2>
+				<div class="location">Mavericks, CA</div>
+				<div class="date">November 8th</div>
+				<p class="description">Watch the worlds best big wave surfers take on the legendary break at Mavericks.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<div class="event">
+			<div class="eventimage">
+				<img src="i/golf.jpg" alt="Aquo Classic" />
+			</div>
+			<div class="eventinfo">
+				<h2 class="name">Aquo Classic</h2>
+				<div class="location">Carlsbad, CA</div>
+				<div class="date">August 15th</div>
+				<p class="description">Join us for the 10th annual Aquo Classic at Alvaro Pines in sunny Carlsbad California.</p>
+				<a href="#">directions...</a>
+			</div>
+		</div>
+
+	</div>
+	<!-- close staticcontent -->
+	
+	<div id="content">
+		<div id="full-column">
+			<h1 id="events_selectanevent">Select an Event</h1>
+
+			<div id="content1" spry:region="dsEvents">
+				<table id="events">
+					<tr>
+						<th id="eventheader" spry:sort="date">Event</th>
+						<th id="locationheader" spry:sort="location">Location</th>
+					</tr>
+					<tr class="eventrow" spry:repeat="dsEvents" spry:hover="rowHover" spry:select="rowSelected" spry:setrow="dsEvents">
+						<td>
+							<span class="eventname">{name}</span><br />
+							<span class="date">{displaydate}</span>
+						</td>
+						<td>{location}</td>
+					</tr>
+				</table>
+			</div>
+
+			<div id="sidebar">
+				<div id="sidebar_brace" spry:detailregion="dsEvents">
+					<div id="eventbanner">{eventimage}</div>
+					<div id="eventdesc">
+						<h3>Event Information</h3>
+						<div>{description}</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- close full_column -->
+	</div><!-- close content -->
+
+	<div id="border_bottom"></div><!-- close border_bottom  -->
+	
+	<div id="footer">
+		<a href="#" class="footer">Home</a> | <a href="#" class="footer">Products</a> | <a href="#" class="footer">Company</a> | <a href="#" class="footer">Events</a> | <a href="#" class="footer">Site Map</a> | <a href="#" class="footer">Terms of Use</a> | <a href="#" class="footer">Privacy Policy</a><br />
+
+		<p id="disclaimer">Any reference to Aquo Energy Drinks, Ltd., Aquo Life, the Aquo-thon and related logos, products or services is for demonstration purposes only and is not intended to refer to any actual organization, publication or products.</p>
+		<div class="clear">&nbsp;</div>
+	</div><!-- close footer -->
+
+</div><!-- close container -->
+
+<script type="text/javascript">
+<!--
+Spry.$("content").style.display = "block";
+//-->
+</script>
+
+</body>
+</html>

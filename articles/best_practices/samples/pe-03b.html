@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Page With No Content Sample</title>
+<!--script src="../../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../../includes/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+var dsEvents = new Spry.Data.XMLDataSet("events.xml", "/events/event");
+</script-->
+</head>
+<body>
+<div id="content" spry:region="dsEvents">
+	<div spry:repeat="dsEvents" class="event">
+		<h2 class="name">{name}</h2>
+		<div class="info">		
+			<div class="location">{location}</div>
+			<div class="date">{date}</div>
+			<p class="description">{description}</p>
+			<a href="{location}">directions...</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

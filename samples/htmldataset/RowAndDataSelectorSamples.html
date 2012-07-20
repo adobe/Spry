@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>More Samples on using rowSelector and dataSelector</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.product {
+	cursor: pointer;
+}
+.hover {
+	background-color: #FFFFCC;
+}
+.selected {
+	background-color: #CCCCCC;
+}
+
+#sourceContainer div {
+	padding: 5px;
+}
+#sourceContainer div span {
+	padding-right: 10px;
+}
+
+</style>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+//
+// Create a HTMLDataSet that loads all the children from the root element and gets all the 
+// items that have 'header' or 'description' as class name.
+//
+var ds1 = new Spry.Data.HTMLDataSet(null, "sourceContainer1", {rowSelector:">", dataSelector:".header, .description"});
+
+//
+// Create a HTMLDataSet that loads all the 'DIV' children from the root element and has no dataSelector specified
+//
+var ds2 = new Spry.Data.HTMLDataSet(null, "sourceContainer2", {rowSelector:">LI"});
+
+//
+// Create a HTMLDataSet that has only dataSelector specified
+//
+var ds3 = new Spry.Data.HTMLDataSet(null, "sourceContainer2", {dataSelector:"li.rowData"});
+
+//
+// Create a HTMLDataSet that loads only specified IDs from a container
+//
+var ds4 = new Spry.Data.HTMLDataSet(null, "sourceContainer2", {dataSelector:"#row_product1, #row_product4, #row_product5", columnNames:["P1", "P4", "P5"]});
+
+
+//-->
+</script>
+</head>
+
+<body>
+<h3>More Samples on using rowSelector and dataSelector</h3>
+<p>     
+     
+     When using a HTML element other then a &lt;TABLE&gt;, the HTMLDataSet needs some extra information in order to
+     extract data from such three-level nested structure. There are two optional parameters (rowSelector, dataSelector)
+     that can be used to accomplish this. See <a href="InternalDivAsSourceSample.html">this sample</a> for possible values to be used with these parameters.
+</p>
+
+<hr />
+<!--  FIRST SAMPLE -->
+<h3>1. Using both rowSelector and dataSelector</h3>
+<h4>Uses all the children of 'sourceContainer1' as rows and gets all the all tags with 'header' or 'description' class names as columns.</h4>
+<br/>
+
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<ul spry:region="ds1" spry:repeatchildren="ds1">
+				<li class="product" spry:setrow="ds1" spry:select="selected" spry:hover="hover">{column0}</li>
+			</ul>
+		</td>
+	  <td width="79%" valign="top">
+	  	
+	  	<div  spry:detailregion="ds1">
+	  		<div><strong>Brief Description:</strong></div>
+	  		<div>{column1}</div>
+	  	</div>
+	  </td>
+  </tr>
+</table>
+
+<br/>
+
+<p>
+ Here's the HTMLDataSet instantiation:
+ </p>
+<pre>
+	var ds1 = new Spry.Data.HTMLDataSet(null, &quot;sourceContainer1&quot;, {rowSelector:&quot;&gt;&quot;, dataSelector:&quot;.header, .description&quot;});
+</pre>
+<p>
+ Here's how the Source Container DIV looks like:
+ </p>
+		 <pre>
+&lt;div id=&quot;sourceContainer1&quot;&gt; 
+	&lt;div class=&quot;rowData&quot; id=&quot;product1&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Photoshop CS2&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;The professional standard in desktop digital imaging&lt;/span&gt;
+	&lt;/div&gt;
+	...
+&lt;/div&gt;		 
+		 </pre>
+
+<br />
+<div id="sourceContainer1"> 
+	<div class="rowdata" id="product1">
+		<span class="header">Adobe Photoshop CS2</span>
+		<span class="description">The professional standard in desktop digital imaging</span>
+	</div>
+	<div class="rowdata" id="product2">
+		<span class="header">Adobe Illustrator CS2</span>
+		<span class="description">Adobe&reg; Illustrator&reg; CS2 software gives you new creative freedom that lets you realize your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.</span>
+	</div>
+	<div class="rowdata" id="product3">
+		<span class="header">Adobe InDesign CS2</span>
+		<span class="description">A new standard in professional layout and design</span>
+	</div>
+	<div class="rowdata" id="product4">
+		<span class="header">Adobe GoLive CS2</span>
+		<span class="description">Professional, standards-based Web and mobile authoring</span>
+	</div>
+	<div class="rowdata" id="product5">
+		<span class="header">Adobe Dreamweaver 8</span>
+		<span class="description">Dreamweaver 8 is the industry-leading web development tool, enabling users to efficiently design, develop and maintain standards-based websites and applications.</span>
+	</div>
+	<div class="rowdata" id="product6">
+		<span class="header">Adobe Flash 8 Professional</span>
+		<span class="description">Introducing Macromedia's biggest Flash release to date.</span>
+	</div>
+	<div class="rowdata" id="product7">
+		<span class="header">Adobe Fireworks 8</span>
+		<span class="description">Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, edit and optimize images for the web with precise control.</span>
+	</div>
+</div>
+The markup used for accessing the values inside the spry:region is {column0}, {column1}. 
+You can use the optional array columnNames:["header", "description"] in the dataset definition in order to access the values using {header}, {description}.
+<br/>
+<br/>
+
+<hr />
+<!--  SECOND SAMPLE -->
+<h3>2. Using only rowSelector</h3>
+<h4>Uses all 'LI' items as rows and for each row builds a single column of data.</h4>
+<p>
+	In this case a single cell is used for each row, that holds all the data from the row.
+</p>
+<br/>
+
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<ul spry:region="ds2" spry:repeatchildren="ds2">
+				<li class="product" spry:setrow="ds2" spry:select="selected" spry:hover="hover">{column0}</li>
+			</ul>
+		</td>
+  </tr>
+</table>
+
+<br/>
+
+<p>
+ Here's the HTMLDataSet instantiation:
+ </p>
+<pre>
+	var ds2 = new Spry.Data.HTMLDataSet(null, &quot;sourceContainer2&quot;, {rowSelector:&quot;&gt;li&quot;});
+</pre>
+<p>
+ Here's how the Source Container DIV looks like:
+ </p>
+		 <pre>
+&lt;ul id=&quot;sourceContainer2&quot;&gt; 
+	&lt;li class=&quot;rowData&quot; id=&quot;product1&quot;&gt;
+		Adobe Photoshop CS2 - 
+		The professional standard in desktop digital imaging
+	&lt;/li&gt;
+	...
+	&lt;li class=&quot;rowData&quot; id=&quot;product7&quot;&gt;
+		Adobe Fireworks 8 -
+		Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, 
+		edit and optimize images for the web with precise control.
+	&lt;/li&gt;	
+&lt;/ul&gt;		 
+		 </pre>
+<br />
+<ul id="sourceContainer2">
+	<li class="rowdata" id="row_product1">
+		Adobe Photoshop CS2 - 
+		The professional standard in desktop digital imaging
+	</li>
+	<li class="rowdata" id="row_product2">
+		Adobe Illustrator CS2 -
+		Adobe&reg; Illustrator&reg; CS2 software gives you new creative freedom that lets you realize your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.</li>
+	<li class="rowdata" id="row_product3">
+		Adobe InDesign CS2 -
+		A new standard in professional layout and design
+	</li>
+	<li class="rowdata" id="row_product4">
+		Adobe GoLive CS2 - 
+		Professional, standards-based Web and mobile authoring
+	</li>
+	<li class="rowdata" id="row_product5">
+		Adobe Dreamweaver 8 -
+		Dreamweaver 8 is the industry-leading web development tool, enabling users to efficiently design, develop and maintain standards-based websites and applications.
+	</li>
+	<li class="rowdata" id="row_product6">
+		Adobe Flash 8 Professional - 
+		Introducing Macromedia's biggest Flash release to date.
+	</li>
+	<li class="rowdata" id="row_product7">
+		Adobe Fireworks 8 - 
+		Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, edit and optimize images for the web with precise control.
+	</li>	
+</ul>
+
+
+<hr />
+<!--  THIRD SAMPLE -->
+<h3>3. No rowSelector specified, only dataSelector</h3>
+<h4>A single row of data is build that has multiple columns from the matching 'LI's</h4>
+<p>
+  This sample takes the data from the same structure as in previous sample (UL LI). <br/>
+	If no rowSelector is specified, a single row is build that uses as cells the items filtered by the dataSelector. <br/>
+	The markup reference looks like: {column0}, {column1}, etc
+</p>
+<br/>
+
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<div spry:region="ds3" spry:repeatchildren="ds3">
+				Here's the value for { column0 }: <strong>{column0}</strong> <br/>
+				Here's the value for { column3 }: <strong>{column3}</strong> <br/>
+			</div>
+		</td>
+  </tr>
+</table>
+
+<br/>
+
+<p>
+ Here's the HTMLDataSet instantiation:
+ </p>
+<pre>
+	var ds3 = new Spry.Data.HTMLDataSet(null, &quot;sourceContainer2&quot;, {dataSelector:&quot;li.rowData&quot;});
+</pre>
+
+<hr />
+<!--  FORTH SAMPLE -->
+<h3>4. No rowSelector specified, only dataSelector that filters using specific IDs</h3>
+<h4>Only the matching 'LI's will be used as columns for this single row of data</h4>
+<p>
+   This sample is just a variation of the previous one, but uses the optional columnNames array in order to change the default markup for values.
+</p>
+<br/>
+
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<div spry:region="ds4" spry:repeatchildren="ds4">
+				Here's the value for { P1 }: <strong>{P1}</strong> <br/>
+				No value for { P4 }: <strong>{P4}</strong> <br/>
+			</div>
+		</td>
+  </tr>
+</table>
+
+<br/>
+
+<p>
+ Here's the HTMLDataSet instantiation:
+ </p>
+<pre>
+	var ds4 = new Spry.Data.HTMLDataSet(null, &quot;sourceContainer2&quot;, {dataSelector:&quot;#row_product1, #row_product4, #row_product5&quot;, columnNames:[&quot;P1&quot;, &quot;P4&quot;, &quot;P5&quot;]});
+</pre>
+
+
+
+</body>
+</html>
+ 

@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sliding Panels Sample</title>
+<link href="../..//widgets/slidingpanels/SprySlidingPanels.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+hr, .clearAll {
+	clear: both;
+}
+
+.SlidingPanels {
+	width: 300px;
+	height: 300px;
+}
+.SlidingPanelsContent {
+	width: 300px;
+	height: 300px;
+}
+
+.p1 {
+	background-color: #CCCC66;
+}
+.p2 {
+	background-color: #FFFFCC;
+}
+.p3 {
+	background-color: #6699FF;
+}
+.p4 {
+	background-color: #99CCCC;
+}
+.p5 {
+	background-color: #FF99CC;
+}
+.p6 {
+	background-color: #339933;
+}
+.p7 {
+	background-color: #9933FF;
+}
+.p8 {
+	background-color: #669966;
+}
+.p9 {
+	background-color: #00FFCC;
+}
+
+#example2.SlidingPanels {
+	float: left;
+}
+#example2 .SlidingPanelsContentGroup {
+	float: left;
+	width: 10000px;
+}
+#example2 .SlidingPanelsContent {
+	float: left;
+}
+
+#example3.SlidingPanels {
+	float: left;
+}
+#example3 .SlidingPanelsContentGroup {
+	float: left;
+	width: 900px;
+}
+#example3 .SlidingPanelsContent {
+	float: left;
+}
+#example3_nav.SlidingPanels {
+	float: left;
+}
+#example3_nav .SlidingPanelsContentGroup {
+	float: left;
+	width: 900px;
+}
+#example3_nav .SlidingPanelsContent {
+	float: left;
+}
+</style>
+<script type="text/javascript" src="../../widgets/slidingpanels/SprySlidingPanels.js"></script>
+
+</head>
+
+<body>
+<h3>Sliding Panels Sample</h3>
+<ul>
+	<li><a href="#VerticalSliding">Example 1: Vertical Sliding</a></li>
+	<li><a href="#HorizontalSliding">Example 2: Horizontal Sliding</a></li>
+	<li><a href="#SlidingBoth">Example 3: Sliding in Both Dimensions</a></li>
+	<li><a href="#KeyboardNavOff">Example 4: Turning Off Keyboard Navigation</a></li>
+	<li><a href="#AnimationOff">Example 5: Turning Off Animation</a></li>
+	<li><a href="#FineTuneAnimation">Example 6: Fine Tuning the Panel Animation</a></li>
+	<li><a href="#DefaultPanel">Example 7: Specifying the Default Panel</a></li>
+	<li><a href="SlidingPanelsSample2.html">Example 8: Alternate Styling</a></li>
+</ul>
+<hr />
+<h4><a name="VerticalSliding"></a>Example 1: Vertical Sliding</h4>
+<p>The CSS for a SlidingPanels widget is setup so that it slides vertically by default. You can change the current panel by calling the showPanel() method on the widget and passing in either the zero-based index of the content panel, or the ID of the content panel.</p>
+<p>&nbsp;</p>
+<p>
+Navigate by index: 
+<a href="#" onclick="sp1.showPanel(0); return false;">1</a> |
+<a href="#" onclick="sp1.showPanel(1); return false;">2</a> |
+<a href="#" onclick="sp1.showPanel(2); return false;">3</a> |
+<a href="#" onclick="sp1.showPanel(3); return false;">4</a> |
+<a href="#" onclick="sp1.showPanel(4); return false;">5</a> |
+<a href="#" onclick="sp1.showPanel(5); return false;">6</a> |
+<a href="#" onclick="sp1.showPanel(6); return false;">7</a> |
+<a href="#" onclick="sp1.showPanel(7); return false;">8</a> |
+<a href="#" onclick="sp1.showPanel(8); return false;">9</a>
+</p>
+<p>
+Navigate by id:
+<a href="#" onclick="sp1.showPanel('ex1_p1'); return false;">p1</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p2'); return false;">p2</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p3'); return false;">p3</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p4'); return false;">p4</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p5'); return false;">p5</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p6'); return false;">p6</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p7'); return false;">p7</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p8'); return false;">p8</a> |
+<a href="#" onclick="sp1.showPanel('ex1_p9'); return false;">p9</a>
+</p>
+<p>
+Other navigation methods:
+<a href="#" onclick="sp1.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp1.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp1.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp1.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example1" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div id="ex1_p1" class="SlidingPanelsContent p1">Panel 1</div>
+		<div id="ex1_p2" class="SlidingPanelsContent p2">Panel 2</div>
+		<div id="ex1_p3" class="SlidingPanelsContent p3">Panel 3</div>
+		<div id="ex1_p4" class="SlidingPanelsContent p4">Panel 4</div>
+		<div id="ex1_p5" class="SlidingPanelsContent p5">Panel 5</div>
+		<div id="ex1_p6" class="SlidingPanelsContent p6">Panel 6</div>
+		<div id="ex1_p7" class="SlidingPanelsContent p7">Panel 7</div>
+		<div id="ex1_p8" class="SlidingPanelsContent p8">Panel 8</div>
+		<div id="ex1_p9" class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<script type="text/javascript">
+var sp1 = new Spry.Widget.SlidingPanels('example1');
+</script>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="HorizontalSliding"></a>Example 2: Horizontal Sliding</h4>
+<p>With a little modification to the CSS to extend the width of the SlidingPanelsContentGroup, you can make the SlidingPanels widget slide horizontally:</p>
+<p>&nbsp;</p>
+<pre>
+#example2.SlidingPanels {
+	float: left;
+}
+#example2 .SlidingPanelsContentGroup {
+	float: left;
+	width: 10000px;
+}
+#example2 .SlidingPanelsContent {
+	float: left;
+	width: 600px;
+}
+</pre>
+<p>&nbsp;</p>
+<p>
+Navigate by index: 
+<a href="#" onclick="sp2.showPanel(0); return false;">1</a> |
+<a href="#" onclick="sp2.showPanel(1); return false;">2</a> |
+<a href="#" onclick="sp2.showPanel(2); return false;">3</a> |
+<a href="#" onclick="sp2.showPanel(3); return false;">4</a> |
+<a href="#" onclick="sp2.showPanel(4); return false;">5</a> |
+<a href="#" onclick="sp2.showPanel(5); return false;">6</a> |
+<a href="#" onclick="sp2.showPanel(6); return false;">7</a> |
+<a href="#" onclick="sp2.showPanel(7); return false;">8</a> |
+<a href="#" onclick="sp2.showPanel(8); return false;">9</a>
+</p>
+<p>
+Navigate by id:
+<a href="#" onclick="sp2.showPanel('ex2_p1'); return false;">p1</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p2'); return false;">p2</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p3'); return false;">p3</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p4'); return false;">p4</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p5'); return false;">p5</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p6'); return false;">p6</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p7'); return false;">p7</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p8'); return false;">p8</a> |
+<a href="#" onclick="sp2.showPanel('ex2_p9'); return false;">p9</a>
+</p>
+<p>
+Other navigation methods:
+<a href="#" onclick="sp2.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp2.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp2.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp2.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example2" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div id="ex2_p1" class="SlidingPanelsContent p1">Panel 1</div>
+		<div id="ex2_p2" class="SlidingPanelsContent p2">Panel 2</div>
+		<div id="ex2_p3" class="SlidingPanelsContent p3">Panel 3</div>
+		<div id="ex2_p4" class="SlidingPanelsContent p4">Panel 4</div>
+		<div id="ex2_p5" class="SlidingPanelsContent p5">Panel 5</div>
+		<div id="ex2_p6" class="SlidingPanelsContent p6">Panel 6</div>
+		<div id="ex2_p7" class="SlidingPanelsContent p7">Panel 7</div>
+		<div id="ex2_p8" class="SlidingPanelsContent p8">Panel 8</div>
+		<div id="ex2_p9" class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<script type="text/javascript">
+var sp2 = new Spry.Widget.SlidingPanels('example2');
+</script>
+<p class="clearAll">&nbsp;</p>
+<hr />
+<h4><a name="SlidingBoth"></a>Example 3: Sliding in Both Dimensions</h4>
+<p>With a little modification to the CSS to extend the width of the SlidingPanelsContentGroup and float the SlidingPanelsContent, you can make the SlidingPanels widget slide in both the horizontal and vertical directions.</p>
+<p>&nbsp;</p>
+<pre>
+#example3.SlidingPanels {
+	float: left;
+}
+#example3 .SlidingPanelsContentGroup {
+	float: left;
+	width: 900px;
+}
+#example3 .SlidingPanelsContent {
+	float: left;
+}
+</pre>
+<p>&nbsp;</p>
+<p>
+Navigate by index: 
+<a href="#" onclick="sp3.showPanel(0); return false;">1</a> |
+<a href="#" onclick="sp3.showPanel(1); return false;">2</a> |
+<a href="#" onclick="sp3.showPanel(2); return false;">3</a> |
+<a href="#" onclick="sp3.showPanel(3); return false;">4</a> |
+<a href="#" onclick="sp3.showPanel(4); return false;">5</a> |
+<a href="#" onclick="sp3.showPanel(5); return false;">6</a> |
+<a href="#" onclick="sp3.showPanel(6); return false;">7</a> |
+<a href="#" onclick="sp3.showPanel(7); return false;">8</a> |
+<a href="#" onclick="sp3.showPanel(8); return false;">9</a>
+</p>
+<p>
+Navigate by id:
+<a href="#" onclick="sp3.showPanel('ex3_p1'); return false;">p1</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p2'); return false;">p2</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p3'); return false;">p3</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p4'); return false;">p4</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p5'); return false;">p5</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p6'); return false;">p6</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p7'); return false;">p7</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p8'); return false;">p8</a> |
+<a href="#" onclick="sp3.showPanel('ex3_p9'); return false;">p9</a>
+</p>
+<p>
+Other navigation methods:
+<a href="#" onclick="sp3.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp3.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp3.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp3.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example3" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div id="ex3_p1" class="SlidingPanelsContent p1">Panel 1</div>
+		<div id="ex3_p2" class="SlidingPanelsContent p2">Panel 2</div>
+		<div id="ex3_p3" class="SlidingPanelsContent p3">Panel 3</div>
+		<div id="ex3_p4" class="SlidingPanelsContent p4">Panel 4</div>
+		<div id="ex3_p5" class="SlidingPanelsContent p5">Panel 5</div>
+		<div id="ex3_p6" class="SlidingPanelsContent p6">Panel 6</div>
+		<div id="ex3_p7" class="SlidingPanelsContent p7">Panel 7</div>
+		<div id="ex3_p8" class="SlidingPanelsContent p8">Panel 8</div>
+		<div id="ex3_p9" class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<script type="text/javascript">
+var sp3 = new Spry.Widget.SlidingPanels('example3');
+</script>
+<p class="clearAll">&nbsp;</p>
+<hr />
+<h4><a name="KeyboardNavOff"></a>Example 4:  Keyboard Navigation</h4>
+<p>The Sliding panel widget has by default the keyboard navigation enabled. You can navigate through the panels by pressing Left and Right keys or Up/Down keys. To have the keyboard navigation working you should have tabindex attribute specified for each panel.</p>
+<p>On the example bellow, use PageUp/PageDown  keys to open/close panels.	</p>
+<div id="example4a_nav" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+	  <div id="ex4a_p1_nav" class="SlidingPanelsContent p1">Panel 1</div>
+		<div id="ex4a_p2_nav" class="SlidingPanelsContent p2">Panel 2</div>
+		<div id="ex4a_p3_nav" class="SlidingPanelsContent p3">Panel 3</div>
+		<div id="ex4a_p4_nav" class="SlidingPanelsContent p4">Panel 4</div>
+		<div id="ex4a_p5_nav" class="SlidingPanelsContent p5">Panel 5</div>
+		<div id="ex4a_p6_nav" class="SlidingPanelsContent p6">Panel 6</div>
+		<div id="ex4a_p7_nav" class="SlidingPanelsContent p7">Panel 7</div>
+		<div id="ex4a_p8_nav" class="SlidingPanelsContent p8">Panel 8</div>
+		<div id="ex4a_p9_nav" class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p class="clearAll">&nbsp;</p>
+<script type="text/javascript">
+var sp4a = new Spry.Widget.SlidingPanels('example4a_nav', {nextPanelKeyCode:34, previousPanelKeyCode:33});
+</script>
+<p>To turn off keyboard navigation, remove any tabindex attribute off of the top-level element for the widget:</p>
+<p>
+Navigate:
+<a href="#" onclick="sp4.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp4.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp4.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp4.showLastPanel(); return false;">Last</a></p>
+<div id="example4" class="SlidingPanels"><div class="SlidingPanelsContentGroup">
+  <div class="SlidingPanelsContent p1">Panel 1</div>
+		<div class="SlidingPanelsContent p2">Panel 2</div>
+		<div class="SlidingPanelsContent p3">Panel 3</div>
+		<div class="SlidingPanelsContent p4">Panel 4</div>
+		<div class="SlidingPanelsContent p5">Panel 5</div>
+		<div class="SlidingPanelsContent p6">Panel 6</div>
+		<div class="SlidingPanelsContent p7">Panel 7</div>
+		<div class="SlidingPanelsContent p8">Panel 8</div>
+		<div class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p>
+  <script type="text/javascript">
+var sp4 = new Spry.Widget.SlidingPanels('example4');
+  </script>
+</p>
+<p>&nbsp;</p>
+<p>Or, pass in an enableKeyboardNavigation:false constructor option. This will allow the widget to get focus, but will disable the previous and next keys:</p>
+<p>&nbsp;</p>
+<p>
+Navigate:
+<a href="#" onclick="sp4b.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp4b.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp4b.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp4b.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example4b" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div class="SlidingPanelsContent p1">Panel 1</div>
+		<div class="SlidingPanelsContent p2">Panel 2</div>
+		<div class="SlidingPanelsContent p3">Panel 3</div>
+		<div class="SlidingPanelsContent p4">Panel 4</div>
+		<div class="SlidingPanelsContent p5">Panel 5</div>
+		<div class="SlidingPanelsContent p6">Panel 6</div>
+		<div class="SlidingPanelsContent p7">Panel 7</div>
+		<div class="SlidingPanelsContent p8">Panel 8</div>
+		<div class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var sp4b = new Spry.Widget.SlidingPanels('example4b', { enableKeyboardNavigation: false });
+</script>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="AnimationOff"></a>Example 5: Turning Off Animation</h4>
+<p>To turn off the panel switching animation, simply pass an enableAnimation:false constructor option:</p>
+<p>&nbsp;</p>
+<p>
+Navigate:
+<a href="#" onclick="sp5.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp5.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp5.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp5.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example5" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div class="SlidingPanelsContent p1">Panel 1</div>
+		<div class="SlidingPanelsContent p2">Panel 2</div>
+		<div class="SlidingPanelsContent p3">Panel 3</div>
+		<div class="SlidingPanelsContent p4">Panel 4</div>
+		<div class="SlidingPanelsContent p5">Panel 5</div>
+		<div class="SlidingPanelsContent p6">Panel 6</div>
+		<div class="SlidingPanelsContent p7">Panel 7</div>
+		<div class="SlidingPanelsContent p8">Panel 8</div>
+		<div class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var sp5 = new Spry.Widget.SlidingPanels('example5', { enableAnimation: false });
+</script>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="FineTuneAnimation"></a>Example 6: Fine Tuning the Panel Animation</h4>
+<p>You can fine tune the panel switching animation by adjusting the duration and fps constructor arguments. The 'duration' constructor argument is expressed in milliseconds. While the 'fps' is an integer number that expresses the number of frames per second.</p>
+<p>&nbsp;</p>
+<p>
+Navigate:
+<a href="#" onclick="sp6.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp6.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp6.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp6.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example6" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div class="SlidingPanelsContent p1">Panel 1</div>
+		<div class="SlidingPanelsContent p2">Panel 2</div>
+		<div class="SlidingPanelsContent p3">Panel 3</div>
+		<div class="SlidingPanelsContent p4">Panel 4</div>
+		<div class="SlidingPanelsContent p5">Panel 5</div>
+		<div class="SlidingPanelsContent p6">Panel 6</div>
+		<div class="SlidingPanelsContent p7">Panel 7</div>
+		<div class="SlidingPanelsContent p8">Panel 8</div>
+		<div class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var sp6 = new Spry.Widget.SlidingPanels('example6', { duration: 250, fps: 90 });
+</script>
+<p>&nbsp;</p>
+<hr />
+<h4><a name="DefaultPanel"></a>Example 7: Specifying the Default Panel</h4>
+<p>You can specify which panel displays by default when the widget is first displayed by passing in the zero-based index of the panel, its ID, or the panel's node itself, via the defaultPanel constructor option:</p>
+<p>&nbsp;</p>
+<p>
+Navigate:
+<a href="#" onclick="sp7.showFirstPanel(); return false;">First</a> |
+<a href="#" onclick="sp7.showPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="sp7.showNextPanel(); return false;">Next</a> |
+<a href="#" onclick="sp7.showLastPanel(); return false;">Last</a>
+</p>
+<p>&nbsp;</p>
+<div id="example7" class="SlidingPanels" tabindex="0">
+	<div class="SlidingPanelsContentGroup">
+		<div class="SlidingPanelsContent p1">Panel 1</div>
+		<div class="SlidingPanelsContent p2">Panel 2</div>
+		<div class="SlidingPanelsContent p3">Panel 3</div>
+		<div class="SlidingPanelsContent p4">Panel 4</div>
+		<div class="SlidingPanelsContent p5">Panel 5</div>
+		<div class="SlidingPanelsContent p6">Panel 6</div>
+		<div class="SlidingPanelsContent p7">Panel 7</div>
+		<div class="SlidingPanelsContent p8">Panel 8</div>
+		<div class="SlidingPanelsContent p9">Panel 9</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var sp7 = new Spry.Widget.SlidingPanels('example7', { defaultPanel: 3 });
+</script>
+<p>&nbsp;</p>
+<hr />
+</body>
+</html>

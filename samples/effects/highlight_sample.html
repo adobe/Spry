@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Samples Spry Effect Highlight</title>
+	<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+	<script  src="../../includes/SpryEffects.js" type="text/javascript" > </script>
+	<style type="text/css">
+	.demoDiv{
+		background-color: #CCC; 
+		height: 150px; 
+		overflow: hidden;
+	}
+	.animationContainer{
+		height: 160px;
+	}
+	img{
+		position: relative; 
+		left: 300px;
+		width: 298px;
+		height: 214px;
+	}
+	</style>
+
+</head>
+<body>
+	<h3>Spry Highlight Effect samples</h3>
+	<hr />
+	
+<!--
+
+		Example 1: The default behaviour for Highlight effect
+
+-->
+
+<p>
+		The Highlight effect will gradually change the color between the current 
+		element background color  to the one defined with the &quot;to:&quot; option in 1 second.</p>
+<p>
+	This first example will transit the element background from the default #CCCCCC 
+	color to the #FFCC33.
+</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var first_example = new Spry.Effect.Highlight('example1', {to:'#FFCC33'});
+&lt;/script&gt;</pre>
+<form method="get" action="highlight_sample.html">
+	<input type="button" onclick="first_example.start();" value="Highlight Example 1" />
+</form>
+<br />
+
+<div class="demoDiv" id="example1">
+	<h4>Example 1</h4>
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+		diam nonumy eirmod tempor invidunt ut labore et dolore magna
+		aliquyam erat, sed diam voluptua. At vero eos et accusam et
+		justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+		sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
+
+<script type="text/javascript">
+	var first_example = new Spry.Effect.Highlight('example1', {to:'#FFCC33'});
+</script>
+
+<hr />
+
+<!--
+
+		Example 2: Toggle and duration options for the Highlight effect
+
+-->
+
+<p><strong>Toggle and Duration</strong></p>
+<p>Toggle allows the effect to reverse itself on the second click. Duration allows you to determine the length of the change. Duration is set in milliseconds (1000ms.= 1 sec.).</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var second_example = new Spry.Effect.Highlight('example2', {duration: 2000, from:'#CCC', to:'#FFCC33', toggle: true});
+&lt;/script&gt;</pre>
+<form method="get" action="highlight_sample.html">
+	<input type="button" onclick="second_example.start();" value="Highlight Example 2" />
+</form>
+<br />
+
+<div class="demoDiv" id="example2">
+	<h4>Example 2</h4>
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+		diam nonumy eirmod tempor invidunt ut labore et dolore magna
+		aliquyam erat, sed diam voluptua. At vero eos et accusam et
+		justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+		sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
+
+<script type="text/javascript">
+	var second_example = new Spry.Effect.Highlight('example2', {duration: 2000, from:'#CCC', to:'#FFCC33', toggle: true});
+</script>
+
+<hr />
+
+
+<!--
+
+		Example 3: The Highlight effect has the ability at the end of the animation to restore the color 
+
+-->
+
+<p><strong>Restore color</strong></p>
+<p>There are scenarios where you will want the highlight to happen to catch the users attention, and then disappear. This is the restoreColor option. For this feature to work, toggle has to be off.</p>
+<p>The parameters for the &quot;from&quot;, &quot;to&quot; and &quot;restoreColor&quot; vould be sent in the CSS format: #FFCC33, short CSS format #CCC or rgb: rgb(255,204,51).</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var third_example = new Spry.Effect.Highlight('example3', {from:'#CCCCCC', to:'rgb(255,204,51)', restoreColor: '#CCC'});
+ &lt;/script&gt;</pre>
+<form method="get" action="highlight_sample.html">
+	<input type="button" onclick="third_example.start();" value="Highlight Example 3" />
+</form>
+<br />
+
+<div class="demoDiv" id="example3">
+	<h4>Example 3</h4>
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+		diam nonumy eirmod tempor invidunt ut labore et dolore magna
+		aliquyam erat, sed diam voluptua. At vero eos et accusam et
+		justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+		sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
+
+<script type="text/javascript">
+	var third_example = new Spry.Effect.Highlight('example3', {from:'#CCCCCC', to:'rgb(255,204,51)', restoreColor: '#CCC'});
+</script>
+
+<hr />
+
+<!--
+
+		Example 4: Highlight support for JS callback function before and after the effect animation
+
+-->
+<p><strong>Setup and Finish functions</strong></p>
+<p>
+	As all the effects the Highlight allow you to specify your own custom 
+	made JS functions that are necessary to be run by the effect before or 
+	after the animation. The names of the JS functions are given to the 
+	constructor using the setup and finish parameters.
+</p>
+<p> 
+In this example before the animation to start will disable the button 
+and the background color will change to white. These properties of the 
+button will be than reverted to their original values when the Highlight 
+will finish the color migration.
+</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var start_function = function()
+	{
+		var button = document.getElementById('animation_button');
+		if (button)
+		{
+			button.disabled = true;
+			button.style.backgroundColor = 'white';
+		}
+	}
+
+	var end_function = function()
+	{
+		var button = document.getElementById('animation_button');
+		if (button)
+		{
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var fourth_example = new Spry.Effect.Highlight('example4', {from:'#CCCCCC', to:'#FFCC33', toggle: true, setup: start_function, finish: end_function});
+&lt;/script&gt;
+</pre>
+<form method="get" action="highlight_sample.html">
+	<input type="button" id="animation_button" onclick="fourth_example.start();" value="Highlight Example 4" />
+</form>
+<br />
+
+<div class="demoDiv" id="example4">
+	<h4>Example 4</h4>
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+		diam nonumy eirmod tempor invidunt ut labore et dolore magna
+		aliquyam erat, sed diam voluptua. At vero eos et accusam et
+		justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+		sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
+
+<script type="text/javascript">
+	var start_function = function()
+	{
+		var button = document.getElementById('animation_button');
+		if (button)
+		{
+			button.disabled = true;
+			button.style.backgroundColor = 'white';
+		}
+	}
+
+	var end_function = function()
+	{
+		var button = document.getElementById('animation_button');
+		if (button)
+		{
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var fourth_example = new Spry.Effect.Highlight('example4', {from:'#CCCCCC', to:'#FFCC33', toggle: true, setup: start_function, finish: end_function});
+</script>
+</body>
+</html>

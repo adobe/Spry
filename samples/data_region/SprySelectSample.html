@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Select Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.selected {
+	background-color: #999999;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+-->
+</script>
+
+</head>
+
+<body>
+<h3>spry:select  and spry:selectgroup Sample </h3>
+<p>You can use the &quot;spry:select&quot; attribute to swap in and out a CSS class name of your choice to draw something selected/unselected. If you need to have 2 or more areas on the page with independent selection, you will have to use the &quot;spry:selectgroup&quot; attribute in conjunction with the &quot;spry:select&quot; attribute to make sure the two areas don't interfere with each other.</p>
+<hr />
+<p>Here's an example of 2 lists that use &quot;spry:select&quot; and no &quot;spry:selectgroup&quot;. Notice how selecting an item in one list, causes the selection in the other to disappear?</p>
+<div spry:region="dsEmployees">
+<table>
+	<tr>
+		<th>List 1 </th>
+		<th> List 2 </th>
+	</tr>
+	<tr>
+		<td><ul spry:repeatchildren="dsEmployees">
+			<li spry:select="selected">{firstname} {lastname}</li>
+		</ul></td>
+		<td><ul spry:repeatchildren="dsEmployees">
+			<li spry:select="selected">{firstname} {lastname}</li>
+		</ul></td>
+	</tr>
+</table>
+</div>
+<p>Here's an example where each list uses a different spry:selectgroup value. Notice now that the selections are independent of each other. </p>
+<div spry:region="dsEmployees">
+<table>
+	<tr>
+		<th>List 1 </th>
+		<th> List 2 </th>
+	</tr>
+	<tr>
+		<td><ul spry:repeatchildren="dsEmployees">
+			<li spry:select="selected" spry:selectgroup="l1">{firstname} {lastname}</li>
+		</ul></td>
+		<td><ul spry:repeatchildren="dsEmployees">
+			<li spry:select="selected" spry:selectgroup="l2">{firstname} {lastname}</li>
+		</ul></td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

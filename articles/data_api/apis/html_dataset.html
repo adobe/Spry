@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry HTML Data Set API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="htmldataset">
+  <h3><a name="htmldataset"></a>HTML Data Set</h3>
+  <h4>Description</h4>
+  <p>The HTML data set allows users to use any HTML table, or HTML structure, as a data source. In the constructor, specify the URL to the file that contains the table or structure, and specify the ID of the table or structure and Spry will pull in the data. This can now be used normally as a data set, with the same region and data reference rules as in other data sets.</p>
+  <p>The HTML data set is flexible because you can use IDs and class names to filter data and pull in any HTML structure as data. </p>
+  <p>Please read the HTML data set overview for a full description of the data set.</p>
+  <h4>File</h4>
+  <p><a href="../../../includes/SpryHTMLDataSet.js">SpryHTMLDataSet.js</a></p>
+  <h4>Requires</h4>
+  <p><a href="../../../includes/SpryData.js">SpryData.js</a></p>
+  <h4>Inheritance</h4>
+  <p><a href="notifier.html">Notifier</a> --&gt;<a href="dataset.html">DataSet</a> --&gt; <a href="http_source_dataset.html">HTTPSourceDataSet</a> --&gt; HTMLDataSet</p>
+</div>
+<div  id="getdataselector" >
+  <h3><a name="getdataselector"></a>getDataSelector</h3>
+  <h4>Description</h4>
+  <p>getDataSelector is used to return the currently defined dataSelector of the HTML data set. </p>
+  <p>The DataSelector is used when defining a generic HTML structure as a data source. The DataSelector tell the data set what element is being used as the 'data' node. This is equivalent to the &lt;TD&gt;, or column, in the table data set. </p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.getDataSelector();</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;,{dataSelector:&quot;li&quot;});
+x = ds1.getDataSelector();
+
+x= &quot;li&quot;</pre>
+</div>
+<div id="getrowselector" >
+  <h3><a name="getrowselector" ></a>getRowSelector </h3>
+  <h4>Description</h4>
+  <p>getRowSelector is used to return the current value of the RowSelector of the HTML data set.</p>
+  <p>The RowSelector is used when defining a generic HTML structure as a data source. The RowSelector is used to define the repeating node of the structure. This is equivalent to the &lt;TR&gt; of a table data set. </p>
+  <h4>Format</h4>
+  <pre class="codeSample">
+ datasetname.getRowSelector();</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;,{rowSelector:&quot;.rowColor&quot;});
+
+x = ds1.getRowSelector();
+
+x= &quot;.rowColor&quot;</pre>
+</div>
+<div id="getsourceelementid">
+  <h3><a name="getsourceelementid"></a>getSourceElementID</h3>
+  <h4>Description</h4>
+  <p>getSourceElementID returns the ID of the page element currently defined as the data source. In a HTML data set, you tell Spry the page that contains the data source and the ID of the actual data element. This function returns that ID.</p>
+  <h4>Format</h4>
+  <pre class="codeSample"> datasourcename.getSourceElementID();</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;);
+
+x = ds1.getSourceElementID();
+
+Therefore...
+x= &quot;myID&quot;</pre>
+</div>
+<div id="geturl">
+  <h3><a name="geturl" ></a>getURL</h3>
+  <h4>Description</h4>
+  <p>getURL returns the current path to the data set source file. This is the same function used in the XML data set.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.getURL();</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">var ds1 = new Spry.Data.HTMLDataSet(&quot;myURL.htm&quot;,&quot;myID&quot;);
+
+x = ds1.getURL();
+
+Therefore...
+
+x = &quot;myURL.htm&quot;</pre>
+</div>
+<div id="setdataselector">
+  <h3><a name="setdataselector" ></a>setDataSelector</h3>
+  <h4>Description</h4>
+  <p>setDataSelector is used to define or change the currently defined dataSelector for the HTML data set. This is used when defining a generic structure as a data set. The dataSelector tell Spry the element that contains the individual piece of data. This is equivalent to the &lt;TD&gt; tag of a table data set. </p>
+  <p>The data set will not update automatically after setting the dataSelector. Use the loadData(); to load the new data set.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.setDataSelector(&quot;tag name or CSS ID or class&quot;);</pre>
+  <h4>Example</h4>
+  <pre id="line25">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;,{dataSelector:&quot;div&quot;});
+
+ds1.setDataSelector(&quot;span&quot;);
+
+ds1.loadData();</pre>
+</div>
+<div id="setrowselector">
+  <h3><a name="setrowselector" ></a>setRowSelector</h3>
+  <h4>Description</h4>
+  <p>setRowSelector is used to define or change the rowSelector used in a HTML data set. The rowSelector defines the repeating node of the HTML structure. This is equivalent to the &lt;TR&gt; tag in an table data set.</p>
+  <p>The data set will not update automatically after setting the RowSelector. Use the loadData(); to load the new data set.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.setRowSelector(&quot;tag name or CSS ID or class&quot;);</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;,{rowSelector:&quot;div&quot;});
+
+ds1.setRowSelector(&quot;span&quot;);
+
+ds1.loadData();</pre>
+</div>
+<div id="setsourceelementid">
+  <h3><a name="setsourceelementid" ></a>setSourceElementID</h3>
+  <h4>Description</h4>
+  <p>setSourceElementID is used to set or change the ID of the element that contains the data for the data set. </p>
+  <p>Setting the sourceID will not automatically cause the data set to reload. Use loadData(); to force the new data to load.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.setSourceElementID(&quot;the new ID&quot;);</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;);
+
+ds1.setSourceElementID(&quot;theNewID&quot;);
+
+ds1.loadData();</pre>
+</div>
+<div id="seturl">
+  <h3><a name="seturl"  ></a>setURL</h3>
+  <h4>Description</h4>
+  <p>setURL is used to set or change the path to the file that contains the data source. setURL works the same way for the HTML data set as it does for the XML data set. </p>
+  <h4>Format</h4>
+  <pre class="codeSample">datasetname.setURL(&quot;the new URL&quot;);</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds1 = new Spry.Data.HTMLDataSet(&quot;myfile.htm&quot;,&quot;myID&quot;);
+
+onClick=&quot;ds1.setURL(&quot;/assets/myNewFile.htm&quot;);
+ds1.loadData();&quot;</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

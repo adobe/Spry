@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Sharing Data Between Data Sets Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.product {
+	cursor: pointer;
+}
+.hover {
+	background-color: #FF99FF;
+}
+.selected {
+	background-color: #CCCCCC;
+}
+</style>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var dsProducts = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "/products/product", { useCache: false });
+var dsCategories = new Spry.Data.XMLDataSet(null, "/products/product/category", { useCache: false, distinctOnLoad: true, sortOnLoad: "category" });
+var dsFeatures = new Spry.Data.XMLDataSet(null, "/products/product[name = '{dsProducts::name}']/features/feature", { useCache: false });
+
+function updateCategoriesAndFeatures(notificationType, notifier, data)
+{
+	if (notificationType != "onCurrentRowChanged" && notificationType != "onPostLoad")
+		return;
+
+	var doc = dsProducts.getDocument();
+	if (doc)
+	{
+		if (notificationType == "onPostLoad")
+			dsCategories.setDataFromDoc(doc);
+		dsFeatures.setDataFromDoc(doc);
+	}
+};
+
+dsProducts.addObserver(updateCategoriesAndFeatures);
+//-->
+</script>
+</head>
+
+<body>
+<h3>Sharing Data Between Data Sets</h3>
+<p>It is sometimes necessary to use 2 or more data sets that derive their data from the same XML or JSON document. This typically isn't a problem because the XML Data Set uses an internal load manager to cache requests for the same document, but there are times when the cache needs to be turned off because the data loaded with the same URL can yield different results. The following examples use XML as the data format, but the same technique is applicable when using JSON data.</p>
+<p>Here's an example of 2 data sets that load the same XML data with this caching behavior turned off:</p>
+<pre>
+var dsProducts   = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });<br />var dsCategories = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product/category&quot;, { useCache: false, distinctOnLoad: true, sortOnLoad: &quot;category&quot; });<br /></pre>
+<p>Now the problem with this scenario, is that the 2 data sets will now cause 2 hits to the same server for the same document. Not very efficient. You can however make use of data set observers to make this a bit more efficient:</p>
+<pre>
+// Create the dsProducts data set.
+
+var dsProducts = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });
+
+// Create the dsCategories data set, but pass a null for the URL parameter so that it doesn't load
+// any data.
+
+var dsCategories = new Spry.Data.XMLDataSet(null, &quot;/products/product/category&quot;, { useCache: false, distinctOnLoad: true, sortOnLoad: &quot;category&quot; });
+
+// Define a function that we will register as an observer on dsProducts.
+
+function updateCategories(notificationType, notifier, data)
+{
+  // We are only interested in &quot;onPostLoad&quot; notifications.
+  // If it is any other notification, just bail.
+
+  if (notificationType != &quot;onPostLoad&quot;)
+    return;
+
+  // We recieved an &quot;onPostLoad&quot; notification from dsProducts!
+  // Ask it for its XML document. If it has one, tell dsCategories
+  // to extract its data from that document.
+
+  var doc = dsProducts.getDocument();
+  if (doc)
+    dsCategories.setDataFromDoc(doc);
+};
+
+// Register our function as an observer on dsProducts.
+
+dsProducts.addObserver(updateCategories);
+</pre>
+<p>In the example above we are chaining dsCategories to dsProducts. We did this by setting the URL argument for dsCategories' data set constructor to null so that it doesn't attempt to load anything if loadData() called on it. The 2nd thing we did was define a function that would observe notifications on dsProducts. The idea here is that any time dsProducts loads data off the network, we want to catch the &quot;onPostLoad&quot; notification it fires off so we can grab its document and use that to extract the data for dsCategories.</p>
+<p>The code above looks pretty huge with all of the comments, so here it is again with all of the comments stripped out.</p>
+<pre>
+var dsProducts = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });
+var dsCategories = new Spry.Data.XMLDataSet(null, &quot;/products/product/category&quot;, { useCache: false, distinctOnLoad: true, sortOnLoad: &quot;category&quot; });
+
+function updateCategories(notificationType, notifier, data)
+{
+  if (notificationType != &quot;onPostLoad&quot;)
+    return;
+  var doc = dsProducts.getDocument();
+  if (doc)
+    dsCategories.setDataFromDoc(doc);
+};
+
+dsProducts.addObserver(updateCategories);
+</pre>
+<p>Now, lets look at a slightly more complicated scenario, where we have one data set that relies on data from another data set for its XPath:</p>
+<pre>
+var dsProducts   = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });<br />var dsFeatures   = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product[name = '{ds1::name}']/features/feature&quot;, { useCache: false });<br /></pre>
+<p>This scenario is almost identical to the first example, except that the dsFeatures XPath relies on the  value of the &quot;name&quot; column in the current row of dsProducts. The solution to this is identical to the first example, except that we need to listen for one extra notification, specifically &quot;onCurrentRowChanged&quot;:</p>
+<pre>
+// Create the dsProducts data set.
+
+var dsProducts = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });
+
+// Create the dsFeatures data set, but pass a null for the URL parameter so that it doesn't load
+// any data.
+
+var dsFeatures = new Spry.Data.XMLDataSet(null, &quot;/products/product[name = '{dsProducts::name}']/features/feature&quot;, { useCache: false });
+
+// Define a function that we will register as an observer on dsProducts.
+
+function updateFeatures(notificationType, notifier, data)
+{
+  // We are only interested in &quot;onPostLoad&quot; notifications.
+  // If it is any other notification, just bail.
+
+  if (notificationType != &quot;onPostLoad&quot; &amp;&amp; notificationType != &quot;onCurrentRowChanged&quot;)
+    return;
+
+  // We recieved an &quot;onPostLoad&quot; or &quot;onCurrentRowChanged notification
+  // from dsProducts! Ask it for its XML document. If it has one, tell
+  // dsFeatures to extract its data from that document.
+
+  var doc = dsProducts.getDocument();
+  if (doc)
+    dsFeatures.setDataFromDoc(doc);
+};
+
+// Register our function as an observer on dsProducts.
+
+dsProducts.addObserver(updateFeatures);
+</pre>
+<p>Here is the same code without all of the comments:</p>
+<pre>
+var dsProducts = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });
+var dsFeatures = new Spry.Data.XMLDataSet(null, &quot;/products/product[name = '{dsProducts::name}']/features/feature&quot;, { useCache: false });
+
+function updateFeatures(notificationType, notifier, data)
+{
+  if (notificationType != &quot;onPostLoad&quot; &amp;&amp; notificationType != &quot;onCurrentRowChanged&quot;)
+    return;
+  var doc = dsProducts.getDocument();
+  if (doc)
+    dsFeatures.setDataFromDoc(doc);
+};
+
+dsProducts.addObserver(updateFeatures);
+</pre>
+<h3>Live Example</h3>
+<p>Below is a live example of what was mentioned above. If you load this sample page in <a href="http://www.mozilla.com/">FireFox</a> and you have the <a href="http://getfirebug.com/">FireBug</a> add-on installed, you will see that the XML file is only loaded once for all 3 data sets. This live version is using a merged version of the two observer functions above, which looks like this:</p>
+<pre>
+var dsProducts = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;/products/product&quot;, { useCache: false });
+var dsCategories = new Spry.Data.XMLDataSet(null, &quot;/products/product/category&quot;, { useCache: false, distinctOnLoad: true, sortOnLoad: &quot;category&quot; });
+var dsFeatures = new Spry.Data.XMLDataSet(null, &quot;/products/product[name = '{dsProducts::name}']/features/feature&quot;, { useCache: false });
+
+function updateCategoriesAndFeatures(notificationType, notifier, data)
+{
+	if (notificationType != &quot;onCurrentRowChanged&quot; &amp;&amp; notificationType != &quot;onPostLoad&quot;)
+		return;
+
+	var doc = dsProducts.getDocument();
+	if (doc)
+	{
+		if (notificationType == &quot;onPostLoad&quot;)
+			dsCategories.setDataFromDoc(doc);
+		dsFeatures.setDataFromDoc(doc);
+	}
+};
+
+dsProducts.addObserver(updateCategoriesAndFeatures);
+</pre>
+<p>Click on any of the items in the dsProducts column, and the dsFeatures column will update. Because we've chained the data sets together with observers, so that they share the same document, the server is only hit once.</p>
+<div class="liveSample">
+	<table width="100%" border="1">
+		<tr>
+			<th>dsProducts</th>
+			<th>dsFeatures</th>
+			<th>dsCategories</th>
+		</tr>
+		<tr>
+			<td valign="top" width="20%" spry:region="dsProducts">
+				<ul>
+					<li class="product" spry:repeat="dsProducts" spry:setrow="dsProducts" spry:select="selected" spry:hover="hover">{name}</li>
+				</ul>
+			</td>
+			<td valign="top" width="60%" spry:region="dsFeatures">
+		  		<ul>
+					<li spry:repeat="dsFeatures">{feature}</li>
+				</ul>
+			</td>
+			<td valign="top" width="20%" spry:region="dsCategories">
+		  		<ul>
+					<li spry:repeat="dsCategories">{category}</li>
+				</ul>
+			</td>
+	  </tr>
+	</table>
+</div>
+</body>
+</html>
+ 

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Unobtrusive Collapsible Panel Sample</title>
+<script src="../../widgets/collapsiblepanel/SpryCollapsiblePanel.js" type="text/javascript"></script>
+<script src="../../includes/SpryDOMUtils.js" type="text/javascript"></script>
+<script src="cp_unobtrusive.js" type="text/javascript"></script>
+<link href="../../widgets/collapsiblepanel/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.CollapsiblePanel {
+	width: 300px;
+}
+.CollapsiblePanelTab {
+	font-size: 1em;
+}
+-->
+</style>
+</head>
+<body>
+<h3>Unobtrusive Collapsible Panel Sample</h3>
+<p>This page demonstrates how to use the Spry Element Selector to use unobtrusive techniques with the Collapsible Panel widget. The functionality is kept in <a href="cp_unobtrusive.js">cp_unobtrusive.js</a>.</p>
+<div id="CollapsiblePanel1" class="CollapsiblePanel">
+  <div class="CollapsiblePanelTab">Standard Collapsible Panel</div>
+  <div class="CollapsiblePanelContent">
+    <p>Default CSS class .CollapsiblePanel width set to 300px. Since all Panels on this page use the same CSS, it affects all Panels on the page.</p>
+    <p>Custom classes can be used to customize individual Panels. </p>
+  </div>
+</div>
+<hr />
+<div id="CollapsiblePanel2" class="CollapsiblePanel">
+  <div class="CollapsiblePanelTab">Collapsible Panel with options set </div>
+  <div class="CollapsiblePanelContent">
+    <p>Options have been set in this example.</p>
+    <p>Default state has been set to closed. It will be closed on load.<br />
+      Constructor Option: 
+      'contentIsOpen:false'</p>
+    <p>Animation has been turned off, so panel will snap open and shut. <br />
+      Constructor Option: 
+      'enableAnimation:false'</p>
+  </div>
+</div>
+<hr />
+<div id="CollapsiblePanel3" class="CollapsiblePanel">
+  <div class="CollapsiblePanelTab" tabindex="0">Keyboard Navigation Enabled </div>
+  <div class="CollapsiblePanelContent">
+    <p>By putting a tabindex=&quot;0&quot; on the Tab tag, keyboard navigation is enabled. Notice that the CollapsiblePanelFocused class now functions.</p>
+    <p>When the tab has focus, the Space Bar or Enter key will open and close the Content Panel. </p>
+    <p>Keyboard Navigation can also be set by wrapping the Tab text with an &lt;a&gt; tag. This is demonstrated on the panel below. </p>
+  </div>
+</div>
+<hr />
+<p><a href="#" class="open">Open Panel</a> | <a href="#" class="close">Close Panel</a> </p>
+<div id="CollapsiblePanel4" class="CollapsiblePanel">
+  <div class="CollapsiblePanelTab"><a href="#">Open Panel with Link </a></div>
+  <div class="CollapsiblePanelContent">
+    <p>This Collapsible Panel is opened and closed with a link. </p>
+  </div>
+</div>
+<hr />
+<div id="CollapsiblePanel5" class="CollapsiblePanel">
+  <h2 class="CollapsiblePanelTab">Alternate Markup - This is an &lt;H2&gt; tag </h2>
+  <p class="CollapsiblePanelContent">And this is a &lt;P&gt; tag . <br />
+    Spry generally doesn't care what the actual markup is. It only cares that the structure is correct. </p>
+</div>
+<hr />
+</body>
+</html>

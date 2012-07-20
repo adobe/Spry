@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Adobe Labs - Spry Validation Checkbox Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Working with the Validation Checkbox widget</h2>
+<!-- -->
+<h3>Validation Checkbox widget overview and structure</h3>
+<p>A Spry Validation Checkbox widget is a checkbox or group of checkboxes in an 
+  HTML code form that display valid or invalid states when the user selects or 
+  fails to select a checkbox. For example, you can add a Validation Checkbox 
+  widget to a form in which a user might be required to make three selections. If 
+  the user fails to make all three selections, the widget returns a message 
+  stating that the minimum number of selections was not met.</p>
+<p>A version of this file is available on <a href="http://livedocs.adobe.com/en_US/Spry/SDG/index.html" target="_blank">Adobe LiveDocs</a>. Please check it for comments and updates. </p>
+<p>The following example shows a Validation Checkbox widget in various 
+  states.</p>
+<p><img alt="Checkbox Widget structure" src="CheckboxValidation.gif" /><br /></p>
+<p>The Validation Checkbox widget includes a number of states (for example, 
+  valid, invalid, required value, and so on). You can alter the properties of 
+  these states by using the Property inspector, depending on the desired 
+  validation results. A Validation Checkbox widget can validate at various points 
+  (for example, when the user clicks outside the widget, as the user makes 
+  selections, or when the user tries to submit the form). </p>
+<dl>
+  <dt>Initial state </dt>
+  <dd> When the page loads in the browser, or when the user resets the 
+    form.<br />
+  </dd>
+  <dt>Valid state </dt>
+  <dd> When the user makes a selection, or the correct number of selections, and 
+    the form can be submitted.<br />
+  </dd>
+  <dt>Required state </dt>
+  <dd> When the user fails to make a required selection.<br />
+  </dd>
+  <dt>Minimum Number Of Selections state </dt>
+  <dd> When the user selects fewer than the minimum number of checkboxes 
+    required.<br />
+  </dd>
+  <dt>Maximum Number Of Selections state </dt>
+  <dd> When the user selects greater than the maximum number of checkboxes 
+    allowed.<br />
+  </dd>
+</dl>
+<p>Whenever a Validation Checkbox widget enters one of these states through user 
+  interaction, the Spry framework logic applies a specific CSS class to the HTML 
+  container for the widget at run time. For example, if a user tries to submit a 
+  form, but makes no selections, Spry applies a class to the widget that causes it 
+  to display the error message, &ldquo;Please make a selection.&rdquo; The rules that control 
+  the style and display states of error messages reside in the 
+  SpryValidationCheckbox.css file that accompanies the widget.</p>
+<p>The default HTML code for the Validation Checkbox widget, usually inside a 
+  form, is made up of a container span tag that 
+  surrounds the input type=&quot;checkbox&quot; tag of the 
+  checkbox. The HTML code for the Validation Checkbox widget also includes script tags in the head of the document and after the 
+  widget&rsquo;s HTML code.</p>
+<p>The HTML code for the Validation Checkbox widget also includes script tags in the head of the document and after the 
+  widget&rsquo;s HTML code. The script tag in the head of the 
+  document defines all of the JavaScript functions related to the Checkbox widget. 
+  The script tag after the widget code creates a 
+  JavaScript object that makes the checkbox interactive.</p>
+<p>Following is the HTML code for a Validation Checkbox widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Checkbox JavaScript library --&gt; 
+&lt;script src=&quot;SpryAssets/SpryValidationCheckbox.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href=&quot;SpryAssets/SpryValidationCheckbox.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id=&quot;form1&quot; name=&quot;form1&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+		&lt;!-- Create the checkbox widget and assign a unique id--&gt;
+		&lt;span id=&quot;sprycheckbox1&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;
+			&lt;!--Add an error message--&gt;
+			&lt;span class=&quot;checkboxRequiredMsg&quot;&gt;Please make a selection.&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;!-- Initialize the Validation Checkbox widget object--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprycheckbox1 = new Spry.Widget.ValidationCheckbox(&quot;sprycheckbox1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the new JavaScript operator 
+  initializes the Checkbox widget object, and transforms the span content with the ID of sprycheckbox1 from static HTML code into an interactive page 
+  element.</p>
+<p>The span tag for the error message in the widget 
+  has a CSS class applied to it. This class (which is set to display:none; by default), controls the style and visibility 
+  of the error message, and exists in the accompanying SpryValidationCheckbox.css 
+  file. When the widget enters different states as a result of user interaction, 
+  Spry places different classes on the container for the widget, which in turn 
+  affects the error-message class.</p>
+<p>You can add other error messages to a Validation Checkbox widget by creating 
+  a span tag (or any other type of tag) to hold the text 
+  of the error message. Then, by applying a CSS class to it, you can hide or show 
+  the message, depending on the widget state.</p>
+<p>You can change the default appearance of the Validation Checkbox widget's 
+  states by editing the corresponding CSS rule in the SpryValidationCheckbox.css 
+  file. For example, to change the background color for a state, edit the 
+  corresponding rule or add a new rule (if it&rsquo;s not already present) in the style 
+  sheet.</p>
+<h4>Variation on tags used for Text Field widget 
+  structure</h4>
+<p>In the preceding example, span tags create the 
+  structure for the widget:</p>
+<pre>Container SPAN
+	INPUT type=&quot;checkbox&quot;
+	Error message SPAN</pre>
+<p>You can, however, use almost any container tag to create the widget.</p>
+<pre>Container DIV
+	INPUT type=&quot;checkbox&quot;
+	Error Message P</pre>
+<p>Spry uses the tag ID (not the tag itself) to create the widget. Spry also 
+  displays error messages using CSS code that is indifferent to the actual tag 
+  used to contain the error message.</p>
+<p>The ID passed into the widget constructor identifies a specific HTML element. 
+  The constructor finds this element and looks inside the identified container for 
+  a corresponding input tag. If the ID passed to the 
+  constructor is the ID of the input tag (rather than a 
+  container tag), the constructor attaches validation triggers directly to the input tag. If no container tag is present, however, 
+  the widget cannot display error messages, and different validation states alter 
+  only the appearance of the input tag element (for 
+  example, its background color).</p>
+<!-- -->
+<h3>CSS code for the Validation Checkbox widget</h3>
+<p>The SpryValidationCheckbox.css file contains the rules that style the 
+  Validation Checkbox widget and its error messages. You can edit these rules to 
+  style the look and feel of the widget and error messages. The names of the rules 
+  in the CSS file correspond to the names of the classes specified in the widget&rsquo;s 
+  HTML code.</p>
+<p>The following is the CSS code for the SpryValidationCheckbox.css file:</p>
+<pre>/*Validation Checkbox styling classes*/
+.checkboxRequiredMsg, .checkboxMinSelectionsMsg, .checkboxMaxSelectionsMsg{
+	display: none;
+}
+.checkboxRequiredState .checkboxRequiredMsg,
+.checkboxMinSelectionsState .checkboxMinSelectionsMsg,
+.checkboxMaxSelectionsState .checkboxMaxSelectionsMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}</pre>
+<p>The SpryValidationCheckbox.css file also contains extensive comments, 
+  explaining the code and the purpose for certain rules. For further information, 
+  see the comments in the file.</p>
+<!-- -->
+<h3>Insert the Validation Checkbox widget</h3>
+<ol>
+  <li><span>Locate the SpryValidationCheckbox.js file and add 
+    it to your web site. You can find the SpryValidationCheckbox.js file in the 
+    widgets/checkboxvalidation directory, located in the Spry directory that you 
+    downloaded from Adobe Labs.</span>
+      <p>For example, create a folder called <dfn>SpryAssets</dfn> in the 
+        root folder of your web site, and upload the SpryValidationCheckbox.js file to 
+        it. The SpryValidationCheckbox.js file contains all of the information 
+        necessary for making the Checkbox widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryValidationCheckbox.css file and add 
+    it to your web site. You might choose to add it to the main directory, a 
+    SpryAssets directory, or to a CSS directory if you have one.</span> </li>
+  <li><span>Open the web page to add the Checkbox widget to and 
+    link the SpryValidationCheckbox.js file to the page by inserting the following script tag in the page&rsquo;s head tag:</span>
+      <pre>&lt;script src=&quot;SpryAssets/SpryValidationCheckbox.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+      <p>Make sure that the file path to the SpryValidationCheckbox.js file is 
+        correct. This path varies depending on where you&rsquo;ve placed the file in your 
+        web site.</p>
+  </li>
+  <li><span>Link the SpryValidationCheckbox.css file to your 
+    web page by inserting the following link tag in the 
+    page&rsquo;s head tag:</span>
+      <pre>&lt;link href=&quot;SpryAssets/SpryValidationCheckbox.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+      <p>Make sure that the file path to the SpryValidationCheckbox.css file is 
+        correct. This path varies depending on where you&rsquo;ve placed the file in your 
+        web site.</p>
+  </li>
+  <li><span>Add checkboxes to the page and assign them names 
+    and values. You can add an unlimited number of checkboxes.</span>
+      <pre>&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;</pre>
+  </li>
+  <li><span>Add a container around the checkboxes by inserting span tags around the input tags, and assigning a unique ID to the widget, as follows:</span>
+      <pre>&lt;span id=&quot;sprycheckbox1&quot;&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;
+&lt;/span&gt; </pre>
+  </li>
+  <li><span>To initialize the Spry validation checkbox object, 
+    insert the following script block after the HTML 
+    code for the widget:</span>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprycheckbox1 = new Spry.Widget.ValidationCheckbox(&quot;sprycheckbox1&quot;);
+&lt;/script&gt; </pre>
+      <p>The new JavaScript operator initializes the 
+        Checkbox widget object, and transforms the span tag 
+        content with the ID of sprycheckbox1 from static 
+        HTML code into an interactive checkbox object. The Spry.Widget.ValidationCheckbox method is a constructor in 
+        the Spry framework that creates checkbox objects. The information necessary to 
+        initialize the object is contained in the SpryValidationCheckbox.js JavaScript 
+        library that you linked to at the beginning of this procedure.</p>
+    <p>Make sure that the ID of the checkbox widget&rsquo;s container span tag matches the ID parameter you specified in the Spry.Widgets.ValidationCheckbox method. Make sure 
+      that the JavaScript call comes after the HTML code for the widget.</p>
+  </li>
+  <li><span>Save the page.</span>
+      <p>The complete code looks as follows:</p>
+    <pre>&lt;head&gt; 
+... 
+&lt;script src=&quot;SpryAssets/SpryValidationCheckbox.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;link href=&quot;SpryAssets/SpryValidationCheckbox.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;span id=&quot;sprycheckbox1&quot;&gt;
+		&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+		&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;
+	&lt;/span&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprycheckbox1 = new Spry.Widget.ValidationCheckbox(&quot;sprycheckbox1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+  </li>
+</ol>
+<!-- -->
+<h3>Display error messages</h3>
+<p>&nbsp;Create a span tag (or any other type of tag) to display the error
+        message, and assign the appropriate class to it, as follows:</p>
+<pre>&lt;span id=&quot;sprycheckbox1&quot;&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;
+	&lt;span class=&quot;checkboxRequiredMsg&quot;&gt;Please make a selection.&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>The checkboxRequiredMsg rule is located in the 
+  SpryValidationCheckbox.css file, and is set to display:none by default. When the widget enters a different 
+  state through user interaction, Spry applies the appropriate class&mdash;the state 
+  class&mdash;to the container of the widget. This action affects the error-message 
+  class, and by extension, the appearance of the error message.</p>
+<p>For example, the following shows the CSS rule from the 
+  SpryValidationCheckbox.css file:</p>
+<pre>.checkboxRequiredMsg, .checkboxMinSelectionsMsg, .checkboxMaxSelectionsMsg{
+	display: none;
+}
+.checkboxRequiredState .checkboxRequiredMsg,
+.checkboxMinSelectionsState .checkboxMinSelectionsMsg,
+.checkboxMaxSelectionsState .checkboxMaxSelectionsMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}</pre>
+<p>By default, no state class is applied to the widget container, so that when 
+  the page loads in a browser, the error message text in the preceding HTML code 
+  example only has the checkboxRequiredMsg class applied 
+  to it. (The property and value pair for this rule is display:none, so the message remains hidden.) If the user 
+  fails to make a selection, however, Spry applies the appropriate class to the 
+  widget container, as follows:</p>
+<pre>&lt;span id=&quot;sprycheckbox1&quot; class=&quot;checkboxRequiredState&quot;&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox1&quot; value=&quot;1&quot;/&gt;
+	&lt;input type=&quot;checkbox&quot; name=&quot;checkbox2&quot; value=&quot;2&quot;/&gt;
+	&lt;span class=&quot;checkboxRequiredMsg&quot;&gt;Please make a selection.&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>In the preceding CSS code, the state rule with the contextual selector .checkboxRequiredState .checkboxRequiredMsg overrides the 
+  default error-message rule responsible for hiding the error message text. Thus, 
+  when Spry applies the state class to the widget container, the state rule 
+  determines the appearance of the widget, and displays the error message inline 
+  in red with a 1-pixel solid border.</p>
+<p>Following is a list of default error-message classes and their descriptions. 
+  You can change these classes and rename them. If you do so, don&rsquo;t forget to 
+  change them in the contextual selector also.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Error message class</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>.checkboxRequiredMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the required 
+        state</p></td>
+    </tr>
+    <tr>
+      <td><p>.checkboxMinSelectionsMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the minimum 
+        number of selections state</p></td>
+    </tr>
+    <tr>
+      <td><p>.checkboxMaxSelectionsMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the maximum 
+        number of selections state</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><span class="notetitle">Note: </span>You cannot rename 
+          state-related class names because they are hard-coded as part of the Spry 
+ 	        framework.</p>
+<!-- -->
+<h3>Specify when validation occurs</h3>
+<p>By default, the Validation Checkbox widget validates when the user clicks the 
+  submit button. You can, however, set two other options: blur or change. The validateOn:[&quot;blur&quot;] parameter causes the widget to 
+  validate whenever the user clicks outside the widget. The validateOn:[&quot;change&quot;] parameter causes the widget to 
+  validate as the user makes selections.</p>
+<p>To specify when validation occurs, add a validateOn parameter to the 
+ constructor as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprycheckbox1 = new Spry.Widget.ValidationCheckbox(&quot;sprycheckbox1&quot;, {validateOn:[&quot;blur&quot;]});
+&lt;/script&gt;</pre>
+<p>As a convenience, you can discard the brackets if your validateOn parameter contains a single value (for example, validateOn: &quot;blur&quot;). If the parameter contains both 
+  values, however (validateOn:[&quot;blur&quot;, &quot;change&quot;]), 
+  include brackets in the syntax.</p>
+<!-- -->
+<h3>Specify a minimum and maximum number of selections</h3>
+<p>By default, a Validation Checkbox widget is set to required. If you insert a number of checkboxes on your page, 
+  however, you can specify a minimum and maximum selection range. For example, if 
+  you have six checkboxes within the span tag for a 
+  single Validation Checkbox widget, and you want to make sure that the user 
+  selects at least three checkboxes, you can set such a requirement for the entire 
+  widget.</p>
+<p>To specify a minimum or 
+			maximum number of selections, add the minSelections property or maxSelections property (or both) and a 
+			value to the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var checkboxwidget1 = new Spry.Widget.ValidationCheckbox(&quot;checkboxwidget1&quot;,{minSelections:<em>value</em>, maxSelections:<em>value</em>});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Change required status of checkboxes</h3>
+<p>By default, Validation Checkbox widgets require the user to make at least one 
+  selection before submitting the form. You can, however, make selections optional 
+  for the user.</p>
+<p>To change the required status of a checkbox, add the isRequired property to 
+ the constructor and set its value to false, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var checkboxwidget1 = new Spry.Widget.ValidationCheckbox(&quot;checkboxwidget1&quot;, {isRequired:false});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Customize the Validation Checkbox widget</h3>
+<p>The SpryValidationCheckbox.css file provides the default styling for the 
+  Validation Checkbox widget. You can customize the widget by changing the 
+  appropriate CSS rule. The CSS rules in the SpryValidationCheckbox.css file use 
+  the same class names as the related elements in the widget&rsquo;s HTML code, so it&rsquo;s 
+  easy for you to know which CSS rules correspond to the widget and its error 
+  states.</p>
+<p>The SpryValidationCheckbox.css file should already be included in your 
+  website before you start customizing.</p>
+<!-- -->
+<h4>Style a Validation Checkbox widget (general 
+  instructions)</h4>
+<ol>
+  <li><span>Open the SpryValidationCheckbox.css file.</span> </li>
+  <li><span>Locate the CSS rule for the part of the widget to change. For 
+    example, to change the background color of the Checkbox widget&rsquo;s required 
+    state, edit the .checkboxRequiredState rule in the 
+    SpryValidationCheckbox.css file.</span> </li>
+  <li><span>Make your changes to the CSS rule and save the file.</span> </li>
+</ol>
+<p>The SpryValidationCheckbox.css file contains extensive comments, explaining 
+  the code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<!-- -->
+<h4>Style Validation Checkbox widget error message text</h4>
+<p>By default, error messages for the Validation Checkbox widget appear in red 
+  with a 1-pixel solid border surrounding the text.</p>
+<p>To change the text styling of Validation Checkbox widget error messages, use the following table to 
+          locate the appropriate CSS rule, and then change the default properties, or add 
+          your own text styling properties and values.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Text to style</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Relevant properties to change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Error message text</p></td>
+      <td><p>.checkboxRequiredState .checkboxRequiredMsg, 
+        .checkboxMinSelectionsState .checkboxMinSelectionsMsg, 
+        .checkboxMaxSelectionsState .checkboxMaxSelectionsMsg</p></td>
+      <td><p>color: #CC3333; border: 1px solid 
+        #CC3333;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Customize state-related class names</h4>
+<p>While you can replace error message-related class names with class names of 
+  your own by changing the rules in the CSS and the class names in the HTML code, 
+  you cannot change or replace state-related class names, because the behaviors 
+  are hard-coded as part of the Spry framework. You can, however, override the 
+  default state-related class name with your own class name by specifying a new 
+  value in the third parameter of the widget constructor.</p>
+	<p>To change widget 
+		state-related class names, add one of the overriding options to the third 
+		parameter of the widget constructor, and specify your custom class name, as 
+		follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprycheckbox1 = new Spry.Widget.ValidationCheckbox(&quot;sprycheckbox1&quot;, {requiredClass:&quot;required&quot;});
+&lt;/script&gt;</pre>
+<p>The following table provides a list of options you can use to override 
+  built-in state-related class names.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>requiredClass</p></td>
+      <td><p>Overrides the &quot;checkboxRequiredState&quot; built-in value </p></td>
+    </tr>
+    <tr>
+      <td><p>minSelectionsClass</p></td>
+      <td><p>Overrides the &quot;checkboxMinSelectionsState&quot; built-in value </p></td>
+    </tr>
+    <tr>
+      <td><p>maxSelectionsClass</p></td>
+      <td><p>Overrides the &quot;checkboxMaxSelectionsState&quot; built-in value </p></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<p>Copyright &copy; 2006. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

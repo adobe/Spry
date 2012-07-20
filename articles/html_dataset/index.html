@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML Data Set</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Spry HTML Data Set</h2>
+<p>The Spry HTML data set allows users to use standard HTML tables and other structured markup as a data source. HTML data sets work the same way as XML data sets, except that can leverage the millions of  tables that already exist! Since we flatten XML into a table structure, the HTML data set was a natural extension of the Spry Framework.</p>
+<p>Optional parameters used with XMLDataSet to specify sorting, caching, distinct and loadInterval work in a similar way with the HTMLDataSet. </p>
+<p>We designed the Spry framework in such a way that the data acquisition methods are independent of the &lt;body&gt; 'region' ideas. This means that the Spry region attributes don't care where the data comes from, be it XML, JSON or HTML. The universal familiarity with HTML tables makes the learning curve of developing a Spry data source very easy.</p>
+<p><strong>Tables as data sources</strong></p>
+<p>The HTML data set allows standard HTML tables to be used as data sources. Setting up a HTML table is easy:</p>
+<table width="532" border="1" id="datatable">
+  <tr>
+    <th style="width:116px">first name</th>
+    <th style="width:112px">last name</th>
+    <th style="width:114px">username</th>
+    <th style="width:162px">phone</th>
+  </tr>
+  <tr>
+    <td>Kirk</td>
+    <td>Davis</td>
+    <td>kdavis</td>
+    <td>(415) 333-4334</td>
+  </tr>
+  <tr>
+    <td>James</td>
+    <td>Miller</td>
+    <td>jmiller</td>
+    <td>(415) 333-7566</td>
+  </tr>
+  <tr>
+    <td>Alex</td>
+    <td>Wilson</td>
+    <td>awilson</td>
+    <td>(415) 333-9843</td>
+  </tr>
+  <tr>
+    <td>Albert</td>
+    <td>Moore</td>
+    <td>amoore</td>
+    <td>(415) 333-7584</td>
+  </tr>
+</table>
+<p>The table must have an ID attribute. Spry uses this to ID the data source.</p>
+<p>To use this table a Spry data source, you must first attach the dependent js files. You will need:</p>
+<pre>&lt;script src=&quot;SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;SpryHTMLDataSet.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</pre>
+<p><strong>Note: </strong>There is no need for xpath.js (used with XML data sets).</p>
+<p>Below the script links, build a data set constructor.</p>
+<p>The values  are:</p>
+<blockquote>
+  <p>var yourDataSetName = Spry.Data.HTMLDataSet(&quot;path to file with table&quot;, &quot;id of table&quot;);</p>
+</blockquote>
+<pre>&lt;script&gt;
+ var ds1 = new Spry.Data.HTMLDataSet(&quot;products.html&quot;, &quot;productsTableID&quot;);
+&lt;/script&gt;</pre>
+<p>This is the minimum information needed to create a data set. We will discus options below.</p>
+<p>Keep in mind that 'Spry.Data.HTMLDataSet' is case sensitive.</p>
+<p>The value of a piece of data from a HTML table is the contents of the &lt;td&gt;. This includes text AND markup.</p>
+<h3>Defining Headers</h3>
+<p>&quot;Headers&quot; in this sense is the row which defines the column names. </p>
+<p>By default, Spry assumes that the first row of the table are column names. These column names will be used as data reference names within Spry regions. If the first row of the table is actually data, this can be specified in the constructor. This can be changed with the 'firstRowAsHeader' option. </p>
+<pre>
+var ds2 = new Spry.Data.HTMLDataSet(&quot;products.html&quot;, &quot;productsTable&quot;, {firstRowAsHeaders:false});
+</pre>
+<p>The 'firstRowAsHeaders' option can only be used with a HTML Table.</p>
+<p>When firstRowAsHeader is set to 'false', the values can be accessed using a markup like <strong>{column#}</strong>: {column0} for the first column of data in the source table, 
+{column1} for the second...</p>
+<p>See the <a href="#customcolumns">Custom Columns section</a> for more details on column names.<br/>
+</p>
+<div spry:region="ds2">
+  <table width="48%" border="1" cellspacing="0" cellpadding="5">
+    <tr>
+      <th style="width:21%">Row#</th>
+      <th style="width:35%">1<sup>st</sup> column from table </th>
+      <th style="width:44%">3<sup>rd</sup> column from table </th>
+    </tr>
+    <tr spry:repeat="ds2" spry:hover="hover" spry:odd="selected">
+      <td>{ds_RowNumberPlus1}</td>
+      <td>{column0}</td>
+      <td>{column2}</td>
+    </tr>
+  </table>
+</div>
+<p><strong>Note:</strong> The values in the first row of data that are used as headers should not contain spaces or other tags. 
+  The tags are removed and the spaces are replaced with underscore (_).<br/>
+  E.g.: The values under the header <strong>&lt;strong&gt;product features&lt;/strong&gt;</strong> will be accessed inside a spry:region with this markup: <strong>{product_features}</strong>.</p>
+<h3>Column as Header</h3>
+<p>There is also an option for using the first column (as opposed to the first row) as column names. In a situation like:</p>
+<table style="height: 93px; width: 317px;">
+  <tr>
+    <th style="width:130px">January</th>
+    <td style="width:64px">35</td>
+    <td style="width:58px">74</td>
+    <td style="width:45px">34</td>
+  </tr>
+  <tr>
+    <th>February</th>
+    <td>23</td>
+    <td>57</td>
+    <td>44</td>
+  </tr>
+  <tr>
+    <th>March</th>
+    <td>28</td>
+    <td>37</td>
+    <td>55</td>
+  </tr>
+</table>
+<p>We want to set the months as the column names. Set the {useColumnsAsRows:true} option.</p>
+<pre>var ds2 = new Spry.Data.HTMLDataSet(null, &quot;monthtable&quot;,{useColumnsAsRows:true});</pre>
+<h3>Internal Table</h3>
+<p>It is possible to use a table within the actual Spry page. If this is the case, set the path to the page to 'null'</p>
+<pre>&lt;script&gt;
+ var ds1 = new Spry.Data.HTMLDataSet(null, &quot;productsTable&quot;);
+&lt;/script&gt;</pre>
+<p>By default, when an internal table is used, Spry will hide the source element when the page loads. This can be changed by setting the 'hideDataSourceElement' to false.</p>
+<pre>&lt;script&gt;
+ var ds1 = new Spry.Data.HTMLDataSet(null, &quot;productsTable&quot;,{hideDataSourceElement:false});
+&lt;/script&gt;</pre>
+<p><strong>ColSpan and RowSpan</strong></p>
+<p>We recommend using straight tables as data sources. This means that there are no rowspans or colspans in the table.</p>
+<p>Colspan and rowspan are used to merge cells together. In this scenario, the number of rows will not equal the number of columns, leading to data inconsistency.</p>
+<p>For instance, if the HTML table looks like:</p>
+<table width="200" border="1">
+  <tr>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+    <th>D</th>
+  </tr>
+  <tr>
+    <td>A1</td>
+    <td>B1</td>
+    <td>C1</td>
+    <td>D1</td>
+  </tr>
+  <tr>
+    <td>A2</td>
+    <td colspan="2">B/C2</td>
+    <td>D2</td>
+  </tr>
+</table>
+<p>Spry has to make some assumptions as to what the values of B2 and C2 are. Since we can't determine to what column it belongs, we can't say that one of the values is null. Therefore, we have to assume that they are the same. So Spry sees the above table as:</p>
+<table width="200" border="1">
+  <tr>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+    <th>D</th>
+  </tr>
+  <tr>
+    <td>A1</td>
+    <td>B1</td>
+    <td>C1</td>
+    <td>D1</td>
+  </tr>
+  <tr>
+    <td>A2</td>
+    <td>B2</td>
+    <td>B2</td>
+    <td>D2</td>
+  </tr>
+</table>
+<p>We assume the value is from the leftmost (or topmost) column. This is why it is B2 instead of C2. The first row of data (used as column names) cannot use colspans.</p>
+<p><strong>Markup Structure as Data</strong></p>
+<p>If you are familiar with Spry widgets, you may know that we say: &quot;We don't care about the markup, just the structure.&quot; This remains true for HTML data sets.</p>
+<p>A table structure is:</p>
+<ul>
+  <li>&lt;table id=&quot;mydata&quot;&gt;
+    <ul>
+      <li>&lt;tr&gt;
+        <ul>
+          <li>&lt;td&gt;</li>
+          <li>&lt;td&gt;</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>This is a three level nesting with the third level repeating. So, as long as this structure is respected, any HTML markup can be used as a data source.</p>
+<table width="374" border="1">
+  <tr>
+    <td style="width:174px"><ul>
+        <li>&lt;div id=&quot;mydata&quot;&gt;
+          <ul>
+            <li>&lt;ul&gt;
+              <ul>
+                <li>&lt;li&gt;</li>
+                <li>&lt;li&gt;</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul></td>
+    <td style="width: 188px"><ul>
+        <li>&lt;div id=&quot;mydata&quot;&gt;
+          <ul>
+            <li>&lt;div&gt;
+              <ul>
+                <li>&lt;span&gt;</li>
+                <li>&lt;span&gt;</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul></td>
+  </tr>
+</table>
+<p><strong>Using CSS to collect data</strong></p>
+<p>The HTML data set is quite flexible in that you can use CSS to grab parts of the page and use them as data. This can be as simple as &quot;Get all &lt;tr&gt;s with the class &quot;employee&quot; attached to &quot;return the contents of the element with the '#navbar a.external' selector.</p>
+<p>To enable this flexibility, we introduce the the idea of:</p>
+<ul>
+  <li> 'rowSelector' which specifies the element that contains the data elements. This is equivalent to the &lt;TR&gt; tag of a table data source.</li>
+  <li>dataSelector', which specifies the elements that contain the actual data, or the &lt;TD&gt; in a table data source.</li>
+</ul>
+<p>These are used as options in the HTML data set constructor. </p>
+<p>For the markup below, the OL tags will be the 'rowSelector' and the LI tags will contain the data, so they are the 'dataSelector'.</p>
+<pre>&lt;div id=&quot;mydata&quot;&gt;<br />  &lt;ul&gt;<br />    &lt;li&gt; <br />    &lt;li&gt;<br />  &lt;/ul&gt;<br />  &lt;ul&gt;<br />    &lt;li&gt;<br />    &lt;li&gt;<br />  &lt;/ul&gt;<br />&lt;/div&gt;</pre>
+<p>The constructor will be:</p>
+<pre>var ds1 = new  Spry.Data.HTMLDataSet(null, &quot;mydata&quot;, {rowSelector:&quot;ul&quot;, dataSelector=&quot;li&quot;}); </pre>
+<p>So what values can be used with rowSelector/dataSelector? &nbsp;We can leverage most levels of CSS. We can select data via:</p>
+<ul>
+  <li>tag name: &quot;DIV&quot;, &quot;SPAN&quot;, &quot;*&quot; </li>
+  <li>class name: &quot;.rowData&quot;, &quot;.even&quot; </li>
+  <li>id: &quot;#product1&quot; </li>
+  <li>tag name with class name: &quot;DIV.rowData&quot;, &quot;*.header&quot; </li>
+  <li>tag name with id: &quot;DIV#product1&quot; </li>
+  <li>child selector (only first-level descendents): &quot;&gt;&quot; </li>
+  <li>child selector combined with any of the above:  &quot;&gt; DIV.rowData&quot; </li>
+  <li>comma delimited list of selectors (the node will be  selected if it matches at least one from the list): &quot;#product1,        #product2, #product3&quot; </li>
+</ul>
+<p>Picture a table with a class of &quot;contractor&quot; on some, but not all, rows.</p>
+<table style="width: 397px; height: 101px">
+  <tr>
+    <td style="width: 160px">&nbsp;</td>
+    <td style="width: 104px">Name</td>
+    <td style="width: 137px">email</td>
+  </tr>
+  <tr>
+    <td>&lt;tr class=&quot;contractor&quot;&gt;</td>
+    <td>Don</td>
+    <td>don@abc.com</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Kin</td>
+    <td>kin@abc.om</td>
+  </tr>
+  <tr>
+    <td>&lt;tr class=&quot;contractor&quot;&gt;</td>
+    <td>James</td>
+    <td>james@abc.com</td>
+  </tr>
+</table>
+<p>We can set up a constructor that says:</p>
+<pre>var ds1= new Spry.Data.HTMLDataSet(&quot;mypage.htm&quot;, &quot;thetableID&quot;,{rowSelector:&quot;.contractor&quot;});</pre>
+<p>This will only pull in the two rows with the 'contractor' class attached.</p>
+<p><strong>Generic HTML structures</strong></p>
+<p>You can also break away from the table row/column paradigm and use the HTML data set to pull in markup from any element on the page.</p>
+<p>You can control how the data is returned by selectively using rowSelector and dataSelector. Notice the sample above only uses the rowSelector.</p>
+<p><strong>No rowSelector, no dataSelector </strong> </p>
+<p>The whole markup structure is mapped to the data set in one cell : It is a one row, one column data set.</p>
+<ul>
+  <li>Source: &lt;div  id=&quot;someData&quot;&gt;This is the source used&lt;/div&gt;</li>
+  <li>Instantiation: var ds1 = new Spry.Data.HTMLDataSet(null, &quot;someData&quot;);</li>
+  <li>Spry markup: &lt;div  spry:region=&quot;ds1&quot;&gt;Here's the extracted value: {column0}&lt;/div&gt;</li>
+</ul>
+<p><strong>Only rowSelector specified </strong> </p>
+<p>HTMLDataSet uses this rowSelector to extract the rows of data, but uses a single column to map the whole content of each row.</p>
+<p>If you have:</p>
+<pre>&lt;ul id=&quot;myList&quot;&gt;
+   &lt;li&gt;one&lt;/li&gt;
+   &lt;li&gt;two&lt;/li&gt;
+   &lt;li&gt;three&lt;/li&gt;
+ &lt;/ul&gt;</pre>
+<p>The constructor is: </p>
+<pre>var ds1 = new Spry.Data.HTMLDataSet(null, &quot;myList&quot;, { firstRowAsHeaders:false, rowSelector: &quot;li&quot;});</pre>
+<p>Spry markup: &lt;div spry:region=&quot;ds1&quot;&gt;&lt;span spry:repeat=&quot;ds1&quot;&gt;{column0}&lt;/span&gt;&lt;/div&gt;</p>
+<p><strong>Only dataSelector specified </strong> </p>
+<p>This tells HTMLDataSet that you're only interested in extracted some data pieces from the whole container, but you're not interested in using multiple rows. This is a single row of data, but different columns inside this row of  data.</p>
+<p>Source: </p>
+<pre>&lt;div  id=&quot;myContainer&quot;&gt;Some data here
+   &lt;div id=&quot;first&quot;&gt;This is the  first chunk I'm interested in&lt;/div&gt;
+   Some other data &lt;span&gt;goes  here&lt;/span<strong><em>&gt;</em></strong>
+   &lt;div id=&quot;second&quot;&gt;the second  chunk&lt;/div&gt;
+   More uninteresting data..
+   &nbsp;&lt;/div&gt;</pre>
+<p>The constructors can be either: </p>
+<pre>var ds1 = new Spry.Data.HTMLDataSet(null, &quot;myContainer&quot;, {dataSelector: &quot;div&quot;}); <br />OR
+var ds1 = new Spry.Data.HTMLDataSet(null, &quot;myContainer&quot;, {dataSelector: &quot;#first, #second&quot;});</pre>
+<p>Spry markup:&nbsp; &lt;div spry:region=&quot;ds1&quot;&gt;This is the first value {@first} and this is the second {@second}&lt;/div&gt;</p>
+<p>Notice that the data reference used is {@idelement}. This happens ONLY in the case of single-row data.  Instead of using {column0}, {column1} the ID on the chunks of extracted  data are used as column names. You can overwrite this behavior by passing {IDAsHeadersForSingleRow:false} and use the markup {column0},{column1} in the spry:region.</p>
+<h3>Custom Column Names<a name="customcolumns" id="customcolumns"></a></h3>
+<p>When using a table structure, it is common to have the first row of the table be headers that name the columns below. By default Spry uses the first column as columns names and from this we derive the data reference names: {email}, {firstname}. We have an option to tell Spry whether the first row is data or a header. In generic HTML structures, the first repeating element may or may not be column names.</p>
+<p>To set custom column names use the 'columnNames' option in the constructor.</p>
+<pre>var ds1 = new Spry.Data.HTMLDataSet(null, &quot;myContainer&quot;, {dataSelector: &quot;#first, #second&quot;, columnNames:['firstcolumnname','secondcolumnname']});
+</pre>
+<p>When using the columnNames option, the number of custom names in the array must equal the number of columns in the data set.</p>
+<p>Now, in the Spry regions, use these column names as the data references.</p>
+<p>Note: When using custom column names in a HTML table, AND the 'firstRowAsHeader' is true (which is the default), the first row will not be used in the data set. The custom column names will then be used as data references.<br />
+</p>
+<h3>HTML Data Set functions</h3>
+<p>The HTML data set has a set of functions you can use to manipulate the data set.</p>
+<ul>
+  <li><strong>getURL()</strong> - This returns the value of the current URL being used in the data set constructor.
+    <ul>
+      <li>ds1.getURL();<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>setURL(&quot;theURL&quot;)</strong> - This sets the path to the new file to be used in the data set.
+    <ul>
+      <li>ds1.serURL(&quot;mydwnewfile.htm&quot;);<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>getSourceElementID()</strong> - Returns the ID of the page element being used for the data set.
+    <ul>
+      <li>ds1.getSourceElementID();<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>setSourceElementID(&quot;theSourceID&quot;)</strong> - This is used to set or change the ID of the page element used as the data source.
+    <ul>
+      <li>ds1.setSourceElementID(&quot;thenewID&quot;);<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>getRowSelector()</strong> - Returns the RowSeelctor being used.
+    <ul>
+      <li>ds1.getRowSelector();<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>setRowSelector(&quot;theRowSelector&quot;)</strong> - Sets a new RowSeelctor for the data set.
+    <ul>
+      <li>setRowSelector(&quot;myID&quot;);<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>getDataSelector() </strong>- Returns the DataSeelctor being used.
+    <ul>
+        <li>ds1.getDataSelector();<br />
+        <br />
+      </li>
+    </ul>
+  </li>
+  <li><strong>setDataSelector(&quot;theDataSelector&quot;)</strong> - Sets a new DataSeelctor for the data set.
+    <ul>
+        <li>setDataSelector(&quot;myID&quot;);</li>
+    </ul>
+  </li>
+</ul>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p>
+</body>
+</html>

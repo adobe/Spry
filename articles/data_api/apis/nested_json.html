@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Nested XML Dataset API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" /></head>
+<body>
+<div id="dataset">
+	<h3><a name="dataset"></a>Nested JSON Data Set</h3>
+	<h4>Description</h4>
+	<p>The Spry.Data.NestedJSONDataSet class allows users to create data sets from more complex JSON structures. The Spry.Data.NestedJSONDataSet class  provides the same basic functionality for maintaining an array of row objects, destructive and non-destructive filtering, and sorting, with the addition of controlling the flattening of nested repeating nodes.</p>
+	<p>The Spry.Data.NestedJSONDataSet class derives from <a href="notifier.html#dataset">Spry.Utils.Notifier</a> so it can also dispatch notifications.</p>
+	<h4>File</h4>
+	<p><a href="../../../includes/SpryNestedJSONDataSet.js">SpryNestedJSONDataSet.js</a></p>
+  <h4>Inheritance</h4>
+	<p><a href="notifier.html">Notifier</a> --&gt; DataSet</p>
+</div>
+<div id="constructor">
+	<h3><a name="constructor"></a>NestedJSONDataSet constructor</h3>
+  	<h4>Description</h4>
+  <p>Spry.Data.NestedJSONDataSet is the constructor function for the Nested JSON Data Set. </p>
+  <h4>Format</h4>
+  <p>Spry.Data.NestedJSONDataSet(dsName, jpath)</p>
+  <h4>Arguments</h4>
+  <p>The constructor takes two arguments:</p>
+  <ul>
+    <li>the name of a regular JSON data set, previously defined.</li>
+    <li>the jpath to the nested repeating node.</li>
+  </ul>
+  <p>Options - An optional argument which if specified, must be an object with the option names as properties with values. Properties that can be specified are: <br />
+    <br />
+</p>
+  <ul>
+    <li><strong>distinctOnLoad</strong> - Boolean. If true, performs a distinct operation on the data after it is loaded.</li>
+    <li><strong>distinctFieldOnLoad</strong> - String or Array. Used in conjunction with disinctOnLoad. Value is a string that specifies the column to use for the distinct operation, or an array of strings that specify which columns to use for the distinct operation.</li>
+    <li><strong>filterFunc</strong> - Function Reference. The function to be used to non-destructively filter the data when it is loaded.</li>
+    <li><strong>filterDataFunc</strong> - Function Reference. The function to be used destructively filter the data when it is loaded.</li>
+    <li><strong>loadInterval</strong> - Integer. If greater than zero, automatically starts an interval timer that will call loadData() continuously. The value of loadInterval is expressed in milliseconds.</li>
+    <li><strong>sortOnLoad</strong> - String or Array. If the value is a string, it specifies the column to use when sorting after the data is loaded. If the value is an array, the array contains the names of the columns to use when sorting the data after it is loaded. The sort is done in the order the columns are specified with in the array.</li>
+    <li><strong>sortOrderOnLoad</strong> - String. Used in conjunction with the sortOnLoad option, the value should be the string &quot;ascending&quot; or &quot;descending&quot;. If not specified, &quot;ascending&quot; is used.</li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">//define a regular JSON Data Set.
+
+var ds1 = new Spry.Data.JSONDataSet();
+//create a Nested JSON Data Set based on the above.
+
+var nds2 = new Spry.Data.NestedJSONDataSet(ds1,&quot;products/product/feature&quot;,{distinctOnLoad:true});</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/JSONDataSetSample.html">JSONDataSetSample.html</a></p>
+</div>
+<div id="cancelloaddata"></div>
+<div id="distinct">
+  <h3><a name="distinct"></a>distinct</h3>
+  <h4>Description</h4>
+  <p>This function is used to remove duplicate rows from the Nested JSON Data Set. The distinct function will evaluate all the columns and if it finds 2 or more rows where every value is the same, it will throw away the duplicate rows and keep only one. This function can only be called *after* the data has been loaded into the Nested JSON Data Set.</p>
+  <p>Distinct can also be run automatically whenever new data is loaded into the  Data Set. This is done by specifying the distinctOnLoad constructor option. In case the distinct functionality is need only for specific column(s) they may be defined through the additional parameter distinctFieldsOnLoad.</p>
+  <h4>Format</h4>
+  	<p>distinct(columnNames)</p>
+  	<h4>Arguments</h4>
+  	<p>columnNames - String or Array. The column(s) of the Nested JSON Data Set to use when determining if a row is distinct. This parameter is optional. If ommited, all columns are used to determine if a row is distinct or not. If specified, must be a string that is the name of the column to use for the distinct process, or, must be an array of column names to used for the distinct process.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+/* After a Nested JSON Data Set is defined and loaded with data, you can call
+ * distinct on it.
+ */
+
+varn ds1 = Spry.Data.NestedJSONDataSet(ds1,&quot;jpath&quot;);
+...
+ds1.distinct();
+</pre>
+</div>
+<div id="filter">
+  <h3><a name="filter"></a>filter</h3>
+  <h4>Description</h4>
+  <p>This function is used to non-destructively filter the Nested JSON Data Set based on a filter function provided by the caller. The filter function passed in must have the following interface:</p>
+  <pre>function myFilterFunc(ds, row, rowIndex)
+{
+  ...
+}</pre>
+  <p>The arguments to this function are as follows:</p>
+  <ul>
+  	<li>ds - The name of the Nested JSON Data Set being filtered.</li>
+  	<li>row - The row to filter.</li>
+  	<li>rowIndex - The row index of the row within the unfiltered version of the Nested JSON Data Set.</li>
+  </ul>
+  <p>The caller's filter function is called once for each row in the Nested JSON Data Set. If the caller's filter function wishes to add the row to the filtered view of the Nested JSON Data Set, then it must return the row object passed into the function. If it does not want the row to be in the filtered view of the Nested JSON Data Set, then it must return null.</p>
+  <p> As previously mentioned, this filtering is done non-destructively so internally, the Nested JSON Data Set is using the function to determine if it should add a row to a copy of the row array.</p>
+  <p>The caller's filter function remains active until it is removed. The filter function can be removed by calling filter with a null value instead of a function reference.</p>
+  <p>After filtering, a call to the getData function will return the filtered array of rows. To get the unfiltered array of rows, you must call getData, passing in a true for the unfiltered argument.</p>
+  <p><a href="#filterdata">FilterData</a> is the destructive filter, which actually throws out the filtered data from memory. </p>
+  <h4>Format</h4>
+  <p>datasetname.filter(filterFunction);</p>
+  <h4>Arguments</h4>
+  <p>filterFunction - Function Reference. The function to use to determine if a row should be filtered out or not.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">var myFilterFunc = function(dataSet, row, rowNumber)
+{
+  // Filter out all rows with paths that begin
+  // with the letter 's'.
+
+  if (row[&quot;@path&quot;].search(/^s/) != -1)
+    return row;  // Return the row to keep it in the Nested JSON Data Set.
+  return null;   // Return null to remove the row from the Nested JSON Data Set.
+}
+
+// Filter the data.
+
+dsPhotos.filter(myFilterFunc);
+
+...
+
+// Remove the filter.
+
+dsPhotos.filter(null);
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/NonDestructiveFilterSample.html">Non Destructive Filtering </a></p>
+</div>
+<div id="filterdata">
+  <h3><a name="filterdata"></a>filterData</h3>
+  <h4>Description</h4>
+  <p>This function is used to filter the Nested JSON Data Set based on a filter function provided by the caller. filterData is a destructive method, which means that all rows that are discarded by the filtering is lost. The data can only be retrieved again by loading the data back into the Nested JSON Data Set again.</p>
+  <p>The filter function passed in must have the following interface:</p>
+  <pre>function myFilterFunc(ds, row, rowIndex)
+{
+  ...
+}</pre>
+	<p>The arguments to this function are as follows:</p>
+	<ul>
+		<li>ds - The name of the Nested JSON Data Set being filtered.</li>
+		<li>row - The row to filter.</li>
+		<li>rowIndex - The row index of the row within the unfiltered version of the Nested JSON Data Set.</li>
+	</ul>
+	<p>The caller's filter function is called once for each row in the Nested JSON Data Set. If the caller's filter function wishes to keep the row, then it must return the row object passed into the function. If it does not want to keep the row, then it must return null.</p>
+	<p> As previously mentioned, this filtering is destructive so internally, the Nested JSON Data Set is modifying its only copy of the row array.</p>
+	<p>The caller's filter function remains active until it is removed, so if the Nested JSON Data Set is reloaded, the filtering will occur. The filter function can be removed by calling filter with a null value instead of a function reference.</p>
+	<p><a href="#filter">filter</a> is the non-destructive version of this function.</p>
+	<h4>Format</h4>
+  <p>datasetname.filterData(filterFunction);</p>
+  <h4>Arguments</h4>
+  <p>filterFunction - Function Reference. The function to use to determine if a row should be kept or discarded.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">var myFilterFunc = function(dataSet, row, rowNumber)
+{
+  // Filter out all rows with paths that begin
+  // with the letter 's'.
+
+  if (row[&quot;@path&quot;].search(/^s/) != -1)
+    return row;  // Return the row to keep it in the Nested JSON Data Set.
+  return null;   // Return null to remove the row from the Nested JSON Data Set.
+}
+
+// Filter the data.
+
+dsPhotos.filterData(myFilterFunc);
+
+...
+
+// Remove the filter.
+
+dsPhotos.filterData(null);
+</pre>
+  <h4>Samples</h4>
+  <p>N/A</p>
+</div>
+<div id="findrowswithcolumnvalues">
+  <h3><a name="findrowswithcolumnvalues"></a>findRowsWithColumnValues</h3>
+  <h4>Description</h4>
+  <p>Finds all rows within the Nested JSON Data Set that have the same column values contained in the specified object.</p>
+  <h4>Format</h4>
+  <p>findRowsWithColumnValues(valueObj, firstMatchOnly, unfiltered)</p>
+  <h4>Arguments</h4>
+  <p>valueObj - Object. Object containing the names of the columns and their values which each row must contain to be considered a match.</p>
+  <p>firstMatchOnly - Boolean. Optional argument. If true, causes the function to return the row object that first matched the values specified in valueObj. If not match was found, returns null.</p>
+  <p>unfiltered - Boolean. Optional argument. If true the function does its find through the unfiltered set of rows within the Nested JSON Data Set. If false or undefined, the find is done through the filtered set of rows.</p>
+  <h4>Returns</h4>
+  <p>The value returned by this function depends on the value of the firstMatchOnly argument. If firstMatchOnly is true, the function will return either the first row object that matches, or null. If firstMatchOnly is false or undefined, the function will return an array of all matches. This array may be empty (length == 0) if no matches were found.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var ds = new Spry.Data.NestedJSONDataSet();
+
+..
+
+// Look for all rows that have a column called &quot;color&quot; with a value of &quot;red&quot;
+// and a column called &quot;type&quot; with a value of &quot;sports&quot;.
+
+var matchingRows = ds.findRowsWithColumnValues({ color: &quot;red&quot;, type: &quot;sports&quot; 
+
+alert(&quot;Found &quot; + matchingRows.length + &quot;match(es).&quot;);
+
+//Look for the first row that matches:
+
+var firstMatchingRow = ds.findRowsWithColumnValues({ color: &quot;red&quot;, type: &quot;sports&quot; }, true);
+
+if (firstMatchingRow != null)
+  alert(&quot;Found a match!&quot;);
+else
+  alert(&quot;Failed to find a match!&quot;);
+</pre>
+</div>
+<div id="getcolumntype">
+  <h3><a name="getcolumntype"></a>getColumnType</h3>
+  <h4>Description</h4>
+  <p>This function returns the column type of the specified column. </p>
+  <h4>Format</h4>
+  <p>getColumnType(columnName);</p>
+  <h4>Arguments</h4>
+  <p>columnName - String. The name of the column.</p>
+  <h4>Returns</h4>
+  <p>The column type of the specified column, as a string:</p>
+  <ul>
+    <li>&quot;string&quot;</li>
+    <li>&quot;number&quot;</li>
+    <li>&quot;date&quot;</li>
+    <li>&quot;html&quot;</li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var ds = new Spry.Data.NestedJSONDataSet();
+
+...
+
+var colType = ds.getColumnType(&quot;firstname&quot;);<br /></pre>
+</div>
+<div id="getcurrentrow">
+  <h3><a name="getcurrentrow" ></a>getCurrentRow</h3>
+  <h4>Description</h4>
+  <p>This function returns the object that is the 'currentRow' in the Nested JSON Data Set. By default, the current row is the first row of the Nested JSON Data Set, but this can be changed by calling the function <a href="#setcurrentrow">setCurrentRow()</a> or <a href="#setcurrentrownumber">setCurrentRowNumber()</a>.</p>
+  <h4>Format</h4>
+  <p>getCurrentRow()</p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>The row object or null.</p>
+  <p>Developers should note that the row object returned is the Nested JSON Data Set's internal row object. Any changes to the properties of this object results in a change to the data within the Nested JSON Data Set.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var row = ds1.getCurrentRow();
+
+
+if (row[&quot;@title&quot;] == &quot;Me, Myself and I&quot;)
+...</pre>
+</div>
+<div id="getcurrentrowid">
+  <h3><a name="getcurrentrowid" ></a>getCurrentRowID</h3>
+  <h4>Description</h4>
+  <p>This function returns the row ID of the current row.</p>
+  <p>Developers should not confuse the ID of a row with the index of the row. The ID is a column that contains a unique identifier for the row. This identifier does not change if the rows of the Nested JSON Data Set are sorted, where as the row index for a given row will change if the rows are sorted.</p>
+  <h4>Format</h4>
+  <p>getCurrentRowID()</p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>Integer or String that represents the row ID.</p>
+  <p>The actual type of the row ID is left up to the implementor, but it must be an integer or string that can be used as a key into an associative array.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var rowID = ds.getCurrentRowID();
+
+
+alert(&quot;Current row is: &quot; + rowID);</pre>
+</div>
+<div id="getcurrentrownumber">
+  <h3><a name="getcurrentrownumber" ></a>getCurrentRowNumber</h3>
+  <h4>Description</h4>
+  <p>This function returns the row index for the current row.</p>
+  <p>Developers should not confuse the row number for a row with its ID. The ID is a column that contains a unique identifier for the row. This identifier does not change if the rows of the Nested JSON Data Set are sorted, where as the row index for a given row may change if the rows are sorted.</p>
+  <h4>Format</h4>
+  <p>getCurrentRowNumber()</p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>Returns an integer index (row number) of the row within the Nested JSON Data Set.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var rowNumber = ds.getCurrentRowNumber();
+
+
+alert(&quot;Current row number is: &quot; + rowNumber);</pre>
+</div>
+<div id="getdata">
+  <h3><a name="getdata"></a>getData</h3>
+  <h4>Description</h4>
+  <p>This function returns an array of the internal row objects that store the data in the Nested JSON Data Set. Modifying any property of a row object results in a modification of the data in the Nested JSON Data Set. Users should keep in mind that some Nested JSON Data Sets load their data asynchronously, so they should check if it is ok to access the data, with a call to getDataWasLoaded(), before attempting to call getData(). </p>
+  <h4>Format</h4>
+  <p>getData(unfiltered)</p>
+  <h4>Arguments</h4>
+  <p>unfiltered - Boolean. Optional argument. If true, getData() returns the unfiltered data array. If false or undefined, it returns the filtered version of the rows array.</p>
+  <h4>Returns</h4>
+  <p>Returns an array of row objects.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// Run through all of the rows in the Nested JSON Data Set. For each row,
+// get the value in the &quot;name&quot; column and check to see if it
+// is equal to the string &quot;Spry&quot;. If it is, return the ID of
+// the matching row.
+
+var rows = ds.getData();
+
+for (var i = 0; i &lt; rows.length; i++)
+{
+  if (rows[i][&quot;name&quot;] == &quot;Spry&quot;) 
+    return rows[i][&quot;ds_RowID&quot;];
+}
+</pre>
+</div>
+<div id="getrowbyid">
+  <h3><a name="getrowbyid"></a>getRowByID</h3>
+  <h4>Description</h4>
+  <p>This method returns the row object associated with the specified row ID.</p>
+  <h4>Format</h4>
+  <p>getRowByID(rowID)</p>
+  <h4>Arguments</h4>
+  <p>rowID - Integer or String. The ID of the row.</p>
+  <h4>Returns</h4>
+  <p>Returns the row object with the given rowID or null if it is not found.</p>
+  <h4>Example</h4>
+  <pre>// Get the row with the ID of 10.
+
+var row = ds.getRowByID(10);
+
+// If we have a match, extract out the value
+// of the firstname column.
+
+if (row)
+  var firstname = row.firstname;</pre>
+</div>
+<div id="getrowbyrownumber">
+  <h3><a name="getrowbyrownumber"></a>getRowByRowNumber</h3>
+  <h4>Description</h4>
+  <p>This method returns the row object at the specified row number within the Nested JSON Data Set.</p>
+  <h4>Format</h4>
+  <p>getRowByRowNumber(rowNumber, unfiltered)</p>
+  <h4>Arguments</h4>
+  <p>rowNumber - Integer. The row number of the row to fetch.</p>
+  <p>unfiltered - Boolean. If true, the Nested JSON Data Set will return the row object at the given row number in the internal unfiltered data array. Otherwise, it returns the row object at the given row number in the filtered data array.</p>
+  <h4>Returns</h4>
+  <p>Returns the row object at the given row number or null if it is not found.</p>
+  <h4>Example</h4>
+  <pre>// Get row 10 of the unfiltered data.
+
+var row = ds.getRowByRowNumber(10, true);
+
+// If we have a match, extract out the value
+// of the firstname column.
+
+if (row)
+  var firstname = row.firstname;</pre>
+</div>
+<div id="getrowcount">
+  <h3><a name="getrowcount" ></a>getRowCount</h3>
+  <h4>Description</h4>
+  <p>This function returns the number of rows in the Nested JSON Data Set. If the Nested JSON Data Set has a non-destructive filter, this function returns the number of filtered rows. Users can pass an optional boolean argument to this function. If true, it will return the number of unfiltered rows. If false it will return the number of filtered rows. </p>
+  <h4>Format</h4>
+  <p>getRowCount(unfiltered);</p>
+  <h4>Arguments</h4>
+  <p>unfiltered - Boolean. Optional argument. If true, getRowCount the number of rows in the unfiltered data array. Otherwise, it returns the number of rows in the filtered data array.</p>
+  <h4>Returns</h4>
+  <p>An integer that is the number of rows in the Nested JSON Data Set. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">var filteredRowCount = ds.getRowCount();
+var unfilteredRowCount = ds.getRowCount(true);<br /></pre>
+</div>
+<div id="getrownumber">
+  <h3><a name="getrownumber" ></a>getRowNumber</h3>
+  <h4>Description</h4>
+  <p>This function returns the row number for the specified row object in the Nested JSON Data Set. If the Nested JSON Data Set has an active non-destructive filter, the row number returned is of the row within the filtered data array. An optional boolean argument can be passed to the function which tells the function to return the row number for the row within the unfiltered data array.</p>
+  <h4>Format</h4>
+  <p>getRowNumber(rowObject, unfiltered)</p>
+  <h4>Argument</h4>
+  <p>rowObject - Object. The row to look for.</p>
+  <p>unfiltered - Boolean. Optional argument. If true the row number returned for the specified row is its row index within the unfiltered data array. Otherwise, it returns the index of the row within the filtered data array.</p>
+  <h4>Returns</h4>
+  <p>An integer that is the number of the specified row in the Nested JSON Data Set. Returns -1 if the row is not found within the Nested JSON Data Set.</p>
+</div>
+<div id="getsortcolumn">
+  <h3><a name="getsortcolumn"></a>getSortColumn</h3>
+  <h4>Description</h4>
+  <p>This function returns the name of the column that was used when the Nested JSON Data Set was last sorted. This function will return an empty string if the Nested JSON Data Set was never sorted. </p>
+  <h4>Format</h4>
+  <p>getSortColumn()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>A string that is the name of the column last used for a primary sort. If the Nested JSON Data Set has never been sorted, an empty it returns an empty string.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var columnName = ds.getSortColumn();<br /></pre>
+</div>
+<div  id="getsortorder">
+  <h3><a name="getsortorder"></a>getSortOrder</h3>
+  <h4>Description</h4>
+  <p>This function returns the name of the sort order that was used when the Nested JSON Data Set was last sorted. This function will return an empty string if the Nested JSON Data Set was never sorted.</p>
+  <h4>Format</h4>
+  <p>getSortOrder()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>The current sort order of the Nested JSON Data Set:</p>
+  <ul>
+    <li>&quot;ascending&quot;</li>
+    <li>&quot;descending &quot; </li>
+  	<li>&quot;&quot;</li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var sortOrderName = ds1.getSortOrder();
+  </pre>
+</div>
+<div id="loaddata" >
+  <h3><a name="loaddata"></a>loadData</h3>
+  <h4>Description</h4>
+  <p>The default implementation for this function fires off asynchronous notifications for &quot;onPostLoad&quot; and &quot;onDataChanged&quot; events. Classes that derive from Spry.Data.NestedJSONDataSet are expected to override this function to trigger async loading of the data for the Nested JSON Data Set.</p>
+  <h4>Format</h4>
+  <p>loadData()</p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>NA</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+ds.setURL(&quot;newJSON.JSON&quot;);
+ds.loadData();&quot;
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/RegionStatesSample.html">Region States Sample </a></p>
+</div>
+<div id="setcolumntype">
+  <h3><a name="setcolumntype"></a>setColumnType</h3>
+  <h4>Description</h4>
+  <p>This function is used to set a column type for a data column. This is used to tell the Nested JSON Data Set the type of data it is dealing with. A common application is for setting numeric data as 'number'. This ensures that the column will sort numerically, and not alpha-numerically.</p>
+  <p>The valid column types are:</p>
+  <ul>
+  	<li>&quot;date&quot;</li>
+  	<li>&quot;html&quot;</li>
+  	<li>&quot;number&quot;</li>
+  	<li>&quot;string&quot;</li>
+  	</ul>
+  <p>The 'html' column type results in the automatic entity decoding of values stored in a column of that type when the data is first loaded.</p>
+  <h4>Format</h4>
+  <p>setColumnType(columnName, type)</p>
+  <h4>Arguments</h4>
+  <p>columnName - String or Array of Strings. The name(s) of the column(s) to set.</p>
+  <p>type - String. One of the following values:</p>
+  <ul>
+  	<li>&quot;date&quot;</li>
+  	<li>&quot;html&quot;</li>
+  	<li>&quot;number&quot;</li>
+  	<li>&quot;string&quot;</li>
+  	</ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var ds1 = new Spry.Data.JSONDataSet(&quot;myJSON.JSON&quot;,&quot;races/standings&quot;);
+
+// Example of setting the type of one column:
+
+ds1.setColumnType(&quot;start&quot;, &quot;date&quot;);
+
+// Example of setting the type of multiple columns
+// with one call:
+
+ds1.setColumnType([&quot;rank&quot;,&quot;place&quot;],&quot;number&quot;);<br />
+</pre>
+</div>
+<div id="setcurrentrow">
+  <h3><a name="setcurrentrow"></a>setCurrentRow</h3>
+  <h4>Description</h4>
+  <p>Sets the current row of the Nested JSON Data Set to the row with the specified row ID.</p>
+  <p>This method will cause an &quot;onCurrentRowChanged&quot; notification to be sent to all observers.</p>
+  <h4>Format</h4>
+  <p>setCurrentRow(rowID)</p>
+  <h4>Arguments</h4>
+  <p>rowID - Integer or String. The row ID of the row that is to become the current row.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// Set the current row of the Nested JSON Data Set
+// to the row with the integer ID of 13:
+<br />ds.setCurrentRow(13);</pre>
+</div>
+<div id="setcurrentrownumber">
+  <h3><a name="setcurrentrownumber"></a>setCurrentRowNumber</h3>
+  <h4>Description</h4>
+  <p>This function makes the row, at the specified row number (index), the current row of the Nested JSON Data Set. Spry uses a zero based counting system for row numbers.</p>
+  <p>Developers should not confuse the ID of a row with the index of the row. A row ID is a unique identifier that is stored within the row in a column called &quot;ds_RowID&quot;. This identifier does not change even if the rows of the Nested JSON Data Set are sorted, where as the row index for a given row can change if the rows are sorted.</p>
+  <h4>Format</h4>
+  <p>setCurrentRowNumber(rowNumber)</p>
+  <h4>Arguments</h4>
+  <p>rowNumber - Integer. The row number of the row that will become the current row.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// Make the 3rd row of the Nested JSON Data Set the current row. Remember
+// that the row number is zero based.
+
+ds.setCurrentRowNumber(2);</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/SetCurrentRowSample.html">Set Current Row Sample </a></p>
+</div>
+<div id="sort">
+  <h3><a name="sort"></a>sort</h3>
+  <h4>Description</h4>
+  <p>Sorts the Nested JSON Data Set using the specified column(s) and sort order.</p>
+  <p>Developers specify what columns to sort by passing in a single column name string, or an array of column name strings as the first argument to the function. By specifying more than one column name, developers are able to perform secondary, tertiary, etc, sorts on the data.</p>
+  <p>Valid sort orders are:</p>
+  <ul>
+  	<li>&quot;ascending&quot;</li>
+  	<li>&quot;descending&quot;</li>
+  	<li>&quot;toggle&quot;</li>
+  	</ul>
+  <p>The &quot;toggle&quot; sort order will sort the Nested JSON Data Set in &quot;ascending&quot; order if it has not been previously sorted, otherwise, it causes the Nested JSON Data Set to sort in the opposite direction from the last sort.</p>
+  <h4>Format</h4>
+  <p>sort(column, order)</p>
+  <h4>Arguments</h4>
+  <p>column - String or Array of Strings. The column names to sort.</p>
+  <p>order - The sort order to be used during the sort. Values for order must be one of the following:</p>
+  <ul>
+    <li>&quot;ascending&quot;</li>
+    <li>&quot;descending&quot;</li>
+    <li>&quot;toggle&quot;</li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// An example of sorting a Nested JSON Data Set in ascending order
+// based on the values in a single column called &quot;lastname&quot;:
+<br />ds.sort(&quot;lastname&quot;, &quot;ascending&quot;);
+
+// An example of toggling the sort of a Nested JSON Data Set based
+// on the values in multiple columns. Since 3 columns are
+// specified, the Nested JSON Data Set will perform a tertiary sort:
+
+ds.sort([&quot;firstname&quot;, &quot;lastname&quot;, &quot;@id&quot;], &quot;toggle&quot;);</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<studio-list>
+	<studio value="">Please select</studio>
+	<studio value="13Foxes">Thirteen Foxes</studio>
+	<studio value="StudioMartin">Studio Martin</studio>
+	<studio value="Kristal">Kristal</studio>
+	<studio value="NortheastStars">Northeast Stars</studio>
+	<studio value="Multiplex">Multiplex</studio>
+	<studio value="ACME">ACME</studio>
+</studio-list>

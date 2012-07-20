@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Function:: functionality</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "products/product");
+
+function checkName(rgn, doIt)
+    {
+      return doIt('{name}') == 'Adobe Studio 8';
+    }
+	
+function FormattedPrice(region, lookupFunc)
+	{ 
+	  return "$" + parseInt(lookupFunc("{price}")).toFixed(2);
+	}
+//-->
+</script>
+</head>
+<body>
+<h3>Using the Function:: Method for Spry Processing</h3>
+<p>With Spry 1.6.1, we introduced the idea of using external functions to do Spry processing. Instead of the usual way of: </p>
+<pre>&lt;div spry:if=&quot;'{firstname}' == 'Edward'&quot;&gt;
+</pre>
+<p>we can externalize the logic like this:</p>
+<pre>&lt;script&gt;
+
+function checkName(rgn, doIt)
+    {
+     return doIt('{name}') == 'Adobe Studio 8';
+    }
+
+&lt;/script&gt;
+
+&lt;div spry:if=&quot;function::checkName&quot;&gt;
+</pre>
+<div class="liveSample" spry:region="ds1" spry:repeat="ds1">
+  <div spry:if="function::checkName">{name}</div>
+</div>
+<p>The 2 parameters passed to the function can be whatever names you wish. The first one names the region being processed, the second is the name of the function used in the expression. Any data reference used in this external function must be wrapped like funcNam('{dataref}')</p>
+<hr />
+<p>But even better is the idea that these functions can be used AS data references. This allows you to process these data refs within the function and return that value. This can be helpful in date or currency formatting, for example.</p>
+<pre>&lt;script&gt;
+function FormattedPrice(region, lookupFunc)
+   { 
+     return &quot;$&quot; + parseInt(lookupFunc(&quot;{price}&quot;)).toFixed(2);
+   }
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;ds1&quot; class=&quot;liveSample&quot;&gt;<br />  &lt;ul spry:repeatchildren=&quot;ds1&quot;&gt;<br />    &lt;li&gt;{name} - {function::FormattedPrice}&lt;/li&gt;<br />  &lt;/ul&gt;<br />&lt;/div&gt;</pre>
+<div spry:region="ds1" class="liveSample">
+  <ul spry:repeatchildren="ds1">
+    <li>{name} - {function::FormattedPrice}</li>
+  </ul>
+</div>
+<hr />
+<p>Copyright © 2008. Adobe Systems Incorporated. <br />
+All rights reserved.</p>
+</body>
+</html>

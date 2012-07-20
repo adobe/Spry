@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Auto Suggest Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="overview">Using Spry Widgets: Auto-suggest Overview</h1>
+<p>The Auto-suggest widget is a form text field used as a search field. As the user types in the field, a list of matching hints will list underneath the text field. Users can select from the hinted list. The Auto-suggest widget is different than other Spry widgets because it is a data-widget hybrid. This means that is has the markup structure of a widget and it instantiated with a script below the markup, but it depends on a data set for the suggestion data.</p>
+<h3 id="about_confirm">About Spry Widgets</h3>
+<p>A Spry widget is a page element containing built-in behaviors and functions that provide a richer user experience by enabling user interaction. These behaviors can include functionality that lets users show or hide content on the page, change the appearance (such as color of the input) in the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You can easily insert these widgets &mdash; the code is HTML and JavaScript at its simplest &mdash; and then style the widget according to your liking.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and JavaScript files. The CSS file contains everything necessary for styling the widget, and the JavaScript file gives the widget its functionality. You must link both of these files to the page on which you want the widget to function and appear styled. Otherwise, the widget won&rsquo;t have any functionality or styling. For more information, see the appropriate sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JavaScript files associated with a given widget are named after the widget, so it&rsquo;s easy for you to know which files correspond to which widgets. (For example, the files associated with the Auto Suggest widget are called SpryAutoSuggest.css and SpryAutoSuggest.js). </p>
+<ul>
+  <li><a href="#anatomy">Anatomy of the Auto Suggest widget</a></li>
+	<li><a href="#building">Building an Auto Suggest widget</a></li>
+	<li><a href="#options">Auto Suggest widget options</a></li>
+  <li><a href="#keyboard">Keyboard Navigation</a></li>
+</ul>
+<p>See the <a href="../../widgets/autosuggest/SpryAutoSuggest.html">Auto Suggest reference</a> file and <a href="../../samples/autosuggest/SuggestSample.html">sample</a>.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="anatomy">Anatomy of the Auto-suggest widget</h3>
+<p>The Auto-suggest widget has a container DIV, an input field and another DIV that contains the suggest results. The suggestion results can be formatted however you wish. The widget, as always, has a constructor script that follows the widget markup. This constructor has 4 required values and a set of optional values.</p>
+<pre>&lt;div id=&quot;productSampleDiv&quot; class=&quot;container&quot;&gt;
+   &lt;input type=&quot;text&quot; id=&quot;productFilterDiv&quot; name=&quot;product&quot;/&gt; 
+   &lt;div id=&quot;productMenuDiv&quot; spry:region=&quot;dsProducts3&quot;&gt;
+   &lt;span spry:repeat=&quot;dsProducts3&quot; spry:suggest=&quot;{name}&quot;&gt;{name}&lt;br /&gt;&lt;/span&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+   var ac3 = new Spry.Widget.AutoSuggest(&quot;productSampleDiv&quot;, &quot;productMenuDiv&quot;, &quot;dsProducts3&quot;, &quot;name&quot;, {hoverSuggestClass: 'hover', minCharsType: 0, containsString: true, maxListItems: 0});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="breaking">Breaking down the markup</h3>
+<ul>
+  <li>The outer DIV is the main container for the widget. The ID attribute is required since it is referenced by the constructor.</li>
+  <li>The widget requires one text input field for the search term.</li>
+  <li>The inner DIV is the container for the results. The id is required since the constructor needs it. This container also needs to be a spry:region so it can display the results.</li>
+  <li>The markup inside the results container can be whatever HTML tag you wish, but it needs to be a spry:repeat region and the spry:suggest attribute value is the data reference for the results.</li>
+</ul>
+<p>As with all widgets, the actual markup doesn't matter, as long as it follows the rules of HTML (ie. &lt;p&gt; tags cannot contain other block elements).</p>
+<p>Breaking down the constructor:</p>
+<ul>
+  <li>The var is the name of the widget. </li>
+  <li>The Spry.Widget.AutoSuggest object has 4 required attributes. They must be in this order:
+    <ul>
+      <li>ID of the main widget container. (&quot;productSampleDiv&quot;)</li>
+      <li>ID of the results container.</li>
+      <li>The data set that contains the search column.</li>
+      <li>The name(s) of the search column(s).</li>
+    </ul>
+  </li>
+</ul>
+<p>There are a series of optional attributes for the constructor:</p>
+<table width="817" cellpadding="4" id="options">
+  <tr>
+    <th width="110">Option</th>
+    <th width="446">Definition</th>
+    <th width="105">Default</th>
+    <th width="104">Values</th>
+  </tr>
+  <tr id="containsString">
+    <td>containsString</td>
+    <td>By default, the widget returns results that &quot;starts&quot; with the typed string. Setting containString to 'true' will return results where the typed string is anywhere within the result.</td>
+    <td>false</td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr id="minCharsType">
+    <td>minCharsType</td>
+    <td>This determines how many characters have to be typed before results are listed. This is helpful in improving performance, esp. if retrieving results directly from the server</td>
+    <td>&nbsp;</td>
+    <td>number</td>
+  </tr>
+  <tr id="maxListItems">
+    <td>maxListItems</td>
+    <td>Determines the maximum number of items in the list</td>
+    <td>&nbsp;</td>
+    <td>number</td>
+  </tr>
+  <tr id="hoverSuggestClass">
+    <td>hoverSuggestClass</td>
+    <td>This attribute takes a CSS class that will be applied while hovering over the results list.</td>
+    <td>&nbsp;</td>
+    <td>CSS class name</td>
+  </tr>
+  <tr id="loadFromServer">
+    <td>loadFromServer</td>
+    <td>This attribute will fetch results from the server directly, rather than from the cached data set. This will trump the default data set caching setting and always fetch the results from the server.</td>
+    <td>false</td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr id="urlParam">
+    <td>urlParam</td>
+    <td><p>This is the URL parameter name to which the search field value is attached.</p>
+      <p>i.e. www.adobe.com?urlParam=searchValue</p></td>
+    <td>required if loadFromServer<br />
+      is true.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr id="moveNextKeyCode">
+    <td>moveNextKeyCode</td>
+    <td>This option allows the user to assign a specific key to go to the next suggestion when the list of suggestions appears. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    <td>number</td>
+    <td>40 (Down Arrow key code)</td>
+  </tr>
+  <tr id="movePrevKeyCode">
+    <td>movePrevKeyCode</td>
+    <td>This option allows the user to assign a specific key to go to the previous suggestion when the list of suggestions appears. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    <td>number</td>
+    <td>38 (Up Arrow key code)</td>
+  </tr>
+</table>
+<p>Note that the auto suggest works by filtering the data set. Initially, the data set filters out everything. As you type, the filter is loosened to allow in the expected results. This means that if you have other Spry regions hooked to the same data set as the auto suggest widget, those regions will not show content when the page loads. You may want to dedicate a data set specifically for the auto suggest.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="building">Building an Auto suggest widget</h3>
+<ol>
+  <li>In your page, attach the Auto Suggest javascript file. Because this widget uses Spry data, we attach the required Spry data files: SpryData.js and xpath.js.
+    We also use CSS to show and hide results. Attach the SpryAutoSuggest.css as well.
+    <pre>&lt;head&gt;<br />	&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/xpath.js&quot;&gt;&lt;/script&gt;
+	&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryData.js&quot;&gt;&lt;/script&gt;
+	&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryAutoSuggest.js&quot;&gt;&lt;/script&gt;
+	&lt;link href=&quot;includes/SpryAutoSuggest.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;</pre>
+  </li>
+  <li> To the document body, add a container &lt;DIV&gt; and give it a unique ID.
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;&lt;/div&gt;</pre>
+  </li>
+  <li>Add the input field to the DIV. This will be the search field.<br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />	&lt;input type=&quot;text&quot; name=&quot;product&quot; /&gt;<br />&lt;/div&gt;
+</pre>
+  </li>
+  <li>Add the results container &lt;DIV&gt;. Give it an ID.<br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />	&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+	&lt;div id=&quot;resultsDIV&quot;&gt;<br />	&lt;/div&gt;<br />&lt;/div&gt;
+</pre>
+  </li>
+  <li>Since this is a data hybrid widget, we need a data set from which we will get the results. Create a data set in the document head.<br />
+    <pre>&lt;head&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryAutoSuggest.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;includes/SpryAutoSuggest.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+  var ds1 = new Spry.Data.XMLDataSet(&quot;data/products.xml&quot;,&quot;products/product&quot;);
+&lt;/script&gt;<br />&lt;/head&gt;</pre>
+  </li>
+  <li>Now reference this data set in the results container by making it a spry:region. <br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+</pre>
+  </li>
+  <li>Add the markup you want for the results. This can be whatever you wish, but it will be a spry:repeat region to look through the results. Also, to this markup, add the data reference that will be the results column.<br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat=&quot;ds1&quot;&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+</pre>
+  </li>
+ <li>Add spry:suggest attribute to the element that will be highlighed. The value of this attribute will be filled in the text field when the row of the repeat region will be selected.<br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;
+    &lt;ul&gt;
+	&lt;li spry:repeat=&quot;ds1&quot; spry:suggest=&quot;{name}&quot;&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+</pre>
+  </li>
+  <li>Now that the markup is complete, we will add the constructor script. BELOW the markup, add a script tag and write the constructor within. The values are case sensitive.<br />
+    <pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat=&quot;ds1&quot; spry:suggest=&quot;{name}&quot;&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var theSuggest = new Spry.Widget.AutoSuggest(&quot;mySuggest&quot;,&quot;resultsDIV&quot;, &quot;ds1&quot;,&quot;name&quot;);
+&lt;/script&gt;
+</pre>
+    The values are (&quot;theContainerID&quot;,&quot;theResultsContainerID&quot;,&quot;theDataSetName&quot;,&quot;theResultsDataColumn&quot;)</li>
+</ol>
+<p>That's it. Preview the page and typing in the field should show results displayed below the field.</p>
+<p>Note: This chapter details only how to build the Spry Auto Suggest widget with XML Data Set. The steps to use a different Data Sets like JSON or HTML are the same, the things that should be changed are the JS files to be included in your page and the specific Data Set JS creation code.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="adding_options">Adding Options</h3>
+<p>If you want to add some optional functionality, add the values to the constructor. The options added below will force the suggest to start after the 3rd character is typed and will also change the search parameter from &quot;starts with&quot; to &quot;contains&quot;. Options are contained within {}.</p>
+<pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat=&quot;ds1&quot; spry:suggest=&quot;{name}&quot;&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var theSuggest = new Spry.Widget.AutoSuggest(&quot;mySuggest&quot;,&quot;resultsDIV&quot;, &quot;ds1&quot;,&quot;name&quot;,{containsString:true,minCharsType:3});
+&lt;/script&gt;</pre>
+<p>Or with more options:</p>
+<pre>
+&lt;div id=&quot;mySuggest&quot;&gt;<br />&lt;input type=&quot;text&quot; name=&quot;product&quot;/&gt;
+  &lt;div id=&quot;resultsDIV&quot; spry:region=&quot;ds1&quot;&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat=&quot;ds1&quot; spry:suggest=&quot;{name}&quot;&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var theSuggest = new Spry.Widget.AutoSuggest(&quot;mySuggest&quot;,&quot;resultsDIV&quot;, &quot;ds1&quot;, &quot;name&quot;,{containsString:true, minCharsType:3,maxListItems:10, containsString:true, hoverSuggestClass:mySuggest});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3 id="keyboard">Keyboard navigation</h3>
+<p>Making widgets accessible for keyboard navigation is an important part of 
+	every widget. Keyboard navigation lets the user control the widget with arrow 
+	keys and custom keys.</p>
+<p>You can set custom keys for keyboard navigation. Custom keys are set as 
+	arguments of the autosuggest constructor script:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var theSuggest = new Spry.Widget.AutoSuggest(&quot;mySuggest&quot;,&quot;resultsDIV&quot;, &quot;ds1&quot;,&quot;name&quot;,{movePrevKeyCode: 33 /* PgUp key */, moveNextKeyCode: 34 /* PgDn key */});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<!-- -->
+<hr />
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

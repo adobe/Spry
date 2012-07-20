@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unobtrusive Sliding Panels Sample</title>
+<script type="text/javascript" src="../../widgets/slidingpanels/SprySlidingPanels.js"></script>
+<script type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+<script type="text/javascript" src="sp_unobtrusive.js"></script>
+<link href="../../widgets/slidingpanels/SprySlidingPanels.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#newsTicker {
+	width: 500px;
+	border: solid 1px #999999;
+	float: left;
+	border-left: solid 1px #CCC;
+	border-right: solid 1px #999;
+	border-top: solid 1px #999;
+	border-bottom: solid 1px #CCC;
+	background-color: #DDD;
+}
+#newsTicker .SlidingPanels {
+	width: 500px;
+	height: 120px;
+	float: left;
+}
+#newsTicker .SlidingPanelsContentGroup {
+	width: 8000em;
+	float: left;
+}
+#newsTicker .SlidingPanelsContent {
+	float: left;
+	width: 250px;
+	height: 120px;
+}
+
+#newsTicker img {
+	float: left;
+	margin-right: 4px;
+}
+
+#newsTicker .SlidingPanelsContent .content {
+	margin: 4px auto;
+	float: left;
+}
+#item1 .content, #item2 .content, #item3 .content {
+	border-right: dashed 1px #999999;
+}
+#newsTicker .content {
+	height: 80px;
+	padding: 0px 4px;
+}
+
+#newsTicker p {
+	margin: 4px 4px;
+}
+
+#newsTicker .prev {
+	text-align: left;
+	padding: 4px 4px;
+	clear: both;
+}
+
+#newsTicker .next {
+	text-align: right;
+	padding: 4px 4px;
+	clear: both;
+}
+
+.SlidingPanelsAnimating * {
+	overflow: visible !important;
+}
+
+#newsTicker .navLinks {
+	clear: both;
+	text-align: center;
+	border-top:  solid 1px #CCC;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border: solid 1px #999;
+}
+</style>
+</head>
+<body>
+<h3>Unobtrusive Sliding Panels Sample</h3>
+<p>This example shows an alternate application and styling of the Sliding Panels widget. However, it uses the Element Selector Utility to select the links by ID and then runs the showPanel function.</p>
+<p>You can see the javascript file <a href="sp_unobtrusive.js">here</a> and the Element Selector overview <a href="../../articles/element_selector/index.html">here</a>.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="newsTicker">
+	<div id="ticker" class="SlidingPanels">
+		<div class="SlidingPanelsContentGroup">
+			<div id="item1" class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/china/thumbnails/china_01.jpg" width="72" height="72" alt="The Great Wall of China" />
+					<p><a href="../../demos/gallery/galleries/china/images/china_01.jpg">Great Wall of China</a></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ...</p>
+				</div>
+			</div>
+			<div class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/china/thumbnails/china_24.jpg" width="72" height="72" alt="The Hong Kong Skyline" />
+					<p><a href="../../demos/gallery/galleries/china/images/china_24.jpg">Hong Kong Skyline</a></p>
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ...</p>
+				</div>
+				<div class="next"><a id="link1" href="#">Next &gt;&gt;</a></div>
+			</div>
+			<div id="item2" class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/paris/thumbnails/paris_05.jpg" width="72" height="72" alt="The Eifel Tower" />
+					<p><a href="../../demos/gallery/galleries/paris/images/paris_05.jpg">Eifel Tower</a></p>
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ...</p>
+				</div>
+				<div class="prev"><a href="#" id="link2">&lt;&lt; Prev</a></div>
+			</div>
+			<div class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/paris/thumbnails/paris_10.jpg" width="72" height="72" alt="The Arc de Triomphe" />
+					<p><a href="../../demos/gallery/galleries/paris/images/paris_10.jpg">Arc de Triomphe</a></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ...</p>
+				</div>
+				<div class="next"><a href="#" id="link3">Next &gt;&gt;</a></div>
+			</div>
+			<div id="item3" class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/egypt/thumbnails/egypt_01.jpg" width="72" height="72" alt="The Great Pyramid of Giza" />
+					<p><a href="../../demos/gallery/galleries/egypt/images/egypt_01.jpg">Great Pyramid of Giza</a></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ...</p>
+				</div>
+				<div class="prev"><a href="#" id="link4">&lt;&lt; Prev</a></div>
+			</div>
+			<div class="SlidingPanelsContent">
+				<div class="content">
+                    <img src="../../demos/gallery/galleries/egypt/thumbnails/egypt_07.jpg" width="72" height="72" alt="The Great Sphynx" />
+					<p><a href="../../demos/gallery/galleries/egypt/images/egypt_07.jpg">Great Sphynx</a></p>
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ...</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p class="navLinks">
+      <a href="#" id="link5">1</a> |
+      <a href="#" id="link6">2</a> |
+      <a href="#" id="link7">3</a>
+    </p>
+</div>
+</body>
+</html>

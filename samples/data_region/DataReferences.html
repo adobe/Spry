@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data References Sample</title>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "products/product");
+ds1.setColumnType("ds_RowID","number");
+
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row["name"].search(/.s/) != -1)
+		return row; 
+	return null; 
+}
+var firstFive = function(dataSet, row, rowNumber)
+{
+	if (row["ds_RowID"] <= 5)
+		return row; 
+	return null; 
+}
+//-->
+</script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>Spry Built In Data References</h3>
+<p>This sample helps to visualize the built-in data references and their relationship to each other. </p>
+<ul>
+  <li>Click on the {ds_RowID} to set the current Row. </li>
+  <li>Sort a column by clicking on the header and then set the current row. </li>
+</ul>
+<div spry:detailregion="ds1">
+  <input type="button" name="button"  value="Filter Data" onclick="ds1.filter(myFilterFunc); "  />
+   <input type="button" name="button"  value="Clear Filter" onclick="ds1.filter(null); "  />
+     <input type="button" name="button"  value="First 5" onclick="ds1.filter(firstFive); "  />
+  <table>
+    <tr>
+      <th spry:sort="name">Name</th>
+      <th spry:sort="ds_RowID">ds_RowID</th>
+      <th spry:sort="ds_RowNumber">ds_RowNumber</th>
+      <th spry:sort="ds_RowNumberPlus1">ds_RowNumberPlus1</th>
+      <th spry:sort="ds_CurrentRowID">ds_CurrentRowID</th>
+      <th spry:sort="ds_CurrentRowNumber">ds_CurrentRowNumber</th>
+      <th spry:sort="ds_RowCount">ds_RowCount</th>
+      <th spry:sort="ds_UnfilteredRowCount">ds_UnfilteredRowCount</th>
+    </tr>
+    <tr spry:repeat="ds1">
+      <td>{name}</td>
+      <td><a href="#" onclick="ds1.setCurrentRow('{ds_RowID}');">{ds_RowID}</a></td>
+      <td>{ds_RowNumber}</td>
+      <td>{ds_RowNumberPlus1}</td>
+      <td>{ds_CurrentRowID}</td>
+      <td>{ds_CurrentRowNumber}</td>
+      <td>{ds_RowCount}</td>
+      <td>{ds_UnfilteredRowCount}</td>
+    </tr>
+  </table>
+  <table width="241">
+    <tr>
+      <th width="120">ds_SortColumn:</th>
+      <th width="109">ds_SortOrder:</th>
+    </tr>
+    <tr>
+      <td>{ds_SortColumn}</td>
+      <td>{ds_SortOrder}</td>
+    </tr>
+  </table>
+  <p><br />
+    </p>
+</div>
+</body>
+</html>

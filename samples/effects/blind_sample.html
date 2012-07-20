@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Effects Blind Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<style type="text/css">
+	
+.animationContainer{
+	height: 220px;
+}
+
+.demoDiv{
+	background-color: #CCC; 
+	height: 200px; 
+	overflow: hidden;
+}
+
+.hideInitially{
+	visibility: hidden;
+}
+</style>
+</head>
+<body>
+<h3>Spry Blind Effect Samples</h3>
+<p>This page will demonstrate the Spry Blind Effect capabilities.</p>
+<hr />
+<!--
+
+		Example 1: This is the Blind default behaviour
+
+-->
+<p>
+		The default Blind effect behavior will  Blind Out the target element
+		from the initial size until the element disappears, in 1 second.</p>
+
+<form method="get" action="blind_sample.html">
+	<input type="button" onclick="blind_default.start();" value="Blind Example 1" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideItUp1">
+		<h4>Example 1</h4>
+		<p class="sampleText">
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.		</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var blind_default = new Spry.Effect.Blind('slideItUp1');
+</script>
+<hr />
+
+<!--
+
+		Example 2: Blind behaviour with toggle and multiple starting elements
+
+-->
+
+<p>
+	After beginning, the blind effect  can be called in different
+	situations, by different elements in the page, at different moments.
+	This example  will demonstrate how to animate the same element
+	when you are clicking a button or a link. The animation can be also
+	started when the mouse is over an element, the page is loaded or on
+	any other page events.</p>
+<p>
+	In this example, each time the effect is started, it will toggle the direction
+	because we added  "toggle:true" to the list of options.</p>
+<pre>&lt;script type="text/javascript"&gt;
+	var blind_toggle = new Spry.Effect.Blind('slideItUp2', {toggle:true});
+&lt;/script&gt;</pre>
+
+<form method="get" action="blind_sample.html">
+	<input type="button" onclick="blind_toggle.start();" value="Blind Example 2" />
+	<a href="#" onclick="blind_toggle.start(); return false;">Blind Example 2</a>
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideItUp2">
+		<h4>Example 2</h4>
+		<p class="sampleText">
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.		 </p>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var blind_toggle = new Spry.Effect.Blind('slideItUp2', {toggle:true});
+</script>
+
+<hr />
+
+<!--
+
+		Example 3: Blind effects with duration, from and to options
+
+-->
+
+<p>
+	The duration and the initial/final size of the animated region  can  be controled with specific options passed to
+	the Slide Effect constructor. The "from" and "to" options represent
+	the percentage of the initial element size or the absolute value
+	in pixels.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var blind3 = new Spry.Effect.Blind('slideItDown1', {duration: 2000, from: '40px', to: '200px', toggle: true});
+&lt;/script&gt;
+</pre>
+<form method="get" action="blinds_sample.html">
+	<input type="button" onclick="blind3.start();" value="Blind Example 3" />
+	<input type="button" onclick="blind4.start();" value="Blind Example 4" style="margin-left: 300px;"/>
+</form>
+
+<br style="clear:both"/>
+<div class="animationContainer">
+
+	<div class="demoDiv" style="height:40px; float: left;" id="slideItDown1">
+		<h4><a onclick="blind3.start();">Example 3 - Blind from 40px to 200px in 2 seconds</a></h4>
+		<div class="sampleText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+	</div>
+
+	<script type="text/javascript">
+		var blind3 = new Spry.Effect.Blind('slideItDown1', {duration: 2000, from: '40px', to: '200px', toggle: true});
+	</script>
+
+	<div class="demoDiv" style="float: left; margin-left: 20px;" id="slideItDown2">
+		<h4><a onclick="blind4.start();">Example 4 - Blind from 100% to 20% in 3 seconds</a></h4>
+		<div class="sampleText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+	</div>
+
+	<script type="text/javascript">
+		var blind4 = new Spry.Effect.Blind('slideItDown2', {duration: 3000, from: '100%', to: '20%', toggle: true, scaleContent:true});
+	</script>
+
+	<br style="clear:both" />
+</div>
+<hr />
+<!--
+
+		Example 4: Blind effects with the element initially hidden
+
+-->
+
+<p> The target  element can initially be hidden. To hide 
+an element you can use one of two CSS properties: display and visibility.
+The difference between these two properties is the way it will alter the flow of the page. While using the display: none; 
+the element is completelly removed from page and the other elements 
+take its place on the page. The visibility: hidden will leave the element in the page
+flow  but the element 
+is simply not seen.</p>
+<p>In the following sample we will use the visibility: none; to initially 
+hide the element and using the Blind effect, the element will appear on the page.</p>
+<pre>&lt;style type=&quot;text/css&quot;&gt;
+.animationContainer{
+	height: 220px;
+}
+.hideInitially{
+	visibility: hidden;
+}
+&lt;/style&gt;
+...
+&lt;form method=&quot;get&quot; action=&quot;blinds_sample.html&quot;&gt;
+	&lt;input type=&quot;button&quot; onclick=&quot;blind_hidden.start();&quot; value=&quot;Blind Example Hidden&quot; /&gt;
+&lt;/form&gt;
+
+&lt;div class=&quot;animationContainer&quot;&gt;
+	&lt;div class=&quot;hideInitially&quot; id=&quot;slideItDown_hidden&quot;&gt;
+	...
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+ var blind_hidden = new Spry.Effect.Blind(&quot;slideItDown_hidden&quot;, {duration: 2000, from: '0%', to: '100%', toggle: true});
+&lt;/script&gt;
+</pre>
+<form method="get" action="blinds_sample.html">
+	<input type="button" onclick="blind_hidden.start();" value="Blind Example Hidden" />
+</form>
+
+<br style="clear:both"/>
+<div class="animationContainer">
+
+	<div class="demoDiv hideInitially" id="slideItDown_hidden">
+		<h4>Example - Blind from 0% to 100% in 2 seconds</h4>
+		<div class="sampleText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		var blind_hidden = new Spry.Effect.Blind('slideItDown_hidden', {duration: 2000, from: '0%', to: '100%', toggle: true});
+	</script>
+
+<hr />
+<!--
+
+		Example 5: Using the "finish" and "setup" javascript callbacks
+-->
+
+<p>
+	Sometimes when using the effects, you need to run some other JavaScript
+	functions before or after the animation. In the constructor you have the
+	ability to pass two options: "setup" and "finish" with the callback 
+	functions which Blind will call automatically.</p>
+
+<p>
+	This example will disable the button while the animation runs. It will re-enable when the effect finishes.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt; var animation_start = function(){
+   var button = document.getElementById('animation_button');
+   if (button){
+   button.disabled = true;
+   button.style.backgroundColor = 'white';
+   }
+   }
+    var animation_stop = function(){
+   var button = document.getElementById('animation_button');
+   if (button){
+   button.disabled = false;
+   button.style.backgroundColor = '';
+   }
+   }
+    var blind_func = new Spry.Effect.Blind('slideIt', {toggle:true, setup: animation_start, finish: animation_stop});
+&lt;/script&gt;</pre>
+<form method="get" action="blind_sample.html">
+	<input type="button" id="animation_button" onclick="blind_func.start();" value="Blind Example 5" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideIt">
+		<h4>Example 5</h4>
+		<p class="sampleText">
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.		 </p>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	var animation_start = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = 'white';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+
+	var blind_func = new Spry.Effect.Blind('slideIt', {toggle:true, setup: animation_start, finish: animation_stop});
+
+</script>
+</body>
+</html>

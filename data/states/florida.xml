@@ -1,0 +1,2274 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Florida</name>
+	<cities>
+		<city>
+			<name>Aberdeen</name>
+		</city>
+		<city>
+			<name>Alachua</name>
+		</city>
+		<city>
+			<name>Alford</name>
+		</city>
+		<city>
+			<name>Altamonte Springs</name>
+		</city>
+		<city>
+			<name>Altha</name>
+		</city>
+		<city>
+			<name>Alva</name>
+		</city>
+		<city>
+			<name>Andover</name>
+		</city>
+		<city>
+			<name>Anna Maria</name>
+		</city>
+		<city>
+			<name>Apalachicola</name>
+		</city>
+		<city>
+			<name>Apollo Beach</name>
+		</city>
+		<city>
+			<name>Apopka</name>
+		</city>
+		<city>
+			<name>Arcadia</name>
+		</city>
+		<city>
+			<name>Archer</name>
+		</city>
+		<city>
+			<name>Asbury Lake</name>
+		</city>
+		<city>
+			<name>Astatula</name>
+		</city>
+		<city>
+			<name>Astor</name>
+		</city>
+		<city>
+			<name>Atlantic Beach</name>
+		</city>
+		<city>
+			<name>Atlantis</name>
+		</city>
+		<city>
+			<name>Auburndale</name>
+		</city>
+		<city>
+			<name>Aventura</name>
+		</city>
+		<city>
+			<name>Avon Park</name>
+		</city>
+		<city>
+			<name>Azalea Park</name>
+		</city>
+		<city>
+			<name>Babson Park</name>
+		</city>
+		<city>
+			<name>Bagdad</name>
+		</city>
+		<city>
+			<name>Bal Harbour</name>
+		</city>
+		<city>
+			<name>Baldwin</name>
+		</city>
+		<city>
+			<name>Bartow</name>
+		</city>
+		<city>
+			<name>Bascom</name>
+		</city>
+		<city>
+			<name>Baskin</name>
+		</city>
+		<city>
+			<name>Bassville Park</name>
+		</city>
+		<city>
+			<name>Bay Harbor Islands</name>
+		</city>
+		<city>
+			<name>Bay Hill</name>
+		</city>
+		<city>
+			<name>Bay Lake</name>
+		</city>
+		<city>
+			<name>Bay Pines</name>
+		</city>
+		<city>
+			<name>Bayonet Point</name>
+		</city>
+		<city>
+			<name>Bayshore Gardens</name>
+		</city>
+		<city>
+			<name>Beacon Square</name>
+		</city>
+		<city>
+			<name>Bee Ridge</name>
+		</city>
+		<city>
+			<name>Bell</name>
+		</city>
+		<city>
+			<name>Bellair-Meadowbrook Terrace</name>
+		</city>
+		<city>
+			<name>Belle Glade</name>
+		</city>
+		<city>
+			<name>Belle Glade Camp</name>
+		</city>
+		<city>
+			<name>Belle Isle</name>
+		</city>
+		<city>
+			<name>Belleair</name>
+		</city>
+		<city>
+			<name>Belleair Beach</name>
+		</city>
+		<city>
+			<name>Belleair Bluffs</name>
+		</city>
+		<city>
+			<name>Belleair Shore</name>
+		</city>
+		<city>
+			<name>Belleview</name>
+		</city>
+		<city>
+			<name>Bellview</name>
+		</city>
+		<city>
+			<name>Beverly Beach</name>
+		</city>
+		<city>
+			<name>Beverly Hills</name>
+		</city>
+		<city>
+			<name>Big Coppitt Key</name>
+		</city>
+		<city>
+			<name>Big Pine Key</name>
+		</city>
+		<city>
+			<name>Biscayne Park</name>
+		</city>
+		<city>
+			<name>Bithlo</name>
+		</city>
+		<city>
+			<name>Bloomingdale</name>
+		</city>
+		<city>
+			<name>Blountstown</name>
+		</city>
+		<city>
+			<name>Boca Del Mar</name>
+		</city>
+		<city>
+			<name>Boca Pointe</name>
+		</city>
+		<city>
+			<name>Boca Raton</name>
+		</city>
+		<city>
+			<name>Boca West</name>
+		</city>
+		<city>
+			<name>Bonifay</name>
+		</city>
+		<city>
+			<name>Bonita Springs</name>
+		</city>
+		<city>
+			<name>Bowling Green</name>
+		</city>
+		<city>
+			<name>Boynton Beach</name>
+		</city>
+		<city>
+			<name>Bradenton</name>
+		</city>
+		<city>
+			<name>Bradenton Beach</name>
+		</city>
+		<city>
+			<name>Brandon</name>
+		</city>
+		<city>
+			<name>Branford</name>
+		</city>
+		<city>
+			<name>Brent</name>
+		</city>
+		<city>
+			<name>Briny Breezes</name>
+		</city>
+		<city>
+			<name>Bristol</name>
+		</city>
+		<city>
+			<name>Broadview Park</name>
+		</city>
+		<city>
+			<name>Broadview-Pompano Park</name>
+		</city>
+		<city>
+			<name>Bronson</name>
+		</city>
+		<city>
+			<name>Brooker</name>
+		</city>
+		<city>
+			<name>Brookridge</name>
+		</city>
+		<city>
+			<name>Brooksville</name>
+		</city>
+		<city>
+			<name>Browardale</name>
+		</city>
+		<city>
+			<name>Brownsville</name>
+		</city>
+		<city>
+			<name>Buckhead Ridge</name>
+		</city>
+		<city>
+			<name>Buena Ventura Lakes</name>
+		</city>
+		<city>
+			<name>Bunche Park</name>
+		</city>
+		<city>
+			<name>Bunnell</name>
+		</city>
+		<city>
+			<name>Bushnell</name>
+		</city>
+		<city>
+			<name>Butler Beach</name>
+		</city>
+		<city>
+			<name>Callahan</name>
+		</city>
+		<city>
+			<name>Callaway</name>
+		</city>
+		<city>
+			<name>Campbell</name>
+		</city>
+		<city>
+			<name>Campbellton</name>
+		</city>
+		<city>
+			<name>Cape Canaveral</name>
+		</city>
+		<city>
+			<name>Cape Coral</name>
+		</city>
+		<city>
+			<name>Carol City</name>
+		</city>
+		<city>
+			<name>Carrabelle</name>
+		</city>
+		<city>
+			<name>Carrollwood</name>
+		</city>
+		<city>
+			<name>Carrollwood Village</name>
+		</city>
+		<city>
+			<name>Caryville</name>
+		</city>
+		<city>
+			<name>Casselberry</name>
+		</city>
+		<city>
+			<name>Cedar Grove</name>
+		</city>
+		<city>
+			<name>Cedar Key</name>
+		</city>
+		<city>
+			<name>Center Hill</name>
+		</city>
+		<city>
+			<name>Century</name>
+		</city>
+		<city>
+			<name>Century Village</name>
+		</city>
+		<city>
+			<name>Charlotte Harbor</name>
+		</city>
+		<city>
+			<name>Charlotte Park</name>
+		</city>
+		<city>
+			<name>Chattahoochee</name>
+		</city>
+		<city>
+			<name>Chiefland</name>
+		</city>
+		<city>
+			<name>Chipley</name>
+		</city>
+		<city>
+			<name>Chuluota</name>
+		</city>
+		<city>
+			<name>Cinco Bayou</name>
+		</city>
+		<city>
+			<name>Citrus Springs</name>
+		</city>
+		<city>
+			<name>Clearwater</name>
+		</city>
+		<city>
+			<name>Clermont</name>
+		</city>
+		<city>
+			<name>Cleveland</name>
+		</city>
+		<city>
+			<name>Clewiston</name>
+		</city>
+		<city>
+			<name>Cloud Lake</name>
+		</city>
+		<city>
+			<name>Cocoa</name>
+		</city>
+		<city>
+			<name>Cocoa Beach</name>
+		</city>
+		<city>
+			<name>Cocoa West</name>
+		</city>
+		<city>
+			<name>Coconut Creek</name>
+		</city>
+		<city>
+			<name>Coleman</name>
+		</city>
+		<city>
+			<name>Collier Manor-Cresthaven</name>
+		</city>
+		<city>
+			<name>Combee Settlement</name>
+		</city>
+		<city>
+			<name>Conway</name>
+		</city>
+		<city>
+			<name>Cooper City</name>
+		</city>
+		<city>
+			<name>Coral Gables</name>
+		</city>
+		<city>
+			<name>Coral Springs</name>
+		</city>
+		<city>
+			<name>Coral Terrace</name>
+		</city>
+		<city>
+			<name>Cortez</name>
+		</city>
+		<city>
+			<name>Cottondale</name>
+		</city>
+		<city>
+			<name>Country Club</name>
+		</city>
+		<city>
+			<name>Country Club Trail</name>
+		</city>
+		<city>
+			<name>Crescent Beach</name>
+		</city>
+		<city>
+			<name>Crescent City</name>
+		</city>
+		<city>
+			<name>Crestview</name>
+		</city>
+		<city>
+			<name>Crooked Lake Park</name>
+		</city>
+		<city>
+			<name>Cross City</name>
+		</city>
+		<city>
+			<name>Crystal Lake</name>
+		</city>
+		<city>
+			<name>Crystal River</name>
+		</city>
+		<city>
+			<name>Cudjoe Key</name>
+		</city>
+		<city>
+			<name>Cutler</name>
+		</city>
+		<city>
+			<name>Cutler Ridge</name>
+		</city>
+		<city>
+			<name>Cypress Gardens</name>
+		</city>
+		<city>
+			<name>Cypress Lake</name>
+		</city>
+		<city>
+			<name>Cypress Lakes</name>
+		</city>
+		<city>
+			<name>Cypress Quarters</name>
+		</city>
+		<city>
+			<name>Dade City</name>
+		</city>
+		<city>
+			<name>Dade City North</name>
+		</city>
+		<city>
+			<name>Dania</name>
+		</city>
+		<city>
+			<name>Davenport</name>
+		</city>
+		<city>
+			<name>Davie</name>
+		</city>
+		<city>
+			<name>Daytona Beach</name>
+		</city>
+		<city>
+			<name>Daytona Beach Shores</name>
+		</city>
+		<city>
+			<name>De Bary</name>
+		</city>
+		<city>
+			<name>De Funiak Springs</name>
+		</city>
+		<city>
+			<name>De Land</name>
+		</city>
+		<city>
+			<name>De Land Southwest</name>
+		</city>
+		<city>
+			<name>De Leon Springs</name>
+		</city>
+		<city>
+			<name>Deerfield Beach</name>
+		</city>
+		<city>
+			<name>Del Rio</name>
+		</city>
+		<city>
+			<name>Delray Beach</name>
+		</city>
+		<city>
+			<name>Deltona</name>
+		</city>
+		<city>
+			<name>Desoto Lakes</name>
+		</city>
+		<city>
+			<name>Destin</name>
+		</city>
+		<city>
+			<name>Doctor Phillips</name>
+		</city>
+		<city>
+			<name>Doral</name>
+		</city>
+		<city>
+			<name>Dover</name>
+		</city>
+		<city>
+			<name>Dry Tortugas National Park</name>
+		</city>
+		<city>
+			<name>Dundee</name>
+		</city>
+		<city>
+			<name>Dunedin</name>
+		</city>
+		<city>
+			<name>Dunnellon</name>
+		</city>
+		<city>
+			<name>Eagle Lake</name>
+		</city>
+		<city>
+			<name>East Lake-Orient Park</name>
+		</city>
+		<city>
+			<name>East Naples</name>
+		</city>
+		<city>
+			<name>East Palatka</name>
+		</city>
+		<city>
+			<name>Eastpoint</name>
+		</city>
+		<city>
+			<name>Eatonville</name>
+		</city>
+		<city>
+			<name>Ebro</name>
+		</city>
+		<city>
+			<name>Edgewater</name>
+		</city>
+		<city>
+			<name>Edgewood</name>
+		</city>
+		<city>
+			<name>Eglin AFB</name>
+		</city>
+		<city>
+			<name>Egypt Lake</name>
+		</city>
+		<city>
+			<name>El Portal</name>
+		</city>
+		<city>
+			<name>Elfers</name>
+		</city>
+		<city>
+			<name>Ellenton</name>
+		</city>
+		<city>
+			<name>Englewood</name>
+		</city>
+		<city>
+			<name>Ensley</name>
+		</city>
+		<city>
+			<name>Estero</name>
+		</city>
+		<city>
+			<name>Esto</name>
+		</city>
+		<city>
+			<name>Eustis</name>
+		</city>
+		<city>
+			<name>Everglades</name>
+		</city>
+		<city>
+			<name>Fairview Shores</name>
+		</city>
+		<city>
+			<name>Fanning Springs</name>
+		</city>
+		<city>
+			<name>Feather Sound</name>
+		</city>
+		<city>
+			<name>Fellsmere</name>
+		</city>
+		<city>
+			<name>Fern Park</name>
+		</city>
+		<city>
+			<name>Fernandina Beach</name>
+		</city>
+		<city>
+			<name>Ferry Pass</name>
+		</city>
+		<city>
+			<name>Five Points</name>
+		</city>
+		<city>
+			<name>Flagler Beach</name>
+		</city>
+		<city>
+			<name>Floral City</name>
+		</city>
+		<city>
+			<name>Florida City</name>
+		</city>
+		<city>
+			<name>Florida Ridge</name>
+		</city>
+		<city>
+			<name>Forest City</name>
+		</city>
+		<city>
+			<name>Forest Island Park</name>
+		</city>
+		<city>
+			<name>Fort Lauderdale</name>
+		</city>
+		<city>
+			<name>Fort Meade</name>
+		</city>
+		<city>
+			<name>Fort Myers</name>
+		</city>
+		<city>
+			<name>Fort Myers Beach</name>
+		</city>
+		<city>
+			<name>Fort Myers Shores</name>
+		</city>
+		<city>
+			<name>Fort Pierce</name>
+		</city>
+		<city>
+			<name>Fort Pierce North</name>
+		</city>
+		<city>
+			<name>Fort Pierce South</name>
+		</city>
+		<city>
+			<name>Fort Walton Beach</name>
+		</city>
+		<city>
+			<name>Fort White</name>
+		</city>
+		<city>
+			<name>Freeport</name>
+		</city>
+		<city>
+			<name>Frostproof</name>
+		</city>
+		<city>
+			<name>Fruit Cove</name>
+		</city>
+		<city>
+			<name>Fruitland Park</name>
+		</city>
+		<city>
+			<name>Fruitville</name>
+		</city>
+		<city>
+			<name>Fussels Corner</name>
+		</city>
+		<city>
+			<name>Gainesville</name>
+		</city>
+		<city>
+			<name>Gandy</name>
+		</city>
+		<city>
+			<name>Gibsonia</name>
+		</city>
+		<city>
+			<name>Gibsonton</name>
+		</city>
+		<city>
+			<name>Gifford</name>
+		</city>
+		<city>
+			<name>Gladeview</name>
+		</city>
+		<city>
+			<name>Glen Ridge</name>
+		</city>
+		<city>
+			<name>Glen St. Mary</name>
+		</city>
+		<city>
+			<name>Glencoe</name>
+		</city>
+		<city>
+			<name>Glenvar Heights</name>
+		</city>
+		<city>
+			<name>Golden Beach</name>
+		</city>
+		<city>
+			<name>Golden Gate</name>
+		</city>
+		<city>
+			<name>Golden Glades</name>
+		</city>
+		<city>
+			<name>Golden Lakes</name>
+		</city>
+		<city>
+			<name>Goldenrod</name>
+		</city>
+		<city>
+			<name>Golf</name>
+		</city>
+		<city>
+			<name>Golfview</name>
+		</city>
+		<city>
+			<name>Gonzalez</name>
+		</city>
+		<city>
+			<name>Goulding</name>
+		</city>
+		<city>
+			<name>Goulds</name>
+		</city>
+		<city>
+			<name>Graceville</name>
+		</city>
+		<city>
+			<name>Grand Ridge</name>
+		</city>
+		<city>
+			<name>Greater Northdale</name>
+		</city>
+		<city>
+			<name>Green Cove Springs</name>
+		</city>
+		<city>
+			<name>Greenacres City</name>
+		</city>
+		<city>
+			<name>Greensboro</name>
+		</city>
+		<city>
+			<name>Greenville</name>
+		</city>
+		<city>
+			<name>Greenwood</name>
+		</city>
+		<city>
+			<name>Gretna</name>
+		</city>
+		<city>
+			<name>Grove City</name>
+		</city>
+		<city>
+			<name>Groveland</name>
+		</city>
+		<city>
+			<name>Gulf Breeze</name>
+		</city>
+		<city>
+			<name>Gulf Gate Estates</name>
+		</city>
+		<city>
+			<name>Gulf Stream</name>
+		</city>
+		<city>
+			<name>Gulfport</name>
+		</city>
+		<city>
+			<name>Haines City</name>
+		</city>
+		<city>
+			<name>Hallandale</name>
+		</city>
+		<city>
+			<name>Hammocks</name>
+		</city>
+		<city>
+			<name>Hampton</name>
+		</city>
+		<city>
+			<name>Hamptons at Boca Raton</name>
+		</city>
+		<city>
+			<name>Harbor Bluffs</name>
+		</city>
+		<city>
+			<name>Harbour Heights</name>
+		</city>
+		<city>
+			<name>Harlem</name>
+		</city>
+		<city>
+			<name>Hastings</name>
+		</city>
+		<city>
+			<name>Havana</name>
+		</city>
+		<city>
+			<name>Haverhill</name>
+		</city>
+		<city>
+			<name>Hawthorne</name>
+		</city>
+		<city>
+			<name>Hawthorne</name>
+		</city>
+		<city>
+			<name>Hernando</name>
+		</city>
+		<city>
+			<name>Hernando Beach</name>
+		</city>
+		<city>
+			<name>Hialeah</name>
+		</city>
+		<city>
+			<name>Hialeah Gardens</name>
+		</city>
+		<city>
+			<name>High Point</name>
+		</city>
+		<city>
+			<name>High Point</name>
+		</city>
+		<city>
+			<name>High Springs</name>
+		</city>
+		<city>
+			<name>Highland Beach</name>
+		</city>
+		<city>
+			<name>Highland City</name>
+		</city>
+		<city>
+			<name>Highland Park</name>
+		</city>
+		<city>
+			<name>Highpoint</name>
+		</city>
+		<city>
+			<name>Hiland Park</name>
+		</city>
+		<city>
+			<name>Hillcrest Heights</name>
+		</city>
+		<city>
+			<name>Hilliard</name>
+		</city>
+		<city>
+			<name>Hillsboro Beach</name>
+		</city>
+		<city>
+			<name>Hobe Sound</name>
+		</city>
+		<city>
+			<name>Holden Heights</name>
+		</city>
+		<city>
+			<name>Holiday</name>
+		</city>
+		<city>
+			<name>Holly Hill</name>
+		</city>
+		<city>
+			<name>Hollywood</name>
+		</city>
+		<city>
+			<name>Holmes Beach</name>
+		</city>
+		<city>
+			<name>Homestead</name>
+		</city>
+		<city>
+			<name>Homestead AFB</name>
+		</city>
+		<city>
+			<name>Homosassa</name>
+		</city>
+		<city>
+			<name>Homosassa Springs</name>
+		</city>
+		<city>
+			<name>Horseshoe Beach</name>
+		</city>
+		<city>
+			<name>Howey-in-the-Hills</name>
+		</city>
+		<city>
+			<name>Hudson</name>
+		</city>
+		<city>
+			<name>Hutchinson Island South</name>
+		</city>
+		<city>
+			<name>Hypoluxo</name>
+		</city>
+		<city>
+			<name>Immokalee</name>
+		</city>
+		<city>
+			<name>Indialantic</name>
+		</city>
+		<city>
+			<name>Indian Creek</name>
+		</city>
+		<city>
+			<name>Indian Harbour Beach</name>
+		</city>
+		<city>
+			<name>Indian River Estates</name>
+		</city>
+		<city>
+			<name>Indian River Shores</name>
+		</city>
+		<city>
+			<name>Indian Rocks Beach</name>
+		</city>
+		<city>
+			<name>Indian Shores</name>
+		</city>
+		<city>
+			<name>Indiantown</name>
+		</city>
+		<city>
+			<name>Inglis</name>
+		</city>
+		<city>
+			<name>Interlachen</name>
+		</city>
+		<city>
+			<name>Inverness</name>
+		</city>
+		<city>
+			<name>Inwood</name>
+		</city>
+		<city>
+			<name>Iona</name>
+		</city>
+		<city>
+			<name>Islamorada</name>
+		</city>
+		<city>
+			<name>Islandia</name>
+		</city>
+		<city>
+			<name>Ives Estates</name>
+		</city>
+		<city>
+			<name>Jacksonville</name>
+		</city>
+		<city>
+			<name>Jacksonville Beach</name>
+		</city>
+		<city>
+			<name>Jacob City</name>
+		</city>
+		<city>
+			<name>Jan Phyl Village</name>
+		</city>
+		<city>
+			<name>Jasmine Estates</name>
+		</city>
+		<city>
+			<name>Jasper</name>
+		</city>
+		<city>
+			<name>Jay</name>
+		</city>
+		<city>
+			<name>Jennings</name>
+		</city>
+		<city>
+			<name>Jensen Beach</name>
+		</city>
+		<city>
+			<name>June Park</name>
+		</city>
+		<city>
+			<name>Juno Beach</name>
+		</city>
+		<city>
+			<name>Jupiter</name>
+		</city>
+		<city>
+			<name>Jupiter Inlet Colony</name>
+		</city>
+		<city>
+			<name>Jupiter Island</name>
+		</city>
+		<city>
+			<name>Kathleen</name>
+		</city>
+		<city>
+			<name>Kendale Lakes</name>
+		</city>
+		<city>
+			<name>Kendall</name>
+		</city>
+		<city>
+			<name>Kendall Green</name>
+		</city>
+		<city>
+			<name>Kendall Lakes West</name>
+		</city>
+		<city>
+			<name>Kenneth City</name>
+		</city>
+		<city>
+			<name>Kensington Park</name>
+		</city>
+		<city>
+			<name>Key Biscayne</name>
+		</city>
+		<city>
+			<name>Key Colony Beach</name>
+		</city>
+		<city>
+			<name>Key Largo</name>
+		</city>
+		<city>
+			<name>Key West</name>
+		</city>
+		<city>
+			<name>Keystone Heights</name>
+		</city>
+		<city>
+			<name>Kings Point</name>
+		</city>
+		<city>
+			<name>Kissimmee</name>
+		</city>
+		<city>
+			<name>La Belle</name>
+		</city>
+		<city>
+			<name>La Crosse</name>
+		</city>
+		<city>
+			<name>Lacoochee</name>
+		</city>
+		<city>
+			<name>Lady Lake</name>
+		</city>
+		<city>
+			<name>Laguna Beach</name>
+		</city>
+		<city>
+			<name>Lake Alfred</name>
+		</city>
+		<city>
+			<name>Lake Buena Vista</name>
+		</city>
+		<city>
+			<name>Lake Butler</name>
+		</city>
+		<city>
+			<name>Lake City</name>
+		</city>
+		<city>
+			<name>Lake Clarke Shores</name>
+		</city>
+		<city>
+			<name>Lake Hamilton</name>
+		</city>
+		<city>
+			<name>Lake Helen</name>
+		</city>
+		<city>
+			<name>Lake Lorraine</name>
+		</city>
+		<city>
+			<name>Lake Lucerne</name>
+		</city>
+		<city>
+			<name>Lake Magdalene</name>
+		</city>
+		<city>
+			<name>Lake Mary</name>
+		</city>
+		<city>
+			<name>Lake Panasoffkee</name>
+		</city>
+		<city>
+			<name>Lake Park</name>
+		</city>
+		<city>
+			<name>Lake Placid</name>
+		</city>
+		<city>
+			<name>Lake Sarasota</name>
+		</city>
+		<city>
+			<name>Lake Wales</name>
+		</city>
+		<city>
+			<name>Lake Worth</name>
+		</city>
+		<city>
+			<name>Lakeland</name>
+		</city>
+		<city>
+			<name>Lakeland Highlands</name>
+		</city>
+		<city>
+			<name>Lakes by the Bay</name>
+		</city>
+		<city>
+			<name>Lakeside</name>
+		</city>
+		<city>
+			<name>Lakeside Green</name>
+		</city>
+		<city>
+			<name>Lakewood Park</name>
+		</city>
+		<city>
+			<name>Land O' Lakes</name>
+		</city>
+		<city>
+			<name>Lantana</name>
+		</city>
+		<city>
+			<name>Largo</name>
+		</city>
+		<city>
+			<name>Lauderdale Lakes</name>
+		</city>
+		<city>
+			<name>Lauderdale-by-the-Sea</name>
+		</city>
+		<city>
+			<name>Lauderhill</name>
+		</city>
+		<city>
+			<name>Laurel</name>
+		</city>
+		<city>
+			<name>Laurel Hill</name>
+		</city>
+		<city>
+			<name>Lawtey</name>
+		</city>
+		<city>
+			<name>Layton</name>
+		</city>
+		<city>
+			<name>Lazy Lake</name>
+		</city>
+		<city>
+			<name>Lealman</name>
+		</city>
+		<city>
+			<name>Lecanto</name>
+		</city>
+		<city>
+			<name>Lee</name>
+		</city>
+		<city>
+			<name>Leesburg</name>
+		</city>
+		<city>
+			<name>Lehigh Acres</name>
+		</city>
+		<city>
+			<name>Leisure City</name>
+		</city>
+		<city>
+			<name>Lely</name>
+		</city>
+		<city>
+			<name>Lighthouse Point</name>
+		</city>
+		<city>
+			<name>Lindgren Acres</name>
+		</city>
+		<city>
+			<name>Live Oak</name>
+		</city>
+		<city>
+			<name>Lochmoor Waterway Estates</name>
+		</city>
+		<city>
+			<name>Lockhart</name>
+		</city>
+		<city>
+			<name>Longboat Key</name>
+		</city>
+		<city>
+			<name>Longwood</name>
+		</city>
+		<city>
+			<name>Loughman</name>
+		</city>
+		<city>
+			<name>Lower Grand Lagoon</name>
+		</city>
+		<city>
+			<name>Lutz</name>
+		</city>
+		<city>
+			<name>Lynn Haven</name>
+		</city>
+		<city>
+			<name>Macclenny</name>
+		</city>
+		<city>
+			<name>Madeira Beach</name>
+		</city>
+		<city>
+			<name>Madison</name>
+		</city>
+		<city>
+			<name>Maitland</name>
+		</city>
+		<city>
+			<name>Malabar</name>
+		</city>
+		<city>
+			<name>Malone</name>
+		</city>
+		<city>
+			<name>Manalapan</name>
+		</city>
+		<city>
+			<name>Manasota Key</name>
+		</city>
+		<city>
+			<name>Mango</name>
+		</city>
+		<city>
+			<name>Mangonia Park</name>
+		</city>
+		<city>
+			<name>Marathon</name>
+		</city>
+		<city>
+			<name>Marco</name>
+		</city>
+		<city>
+			<name>Margate</name>
+		</city>
+		<city>
+			<name>Marianna</name>
+		</city>
+		<city>
+			<name>Marineland</name>
+		</city>
+		<city>
+			<name>Mary Esther</name>
+		</city>
+		<city>
+			<name>Mascotte</name>
+		</city>
+		<city>
+			<name>Mayo</name>
+		</city>
+		<city>
+			<name>McGregor</name>
+		</city>
+		<city>
+			<name>McIntosh</name>
+		</city>
+		<city>
+			<name>Meadow Wood</name>
+		</city>
+		<city>
+			<name>Medley</name>
+		</city>
+		<city>
+			<name>Medulla</name>
+		</city>
+		<city>
+			<name>Melbourne</name>
+		</city>
+		<city>
+			<name>Melbourne Beach</name>
+		</city>
+		<city>
+			<name>Melbourne Village</name>
+		</city>
+		<city>
+			<name>Melrose Park</name>
+		</city>
+		<city>
+			<name>Memphis</name>
+		</city>
+		<city>
+			<name>Merritt Island</name>
+		</city>
+		<city>
+			<name>Mexico Beach</name>
+		</city>
+		<city>
+			<name>Miami</name>
+		</city>
+		<city>
+			<name>Miami Beach</name>
+		</city>
+		<city>
+			<name>Miami Gardens-Utopia-Carver</name>
+		</city>
+		<city>
+			<name>Miami Lakes</name>
+		</city>
+		<city>
+			<name>Miami Shores</name>
+		</city>
+		<city>
+			<name>Miami Springs</name>
+		</city>
+		<city>
+			<name>Micanopy</name>
+		</city>
+		<city>
+			<name>Micco</name>
+		</city>
+		<city>
+			<name>Mid Florida Lakes</name>
+		</city>
+		<city>
+			<name>Middleburg</name>
+		</city>
+		<city>
+			<name>Midway</name>
+		</city>
+		<city>
+			<name>Milton</name>
+		</city>
+		<city>
+			<name>Mims</name>
+		</city>
+		<city>
+			<name>Minneola</name>
+		</city>
+		<city>
+			<name>Miramar</name>
+		</city>
+		<city>
+			<name>Miramar Beach</name>
+		</city>
+		<city>
+			<name>Mission Bay</name>
+		</city>
+		<city>
+			<name>Molino</name>
+		</city>
+		<city>
+			<name>Monticello</name>
+		</city>
+		<city>
+			<name>Montverde</name>
+		</city>
+		<city>
+			<name>Moore Haven</name>
+		</city>
+		<city>
+			<name>Morse Shores</name>
+		</city>
+		<city>
+			<name>Mount Dora</name>
+		</city>
+		<city>
+			<name>Mount Plymouth</name>
+		</city>
+		<city>
+			<name>Mulberry</name>
+		</city>
+		<city>
+			<name>Myrtle Grove</name>
+		</city>
+		<city>
+			<name>Naples</name>
+		</city>
+		<city>
+			<name>Naples Manor</name>
+		</city>
+		<city>
+			<name>Naples Park</name>
+		</city>
+		<city>
+			<name>Naranja</name>
+		</city>
+		<city>
+			<name>Nassau Village-Ratliff</name>
+		</city>
+		<city>
+			<name>Neptune Beach</name>
+		</city>
+		<city>
+			<name>New Port Richey</name>
+		</city>
+		<city>
+			<name>New Port Richey East</name>
+		</city>
+		<city>
+			<name>New Smyrna Beach</name>
+		</city>
+		<city>
+			<name>Newberry</name>
+		</city>
+		<city>
+			<name>Niceville</name>
+		</city>
+		<city>
+			<name>Nokomis</name>
+		</city>
+		<city>
+			<name>Noma</name>
+		</city>
+		<city>
+			<name>Norland</name>
+		</city>
+		<city>
+			<name>North Andrews Gardens</name>
+		</city>
+		<city>
+			<name>North Bay Village</name>
+		</city>
+		<city>
+			<name>North Brooksville</name>
+		</city>
+		<city>
+			<name>North De Land</name>
+		</city>
+		<city>
+			<name>North Fort Myers</name>
+		</city>
+		<city>
+			<name>North Key Largo</name>
+		</city>
+		<city>
+			<name>North Lauderdale</name>
+		</city>
+		<city>
+			<name>North Miami</name>
+		</city>
+		<city>
+			<name>North Miami Beach</name>
+		</city>
+		<city>
+			<name>North Naples</name>
+		</city>
+		<city>
+			<name>North Palm Beach</name>
+		</city>
+		<city>
+			<name>North Port</name>
+		</city>
+		<city>
+			<name>North Redington Beach</name>
+		</city>
+		<city>
+			<name>North River Shores</name>
+		</city>
+		<city>
+			<name>North Sarasota</name>
+		</city>
+		<city>
+			<name>Oak Hill</name>
+		</city>
+		<city>
+			<name>Oak Ridge</name>
+		</city>
+		<city>
+			<name>Oakland</name>
+		</city>
+		<city>
+			<name>Oakland Park</name>
+		</city>
+		<city>
+			<name>Oakland Park</name>
+		</city>
+		<city>
+			<name>Ocala</name>
+		</city>
+		<city>
+			<name>Ocean Breeze Park</name>
+		</city>
+		<city>
+			<name>Ocean City</name>
+		</city>
+		<city>
+			<name>Ocean Ridge</name>
+		</city>
+		<city>
+			<name>Ocoee</name>
+		</city>
+		<city>
+			<name>Ojus</name>
+		</city>
+		<city>
+			<name>Okeechobee</name>
+		</city>
+		<city>
+			<name>Oldsmar</name>
+		</city>
+		<city>
+			<name>Olympia Heights</name>
+		</city>
+		<city>
+			<name>Opa-locka</name>
+		</city>
+		<city>
+			<name>Opa-locka North</name>
+		</city>
+		<city>
+			<name>Orange City</name>
+		</city>
+		<city>
+			<name>Orange Park</name>
+		</city>
+		<city>
+			<name>Orchid</name>
+		</city>
+		<city>
+			<name>Orlando</name>
+		</city>
+		<city>
+			<name>Orlovista</name>
+		</city>
+		<city>
+			<name>Ormond Beach</name>
+		</city>
+		<city>
+			<name>Ormond-By-The-Sea</name>
+		</city>
+		<city>
+			<name>Osprey</name>
+		</city>
+		<city>
+			<name>Otter Creek</name>
+		</city>
+		<city>
+			<name>Oviedo</name>
+		</city>
+		<city>
+			<name>Pace</name>
+		</city>
+		<city>
+			<name>Page Park-Pine Manor</name>
+		</city>
+		<city>
+			<name>Pahokee</name>
+		</city>
+		<city>
+			<name>Palatka</name>
+		</city>
+		<city>
+			<name>Palm Bay</name>
+		</city>
+		<city>
+			<name>Palm Beach</name>
+		</city>
+		<city>
+			<name>Palm Beach Gardens</name>
+		</city>
+		<city>
+			<name>Palm Beach Shores</name>
+		</city>
+		<city>
+			<name>Palm City</name>
+		</city>
+		<city>
+			<name>Palm Coast</name>
+		</city>
+		<city>
+			<name>Palm Harbor</name>
+		</city>
+		<city>
+			<name>Palm River</name>
+		</city>
+		<city>
+			<name>Palm River-Clair Mel</name>
+		</city>
+		<city>
+			<name>Palm Shores</name>
+		</city>
+		<city>
+			<name>Palm Springs</name>
+		</city>
+		<city>
+			<name>Palm Springs North</name>
+		</city>
+		<city>
+			<name>Palm Valley</name>
+		</city>
+		<city>
+			<name>Palmetto</name>
+		</city>
+		<city>
+			<name>Palmetto Estates</name>
+		</city>
+		<city>
+			<name>Panama City</name>
+		</city>
+		<city>
+			<name>Panama City Beach</name>
+		</city>
+		<city>
+			<name>Parker</name>
+		</city>
+		<city>
+			<name>Parkland</name>
+		</city>
+		<city>
+			<name>Paxton</name>
+		</city>
+		<city>
+			<name>Pembroke Park</name>
+		</city>
+		<city>
+			<name>Pembroke Pines</name>
+		</city>
+		<city>
+			<name>Penney Farms</name>
+		</city>
+		<city>
+			<name>Pensacola</name>
+		</city>
+		<city>
+			<name>Perrine</name>
+		</city>
+		<city>
+			<name>Perry</name>
+		</city>
+		<city>
+			<name>Pierson</name>
+		</city>
+		<city>
+			<name>Pine Castle</name>
+		</city>
+		<city>
+			<name>Pine Hills</name>
+		</city>
+		<city>
+			<name>Pine Island Ridge</name>
+		</city>
+		<city>
+			<name>Pinellas Park</name>
+		</city>
+		<city>
+			<name>Pinewood</name>
+		</city>
+		<city>
+			<name>Placid Lakes</name>
+		</city>
+		<city>
+			<name>Plant City</name>
+		</city>
+		<city>
+			<name>Plantation</name>
+		</city>
+		<city>
+			<name>Plantation</name>
+		</city>
+		<city>
+			<name>Plantation Key</name>
+		</city>
+		<city>
+			<name>Poinciana Place</name>
+		</city>
+		<city>
+			<name>Polk City</name>
+		</city>
+		<city>
+			<name>Pomona Park</name>
+		</city>
+		<city>
+			<name>Pompano Beach</name>
+		</city>
+		<city>
+			<name>Pompano Beach Highlands</name>
+		</city>
+		<city>
+			<name>Ponce de Leon</name>
+		</city>
+		<city>
+			<name>Ponce Inlet</name>
+		</city>
+		<city>
+			<name>Port Charlotte</name>
+		</city>
+		<city>
+			<name>Port La Belle</name>
+		</city>
+		<city>
+			<name>Port Orange</name>
+		</city>
+		<city>
+			<name>Port Richey</name>
+		</city>
+		<city>
+			<name>Port Salerno</name>
+		</city>
+		<city>
+			<name>Port St. Joe</name>
+		</city>
+		<city>
+			<name>Port St. John</name>
+		</city>
+		<city>
+			<name>Port St. Lucie</name>
+		</city>
+		<city>
+			<name>Port St. Lucie-River Park</name>
+		</city>
+		<city>
+			<name>Pretty Bayou</name>
+		</city>
+		<city>
+			<name>Princeton</name>
+		</city>
+		<city>
+			<name>Punta Gorda</name>
+		</city>
+		<city>
+			<name>Punta Rassa</name>
+		</city>
+		<city>
+			<name>Quincy</name>
+		</city>
+		<city>
+			<name>Raiford</name>
+		</city>
+		<city>
+			<name>Rainbow Lakes</name>
+		</city>
+		<city>
+			<name>Reddick</name>
+		</city>
+		<city>
+			<name>Redington Beach</name>
+		</city>
+		<city>
+			<name>Redington Shores</name>
+		</city>
+		<city>
+			<name>Richmond Heights</name>
+		</city>
+		<city>
+			<name>Ridge Manor</name>
+		</city>
+		<city>
+			<name>Ridge Wood Heights</name>
+		</city>
+		<city>
+			<name>Rio</name>
+		</city>
+		<city>
+			<name>Riverland</name>
+		</city>
+		<city>
+			<name>Riverview</name>
+		</city>
+		<city>
+			<name>Riviera Beach</name>
+		</city>
+		<city>
+			<name>Rockledge</name>
+		</city>
+		<city>
+			<name>Roseland</name>
+		</city>
+		<city>
+			<name>Rotonda</name>
+		</city>
+		<city>
+			<name>Royal Palm Beach</name>
+		</city>
+		<city>
+			<name>Ruskin</name>
+		</city>
+		<city>
+			<name>Safety Harbor</name>
+		</city>
+		<city>
+			<name>Samoset</name>
+		</city>
+		<city>
+			<name>Samsula-Spruce Creek</name>
+		</city>
+		<city>
+			<name>San Antonio</name>
+		</city>
+		<city>
+			<name>San Carlos Park</name>
+		</city>
+		<city>
+			<name>Sandalfoot Cove</name>
+		</city>
+		<city>
+			<name>Sanford</name>
+		</city>
+		<city>
+			<name>Sanibel</name>
+		</city>
+		<city>
+			<name>Sarasota</name>
+		</city>
+		<city>
+			<name>Sarasota Springs</name>
+		</city>
+		<city>
+			<name>Satellite Beach</name>
+		</city>
+		<city>
+			<name>Sawgrass</name>
+		</city>
+		<city>
+			<name>Scott Lake</name>
+		</city>
+		<city>
+			<name>Sea Ranch Lakes</name>
+		</city>
+		<city>
+			<name>Sebastian</name>
+		</city>
+		<city>
+			<name>Sebring</name>
+		</city>
+		<city>
+			<name>Seffner</name>
+		</city>
+		<city>
+			<name>Seminole</name>
+		</city>
+		<city>
+			<name>Sewall's Point</name>
+		</city>
+		<city>
+			<name>Shalimar</name>
+		</city>
+		<city>
+			<name>Sharpes</name>
+		</city>
+		<city>
+			<name>Siesta Key</name>
+		</city>
+		<city>
+			<name>Silver Lake</name>
+		</city>
+		<city>
+			<name>Silver Springs Shores</name>
+		</city>
+		<city>
+			<name>Sky Lake</name>
+		</city>
+		<city>
+			<name>Sneads</name>
+		</city>
+		<city>
+			<name>Solana</name>
+		</city>
+		<city>
+			<name>Sopchoppy</name>
+		</city>
+		<city>
+			<name>South Apopka</name>
+		</city>
+		<city>
+			<name>South Bay</name>
+		</city>
+		<city>
+			<name>South Beach</name>
+		</city>
+		<city>
+			<name>South Bradenton</name>
+		</city>
+		<city>
+			<name>South Brooksville</name>
+		</city>
+		<city>
+			<name>South Daytona</name>
+		</city>
+		<city>
+			<name>South Gate Ridge</name>
+		</city>
+		<city>
+			<name>South Miami</name>
+		</city>
+		<city>
+			<name>South Miami Heights</name>
+		</city>
+		<city>
+			<name>South Palm Beach</name>
+		</city>
+		<city>
+			<name>South Pasadena</name>
+		</city>
+		<city>
+			<name>South Patrick Shores</name>
+		</city>
+		<city>
+			<name>South Sarasota</name>
+		</city>
+		<city>
+			<name>South Venice</name>
+		</city>
+		<city>
+			<name>Southeast Arcadia</name>
+		</city>
+		<city>
+			<name>Southgate</name>
+		</city>
+		<city>
+			<name>Spring Hill</name>
+		</city>
+		<city>
+			<name>Springfield</name>
+		</city>
+		<city>
+			<name>St. Augustine</name>
+		</city>
+		<city>
+			<name>St. Augustine Beach</name>
+		</city>
+		<city>
+			<name>St. Augustine Shores</name>
+		</city>
+		<city>
+			<name>St. Augustine South</name>
+		</city>
+		<city>
+			<name>St. Cloud</name>
+		</city>
+		<city>
+			<name>St. James City</name>
+		</city>
+		<city>
+			<name>St. Leo</name>
+		</city>
+		<city>
+			<name>St. Lucie</name>
+		</city>
+		<city>
+			<name>St. Marks</name>
+		</city>
+		<city>
+			<name>St. Petersburg</name>
+		</city>
+		<city>
+			<name>St. Petersburg Beach</name>
+		</city>
+		<city>
+			<name>Starke</name>
+		</city>
+		<city>
+			<name>Stock Island</name>
+		</city>
+		<city>
+			<name>Stuart</name>
+		</city>
+		<city>
+			<name>Sugarmill Woods</name>
+		</city>
+		<city>
+			<name>Sun City Center</name>
+		</city>
+		<city>
+			<name>Sun Valley</name>
+		</city>
+		<city>
+			<name>Suncoast Estates</name>
+		</city>
+		<city>
+			<name>Sunny Isles</name>
+		</city>
+		<city>
+			<name>Sunnyside</name>
+		</city>
+		<city>
+			<name>Sunrise</name>
+		</city>
+		<city>
+			<name>Sunset</name>
+		</city>
+		<city>
+			<name>Surfside</name>
+		</city>
+		<city>
+			<name>Sweetwater</name>
+		</city>
+		<city>
+			<name>Sylvan Shores</name>
+		</city>
+		<city>
+			<name>Tallahassee</name>
+		</city>
+		<city>
+			<name>Tamarac</name>
+		</city>
+		<city>
+			<name>Tamiami</name>
+		</city>
+		<city>
+			<name>Tampa</name>
+		</city>
+		<city>
+			<name>Tangelo Park</name>
+		</city>
+		<city>
+			<name>Tarpon Springs</name>
+		</city>
+		<city>
+			<name>Tavares</name>
+		</city>
+		<city>
+			<name>Tavernier</name>
+		</city>
+		<city>
+			<name>Taylor Creek</name>
+		</city>
+		<city>
+			<name>Temple Terrace</name>
+		</city>
+		<city>
+			<name>Tequesta</name>
+		</city>
+		<city>
+			<name>The Meadows</name>
+		</city>
+		<city>
+			<name>Tice</name>
+		</city>
+		<city>
+			<name>Timber Pines</name>
+		</city>
+		<city>
+			<name>Titusville</name>
+		</city>
+		<city>
+			<name>Town 'n' Country</name>
+		</city>
+		<city>
+			<name>Treasure Island</name>
+		</city>
+		<city>
+			<name>Trenton</name>
+		</city>
+		<city>
+			<name>Tyndall AFB</name>
+		</city>
+		<city>
+			<name>Umatilla</name>
+		</city>
+		<city>
+			<name>Union Park</name>
+		</city>
+		<city>
+			<name>University West</name>
+		</city>
+		<city>
+			<name>Upper Grand Lagoon</name>
+		</city>
+		<city>
+			<name>Valparaiso</name>
+		</city>
+		<city>
+			<name>Vamo</name>
+		</city>
+		<city>
+			<name>Venice</name>
+		</city>
+		<city>
+			<name>Venice Gardens</name>
+		</city>
+		<city>
+			<name>Vernon</name>
+		</city>
+		<city>
+			<name>Vero Beach</name>
+		</city>
+		<city>
+			<name>Vero Beach South</name>
+		</city>
+		<city>
+			<name>Villages of Oriole</name>
+		</city>
+		<city>
+			<name>Villano Beach</name>
+		</city>
+		<city>
+			<name>Villas</name>
+		</city>
+		<city>
+			<name>Virginia Gardens</name>
+		</city>
+		<city>
+			<name>Wabasso</name>
+		</city>
+		<city>
+			<name>Wahneta</name>
+		</city>
+		<city>
+			<name>Waldo</name>
+		</city>
+		<city>
+			<name>Warm Mineral Springs</name>
+		</city>
+		<city>
+			<name>Warrington</name>
+		</city>
+		<city>
+			<name>Washington Park</name>
+		</city>
+		<city>
+			<name>Watertown</name>
+		</city>
+		<city>
+			<name>Wauchula</name>
+		</city>
+		<city>
+			<name>Wausau</name>
+		</city>
+		<city>
+			<name>Waverly</name>
+		</city>
+		<city>
+			<name>Webster</name>
+		</city>
+		<city>
+			<name>Weeki Wachee</name>
+		</city>
+		<city>
+			<name>Weeki Wachee Acres</name>
+		</city>
+		<city>
+			<name>Weeki Wachee Gardens</name>
+		</city>
+		<city>
+			<name>Wekiva Springs</name>
+		</city>
+		<city>
+			<name>Welaka</name>
+		</city>
+		<city>
+			<name>Wellington</name>
+		</city>
+		<city>
+			<name>West Bradenton</name>
+		</city>
+		<city>
+			<name>West De Land</name>
+		</city>
+		<city>
+			<name>West Little River</name>
+		</city>
+		<city>
+			<name>West Melbourne</name>
+		</city>
+		<city>
+			<name>West Miami</name>
+		</city>
+		<city>
+			<name>West Palm Beach</name>
+		</city>
+		<city>
+			<name>West Park</name>
+		</city>
+		<city>
+			<name>West Pensacola</name>
+		</city>
+		<city>
+			<name>West Samoset</name>
+		</city>
+		<city>
+			<name>Westchester</name>
+		</city>
+		<city>
+			<name>Westgate-Belvedere Homes</name>
+		</city>
+		<city>
+			<name>Westview</name>
+		</city>
+		<city>
+			<name>Westville</name>
+		</city>
+		<city>
+			<name>Westwood Lakes</name>
+		</city>
+		<city>
+			<name>Wewahitchka</name>
+		</city>
+		<city>
+			<name>Whiskey Creek</name>
+		</city>
+		<city>
+			<name>Whisper Walk</name>
+		</city>
+		<city>
+			<name>White City</name>
+		</city>
+		<city>
+			<name>White Springs</name>
+		</city>
+		<city>
+			<name>Whitfield</name>
+		</city>
+		<city>
+			<name>Wildwood</name>
+		</city>
+		<city>
+			<name>Williamsburg</name>
+		</city>
+		<city>
+			<name>Williston</name>
+		</city>
+		<city>
+			<name>Willow Oak</name>
+		</city>
+		<city>
+			<name>Wilton Manors</name>
+		</city>
+		<city>
+			<name>Wimauma</name>
+		</city>
+		<city>
+			<name>Windermere</name>
+		</city>
+		<city>
+			<name>Winston</name>
+		</city>
+		<city>
+			<name>Winter Garden</name>
+		</city>
+		<city>
+			<name>Winter Haven</name>
+		</city>
+		<city>
+			<name>Winter Park</name>
+		</city>
+		<city>
+			<name>Winter Springs</name>
+		</city>
+		<city>
+			<name>Woodville</name>
+		</city>
+		<city>
+			<name>Worthington Springs</name>
+		</city>
+		<city>
+			<name>Wright</name>
+		</city>
+		<city>
+			<name>Yalaha</name>
+		</city>
+		<city>
+			<name>Yankeetown</name>
+		</city>
+		<city>
+			<name>Yulee</name>
+		</city>
+		<city>
+			<name>Zephyrhills</name>
+		</city>
+		<city>
+			<name>Zephyrhills North</name>
+		</city>
+		<city>
+			<name>Zephyrhills South</name>
+		</city>
+		<city>
+			<name>Zephyrhills West</name>
+		</city>
+		<city>
+			<name>Zolfo Springs</name>
+		</city>
+	</cities>
+</state>

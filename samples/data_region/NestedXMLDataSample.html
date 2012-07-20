@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Nested XML Data Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.dataTable {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+.dataTable th, .dataTable td {
+	border: solid 1px black;
+	padding: 4px;
+}
+.dataTable th {
+	background-color: #CCCCCC;
+	color: black;
+}
+.hover {
+	background-color: #FFCCFF;
+}
+.select {
+	background-color: black;
+	color: white;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"></script>
+<script type="text/javascript">
+var dsItems1 = new Spry.Data.XMLDataSet("../../data/donuts.xml", "/items/item");
+var dsItems2 = new Spry.Data.XMLDataSet("../../data/donuts.xml", "/items/item", { subPaths: "batters/batter" });
+var dsItems3 = new Spry.Data.XMLDataSet("../../data/donuts.xml", "/items/item", { subPaths: [ "batters/batter", "topping" ] });
+
+var dsBatters = new Spry.Data.NestedXMLDataSet(dsItems1, "batters/batter");
+var dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, "topping");
+</script>
+</head>
+<body>
+<h3>Nested XML Data Sample</h3>
+<p>This page demonstrates the 2 methods now available to developers for accessing nested XML data:</p>
+<ul>
+  <li><a href="#ControllingFlattening">Controlling the flattening process</a></li>
+  <li><a href="#UsingNestedDataSets">Using Nested Data Sets</a></li>
+</ul>
+<p>The examples on this page will be working with an XML schema that looks something like this:</p>
+<ul>
+  <li>items
+    <ul>
+      <li>item
+        &lt;== REPEATING NODE
+        <ul>
+          <li>@id</li>
+          <li>name</li>
+          <li>ppu</li>
+          <li>batters
+            <ul>
+              <li>batter &lt;== REPEATING NODE
+                <ul>
+                  <li>@id</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>topping &lt;== REPEATING NODE
+            <ul>
+              <li>@id</li>
+            </ul>
+          </li>
+          <li>fillings
+            <ul>
+              <li>filling
+                &lt;== REPEATING NODE
+                <ul>
+                  <li>@id</li>
+                  <li>name</li>
+                  <li>addcost</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>You can see the actual XML data file used <a href="../../data/donuts.xml">here</a>.</p>
+<p>This schema demonstrates a couple of nested data scenarios that previous versions of Spry (Pre-Release 1.4 and earlier) had a hard time dealing with, specifically the use of sub-structures like &lt;batters&gt; in this example:</p>
+<pre>
+&lt;items&gt;
+	&lt;item id=&quot;0001&quot; type=&quot;donut&quot;&gt;
+		&lt;name&gt;Cake&lt;/name&gt;
+		&lt;ppu&gt;0.55&lt;/ppu&gt;
+<span class="highlited">		&lt;batters&gt;
+			&lt;batter id=&quot;1001&quot;&gt;Regular&lt;/batter&gt;
+			&lt;batter id=&quot;1002&quot;&gt;Chocolate&lt;/batter&gt;
+			&lt;batter id=&quot;1003&quot;&gt;Blueberry&lt;/batter&gt;
+		&lt;/batters&gt;</span>
+		&lt;topping id=&quot;5001&quot;&gt;None&lt;/topping&gt;
+		&lt;topping id=&quot;5002&quot;&gt;Glazed&lt;/topping&gt;
+		&lt;topping id=&quot;5005&quot;&gt;Sugar&lt;/topping&gt;
+		&lt;topping id=&quot;5006&quot;&gt;Sprinkles&lt;/topping&gt;
+		&lt;topping id=&quot;5003&quot;&gt;Chocolate&lt;/topping&gt;
+		&lt;topping id=&quot;5004&quot;&gt;Maple&lt;/topping&gt;
+	&lt;/item&gt;
+
+	...
+
+&lt;/items&gt;
+</pre>
+<p>when the &lt;item&gt; node (XPath: /items/item) was selected by the Data Set. Repeating nodes that were directly underneath the selected node, like &lt;topping&gt; were also a problem:</p>
+<pre>
+&lt;items&gt;
+	&lt;item id=&quot;0001&quot; type=&quot;donut&quot;&gt;
+		&lt;name&gt;Cake&lt;/name&gt;
+		&lt;ppu&gt;0.55&lt;/ppu&gt;
+		&lt;batters&gt;
+			&lt;batter id=&quot;1001&quot;&gt;Regular&lt;/batter&gt;
+			&lt;batter id=&quot;1002&quot;&gt;Chocolate&lt;/batter&gt;
+			&lt;batter id=&quot;1003&quot;&gt;Blueberry&lt;/batter&gt;
+		&lt;/batters&gt;
+<span class="highlited">		&lt;topping id=&quot;5001&quot;&gt;None&lt;/topping&gt;
+		&lt;topping id=&quot;5002&quot;&gt;Glazed&lt;/topping&gt;
+		&lt;topping id=&quot;5005&quot;&gt;Sugar&lt;/topping&gt;
+		&lt;topping id=&quot;5006&quot;&gt;Sprinkles&lt;/topping&gt;
+		&lt;topping id=&quot;5003&quot;&gt;Chocolate&lt;/topping&gt;
+		&lt;topping id=&quot;5004&quot;&gt;Maple&lt;/topping&gt;</span>
+	&lt;/item&gt;
+
+	...
+
+&lt;/items&gt;
+</pre>
+<hr />
+<h3><a name="ControllingFlattening" id="ControllingFlattening"></a>Controlling the Flattening Process</h3>
+<p>By default, when you select a node via XPath, the XML data set will follow this algorithm for flattening the selected node into a row:</p>
+<ul>
+  <li>Create a column for every attribute on the selected node. The column name for the attribute should begin with an '@' character. The value for the attribute is stored in this column.</li>
+  <li>If the selected node has no element children, create a column to store any text/cdata value it has underneath it. The name of this column will be the same as the node/tag name of the selected node.</li>
+  <li>If the selected node has child elements with no element children:
+    <ul>
+      <li>Create a column for every attribute on the child element. Prefix each attribute name with the node/tag name of the child element, followed by a '/@' and then the name of the child element's attribute.</li>
+      <li>Create a column for the text/cdata value of the child element. The name of the column will be the node/tag name of the child element.</li>
+    </ul>
+  </li>
+</ul>
+<p>All other child elements are ignored. The main reason they are ignored is because it's too hard to intelligently flatten nested repeating data into something predictable, especially when many XML schemas allow for variations in the format. For example, some schemas allow zero, one, or more child elements with the same name.</p>
+<p>For Spry Pre-Release 1.5, we have added the ability for the user to give the data set hints on how to flatten the data. The following examples illustrate how to do this, and what the results look like.</p>
+<hr />
+<p>To start us off, lets imagine that we want to generate a table of all items we have. We will start off by creating a data set like we normally would, and then define some markup with spry attributes and data references in it to describe how we would like to generate our table:</p>
+<pre>
+var dsItems1 = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;);
+
+...
+
+&lt;div spry:region=&quot;dsItems1&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Name&lt;/th&gt;
+			&lt;th&gt;Price Per Unit&lt;/th&gt;
+			&lt;th&gt;Batter&lt;/th&gt;
+			&lt;th&gt;Topping&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsItems1&quot;&gt;
+			&lt;td&gt;{@id}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+			&lt;td&gt;{ppu}&lt;/td&gt;
+			&lt;td&gt;{batters/batter}
+			&lt;td&gt;{topping}
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>We end up with the following table when viewed in a browser:</p>
+<div class="liveSample" spry:region="dsItems1">
+  <table class="dataTable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price Per Unit</th>
+      <th>Batter</th>
+      <th>Topping</th>
+    </tr>
+    <tr spry:repeat="dsItems1">
+      <td>{@id}</td>
+      <td>{name}</td>
+      <td>{ppu}</td>
+      <td>{batters/batter}</td>
+      <td>{topping}</td>
+    </tr>
+  </table>
+</div>
+<p>Not exactly what we wanted, but its a start. This is exactly the output you would get with Spry Pre-Release 1.4 and earlier. You get one row in the data set for each node that was matched by the data set's XPath with a column schema that looked something like this:</p>
+<table width="200" border="1" class="dataTable">
+  <tr>
+    <th scope="col">ds_RowID</th>
+    <th scope="col">@id</th>
+    <th scope="col">@type</th>
+    <th scope="col">name</th>
+    <th scope="col">ppu</th>
+    <th scope="col">topping</th>
+    <th scope="col">topping/@id</th>
+  </tr>
+</table>
+<p>Notice that in the &quot;Topping&quot; column we actually get a value, that's because if a selected node contains any child elements that repeats, like &lt;topping&gt;, and that child element has no child elements, the value of the last instance ends up being the value stored in that column. Notice also, that we have &quot;undefined&quot; values in our &quot;Batter&quot; column. That's because our flattening algorithm failed to flatten the &lt;batters&gt; sub structure because our flattening algorithm doesn't handle child elements with element children.</p>
+<hr />
+<p>Lets try to fix the &lt;batters&gt; problem by giving the data set a hint that it needs to include the &lt;batters&gt; nested structure in its flattening process. You do this by passing a &quot;subPaths&quot; constructor option. The value of the &quot;subPaths&quot; constructor option can be an XPath string that is relative to the data set's main XPath, which describes the path down to the structure you want to include in the flattening process. In this specific case, our sub-structure contains repeating &lt;batter&gt; nodes, so we want to specify a relative XPath of &quot;batters/batter&quot;:</p>
+<pre>
+var dsItems2 = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;, { subPaths: &quot;batters/batter&quot; });
+</pre>
+<p>Using the same HTML markup as the previous example, this yields:</p>
+<div class="liveSample" spry:region="dsItems2">
+  <table class="dataTable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price Per Unit</th>
+      <th>Batter</th>
+      <th>Topping</th>
+    </tr>
+    <tr spry:repeat="dsItems2">
+      <td>{@id}</td>
+      <td>{name}</td>
+      <td>{ppu}</td>
+      <td>{batters/batter}</td>
+      <td>{topping}</td>
+    </tr>
+  </table>
+</div>
+<p>The first thing you will notice is that there are more items in the table. Because our subPath selected another set of repeating nodes, the results of flattening this subPath were merged/joined back with our original set of rows. The schema for our data set rows now looks something like this:</p>
+<table width="200" border="1" class="dataTable">
+  <tr>
+    <th scope="col">ds_RowID</th>
+    <th scope="col">@id</th>
+    <th scope="col">@type</th>
+    <th scope="col">name</th>
+    <th scope="col">ppu</th>
+    <th scope="col">batters/batter</th>
+    <th scope="col">batters/batter/@id</th>
+    <th scope="col">topping</th>
+    <th scope="col">topping/@id</th>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<hr />
+<p>Now lets try to fix the &lt;topping&gt; problem by giving the data set a hint that it needs to include the &lt;topping&gt; repeated nodes in its flattening process. The &quot;subPaths&quot; constructor option can also take an array of sub path strings. This allows us to pass both the &quot;batters/batter&quot; and &quot;topping&quot; sub paths to our data set constructor:</p>
+<pre>
+var dsItems3 = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;, { subPaths: [ &quot;batters/batter&quot;, &quot;topping&quot; ] });
+</pre>
+<p>Using the same HTML markup as the previous example, this yields:</p>
+<div class="liveSample" spry:region="dsItems3">
+  <table class="dataTable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price Per Unit</th>
+      <th>Batter</th>
+      <th>Topping</th>
+    </tr>
+    <tr spry:repeat="dsItems3">
+      <td>{@id}</td>
+      <td>{name}</td>
+      <td>{ppu}</td>
+      <td>{batters/batter} </td>
+      <td>{topping} </td>
+    </tr>
+  </table>
+</div>
+<p>This yields even more rows in our table. What happened here is that the data set flattened the set of nodes that matched its initial XPath of &quot;/items/item&quot;. It then flattened the sub path for &quot;batters/batter&quot; and joined the results of that with its original set of rows. It then flattened the &quot;topping&quot; sub path and merged those results with the previously calculated set of rows. In effect, what you get is a set of permutations for every sub path specified in the &quot;subPaths&quot; constructor option.</p>
+<p>The schema for the rows in our data set is the same as in our previous example, the exception being that now each row has the correct/expected topping value and id in it:</p>
+<table width="200" border="1" class="dataTable">
+  <tr>
+    <th scope="col">ds_RowID</th>
+    <th scope="col">@id</th>
+    <th scope="col">@type</th>
+    <th scope="col">name</th>
+    <th scope="col">ppu</th>
+    <th scope="col">batters/batter</th>
+    <th scope="col">batters/batter/@id</th>
+    <th scope="col">topping</th>
+    <th scope="col">topping/@id</th>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<hr />
+<p>This example uses the exact same data set as the previous example, but it illustrates how you access the attributes of the nodes selected by the sub paths. In this example, we will combine the values of the id attributes from the &lt;item&gt;, &lt;batter&gt;, and &lt;topping&gt; nodes to produce a unique SKU number. We'll also add the ability to sort on the columns:</p>
+<pre>
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsItems3&quot;&gt;
+	&lt;table class=&quot;dataTable&quot;&gt;
+		&lt;tr&gt;
+			&lt;th spry:sort=&quot;@id batters/batter/@id topping/@id&quot;&gt;SKU&lt;/th&gt;
+			&lt;th spry:sort=&quot;@id&quot;&gt;ID&lt;/th&gt;
+			&lt;th spry:sort=&quot;name&quot;&gt;Name&lt;/th&gt;
+			&lt;th spry:sort=&quot;ppu&quot;&gt;Price Per Unit&lt;/th&gt;
+			&lt;th spry:sort=&quot;batters/batter&quot;&gt;Batter&lt;/th&gt;
+			&lt;th spry:sort=&quot;topping&quot;&gt;Topping&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsItems3&quot;&gt;
+			&lt;td&gt;{@id}-{batters/batter/@id}-{topping/@id}&lt;/td&gt;
+			&lt;td&gt;{@id}&lt;/td&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+			&lt;td&gt;{ppu}&lt;/td&gt;
+			&lt;td&gt;{batters/batter} &lt;/td&gt;
+			&lt;td&gt;{topping} &lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>This markup yields the following table:</p>
+<div class="liveSample" spry:region="dsItems3">
+  <table class="dataTable">
+    <tr>
+      <th spry:sort="@id batters/batter/@id topping/@id">SKU</th>
+      <th spry:sort="@id">ID</th>
+      <th spry:sort="name">Name</th>
+      <th spry:sort="ppu">Price Per Unit</th>
+      <th spry:sort="batters/batter">Batter</th>
+      <th spry:sort="topping">Topping</th>
+    </tr>
+    <tr spry:repeat="dsItems3">
+      <td>{@id}-{batters/batter/@id}-{topping/@id}</td>
+      <td>{@id}</td>
+      <td>{name}</td>
+      <td>{ppu}</td>
+      <td>{batters/batter} </td>
+      <td>{topping} </td>
+    </tr>
+  </table>
+</div>
+<hr />
+<h3><a name="UsingNestedDataSets" id="UsingNestedDataSets"></a>Using Nested Data Sets</h3>
+<p>Aside from controlling the flattening process, the Spry Pre-Release 1.5 introduces the concept of a &quot;Nested Data Set&quot;. Nested data sets derive their data from another data set, considered its parent/master. The data inside the nested data set is determined by the current row of the parent data set. Any time the current row of the parent data set changes, the data inside the nested data set is updated automatically.</p>
+<p>Exactly how the nested data set extracts its data from the parent data set depends on the actual implementation of both the master and nested data sets. For the Spry.Data.NestedXMLDataSet, its parent data set *must* be a Spry.Data.XMLDataSet, or another Spry.Data.NestedXMLDataSet. The actual implementation of the NestedXMLDataSet extracts its data directly from the same in-memory copy of the XML DOM document used by its parent. This means that for any XML document used by a parent data set and one or more nested XML data sets, the document is only loaded off the wire once. It should be explicitly stated that if new XML data must be loaded from the server, that the actual loading be done by the parent Spry.Data.XMLDataSet. NestedXMLDataSets do not have any ability to load data off the wire, from a server.</p>
+<hr />
+<p>In this example, we set up a parent data set that has 2 nested data sets that load data from different parts of the XML underneath the nodes selected by the parent's XPath. Notice in the sample code below that we now include an extra JS file called SpryNestedXMLDataSet.js:</p>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryNestedXMLDataSet.js&quot;&gt;&lt;/script&gt;
+
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+...
+
+// Setup a parent data set:
+
+var dsItems1 = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;);
+
+// Setup a couple of nested data sets:
+
+var dsBatters = new Spry.Data.NestedXMLDataSet(dsItems1, &quot;batters/batter&quot;);
+var dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, &quot;topping&quot;);
+
+...
+
+&lt;/script&gt;
+
+...
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Region using dsItems1 (Parent)&lt;/th&gt;
+		&lt;th&gt;Region using dsBatters (Nested)&lt;/th&gt;
+		&lt;th&gt;Region using dsToppings (Nested)&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td spry:region=&quot;dsItems1&quot;&gt;
+			&lt;ul spry:repeatchildren=&quot;dsItems1&quot; spry:choose=&quot;&quot;&gt;
+				&lt;li spry:when=&quot;{ds_CurrentRowNumber} == {ds_RowNumber}&quot; spry:setrow=&quot;dsItems1&quot; spry:select=&quot;select&quot; spry:hover=&quot;hover&quot; spry:selected=&quot;&quot;&gt;{name}&lt;/li&gt;
+				&lt;li spry:default=&quot;&quot; spry:setrow=&quot;dsItems1&quot; spry:select=&quot;select&quot; spry:hover=&quot;hover&quot;&gt;{name}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+		&lt;td spry:region=&quot;dsBatters&quot;&gt;
+			&lt;ul spry:repeatchildren=&quot;dsBatters&quot;&gt;
+				&lt;li&gt;{batter}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+		&lt;td spry:region=&quot;dsToppings&quot;&gt;
+			&lt;ul spry:repeatchildren=&quot;dsToppings&quot;&gt;
+				&lt;li&gt;{topping}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+<p>When you click on a row in the parent list below, it updates the current row of the parent data set. Notice how the other 2 lists, which use nested data sets, change? This happens because anytime the parent's row changes, they reload their data to match.</p>
+<div class="liveSample">
+  <table class="dataTable">
+    <tr>
+      <th>Region using dsItems1 (Parent)</th>
+      <th>Region using dsBatters (Nested)</th>
+      <th>Region using dsToppings (Nested)</th>
+    </tr>
+    <tr>
+      <td spry:region="dsItems1"><ul spry:repeatchildren="dsItems1" spry:choose="">
+          <li spry:when="{ds_CurrentRowNumber} == {ds_RowNumber}" spry:setrow="dsItems1" spry:select="select" spry:hover="hover" spry:selected="">{name}</li>
+          <li spry:default="" spry:setrow="dsItems1" spry:select="select" spry:hover="hover">{name}</li>
+        </ul></td>
+      <td spry:region="dsBatters"><ul spry:repeatchildren="dsBatters">
+          <li>{batter}</li>
+        </ul></td>
+      <td spry:region="dsToppings"><ul spry:repeatchildren="dsToppings">
+          <li>{topping}</li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<p>An interesting feature of nested data sets is that if it is used within a looping context that iterates over the rows of its parent data set, any data references from the nested data set that are used *inside* the loop are kept in sync with the current row of the parent being processed. This makes it ideal for writing out data that is grouped by data in the parent data set.</p>
+<p>As an example, suppose that we want to write out all of the toppings available for a given item:</p>
+<pre>
+&lt;div spry:region=&quot;dsItems1 dsToppings&quot;&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat=&quot;dsItems1&quot;&gt;{dsItems1::name}
+			&lt;ul&gt;
+				&lt;li spry:repeat=&quot;dsToppings&quot;&gt;{dsToppings::topping}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p>This would yield:</p>
+<div class="liveSample">
+  <div spry:region="dsItems1 dsToppings">
+    <ul>
+      <li spry:repeat="dsItems1">{dsItems1::name}
+        <ul>
+          <li spry:repeat="dsToppings">{dsToppings::topping}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<p>&nbsp;</p>
+<hr />
+<p>You can still use nested data sets in combination with its parent data set to generate a table that looks something like what we saw in the previous section:</p>
+<pre>
+&lt;div class=&quot;liveSample&quot; spry:region=&quot;dsItems1 dsToppings&quot;&gt;
+		&lt;table class=&quot;dataTable&quot;&gt;
+			&lt;tr&gt;
+				&lt;th spry:sort=&quot;dsItems1 @id&quot;&gt;ID&lt;/th&gt;
+				&lt;th spry:sort=&quot;dsItems1 name&quot;&gt;Name&lt;/th&gt;
+				&lt;th spry:sort=&quot;dsItems1 ppu&quot;&gt;Price Per Unit&lt;/th&gt;
+				&lt;th spry:sort=&quot;dsToppings topping&quot;&gt;Topping&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tbody spry:repeatchildren=&quot;dsItems1&quot;&gt;
+				&lt;tr spry:repeat=&quot;dsToppings&quot;&gt;
+					&lt;td&gt;{dsItems1::@id}&lt;/td&gt;
+					&lt;td&gt;{dsItems1::name}&lt;/td&gt;
+					&lt;td&gt;{dsItems1::ppu}&lt;/td&gt;
+					&lt;td&gt;{dsToppings::topping} &lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+<p>Although it looks similar to the tables from the previous &quot;Controlling the Flattening Process&quot; section:</p>
+<div class="liveSample" spry:region="dsItems1 dsToppings">
+  <table class="dataTable">
+    <tbody>
+      <tr>
+        <th spry:sort="dsItems1 @id">ID</th>
+        <th spry:sort="dsItems1 name">Name</th>
+        <th spry:sort="dsItems1 ppu">Price Per Unit</th>
+        <th spry:sort="dsToppings topping">Topping</th>
+      </tr>
+    </tbody>
+    <tbody spry:repeatchildren="dsItems1">
+      <tr spry:repeat="dsToppings">
+        <td>{dsItems1::@id}</td>
+        <td>{dsItems1::name}</td>
+        <td>{dsItems1::ppu}</td>
+        <td>{dsToppings::topping} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>there are some important differences. For instance, if you click on the headers for ID, Name, and Price Per Unit, you will notice that the entire table seems to sort based on those values. But, if you click on the Topping header, the toppings seem to sort only within groups. This is because whenever you sort or filter a nested data set, it applies those operations to the set of data associated with each row of the parent data set. Another way to think about this is: inside a nested data set, there are multiple data sets, one for each row of the parent data set. Any time the current row of the parent data set changes, the nested data set simply swaps in the data from the internal data set that is associated with that parent row. When you sort or filter the nested data set, the sorting and filtering functions operate on each individual internal data set inside the nested data set.</p>
+<p>So the drawback with this approach, is that you cannot sort across *all* of the nested data, even though the presentation of the data on-screen with a table makes it look like you can.</p>
+</body>
+</html>

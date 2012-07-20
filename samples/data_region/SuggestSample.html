@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Auto Suggest Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#productMenu {
+	border: 1px solid #999999;
+	cursor: select;
+	padding: 0px;
+	position: absolute;
+	top: 22px;
+	left: 170px;
+	background-color: white;
+}
+#productMenu table {
+	margin: 0px;
+}
+#productSample {
+	position: relative;
+}
+.hover {
+	background-color: #CCCCCC;
+}
+.boxshot {
+	position: relative;
+	float: left;
+	height: 32px;
+	width: 32px;
+	padding: 0px;
+	overflow: hidden;
+}
+.boxshot img {
+	position: absolute;
+	width: 60px;
+	height: 32px;
+	left: -15px;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../includes/SimpleAutoSuggest.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsProducts = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "/products/product", { sortOnLoad: "name" })
+
+function MyQueryFunc(autoCompleteWidget, str, contains, dataSet, columnName)
+{
+	// Auto suggest query functions typically fire off a request to
+	// a server. Since all of our data is housed in a single file, all
+	// we need to do is make sure that we filter it properly.
+
+	if (!str)
+	{
+		// The auto suggest widget contains no value in its
+		// text field. Install a null filter on the data set
+		// so the menu empties out, and then hide it so it can't
+		// be seen.
+		dataSet.filter(function(ds, row, rowNumber) { return null; });
+		autoCompleteWidget.showSuggestions(false);
+		return;
+	}
+
+	// We have a value to auto suggest against. Build a non-destructive
+	// filter that uses this value to decide what rows to keep in the
+	// data set. Check the "contains" value that was passed in to this
+	// function. If it is false, then we'll only match strings that begin
+	// with the auto suggest value, otherwise we will match any string
+	// that contains the value.
+
+	var regExpStr = Spry.Widget.SimpleAutoSuggest.escapeRegExp(str);
+	
+	if (!contains)
+	 	regExpStr = "^" + regExpStr;
+
+	var regExp = new RegExp(regExpStr, "i");
+	
+	var filterFunc = function(ds, row, rowNumber)
+	{
+		var str = row[columnName];
+		if (str && str.search(regExp) != -1)
+			return row; /* MATCH! */
+		return null; /* NO MATCH! */
+	};
+
+	dataSet.filter(filterFunc);
+
+	// Now that the data is filtered. Decide if we
+	// should show the menu or not.
+
+	autoCompleteWidget.showSuggestions(dataSet.getData().length > 0);
+}
+-->
+</script>
+</head>
+
+<body>
+<h3>Auto Suggest Sample </h3>
+<p>This is an example of using a Spry region to display auto-suggest results. Note that as of Spry 1.5, there is an <a href="../autosuggest/SuggestSample.html">AutoSuggest Widget</a> that mimics the behavior here.</p>
+<hr />
+<div id="productSample">
+	Enter the name of a product: <input type="text" id="productTF" /> 
+	<div id="productMenu" spry:region="dsProducts" style="display: none;">
+		<table>
+			<tr spry:repeat="dsProducts" spry:hover="hover" spry:suggestion="{name}">
+				<td><div class="boxshot"><img src="../../demos/products/{boximage}" alt="{name}" /></div><div>{name}</div></td>
+			</tr>
+		</table>
+	</div>
+	Contains: <input type="checkbox" id="productCB" checked="checked" />
+</div>
+<script language="JavaScript" type="text/javascript">
+var asw = new Spry.Widget.SimpleAutoSuggest("productTF", "productMenu", function(acWidget, str) { MyQueryFunc(acWidget, str, document.getElementById("productCB").checked, dsProducts, "name"); });
+</script>
+</body>
+</html>

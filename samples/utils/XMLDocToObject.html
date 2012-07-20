@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>XML Document To Object Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryXML.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+function ProcessMessageResults(req)
+{
+	// This block is necessary for IE because it doesn't create
+	// an XML DOM (responseXML) when loading files off disk via file://.
+
+	var doc = req.xhRequest.responseXML;
+	if (!doc || !doc.firstChild)
+	{
+		doc = Spry.Utils.stringToXMLDoc(req.xhRequest.responseText);
+		if (!doc || !doc.firstChild)
+		{
+			alert("Failed to get XML document DOM!");
+			return;
+		}
+	}
+
+	// Convert the XML DOM document to a JS object.
+
+	var str = "";
+	var xml = Spry.XML.documentToObject(doc);
+
+	if (xml.messages) // Check if we have a <messages> root element.
+	{
+		// Verify that we did indeed get the number of messages
+		// the server said it sent. To do this, we compare the
+		// messages count attribute against the actual number of message
+		// nodes we recieved.
+		//
+		// In this particular case, a <messages> node can contain zero
+		// or more <message> child nodes. Rather than checking for the
+		// zero, one, or more cases, we can simply ask for the object to
+		// give us the <message> objects as an array to simplify things.
+		
+		var msgArray = xml.messages._getPropertyAsArray("message");
+		if (xml.messages["@count"] != msgArray.length)
+		{
+			document.getElementById('msgArea').innerHTML += "Bad message count!<br />";
+			return;
+		}
+
+		// Number of messages were the same! If we have no
+		// messages, just notify the user and return.
+
+		if (msgArray.length == 0)
+		{
+			document.getElementById('msgArea').innerHTML += "No new messages!<br />";
+			return;
+		}
+		
+		// Now run through each message and build up a string that
+		// we can output so the user can see what the message subjects are.
+
+		for (var i = 0; i < msgArray.length; i++)
+		{
+			str += msgArray[i]["@recieved"] + "\t" + msgArray[i].from._value() + "\t" + msgArray[i].subject._value() + "<br />";
+		}
+	}
+	else if (xml.reply) // Check if we have a <reply> root element.
+	{
+		if (xml.reply["@type"] == "error")
+			str = "REPLY (" + xml.reply.status._value() + "): " + xml.reply.msg._value() + "<br />";
+		else
+			str = "ERROR: Unknown reply recieved from server!<br />";
+	}
+	else
+		str = "ERROR: Unknown response recieved from server!<br />";
+
+	document.getElementById("msgArea").innerHTML += str;
+}
+
+function LoadMessages()
+{
+	var url = "../../data/msg-01.xml";
+	if (document.getElementById("serverDownCB").checked)
+		url = "../../data/reply-error.xml";
+
+	Spry.Utils.loadURL("GET", url, true, ProcessMessageResults);
+}
+//-->
+</script>
+</head>
+
+<body>
+<h3>Accessing XML DOM Data</h3>
+<p>This page demonstrates how to turn an XML DOM document or tree into a JavaScript struct that allows you to access the data and attributes easily.</p>
+<hr />
+<input type="button" value="Fetch Messages" onclick="LoadMessages();" />
+<input type="button" value="Clear" onclick="document.getElementById('msgArea').innerHTML = '';" />
+<label><input id="serverDownCB" type="checkbox" /> Simulate Server Down</label><br />
+<pre id="msgArea"></pre>
+<hr />
+<p>In this example, we are simulating a server request for some XML that contains information about email messages for a particular user. Each press of the &quot;Fetch Messages&quot; button fires off a load request which returns the following XML when the request is successful:</p>
+<a name="messagesSample" id="messagesSample"></a>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;messages count=&quot;5&quot;&gt;
+	&lt;message id=&quot;349348&quot; recieved=&quot;Thu, 12 Oct 2006 16:29:35 -0800&quot; size=&quot;1K&quot; attachments=&quot;false&quot;&gt;
+		&lt;from id=&quot;123456&quot; address=&quot;esmith@foo.com&quot;&gt;Edward Smith&lt;/from&gt;
+		&lt;subject&gt;Donuts in the break room.&lt;/subject&gt;
+	&lt;/message&gt;
+	&lt;message id=&quot;351325&quot; recieved=&quot;Wed, 25 Oct 2006 14:12:13 -0800&quot; size=&quot;4K&quot; attachments=&quot;false&quot;&gt;
+		&lt;from id=&quot;127937&quot; address=&quot;njohnson@foo.com&quot;&gt;Neil Johnson&lt;/from&gt;
+		&lt;subject&gt;Please send check via certified-express snail mail!&lt;/subject&gt;
+		&lt;flags important=&quot;true&quot; needsreply=&quot;true&quot; returnreceipt=&quot;true&quot; /&gt;
+	&lt;/message&gt;
+	&lt;message id=&quot;456848&quot; recieved=&quot;Wed, 01 Nov 2006 09:35:57 -0800&quot; size=&quot;720K&quot; attachments=&quot;true&quot;&gt;
+		&lt;from id=&quot;126474&quot; address=&quot;swilliams@foo.com&quot;&gt;Steve Williams&lt;/from&gt;
+		&lt;subject&gt;Sign the attached doc and return by Friday at the latest.&lt;/subject&gt;
+		&lt;flags returnreceipt=&quot;true&quot; /&gt;
+	&lt;/message&gt;
+	&lt;message id=&quot;456976&quot; recieved=&quot;Tue, 07 Nov 2006 14:36:04 -0800&quot; size=&quot;100K&quot; attachments=&quot;true&quot;&gt;
+		&lt;from id=&quot;120585&quot; address=&quot;jjones@foo.com&quot;&gt;John Jones&lt;/from&gt;
+		&lt;subject&gt;Ship Party Details&lt;/subject&gt;
+	&lt;/message&gt;
+	&lt;message id=&quot;567833&quot; recieved=&quot;Mon, 04 Dec 2006 18:24:05 -0800&quot; size=&quot;12K&quot; attachments=&quot;false&quot;&gt;
+		&lt;from id=&quot;127493&quot; address=&quot;jbrown@foo.com&quot;&gt;Joe Brown&lt;/from&gt;
+		&lt;subject&gt;Check this out!&lt;/subject&gt;
+	&lt;/message&gt;
+&lt;/messages&gt;
+</pre>
+<p>If the &quot;Simulate Server Down&quot; checkbox is checked, the request results in the following XML being returned to the client:</p>
+<a name="replySample" id="replySample"></a>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;reply id=&quot;326737&quot; type=&quot;error&quot; date=&quot;Fri, 15 Dec 2006 11:47:36 -0800&quot;&gt;
+	&lt;status&gt;404&lt;/status&gt;
+	&lt;msg&gt;This server is currently undergoing maintenance and was unable to process your request.&lt;/msg&gt;
+&lt;/reply&gt;
+</pre>
+<p>In both cases, the server request isn't resulting in a request error, but the data that is being sent back by the server is different, and in one particular case, the data is telling the client that the server is down, so the client code should handle that case gracefully. </p>
+<p>If you view the source for this page, you will see that it contains 2 JavaScript functions, LoadMessages() and ProcessMessageResults(). The LoadMessages() function simply fires off an HTTP request for the message data, and tells the load function to call ProcessMessageResults() when it has recieved the server response. The function ProcessMessageResults() function is where all the action happens. It uses Spry.XML.documentToObject() to create a JS object version of the XML DOM to ease the extraction of information from the XML data that was returned by the server. It uses the resulting object to figure out what type of XML data was returned, and then extracts the appropriate information out of the data for logging purposes.</p>
+<p>The intent of Spry.XML.documentToObject() was to produce an object that had properties and methods on it that allowed you to traverse the XML data easily to check for tag/attribute existence and extract out data values without all the overhead of multiple calls to getElementsByTagName() and getAttribute(). The return value of Spry.XML.documentToObject() will either be an object that represents the XML document, or null. Spry.XML.documentToObject() will return a null value if the document node you pass into it is null/undefined, the document node has no element children or value. It should be noted that valid XML documents should have only one top-level element, aka the root node, defined at any time in the document. This means that the object returned by documentToObject() will always contain one property on it. The property's name is the same as the root element's tag name, and its value is an object that contains properties that describe its attributes, value, and child nodes.</p>
+<p>Using the <a href="#replySample">&lt;reply&gt; XML example</a> above, this call to Spry.Utils.documentToObject():</p>
+<pre>var xml = Spry.Utils.documentToObject(domDoc); </pre>
+<p>is roughly equivalent to this object assignment in JS:</p>
+<pre>var xml =
+{
+	&quot;reply&quot;:
+	{
+		&quot;@id&quot;: &quot;326737&quot;,
+		&quot;@type&quot;: &quot;error&quot;,
+		&quot;@date&quot;: &quot;Fri, 15 Dec 2006 11:47:36 -0800&quot;,
+		&quot;status&quot;:
+		{
+			&quot;#text&quot;: &quot;404&quot;,
+		},
+		&quot;msg&quot;:
+		{
+			&quot;#text&quot;: &quot;This server is currently undergoing maintenance and was unable to process your request.&quot;,
+		}
+	}
+};
+</pre>
+<p>The properties on this object will be the names of any child tags it contains and any attributes its start tag may contain. All attribute names will be prefixed by an '@' character to help differenciate them from any child tag names which could theoretically have the same name. Aside from the naming differences, there is one more important distinction between attributes and child tags. The value of a child tag properties will always be an object, while the value of an attribute property is always a string. This is an important point to remember, because it means that there is a difference in the way you extract a value out of an attribute, versus the value a child tag. For a child tag, you have to call the method _value() on it to get its value (text between the child tag's open and close tags). For attributes, the value for the attribute property is the value for the attribute. To illustrate, lets walk through an example of how the &lt;reply&gt; XML example above is converted to an object, and how we access the information inside it.</p>
+<pre>
+var xml = Spry.XML.documentToObject(docDOM);
+
+// Check for the presence of a root node named reply.
+
+if (xml &amp;&amp; xml.reply)
+{
+	// We have a reply node in the document. Grab its type and status.
+
+	var type = xml.reply[&quot;@type&quot;] // type now has the value &quot;error&quot; in it.
+
+	var status = xml.reply.status._value(); // status now has the value &quot;404&quot; in it.
+}
+</pre>
+<p>After the call to documentToObject(), the resulting object is assigned to a variable called 'xml'. To access the root node of the document, we simply use &quot;dot notation&quot;  (xml.reply) to access the object that represents the root node. Notice that the name of the property used to access the root node is the same as the name of the tag for the root node. You can use &quot;dot notation&quot; to access the data of any other child node as long as its tag name contains only alpha-numeric and underline characters, so in the example above, we access the &quot;status&quot; node by using &quot;xml.reply.status&quot;. If the tag name contains any other characters, you may have to switch to using &quot;square bracket notation&quot;. An example of a name that falls into this category is a namespaced tag name (ex: &lt;foo:bar&gt;). To get at a child node with &quot;foo:bar&quot; as its tag name, you would have to use &quot;square bracket notation&quot; that looked like this:</p>
+<pre>var bar = xml.reply[&quot;foo:bar&quot;]; // Assigns the object representing the foo:bar node to bar</pre>
+<p> Attributes also fall into this same category, because they are prefixed with a '@' character. So in the example above, the &quot;type&quot; attribute on the reply node is retrieved by using bracket notation:</p>
+<pre>var type = xml.reply[&quot;@type&quot;] // type now has the value &quot;error&quot; in it.</pre>
+<p>There will be cases where a node has more than one child with the same tag name. You can see this with the messages XML format example above. The &lt;messages&gt; node has more than one &lt;message&gt; node child. In this specific case, the messages.message property is an array object. So if this sample code called documentToObject() with a document DOM that described the <a href="#messagesSample">&lt;messages&gt; XML</a> above:</p>
+<pre>var xml = Spry.Utils.documentToObject(domDoc); </pre>
+<p>the JS object that is produced looks like:</p>
+<pre>
+var xml =
+{
+	&quot;messages&quot;:
+	{
+		@count&quot;: &quot;5&quot;,
+		&quot;message&quot;:
+		[
+			{
+				&quot;@id&quot;: &quot;349348&quot;,
+				&quot;@recieved&quot;: &quot;Thu, 12 Oct 2006 16:29:35 -0800&quot;,
+				&quot;@size&quot;: &quot;1K&quot;,
+				&quot;@attachments&quot;: &quot;false&quot;,
+				&quot;from&quot;:
+				{
+					&quot;@id&quot;: &quot;123456&quot;,
+					&quot;@address&quot;: &quot;esmith@foo.com&quot;,
+					&quot;#text&quot;: &quot;Edward Smith&quot;
+				},
+				&quot;subject&quot;:
+				{
+					&quot;#text&quot;: &quot;Donuts in the break room.&quot;
+				}
+			},
+			{
+				&quot;@id&quot;: &quot;351325&quot;,
+				&quot;@recieved&quot;: &quot;Wed, 25 Oct 2006 14:12:13 -0800&quot;,
+				&quot;@size&quot;: &quot;4K&quot;,
+				&quot;@attachments&quot;: &quot;false&quot;,
+				&quot;from&quot;:
+				{
+					&quot;@id&quot;: &quot;127937&quot;,
+					&quot;@address&quot;: &quot;njohnson@foo.com&quot;,
+					&quot;#text&quot;: &quot;Neil Johnson&quot;
+				},
+				&quot;subject&quot;:
+				{
+					&quot;#text&quot;: &quot;Please send check via certified-express snail mail!&quot;
+				},
+				&quot;flags&quot;:
+				{
+					&quot;@important&quot;: &quot;true&quot;,
+					&quot;@needsreply&quot;: &quot;true&quot;
+				}
+			},
+			{
+				&quot;@id&quot;: &quot;456848&quot;,
+				&quot;@recieved&quot;: &quot;Wed, 01 Nov 2006 09:35:57 -0800&quot;,
+				&quot;@size&quot;: &quot;720K&quot;,
+				&quot;@attachments&quot;: &quot;true&quot;,
+				&quot;from&quot;:
+				{
+					&quot;@id&quot;: &quot;126474&quot;,
+					&quot;@address&quot;: &quot;swilliams@foo.com&quot;,
+					&quot;#text&quot;: &quot;Steve Williams&quot;
+				},
+				&quot;subject&quot;:
+				{
+					&quot;#text&quot;: &quot;Sign the attached doc and return by Friday at the latest.&quot;
+				},
+				&quot;flags&quot;:
+				{
+					&quot;@returnreceipt&quot;: &quot;true&quot;
+				}
+			},
+			{
+				&quot;@id&quot;: &quot;456976&quot;,
+				&quot;@recieved&quot;: &quot;Tue, 07 Nov 2006 14:36:04 -0800&quot;,
+				&quot;@size&quot;: &quot;100K&quot;,
+				&quot;@attachments&quot;: &quot;true&quot;,
+				&quot;from&quot;:
+				{
+					&quot;@id&quot;: &quot;120585&quot;,
+					&quot;@address&quot;: &quot;jjones@foo.com&quot;,
+					&quot;#text&quot;: &quot;John Jones&quot;,
+				},
+				&quot;subject&quot;:
+				{
+					&quot;#text&quot;: &quot;Ship Party Details&quot;
+				}
+			},
+			{
+				&quot;@id&quot;: &quot;567833&quot;,
+				&quot;@recieved&quot;: &quot;Mon, 04 Dec 2006 18:24:05 -0800&quot;,
+				&quot;@size&quot;: &quot;12K&quot;,
+				&quot;@attachments&quot;: &quot;false&quot;,
+				&quot;from&quot;:
+				{
+					&quot;@id&quot;: &quot;127493&quot;,
+					&quot;@address&quot;: &quot;jbrown@foo.com&quot;,
+					&quot;#text&quot;: &quot;Joe Brown&quot;
+				},
+				&quot;subject&quot;:
+				{
+					&quot;#text&quot;: &quot;Check this out!&quot;
+				}
+			}
+		], 
+	}
+}</pre>
+<p>&nbsp;so getting the value of xml.messages.message would give you back an array:  </p>
+<pre>
+var xml = Spry.XML.documentToObject(docDOM);
+
+...
+
+var msg = xml.messages.message; // msg now contains an array of message objects.
+</pre>
+<p>So how can you tell if a property is going to contain an object or an array? You can call _propertyIsArray() function on the parent object to ask if a particular property is an array or not. It will return true if the value for the property is an array, or false if it is a single object or undefined.</p>
+<pre>
+var xml = Spry.XML.documentToObject(docDOM);
+
+...
+
+if (xml.messages.propertyIsArray(&quot;message&quot;))
+{
+	// Array processing code.
+}
+else
+{
+	// Object processing code.
+}</pre>
+<p>Or, you can just fetch the property as an array using _getPropertyAsArray() so you can always assume that it is an array:</p>
+<pre>
+var xml = Spry.XML.documentToObject(docDOM);
+
+...
+
+var arr = xml.message._getPropertyAsArray(&quot;message&quot;); // arr now contains an array of zero or more length.
+
+for (var i = 0; i &lt; arr.length; i++)
+{
+	// process each message object.
+}</pre>
+<p>The length of the resulting array will tell you how many &lt;message&gt; nodes are under the &lt;messages&gt; node. It is safe to call _getPropertyAsArray() for any property, even if it doesn't exist. It will always return an array of zero or more elements. </p>
+</body>
+</html>

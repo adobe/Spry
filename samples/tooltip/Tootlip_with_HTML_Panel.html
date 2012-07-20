@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tootip with HTML Panel</title>
+<script language="JavaScript" type="text/javascript" src="../../widgets/tooltip/SpryTooltip.js"></script> 
+<script src="../../widgets/htmlpanel/SpryHTMLPanel.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../../widgets/htmlpanel/SpryHTMLPanel.css"  />
+<link rel="stylesheet" type="text/css" href="../../widgets/tooltip/SpryTooltip.css" />
+<link rel="stylesheet" type="text/css" href="../../css/samples.css" />
+<style type="text/css">
+
+.HTMLPanelLoading {
+	background-image:url(throbber.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	height:30px;
+}
+
+.HTMLPanelLoadingContent{
+	display: none;
+}
+
+.trigger{
+	background-color:#CCCCCC;  
+	height:25px;
+	width:200px;
+	padding-left:10px;
+	padding-top:5px;
+	text-decoration:underline;	
+	margin-top: 1px;
+}
+#tooltip{
+	width: 400px;
+	border: 1px dotted black;
+	padding-left: 10px;
+}
+</style>
+
+</head>
+
+<body>
+<h3>Tooltip Sample with HTML Panel</h3>
+<p>This sample presents a model how to create a tooltip widget that loads the tooltip content using the HTML panel mechanism. The tooltips that will appear on mouse over the gray area are loaded form separate html files that have different content inside them.</p>
+<div class="trigger" onmouseover="hp.loadContent('../htmlpanel/frag-0.html');">Adobe Photoshop CS3</div>
+<div class="trigger" onmouseover="hp.loadContent('../htmlpanel/frag-1.html');">Adobe Illustrator CS3</div>
+<div class="trigger" onmouseover="hp.loadContent('../htmlpanel/frag-2.html');">Adobe InDesign CS3</div>
+<div class="trigger" onmouseover="hp.loadContent('../htmlpanel/frag-3.html');">Adobe GoLive CS3</div>
+<div class="trigger" onmouseover="hp.loadContent('../htmlpanel/frag-4.html');">Adobe Dreamweaver 9</div>
+<div id="tooltip" class="tooltipContent">Loading...</div>
+
+<div class="HTMLPanelLoadingContent"> This is loading content.</div>
+
+<script type="text/javascript">
+	var hp = new Spry.Widget.HTMLPanel("tooltip");	
+	var tt1 = new Spry.Widget.Tooltip("tooltip",".trigger");
+</script>
+</body>
+</html>

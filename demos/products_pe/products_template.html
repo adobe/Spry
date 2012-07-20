@@ -1,0 +1,45 @@
+		<div spry:region="dsProducts" id="content">
+			<table id="products">
+			  <caption>Adobe Software</caption>
+			  <tbody>
+				<tr>
+				  <th scope="col" spry:sort="name">Product</th>
+				  <th scope="col" spry:sort="category">Category</th>
+				</tr>
+			  </tbody>
+			  <tbody spry:repeatchildren="dsProducts" spry:choose="choose">
+				<tr spry:when="{ds_RowID} == {ds_CurrentRowID}" class="{ds_EvenOddRow}" spry:setrow="dsProducts" spry:hover="rowHover" spry:select="rowSelected" spry:selected="selected">
+				  <td>{name}</td>
+				  <td>{category}</td>
+				</tr>
+				<tr spry:default="default" class="{ds_EvenOddRow}" spry:setrow="dsProducts" spry:hover="rowHover" spry:select="rowSelected">
+				  <td>{name}</td>
+				  <td>{category}</td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+		<div id="sidebar">
+			<p spry:detailregion="dsProducts" id="boxshot">{boximage}</p>
+			<div id="Acc1" class="Accordion" tabindex="0">
+			  <div class="AccordionPanel">
+				<div class="AccordionPanelTab">
+				  <h3>Product Overview</h3>
+				</div>
+				<div spry:detailregion="dsProducts" class="AccordionPanelContent">
+				  <div>{description}</div>
+				</div>
+			  </div>
+			  <div class="AccordionPanel">
+				<div class="AccordionPanelTab">
+				  <h3>New Features </h3>
+				</div>
+				<div spry:detailregion="dsProducts" class="AccordionPanelContent">
+				  <div>
+					<ul>{features}</ul>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+

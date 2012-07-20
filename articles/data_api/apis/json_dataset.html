@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="jsondataset">
+	<h3><a name="jsondataset"></a>JSON Data Set</h3>
+	<h4>Description</h4>
+	<p>The Spry.Data.JSONDataSet class dervies from the HTTPSourceDataSet class so that it can load and process JSON data. The JSONDataSet follows a fixed set of rules for flattening JSON data. If the data to be flattened is not at the top-level of the JSON data structure, a path can be used to identify the data within the JSON structure that should be flattened. You can see how the JSONDataSet flattens various JSON data structures <a href="../../../samples/data_region/JSONDataSetSample.html">here</a>.</p>
+	<h4>File</h4>
+	<p><a href="../../../includes/SpryJSONDataSet.js">SpryJSONDataSet.js</a></p>
+	<h4>Requires</h4>
+	<p><a href="../../../includes/SpryData.js">SpryData.js</a></p>
+	<h4>Inheritance</h4>
+	<p><a href="notifier.html">Notifier</a> --&gt;<a href="dataset.html">DataSet</a> --&gt; <a href="http_source_dataset.html">HTTPSourceDataSet</a> --&gt; JSONDataSet</p>
+</div>
+<div id="constructor">
+	<h3><a name="constructor"></a>JSONDataSet constructor</h3>
+  	<h4>Description</h4>
+  <p>Spry.Data.JSONDataSet is the constructor function for the JSON Data Set.</p>
+  <h4>Format</h4>
+  <p>Spry.Data.JSONDataSet(url, options)</p>
+  <h4>Arguments</h4>
+  <ul>
+    <li>url - The URL to the data to be loaded. This URL can be absolute, or relative to the HTML document that created the data set.</li>
+    <li>options - An optional argument which if specified, must be an object with the option names as properties with values. Properties that can be specified are:
+    		<br />
+    		<br />
+    		<ul>
+    			<li>path
+    				<ul>
+    					<li>String.</li>
+   						<li>Specifies the path to the data within the JSON structure. The path is expressed as a set of property names on the objects, separated by dots. For example, given the following JSON format:
+   							<br />
+   							<br />
+							<pre>
+{
+  &quot;results&quot;:
+  {
+    &quot;count&quot;: 3,
+    &quot;data&quot;:
+    [
+      { &quot;color&quot;: &quot;orange&quot;, &quot;category&quot;: &quot;sedan&quot; },
+      { &quot;color&quot;: &quot;yellow&quot;, &quot;category&quot;: &quot;sedan&quot; },
+      { &quot;color&quot;: &quot;red&quot;,    &quot;category&quot;: &quot;coupe&quot; }
+    ]
+  }
+}</pre>
+							<p>To flatten the structure in the &quot;data&quot; array, you would specify a path of &quot;results.data&quot;. Or if you were only interested in extracting out all of the specified &quot;category&quot; values, you could specify a path of &quot;results.data.category&quot;.</p>
+						</li>
+   					</ul>
+    			</li>
+    			<li>pathIsObjectOfArrays
+    				<ul>
+    					<li>Boolean.</li>
+   						<li>If true, the data that the data set will flatten is an object that has properties that all contain arrays:<br />
+   							<br />
+   							<pre>
+{
+  &quot;data&quot;:
+  {
+    &quot;firstname&quot;: [ &quot;John&quot;,  &quot;Jane&quot;, &quot;Ann&quot;  ],
+    &quot;lastname&quot;:  [ &quot;Smith&quot;, &quot;Doe&quot;,  &quot;Hunt&quot; ]
+    &quot;id&quot;:        [ &quot;3001&quot;,  &quot;4532&quot;, &quot;5462&quot; ]
+  }
+}</pre>
+<p>If the data set was given a path of &quot;data&quot; to flatten, the data set would treat the &quot;data&quot; structure as if it were expressed in this manner:</p>
+<pre>
+{
+  &quot;data&quot;:
+  [
+    { &quot;firstname&quot;: &quot;John&quot;, &quot;lastname&quot;: &quot;Smith&quot;, &quot;id&quot;: &quot;3001&quot; },
+    { &quot;firstname&quot;: &quot;Jane&quot;, &quot;lastname&quot;: &quot;Doe&quot;,   &quot;id&quot;: &quot;4532&quot; },
+    { &quot;firstname&quot;: &quot;Ann&quot;,  &quot;lastname&quot;: &quot;Hunt&quot;,  &quot;id&quot;: &quot;5462&quot; }
+  ]
+}</pre>
+</li>
+    				</ul>
+    			</li>
+    			<li>subPaths
+    				<ul>
+    					<li>String or Array of Strings.</li>
+   						<li>A path string or array of path strings that are relative to the path being flattened by the data set. This option allows the developer to add nested structures to the list of things to flatten. To see a live usage of this, click <a href="../../../samples/data_region/JSONDataSetSample.html">here</a>.</li>
+    				</ul>
+    			</li>
+    			<li>Any option for the HTTPSourceDataSet or DataSet.</li>
+    		</ul>
+    </li>
+    </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+
+// An example of creating a JSON data set that flattens the top-level
+// structure of the JSON data.
+
+var ds = new Spry.Data.JSONDataSet(&quot;search.php?id=100&quot;);
+
+
+// An example of creating a JSON data set that uses some DataSet
+// and HTTPSourceDataSet options.
+
+var ds = new Spry.Data.JSONDataSet(&quot;search.php?id=100&quot;, { useCache: false, loadInterval: 1000 });
+
+
+// An example of creating a JSON data set that specifies a path
+// within the JSON data structure to the actual data.
+
+var ds = new Spry.Data.JSONDataSet(&quot;search.php?id=100&quot;, { path: &quot;results.data&quot; });
+
+
+// An example of creating a JSON data set that specifies a subPath to
+// include in the flattening process.
+
+var ds = new Spry.Data.JSONDataSet(&quot;search.php?id=100&quot;, { path: &quot;results.employees.employee&quot;, subPaths: &quot;reviews.review.date&quot; });
+
+
+// An example of creating a JSON data set that specifies multiple
+// subPaths to include in the flattening process.
+
+var ds = new Spry.Data.JSONDataSet(&quot;search.php?id=100&quot;, { path: &quot;results.employees.employee&quot;, subPaths: [ &quot;reviews.review.date&quot;, &quot;reviews.review.increase&quot; ] });
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/JSONDataSetSample.html">JSONDataSetSample.html</a><br/>
+  </p>
+</div>
+<div id="getdocument">
+	<h3><a name="getdocument"></a>getDocument</h3>
+  <h4>Description</h4>
+  <p>This function returns the JSON string  that was used by the data set  to extract its data.</p>
+  <h4>Format</h4>
+  <p>getDocument()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>String or null. The JSON string  or null;</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+var jsonStr = ds.geDocument();</pre>
+</div>
+<div id="getpath">
+	<h3><a name="getpath"></a>getPath</h3>
+  <h4>Description</h4>
+  <p>This function returns the path to be used for finding the data to flatten within the JSON data structure.</p>
+  <h4>Format</h4>
+  <p>getPath()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>String or null. Returns the path that will be used to extract the data for flattening out of the JSON data. This may also return a null if no path was specified at construction time.</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+var path = ds.getPath();</pre>
+</div>
+<div id="loaddataintodataset">
+	<h3><a name="loaddataintodataset"></a>loadDataIntoDataSet</h3>
+  <h4>Description</h4>
+  <p>This function is not meant to be called directly. The JSONDataSet overrides the HTTPSourceDataSet version of this function to add the ability to parse and flatten the JSON data.</p>
+  <h4>Format</h4>
+  <p>loadDataIntoDataSet(jsonString)</p>
+  <h4>Arguments</h4>
+  <p>jsonString - The raw JSON string that will be eval'd to create the JSON data structure.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+	<p>N/A</p>
+</div>
+<div id="setpath">
+	<h3><a name="setpath"></a>setPath</h3>
+  <h4>Description</h4>
+  <p>This function sets the  path to use to extract data out of the JSON data structure. If the JSON data has already been loaded, the JSONDataSet automatically applies the new object path to re-generate the data for the data set.</p>
+  <h4>Format</h4>
+  <p>setPath()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample"> ds.setPath(&quot;employees.employee&quot;);</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

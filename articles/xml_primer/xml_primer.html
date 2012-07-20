@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Spry XML Primer</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Spry XML Primer</h1>
+<p>One of formats of data that Spry accepts is XML. The Spry XML Data set was the first type of data that Spry used when it was released. This document will present an overview of setting up XML for use with Spry. It will have tips and tricks for generating proper XML from the start.</p>
+<p><strong>The important points of this document:</strong></p>
+<ul>
+  <li>XML nodes are case sensitive.</li>
+  <li>Valid XML will display properly in browsers. If it works in the browser, it should work for Spry.</li>
+  <li>Special characters must be encoded or wrapped in CDATA</li>
+  <li>XML docs need to be served as 'text/xml' or 'application/xml'.</li>
+</ul>
+<h3>What is XML?</h3>
+<p>XML stands for eXtensible Markup Language. This is a flexible yet strict method of storing and transmitting data. Flexible in that the user can create the format and node names in any way they please; strict in the sense that XML has a strict set of rules for structure: required closing tags and case sensitivity for instance.</p>
+<p>XML is a tree structure of nodes and nested nodes of information, with the user defining the names of the nodes.</p>
+<p>A basic XML file looks like this:</p>
+<pre class="codeSample">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+   &lt;employees xmlns=&quot;http://www.foo.com/employees&quot;&gt;
+     &lt;employee id=&quot;120585&quot;&gt;
+       &lt;lastname&gt;Jones&lt;/lastname&gt;
+       &lt;firstname&gt;John&lt;/firstname&gt;
+       &lt;phone&gt;(415) 333-9345 &lt;/phone&gt;
+       &lt;username&gt;jjones&lt;/username&gt;
+    &lt;/employee&gt;
+    &lt;employee id=&quot;127493&quot;&gt;
+       &lt;lastname&gt;Brown&lt;/lastname&gt;
+       &lt;firstname&gt;Joe&lt;/firstname&gt;
+       &lt;phone&gt;(415) 333-5938 &lt;/phone&gt;
+       &lt;username&gt;jbrown&lt;/username&gt;
+    &lt;/employee&gt;
+  &lt;/employees&gt;
+</pre>
+<p>Line 1 is the XML declaration. It specifies the version of the XML and the encoding of the document. The encoding tells the browser which language is being used in the XML. Using UTF-8 is a good choice unless you have specific language needs.</p>
+<p>&quot;Employees&quot; is the top level node. This defines the start of the user specified content. All top level node tags must have a closing tag. Notice that the last line of the XML file is the closing &lt;/employees&gt; tag.</p>
+<p>Within the &lt;employees&gt; block is the repeating &lt;employee&gt; node. This is where the bulk of the actual data is kept. The user defines the actual names of the nodes. <strong>Important:</strong> Node names are case sensitive. This is important to keep in mind when using Spry data references. If the node is &lt;employee&gt;, the data reference needs to be {employee}. If the node was &lt;Employee&gt;, the data reference needs to be {Employee}. If the node was uppercase and the data reference was lowercase,  it will fail. </p>
+<h3>Adding Data</h3>
+<p>Notice there are 2 places to put data:</p>
+<ul>
+  <li> In the node, like &lt;lastname&gt;Jones&lt;/lastname&gt;. &quot;Jones&quot; is the value of the node.</li>
+  <li>As an attribute of a node. In &lt;employee id=&quot;120585&quot;&gt;, 'id' is an attribute of a node. The attribute name is 'id' and the value of the attribute is '120585'.</li>
+</ul>
+<p>This node/value structure works well for simple data. If the data is more complex, meaning it has many special characters or perhaps HTML markup, then these nodes need to be wrapped in a CDATA container or be entity encoded. For example, if the value of a node was: ' 6 &gt; 5 and 5 &lt; 6', the XML parser (the browser or Spry) will get confused since it would think that the '&gt;&lt;' characters are opening or closing tags. This would cause a parsing error and the XML is therefore invalid. </p>
+<p>There are two ways to handle this.</p>
+<p>The first is to entity encode the special characters. Each special character has its own character pattern that is used to display the character in the browser. For instance. the '&lt;' character can also be written as &lt; or &amp;#60;. This way the above sample can be written '6 &gt; 5 and 5 &lt; 6'. This should be parsed correctly.</p>
+<p>The second way is to wrap the value in CDATA. This is done like &lt;formula&gt;&lt;![CDATA[ 6 &gt; 5 and 5 &lt; 6]]&gt;&lt;/formula&gt;. CDATA tells the parser to ignore everything within the CDATA tag. This way, you can have HTML markup and any number of special characters within the value of the node.<br />
+  Note the structure of the CDATA tag: &lt; ! [ CDATA [ your code ] ] &gt;</p>
+<h3>Dynamically Generating XML</h3>
+<p>Frequently, users will want to generate XML using information from a database. This is useful when the data changes frequently. Spry can take data from an XML page or any page that can generate valid XML. This can be done, for instance, with ASP, PHP or Coldfusion application servers. We have a series of <a href="http://labs.adobe.com/technologies/spry/samples/utils/query2xml.html">code samples</a> that show how to convert database queries into XML. </p>
+<p>Using server side functionality brings up an important web concept: that of 'content-type'. Content type is a message to the browser that tells it what kind of content is on the page. By default, the content type is 'text/plain'. This tells the browser that it is plain text that requires no special processing. Most web pages have a content type of 'text/html'. This tells the browser that the content is HTML code and the browser knows how to handle it. </p>
+<p>Browser also have default content types determined by the file extension. These are MIME types. So a browser will know that a PHP page is serving HTML content. When serving up XML content via these server side technologies, it is vital that you tell the browser that the content is actually XML. To do this, we need to send a header that says that the content type is XML. Notice in the file linked above that each code sample has a content type header that is sent along.</p>
+<ul>
+  <li>PHP: 
+    header('Content-type: text/xml'); </li>
+  <li>ASP: 
+    Response.ContentType = &quot;text/xml&quot; </li>
+  <li>Coldfusion: 
+    &lt;cfheader name=&quot;Content-type&quot; value=&quot;text/xml&quot;&gt; </li>
+</ul>
+<p>This will ensure that the browser will parse the content as valid XML. Otherwise, it will be seen as plain text and may not work properly. When making a dynamic source for Spry, it's a good idea to simply view  the page in a browser. It will be obvious when a XML file is being parsed correctly. If it works in the browser, it should work in Spry.</p>
+<p>One other concern with dynamic feeds is making sure that the browser (or server) does not cache the data. Browser or server caching will prevent the latest data from reaching Spry. To prevent this, set the headers for:</p>
+<ul>
+  <li>Cache-Control</li>
+  <li>Expires</li>
+  <li>Pragma</li>
+</ul>
+<p>Check the <a href="http://labs.adobe.com/technologies/spry/samples/utils/query2xml.html">Query to XML</a> sample for examples.</p>
+<p><a href="http://juicystudio.com/article/content-negotiation.php">http://juicystudio.com/article/content-negotiation.php</a> is a good article that further explains content type.</p>
+<p>For further information about XML, check out <a href="http://www.xmlfiles.com/xml/">http://www.xmlfiles.com/xml/</a></p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+  All rights reserved.</p>
+</body>
+</html>

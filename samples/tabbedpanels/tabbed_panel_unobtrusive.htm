@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Unobtrusive Spry Tabbed Panels</title>
+<link href="../../widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.TabbedPanels {
+	width: 500px;
+}
+.TabbedPanelsTab {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript" src="../../widgets/tabbedpanels/SpryTabbedPanels.js"></script>
+<script language="javascript" type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+<script language="javascript" type="text/javascript" src="tp_unobtrusive.js"></script>
+</head>
+<body>
+<h3>Tabbed Panels Widget Sample</h3>
+<p>Open Panel <a href="#" id="one">Tab 1</a> | <a href="#" id="two">Tab 2</a> | <a href="#" id="three">Tab 3</a> | <a href="#" id="four">Tab 4</a> </p>
+<div id="TabbedPanels1" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab">Tab 1 </li>
+    <li class="TabbedPanelsTab">Tab 2 </li>
+    <li class="TabbedPanelsTab">Tab 3 </li>
+    <li class="TabbedPanelsTab">Tab 4 </li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">Panel 1</div>
+    <div class="TabbedPanelsContent">Panel 2 </div>
+    <div class="TabbedPanelsContent">Panel 3</div>
+    <div class="TabbedPanelsContent">Panel 4</div>
+  </div>
+</div>
+</body>
+</html>

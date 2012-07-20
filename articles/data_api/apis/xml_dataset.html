@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" /></head>
+<body>
+<div id="xmldataset">
+	<h3><a name="xmldataset"></a>XML Data Set</h3>
+	<h4>Description</h4>
+	<p>The Spry.Data.XMLDataSet class dervies from the HTTPSourceDataSet class so that it can load and process XML data. The XMLDataSet class makes use of <a href="http://www.w3.org/TR/xpath">XPath</a> to identify the data within the XML data that should be flattened.</p>
+	<h4>File</h4>
+	<p><a href="../../../includes/SpryData.js">SpryData.js</a></p>
+	<h4>Inheritance</h4>
+	<p><a href="notifier.html">Notifier</a> --&gt;<a href="dataset.html">DataSet</a> --&gt; <a href="http_source_dataset.html">HTTPSourceDataSet</a> --&gt; XMLDataSet</p>
+</div>
+<div id="constructor">
+	<h3><a name="constructor"></a>XMLDataSet constructor</h3>
+  	<h4>Description</h4>
+  <p>Spry.Data.XMLDataSet is the constructor function for the XML Data Set.</p>
+  <h4>Format</h4>
+  <p>Spry.Data.XMLDataSet(url, xpath, options)</p>
+  <h4>Arguments</h4>
+  <ul>
+    <li>url - The URL to the data to be loaded. This URL can be absolute, or relative to the HTML document that created the data set.</li>
+    <li>xpath - The XPath that selects the XML nodes to flatten.</li>
+    <li>options - An optional argument which if specified, must be an object with the option names as properties with values.
+    	<ul>
+    		<li><strong>entityEncodeStrings</strong>
+    			<ul>
+    				<li>Boolean.</li>
+    				<li>If true, strings that are extracted from #text and #cdata nodes in the XML DOM, during the data flattening process, are stored in the columns of the data set as entity encoded strings. If false, the strings are extracted from the #text and #cdata nodes, and stored directly into the columns of the data set. Since strings are inside #text and #cdata nodes are already entity decoded, this means that the strings are stored in the data set as entity decoded. The way the string is stored within a data set matters when the string values are used as content within a spry:region or spry:detail region. If the strings are entity encoded, the entire string is rendered as part of the region. If the strings are entity decoded, the content of the string is interpreted as HTML markup, so any &lt;, &gt; or &amp; characters will have a special meaning.</li>
+    				<li>If this option is not specified, the default behavior for the XMLDataSet is to entity encode string values.</li>
+    				<li>In prior versions of Spry, up to and including Spry Pre-Release 1.5, only strings extracted out of #text nodes were stored as entity encoded strings. Strings extracted out of #cdata nodes were stored as entity decoded strings. This meant that entity encoded HTML markup underneath an XML tag, was treated differently from raw HTML markup that was wrapped with a CDATA tag. If developers need to restore this behavior, they can trigger a &quot;backwards compatibility&quot; mode by passing any value for the entityEncodeStrings option that is not a boolean value. For example, they can pass { entityEncodeStrings: -1 } to trigger the &quot;backwards compatibility&quot; mode. This mode will be around for a couple of releases, but it is our intention to deprecate this mode.</li>
+    			</ul>
+    		</li>
+    		<li>Any <a href="http_source_dataset.html">HTTPSourceDataSet</a> or <a href="dataset.html">DataSet</a> options.</li>
+    	</ul>
+    </li>
+  	</ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">var ds = new Spry.Data.XMLDataSet(&quot;foo.php?id=100&quot;, &quot;/foo/bar&quot;, { useCache: false, loadInterval: 1000 });</pre>
+  <h4>Sample</h4>
+  <p>N/A<br/></p>
+</div>
+<div id="getdocument">
+	<h3><a name="getdocument"></a>getDocument</h3>
+  <h4>Description</h4>
+  <p>This function returns the XML DOM document the data set used to extract its data.</p>
+  <h4>Format</h4>
+  <p>getDocument()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>Object or null. The XML DOM Document element or null;</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+var doc = ds.geDocument();</pre>
+</div>
+<div id="getxpath">
+	<h3><a name="getxpath"></a>getXPath</h3>
+  <h4>Description</h4>
+  <p>This function returns the current XPath.</p>
+  <h4>Format</h4>
+  <p>getXPath()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>String or null. Returns the XPath that will be used to extract the XML nodes for flattening. This may also return a null if one is not present.</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+var xpathString = ds.getXPath();</pre>
+</div>
+<div id="loaddataintodataset">
+	<h3><a name="loaddataintodataset"></a>loadDataIntoDataSet</h3>
+  <h4>Description</h4>
+  <p>This function is not meant to be called directly. The XMLDataSet overrides the version of this function to add the ability to flatten an XML DOM Document.</p>
+  <h4>Format</h4>
+  <p>loadDataIntoDataSet(xmlDOMDoc)</p>
+  <h4>Arguments</h4>
+  <p>xmlDOMDoc - The data to be flattened.</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+	<p>N/A</p>
+</div>
+<div id="sessionexpiredchecker">
+	<h3><a name="sessionexpiredchecker"></a>sessionExpiredChecker</h3>
+  <h4>Description</h4>
+  <p>This function is not meant to be called directly. The XMLDataSet overrides the version of this function to add the ability to look for a session expired message inside XML.</p>
+  <h4>Format</h4>
+  <p>sessionExpiredChecker(req)</p>
+  <h4>Arguments</h4>
+  <p>req - Object. An instance of a Spry.Utils.loadURL.Request object.</p>
+  <h4>Returns</h4>
+  <p>Boolean. If true the user's session has expired.</p>
+  <h4>Example </h4>
+	<p>N/A</p>
+</div>
+<div id="setxpath">
+	<h3><a name="setxpath"></a>setXPath</h3>
+  <h4>Description</h4>
+  <p>This function sets the XPath for the data set. If data has already been loaded, the XMLDataSet automatically applies the new XPath to re-generate the data for the data set.</p>
+  <h4>Format</h4>
+  <p>setXPath()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample"> ds.setXPath(&quot;//items&quot;);</pre>
+</div>
+<div id="xhrequestprocessor">
+	<h3><a name="xhrequestprocessor"></a>xhRequestProcessor</h3>
+  <h4>Description</h4>
+  <p>This function is not meant to be called directly. The XMLDataSet overrides the version of this function so that it returns an XML DOM Document.</p>
+  <h4>Format</h4>
+  <p>getURL()</p>
+  <h4>Arguments</h4>
+  <p>N/A</p>
+  <h4>Returns</h4>
+  <p>Object. The XML DOM Document or null.</p>
+  <h4>Example </h4>
+	<p>N/A</p>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

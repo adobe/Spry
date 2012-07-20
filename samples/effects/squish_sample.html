@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Spry Squish Effect Samples</title>
+	<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+	<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<style type="text/css">
+	
+.animationContainer{
+	height: 220px;
+}
+
+.demoDiv{
+	background-color: #CCC; 
+	height: 200px; 
+	overflow: hidden;
+}
+.demoDiv p, .demoDiv h4{
+	width: 380px;
+}
+.hideInitially{
+	visibility: hidden;
+}
+</style>
+</head>
+<body>
+<h3>Spry Squish Effect Samples</h3>
+<p>This page will exemplify the Spry Squish Effect capabilities.</p>
+<hr />
+<!--
+
+		Example 1: The Squish effect default behaviour
+
+-->
+<p>
+	The Squish effect will collapse the target element to its top left corner in 
+	1 second. This example demonstrate the Squish element default behaviour.
+</p>
+
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_default.start();" value="Squish Example 1" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="squish1">
+		<div>
+			<h4>Example 1</h4>
+			<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var squish_default = new Spry.Effect.Squish('squish1');
+</script>
+<hr />
+
+<!--
+
+		Example 2: Squish behaviour with toggle
+
+-->
+<p><strong>Toggle</strong></p>
+<p>The Squish effect after instantiation can be called in different
+	situations by different elements in the page at different times.
+	In this example we animate the same element	when you click either 
+	a button or a link. The animation can be also	started when the 
+	mouse is over an element, the page is loaded or on any other 
+	page events.</p>
+<p>
+	In this example each time the effect is started will toggle the image 
+	animation direction	because we added  "toggle:true" to the constructor.</p>
+<pre>&lt;script type="text/javascript"&gt;
+	var squish_image = new Spry.Effect.Squish('image1', {toggle: true});
+&lt;/script&gt;</pre>
+
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_image.start();" value="Squish Example 2" />
+	<a href="#" onclick="squish_image.start(); return false;">Squish Example 2</a>
+</form>
+
+<br />
+<div class="animationContainer" style="height:350px">
+	<img src="../../demos/gallery/galleries/china/images/china_10.jpg" alt="Squish Effect Image" name="image1" border="0" width="263px" height="350px" id="image1" />
+</div>
+
+<script type="text/javascript">
+	var squish_image = new Spry.Effect.Squish('image1', {toggle: true});
+</script>
+<hr />
+
+<!--
+
+		Example 3: The Squish effects with duration, from and to options
+
+-->
+<p><strong>Duration and Sizing</strong></p>
+<p>
+	The duration and the initial/final size of the region to be
+	animated can  be controlled with specific options passed to
+	the Slide Effect constructor. The "from" and "to" options represent
+	the percentage size of the initial element size. 
+</p>
+<p>Duration is set in milliseconds.</p>
+<pre>&lt;script type="text/javascript"&gt;
+	var squish_example = new Spry.Effect.Squish('squish2', {from: '100%', to: '30%', duration: 2000, toggle: true});
+&lt;/script&gt;</pre>
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_example.start();" value="Squish Example 3" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="squish2">
+		<div>
+			<h4>Example 3 - Squish from 100% to 30% in 2 seconds</h4>
+			<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var squish_example = new Spry.Effect.Squish('squish2', {from: '100%', to: '30%', duration: 2000, toggle: true});
+</script>
+<hr />
+<!--
+
+		Example 4: The Squish effect display an element initially hidden
+
+-->
+<p><strong>
+ Initially hidden element</strong></p>
+<p>The target animated element can initially be hidden. To hide 
+an element ou can use one of two CSS properties: display and visibility.
+The difference between these two properties is the way the element 
+while hidden will alter the flow of the page. While using the display: none; 
+the element is completelly removed from page and the other elements 
+will take its place the visibility: hidden will leave the element in the page
+flow with all the sizes and other behaviours unaltered but the element 
+is simply not seen.
+</p>
+<p>In the following sample we will use the visibility: none; to initially 
+hide the element and using the Slide effect the element will appear in page.</p>
+
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+.hideInitially{
+	visibility: hidden;
+}
+&lt;/style&gt;
+
+&lt;form method=&quot;get&quot; action=&quot;squish_sample.html&quot;&gt;
+	&lt;input type=&quot;button&quot; onclick=&quot;squish_hidden.start();&quot; value=&quot;Squish Example&quot; /&gt;
+&lt;/form&gt;
+
+&lt;div class=&quot;animationContainer&quot;&gt;
+	&lt;div class=&quot;demoDiv hideInitially&quot; id=&quot;squish_hidden&quot;&gt;
+	...
+	&lt;/div&gt;
+&lt;/div&gt;
+...
+
+&lt;script type="text/javascript"&gt;
+	var squish_hidden = new Spry.Effect.Squish('squish_hidden', {from: '0%', to: '100%', duration: 2000, toggle: true});
+&lt;/script&gt;</pre>
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_hidden.start();" value="Squish Example" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv hideInitially" id="squish_hidden">
+		<div>
+			<h4>Example - Squish from 0% to 100% in 2 seconds</h4>
+			<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var squish_hidden = new Spry.Effect.Squish('squish_hidden', {from: '0%', to: '100%', duration: 2000, toggle: true});
+</script>
+<hr />
+
+<!--
+
+		Example 5: The Squish can stop content to be scaled 
+
+-->
+<p><strong>Not Scaling Content</strong></p>
+<p>By default the Squish will automatically scale the content size with the animation. This behavior can be stopped using the scaleContent: option set to false.</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var squish_scale = new Spry.Effect.Squish('scaleDiv', {toggle:true, from: '100%', to: '0%', scaleContent: false});
+&lt;/script&gt;
+</pre>
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_scale.start();" value="Squish Example 4" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="scaleDiv">
+		<h4>Example 4</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var squish_scale = new Spry.Effect.Squish('scaleDiv', {toggle:true, from: '100%', to: '0%', scaleContent: false});
+</script>
+	
+<hr />
+<!--
+
+		Example 6: Include the CSS margin, border, padding in the Squish Effect 
+
+-->
+<p><strong>Box Model</strong></p>
+
+<p> By default, the Squish effect does not collapse the CSS box model (margin and padding) 
+area. By passing 'useCSSBox:true' in the constructor, you can tell Spry to also animate
+the Box model rules of the element.</p>
+
+<pre>&lt;script type="text/javascript"&gt;
+	var squish_box = new Spry.Effect.Squish('squishbox', {from: '100%', to: '0%', toggle: true, useCSSBox: true});
+&lt;/script&gt;</pre>
+
+<form method="get" action="squish_sample.html">
+	<input type="button" onclick="squish_box.start();" value="With Box Model" />
+	<input type="button" onclick="squish_without_box.start();" value="Without Box Model" />
+</form>
+
+<br />
+
+<div class="animationContainer" style="height: 200px; border: 1px solid blue; width: 450px">
+	<div class="demoDiv" id="squishbox" style="border:10px solid black; padding: 5px; margin: 10px; height:150px;">
+		<div>
+			<h4>Example 5</h4>
+			<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var squish_box = new Spry.Effect.Squish('squishbox', {from: '100%', to: '0%', toggle: true, useCSSBox: true});
+	var squish_without_box = new Spry.Effect.Squish('squishbox', {from: '100%', to: '0%', toggle: true});
+</script>
+<hr />
+<!--
+
+		Example 7: The Squish effects "setup" and "finish" JS callback functions
+
+-->
+<p><strong>Setup and Finish functions</strong></p>
+<p>Sometimes, when using the effects, you need to run some other JavaScript
+functions before or after the animation. In the constructor you have the 
+possibility to pass two options: "setup" and "finish" with the callback 
+functions which Slide will call automatically. </p>
+<p>
+	This example will disable the button while the animation run. The background
+	color of the button will be white during this time.
+</p>
+
+<pre>
+&lt;script type="text/javascript"&gt;
+	var animation_start = function(){
+		var button = document.getElementById('squish_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('squish_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var squish_functions = new Spry.Effect.Squish('squish_callback', {toggle: true, setup: animation_start, finish: animation_stop});
+&lt;/script&gt;
+</pre>
+<form method="get" action="squish_sample.html">
+	<input type="button" id="squish_button" onclick="squish_functions.start();" value="Squish Example 6" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="squish_callback">
+		<div>
+			<h4>Example 6</h4>
+			<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var animation_start = function(){
+		var button = document.getElementById('squish_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('squish_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var squish_functions = new Spry.Effect.Squish('squish_callback', {toggle: true, setup: animation_start, finish: animation_stop});
+</script>
+<hr />
+</body>
+</html>

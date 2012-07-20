@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="functions">
+<h2>SPRY Data API </h2>
+<div id="addobserver">
+<a name="addobserver"></a>
+  <h3>addObserver</h3>
+  <h4>Description</h4>
+  <p>Adds a function or object as an observer of a region. </p>
+  <p>Object observers must define a function property for every notification they are interested in receiving. Each notification function will be called with two arguments, the first is the object dispatching the notification, and the 2nd argument is data that may contain more information about the notification. The data argument is optional, so its value may be undefined/null for some notifications.</p>
+  <p>Function observers get called for *all* notifications. Function observers will be called with 3 arguments. The first argument is the notification type, which is a string that is the name of the notification. For example &quot;onPostUpdate&quot;. The 2nd argument is the object dispatching the notification. The 3rd argument is the optional data for the notfication. </p>
+  <h4>Format</h4>
+  <p>Spry.Data.Region.addObserver(&quot;id&quot;, obj);</p>
+  <p>-- or --</p>
+  <p>Spry.Data.Region.addObserver(&quot;id&quot;, function);</p>
+  <h4>Arguments</h4>
+  <ul>
+    <li>id- The id of the region being observed.</li>
+    <li>function or object to be notified.</li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+/* Adding an object as an observer. */
+
+var observer = { onPostUpdate: function(notifier, data) { var acc = new Spry.Widget.Accordion(&quot;Acc1&quot;); } };
+
+Spry.Data.Region.addObserver(&quot;Acc1&quot;, observer);
+
+/* Adding a funtion as an observer. */
+
+function MyObserverFunc(notificationType, notifier, data)
+{
+	if (notificationType != &quot;onPostUpdate&quot;)
+		return;
+	var acc = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+}
+
+Spry.Data.Region.addObserver(&quot;Acc1&quot;, myObserverFunc);
+    </pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/RegionObserverSample.html">Region Observer Sample </a><br />
+  </p>
+</div>
+<div id="cancelloaddata"><a name="cancelloaddata" id="cancelloaddata_link"></a>
+  <h3>cancelLoadData</h3>
+  <p>ds1.cancelLoadData()</p>
+  <h4>Description</h4>
+  <p>This function cancels the loading of the data set data. This is will interrupt any requests made by the <a href="#loaddata">loadData()</a> function. </p>
+  <h4>Format</h4>
+  <p>datasetname.cancelLoadData();</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+&lt;a onclick=&quot;ds1.cancelLoadData();&quot;&gt;</pre>
+</div>
+<br />
+<div id="distinct"><a name="distinct" id="distinct_link"></a>
+  <h3>distinct</h3>
+  <p>datasetname.distinct(column)</p>
+  <h4>Description</h4>
+  <p>This function is used to remove duplicate rows from the data set. Spry will evaluate all the columns and if it finds 2 or more rows where every value is the same, it will throw away the duplicate rows and keep only one. This function can only be called *after* the data is already loaded into the data set.</p>
+  <p>Distinct can also be run automatically whenever new data is loaded into the data set. This is done by specifying the distinctOnLoad constructor option. In case the distinct functionality is need only for specific column(s) they may be defined through the additional parameter distinctFieldsOnLoad</p>
+	<h4>Arguments</h4>
+  <p>column - the column(s) of the data set to filter distinct. This parameter is optional.</p>
+  <h4>Format</h4>
+  <p>datasetname.distinct(["field1", "field2"]);</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+/* After a data set is defined and loaded with data, you can call
+ * distinct on it.
+ */
+
+var ds1 = Spry.Data.XMLDataSet(&quot;xml.xml&quot;,&quot;xpath&quot;);
+...
+ds1.distinct();
+
+/* Run distinct automatically whenever data is loaded. */
+var ds2 = Spry.Data.XMLDataSet(&quot;xml.xml&quot;,&quot;xpath&quot;, {distinctOnLoad: true, distinctFieldsOnLoad:['fld1', 'fld2']});
+</pre>
+</div>
+<div id="filter"><a name="filter"></a>
+  <h3>filter</h3>
+  <p>datasetname.filter()</p>
+  <h4>Description</h4>
+  <p>This function is used to filter the data set based on a filter function. Filter is a non-destructive method, meaning that Spry creates a filtered array of data and uses that as the outputted data set, as long as the filter function does not change the actual data.</p>
+  <p>The filter can be removed by passing 'null' to the function. </p>
+  <p><a href="#filterdata">FilterData</a> is the destructive filter, which actually throws out the filtered data from memory. </p>
+  <h4>Format</h4>
+  <p>datasetname.filter(filterFunction);</p>
+  <h4>Example </h4>
+  <pre class="codeSample">var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row[&quot;@path&quot;].search(/^s/) != -1)
+		return row;                     // Return the row to keep it in the data set.
+	return null;                        // Return null to remove the row from the data set.
+}
+
+dsPhotos.filter(myFilterFunc); 
+//Remove the filter
+dsPhotos.filter(null);
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/NonDestructiveFilterSample.html">Non Destructive Filtering </a></p>
+</div>
+<div id="filterdata"><a name="filterdata"></a>
+  <h3>filterData</h3>
+  <p>datasetname.filterData()</p>
+  <h4>Description</h4>
+  <p>This function is used to filter the data set based on a filter function. FilterData is a destructive method, meaning that Spry gets rid of the data from memory. The data can only be retrieved again by loading the data set again: <a href="#loaddata">loadData()</a></p>
+  <p><a href="#filter">Filter</a> is the non-destructive filter option. </p>
+  <h4>Format</h4>
+  <p>datasetname.filterData(filterFunction);</p>
+  <h4>Example </h4>
+  <pre class="codeSample">var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row[&quot;@path&quot;].search(/^s/) != -1)
+		return row;                     // Return the row to keep it in the data set.
+	return null;                        // Return null to remove the row from the data set.
+}
+dsPhotos.filterData(myFilterFunc); 
+//Remove the filter
+dsPhotos.filter(null);
+</pre>
+  <h4>Samples</h4>
+  <p><a href="../../../samples/data_region/XPathFilteringSample.html">XPath Filtering Sample <br />
+    </a></p>
+</div>
+<br />
+<div id="getcolumntype"><a name="getcolumntype"></a>
+  <h3>getColumnType</h3>
+  <p>datasetname.getColumnType(column);</p>
+  <h4>Description</h4>
+  <p>This function returns the column type of the specified column. </p>
+  <h4>Returns</h4>
+  <p>The column type of the specified column, as a string:</p>
+  <ul>
+    <li>&quot;string&quot;</li>
+    <li>&quot;number&quot;</li>
+    <li>&quot;date&quot;</li>
+    </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var colType = ds1.getColumnType(&quot;names&quot;);<br />
+</pre>
+</div>
+<div id="getcurrentrow"><a name="getcurrentrow" ></a>
+  <h3>getCurrentRow</h3>
+  <p>datasetname.getCurrentRow();</p>
+  <h4>Description</h4>
+  <p>This function returns the object that is the 'currentRow' in the data set. By default, the current row is the first row of the data set, but this can be changed by calling the function setCurrentRow() and passing it the ds_RowID of the row. </p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>The row object or null. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">var row = ds1.getCurrentRow();
+
+if (row[&quot;@title&quot;] == &quot;Me, Myself and I&quot;)
+...</pre>
+</div>
+<div id="getdata">
+<a name="getdata" id="getdata_link"></a>
+  <h3>getData</h3>
+  <p>datasetname.getData();</p>
+  <h4>Description</h4>
+  <p>This function returns an array of the internal row objects that store the data in the data set. Modifying any property of a row object results in a modification of the data in the data set. Users should keep in mind that some data sets load their data asynchronously, so they should check if it is ok to access the data, with a call to getDataWasLoaded(), before attempting to call getData(). </p>
+  <h4>Arguments</h4>
+  <p><em>unfiltered - Optional argument. If true, getData() returns all of its data. If false, it returns the rows that are not filtered. </em></p>
+  <h4>Returns</h4>
+  <p>The  data in the data set.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var rows = ds1.getData();
+for (var i = 0; i &lt; rows.length; i++)
+{
+	if (rows[i][&quot;name&quot;] == &quot;Spry&quot;)
+		return rows[i][&quot;ds_RowID&quot;];
+}
+</pre>
+</div>
+<div id="getdatawasloaded"><a name="getdatawasloaded"></a>
+  <h3>getDataWasLoaded</h3>
+  <p>datasetname.getDataWasLoaded();</p>
+  <h4>Description</h4>
+  <p>This function returns 'true' if a data set successfully loaded its data. If this function returns true, it is safe to access and manipulate the data set. This function will return false if a load request is pending, or an error ocurred while trying to load the data. </p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>true/false</p>
+  <h4>Example</h4>
+  <pre class="codeSample">if (ds1.getDataWasLoaded())
+{
+	var rows = ds1.getData();
+	for (var i = 0; i &lt; rows.length; i++)
+	{
+		if (rows[i][&quot;name&quot;] == &quot;Spry&quot;)
+			return rows[i][&quot;ds_RowID&quot;];
+	}
+}	</pre>
+</div>
+<div id="getdocument"><a name="getdocument" ></a>
+  <h3>getDocument</h3>
+  <p>getDocument();</p>
+  <h4>Description</h4>
+  <p>This function returns the XML DOM representation of the document that was used to extract the data for the data set. </p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>The XML DOM document node.</p>
+</div>
+<div id="getLoadDataRequestisPending"><a name="getLoadDataRequestisPending" ></a>
+  <h3>getLoadDataRequestIsPending</h3>
+  <p>datasetname.getLoadDataRequestisPending();</p>
+  <h4>Description</h4>
+  <p>This method will return true if a request for data has been made and has not yet completed. Otherwise, it will return false. </p>
+  <h4>Returns</h4>
+  <p>true/false</p>
+</div>
+<div id="getrowcount"><a name="getrowcount" ></a>
+  <h3>getRowCount</h3>
+  <p>datasetname.getRowCount();</p>
+  <h4>Description</h4>
+  <p>This function returns the number of rows in the data set. If the data set has a non-destructive filter, this function returns the number of filtered rows. Users can pass an optional boolean argument to this function. If true, it will return the number of unfiltered rows. If false it will return the number of filtered rows. </p>
+  <h4>Arguments</h4>
+  <p><em>unfiltered - Optional argument. If true, getData() returns all of its data. If false, it returns the rows that are not filtered. </em></p>
+  <h4>Returns</h4>
+  <p>An integer that is the number of rows in the data set. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">var filteredRowCount = ds1.getRowCount();
+var unfilteredRowCount = ds1.getRowCount(true);<br /></pre>
+</div>
+<div id="getrownumber"><a name="getrownumber" ></a>
+  <h3>getRowNumber</h3>
+  <p>datasetname.getRowNumber(rowObject);</p>
+  <h4>Description</h4>
+  <p>This function returns the row number for the specified row object in the data set.</p>
+  <h4>Argument</h4>
+  <p>A row object </p>
+  <h4>Returns</h4>
+  <p>An integer that is the number of the specified row in the data set. </p>
+</div>
+<div id="getsortcolumn"><a name="getsortcolumn" ></a>
+  <h3>getSortColumn</h3>
+  <p>datasetname.getSortColumn();</p>
+  <h4>Description</h4>
+  <p>This function returns the name of the column that was used when the data set was last sorted. This function will return an empty string if the data set was never sorted. </p>
+  <h4>Returns</h4>
+  <p>Data set column name that is currently being sorted, or an empty string. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">var columnName = ds1.getSortColumn();<br /></pre>
+</div>
+<div  id="getsortorder"><a name="getsortorder"></a>
+  <h3>getSortOrder</h3>
+  <p>datasetname.getSortOrder();</p>
+  <h4>Description</h4>
+  <p>This function returns the name of the sort order that was used when the data set was last sorted. This function will return an empty string if the data set was never sorted.</p>
+  <h4>Returns</h4>
+  <p>The current sort order of the data set:</p>
+  <ul>
+    <li>&quot;ascending&quot;</li>
+    <li>&quot;descending &quot; </li>
+  	<li>&quot;&quot;</li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var sortOrderName = ds1.getSortOrder();
+  </pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/SortSample.html">Sort Sample</a> </p>
+</div>
+<div id="getunfiltereddata"><a name="getunfiltereddata" ></a>
+  <h3>getUnfilteredData</h3>
+  <p>datasetname.getUnfilteredData();</p>
+  <h4>Description</h4>
+  <p>This function is *DEPRECATED*. Use getData(true) instead. </p>
+</div>
+<div id="geturl">
+  <h3><a name="geturl" ></a>getURL</h3>
+  <p>datasetname.getURL();</p>
+  <h4>Description</h4>
+  <p>This function returns the URL that will be used to load the data for the data set. The URL can be set programmatically with <a href="#seturl">setURL()</a>. </p>
+  <h4>Returns</h4>
+  <p>A string that is the current URL of the data set. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var url = ds1.getURL();<br />
+</pre>
+</div>
+<div  id="getxpath"><a name="getxpath"></a>
+  <h3>getXPath</h3>
+  <p>datasetname.getXPath();</p>
+  <h4>Description</h4>
+  <p>This function returns the XPath that will be used to select the data nodes within the XML document to be flattened for the data set.. The XPath can be set programmatically with <a href="#setxpath">setXPath()</a>. </p>
+  <h4>Returns</h4>
+  <p>A string that is the current XPath of the data set. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var x = ds1.getXPath();</pre>
+</div>
+<div id="loaddata" ><a name="loaddata"></a>
+  <h3>loadData </h3>
+  <p>datasetname.loadData();</p>
+  <h4>Description</h4>
+  <p>This function fires off an asynchronous load request for the data for the data set. This function is commonly used after calling setURL() or setXPath().</p>
+  <h4>Arguments</h4>
+  <p><em>N/A</em></p>
+  <h4>Returns</h4>
+  <p>NA</p>
+  <h4>Example</h4>
+  <pre class="codeSample">ds1.setURL(&quot;newXML.xml&quot;);
+ds1.loadData();&quot;
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/RegionStatesSample.html">Region States Sample </a></p>
+</div>
+<div id="removeobserver"><a name="removeobserver"></a>
+  <h3>removeObserver</h3>
+  <p> datasetname.removeObserver(observername);</p>
+  <h4>Description</h4>
+  <p>This function will delete the observer from the list of objects that receive notifications. </p>
+  <h4>Arguments</h4>
+  <p>observername - the name of the observer that should be removed from the notification list. </p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+dsPhotos.removeObserver(myObserver);<br />
+</pre>
+</div>
+<div id="setcolumntype"><a name="setcolumntype" ></a>
+  <h3>setColumnType</h3>
+  <p>datasetname.setColumnType(column,type);</p>
+  <h4>Description</h4>
+  <p>This function is used to set a column type for a data column. This is used to tell Spry the type of data it is dealing with. A common application is for setting numeric data as 'number'. This ensures that the column will sort numerically, and not alpha-numerically.</p>
+  <p>The 'column' value can take a column name as a string or an array of column name strings for setting multiple columns to a common type.</p>
+  <h4>Returns</h4>
+  <p><em>column</em> - The data set column name(s) to be set.</p>
+  <p><em>type</em> - The type of data of the column. </p>
+  <ul><li>&quot;date&quot;</li>
+    <li>&quot;html&quot;</li>
+    <li>&quot;image&quot; </li>
+    <li>&quot;number&quot;</li>
+    <li>&quot;string&quot;</li>
+  </ul>
+  <p>The 'html' Column Type will result in the automatic entity decoding of values stored in a column of that type</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var ds1 = new Spry.Data.XMLDataSet(&quot;myxml.xml&quot;,&quot;races/standings&quot;);<br />ds1.setColumnType([&quot;rank&quot;,&quot;place&quot;],&quot;number&quot;);<br />
+</pre>
+</div>
+<div id="setcurrentrow"><a name="setcurrentrow" ></a>
+  <h3>setCurrentRow</h3>
+  <p>datasetname.setCurrentRow(newNumber);</p>
+  <h4>Description</h4>
+  <p>This function sets the number of the 'currentRow' of the data set.  Setting the currentRow causes spry:detailregions to update. </p>
+  <h4>Arguments</h4>
+  <p><em>newNumber</em> - the number to update the currentRow to. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">onClick = &quot;ds1.setCurrentRow(3);&quot;<br />onChange = &quot;ds1.setCurrentRow('{dsRowID}');
+</pre>
+  <p>Note that single quotes are used when using data references in the function. This is to deal with how IE handles javascript.</p>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/SetCurrentRowSample.html" target="_parent">Set Current Row sample </a></p>
+</div>
+<div id="setcurrentrownumber"><a name="setcurrentrownumber" ></a>
+  <h3>setCurrentRowNumber</h3>
+  <p>datasetname.setCurrentRowNumber(index);</p>
+  <h4>Description</h4>
+  <p>This function makes the row at the specified index the CurrentRow of the data set. Spry uses a zero based counting system for row numbers.</p>
+  <p>CurrentRowNumber is different than RowID. RowID is a unique, non-changing number of a specific row in the data set. RowNumber refers to the number of the row being processed. For example, in a looping construct repeating &lt;tr&gt;, the 3rd row written out is RowNumber 2 (zero based counting system), but the RowID of the data in RowNumber 2 may be anything. </p>
+  <h4>Arguments</h4>
+  <p><em>index</em> - the number to update the CurrentRowNumber to. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">onClick = &quot;ds1.setCurrentRowNumber(3);&quot;<br />onChange = &quot;ds1.setCurrentRowNumber('{dsRowID}');
+</pre>
+  <p>Note that single quotes are used when using data references in the function. This is to deal with how IE handles javascript.</p>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/DataSetMasterDetailSample.html" target="_parent">DataSet Master Detail Sample </a></p>
+</div>
+<div id="setdatafromfoc"><a name="setdatafromdoc" ></a>
+  <h3>setDataFromDoc</h3>
+  <p>datasetname.setDataFromDoc(docsource);</p>
+  <h4>Description</h4>
+  <p>setDataFromDoc will set a variable or a string as the source for the specified data set. For instance, with this function, a XML string can converted to a DOM object and then used for the source of the data. </p>
+  <h4>Argument</h4>
+  <p>docsource</p>
+  <ul>
+    <li>The XML object </li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var xmlStr = &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;iso-8859-1\&quot;?&gt; \<br />&lt;employees xmlns=\&quot;http://www.foo.com/employees\&quot;&gt; \<br />	&lt;employee id=\&quot;123456\&quot;&gt; \<br />		&lt;lastname&gt;Smith&lt;/lastname&gt; \<br />		&lt;firstname&gt;Edward&lt;/firstname&gt; \<br />		&lt;phone&gt;(415) 333-0235 &lt;/phone&gt; \<br />		&lt;username&gt;esmith&lt;/username&gt; \<br />	&lt;/employee&gt; \<br />	&lt;employee id=\&quot;127937\&quot;&gt; \<br />		&lt;lastname&gt;Johnson&lt;/lastname&gt; \<br />		&lt;firstname&gt;Neil&lt;/firstname&gt; \<br />		&lt;phone&gt;(415) 333-9475 &lt;/phone&gt; \<br />		&lt;username&gt;njohnson&lt;/username&gt; \<br />	&lt;/employee&gt; \
+&lt;/employees&gt;&quot;;
+</pre>
+  <pre class="codeSample">var dsEmployees = new Spry.Data.XMLDataSet(null, &quot;/employees/employee&quot;);</pre>
+  <pre class="codeSample">var xmlDOMDocument = Spry.Utils.stringToXMLDoc(xmlStr);</pre>
+  <pre class="codeSample">dsEmployees.setDataFromDoc(xmlDOMDocument);
+</pre>
+</div>
+<div id="setstate" ><a name="setstate" ></a>
+  <h3>setState</h3>
+  <p>Spry.Data.getRegion(regionName).setState(state);</p>
+  <h4>Description</h4>
+  <p>This method allows developers to programmatically set the state of the data set. This also allows developers to get into custom states. </p>
+  <h4>Arguments</h4>
+  <p><em>regionName</em></p>
+  <ul>
+    <li>This ID of the region that is getting the updated state.</li>
+  </ul>
+  <p>state</p>
+  <ul>
+    <li>The string that is the state to set the region to.
+      <ul>
+        <li>loading</li>
+        <li>ready</li>
+        <li>error </li>
+      </ul>
+    </li>
+  </ul>
+  <h4>Returns</h4>
+  <p>NA</p>
+  <h4>Example</h4>
+  <pre id="line25">function SetState(rgnState)<br />{<br />	for (var i = 1; i &lt;= numRegions; i++)<br />		Spry.Data.getRegion(&quot;regionID&quot;).setState(rgnState);<br />}
+<br />
+  &lt;input type=&quot;button&quot; value=&quot;Ready&quot; onclick=&quot;SetState('ready');&quot; /&gt;
+</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/data_region/RegionStatesSample.html">Region State Sample </a><br />
+  </p>
+</div>
+<div id="seturl"><a name="seturl" ></a>
+  <h3>setURL </h3>
+  <p>datasetname.setURL(url);</p>
+  <h4>Description</h4>
+  <p>This function sets the path to the XML sources used in the data set. This can be used to programmatically changing the data source of the XML data set. Setting the URL does not automatically reload the data. Use the loadData function to load the data. </p>
+  <h4>Arguments</h4>
+  <p><em>url</em></p>
+  <ul>
+    <li>The url argument is the new path to the XML source. This can be a hard coded path or a spry data reference. </li>
+  </ul>
+  <h4>Returns</h4>
+  <p>NA</p>
+  <h4>Example</h4>
+  <pre id="line25_1">dsPhotos.setURL('galleries/{@base}{@file}');<br />dsPhotos.setURL('xmlsource.xml');
+</pre>
+</div>
+<div id="setxpath"><a name="setxpath" ></a>
+  <h3>setXPath </h3>
+  <p>datasetname.setXPath(xpath);</p>
+  <h4>Description</h4>
+  <p>This function sets the xpath for the XML file used in the data set. Changing the XPath doesn't automatically load the data. Use the loadData function to load the new data. </p>
+  <h4>Arguments</h4>
+  <p><em>xpath</em></p>
+  <ul>
+    <li>The xpath used in the XML data source file. This can be a hard coded path or a spry data reference. </li>
+  </ul>
+  <h4>Returns</h4>
+  <p>NA</p>
+  <h4>Example</h4>
+  <pre id="line25_2">dsPhotos.setXPath('galleries/{@id}');<br />dsPhotos.setXPath('photos/photo');
+
+dsPhotos.setXPath(&quot;/states/state[position() &gt;= 30 and position() &lt; 40]&quot;);</pre>
+</div>
+<div id="sort"><a name="sort" ></a>
+  <h3>sort</h3>
+  <p>datasetname.sort(column,order);</p>
+  <h4>Description</h4>
+  <p>This function sets the sort order  applied to the dataset. Secondary and Tertiary sorts can be applied by listing the appropriate column names. </p>
+  <h4>Arguments</h4>
+  <p>column - the column(s) of the data set to be sorted. </p>
+  <p>order - The order used on the data set. </p>
+  <ul>
+    <li>&quot;ascending&quot;</li>
+    <li>&quot;descending&quot;</li>
+    <li>&quot;toggle&quot;</li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var ds1 = new Spry.Data.XMLDataSet(&quot;names.xml&quot;,&quot;employees/names&quot;);<br />ds1.sort(&quot;names&quot;,&quot;ascending&quot;);
+
+onClick=&quot;ds1.sort([&quot;firstname&quot;, &quot;lastname&quot;, &quot;@id&quot;], &quot;toggle&quot;);&quot; //sort by firstname, then lastname, then @id.</pre>
+</div>
+<div id="dataset"><a name="dataset" ></a>
+  <h3>Spry XML Data Set </h3>
+  <h4>Description</h4>
+  <p> Data Sets are the core of the Spry Data Framework. A Spry XML data set pulls in XML data from a source and adds this data to the page via spry regions, data references and the other functions described in this document.</p>
+  <p>The Data Sets point to an XML data source. This can be an external XML file or any other file that generates valid XML. XPath is used to drill down in the XML and retrieve the desired data. </p>
+  <h4>Basic Format </h4>
+  <pre class="codeSample">&lt;script type=&quot;text/javascript&quot;&gt; 
+var dsData = new Spry.Data.XMLDataSet(&quot;XML source URL&quot;, &quot;XPath&quot;); 
+&lt;/script&gt;</pre>
+  <h4>Arguments</h4>
+  <p>The basic data set requires a minimum of 2 arguments: The XML source URL and the XPath.</p>
+  <ul>
+    <li>XML source URL </li>
+  </ul>
+  <p>The URL argument can be a relative or absolute URL to an XML file, or to a web service/application that returns XML data. Users need to be aware that the loading of XML data is subject to the browser's security model which requires that any data you load must come from the domain from which the HTML page currently running in the browser, came from. </p>
+  <p>By default, the data set uses the HTTP GET method when retrieving the XML data. </p>
+  <ul>
+    <li>XPath</li>
+  </ul>
+  <p>This is a valid XPath into the schema of the XML source.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;script type=&quot;text/javascript&quot;&gt; 
+var dsData = new Spry.Data.XMLDataSet(&quot;source.xml&quot;, &quot;/employees/home_office/finance&quot;); 
+&lt;/script&gt; </pre>
+  <pre class="codeSample">&lt;script type=&quot;text/javascript&quot;&gt;  
+var dsData = new Spry.Data.XMLDataSet(&quot;source.php?office=home&amp;dept=finance&quot;, &quot;/employees/home_office/@finance/&quot;); 
+&lt;/script&gt;</pre>
+  <h4>Optional Arguments</h4>
+  <p><strong>useCache</strong>- By default, the XML data is cached on the client. This data cache is used when the data set is filtered, sorted or reloaded. Using an optional argument in the data set constructor will force the XML data to be reloaded from the server. </p>
+  <pre class="codeSample">var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;,{useCache: false}) </pre>
+  <p><strong>distinctOnLoad</strong> - Use the distinctOnLoad argument to remove duplicate records from the dataset. This will remove duplicate records where columns are identical with another record.</p>
+  <p><strong>distinctFieldsOnLoad</strong> - Use the distinctFieldsOnLoad argument to specify the list of columns that should have distinct values and remove duplicate records from the dataset. When this parameter is missing and the distinctOnLoad option is used then all the fields of the records should be identicals.</p>
+  <pre class="codeSample">
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;,{distinctOnLoad: true}); </pre>
+  <p>Distinct can also be called as a separate function:</p>
+  <pre class="codeSample"> var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;); 
+ dsPhotos.distinct();  
+</pre>
+  <p><strong>Filtering Data Sets</strong></p>
+  <p>Data sets support both destructive and non-destructive filtering.</p>
+  <p>Before using either method of filtering, you must supply a filter function that takes a data set, row object and rowNumber. This function will be invoked by the data sets filtering methods for each row in the data set. Your function must return either the row object passed to your function, or a new row object, meant to replace the row passed into your function. If your function wants to filter out the row, it should return a null value.</p>
+  <p>The data set's destructive filter method is filterData(). This method will actually replace or discard the rows of the data set. The only way to get the original data back is to reload the XML data of the data set. </p>
+  <pre class="codeSample">
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;);
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row[&quot;@path&quot;].search(/^s/) != -1)
+		return row;                     // Return the row to keep it in the data set.
+	return null;                   //Return null to remove the row from the data set.
+}
+
+dsPhotos.filterData(myFilterFunc); </pre>
+  <p>It is important to note that your filter function will remain active, even when loading XML data from another URL, until you call filterData() with a null. </p>
+  <pre class="codeSample">dsPhotos.filterData(null); 
+</pre>
+  <p>The data set's non-destructive filter method is filter(). Unlike filterData(), filter() creates a new array of rows which reference the original data, so as long as your filter function does not modify the row object passed into it, you will be able to get the original data back by simply calling filter() and passing a null argument. </p>
+  <pre class="codeSample">
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;);
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row[&quot;@path&quot;].search(/^s/) != -1)
+		return row;                     // Return the row to keep it in the data set.
+	return null;                        // Return null to remove the row from the data set.
+}
+
+dsPhotos.filter(myFilterFunc); // Filter the rows in the data set.</pre>
+  <pre class="codeSample">dsPhotos.filterData(null); // Turn off non-destructive filtering.</pre>
+  <p><strong>Automatic Data Refresh</strong></p>
+  <p>This function will  refresh the data from the server every period set in the constructor. Time is set in milliseconds. Turn off the cache to force the new data from the server, otherwise, the data will load from the cached XML file. </p>
+  <pre class="codeSample">var dsPhotos = new  Spry.Data.XMLDataSet(&quot;/photos.xml&quot;, &quot;/gallery/photos/photo&quot;, { useCache:  false, loadInterval: 10000 }); </pre>
+  <p>You can also turn on this interval loading programmatically with the startLoadInterval() method, and stop it with the stopLoadInterval() method.</p>
+  <pre class="codeSample">
+dsPhotos.startLoadInterval(10000); // Start loading data every 10 seconds.
+dsPhotos.stopLoadInterval(); // Turn off interval loading.
+</pre>
+  <p><strong>Sorting onLoad </strong></p>
+  <p>You can sort a data set by a column when the data loads. This can be done by setting an option in the data set constructor. It can also be set <a href="#sort">programmatically</a> if needed.</p>
+  <p>'sortOnLoad:' takes the column to be sorting. 'sortOrderOnLoad:' takes the type of sorting, either 'ascending' or 'descending'. </p>
+  <pre class="codeSample">var dsPhotos = new Spry.Data.XMLDataSet(&quot;/photos.php?galleryid=2000&quot;, &quot;/gallery/photos/photo&quot;, { sortOnLoad: &quot;@path&quot;, sortOrderOnLoad: &quot;descending&quot; });</pre>
+  <p><strong>Data Set data points</strong></p>
+  <ul>
+    <li><strong>ds_RowID</strong> - This is the id of a row in the data set. This id can be used to refer to a specific record in the data set. It does not change even when the data is sorted.</li>
+    <li><strong>ds_RowNumber</strong> - This is the row number of the &quot;current row&quot; of the data set. Within a loop construct, this number reflects the position of the row currently being evaluated. </li>
+    <li><strong>ds_RowCount</strong> - This is the number of rows in the data set. </li>
+    <li><strong>ds_CurrentRowID</strong> - This is the id of the &quot;current row&quot; of the data set. This value will not change, even when used within a looping construct construct. </li>
+    <li><strong>ds_CurrentRowNumber</strong> - This is the row number of the &quot;current row&quot; of the data set. This value will not change, even when used within a looping construct.</li>
+    <li><strong>ds_SortColumn</strong> - This is the name of the column last used for sorting. If the data in the data set has never been sorted, this will output nothing (an empty string). </li>
+    <li><strong>ds_SortOrder</strong> - This is the current sort order of the data in the data set. This data reference will output the words &quot;ascending&quot;, &quot;descending&quot;, or nothing (an empty string). </li>
+  </ul>
+</div>
+<div id="startloadinterval"><a name="startloadinterval" ></a>
+  <h3>startLoadInterval</h3>
+  <p> datasetname.startLoadInterval(milliseconds);</p>
+  <h4>Description</h4>
+  <p>This function will reload the specified data set in the specified time interval. </p>
+  <h4>Arguments</h4>
+  <p>milliseconds - the load interval in milliseconds </p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+dsPhotos.startLoadInterval(10000);</pre>
+</div>
+<div id="stoploadinterval"><a name="stoploadinterval"></a>
+  <h3>stopLoadInterval</h3>
+  <pre class="codeSample">datasetname.stopLoadInterval();</pre>
+  <h4>Description</h4>
+  <p>This function will stop the periodic reloading of data when the LoadInterval is set. </p>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example </h4>
+  <pre class="codeSample">
+dsPhoto.stoptLoadInterval();</pre>
+</div>
+<div id="updateregion"><a name="updateregion"></a>
+  <h3>UpdateRegion</h3>
+  <p>Spry.Data.updateRegion(&quot;region ID&quot;);</p>
+  <h4>Description</h4>
+  <p>UpdateRegion allows the developer to trigger a region redraw whenever needed. This can be used, for instance, when a filter function has updated the dataset but only certain regions need to be updated. </p>
+  <h4>Parameter</h4>
+  <p>The id of the region container tag to be updated.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;script&gt;
+dsStates1.filter(MyPagingFunc);
+Spry.Data.updateRegion(&quot;region1&quot;);
+&lt;/script&gt;
+
+&lt;div id=&quot;region1&quot; spry:region=&quot;ds1&quot;&gt;
+	{description}
+&lt;/div&gt;</pre>
+</div>
+<div id="datareference"><a name="datareference" ></a>
+  <h2>Data References</h2>
+  <h4>Description</h4>
+  <p>A data reference is a placeholder for a piece of data from a data set. When loaded in the browser, these data references are replaced with the actual data from the dataset. Data references must be within a <a href="attributes.html#spry:region">spry:region</a> or a <a href="attributes.html#spry:detailregion">spry:detailregion.</a></p>
+  <p>If the spry:region or spry:detailregion contains only a single dataset, the dataset name is not required. It is required when multiple data sets are used within a region. </p>
+  <h4>Format</h4>
+  {datasetname::columnname} <br />
+  <br />
+  <p>There are 2 colons between the data set name and the column name.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">{dsData::firstname} </pre>
+  <pre class="codeSample">{firstname}<br />
+</pre>
+</div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

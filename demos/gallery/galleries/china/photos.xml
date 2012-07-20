@@ -1,0 +1,262 @@
+<gallery
+base = ""
+background = "#FFFFFF"
+banner = "#F0F0F0"
+text = "#000000"
+link = "#0000FF"
+alink = "#FF0000"
+vlink = "#800080"
+date = "4/11/2006">
+	<sitename>China Gallery</sitename>
+	<photographer></photographer>
+	<contactinfo></contactinfo>
+	<email></email>
+	<security><![CDATA[]]> </security>
+
+<banner font = "Arial" fontsize = "3" color =  "#F0F0F0"> </banner>
+<thumbnail base ="thumbnails/" font = "Arial" fontsize = "4" color = "#F0F0F0" border = "0" rows = "3" col = "5"> </thumbnail> 
+<large base ="images/" font = "Arial" fontsize = "3" color = "#F0F0F0" border = "0"> </large>
+<photos id = "images">
+
+<photo
+path = "china_01.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_01.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_02.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_02.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_03.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_03.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_04.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_04.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_05.jpg"
+width = "350"
+height = "467"
+thumbpath = "china_05.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_06.jpg"
+width = "350"
+height = "467"
+thumbpath = "china_06.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_07.jpg"
+width = "350"
+height = "467"
+thumbpath = "china_07.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_08.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_08.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_09.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_09.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_10.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_10.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_11.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_11.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_12.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_12.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_13.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_13.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_14.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_14.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_15.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_15.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_16.jpg"
+width = "350"
+height = "467"
+thumbpath = "china_16.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_17.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_17.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_18.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_18.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_19.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_19.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_20.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_20.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_21.jpg"
+width = "263"
+height = "350"
+thumbpath = "china_21.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "china_22.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_22.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_23.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_23.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "china_24.jpg"
+width = "350"
+height = "263"
+thumbpath = "china_24.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+</photos>
+</gallery>

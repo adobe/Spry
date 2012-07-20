@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Intro to Spry</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Spry Primer</h3>
+<p>Spry is an easy-to-use Ajax toolkit, made for designers and developers both. While it is simple to get started, there are a few concepts that, once familiar with, will make building Spry page easy.</p>
+<p>This document will outline the high level concepts of Spry and link to more detailed information and samples.</p>
+<h4>Goals of Spry</h4>
+<p>Spry was started because most  other Ajax frameworks out there can be quite complex; hard to get started, many dependent files and  markup injection, making it hard to style and edit. We thought there was an easier way.</p>
+<p>Spry leverages what you already know: HTML and CSS and some javascript, and uses custom attributes or small constructor scripts, to activate the functionality. The framework does most of the heavy lifting.</p>
+<p>We try make sure that it is easy to customize. We provide simple CSS with clear class name as hooks for customization. If you want to set the size of the accordion, just set the width on the class,  as you would normally set the width, or any other property, of an element.</p>
+<p>An important idea for Spry is to not inject markup. This means that all the HTML code that is needed is actually on the page, not buried within a &lt;script&gt; tag. This makes it easy to figure out the generated code and it makes the HTML easy to edit and style.</p>
+<h4>The 3 Parts of Spry</h4>
+<p>Spry consists of 3 main parts:</p>
+<ul>
+  <li>Data - Using <a href="../../demos/products/index.html">XML</a>, <a href="../../samples/data_region/JSONDataSetSample.html">JSON</a> or <a href="../../samples/htmldataset/ExternalTableAsSourceSample.html">HTML</a> data to populate the page.</li>
+  <li>Widgets - Advanced page functionality using simple markup. <a href="../../samples/accordion/AccordionSample.html">Accordion</a> and <a href="../../samples/slidingpanels/SlidingPanelsSample.html">Sliding Panels</a> are examples of widgets.</li>
+  <li>Effects - Add polish to the page by moving, showing and hiding elements on the page. <a href="../../demos/effects/index.html">Slide and Fade</a> are examples of Effects.</li>
+</ul>
+<h3>Data</h3>
+<p>Spry Data was the first piece of Spry to be released and it is probably the most powerful part of the framework. It has two main concepts:</p>
+<ol>
+  <li>Retreiving the data.</li>
+  <li>Using the data on the page.</li>
+</ol>
+<h4>Pulling in the Data</h4>
+<p>First, to use Spry Data, you need to attach the core Spry javascript files to your page. The exact files you will need depend on the data source type, but all data sets use SpryData.js. These files are in the 'includes' folder in the Spry zip.</p>
+<p>Spry has the concept of a 'data set'. This is data pulled in from XML, JSON or HTML files and converted into a table (a javascript object), with rows and columns, like a database table. The end result of the data set is the same, no matter what the data type is.</p>
+<p>To this data set, you can specify some attributes or behaviors. By default, Spry downloads the data file, XML for instance, once and uses that to build the data set. We cache that data: If you want to get new data from the server directly, you can turn off the cache and tell Spry to get new data every 5 seconds, for example. These can be set as options in the constructor. The constructor is the script where the data set  is defined. </p>
+<p>A basic data set constructor looks like</p>
+<pre>&lt;script&gt;
+   var ds1 = new Spry.Data.XMLDataSet(&quot;folder/products.xml&quot;,&quot;products/product&quot;);
+&lt;/script&gt;</pre>
+<p>where the first value is simply the path to the XML source. The second value is the XPath into the XML file. This defines where you want to start pulling in data. XPath is explained well <a href="http://www.w3schools.com/xpath/xpath_intro.asp">here</a>.</p>
+<p>The var name 'ds1' is the data set name and it is used in many places within a standard Spry page.</p>
+<p>Any of our <a href="../../samples/index.html">Data samples</a> will have a data set defined.</p>
+<p>You can have multiple data sets on a page. These data sets can <a href="../../demos/gallery/index.html">depend on other data sets</a>. Data set types can be mixed: you can have one XML data set and one JSON data set, for example. </p>
+<p>If your are using XML as your data source, this can come from a XML file, or any file that <em>generates</em> XML. This can be Coldfusion, PHP or anything else that generates valid XML; Spry doesn't care where the data comes from.</p>
+<p>Once the data set is created, it can be used on the page.</p>
+<h4>Spry Regions</h4>
+<p>The second half of the Spry data concept are Spry regions. Spry regions are elements on the page where Spry processing happens. These elements are denoted by custom attributes applied to elements on the page.</p>
+<p>A basic Spry region looks like &lt;div spry:region=&quot;datasetname&quot;&gt;&lt;/div&gt;. Spry regions can be used with most HTML tags.</p>
+<p>This custom attribute tells Spry to look within this &lt;div&gt; for things to process. There are 2 things to process: </p>
+<ol>
+  <li>Other spry attributes</li>
+  <li>Data references. </li>
+</ol>
+<p>There are Spry attributes for logical processing, things like 'spry:if' and 'spry:when'. There are also Spry attributes for behavioral things like 'spry:hover' which applies a CSS class to the element when the user mouses over the element.</p>
+<p>Data references are used to add the data set data  to the page. These are placeholders for the real data. A data reference is the <a href="../xml_primer/xml_primer.html">data node name</a>, wrapped in curly braces {}. For example, with this XML as a data set:</p>
+<pre>&lt;products&gt;
+    &lt;product <span class="hilite">id</span>=&quot;1&quot;&gt;
+       &lt;<span class="hilite">name</span>&gt;Photoshop&lt;/name&gt;
+       &lt;<span class="hilite">category</span>&gt;Digital Imaging&lt;/category&gt;
+    &lt;/product&gt;
+&lt;/products&gt;</pre>
+<p>Our data references are the node names wrapped in curly braces, therefore, we would have Spry code that looks like:</p>
+There is a spry:region because all Spry processing happens within a spry:region. Then we have the data references within the region. When the page is loaded in the browser, the output would be the first values in the XML file:
+<pre>Photoshop
+1
+Digital Imaging</pre>
+<p>So the most basic Spry data page would look like:</p>
+<pre>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+   &lt;head&gt;
+   &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+   &lt;title&gt;Spry Page&lt;/title&gt;
+   <span class="hilite">&lt;script src=&quot;SpryAssets/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;SpryAssets/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+   &lt;script type=&quot;text/javascript&quot;&gt;
+   var ds1 = new Spry.Data.XMLDataSet(&quot;data/adobe_products.xml&quot;, &quot;products/product&quot;);
+   &lt;/script&gt;</span>
+   &lt;/head&gt;
+   &lt;body&gt;
+   <span class="hilite">&lt;div spry:region=&quot;ds1&quot;&gt; {ds1::name}&lt;/div&gt;</span>
+   &lt;/body&gt;
+ &lt;/html&gt;</pre>
+<p>A note here about data references. Notice in the example above, it is written {ds1::name}. This is the formal way of writing data references. In a scenario where you have multiple data sets, there might be more than one {name} column. Prepending the node name with the data set name and 2 colons is used to specify the data set it comes from. </p>
+<p>If you want to use multiple data sets in one region, simply add the data set names to the spry:region attribute, separated by a space. The <a href="../../samples/data_region/DataSetMasterDetailSample.html">Master Detail sample</a> uses 2 data sets.</p>
+<p>&nbsp;</p>
+<pre>&lt;div spry:region=&quot;ds1 ds2&quot;&gt;<br />{name}{ds2::name}<br />&lt;/div&gt;</pre>
+<p>In this case, 'ds1' is listed first. That means you can use either the short or the formal data references for that data set. Any other data sets listed in the region must use the formal data reference form.</p>
+<p>We mentioned above that you can have data sets from XML, JSON or HTML. The region part of the page does not care where that data comes from. The data references are all written the same way, regardless of the data source. All the spry:attributes work the same way, no matter what the data set is.</p>
+<p>There are other Spry attribute for controlling the look and the flow of the page. For instance, a common Spry attribute is 'spry:if'. This is used to determine whether to show a part of the page, depending on a condition. A sample:</p>
+<pre>&lt;div spry:region=&quot;ds1 ds2&quot;&gt;
+   &lt;span <span class="hilite">spry:if=&quot;{name} == 'Photoshop'&quot;</span>&gt;{name}{ds2::name}&lt;/span&gt;
+ &lt;/div&gt;</pre>
+<p>The value of the spry:if attribute is a javascript expression that equals 0 or 1 (true or false). Above, we are checking to see if the value of the {name} data rerefence is 'Photoshop'. If it is, that &lt;span&gt; would be printed on the page. If it is not equal, that &lt;span&gt; would not be displayed.</p>
+<p>There are also attributes like 'spry:hover'. This applies the specified class name to the element when the mouse is over the element.</p>
+<pre>&lt;style&gt;<br />.redBG{background-color:red;}<br />&lt;/style&gt;
+
+...
+
+&lt;div spry:region=&quot;ds1 ds2&quot;&gt;
+   &lt;span <span class="hilite">spry:hover=&quot;redBG&quot;</span>&gt;{name}&lt;/span&gt;
+ &lt;/div&gt;</pre>
+<p>When the mouse is over the &lt;span&gt; tag, the 'redBG' class will be applied and turn the background color to red. When the mouse leaves the &lt;span&gt; the class will be removed.</p>
+<p>With a combination of Spry attributes and data references, a high degree of control can be used on the page with a small amount of markup.</p>
+<h4>Learn more about Spry Data</h4>
+<p>The <a href="../data_set_overview/index.html">Data Set Overview</a> describes in detail the flattening/XPath idea, advanced data set options and region concepts. A good read for learning Spry concepts.</p>
+<p>The <a href="../dynamic_table/index.html">Dynamic Table</a> document goes over building a basic Spry table.</p>
+<p>See the <a href="../../samples/index.html">Data/Region samples</a>.</p>
+<p>Read the <a href="../xml_primer/xml_primer.html">XML Primer</a>. This describes the basic concepts of XML.</p>
+<p>Read the <a href="../json_primer/json_primer.html">JSON Primer</a>. The <a href="../json_dataset/index.html">JSON data set overview</a>.</p>
+<p>The <a href="../html_dataset/index.html">HTML data set</a> overview. Describes how to use HTML tables as data sets.</p>
+<p>The <a href="../data_api/index.html">Data API</a> describes all the features of the data capabilities.</p>
+<h3>Spry Widgets</h3>
+<p>Spry widgets are pieces of advanced page functionality encapsulated in regular HTML markup. Many are familiar with <a href="../../samples/accordion/AccordionSample.html">Accordions</a> and <a href="../../samples/tabbedpanels/tabbed_panel_sample.htm">Tabbed Panels</a>. Spry also has widget like <a href="../../samples/slidingpanels/SlidingPanelsSample.html">Sliding Panels</a> and <a href="../../samples/collapsiblepanel/collapsible_panel_sample.htm">Collapsible Panels</a>.</p>
+<p>We refer to these as 'disclosure widgets', because content is hidden and 'disclosed' as users click into other panels. We also have form validation widgets like <a href="../../samples/validationwidgets/CheckboxValidationSample.html">Checkbox</a> and <a href="../../samples/validationwidgets/TextfieldValidationSample.html">Text Field</a> validation.</p>
+<h4>Widget Philosophy</h4>
+<p>The idea behind Spry widgets is that the widget structure is defined in HTML on the page. Then a small constructor script is used to convert that markup into the functioning widget. </p>
+<p>For instance, the Collapsible Panel markup is the most basic:</p>
+<pre>&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+  &lt;div class=&quot;CollapsiblePanelTab&quot; tabindex=&quot;0&quot;&gt;Tab&lt;/div&gt;
+  &lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     var CP1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+
+ &lt;/script&gt;</pre>
+<p>Widgets have a container tag around them which defines for Spry where the widget begins and ends. These container tags have an ID defined that Spry uses to identify the widget markup.</p>
+<p>For the <a href="../../samples/collapsiblepanel/collapsible_panel_sample.htm">Collapsible Panel</a>, there is a tag for the tab and a tag for the content panel. Within these structure tags, you can put in any HTML you wish. Spry just needs to have that main structure correct.</p>
+<p>The constructor script comes <em>after</em> the widget markup. This is because that markup needs to exist before Spry executes the script to create the widget.</p>
+<p>The constructor defines a variable for the widget name (&quot;CP1&quot;). We then pass the ID of the widget container to the constructor (&quot;CollapsiblePanel1&quot;).</p>
+<p>We can set options for the widget (for Data, Widgets and Effects) by adding the options to the constructor. The syntax is ,{option:value, option:value}. For instance, instead of having the Collapsible Panel smoothly open and close, we can turn off the animation by passing an option in the constructor.</p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;<br />   var CP1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;,{enableAnimation:false});  <br /> &lt;/script&gt;</pre>
+<p>Most widgets  have behaviors defined that allow control of the widget from other parts of the page. For instance, we can create a text link that will open or close a  Collapsible Panel.</p>
+<pre>&lt;a href=&quot;#&quot; onclick=&quot;CP1.open();&quot;&gt;Open the Panel&lt;/a&gt;<br />&lt;a href=&quot;#&quot; onclick=&quot;CP1.close();&quot;&gt;Close the Panel&lt;/a&gt;</pre>
+<p>Most widgets will have a number of functions for these sorts of operations, depending on the complexity of the widget.</p>
+<h4>Learn More about Widgets</h4>
+<p>The <a href="../spry_widget_model/index.html">Widget Model</a> document describes in more detail the widget ideas presented here.</p>
+<p>Each widget has an overview document. See them <a href="../../docs.html">here</a>.</p>
+<h3>Effects</h3>
+<p>Effects are combinations of javascript and CSS that cause page elements to change appearance, size or position. See the <a href="../../demos/effects/index.html">Effects demo</a> for a sample of each Effect.</p>
+<p>All the effects are contained within the SpryEffects.js file. This file should be included on your page if you want to use the effects.</p>
+<p>Effects work by first defining the effect as a javascript object. Then add functions to your page to start or stop the effect. A simple effect looks like:</p>
+<pre>&lt;div id=&quot;fadeMe&quot;&gt;Fading...&lt;/div&gt;<br />&lt;a href=&quot;#&quot; onclick=&quot;myEffect.start();&quot;&gt;Fade it&lt;/a&gt;<br /><br />&lt;script&gt;
+var myEffect = new Spry.Effect.Fade(&quot;fadeMe&quot;,{from:100, to:0, duration:1000, toggle:true});
+&lt;/script&gt;</pre>
+<p>Note that again, the constructor scripts come after the markup. <br />
+  Here we define an Effect called 'myEffect'. This is the name we use to control the effect. In the constructor, we specify the ID of the element we will fade: &quot;fadeMe&quot;. We then list the options:</p>
+<ul>
+  <li>from: the starting opacity</li>
+  <li>to: the final opacity</li>
+  <li>duration: how long to complete the effect, in milliseconds.</li>
+  <li>toggle: Tells the effect to reverse when clicking the link again.</li>
+</ul>
+<p>In the &lt;a&gt; we call the 'start' method that starts the effect: onclick=&quot;myEffect.start();&quot;.</p>
+<p>The effects list contains base effects and combination effects. Base effects are simple animators: Move, Size, Opacity or Color. All other effects, like Puff, are combinations of these base effects.</p>
+<p>For more advanced effects, there are Cluster effects. Users can take our base effects and combine them into groups. These groups can be run in parallel or in sequence. The <a href="../../demos/effects/index.html">demo</a> has 2 examples.</p>
+<h4>Learn More about Effects</h4>
+<p>The <a href="../effects_coding/index.html">Effects Coding</a> document describes each effect and all their options.</p>
+<h3>Advanced Spry</h3>
+<p>Spry can do more than what is described here.</p>
+<p>We have functions for:</p>
+<ul>
+  <li><a href="../../samples/form_submission/SubmitFormWithXHRSample.cfm.html">Submitting forms via Ajax</a></li>
+  <li><a href="../../samples/session_handling/index.html">Session Timeout</a></li>
+  <li><a href="../../samples/utils/URLUtilsSample.html">URL Utilities</a></li>
+  <li><a href="../../samples/htmldataset/index.html">HTML Data sets</a></li>
+  <li><a href="../../samples/utils/query2xml.html">Converting database queries to XML</a></li>
+</ul>
+<p>and more...</p>
+<h3>Getting started with Spry</h3>
+<p>Hopefully this document as explained the basics of Spry. To get into the code, check these resources.</p>
+<ul>
+  <li><a href="../../docs.html">Spry Documentation</a></li>
+  <li><a href="../../samples/index.html">Spry Samples</a> are a great way to see simple Spry code.</li>
+  <li><a href="../../demos/index.html">Spry Demos</a> show Spry in more complex situations.</li>
+  <li>The Data files are kept in the 'includes' folder.</li>
+  <li>The widget files are kept in the 'widgets' folder, along with reference files.</li>
+  <li>The 'data' folder has XML and JSON data files.</li>
+</ul>
+<hr />
+<p>Copyright Adobe Systems Inc, 2007.</p>
+</body>
+</html>

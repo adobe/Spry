@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Multiple Filters Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryDataExtensions.js"></script>
+<script type="text/javascript">
+<!--
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "states/state");
+
+function ffAH(ds, row, index){ var c = row.name.charAt(0); return c >= 'A' && c <= 'H' ? null : row; };
+function ffIP(ds, row, index){ var c = row.name.charAt(0); return c >= 'I' && c <= 'P' ? null : row; };
+function ffQZ(ds, row, index){ var c = row.name.charAt(0); return c >= 'Q' && c <= 'Z' ? null : row; };
+
+function ToggleFilter(enable, f)
+{
+	if (enable)
+		dsStates.addFilter(f, true);
+	else
+		dsStates.removeFilter(f, true);
+}
+
+function RemoveAllFilters()
+{
+	document.forms[0]["fAH"].checked = false;
+	document.forms[0]["fIP"].checked = false;
+	document.forms[0]["fQZ"].checked = false;
+
+	dsStates.removeAllFilters(true);
+}
+-->
+</script>
+<style type="text/css">
+<!--
+.badge {
+	float: left; 
+	margin: 4px;
+	padding: 4px;
+	text-align: center;
+	background-color: #FFCC99;
+	border-top: solid 1px #999999;
+	border-left: solid 1px #999999;
+	border-bottom: solid 1px #CCCCCC;
+	border-right: solid 1px #CCCCCC;
+}
+
+label {
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<h3>Multiple Filters Sample</h3>
+<p>This page demonstrates how to use the multiple filter support for data sets.</p>
+<p>Here is a working example that uses multiple filters.</p>
+<div class="liveSample" style="float: left; margin-bottom: 4px;">
+	<form action="">
+	<label>Filter out 'A' - 'H': <input name="fAH" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffAH);" /></label>
+	<label>Filter out 'I' - 'P': <input name="fIP" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffIP);" /></label>
+	<label>Filter out 'Q' - 'Z': <input name="fQZ" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffQZ);" /></label>
+	<input type="button" value="Remove All Filters" onclick="RemoveAllFilters();" />
+	</form>
+	<p spry:region="dsStates" spry:repeatchildren="dsStates">
+		<span class="badge">{name}</span>
+	</p>
+</div>
+<p><br style="clear: both;" />
+</p>
+<p>Before starting, you must make sure that you include SpryDataExtensions.js *after* SpryData.js:</p>
+<pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryDataExtensions.js&quot;&gt;&lt;/script&gt;
+</pre>
+<p>This will add multiple filter support to all data sets.</p>
+<p>Now you  can define your data set and filter functions as you normally would:</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+var dsStates = new Spry.Data.XMLDataSet(&quot;../../data/states/states.xml&quot;, &quot;states/state&quot;);
+
+function ffAH(ds, row, index){ var c = row.name.charAt(0); return c &gt;= 'A' &amp;&amp; c &lt;= 'H' ? null : row; };
+function ffIP(ds, row, index){ var c = row.name.charAt(0); return c &gt;= 'I' &amp;&amp; c &lt;= 'P' ? null : row; };
+function ffQZ(ds, row, index){ var c = row.name.charAt(0); return c &gt;= 'Q' &amp;&amp; c &lt;= 'Z' ? null : row; };
+
+...
+--&gt;
+&lt;/script&gt;</pre>
+<p>The filter functions above filter out rows of data based on whether or not the first letter in the 'name' column falls within a certain range of letters. These are the same functions used to filter in the live sample above.</p>
+<p>The important thing to remember is that if you are going to use multiple filters, DO NOT USE the filter() function on the data set. If you do, it will blow away any filters you have installed. Now, to add a filter, use the addFilterFunction:</p>
+<pre>dsStates.addFilter(ffAH, true);</pre>
+<p>The first argument to addFilter is the filter function you want to add, the 2nd argument is optional, if true, it tells the data set to apply all filters after the filter is added. If false or undefined, it simply adds the filter function to its internal list and does nothing else. This is sometimes handy if you want to add a bunch of filters and then apply them after they have all been added:</p>
+<pre>dsStates.addFilter(ffAH);       // Add.
+dsStates.addFilter(ffIP);       // Add.
+dsStates.addFilter(ffQZ, true); // Add and then filter.</pre>
+<p>To remove a filter, you call removeFilter(). Like addFilter, the optional 2nd argument determines whether or not the data set will apply the set of existing filters immediately or not:</p>
+<pre>dsStates.removeFilter(ffAH);       // Remove.
+dsStates.removeFilter(ffIP);       // Remove.
+dsStates.removeFilter(ffQZ, true); // Remove and then filter.</pre>
+<p>You can also remove all filters in a single call with removeAllFilters(). removeAllFilters() also takes an optional argument which tells the dataset whether or not it should unapply the last set of filters. This is useful if you want to remove any active filters, add some new filters and then apply the filters:</p>
+<pre>
+dsStates.removeAllFilters();      // Reset our filter list so its empty.
+dsStates.addFilter(ffIP, true);   // Add a filter and apply it.
+
+
+...
+
+dsStates.removeAllFilters(true);  // Reset our filter list and restore all data.</pre>
+<p>To re-run the current set of active filters, you can use the applyFilters() function. This is sometimes useful if you want to set a bunch of filters and then apply them at a later point in time:</p>
+<pre>
+dsStates.addFilter(ffAH); // Add.
+dsStates.addFilter(ffIP); // Add.
+dsStates.addFilter(ffQZ); // Add.
+
+...
+
+dsStates.applyFilters();  // Filter the data.</pre>
+<p>&nbsp;</p>
+</body>
+</html>

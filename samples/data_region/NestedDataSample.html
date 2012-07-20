@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Nested Data Sample</title>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"></script>
+<script type="text/javascript">
+var dsProducts = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "/products/product");
+var dsFeatures = new Spry.Data.NestedXMLDataSet(dsProducts, "features/feature");
+</script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Nested Data Sample</h3>
+<p>This page demonstrates how to access nested data for a given row.</p>
+<table border="1">
+  <tr>
+    <th width="30%" onclick="dsProducts.sort('name');">dsProducts</th>
+    <th width="30%" onclick="dsFeatures.sort('feature')">dsFeatures</th>
+    <th width="30%">dsProducts + dsFeatures</th>
+  </tr>
+  <tr>
+    <td valign="top"><div spry:region="dsProducts">
+        <ul>
+          <li spry:repeat="dsProducts" spry:select="select" spry:hover="hover" spry:setrow="dsProducts"> {name} </li>
+        </ul>
+      </div></td>
+    <td valign="top"><div spry:region="dsFeatures">
+        <ul>
+          <li spry:repeat="dsFeatures"> {feature} </li>
+        </ul>
+      </div></td>
+    <td valign="top"><div spry:region="dsProducts dsFeatures">
+        <ul>
+          <li spry:repeat="dsProducts"> {dsProducts::name}
+            <ul>
+              <li spry:repeat="dsFeatures">{dsFeatures::feature}</li>
+            </ul>
+          </li>
+        </ul>
+      </div></td>
+  </tr>
+</table>
+</body>
+</html>

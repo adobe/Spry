@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Collapsible Panel Group Sample</title>
+<script language="JavaScript" type="text/javascript" src="../../widgets/collapsiblepanel/SpryCollapsiblePanel.js"></script>
+<link href="../../widgets/collapsiblepanel/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#cp1 .CollapsiblePanelContent { 
+	overflow: scroll;
+	height: 300px;
+}
+.CollapsiblePanel {
+	width: 300px;
+}
+.CollapsiblePanelTab {
+	font-size: 1em;
+}
+</style>
+</head>
+<body>
+<h3>Collapsible Panel Group Sample</h3>
+<hr />
+<p>By default the panels in a collapsible panel group are open. You can open/close panels by pressing Down/Up arrow keys because the widget has by default build in the keyboard navigation feature.</p>
+<div id="CollapsiblePanelGroup1" class="CollapsiblePanelGroup">
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 1</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 2</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 3</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>
+<hr />
+<p>To start off with all panels closed, use the "contentIsOpen" constructor option with a value of false.</p>
+<div id="CollapsiblePanelGroup2" class="CollapsiblePanelGroup">
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 1</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 2</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 3</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>
+<hr />
+<p>To change the default keys for navigation use the following options: openPanelKeyCode and closePanelKeyCode. On the bellow example use PageDown/PageUp keys to open/close panels.</p>
+<div id="CollapsiblePanelGroup2_" class="CollapsiblePanelGroup">
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 1</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 2</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+            <div class="CollapsiblePanelTab" tabindex="0">Panel 3</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>
+<hr />
+<p>You can also turn off animation by using the enableAnimation constructor option with a value of false.</p>
+<div id="CollapsiblePanelGroup3" class="CollapsiblePanelGroup">
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 1</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 2</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 3</div>
+		<div class="CollapsiblePanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+			minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+			ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>
+<hr />
+<p>You can also programatically control the open/close state of a specific panel:</p>
+<p>
+	<select id="piSelect">
+		<option selected="selected">Panel 1</option>
+		<option>Panel 2</option>
+		<option>Panel 3</option>
+		<option>Panel 4</option>
+		<option>Panel 5</option>
+	</select>
+	<input type="button" value="Open" onclick="cpg.openPanel(document.getElementById('piSelect').selectedIndex);" />
+	<input type="button" value="Close" onclick="cpg.closePanel(document.getElementById('piSelect').selectedIndex);" />
+</p>
+<p>or all of the panels:</p>
+<p>
+	<input type="button" value="Open All" onclick="cpg.openAllPanels();" />
+	<input type="button" value="Close All" onclick="cpg.closeAllPanels();" />
+    <input type="button" value="Close All and Open One Panel" onclick="cpg.closeAllPanels();cpg.openPanel(1);" />
+</p>
+<div id="CollapsiblePanelGroup5" class="CollapsiblePanelGroup">
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 1</div>
+		<div class="CollapsiblePanelContent">
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+			Content for Panel 1 goes here!<br />
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 2</div>
+		<div class="CollapsiblePanelContent">
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+			Content for Panel 2 goes here!<br />
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 3</div>
+		<div class="CollapsiblePanelContent">
+			Content for Panel 3 goes here!<br />
+			Content for Panel 3 goes here!<br />
+			Content for Panel 3 goes here!<br />
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 4</div>
+		<div class="CollapsiblePanelContent">
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+			Content for Panel 4 goes here!<br />
+		</div>
+	</div>
+	<div class="CollapsiblePanel">
+		<div class="CollapsiblePanelTab" tabindex="0">Panel 5</div>
+		<div class="CollapsiblePanelContent">
+			Content for Panel 5 goes here!<br />
+			Content for Panel 5 goes here!<br />
+			Content for Panel 5 goes here!<br />
+			Content for Panel 5 goes here!<br />
+			Content for Panel 5 goes here!<br />
+		</div>
+	</div>
+</div>
+<script language="JavaScript" type="text/javascript">
+var cpg1 = new Spry.Widget.CollapsiblePanelGroup("CollapsiblePanelGroup1");
+var cpg2 = new Spry.Widget.CollapsiblePanelGroup("CollapsiblePanelGroup2", { contentIsOpen: false });
+var cpg2_ = new Spry.Widget.CollapsiblePanelGroup("CollapsiblePanelGroup2_", { contentIsOpen: false, openPanelKeyCode:34, closePanelKeyCode:33});
+var cpg3 = new Spry.Widget.CollapsiblePanelGroup("CollapsiblePanelGroup3", { contentIsOpen: false, enableAnimation: false });
+var cpg = new Spry.Widget.CollapsiblePanelGroup("CollapsiblePanelGroup5", { contentIsOpen: false });
+</script>
+</body>
+</html>

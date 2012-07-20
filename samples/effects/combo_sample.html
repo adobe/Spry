@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Effect Combo Samples</title>
+<link href="combo_sample.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Spry Combo Effects Sample</h3>
+<p>This sample shows how to combine effects to create cluster effects. This allows users to for example, have a 'fade' and 'grow' effect happen at the same time. Check the <a href="../../articles/effects_coding/index.html">Effects Coding</a> article for more information on coding Effects.</p>
+<p>&nbsp;</p>
+<div id="container">
+  <div id="Acc1" class="Accordion">
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="cluster1.start();">Click to Slide 1st Panel</div>
+      <div id="panel1ContentBig" class="AccordionPanelContent">
+        <div> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea coeur sint 
+          occaecat cupidatat non proident, sunt in culpa qui off nd. </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+			var cluster1 = new Spry.Effect.Cluster('panel1ContentBig', {duration: 600, toggle: true});
+			var slide1 = new Spry.Effect.Slide('panel1ContentBig', {duration: 600, from: '0px', to: '220px', toggle: true}); 
+			cluster1.addParallelEffect(slide1);
+
+			var highlight1 = new Spry.Effect.Highlight('panel1ContentBig', {duration: 600, from: '#000000', to: '#FFFFCC', restoreColor: '#FFFFCC', toggle:true});
+			cluster1.addParallelEffect(highlight1);
+		</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="cluster2.start();">Click to Slide 2nd Panel</div>
+      <div id="panel2ContentBig" class="AccordionPanelContent">
+        <div> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+			var cluster2 = new Spry.Effect.Cluster('panel2ContentBig', {duration: 600, toggle: true});
+			var slide2 = new Spry.Effect.Slide('panel2ContentBig', {duration: 600, from: '0px', to: '200px', toggle: true});
+			cluster2.addParallelEffect(slide2);
+
+			var highlight2 = new Spry.Effect.Highlight('panel2ContentBig', {duration: 600, from: '#000000', to: '#FF9900', restoreColor: '#FF9900', toggle:true});
+			cluster2.addParallelEffect(highlight2);
+		</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="cluster3.start();">Click to Slide 3rd Panel</div>
+      <div id="panel3ContentBig" class="AccordionPanelContent">
+        <div> Duis vel justo a pede mattis congue. Phasellus tempor odio sagittis lacus. 
+          Maecenas pellentesque vehicula nunc. Maecenas sit amet nunc in est hendrerit 
+          luctus. Phasellus fringilla leo vitae risus consectetuer interdum. Vestibulum 
+          velit. In hac habitasse platea dictumst. Donec ut turpis ac metus tincidunt 
+          tincidunt. </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+			var cluster3 = new Spry.Effect.Cluster('panel3ContentBig', {duration: 600, toggle: true});
+			var slide3 = new Spry.Effect.Slide('panel3ContentBig', {duration: 600, from: '0px', to: '220px', toggle: true});
+			cluster3.addParallelEffect(slide3);
+
+			var highlight3 = new Spry.Effect.Highlight('panel3ContentBig', {duration: 600, from: '#000000', to: '#FF9900', restoreColor: '#FF9900', toggle:true});
+			cluster3.addParallelEffect(highlight3);	
+		</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="slide4.start();">Click to Slide 4th Panel</div>
+      <div id="panel4ContentBig" class="AccordionPanelContent">
+        <div> Phasellus fringilla leo vitae risus consectetuer interdum. Vestibulum velit. 
+          In hac habitasse platea dictumst. </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+			var slide4 = new Spry.Effect.Slide('panel4ContentBig', {duration: 600, from: '0px', to: '200px', toggle: true});
+		</script>
+  </div>
+  <div id="apDiv1">
+    <div>
+      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla viverra imperdiet 
+        ante. Suspendisse enim. Donec urna quam, congue quis, bibendum vel, cursus <span class="style1">Click on the image</span> nec, lacus. <img src="../../demos/gallery/galleries/china/images/china_02.jpg" alt="China" name="img12hours" id="img12hours" onclick="growImg.start();"/> Nulla sed odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus. Vivamus pulvinar tellus non ligula. Etiam euismod quam vitae risus. 
+        Duis mi sem, convallis vitae, hendrerit nec, bibendum sit amet, urna. Nam porttitor,
+        tortor ac auctor suscipit, mi ante sollicitudin ante, at tincidunt eros augue in ante. 
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
+        hymenaeos. Pellentesque id turpis. Nunc mauris justo, tincidunt ac, sagittis ut, <img src="../../demos/gallery/galleries/egypt/images/egypt_02.jpg" id="img12hours2" onclick="clusterImage.start();" alt="Hamburg"/> molestie sit amet, magna. Fusce adipiscing est eget urna. Integer eleifend lorem sed 
+        sem. In vestibulum gravida <span class="style1">Click on the image</span> urna. Phasellus
+        porttitor ultricies libero. Nam rutrum neque et sapien. Nam tristique arcu nec dui. </p>
+    </div>
+    <div id="div12hours3"> <img src="../../demos/gallery/galleries/paris/images/paris_11.jpg" id="img12hours3" alt="Hamburg" /> </div>
+    <div style="clear:both"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+      ut labore et dolore magna aliqua. Donec ut turpis ac metus tincidunt tincidunt. Suspendisse 
+      tellus. Etiam auctor. In elit lorem, mattis eu, sodales nec, pulvinar eu, augue. Proin sit 
+      amet mi ut turpis malesuada dictum. </div>
+  </div>
+  <script type="text/javascript">
+			var growImg = new Spry.Effect.Grow('img12hours', {duration: 500, from: '100%', to: '400%', toggle: true});
+		</script>
+  <script type="text/javascript">
+			var clusterImage = new Spry.Effect.Cluster({toggle:true});
+			var slideImg = new Spry.Effect.Slide('div12hours3', {duration: 1000, from: '0px', to: '200px', toggle: true});
+			clusterImage.addParallelEffect(slideImg);
+
+			var fadeImg = new Spry.Effect.Fade('img12hours3', {duration: 2000, from: 0, to: 100, toggle: true});
+			clusterImage.addParallelEffect(fadeImg);
+		</script>
+  <div id="Acc2" class="Accordion">
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="blind1.start();">Click to Blind</div>
+      <div id="panel1Content" class="AccordionPanelContent">
+        <div>
+          <ul>
+            <li>List element</li>
+            <li>List element</li>
+            <li>List element</li>
+            <li>List element</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+				var blind1 = new Spry.Effect.Blind('panel1Content', {duration: 800, from: '100px', to: '0px', toggle: true});
+			</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="blind2.start();">Click to Blind</div>
+      <div id="panel2Content" class="AccordionPanelContent"> Duis vel justo a pede mattis congue. Phasellus tempor odio sagittis lacus. 
+        Maecenas pellentesque vehicula nunc. Maecenas sit amet nunc in est hendrerit 
+        luctus. Phasellus fringilla leo vitae risus consectetuer interdum. </div>
+    </div>
+    <script type="text/javascript">
+			var blind2 = new Spry.Effect.Blind('panel2Content', {duration: 800, from: '0px', to: '100px', toggle: true});
+		</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="blind3.start();">Click to Blind</div>
+      <div id="panel3Content" class="AccordionPanelContent"> Duis vel justo a pede mattis congue. Phasellus tempor odio sagittis lacus. 
+        Maecenas pellentesque vehicula nunc. Maecenas sit amet nunc in est hendrerit 
+        luctus. Phasellus fringilla leo vitae risus consectetuer interdum. </div>
+    </div>
+    <script type="text/javascript">
+			var blind3 = new Spry.Effect.Blind('panel3Content', {duration: 800, from: '0px', to: '100px', toggle: true});
+		</script>
+    <div class="AccordionPanel">
+      <div class="AccordionPanelLabel" onclick="blind4.start();">Click to Blind</div>
+      <div id="panel4Content" class="AccordionPanelContent"> Duis vel justo a pede mattis congue. Phasellus tempor odio sagittis lacus. 
+        Maecenas pellentesque vehicula nunc. Maecenas sit amet nunc in est hendrerit 
+        luctus. Phasellus fringilla leo vitae risus consectetuer interdum. </div>
+    </div>
+    <script type="text/javascript">
+			var blind4 = new Spry.Effect.Blind('panel4Content', {duration: 800, from: '0px', to: '205px', toggle: true});
+		</script>
+  </div>
+</div>
+</body>
+</html>

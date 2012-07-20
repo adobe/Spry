@@ -1,0 +1,2634 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>California</name>
+	<cities>
+		<city>
+			<name>Acton</name>
+		</city>
+		<city>
+			<name>Adelanto</name>
+		</city>
+		<city>
+			<name>Agoura Hills</name>
+		</city>
+		<city>
+			<name>Alameda</name>
+		</city>
+		<city>
+			<name>Alamo</name>
+		</city>
+		<city>
+			<name>Albany</name>
+		</city>
+		<city>
+			<name>Alhambra</name>
+		</city>
+		<city>
+			<name>Aliso Viejo</name>
+		</city>
+		<city>
+			<name>Alondra Park</name>
+		</city>
+		<city>
+			<name>Alpine</name>
+		</city>
+		<city>
+			<name>Alta Sierra</name>
+		</city>
+		<city>
+			<name>Altadena</name>
+		</city>
+		<city>
+			<name>Alturas</name>
+		</city>
+		<city>
+			<name>Amador City</name>
+		</city>
+		<city>
+			<name>American Canyon</name>
+		</city>
+		<city>
+			<name>Anaheim</name>
+		</city>
+		<city>
+			<name>Anderson</name>
+		</city>
+		<city>
+			<name>Angels</name>
+		</city>
+		<city>
+			<name>Angwin</name>
+		</city>
+		<city>
+			<name>Antioch</name>
+		</city>
+		<city>
+			<name>Apple Valley</name>
+		</city>
+		<city>
+			<name>Aptos</name>
+		</city>
+		<city>
+			<name>Aptos Hills-Larkin Valley</name>
+		</city>
+		<city>
+			<name>Arbuckle</name>
+		</city>
+		<city>
+			<name>Arcadia</name>
+		</city>
+		<city>
+			<name>Arcata</name>
+		</city>
+		<city>
+			<name>Arden-Arcade</name>
+		</city>
+		<city>
+			<name>Armona</name>
+		</city>
+		<city>
+			<name>Arnold</name>
+		</city>
+		<city>
+			<name>Aromas</name>
+		</city>
+		<city>
+			<name>Arroyo Grande</name>
+		</city>
+		<city>
+			<name>Artesia</name>
+		</city>
+		<city>
+			<name>Arvin</name>
+		</city>
+		<city>
+			<name>Ashland</name>
+		</city>
+		<city>
+			<name>Atascadero</name>
+		</city>
+		<city>
+			<name>Atherton</name>
+		</city>
+		<city>
+			<name>Atwater</name>
+		</city>
+		<city>
+			<name>Auberry</name>
+		</city>
+		<city>
+			<name>Auburn</name>
+		</city>
+		<city>
+			<name>August</name>
+		</city>
+		<city>
+			<name>Avalon</name>
+		</city>
+		<city>
+			<name>Avenal</name>
+		</city>
+		<city>
+			<name>Avocado Heights</name>
+		</city>
+		<city>
+			<name>Azusa</name>
+		</city>
+		<city>
+			<name>Bakersfield</name>
+		</city>
+		<city>
+			<name>Baldwin Park</name>
+		</city>
+		<city>
+			<name>Banning</name>
+		</city>
+		<city>
+			<name>Barstow</name>
+		</city>
+		<city>
+			<name>Bayview</name>
+		</city>
+		<city>
+			<name>Bayview-Montalvin</name>
+		</city>
+		<city>
+			<name>Baywood-Los Osos</name>
+		</city>
+		<city>
+			<name>Beale AFB</name>
+		</city>
+		<city>
+			<name>Bear Valley Springs</name>
+		</city>
+		<city>
+			<name>Beaumont</name>
+		</city>
+		<city>
+			<name>Bell</name>
+		</city>
+		<city>
+			<name>Bell Gardens</name>
+		</city>
+		<city>
+			<name>Bellflower</name>
+		</city>
+		<city>
+			<name>Belmont</name>
+		</city>
+		<city>
+			<name>Belvedere</name>
+		</city>
+		<city>
+			<name>Ben Lomond</name>
+		</city>
+		<city>
+			<name>Benicia</name>
+		</city>
+		<city>
+			<name>Berkeley</name>
+		</city>
+		<city>
+			<name>Bermuda Dunes</name>
+		</city>
+		<city>
+			<name>Bethel Island</name>
+		</city>
+		<city>
+			<name>Beverly Hills</name>
+		</city>
+		<city>
+			<name>Big Bear City</name>
+		</city>
+		<city>
+			<name>Big Bear Lake</name>
+		</city>
+		<city>
+			<name>Big Pine</name>
+		</city>
+		<city>
+			<name>Big River</name>
+		</city>
+		<city>
+			<name>Biggs</name>
+		</city>
+		<city>
+			<name>Bishop</name>
+		</city>
+		<city>
+			<name>Blackhawk</name>
+		</city>
+		<city>
+			<name>Bloomington</name>
+		</city>
+		<city>
+			<name>Blue Lake</name>
+		</city>
+		<city>
+			<name>Bluewater</name>
+		</city>
+		<city>
+			<name>Blythe</name>
+		</city>
+		<city>
+			<name>Bodega Bay</name>
+		</city>
+		<city>
+			<name>Bodfish</name>
+		</city>
+		<city>
+			<name>Bolinas</name>
+		</city>
+		<city>
+			<name>Bonadelle Ranchos-Madera Ranchos</name>
+		</city>
+		<city>
+			<name>Bonita</name>
+		</city>
+		<city>
+			<name>Bonsall</name>
+		</city>
+		<city>
+			<name>Bootjack</name>
+		</city>
+		<city>
+			<name>Boron</name>
+		</city>
+		<city>
+			<name>Borrego Springs</name>
+		</city>
+		<city>
+			<name>Bostonia</name>
+		</city>
+		<city>
+			<name>Boulder Creek</name>
+		</city>
+		<city>
+			<name>Boyes Hot Springs</name>
+		</city>
+		<city>
+			<name>Bradbury</name>
+		</city>
+		<city>
+			<name>Brawley</name>
+		</city>
+		<city>
+			<name>Brea</name>
+		</city>
+		<city>
+			<name>Brentwood</name>
+		</city>
+		<city>
+			<name>Brisbane</name>
+		</city>
+		<city>
+			<name>Broadmoor</name>
+		</city>
+		<city>
+			<name>Buellton</name>
+		</city>
+		<city>
+			<name>Buena Park</name>
+		</city>
+		<city>
+			<name>Burbank</name>
+		</city>
+		<city>
+			<name>Burbank</name>
+		</city>
+		<city>
+			<name>Burlingame</name>
+		</city>
+		<city>
+			<name>Burney</name>
+		</city>
+		<city>
+			<name>Buttonwillow</name>
+		</city>
+		<city>
+			<name>Cabazon</name>
+		</city>
+		<city>
+			<name>Calexico</name>
+		</city>
+		<city>
+			<name>California City</name>
+		</city>
+		<city>
+			<name>Calimesa</name>
+		</city>
+		<city>
+			<name>Calipatria</name>
+		</city>
+		<city>
+			<name>Calistoga</name>
+		</city>
+		<city>
+			<name>Camarillo</name>
+		</city>
+		<city>
+			<name>Cambria</name>
+		</city>
+		<city>
+			<name>Cambrian Park</name>
+		</city>
+		<city>
+			<name>Cameron Park</name>
+		</city>
+		<city>
+			<name>Camp Pendleton North</name>
+		</city>
+		<city>
+			<name>Camp Pendleton South</name>
+		</city>
+		<city>
+			<name>Campbell</name>
+		</city>
+		<city>
+			<name>Canyon Lake</name>
+		</city>
+		<city>
+			<name>Capitola</name>
+		</city>
+		<city>
+			<name>Carlsbad</name>
+		</city>
+		<city>
+			<name>Carmel Valley Village</name>
+		</city>
+		<city>
+			<name>Carmel-by-the-Sea</name>
+		</city>
+		<city>
+			<name>Carmichael</name>
+		</city>
+		<city>
+			<name>Carpinteria</name>
+		</city>
+		<city>
+			<name>Carson</name>
+		</city>
+		<city>
+			<name>Caruthers</name>
+		</city>
+		<city>
+			<name>Casa Conejo</name>
+		</city>
+		<city>
+			<name>Casa de Oro-Mount Helix</name>
+		</city>
+		<city>
+			<name>Castro Valley</name>
+		</city>
+		<city>
+			<name>Castroville</name>
+		</city>
+		<city>
+			<name>Cathedral City</name>
+		</city>
+		<city>
+			<name>Cayucos</name>
+		</city>
+		<city>
+			<name>Central Valley</name>
+		</city>
+		<city>
+			<name>Ceres</name>
+		</city>
+		<city>
+			<name>Cerritos</name>
+		</city>
+		<city>
+			<name>Challenge-Brownsville</name>
+		</city>
+		<city>
+			<name>Channel Islands Beach</name>
+		</city>
+		<city>
+			<name>Charter Oak</name>
+		</city>
+		<city>
+			<name>Cherry Valley</name>
+		</city>
+		<city>
+			<name>Cherryland</name>
+		</city>
+		<city>
+			<name>Chester</name>
+		</city>
+		<city>
+			<name>Chico</name>
+		</city>
+		<city>
+			<name>Chino</name>
+		</city>
+		<city>
+			<name>Chino Hills</name>
+		</city>
+		<city>
+			<name>Chowchilla</name>
+		</city>
+		<city>
+			<name>Chula Vista</name>
+		</city>
+		<city>
+			<name>Citrus</name>
+		</city>
+		<city>
+			<name>Citrus Heights</name>
+		</city>
+		<city>
+			<name>Claremont</name>
+		</city>
+		<city>
+			<name>Clayton</name>
+		</city>
+		<city>
+			<name>Clearlake</name>
+		</city>
+		<city>
+			<name>Clearlake Oaks</name>
+		</city>
+		<city>
+			<name>Cloverdale</name>
+		</city>
+		<city>
+			<name>Clovis</name>
+		</city>
+		<city>
+			<name>Coachella</name>
+		</city>
+		<city>
+			<name>Coalinga</name>
+		</city>
+		<city>
+			<name>Cobb</name>
+		</city>
+		<city>
+			<name>Colfax</name>
+		</city>
+		<city>
+			<name>Colma</name>
+		</city>
+		<city>
+			<name>Colton</name>
+		</city>
+		<city>
+			<name>Columbia</name>
+		</city>
+		<city>
+			<name>Colusa</name>
+		</city>
+		<city>
+			<name>Commerce</name>
+		</city>
+		<city>
+			<name>Compton</name>
+		</city>
+		<city>
+			<name>Concord</name>
+		</city>
+		<city>
+			<name>Concow</name>
+		</city>
+		<city>
+			<name>Corcoran</name>
+		</city>
+		<city>
+			<name>Corning</name>
+		</city>
+		<city>
+			<name>Corona</name>
+		</city>
+		<city>
+			<name>Coronado</name>
+		</city>
+		<city>
+			<name>Corralitos</name>
+		</city>
+		<city>
+			<name>Corte Madera</name>
+		</city>
+		<city>
+			<name>Costa Mesa</name>
+		</city>
+		<city>
+			<name>Cotati</name>
+		</city>
+		<city>
+			<name>Coto De Caza</name>
+		</city>
+		<city>
+			<name>Cottonwood</name>
+		</city>
+		<city>
+			<name>Country Club</name>
+		</city>
+		<city>
+			<name>Covelo</name>
+		</city>
+		<city>
+			<name>Covina</name>
+		</city>
+		<city>
+			<name>Crescent City</name>
+		</city>
+		<city>
+			<name>Crescent City North</name>
+		</city>
+		<city>
+			<name>Crestline</name>
+		</city>
+		<city>
+			<name>Crockett</name>
+		</city>
+		<city>
+			<name>Cudahy</name>
+		</city>
+		<city>
+			<name>Culver City</name>
+		</city>
+		<city>
+			<name>Cupertino</name>
+		</city>
+		<city>
+			<name>Cutler</name>
+		</city>
+		<city>
+			<name>Cutten</name>
+		</city>
+		<city>
+			<name>Cypress</name>
+		</city>
+		<city>
+			<name>Daly City</name>
+		</city>
+		<city>
+			<name>Dana Point</name>
+		</city>
+		<city>
+			<name>Danville</name>
+		</city>
+		<city>
+			<name>Davis</name>
+		</city>
+		<city>
+			<name>Day Valley</name>
+		</city>
+		<city>
+			<name>Deer Park</name>
+		</city>
+		<city>
+			<name>Del Aire</name>
+		</city>
+		<city>
+			<name>Del Mar</name>
+		</city>
+		<city>
+			<name>Del Monte Forest</name>
+		</city>
+		<city>
+			<name>Del Rey</name>
+		</city>
+		<city>
+			<name>Del Rey Oaks</name>
+		</city>
+		<city>
+			<name>Delano</name>
+		</city>
+		<city>
+			<name>Delhi</name>
+		</city>
+		<city>
+			<name>Denair</name>
+		</city>
+		<city>
+			<name>Desert Hot Springs</name>
+		</city>
+		<city>
+			<name>Desert View Highlands</name>
+		</city>
+		<city>
+			<name>Diamond Bar</name>
+		</city>
+		<city>
+			<name>Diamond Springs</name>
+		</city>
+		<city>
+			<name>Dinuba</name>
+		</city>
+		<city>
+			<name>Discovery Bay</name>
+		</city>
+		<city>
+			<name>Dixon</name>
+		</city>
+		<city>
+			<name>Dixon Lane-Meadow Creek</name>
+		</city>
+		<city>
+			<name>Dollar Point</name>
+		</city>
+		<city>
+			<name>Dorris</name>
+		</city>
+		<city>
+			<name>Dos Palos</name>
+		</city>
+		<city>
+			<name>Downey</name>
+		</city>
+		<city>
+			<name>Duarte</name>
+		</city>
+		<city>
+			<name>Dublin</name>
+		</city>
+		<city>
+			<name>Dunsmuir</name>
+		</city>
+		<city>
+			<name>Durham</name>
+		</city>
+		<city>
+			<name>Earlimart</name>
+		</city>
+		<city>
+			<name>East Blythe</name>
+		</city>
+		<city>
+			<name>East Compton</name>
+		</city>
+		<city>
+			<name>East Foothills</name>
+		</city>
+		<city>
+			<name>East Hemet</name>
+		</city>
+		<city>
+			<name>East La Mirada</name>
+		</city>
+		<city>
+			<name>East Los Angeles</name>
+		</city>
+		<city>
+			<name>East Palo Alto</name>
+		</city>
+		<city>
+			<name>East Pasadena</name>
+		</city>
+		<city>
+			<name>East Porterville</name>
+		</city>
+		<city>
+			<name>East Richmond Heights</name>
+		</city>
+		<city>
+			<name>East San Gabriel</name>
+		</city>
+		<city>
+			<name>East Sonora</name>
+		</city>
+		<city>
+			<name>Easton</name>
+		</city>
+		<city>
+			<name>Edwards AFB</name>
+		</city>
+		<city>
+			<name>El Cajon</name>
+		</city>
+		<city>
+			<name>El Centro</name>
+		</city>
+		<city>
+			<name>El Cerrito</name>
+		</city>
+		<city>
+			<name>El Cerrito</name>
+		</city>
+		<city>
+			<name>El Dorado Hills</name>
+		</city>
+		<city>
+			<name>El Granada</name>
+		</city>
+		<city>
+			<name>El Monte</name>
+		</city>
+		<city>
+			<name>El Paso de Robles (Paso Robles)</name>
+		</city>
+		<city>
+			<name>El Rio</name>
+		</city>
+		<city>
+			<name>El Segundo</name>
+		</city>
+		<city>
+			<name>El Sobrante</name>
+		</city>
+		<city>
+			<name>El Toro</name>
+		</city>
+		<city>
+			<name>El Toro Station</name>
+		</city>
+		<city>
+			<name>El Verano</name>
+		</city>
+		<city>
+			<name>Eldridge</name>
+		</city>
+		<city>
+			<name>Elk Grove</name>
+		</city>
+		<city>
+			<name>Elkhorn</name>
+		</city>
+		<city>
+			<name>Emerald Lake Hills</name>
+		</city>
+		<city>
+			<name>Emeryville</name>
+		</city>
+		<city>
+			<name>Encinitas</name>
+		</city>
+		<city>
+			<name>Escalon</name>
+		</city>
+		<city>
+			<name>Escondido</name>
+		</city>
+		<city>
+			<name>Esparto</name>
+		</city>
+		<city>
+			<name>Etna</name>
+		</city>
+		<city>
+			<name>Eureka</name>
+		</city>
+		<city>
+			<name>Exeter</name>
+		</city>
+		<city>
+			<name>Fair Oaks</name>
+		</city>
+		<city>
+			<name>Fairfax</name>
+		</city>
+		<city>
+			<name>Fairfield</name>
+		</city>
+		<city>
+			<name>Fairview</name>
+		</city>
+		<city>
+			<name>Fallbrook</name>
+		</city>
+		<city>
+			<name>Farmersville</name>
+		</city>
+		<city>
+			<name>Felton</name>
+		</city>
+		<city>
+			<name>Ferndale</name>
+		</city>
+		<city>
+			<name>Fetters Hot Springs-Agua Caliente</name>
+		</city>
+		<city>
+			<name>Fillmore</name>
+		</city>
+		<city>
+			<name>Firebaugh</name>
+		</city>
+		<city>
+			<name>Florence-Graham</name>
+		</city>
+		<city>
+			<name>Florin</name>
+		</city>
+		<city>
+			<name>Folsom</name>
+		</city>
+		<city>
+			<name>Fontana</name>
+		</city>
+		<city>
+			<name>Foothill Farms</name>
+		</city>
+		<city>
+			<name>Ford City</name>
+		</city>
+		<city>
+			<name>Foresthill</name>
+		</city>
+		<city>
+			<name>Forestville</name>
+		</city>
+		<city>
+			<name>Fort Bragg</name>
+		</city>
+		<city>
+			<name>Fort Jones</name>
+		</city>
+		<city>
+			<name>Fortuna</name>
+		</city>
+		<city>
+			<name>Foster City</name>
+		</city>
+		<city>
+			<name>Fountain Valley</name>
+		</city>
+		<city>
+			<name>Fowler</name>
+		</city>
+		<city>
+			<name>Frazier Park</name>
+		</city>
+		<city>
+			<name>Freedom</name>
+		</city>
+		<city>
+			<name>Fremont</name>
+		</city>
+		<city>
+			<name>French Camp</name>
+		</city>
+		<city>
+			<name>Fresno</name>
+		</city>
+		<city>
+			<name>Fullerton</name>
+		</city>
+		<city>
+			<name>Galt</name>
+		</city>
+		<city>
+			<name>Garden Acres</name>
+		</city>
+		<city>
+			<name>Garden Grove</name>
+		</city>
+		<city>
+			<name>Gardena</name>
+		</city>
+		<city>
+			<name>George AFB</name>
+		</city>
+		<city>
+			<name>Gerber-Las Flores</name>
+		</city>
+		<city>
+			<name>Gilroy</name>
+		</city>
+		<city>
+			<name>Glen Avon</name>
+		</city>
+		<city>
+			<name>Glen Ellen</name>
+		</city>
+		<city>
+			<name>Glendale</name>
+		</city>
+		<city>
+			<name>Glendora</name>
+		</city>
+		<city>
+			<name>Glenshire-Devonshire</name>
+		</city>
+		<city>
+			<name>Golden Hills</name>
+		</city>
+		<city>
+			<name>Gonzales</name>
+		</city>
+		<city>
+			<name>Grand Terrace</name>
+		</city>
+		<city>
+			<name>Granite Hills</name>
+		</city>
+		<city>
+			<name>Grass Valley</name>
+		</city>
+		<city>
+			<name>Graton</name>
+		</city>
+		<city>
+			<name>Greenacres</name>
+		</city>
+		<city>
+			<name>Greenfield</name>
+		</city>
+		<city>
+			<name>Greenville</name>
+		</city>
+		<city>
+			<name>Gridley</name>
+		</city>
+		<city>
+			<name>Groveland-Big Oak Flat</name>
+		</city>
+		<city>
+			<name>Grover City</name>
+		</city>
+		<city>
+			<name>Guadalupe</name>
+		</city>
+		<city>
+			<name>Guerneville</name>
+		</city>
+		<city>
+			<name>Gustine</name>
+		</city>
+		<city>
+			<name>Hacienda Heights</name>
+		</city>
+		<city>
+			<name>Half Moon Bay</name>
+		</city>
+		<city>
+			<name>Hamilton City</name>
+		</city>
+		<city>
+			<name>Hanford</name>
+		</city>
+		<city>
+			<name>Harbison Canyon</name>
+		</city>
+		<city>
+			<name>Hawaiian Gardens</name>
+		</city>
+		<city>
+			<name>Hawthorne</name>
+		</city>
+		<city>
+			<name>Hayfork</name>
+		</city>
+		<city>
+			<name>Hayward</name>
+		</city>
+		<city>
+			<name>Healdsburg</name>
+		</city>
+		<city>
+			<name>Heber</name>
+		</city>
+		<city>
+			<name>Hemet</name>
+		</city>
+		<city>
+			<name>Hercules</name>
+		</city>
+		<city>
+			<name>Hermosa Beach</name>
+		</city>
+		<city>
+			<name>Hesperia</name>
+		</city>
+		<city>
+			<name>Hidden Hills</name>
+		</city>
+		<city>
+			<name>Hidden Meadows</name>
+		</city>
+		<city>
+			<name>Hidden Valley Lake</name>
+		</city>
+		<city>
+			<name>Highgrove</name>
+		</city>
+		<city>
+			<name>Highland</name>
+		</city>
+		<city>
+			<name>Highlands</name>
+		</city>
+		<city>
+			<name>Hillsborough</name>
+		</city>
+		<city>
+			<name>Hilmar-Irwin</name>
+		</city>
+		<city>
+			<name>Hollister</name>
+		</city>
+		<city>
+			<name>Holtville</name>
+		</city>
+		<city>
+			<name>Home Garden</name>
+		</city>
+		<city>
+			<name>Home Gardens</name>
+		</city>
+		<city>
+			<name>Homeland</name>
+		</city>
+		<city>
+			<name>Hughson</name>
+		</city>
+		<city>
+			<name>Humboldt Hill</name>
+		</city>
+		<city>
+			<name>Huntington Beach</name>
+		</city>
+		<city>
+			<name>Huntington Park</name>
+		</city>
+		<city>
+			<name>Huron</name>
+		</city>
+		<city>
+			<name>Hydesville</name>
+		</city>
+		<city>
+			<name>Idyllwild-Pine Cove</name>
+		</city>
+		<city>
+			<name>Imperial</name>
+		</city>
+		<city>
+			<name>Imperial Beach</name>
+		</city>
+		<city>
+			<name>Indian Wells</name>
+		</city>
+		<city>
+			<name>Indio</name>
+		</city>
+		<city>
+			<name>Industry</name>
+		</city>
+		<city>
+			<name>Inglewood</name>
+		</city>
+		<city>
+			<name>Interlaken</name>
+		</city>
+		<city>
+			<name>Inverness</name>
+		</city>
+		<city>
+			<name>Ione</name>
+		</city>
+		<city>
+			<name>Irvine</name>
+		</city>
+		<city>
+			<name>Irwindale</name>
+		</city>
+		<city>
+			<name>Isla Vista</name>
+		</city>
+		<city>
+			<name>Isleton</name>
+		</city>
+		<city>
+			<name>Ivanhoe</name>
+		</city>
+		<city>
+			<name>Jackson</name>
+		</city>
+		<city>
+			<name>Jamestown</name>
+		</city>
+		<city>
+			<name>Jamul</name>
+		</city>
+		<city>
+			<name>Joshua Tree</name>
+		</city>
+		<city>
+			<name>Julian</name>
+		</city>
+		<city>
+			<name>Kelseyville</name>
+		</city>
+		<city>
+			<name>Kensington</name>
+		</city>
+		<city>
+			<name>Kentfield</name>
+		</city>
+		<city>
+			<name>Kerman</name>
+		</city>
+		<city>
+			<name>Kernville</name>
+		</city>
+		<city>
+			<name>Kettleman City</name>
+		</city>
+		<city>
+			<name>Keyes</name>
+		</city>
+		<city>
+			<name>King City</name>
+		</city>
+		<city>
+			<name>Kings Beach</name>
+		</city>
+		<city>
+			<name>Kingsburg</name>
+		</city>
+		<city>
+			<name>Klamath</name>
+		</city>
+		<city>
+			<name>La Canada Flintridge</name>
+		</city>
+		<city>
+			<name>La Crescenta-Montrose</name>
+		</city>
+		<city>
+			<name>La Habra</name>
+		</city>
+		<city>
+			<name>La Habra Heights</name>
+		</city>
+		<city>
+			<name>La Mesa</name>
+		</city>
+		<city>
+			<name>La Mirada</name>
+		</city>
+		<city>
+			<name>La Palma</name>
+		</city>
+		<city>
+			<name>La Puente</name>
+		</city>
+		<city>
+			<name>La Quinta</name>
+		</city>
+		<city>
+			<name>La Riviera</name>
+		</city>
+		<city>
+			<name>La Verne</name>
+		</city>
+		<city>
+			<name>Ladera Heights</name>
+		</city>
+		<city>
+			<name>Lafayette</name>
+		</city>
+		<city>
+			<name>Laguna</name>
+		</city>
+		<city>
+			<name>Laguna Beach</name>
+		</city>
+		<city>
+			<name>Laguna Hills</name>
+		</city>
+		<city>
+			<name>Laguna Niguel</name>
+		</city>
+		<city>
+			<name>Lagunitas-Forest Knolls</name>
+		</city>
+		<city>
+			<name>Lake Arrowhead</name>
+		</city>
+		<city>
+			<name>Lake Elsinore</name>
+		</city>
+		<city>
+			<name>Lake Isabella</name>
+		</city>
+		<city>
+			<name>Lake Los Angeles</name>
+		</city>
+		<city>
+			<name>Lake Nacimiento</name>
+		</city>
+		<city>
+			<name>Lake Of The Pines</name>
+		</city>
+		<city>
+			<name>Lake San Marcos</name>
+		</city>
+		<city>
+			<name>Lakeland Village</name>
+		</city>
+		<city>
+			<name>Lakeport</name>
+		</city>
+		<city>
+			<name>Lakeside</name>
+		</city>
+		<city>
+			<name>Lakeview</name>
+		</city>
+		<city>
+			<name>Lakewood</name>
+		</city>
+		<city>
+			<name>Lamont</name>
+		</city>
+		<city>
+			<name>Lancaster</name>
+		</city>
+		<city>
+			<name>Larkfield-Wikiup</name>
+		</city>
+		<city>
+			<name>Larkspur</name>
+		</city>
+		<city>
+			<name>Las Lomas</name>
+		</city>
+		<city>
+			<name>Lathrop</name>
+		</city>
+		<city>
+			<name>Laton</name>
+		</city>
+		<city>
+			<name>Lawndale</name>
+		</city>
+		<city>
+			<name>Laytonville</name>
+		</city>
+		<city>
+			<name>Le Grand</name>
+		</city>
+		<city>
+			<name>Lemon Grove</name>
+		</city>
+		<city>
+			<name>Lemoore</name>
+		</city>
+		<city>
+			<name>Lemoore Station</name>
+		</city>
+		<city>
+			<name>Lennox</name>
+		</city>
+		<city>
+			<name>Lenwood</name>
+		</city>
+		<city>
+			<name>Lewiston</name>
+		</city>
+		<city>
+			<name>Lexington Hills</name>
+		</city>
+		<city>
+			<name>Lincoln</name>
+		</city>
+		<city>
+			<name>Lincoln Village</name>
+		</city>
+		<city>
+			<name>Linda</name>
+		</city>
+		<city>
+			<name>Linden</name>
+		</city>
+		<city>
+			<name>Lindsay</name>
+		</city>
+		<city>
+			<name>Littlerock</name>
+		</city>
+		<city>
+			<name>Live Oak</name>
+		</city>
+		<city>
+			<name>Live Oak</name>
+		</city>
+		<city>
+			<name>Livermore</name>
+		</city>
+		<city>
+			<name>Livingston</name>
+		</city>
+		<city>
+			<name>Lockeford</name>
+		</city>
+		<city>
+			<name>Lodi</name>
+		</city>
+		<city>
+			<name>Loma Linda</name>
+		</city>
+		<city>
+			<name>Loma Rica</name>
+		</city>
+		<city>
+			<name>Lomita</name>
+		</city>
+		<city>
+			<name>Lompoc</name>
+		</city>
+		<city>
+			<name>London</name>
+		</city>
+		<city>
+			<name>Lone Pine</name>
+		</city>
+		<city>
+			<name>Long Beach</name>
+		</city>
+		<city>
+			<name>Loomis</name>
+		</city>
+		<city>
+			<name>Los Alamitos</name>
+		</city>
+		<city>
+			<name>Los Altos</name>
+		</city>
+		<city>
+			<name>Los Altos Hills</name>
+		</city>
+		<city>
+			<name>Los Angeles</name>
+		</city>
+		<city>
+			<name>Los Banos</name>
+		</city>
+		<city>
+			<name>Los Gatos</name>
+		</city>
+		<city>
+			<name>Los Molinos</name>
+		</city>
+		<city>
+			<name>Los Serranos</name>
+		</city>
+		<city>
+			<name>Lost Hills</name>
+		</city>
+		<city>
+			<name>Lower Lake</name>
+		</city>
+		<city>
+			<name>Loyalton</name>
+		</city>
+		<city>
+			<name>Loyola</name>
+		</city>
+		<city>
+			<name>Lucas Valley-Marinwood</name>
+		</city>
+		<city>
+			<name>Lucerne</name>
+		</city>
+		<city>
+			<name>Lynwood</name>
+		</city>
+		<city>
+			<name>Madera</name>
+		</city>
+		<city>
+			<name>Madera Acres</name>
+		</city>
+		<city>
+			<name>Magalia</name>
+		</city>
+		<city>
+			<name>Mammoth Lakes</name>
+		</city>
+		<city>
+			<name>Manhattan Beach</name>
+		</city>
+		<city>
+			<name>Manteca</name>
+		</city>
+		<city>
+			<name>March AFB</name>
+		</city>
+		<city>
+			<name>Maricopa</name>
+		</city>
+		<city>
+			<name>Marina</name>
+		</city>
+		<city>
+			<name>Marina del Rey</name>
+		</city>
+		<city>
+			<name>Mariposa</name>
+		</city>
+		<city>
+			<name>Martinez</name>
+		</city>
+		<city>
+			<name>Marysville</name>
+		</city>
+		<city>
+			<name>Mather AFB</name>
+		</city>
+		<city>
+			<name>Mayflower Village</name>
+		</city>
+		<city>
+			<name>Maywood</name>
+		</city>
+		<city>
+			<name>McCloud</name>
+		</city>
+		<city>
+			<name>McFarland</name>
+		</city>
+		<city>
+			<name>McKinleyville</name>
+		</city>
+		<city>
+			<name>Meadow Vista</name>
+		</city>
+		<city>
+			<name>Mecca</name>
+		</city>
+		<city>
+			<name>Meiners Oaks</name>
+		</city>
+		<city>
+			<name>Mendota</name>
+		</city>
+		<city>
+			<name>Menlo Park</name>
+		</city>
+		<city>
+			<name>Mentone</name>
+		</city>
+		<city>
+			<name>Merced</name>
+		</city>
+		<city>
+			<name>Mi-Wuk Village</name>
+		</city>
+		<city>
+			<name>Mill Valley</name>
+		</city>
+		<city>
+			<name>Millbrae</name>
+		</city>
+		<city>
+			<name>Milpitas</name>
+		</city>
+		<city>
+			<name>Mira Loma</name>
+		</city>
+		<city>
+			<name>Mira Monte</name>
+		</city>
+		<city>
+			<name>Mission Hills</name>
+		</city>
+		<city>
+			<name>Mission Viejo</name>
+		</city>
+		<city>
+			<name>Modesto</name>
+		</city>
+		<city>
+			<name>Mojave</name>
+		</city>
+		<city>
+			<name>Mono Vista</name>
+		</city>
+		<city>
+			<name>Monrovia</name>
+		</city>
+		<city>
+			<name>Montague</name>
+		</city>
+		<city>
+			<name>Montara</name>
+		</city>
+		<city>
+			<name>Montclair</name>
+		</city>
+		<city>
+			<name>Monte Rio</name>
+		</city>
+		<city>
+			<name>Monte Sereno</name>
+		</city>
+		<city>
+			<name>Montebello</name>
+		</city>
+		<city>
+			<name>Monterey</name>
+		</city>
+		<city>
+			<name>Monterey Park</name>
+		</city>
+		<city>
+			<name>Moorpark</name>
+		</city>
+		<city>
+			<name>Morada</name>
+		</city>
+		<city>
+			<name>Moraga Town</name>
+		</city>
+		<city>
+			<name>Moreno Valley</name>
+		</city>
+		<city>
+			<name>Morgan Hill</name>
+		</city>
+		<city>
+			<name>Morongo Valley</name>
+		</city>
+		<city>
+			<name>Morro Bay</name>
+		</city>
+		<city>
+			<name>Moss Beach</name>
+		</city>
+		<city>
+			<name>Mount Shasta</name>
+		</city>
+		<city>
+			<name>Mountain Mesa</name>
+		</city>
+		<city>
+			<name>Mountain View</name>
+		</city>
+		<city>
+			<name>Mountain View Acres</name>
+		</city>
+		<city>
+			<name>Murphys</name>
+		</city>
+		<city>
+			<name>Murrieta</name>
+		</city>
+		<city>
+			<name>Murrieta Hot Springs</name>
+		</city>
+		<city>
+			<name>Muscoy</name>
+		</city>
+		<city>
+			<name>Myrtletown</name>
+		</city>
+		<city>
+			<name>Napa</name>
+		</city>
+		<city>
+			<name>National City</name>
+		</city>
+		<city>
+			<name>Nebo Center</name>
+		</city>
+		<city>
+			<name>Needles</name>
+		</city>
+		<city>
+			<name>Nevada City</name>
+		</city>
+		<city>
+			<name>Newark</name>
+		</city>
+		<city>
+			<name>Newman</name>
+		</city>
+		<city>
+			<name>Newport Beach</name>
+		</city>
+		<city>
+			<name>Nice</name>
+		</city>
+		<city>
+			<name>Niland</name>
+		</city>
+		<city>
+			<name>Nipomo</name>
+		</city>
+		<city>
+			<name>Norco</name>
+		</city>
+		<city>
+			<name>North Auburn</name>
+		</city>
+		<city>
+			<name>North Edwards</name>
+		</city>
+		<city>
+			<name>North El Monte</name>
+		</city>
+		<city>
+			<name>North Fair Oaks</name>
+		</city>
+		<city>
+			<name>North Highlands</name>
+		</city>
+		<city>
+			<name>Norwalk</name>
+		</city>
+		<city>
+			<name>Novato</name>
+		</city>
+		<city>
+			<name>Nuevo</name>
+		</city>
+		<city>
+			<name>Oak Park</name>
+		</city>
+		<city>
+			<name>Oak View</name>
+		</city>
+		<city>
+			<name>Oakdale</name>
+		</city>
+		<city>
+			<name>Oakhurst</name>
+		</city>
+		<city>
+			<name>Oakland</name>
+		</city>
+		<city>
+			<name>Oakley</name>
+		</city>
+		<city>
+			<name>Occidental</name>
+		</city>
+		<city>
+			<name>Oceano</name>
+		</city>
+		<city>
+			<name>Oceanside</name>
+		</city>
+		<city>
+			<name>Oildale</name>
+		</city>
+		<city>
+			<name>Ojai</name>
+		</city>
+		<city>
+			<name>Olivehurst</name>
+		</city>
+		<city>
+			<name>Ontario</name>
+		</city>
+		<city>
+			<name>Opal Cliffs</name>
+		</city>
+		<city>
+			<name>Orange</name>
+		</city>
+		<city>
+			<name>Orange Cove</name>
+		</city>
+		<city>
+			<name>Orangevale</name>
+		</city>
+		<city>
+			<name>Orinda</name>
+		</city>
+		<city>
+			<name>Orland</name>
+		</city>
+		<city>
+			<name>Orosi</name>
+		</city>
+		<city>
+			<name>Oroville</name>
+		</city>
+		<city>
+			<name>Oroville East</name>
+		</city>
+		<city>
+			<name>Oxnard</name>
+		</city>
+		<city>
+			<name>Pacheco</name>
+		</city>
+		<city>
+			<name>Pacific Grove</name>
+		</city>
+		<city>
+			<name>Pacifica</name>
+		</city>
+		<city>
+			<name>Pajaro</name>
+		</city>
+		<city>
+			<name>Palermo</name>
+		</city>
+		<city>
+			<name>Palm Desert</name>
+		</city>
+		<city>
+			<name>Palm Desert Country</name>
+		</city>
+		<city>
+			<name>Palm Springs</name>
+		</city>
+		<city>
+			<name>Palmdale</name>
+		</city>
+		<city>
+			<name>Palmdale East</name>
+		</city>
+		<city>
+			<name>Palo Alto</name>
+		</city>
+		<city>
+			<name>Palos Verdes Estates</name>
+		</city>
+		<city>
+			<name>Paradise</name>
+		</city>
+		<city>
+			<name>Paramount</name>
+		</city>
+		<city>
+			<name>Parksdale</name>
+		</city>
+		<city>
+			<name>Parkway-South Sacramento</name>
+		</city>
+		<city>
+			<name>Parkwood</name>
+		</city>
+		<city>
+			<name>Parlier</name>
+		</city>
+		<city>
+			<name>Pasadena</name>
+		</city>
+		<city>
+			<name>Patterson</name>
+		</city>
+		<city>
+			<name>Pedley</name>
+		</city>
+		<city>
+			<name>Penn Valley</name>
+		</city>
+		<city>
+			<name>Perris</name>
+		</city>
+		<city>
+			<name>Petaluma</name>
+		</city>
+		<city>
+			<name>Phoenix Lake-Cedar Ridge</name>
+		</city>
+		<city>
+			<name>Pico Rivera</name>
+		</city>
+		<city>
+			<name>Piedmont</name>
+		</city>
+		<city>
+			<name>Pine Hills</name>
+		</city>
+		<city>
+			<name>Pine Valley</name>
+		</city>
+		<city>
+			<name>Pinole</name>
+		</city>
+		<city>
+			<name>Piru</name>
+		</city>
+		<city>
+			<name>Pismo Beach</name>
+		</city>
+		<city>
+			<name>Pittsburg</name>
+		</city>
+		<city>
+			<name>Pixley</name>
+		</city>
+		<city>
+			<name>Placentia</name>
+		</city>
+		<city>
+			<name>Placerville</name>
+		</city>
+		<city>
+			<name>Planada</name>
+		</city>
+		<city>
+			<name>Pleasant Hill</name>
+		</city>
+		<city>
+			<name>Pleasanton</name>
+		</city>
+		<city>
+			<name>Plymouth</name>
+		</city>
+		<city>
+			<name>Point Arena</name>
+		</city>
+		<city>
+			<name>Point Dume</name>
+		</city>
+		<city>
+			<name>Pollock Pines</name>
+		</city>
+		<city>
+			<name>Pomona</name>
+		</city>
+		<city>
+			<name>Poplar-Cotton Center</name>
+		</city>
+		<city>
+			<name>Port Hueneme</name>
+		</city>
+		<city>
+			<name>Porterville</name>
+		</city>
+		<city>
+			<name>Portola</name>
+		</city>
+		<city>
+			<name>Portola Hills</name>
+		</city>
+		<city>
+			<name>Portola Valley</name>
+		</city>
+		<city>
+			<name>Poway</name>
+		</city>
+		<city>
+			<name>Prunedale</name>
+		</city>
+		<city>
+			<name>Quail Valley</name>
+		</city>
+		<city>
+			<name>Quartz Hill</name>
+		</city>
+		<city>
+			<name>Quincy-East Quincy</name>
+		</city>
+		<city>
+			<name>Rainbow</name>
+		</city>
+		<city>
+			<name>Ramona</name>
+		</city>
+		<city>
+			<name>Rancho Cordova</name>
+		</city>
+		<city>
+			<name>Rancho Cucamonga</name>
+		</city>
+		<city>
+			<name>Rancho Mirage</name>
+		</city>
+		<city>
+			<name>Rancho Murieta</name>
+		</city>
+		<city>
+			<name>Rancho Palos Verdes</name>
+		</city>
+		<city>
+			<name>Rancho Rinconada</name>
+		</city>
+		<city>
+			<name>Rancho San Diego</name>
+		</city>
+		<city>
+			<name>Rancho Santa Margarita</name>
+		</city>
+		<city>
+			<name>Red Bluff</name>
+		</city>
+		<city>
+			<name>Redding</name>
+		</city>
+		<city>
+			<name>Redlands</name>
+		</city>
+		<city>
+			<name>Redondo Beach</name>
+		</city>
+		<city>
+			<name>Redway</name>
+		</city>
+		<city>
+			<name>Redwood City</name>
+		</city>
+		<city>
+			<name>Reedley</name>
+		</city>
+		<city>
+			<name>Rialto</name>
+		</city>
+		<city>
+			<name>Richgrove</name>
+		</city>
+		<city>
+			<name>Richmond</name>
+		</city>
+		<city>
+			<name>Ridgecrest</name>
+		</city>
+		<city>
+			<name>Rio del Mar</name>
+		</city>
+		<city>
+			<name>Rio Dell</name>
+		</city>
+		<city>
+			<name>Rio Linda</name>
+		</city>
+		<city>
+			<name>Rio Vista</name>
+		</city>
+		<city>
+			<name>Ripon</name>
+		</city>
+		<city>
+			<name>Riverbank</name>
+		</city>
+		<city>
+			<name>Riverdale</name>
+		</city>
+		<city>
+			<name>Riverside</name>
+		</city>
+		<city>
+			<name>Rocklin</name>
+		</city>
+		<city>
+			<name>Rodeo</name>
+		</city>
+		<city>
+			<name>Rohnert Park</name>
+		</city>
+		<city>
+			<name>Rolling Hills</name>
+		</city>
+		<city>
+			<name>Rolling Hills Estates</name>
+		</city>
+		<city>
+			<name>Romoland</name>
+		</city>
+		<city>
+			<name>Rosamond</name>
+		</city>
+		<city>
+			<name>Rosedale</name>
+		</city>
+		<city>
+			<name>Roseland</name>
+		</city>
+		<city>
+			<name>Rosemead</name>
+		</city>
+		<city>
+			<name>Rosemont</name>
+		</city>
+		<city>
+			<name>Roseville</name>
+		</city>
+		<city>
+			<name>Ross</name>
+		</city>
+		<city>
+			<name>Rossmoor</name>
+		</city>
+		<city>
+			<name>Rowland Heights</name>
+		</city>
+		<city>
+			<name>Rubidoux</name>
+		</city>
+		<city>
+			<name>Running Springs</name>
+		</city>
+		<city>
+			<name>Sacramento</name>
+		</city>
+		<city>
+			<name>Salida</name>
+		</city>
+		<city>
+			<name>Salinas</name>
+		</city>
+		<city>
+			<name>San Andreas</name>
+		</city>
+		<city>
+			<name>San Anselmo</name>
+		</city>
+		<city>
+			<name>San Antonio Heights</name>
+		</city>
+		<city>
+			<name>San Bernardino</name>
+		</city>
+		<city>
+			<name>San Bruno</name>
+		</city>
+		<city>
+			<name>San Buenaventura (Ventura)</name>
+		</city>
+		<city>
+			<name>San Carlos</name>
+		</city>
+		<city>
+			<name>San Clemente</name>
+		</city>
+		<city>
+			<name>San Diego</name>
+		</city>
+		<city>
+			<name>San Diego Country Estates</name>
+		</city>
+		<city>
+			<name>San Dimas</name>
+		</city>
+		<city>
+			<name>San Fernando</name>
+		</city>
+		<city>
+			<name>San Francisco</name>
+		</city>
+		<city>
+			<name>San Gabriel</name>
+		</city>
+		<city>
+			<name>San Jacinto</name>
+		</city>
+		<city>
+			<name>San Joaquin</name>
+		</city>
+		<city>
+			<name>San Jose</name>
+		</city>
+		<city>
+			<name>San Juan Bautista</name>
+		</city>
+		<city>
+			<name>San Juan Capistrano</name>
+		</city>
+		<city>
+			<name>San Leandro</name>
+		</city>
+		<city>
+			<name>San Lorenzo</name>
+		</city>
+		<city>
+			<name>San Luis Obispo</name>
+		</city>
+		<city>
+			<name>San Marcos</name>
+		</city>
+		<city>
+			<name>San Marino</name>
+		</city>
+		<city>
+			<name>San Martin</name>
+		</city>
+		<city>
+			<name>San Mateo</name>
+		</city>
+		<city>
+			<name>San Miguel</name>
+		</city>
+		<city>
+			<name>San Pablo</name>
+		</city>
+		<city>
+			<name>San Rafael</name>
+		</city>
+		<city>
+			<name>San Ramon</name>
+		</city>
+		<city>
+			<name>Sand City</name>
+		</city>
+		<city>
+			<name>Sanger</name>
+		</city>
+		<city>
+			<name>Santa Ana</name>
+		</city>
+		<city>
+			<name>Santa Barbara</name>
+		</city>
+		<city>
+			<name>Santa Clara</name>
+		</city>
+		<city>
+			<name>Santa Clarita</name>
+		</city>
+		<city>
+			<name>Santa Cruz</name>
+		</city>
+		<city>
+			<name>Santa Fe Springs</name>
+		</city>
+		<city>
+			<name>Santa Maria</name>
+		</city>
+		<city>
+			<name>Santa Monica</name>
+		</city>
+		<city>
+			<name>Santa Paula</name>
+		</city>
+		<city>
+			<name>Santa Rosa</name>
+		</city>
+		<city>
+			<name>Santa Venetia</name>
+		</city>
+		<city>
+			<name>Santa Ynez</name>
+		</city>
+		<city>
+			<name>Santee</name>
+		</city>
+		<city>
+			<name>Saratoga</name>
+		</city>
+		<city>
+			<name>Sausalito</name>
+		</city>
+		<city>
+			<name>Scotts Valley</name>
+		</city>
+		<city>
+			<name>Seal Beach</name>
+		</city>
+		<city>
+			<name>Searles Valley</name>
+		</city>
+		<city>
+			<name>Seaside</name>
+		</city>
+		<city>
+			<name>Sebastopol</name>
+		</city>
+		<city>
+			<name>Sedco Hills</name>
+		</city>
+		<city>
+			<name>Seeley</name>
+		</city>
+		<city>
+			<name>Selma</name>
+		</city>
+		<city>
+			<name>Shafter</name>
+		</city>
+		<city>
+			<name>Shingle Springs</name>
+		</city>
+		<city>
+			<name>Sierra Madre</name>
+		</city>
+		<city>
+			<name>Signal Hill</name>
+		</city>
+		<city>
+			<name>Simi Valley</name>
+		</city>
+		<city>
+			<name>Solana Beach</name>
+		</city>
+		<city>
+			<name>Soledad</name>
+		</city>
+		<city>
+			<name>Solvang</name>
+		</city>
+		<city>
+			<name>Sonoma</name>
+		</city>
+		<city>
+			<name>Sonora</name>
+		</city>
+		<city>
+			<name>Soquel</name>
+		</city>
+		<city>
+			<name>Soulsbyville</name>
+		</city>
+		<city>
+			<name>South Dos Palos</name>
+		</city>
+		<city>
+			<name>South El Monte</name>
+		</city>
+		<city>
+			<name>South Gate</name>
+		</city>
+		<city>
+			<name>South Lake</name>
+		</city>
+		<city>
+			<name>South Lake Tahoe</name>
+		</city>
+		<city>
+			<name>South Oroville</name>
+		</city>
+		<city>
+			<name>South Pasadena</name>
+		</city>
+		<city>
+			<name>South San Francisco</name>
+		</city>
+		<city>
+			<name>South San Gabriel</name>
+		</city>
+		<city>
+			<name>South San Jose Hills</name>
+		</city>
+		<city>
+			<name>South Santa Rosa</name>
+		</city>
+		<city>
+			<name>South Taft</name>
+		</city>
+		<city>
+			<name>South Whittier</name>
+		</city>
+		<city>
+			<name>South Yuba City</name>
+		</city>
+		<city>
+			<name>Spring Valley</name>
+		</city>
+		<city>
+			<name>Squaw Valley</name>
+		</city>
+		<city>
+			<name>St. Helena</name>
+		</city>
+		<city>
+			<name>Stanford</name>
+		</city>
+		<city>
+			<name>Stanton</name>
+		</city>
+		<city>
+			<name>Stockton</name>
+		</city>
+		<city>
+			<name>Strathmore</name>
+		</city>
+		<city>
+			<name>Strawberry</name>
+		</city>
+		<city>
+			<name>Suisun City</name>
+		</city>
+		<city>
+			<name>Sun City</name>
+		</city>
+		<city>
+			<name>Sunnyside-Tahoe City</name>
+		</city>
+		<city>
+			<name>Sunnyslope</name>
+		</city>
+		<city>
+			<name>Sunnyvale</name>
+		</city>
+		<city>
+			<name>Susanville</name>
+		</city>
+		<city>
+			<name>Sutter</name>
+		</city>
+		<city>
+			<name>Sutter Creek</name>
+		</city>
+		<city>
+			<name>Taft</name>
+		</city>
+		<city>
+			<name>Taft Heights</name>
+		</city>
+		<city>
+			<name>Tahoe Vista</name>
+		</city>
+		<city>
+			<name>Tamalpais-Homestead Valley</name>
+		</city>
+		<city>
+			<name>Tara Hills</name>
+		</city>
+		<city>
+			<name>Tehachapi</name>
+		</city>
+		<city>
+			<name>Tehama</name>
+		</city>
+		<city>
+			<name>Temecula</name>
+		</city>
+		<city>
+			<name>Temelec</name>
+		</city>
+		<city>
+			<name>Temple City</name>
+		</city>
+		<city>
+			<name>Templeton</name>
+		</city>
+		<city>
+			<name>Terra Bella</name>
+		</city>
+		<city>
+			<name>Thermalito</name>
+		</city>
+		<city>
+			<name>Thousand Oaks</name>
+		</city>
+		<city>
+			<name>Thousand Palms</name>
+		</city>
+		<city>
+			<name>Tiburon</name>
+		</city>
+		<city>
+			<name>Tierra Buena</name>
+		</city>
+		<city>
+			<name>Tipton</name>
+		</city>
+		<city>
+			<name>Torrance</name>
+		</city>
+		<city>
+			<name>Trabuco Highlands</name>
+		</city>
+		<city>
+			<name>Tracy</name>
+		</city>
+		<city>
+			<name>Trinidad</name>
+		</city>
+		<city>
+			<name>Truckee</name>
+		</city>
+		<city>
+			<name>Tulare</name>
+		</city>
+		<city>
+			<name>Tulelake</name>
+		</city>
+		<city>
+			<name>Tuolumne City</name>
+		</city>
+		<city>
+			<name>Turlock</name>
+		</city>
+		<city>
+			<name>Tustin</name>
+		</city>
+		<city>
+			<name>Tustin Foothills</name>
+		</city>
+		<city>
+			<name>Twain Harte</name>
+		</city>
+		<city>
+			<name>Twentynine Palms</name>
+		</city>
+		<city>
+			<name>Twentynine Palms Base</name>
+		</city>
+		<city>
+			<name>Twin Lakes</name>
+		</city>
+		<city>
+			<name>Ukiah</name>
+		</city>
+		<city>
+			<name>Union City</name>
+		</city>
+		<city>
+			<name>Upland</name>
+		</city>
+		<city>
+			<name>Vacaville</name>
+		</city>
+		<city>
+			<name>Val Verde</name>
+		</city>
+		<city>
+			<name>Valinda</name>
+		</city>
+		<city>
+			<name>Valle Vista</name>
+		</city>
+		<city>
+			<name>Vallejo</name>
+		</city>
+		<city>
+			<name>Valley Center</name>
+		</city>
+		<city>
+			<name>Vandenberg AFB</name>
+		</city>
+		<city>
+			<name>Vandenberg Village</name>
+		</city>
+		<city>
+			<name>Vernon</name>
+		</city>
+		<city>
+			<name>Victorville</name>
+		</city>
+		<city>
+			<name>View Park-Windsor Hills</name>
+		</city>
+		<city>
+			<name>Villa Park</name>
+		</city>
+		<city>
+			<name>Vincent</name>
+		</city>
+		<city>
+			<name>Vine Hill</name>
+		</city>
+		<city>
+			<name>Visalia</name>
+		</city>
+		<city>
+			<name>Vista</name>
+		</city>
+		<city>
+			<name>Walnut</name>
+		</city>
+		<city>
+			<name>Walnut Creek</name>
+		</city>
+		<city>
+			<name>Walnut Park</name>
+		</city>
+		<city>
+			<name>Wasco</name>
+		</city>
+		<city>
+			<name>Waterford</name>
+		</city>
+		<city>
+			<name>Watsonville</name>
+		</city>
+		<city>
+			<name>Weaverville</name>
+		</city>
+		<city>
+			<name>Weed</name>
+		</city>
+		<city>
+			<name>Weedpatch</name>
+		</city>
+		<city>
+			<name>West Athens</name>
+		</city>
+		<city>
+			<name>West Bishop</name>
+		</city>
+		<city>
+			<name>West Carson</name>
+		</city>
+		<city>
+			<name>West Compton</name>
+		</city>
+		<city>
+			<name>West Covina</name>
+		</city>
+		<city>
+			<name>West Hollywood</name>
+		</city>
+		<city>
+			<name>West Menlo Park</name>
+		</city>
+		<city>
+			<name>West Pittsburg</name>
+		</city>
+		<city>
+			<name>West Puente Valley</name>
+		</city>
+		<city>
+			<name>West Sacramento</name>
+		</city>
+		<city>
+			<name>West Whittier-Los Nietos</name>
+		</city>
+		<city>
+			<name>Westhaven-Moonstone</name>
+		</city>
+		<city>
+			<name>Westlake Village</name>
+		</city>
+		<city>
+			<name>Westminster</name>
+		</city>
+		<city>
+			<name>Westmont</name>
+		</city>
+		<city>
+			<name>Westmorland</name>
+		</city>
+		<city>
+			<name>Westwood</name>
+		</city>
+		<city>
+			<name>Wheatland</name>
+		</city>
+		<city>
+			<name>Whittier</name>
+		</city>
+		<city>
+			<name>Wildomar</name>
+		</city>
+		<city>
+			<name>Williams</name>
+		</city>
+		<city>
+			<name>Willits</name>
+		</city>
+		<city>
+			<name>Willow Creek</name>
+		</city>
+		<city>
+			<name>Willowbrook</name>
+		</city>
+		<city>
+			<name>Willows</name>
+		</city>
+		<city>
+			<name>Wilton</name>
+		</city>
+		<city>
+			<name>Winchester</name>
+		</city>
+		<city>
+			<name>Windsor</name>
+		</city>
+		<city>
+			<name>Winters</name>
+		</city>
+		<city>
+			<name>Winton</name>
+		</city>
+		<city>
+			<name>Wofford Heights</name>
+		</city>
+		<city>
+			<name>Woodacre</name>
+		</city>
+		<city>
+			<name>Woodbridge</name>
+		</city>
+		<city>
+			<name>Woodcrest</name>
+		</city>
+		<city>
+			<name>Woodlake</name>
+		</city>
+		<city>
+			<name>Woodland</name>
+		</city>
+		<city>
+			<name>Woodside</name>
+		</city>
+		<city>
+			<name>Woodville</name>
+		</city>
+		<city>
+			<name>Wrightwood</name>
+		</city>
+		<city>
+			<name>Yorba Linda</name>
+		</city>
+		<city>
+			<name>Yosemite Lakes</name>
+		</city>
+		<city>
+			<name>Yountville</name>
+		</city>
+		<city>
+			<name>Yreka</name>
+		</city>
+		<city>
+			<name>Yuba City</name>
+		</city>
+		<city>
+			<name>Yucaipa</name>
+		</city>
+		<city>
+			<name>Yucca Valley</name>
+		</city>
+	</cities>
+</state>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Effects Migration from 1.4 to 1.5</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 >Spry Effects Migration from 1.4 to 1.5</h1>
+<h3 >About the Spry Effects changes in 1.5</h3>
+<p>For Spry 1.5 we decided that we had to make some changes to SpryEffects.js so that not only did they work better, but they were better integrated into the rest of the toolkit. We wanted to offer users the ability to add observers in the same way you  do it now for the data sets and regions. Another important  change is the ability to run multiple effects like Slide, Squish, Highlight in clusters, just like we did for  Move, Size, Opacity or Color.</p>
+<p>The new implementation allowed us to  redesign the current Effect Classes. We  transformed the static animation functions into classes that will inherit the notification mechanism and the existing Cluster interface. As an added benefit, we  fixed some  known bugs like reverting the order of running subeffects inside a cluster when toggling.</p>
+<p>We don't easily invoke the 'pre-release' clause to make big changes to the framework, especially when it will impact existing pages. In the process of this  transformation we we worked to keep  backward compatibility and provide a way for users to migrate  their pages that already use  Spry Effects. This document will describe those changes and give examples of the new code.</p>
+<p>If you want to upgrade your Spry Effects to 1.5, you will have to make some code changes.</p>
+<h3>Structure changes</h3>
+<p> The most important change we did to the Spry Effects was to change from static functions  to classes. </p>
+<p>This means that you will  have to  change the way you call the effects. This will look familiar if you have used Spry widgets before. </p>
+<p>In the Spry 1.4 or earlier, you would attach an Effect to an element's onclick event. The code it would look like this: </p>
+<pre class="codeSample">&lt;a href="#" onclick="Spry.Effect.Slide('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;<br /><br />
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+</pre>
+<p>If you just drop in SpryEffect.js 1.5 onto your site, your page animation will stop working when you click the element. </p>
+<p>In the first example you'll receive a JavaScript alert error with the following text: </p>
+<blockquote><em>"Spry.Effect ERR: The Slide class can't be accessed as a static function anymore. Please read Spry documentation.</em></blockquote>
+<p>If your page looks like  the second example, you will not receive any error message but the animation fail to work.</p>
+<p>There are two possible ways to migrate your code so they work with Spry 1.5:</p>
+<h2>Method 1: Transform your functions into  classes</h2>
+<p>This is the  method we advise users to follow. You will have a better control over the effects on the page and you will be ready to use all the new functions included in  Spry  1.5.</p>
+<h3>Part 1: Move code</h3>
+<p>The first step will be to extract the code from the HTML and move it inside a  &lt;script&gt; tag <strong>below</strong> the element that will be animated. We recommend putting it just above the closing body tag.</p>
+<pre class="codeSample">
+&lt;a href="#" onclick=""&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+..
+<span class="hilite">&lt;script type="text/javascript"&gt;
+    Spry.Effect.Slide('element', {toggle:true});
+&lt;/script&gt;</span></pre>
+<span class="red"></span>
+<p>The next step will be to add the  keyword 'new' in front of the  JavaScript line (if it is not there already) and assign the resulting object to a global variable:</p>
+<pre class="codeSample">
+&lt;a href="#" onclick=""&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    <span class="hilite">var slide_effect = new </span>Spry.Effect.Slide('element', {toggle:true});
+&lt;/script&gt;
+</pre>
+<p>The variable name can be whatever you wish. This name will be used to control the effects, as noted below.</p>
+<p>We have created the Effect object and saved it into a variable. The effect will no longer auto-start,  as in the previous versions. We will now integrate the effect back into the element to react to the users clicks. For this we will have to call the 'start()' method. The start() method will automatically take care of running the effect and also the toggle  when called subsequent times (if the toggle option is set).</p>
+<pre class="codeSample">
+&lt;a href="#" onclick="<span class="hilite">fade_effect.start();</span>"&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    var slide_effect = new Spry.Effect.Slide('element', {toggle:true});
+&lt;/script&gt;
+</pre>
+<h3> Part 2: Effects renamed/removed</h3>
+<p>When we started the new  Effect structure migration, we renamed couple of the effects. The goal  was to make the API names more clear.   Here is a  list of the former names of the effects and the new ones. The MoveSlide animator was removed. The code  it contain was moved into the Slide cluster.</p>
+<ul>
+  <li>AppearFade -&gt; Fade</li>
+  <li>GrowShrink -&gt; Grow</li>
+  <li>MoveSlide -&gt; Slide</li>
+</ul>
+<p>So, in the code scenario above, if your code used one of the 3 Effects that had a name change, you will have to make one more small change: old name to new name. Change:</p>
+<pre class="codeSample">
+&lt;div id=&quot;element&quot; onclick=&quot;fade_effect.start();&quot;&gt;I'm the animated div&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var fade_effect = new Spry.Effect.<span class="hilite">AppearFade</span>{toggle:true});
+&lt;/script&gt;
+</pre>
+<p>That's it! The effect should be working normally.</p>
+<h2>Method 2: Use the backward compatible wrappers functions</h2>
+<p>For backward compatibility  and for  easy migration for users, we included a list of wrapper functions that takes the existing function and forwards it to the new version. </p>
+<p>To enable these wrapper functions, we added &quot;Do&quot; to the function name. The name changes are as follows:</p>
+<ul>
+  <li>AppearFade -&gt; DoFade</li>
+  <li>Highlight &nbsp;-&gt; DoHighlight</li>
+  <li>GrowShrink -&gt; DoGrow</li>
+  <li>Shake -&gt; DoHighlight</li>
+  <li>Squish -&gt; DoSquish</li>
+  <li>Blind -&gt; DoBlind</li>
+  <li>Slide -&gt; DoSlide</li>
+</ul>
+<p>Because we renamed some of the effects during the migration process, the wrappers are based on the new effects names. </p>
+<p>So, in your code, simply change:</p>
+<pre class="codeSample">&lt;a href="#" onclick="Spry.Effect.<span class="hilite">AppearFade</span>('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+</pre>
+<p> to:</p>
+<pre class="codeSample">&lt;a href="#" onclick="Spry.Effect.<span class="hilite">DoFade</span>('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+</pre>
+<p>And your effects will work as before.</p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+  All rights reserved.</p>
+</body>
+</html>

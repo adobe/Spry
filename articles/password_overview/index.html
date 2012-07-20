@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Validation Password Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#insert_widget pre{
+	margin-left: -45px;
+}
+</style>
+</head>
+<body>
+<h1><a id="overview"></a>Using Spry Widgets: Validation Password Overview</h1>
+<h3 id="about">About Spry Widgets</h3>
+<p>A Spry widget is a page element containing built-in behaviors and functions that provide a richer user experience by enabling user interaction. These behaviors can include functionality that lets users show or hide content on the page, change the appearance (such as color of the input) in the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You can easily insert these widgets &mdash; the code is HTML and JavaScript at its simplest &mdash; and then style the widget according to your liking.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and JavaScript files. The CSS file contains everything necessary for styling the widget, and the JavaScript file gives the widget its functionality. You must link both of these files to the page on which you want the widget to function and appear styled. Otherwise, the widget won&rsquo;t have any functionality or styling. For more information, see the appropriate sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JavaScript files associated with a given widget are named after the widget, so it&rsquo;s easy for you to know which files correspond to which widgets. (For example, the files associated with the Validation Password widget are called SpryValidationPassword.css and SpryValidationPassword.js). </p>
+<ul>
+  <li><a href="#anatomy">Anatomy of the Validation Password widget</a></li>
+  <li><a href="#css">CSS for the Validation Password widget</a></li>
+  <li><a href="#using">Using the Validation Password widget</a></li>
+  <li><a href="#behaviors">Validation Password Behaviors</a></li>
+  <li><a href="#methods">Validation Password Methods</a></li>
+</ul>
+<p>See the Validation Password <a href="../../widgets/passwordvalidation/SpryValidationPassword.html">reference file</a> and <a href="../../samples/validationwidgets/PasswordValidationSample.html">sample</a>.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="anatomy"></a>Anatomy of the Validation Password widget</h3>
+<p>The Validation Password widget is a password text field that can be used to enforce password rules (number and type of characters) and provide warning or error messages to the user.</p>
+<p>To create a Validation Password widget, you need a password field that can be turned into a Spry Validation Password widget by adding a few elements to it.</p>
+<p>You can create a widget by simply adding a HTML tag container (e.g. &lt;SPAN&gt;) around text field. The container tag must have an ID. Any error messages go within this container. A small constructor script is added after the markup.</p>
+<p>&nbsp;</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="structure">Spry Validation Password widget Structure</h4>
+<p>A basic Password Validation widget, with multiple error messages, looks like:</p>
+<pre>&lt;span id=&quot;sprypassword1&quot;&gt;
+	&lt;input type=&quot;password&quot; name=&quot;password1&quot; id=&quot;password1&quot; /&gt;
+	&lt;span class=&quot;passwordRequiredMsg&quot;&gt;A value is required.&lt;/span&gt;
+	&lt;span class=&quot;passwordMinCharsMsg&quot;&gt;The minimum number of characters not met.&lt;/span&gt;
+	&lt;span class=&quot;passwordMaxCharsMsg&quot;&gt;The maximum number of characters exceeded.&lt;/span&gt;
+	&lt;span class=&quot;passwordInvalidStrengthMsg&quot;&gt;The password strength condition not met.&lt;/span&gt;
+	&lt;span class=&quot;passwordCustomMsg&quot;&gt;User defined condition not met.&lt;/span&gt;
+&lt;/span&gt;
+
+...
+&lt;script type=&quot;text/javascript&quot;&gt;<br />	var sprypassword1 = new Spry.Widget.ValidationPassword(&quot;sprypassword1&quot;);<br />&lt;/script&gt;</pre>
+<p>&nbsp;</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="css"></a>CSS for the Validation Password widget </h3>
+<p>The SpryValidationPassword.css file contains rules which trigger the messages to display. The rules in the CSS file correspond to the class names specified in the HTML markup for the error messages. However, more complex selectors are required, which take into account the fact that a parent container can have a state class applied to it.</p>
+<p>The following is the CSS code for SpryValidationPassword.css file:</p>
+<pre>   .passwordRequiredMsg, 
+   .passwordInvalidStrengthMsg, 
+   .passwordMinCharsMsg,
+   .passwordMaxCharsMsg,
+   .passwordCustomMsg,
+   .passwordValidMsg {
+      display: none;
+   }
+   .passwordRequiredState .passwordRequiredMsg,
+   .passwordMinCharsState .passwordMinCharsMsg,
+   .passwordMaxCharsState .passwordMaxCharsMsg,
+   .passwordInvalidStrengthState .passwordInvalidStrengthMsg,
+   .passwordCustomState .passwordCustomMsg
+   {
+      display: inline;
+      color: #CC3333;
+      border: 1px solid #CC3333;
+   }
+   .passwordValidState input, input.passwordValidState {
+       background-color: #B8F5B1;
+   }
+  
+   input.passwordRequiredState, .passwordRequiredState input, 
+   input.passwordInvalidStrengthState, .passwordInvalidStrengthState input, 
+   input.passwordMinCharsState, .passwordMinCharsState input, 
+   input.passwordCustomState, .passwordCustomState input, 
+   input.passwordMaxCharsState, .passwordMaxCharsState input {
+      background-color: #FF9F9F;
+   }
+   .passwordFocusState input, input.passwordFocusState {
+      background-color: #FFFFCC;
+   }
+ </pre>
+<p>As you can see, most of the rules simply handle the error states.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="using"></a>Using Validation Password widget </h3>
+<p> This section contains the following topics:</p>
+<ul>
+  <li>Inserting a Validation Password widget<br /><br />
+  </li>
+  <li>Styling the Validation Password widget<br />
+  </li>
+</ul>
+<h4 id="insert_widget">Inserting a Validation Password widget</h4>
+<ol>
+	<li>
+	  <p>Locate the SpryValidationPassword.js and add it to your site, if you didn't do it already. You can find the SpryValidationPassword.js file in the 'widgets/passwordvalidation' folder in the Spry zip.</p>
+	</li>
+	<li><p>Locate the SpryValidationPassword.css file and add it to your site, if you haven't done so already. You might choose to add it to the root folder or to a CSS folder, if you have one.</p></li>
+	<li><p>In the page code, link the SpryValidationPassword.js file to your web page by inserting a script tag in the page&rsquo;s head section:</p>
+<pre> &lt;script src=&quot;includes/SpryValidationPassword.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+<p>Make sure the file path to the SpryValidationPassword.js file is correct. This path will vary depending on where you include the file in your web site.</p>
+</li>
+	<li>Link the SpryValidationPassword.css file to your web page by inserting a link tag in the page&rsquo;s head tag:
+<pre> &lt;link href=&quot;includes/SpryValidationPassword.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+<p>Make sure the file path to the SpryValidationPassword.js file is correct. This path will vary depending on where you put the file in your web site. </p>
+	</li>
+	<li>Insert a password text field.
+ <pre> &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;
+</pre>
+</li>
+<li>Add a container to the Password validation widget by inserting the span tag around the Password input. Give the container an ID attribute.
+<pre>&lt;span id=&quot;PasswordWidget&quot;&gt;<br />
+  &nbsp; &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;<br />
+&lt;/span&gt;</pre>
+</li>
+<li>Initialize the Spry Validation Password object by inserting the following script block in the HTML source code, after the container.
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  var pw1  = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;);<br />
+&lt;/script&gt;
+</pre>
+<p>It is important that you make sure the ID of the container span tag matches the ID parameter you specified in the Spry.Widgets.ValidationPassword method. It is also important that you make sure the JavaScript call comes after the HTML code for the widget.</p>
+</li>
+<li>Save the page. The complete code looks as follows:
+<pre>&lt;head&gt;
+  &nbsp;...
+  &nbsp;&lt;script src=&quot;includes/SpryValidationPassword.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+  &nbsp;&lt;link href=&quot;includes/SpryValidationPassword.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+  ...
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+  &lt;span id=&quot;PasswordWidget&quot;&gt;
+  &nbsp; &lt;input type=&quot;password&quot; name=&quot;fieldName&quot; value=&quot;&quot; /&gt;
+&lt;/span&gt;<br />
+  &nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp; &nbsp; var pw1 &nbsp;= new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;);
+  &nbsp;&lt;/script&gt;
+  ...
+&lt;/body&gt; </pre>
+</li>
+</ol>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="style_widget">To style the Validation Password widget </h4>
+<p >Styling the Validation Password widget means changing the appearance of the error messages for different states.</p>
+<p>The Validation Password widget comes with a CSS file (SpryValidationPassword.css) that provides default styling for the error messages. You can easily style the error messages to your liking by simply changing the appropriate CSS rules.</p>
+<p>To change the state appearance of the Password Validation widget:</p>
+<ol>
+	<li>
+	  <p>Open the SpryValidationPassword.css file. You can find the SpryValidationPassword.css file in the 'widgets/passwordvalidation' directory.</p></li>
+	<li><p>The Password Validation widget comes with built-in CSS rules for the states and also for the elements (in this case, the error messages) that can be displayed for these states.</p>
+<p>The following classes define the look of the error messages associated to the Validation Password widget:</p>
+<pre>.passwordRequiredState .passwordRequiredMsg,<br />.passwordMinCharsState .passwordMinCharsMsg,<br />.passwordMaxCharsState .passwordMaxCharsMsg,<br />.passwordInvalidStrengthState .passwordInvalidStrengthMsg,<br />.passwordCustomState .passwordCustomMsg<br />{<br />	display: inline;<br />	color: #CC3333;<br />	border: 1px solid #CC3333;<br />}<br /></pre>
+<p>The above rules set the error message to red text with a border. These styles can be changed to whatever is required. The regular rules of CSS apply, so they can be split up or edited as needed.<br />
+  <br />
+</p>
+    </li>
+<li>Add/change CSS rules for any of the behaviors you want.
+<p>You cannot rename/replace class names associated with states in the SpryValidationPassword.css file only with class names of your own, because the behaviors are hard-coded into the Spry framework. However, you can replace the default class with your desired class name by sending the new value as argument to the text field widget constructor. This does not apply for the error messages classes, as mentioned above. <br />
+  Here is an example on how you can change the required state's CSS class name, without breaking its functionality: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+var PasswordWidgetObject = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;, {requiredClass: &quot;required&quot;, invalidClass: &quot;invalid&quot; ,validClass: &quot;valid&quot;});
+&lt;/script&gt;  </pre>
+
+  <table id="css_options">
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>additionalError</td>
+      <td>string</td>
+      <td>none</td>
+      <td>The id of an element in the page where the classes that applies to the main container also are added.</td>
+    </tr>
+    <tr>
+      <td>focusClass</td>
+      <td>string</td>
+      <td>passwordFocusState</td>
+      <td>Custom CSS class to use for the focus state. Replaces the default .passwordFocusState class.</td>
+    </tr>
+    <tr>
+      <td>requiredClass</td>
+      <td>string</td>
+      <td>passwordRequiredState</td>
+      <td>Custom CSS class to use for the required state. Replaces the default .passwordRequiredState class.</td>
+    </tr>
+    <tr>
+      <td>invalidCharsMinClass</td>
+      <td>string</td>
+      <td>passwordMinCharsState</td>
+      <td>Custom CSS class to use for the invalidCharsMin state. Replaces the default .passwordMinCharsState class.</td>
+    </tr>
+    <tr>
+      <td>invalidCharsMaxClass</td>
+      <td>string</td>
+      <td>passwordMaxCharsState</td>
+      <td>Custom CSS class to use for the invalidCharsMax state. Replaces the default .passwordMaxCharsState class.</td>
+    </tr>
+    <tr>
+      <td>invalidStrengthClass</td>
+      <td>string</td>
+      <td>passwordInvalidStrengthState</td>
+      <td>Custom CSS class to use for the InvalidStrengthState state. Replaces the default .passwordInvalidStrengthState class.</td>
+    </tr>
+    <tr>
+      <td>validClass</td>
+      <td>string</td>
+      <td>passwordValidState</td>
+      <td>Custom CSS class to use for the valid state. Replaces the default .passwordValidState class.</td>
+    </tr>
+  </table>
+  <p>The SpryValidationPassword.css file has comments, explaining the selectors and the logic behind certain rules. Check it out for further information on styling.</p>
+</li>
+</ol>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="behaviors"></a>Validation Password widget Behaviors</h3>
+<p>The behavior of the Validation Password widget consists of:</p>
+<ul>
+  <li> Blocking form submission if the password criteria is not met</li>
+  <li> Changing the CSS classes applied on the widget top container in order to trigger validation messages. </li>
+</ul>
+<p>For instance, when users try to submit the form with the incorrect password strength, the form submission is blocked and the passwordRequiredState class is applied to the widget container.</p>
+<h4 id="not_required">Make the Validation Password widget not required </h4>
+<p>By default, the 'isRequired' property is set to true - that means that the user must fill in the text field in order to submit the form. In order to allow the user to submit an empty field, the widget should have 'isRequired: false' as a property of the optional parameters.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;var PasswordWidgetObject = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;, {isRequired:false});
+&lt;/script&gt; </pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4 id="validate_on">Define what action will trigger the validation process</h4>
+<p>The 'submit' action always checks the validity of the widget's selections. Besides the validation on submit, you can define other two options for the validation process: </p>
+<ul>
+  <li>validateOn: &quot;blur&quot;</li>
+  <li>validateOn: &quot;change&quot;. </li>
+</ul>
+<p>The validateOn:&quot;blur&quot; option will trigger the validation process when the Password widget loses its focus. The validateOn: &quot;change&quot; option will trigger the validation process when the user is making the changes for the Password widget.
+  You can add these options as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var PasswordWidgetObject = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;, {validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+&lt;/script&gt;</pre>
+<h4 id="password_strength">Setting Password Strength</h4>
+<p>The key part of the Password widget is the ability to specify the strength of the value typed. Using options in the constructor, the developer can specify the minimum length of the password and also determine if combinations of letters, numbers, uppercase or special characters are required to make a valid password.</p>
+<table >
+  <tr>
+    <th>Option</th>
+    <th>Type</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>minChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>The minimum number of characters required for a valid password.</td>
+  </tr>
+  <tr>
+    <td>maxChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>The maximum allowable length of the password.</td>
+  </tr>
+  <tr>
+    <td>minAlphaChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Minimum number of letters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>maxAlphaChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Maximum number of letters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>minUpperAlphaChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Minimum number of upper case letters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>maxUpperAlphaChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Maximum number of upper case letters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>minSpecialChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Minimum number of special characters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>maxSpecialChars</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Maximum number of special characters required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>minNumbers</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Minimum number of numbers required for a password to be valid.</td>
+  </tr>
+  <tr>
+    <td>maxNumbers</td>
+    <td>number/string</td>
+    <td>none</td>
+    <td>Maximum number of numbers required for a password to be valid.</td>
+  </tr>
+</table>
+<p>To set a password strength, use a combination of these options. For instance:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var PasswordWidgetObject = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;, {minAlphaChars;3, maxSpecialChars:2, maxChars:8});
+&lt;/script&gt;</pre>
+<h4>Combining Attributes </h4>
+<p>To combine multiple attributes, simple include them within the {}, separated by commas. </p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var PasswordWidgetObject = new Spry.Widget.ValidationPassword(&quot;PasswordWidget&quot;, {maxChars:8, validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+ &lt;/script&gt; </pre>
+<h3 id="methods">Password Methods</h3>
+<p>The password validation widget has 2 public methods.</p>
+<p id="reset_func"><strong>Reset</strong></p>
+<p>Used if you want to set the validation widget back to its default state.</p>
+<pre>&lt;input type=&quot;button&quot; value=&quot;Reset&quot; onclick=&quot;PasswordWidgetObject.reset();&quot;&gt;</pre>
+<p id="validate_func"><strong>Validate</strong></p>
+<p>Used if you want to validate the widget from some other object or event.</p>
+<pre>&lt;input type=&quot;button&quot; value=&quot;Validate the field&quot; onclick=&quot;PasswordWidgetObject.validate();&quot;&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a>
+<br />
+<br /></div>
+<hr />
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

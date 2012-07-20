@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rating Widget Sample</title>
+
+<script language="JavaScript" type="text/javascript" src="../../widgets/rating/SpryRating.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/rating/SpryRating.css" rel="stylesheet" type="text/css" />
+<!-- user-defined class for hover-->
+
+
+<style type="text/css">
+.sample{
+			float:left;
+			margin-top:5px;	
+	}
+#styleRating.ratingContainer{
+	border:1px solid #B7B7B7;
+	}
+#styleRating.ratingRatedState{
+	background-color:#FFFFEA;
+	}
+#messageRating .ratingReadOnlyErrMsg{
+	border:none;
+	font-weight:bold;
+	}	
+#single_vote .ratingReadOnlyErrMsg{
+	border:none;
+	}	
+</style>
+</head>
+<body>
+<h3>Spry Rating Widget Sample</h3>
+<p>This page presents the main Rating widget capabilities. You'll find in this page some useful samples that will help you to use this widget.</p>
+<hr />
+<p><strong>Default Behavior</strong></p>
+<p>By default, the Rating widget allows users to vote. If you don't provide a stop voting mechanism after first vote, the Rating widget will allow you to vote multiple times. The Rating widget appearance is based on &quot;ratingButton&quot; CSS class which will set the star images. </p>
+<p>The first sample shows a rating widget with five stars, meaning that the maximum allowed vote is 5 and the minimum is 1. The stars number defines the voting range. When moving the mouse over the Rating stars, the stars are highlighted by changing their color to green. The widget below has the initial value set on 2.6 and this will be reflected when page loads by displaying two and a half stars collored in yellow. </p>
+
+    <span id="firstRating" class="ratingContainer">
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingRatedMsg sample">Thanks for your rating!</span>	
+</span>    
+<p>&nbsp;</p>
+<hr />
+
+<h4>set the initial rating value</h4>
+<p>There are two ways to set the initial value for a Rating widget. You can add the &quot;ratingValue&quot; option in the widget constructor and specify a value for this option. The value you pass for this option will be reflected after the Rating widget finishes to load. For example you can use the &quot;ratingValue&quot; option for a Rating widget that is in read only mode.<br />
+  <br />
+The second way to set an initial value for the Rating widget is to extract the value from a input field from page. This input field can have on the &quot;value&quot; attribute a value returned from the server or a value specified by the user. It's mandatory for the input element to have an ID specified because its value will be pass as argument for the &quot;ratingValueElement&quot; option and has to be inside the Rating widget container. The &quot;ratingValueElement&quot; option offers a large flexibility for the users to set a dynamic initial value for the Rating widget.<br />
+You can use any HTML input element to extract the initial value for Rating widget: hidden input, text input, radio input.</p>
+<ul>
+  <li>initial value set using the &quot;ratingValue&quot; option. After the widget is loaded is has three and a half stars filled in yellow color.</li>
+</ul>
+<span id="initialValue_static" class="ratingContainer">
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+      		<span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingRatedMsg sample">Thanks for your rating!</span>
+		    
+</span>
+<p>&nbsp;</p>
+<ul>
+  <li>initial value set using the &quot;ratingValueElement&quot; option. In this sample we use an input field element to extract the value from its &quot;value&quot; attribute.</li>
+</ul>
+<span id="initialValue_dynamic" class="ratingContainer">
+	    <span class="ratingButton"></span>
+	    <span class="ratingButton"></span>
+	    <span class="ratingButton"></span>
+	    <span class="ratingButton"></span>
+	    <span class="ratingButton"></span>	  
+	    <input id="spryrating1_val" type="text" name="spryrating1" value="4" readonly="readonly" />
+	    <span class="ratingRatedMsg sample">Thanks for your rating!</span>
+</span>
+<p>&nbsp;</p> 
+<hr />       
+<h4>building a read only rating widget</h4>
+<p>You can create a Rating widget that will not allow you to vote by adding the &quot;readOnly&quot; option in the widget constructor. The widget is disabled and by default the stars have a different color from the case when Rating wiget allows you to vote.</p>
+<p>When you try to click on the widget a message appears on the right side of the widget saying that the widget is disabled. You can customize this error message or can remove it if you consider is not necessary for you.</p>
+<span id="disableRating" class="ratingContainer">
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+<span class="ratingReadOnlyErrMsg sample">Rating is disabled!</span>
+
+</span>
+<p>&nbsp;</p>
+
+
+<hr />
+<h4>Add a counter for rating widget</h4>
+<p>The following sample will show how to add a dynamic counter for your Rating widget. While moving the mouse over the widget, the counter reflects the current hovered value (e.g. 3/10). To enable this behavior for Rating widget you have to add in the widget constructor the &quot;counter&quot; option set on true and inside the widget container add the HTML element that will display the counted value.</p>
+
+<span id="counter" class="ratingContainer">
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+        <span class="ratingButton"></span>
+		 <!--  counter placeholder -->		    
+<span class="ratingCounter"></span>
+
+</span>
+<p>&nbsp;</p>
+<hr />
+
+<h4>disable voting after first vote</h4>
+<p>You can disable the Rating widget to stop voting after user's first vote. The widget   allows single vote until the page is refreshed or re-opened. If the user wants to have a more complex mechanism to stop voting based on server's reponse, he has to create it separate. </p>
+<p>To not allow more than one rate, you have to add in the widget construcor the &quot;allowMultipleVoting&quot; option set on false. After first rate the widget goes in read-only state blocking the rating process. You can provide some custom  messages for widget to underline the widget state after first vote or when the user tries to vote several times even the widget doesn't allow this.</p>
+<p>The Rating widget below allows only one vote until the page is refreshed. After first vote a thank you message appears near the widget and the Rating widget is switched in read-only state changing its appearance. If you try to vote once again, the initial error message is replaced with a new one saying that you already gave your rate and the widget remains in read-only state. </p>
+<span id="single_vote" class="ratingContainer">
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+    
+		    <span class="ratingRatedMsg sample"> Thanks for voting!</span>
+		    <span class="ratingReadOnlyErrMsg sample"> You already voted!</span>
+</span>
+<p>&nbsp;</p>
+<hr />
+<h4>using a custom function to process rating value</h4>
+<p>The Rating widget provides an option called &quot;rateHandler&quot; where the user can specify a function to be called when the  user makes a rating. If the &quot;saveUrl&quot; option is also present in the widget constructor, the function passed in the &quot;rateHandler&quot; option will be  called after the data has been sent on the server specified in &quot;saveURL&quot;.<br />
+In the next sample the &quot;rateHandler&quot; option calls a function that will pop-up an alert message displaying the rated value. The function will be triggered after the user rates.</p>
+<span id="custom_function" class="ratingContainer">
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+    
+		    <span class="ratingRatedMsg sample"> Thanks for voting!</span>
+
+</span>
+<p>&nbsp;</p>
+<hr />
+<h4>remove message for read-only rating</h4>
+<p>Using the observers mechanism on a Rating widget in read-only state you can remove  the  message informing you that that the widget is disabled. The &quot;removeMessage&quot; function receives as first parameter the widget class name when  is in a specific state and the second parameter represents the time when the class will be removed. <br />
+In the below sample, the &quot;removeMessage&quot; function recives as parameters: &quot;ratingReadOnlyErrState&quot; as class name to be removed and &quot;2000&quot; miliseconds.</p>
+<span id="messageRating" class="ratingContainer">
+			<span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+            <span class="ratingReadOnlyErrMsg sample">Rating is disabled!</span>
+</span>
+<p>&nbsp;</p>
+<br />
+<hr/>
+<h4>styling the rating widget</h4>
+<p>The Rating widget comes with minimum css applied, but if you want you can add some more styling on it. The following example shows how to set a border around the Rating widget and also how to set a background color on the widget after rating.</p>
+
+<span id="styleRating" class="ratingContainer">
+ 			
+			<span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+
+			<span class="ratingRatedMsg sample">Thanks for your rating!</span>
+            <span class="ratingReadOnlyErrMsg sample"> You already voted!</span>
+</span>
+<p>&nbsp;</p>
+<br />
+<hr />
+<h4>keyboard navigation</h4>
+<p>By putting &quot;tabindex&quot; attribute on the stars placeholders, keyboard navigation is enabled. The default navigation keys are Left/Right and for rating the default key is Enter.</p>
+<p>The next sample shows how to change the default navigation keys for the Rating widget. In this sample you can move forwoard/back using PageUp/PageDown keys and you can rate by pressing Space key.</p>
+
+<span id="navRating" class="ratingContainer">
+			<span class="ratingButton" tabindex="1"></span>
+		    <span class="ratingButton" tabindex="2"></span>
+		    <span class="ratingButton" tabindex="3"></span>
+		    <span class="ratingButton" tabindex="4"></span>
+		    <span class="ratingButton" tabindex="5"></span>
+			<span class="ratingRatedMsg sample">Thanks for your rating!</span>
+             <span class="ratingReadOnlyErrMsg sample"> You already voted!</span>
+</span>
+<p>&nbsp;</p>
+<br />
+<hr />
+
+<script type="text/javascript">
+	var firstRating = new Spry.Widget.Rating("firstRating", {ratingValue:2.5});		
+	var disableRating = new Spry.Widget.Rating("disableRating", {ratingValue: 3, readOnly:true});
+	var counter = new Spry.Widget.Rating("counter", {ratingValue:1, counter: true});	
+	
+	var single_vote = new Spry.Widget.Rating("single_vote", {allowMultipleRating:false});
+	var initialValue_static = new Spry.Widget.Rating("initialValue_static" , {ratingValue:3.5});
+	var initialValue_dynamic = new Spry.Widget.Rating("initialValue_dynamic", {ratingValueElement:'spryrating1_val'});
+	var styleRating = new Spry.Widget.Rating("styleRating");
+	var navRating = new Spry.Widget.Rating("navRating", {movePrevKeyCode:33, moveNextKeyCode:34, doRatingKeyCode:32, allowMultipleRating: false});
+	var messageRating = new Spry.Widget.Rating("messageRating", {readOnly:true, ratingValue:3.5});
+	var myObs = {};
+	messageRating.addObserver(myObs);
+	myObs.onPreRate = function(obj, req){	
+		
+		messageRating.removeMessage('ratingReadOnlyErrState',2000);
+	}
+	function my_func(){
+		alert(' You rated: ' + custom_function.getValue());
+	};
+	var custom_function = new Spry.Widget.Rating("custom_function", {rateHandler: my_func});
+	
+	</script>
+</body>
+</html>

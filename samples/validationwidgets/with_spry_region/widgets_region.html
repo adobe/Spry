@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Form Validation Widgets Demo</title>
+<link href="layout.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../../../widgets/textfieldvalidation/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<link href="../../../widgets/selectvalidation/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
+<link href="../../../widgets/textareavalidation/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
+<link href="../../../widgets/checkboxvalidation/SpryValidationCheckbox.css" rel="stylesheet" type="text/css" />
+<link href="../../../widgets/radiovalidation/SpryValidationRadio.css" rel="stylesheet" type="text/css" />
+<link href="validation.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="../../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../../includes/SpryData.js"></script>
+<script type="text/javascript" src="../../../widgets/textfieldvalidation/SpryValidationTextField.js"></script>
+<script type="text/javascript" src="../../../widgets/selectvalidation/SpryValidationSelect.js"></script>
+<script type="text/javascript" src="../../../widgets/textareavalidation/SpryValidationTextarea.js"></script>
+<script type="text/javascript" src="../../../widgets/checkboxvalidation/SpryValidationCheckbox.js"></script>
+<script type="text/javascript" src="../../../widgets/radiovalidation/SpryValidationRadio.js"></script>
+
+<script type="text/javascript">
+<!--
+
+//
+// Define our DataSets
+//	
+// Movies DataSset
+	var dsMovies = new Spry.Data.XMLDataSet("data/movies.xml", "movie-list/movie",{sortOnLoad:"rating",sortOrderOnLoad:"descending"});
+	
+// Genres DataSet
+	var dsGenre = new Spry.Data.XMLDataSet("data/genre.xml", "genre-list/genre");
+	dsGenre.setColumnType("id", "number");
+
+// Movies - to - Genres DataSet
+// contains many-to-many associations between movies and genres 
+	var dsMovieToGenre = new Spry.Data.XMLDataSet("data/movies_to_genre.xml", "movies_to_gender_list/relation");
+	dsMovieToGenre.setColumnType("id_movie", "number");
+	dsMovieToGenre.setColumnType("id_genre", "number");
+
+// Studios DataSet
+	var dsStudios = new Spry.Data.XMLDataSet("data/studios.xml", "studio-list/studio");
+	
+// Ratings DataSet
+// used to display ratings dropdown
+// created with data from array instead of external xml file
+	var myRatingsArrayOfData = [
+		{ rating: "", text: "Please select" },
+		{ rating: "5", text: "*****" },
+		{ rating: "4", text: "****" },
+		{ rating: "3", text: "***" },
+		{ rating: "2", text: "**" },
+		{ rating: "1", text: "*" }
+	];
+	
+	var myRatingsHashTable = [];
+	for (var i = 0; i < myRatingsArrayOfData.length; i++) {
+		myRatingsArrayOfData[i].ds_RowID = i;
+		myRatingsHashTable[i] = myRatingsArrayOfData[i];
+	}
+	var dsStars = new Spry.Data.DataSet();
+	dsStars.data = myRatingsArrayOfData;
+	dsStars.dataHash = myRatingsHashTable;
+	dsStars.loadData();
+
+  
+// 
+//  Define a function observer that will instantiate the form widgets.
+//
+	var widgetInitObserver = function(nType, notifier, data) {
+		if(nType == 'onPostUpdate'){
+			var theTitle = new Spry.Widget.ValidationTextField("theTitle", "none", {useCharacterMasking:true, validateOn:["change"]});
+			var theDate = new Spry.Widget.ValidationTextField("theDate", "date", {useCharacterMasking:true, format:"mm/dd/yyyy", hint:"mm/dd/yyyy", validateOn:["change"]});
+			var theDuration = new Spry.Widget.ValidationTextField("theDuration", "integer", {useCharacterMasking:true, validateOn:["change"], allowNegative:false});
+			var theRating = new Spry.Widget.ValidationSelect("theRating", {validateOn:["change"]});
+			var theStudio = new Spry.Widget.ValidationSelect("theStudio", {validateOn:["change"]});
+			var theDescription = new Spry.Widget.ValidationTextarea("theDescription", {useCharacterMasking:true, minChars:20, maxChars:180, counterType:"chars_count", counterId:"Countvalidta1", validateOn:["change"]});
+			var checkboxes = new Spry.Widget.ValidationCheckbox("checkboxes", {validateOn:["change"], maxSelections:3});
+			var dvdVersion = new Spry.Widget.ValidationRadio("radios", {validateOn:["change"]});
+		}
+	};
+
+//	add the Form Widget Init observer to the region
+	Spry.Data.Region.addObserver('formregion', widgetInitObserver);
+ 
+
+// 
+//  Define a function observer that will destroy the form widgets when the region changes
+//
+	var widgetDestroyObserver = function(nType, notifier, data) {
+		if(nType == 'onPreUpdate'){
+			Spry.Widget.Utils.destroyWidgets('formregion');
+		}
+	};
+//	add the Form Widget Destroy observer to the region
+	Spry.Data.Region.addObserver('formregion', widgetDestroyObserver);
+
+
+
+ // Define the onSubmit handler for the form
+ // If widgets validate, save data
+ 
+	var saveData = function(){
+		var theForm = document.getElementById('form1');
+		var ret = Spry.Widget.Form.validate(theForm);
+		if (ret){
+				var movieEl = dsMovies.getCurrentRow();
+				// save the values from the widgets back to the movie recordset
+				movieEl.title = document.getElementById('theMovieTitle').value;
+				movieEl.rating = document.getElementById('movieRating').value;
+				movieEl.year = document.getElementById('movieYear').value;
+				movieEl.running_time = document.getElementById('movieTime').value;
+				movieEl.studio = document.getElementById('movieStudio').value;
+				movieEl.description = document.getElementById('movieDescription').value;
+				var radios = document.getElementById('radios').getElementsByTagName('input');
+				for (var k = 0; k < radios.length; k++){
+					if (radios[k].checked)
+						movieEl.dvd_version = radios[k].value;
+				}
+				
+				var currIdMovie = movieEl.id_movie;
+			
+				//remove old genres
+				var removeEmpty = function(ds, row, rowNumber){
+					if (row.id_movie == currIdMovie){
+						return null;
+					}
+					row.ds_RowID = ds.data.length;
+					return row;
+				};
+				dsMovieToGenre.filterData(removeEmpty);
+			
+				// add new genres
+				var inputs = document.getElementsByTagName('input');
+				var j = dsMovieToGenre.data.length;
+				for (var i=0; i < inputs.length; i++){
+					if (inputs[i].type && inputs[i].type == 'checkbox' && inputs[i].checked){
+							dsMovieToGenre.dataHash[j] = new Array();
+							dsMovieToGenre.setCurrentRow(j);
+							dsMovieToGenre.getCurrentRow().id_movie = dsMovies.getCurrentRow().id_movie;
+							dsMovieToGenre.getCurrentRow().id_genre = inputs[i].value;
+							dsMovieToGenre.getCurrentRow().ds_RowID = j;
+							dsMovieToGenre.data[j] = dsMovieToGenre.dataHash[j];
+							j++;
+					}
+				}
+				// refresh all regions
+				Spry.Data.updateAllRegions();
+				// display OK message
+				var ok = document.getElementById('okmessage');
+				ok.style.display = 'block';
+				setTimeout(function(e){ok.style.display = 'none';},5000);
+		}
+	  return false;
+	};
+
+
+//
+//  Helper function that decides what genre checkboxes should be selected when a movie is displayed.
+//
+var optionOn = function(movie, genre){
+	var tmpData = dsMovieToGenre.data;
+	if (!tmpData) return false;
+	for (var i = 0; i < tmpData.length; i++){
+		if (tmpData[i].id_movie == movie && tmpData[i].id_genre == genre){
+			return true;
+		}
+	}
+	return false;
+};
+
+
+
+//-->
+</script>
+</head>
+
+<body>
+<noscript><h1>This page requires JavaScript. Please enable JavaScript in your browser and reload this page.</h1></noscript>
+<div id="wrap">
+  <h1>Validation Widgets inside a Spry Region</h1>
+  <div id="LeftColumn">
+    <div id="MovieTitle">
+      <h2>Movies</h2>
+    </div>
+    <div id="MovieList" spry:region="dsGenre dsMovieToGenre dsMovies" class="SpryHiddenRegion" style="clear:both;">
+      <div spry:repeat="dsGenre" class="ListBoxItemGroup" style="clear:both;">
+        <div class="ListBoxCategTitle" style="clear:both;">{name}</div>
+        <div spry:repeat="dsMovieToGenre" spry:test="'{dsMovieToGenre::id_genre}' == {id}" style="clear:both;">
+			<div spry:repeat="dsMovies" spry:test="{dsMovieToGenre::id_movie} == {dsMovies::id_movie}" class="ListBoxItem" spry:select="SelectedListBoxItem" spry:hover="ListBoxItemHover" onclick="dsMovies.setCurrentRow('{dsMovies::ds_RowID}');">
+				<div style="float:left; width:72%; overflow:hidden;">{dsMovies::title}</div>
+				<div class="ratingMovies" spry:if="{dsMovies::rating} == 5">*****</div>
+				<div class="ratingMovies" spry:if="{dsMovies::rating} == 4">****</div>
+				<div class="ratingMovies" spry:if="{dsMovies::rating} == 3">***</div>
+				<div class="ratingMovies" spry:if="{dsMovies::rating} == 2">**</div>
+				<div class="ratingMovies" spry:if="{dsMovies::rating} == 1">*</div>
+				<br style="clear:both;"/>
+			</div>
+		</div>
+      </div>
+    </div>
+ </div>
+ <div id="RightColumn">
+	<div id="articles">
+		<form id="form1" name="form1" method="get" action="index.html" onsubmit="saveData(); return false;">
+		<div id="formregion" spry:detailregion="dsMovies dsGenre dsStars dsStudios">
+			
+		<div id="theTitle">
+			<div class="formLabel">Title:</div>
+			<input name="movieName" type="text" id="theMovieTitle" value="{title}" />
+			<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+			<span class="textfieldRequiredMsg">Please enter a title.</span>
+		</div>
+
+		<div id="theRating">
+			<div class="formLabel">Rating:</div>
+			<select name="Rating" id="movieRating" spry:repeatchildren="dsStars">
+				<option spry:if="'{dsStars::rating}' == '{dsMovies::rating}'" value="{dsStars::rating}" selected="selected">{dsStars::text}</option>
+				<option spry:if="'{dsStars::rating}' != '{dsMovies::rating}'" value="{dsStars::rating}">{dsStars::text}</option>		
+			</select>
+			<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+			<span class="selectRequiredMsg">Please select a rating.</span>
+		</div>
+
+		<div id="theDate">
+    		<div class="formLabel">Date:</div>
+        	<input name="movieDate" type="text" id="movieYear" value="{year}" />
+			<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+			<span class="textfieldRequiredMsg">Please enter a date.</span>
+			<span class="textfieldInvalidFormatMsg">Please enter a valid date (mm/dd/yyyy).</span>
+		</div>
+    
+		<div id="theDuration">
+			<div class="formLabel">Duration (minutes):</div>
+			<input name="movieDuration" type="text" id="movieTime" value="{running_time}" />
+			<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+			<span class="textfieldRequiredMsg">Please enter a duration.</span>
+			<span class="textfieldInvalidFormatMsg">Please enter a positive number.</span>
+		</div>
+		
+		<div id="theStudio">
+			<div class="formLabel">Studio:</div>
+			<select name="movieStudio" id="movieStudio" spry:repeatchildren="dsStudios">
+				<option spry:if="'{dsStudios::@value}' == '{dsMovies::studio}'" value="{dsStudios::@value}" selected="selected">{dsStudios::studio}</option>
+				<option spry:if="'{dsStudios::@value}' != '{dsMovies::studio}'" value="{dsStudios::@value}">{dsStudios::studio}</option>
+			</select>
+		    <img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+     	    <span class="selectRequiredMsg">Please select a studio.</span>
+		 </div>
+
+		 <div id="theDescription">
+		 	<div class="formLabel">Description:</div>
+			<table border="0">
+			<tr>
+				<td valign="top" rowspan="2">
+					<textarea name="movieDescription" id="movieDescription" cols="45" rows="5">{description}</textarea>
+				</td>
+				<td valign="top" width="325">				
+					<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+					<span class="textareaRequiredMsg">Please enter a description.</span>
+					<span class="textareaMinCharsMsg">Please enter at least 20 characters.</span>
+				</td>
+			</tr>
+			<tr>
+				<td id="Countvalidta1" valign="bottom">&nbsp;</td>
+			</tr>
+			</table>
+		</div>
+
+		<div id="checkboxes">
+			<div class="formLabel">Genre:</div>
+			<div class="validcheckbox" spry:repeat="dsGenre">
+				<label for="checkbox1_{dsGenre::id}">{dsGenre::name}</label>
+				<div class="input_container">
+					<input type="checkbox" name="movieGenre" id="checkbox1_{dsGenre::id}" value="{dsGenre::id}" spry:if="optionOn( {id_movie} , {dsGenre::id} )" checked="checked"/>
+					<input type="checkbox" name="movieGenre" id="checkbox1_{dsGenre::id}" value="{dsGenre::id}" spry:if="!optionOn( {id_movie} , {dsGenre::id} )"/>
+				</div>
+			</div>
+			<div id="errors">
+				<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+				<span class="checkboxRequiredMsg">Please select at least a genre.</span>
+				<span class="checkboxMaxSelectionsMsg">Only maximum 3 genres can be selected.</span>
+			</div>
+			<br style="clear:both" />
+		</div>
+
+		<div id="radios">
+			<div class="formLabel">DVD version:</div>
+			<label for="yes_dvd">Yes
+				<input type="radio" name="dvd_available" id="yes_dvd" value="Y" spry:if="'{dsMovies::dvd_version}' == 'Y'" checked="checked"/>
+				<input type="radio" name="dvd_available" id="yes_dvd" value="Y" spry:if="'{dsMovies::dvd_version}' != 'Y'" />
+			</label>
+			<label for="no_dvd">No
+				<input type="radio" name="dvd_available" id="no_dvd" value="N" spry:if="'{dsMovies::dvd_version}' == 'N'" checked="checked"/>
+				<input type="radio" name="dvd_available" id="no_dvd" value="N" spry:if="'{dsMovies::dvd_version}' != 'N'" />
+			</label>
+			<img src="images/ok.gif" title="Valid" alt="Valid" class="validMsg" border="0"/>
+			<span class="radioRequiredMsg">Please specify a value.</span>
+	</div>
+
+
+		<div class="buttons">
+			<input type="submit" name="Submit" id="submit" value="Submit"/>
+			<input type="reset" name="Reset" id="reset" value="Reset" />
+		</div>
+		<div id="okmessage">
+			The movie info was saved !
+		</div>
+		</div>
+		</form>
+    </div>
+  </div>
+  <div class="ClearAll">&nbsp;</div>
+</div>
+</body>
+</html>

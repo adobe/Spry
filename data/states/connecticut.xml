@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Connecticut</name>
+	<cities>
+		<city>
+			<name>Ansonia</name>
+		</city>
+		<city>
+			<name>Bantam</name>
+		</city>
+		<city>
+			<name>Bethel</name>
+		</city>
+		<city>
+			<name>Bethlehem Village</name>
+		</city>
+		<city>
+			<name>Blue Hills</name>
+		</city>
+		<city>
+			<name>Branford Center</name>
+		</city>
+		<city>
+			<name>Bridgeport</name>
+		</city>
+		<city>
+			<name>Bristol</name>
+		</city>
+		<city>
+			<name>Broad Brook</name>
+		</city>
+		<city>
+			<name>Canaan</name>
+		</city>
+		<city>
+			<name>Canton Valley</name>
+		</city>
+		<city>
+			<name>Central Manchester</name>
+		</city>
+		<city>
+			<name>Central Somers</name>
+		</city>
+		<city>
+			<name>Central Waterford</name>
+		</city>
+		<city>
+			<name>Cheshire Village</name>
+		</city>
+		<city>
+			<name>Chester Center</name>
+		</city>
+		<city>
+			<name>Clinton</name>
+		</city>
+		<city>
+			<name>Colchester</name>
+		</city>
+		<city>
+			<name>Collinsville</name>
+		</city>
+		<city>
+			<name>Conning Towers-Nautilus Park</name>
+		</city>
+		<city>
+			<name>Coventry Lake</name>
+		</city>
+		<city>
+			<name>Crystal Lake</name>
+		</city>
+		<city>
+			<name>Danbury</name>
+		</city>
+		<city>
+			<name>Danielson</name>
+		</city>
+		<city>
+			<name>Darien</name>
+		</city>
+		<city>
+			<name>Deep River Center</name>
+		</city>
+		<city>
+			<name>Derby</name>
+		</city>
+		<city>
+			<name>Durham</name>
+		</city>
+		<city>
+			<name>East Brooklyn</name>
+		</city>
+		<city>
+			<name>East Hampton</name>
+		</city>
+		<city>
+			<name>East Hartford</name>
+		</city>
+		<city>
+			<name>East Haven</name>
+		</city>
+		<city>
+			<name>Essex Village</name>
+		</city>
+		<city>
+			<name>Fenwick</name>
+		</city>
+		<city>
+			<name>Georgetown</name>
+		</city>
+		<city>
+			<name>Glastonbury Center</name>
+		</city>
+		<city>
+			<name>Groton</name>
+		</city>
+		<city>
+			<name>Guilford Center</name>
+		</city>
+		<city>
+			<name>Hartford</name>
+		</city>
+		<city>
+			<name>Hazardville</name>
+		</city>
+		<city>
+			<name>Heritage Village</name>
+		</city>
+		<city>
+			<name>Higganum</name>
+		</city>
+		<city>
+			<name>Jewett City</name>
+		</city>
+		<city>
+			<name>Kensington</name>
+		</city>
+		<city>
+			<name>Lake Pocotopaug</name>
+		</city>
+		<city>
+			<name>Litchfield</name>
+		</city>
+		<city>
+			<name>Madison Center</name>
+		</city>
+		<city>
+			<name>Meriden</name>
+		</city>
+		<city>
+			<name>Middletown</name>
+		</city>
+		<city>
+			<name>Milford</name>
+		</city>
+		<city>
+			<name>Moodus</name>
+		</city>
+		<city>
+			<name>Moosup</name>
+		</city>
+		<city>
+			<name>Mystic</name>
+		</city>
+		<city>
+			<name>Naugatuck</name>
+		</city>
+		<city>
+			<name>New Britain</name>
+		</city>
+		<city>
+			<name>New Hartford Center</name>
+		</city>
+		<city>
+			<name>New Haven</name>
+		</city>
+		<city>
+			<name>New London</name>
+		</city>
+		<city>
+			<name>New Milford</name>
+		</city>
+		<city>
+			<name>New Preston</name>
+		</city>
+		<city>
+			<name>Newington</name>
+		</city>
+		<city>
+			<name>Newtown</name>
+		</city>
+		<city>
+			<name>Niantic</name>
+		</city>
+		<city>
+			<name>North Granby</name>
+		</city>
+		<city>
+			<name>North Grosvenor Dale</name>
+		</city>
+		<city>
+			<name>North Haven</name>
+		</city>
+		<city>
+			<name>Northwest Harwinton</name>
+		</city>
+		<city>
+			<name>Norwalk</name>
+		</city>
+		<city>
+			<name>Norwich</name>
+		</city>
+		<city>
+			<name>Oakville</name>
+		</city>
+		<city>
+			<name>Old Saybrook Center</name>
+		</city>
+		<city>
+			<name>Orange</name>
+		</city>
+		<city>
+			<name>Pawcatuck</name>
+		</city>
+		<city>
+			<name>Plainfield Village</name>
+		</city>
+		<city>
+			<name>Poquonock Bridge</name>
+		</city>
+		<city>
+			<name>Portland</name>
+		</city>
+		<city>
+			<name>Putnam District</name>
+		</city>
+		<city>
+			<name>Quinebaug</name>
+		</city>
+		<city>
+			<name>Ridgefield</name>
+		</city>
+		<city>
+			<name>Salmon Brook</name>
+		</city>
+		<city>
+			<name>Saybrook Manor</name>
+		</city>
+		<city>
+			<name>Shelton</name>
+		</city>
+		<city>
+			<name>Sherwood Manor</name>
+		</city>
+		<city>
+			<name>Simsbury Center</name>
+		</city>
+		<city>
+			<name>South Coventry</name>
+		</city>
+		<city>
+			<name>South Windham</name>
+		</city>
+		<city>
+			<name>South Woodstock</name>
+		</city>
+		<city>
+			<name>Southwood Acres</name>
+		</city>
+		<city>
+			<name>Stafford Springs</name>
+		</city>
+		<city>
+			<name>Stamford</name>
+		</city>
+		<city>
+			<name>Stonington</name>
+		</city>
+		<city>
+			<name>Storrs</name>
+		</city>
+		<city>
+			<name>Stratford</name>
+		</city>
+		<city>
+			<name>Suffield Depot</name>
+		</city>
+		<city>
+			<name>Tariffville</name>
+		</city>
+		<city>
+			<name>Terramuggus</name>
+		</city>
+		<city>
+			<name>Terryville</name>
+		</city>
+		<city>
+			<name>Thompsonville</name>
+		</city>
+		<city>
+			<name>Torrington</name>
+		</city>
+		<city>
+			<name>Trumbull</name>
+		</city>
+		<city>
+			<name>Uncasville-Oxoboxo Valley</name>
+		</city>
+		<city>
+			<name>Wallingford Center</name>
+		</city>
+		<city>
+			<name>Waterbury</name>
+		</city>
+		<city>
+			<name>Wauregan</name>
+		</city>
+		<city>
+			<name>Weatogue</name>
+		</city>
+		<city>
+			<name>West Hartford</name>
+		</city>
+		<city>
+			<name>West Haven</name>
+		</city>
+		<city>
+			<name>West Mystic</name>
+		</city>
+		<city>
+			<name>West Simsbury</name>
+		</city>
+		<city>
+			<name>Westbrook Center</name>
+		</city>
+		<city>
+			<name>Westport</name>
+		</city>
+		<city>
+			<name>Wethersfield</name>
+		</city>
+		<city>
+			<name>Willimantic</name>
+		</city>
+		<city>
+			<name>Windsor Locks</name>
+		</city>
+		<city>
+			<name>Winsted</name>
+		</city>
+		<city>
+			<name>Woodbury Center</name>
+		</city>
+		<city>
+			<name>Woodmont</name>
+		</city>
+	</cities>
+</state>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks ("Marks") displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Spry Demo Gallery Best Practice Demos</title>
+<link href="../css/screen.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+h3 {
+	margin:0;
+	padding:0;
+	font-weight:bold;
+	font-size:1.2em;
+}
+a.links {
+	color:#FFFFFF;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <h1>Product Demos</h1>
+  <p>These versions use progressive enhancement, unobtrusive javascript or graceful degradation as code samples for these best practices techniques. </p>
+  <img src="images/products.gif" alt="Products Demo" width="300" height="200" /> <br style="clear:both;" />
+  <div>
+    <h3><a href="products/index.html" class="links">Original Product Table </a></h3>
+    <p>This demo uses a XML Data Set as the data source for the product info. Spry attributes are inline. Useful as an intro to Spry concepts.</p>
+  </div>
+  <div>
+    <h3><a href="products_pe/index.html" class="links">Products Demo, HTML Data Set </a></h3>
+    <p>Using an internal HTML data set to degrade gracefully. It  allows for different layouts with common data. This is also good for search engine optimization, since the content is on the page.</p>
+  </div>
+   <div>
+    <h3><a href="../samples/products-hijax/index.html" class="links">Products Demo, Hijax sample</a></h3>
+    <p>This sample uses the Hijax methodology to supoort graceful degradation when javascript is not available.</p>
+  </div>
+  <p>&nbsp;</p>
+  <p>Note: Due to limitations of Safari 2.0, we have not presented a demo that unobtrusively attaches Spry attributes. This is because Safari does not handle adding namespaced attribute. It appears that Safari 3 has solved that limitation. We do have a sample of this technique <a href="../samples/dom_utils/unobtrusive_spry_data.html" class="links">here</a> and <a href="../samples/dom_utils/unobtrusive_spry_data2.html" class="links">here</a>. Unobtrusively adding Spry attributes is useful when page validation is important.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Template $Revision: 1.7 $ applied. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Adobe Labs - Collapsible Panel Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Working with the Collapsible Panel widget</h2>
+<p>A Spry widget is a page element that combines HTML, CSS and JavaScript data 
+  to enable user interaction. The Spry framework for Ajax supports a set of 
+  reusable widgets written in standard HTML, CSS, and JavaScript code.</p>
+<h2>About Spry widgets</h2>
+<p>A <dfn>Spry widget</dfn> is a page element that combines HTML, CSS 
+  and JavaScript code to enable user interaction. A Spry widget is made up of the 
+  following parts:</p>
+<dl>
+  <dt>Widget structure </dt>
+  <dd> An HTML code block that defines the structural composition of the 
+    widget.<br />
+  </dd>
+  <dt>Widget behavior </dt>
+  <dd> JavaScript code that controls how the widget responds to user-initiated 
+    events.<br />
+  </dd>
+  <dt>Widget styling </dt>
+  <dd> CSS code that specifies the appearance of the widget.<br />
+  </dd>
+</dl>
+<p>The Spry framework supports a set of reusable widgets written in standard 
+  HTML, CSS, and JavaScript code. You can easily insert these widgets - the code is 
+  HTML and CSS at its simplest - and then style the widget. The behaviors in the 
+  framework include functionality that lets users show or hide content on the 
+  page, change the appearance (such as color) of the page, interact with menu 
+  items, and much more.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and 
+  JavaScript files, available on Adobe Labs. The CSS file contains everything 
+  necessary for styling the widget, and the JavaScript file gives the widget its 
+  functionality. The CSS and JavaScript files associated with a given widget are 
+  named after the widget, so it's easy for you to know which files correspond to 
+  which widgets. (For example, the files associated with the Accordion widget are 
+  called SpryAccordion.css and SpryAccordion.js).</p>
+<h3>About Spry widget accessibility and JavaScript 
+  degradation</h3>
+<p>It is critical to the usability of the widget that it be accessible when 
+  following established web navigation conventions. You can't assume that the user 
+  is using a mouse, and therefore Adobe has taken steps to ensure that all aspects 
+  of the currently available widgets are accessible through the keyboard. In the 
+  Accordion widget, for example, you can use up and down arrow keys to open 
+  content panels. Adobe encourages all widget developers to build in this kind of 
+  functionality.</p>
+<p>It's also impossible to control the end user's environment. Adobe develops 
+  widgets to ensure that when JavaScript is turned off, all the content of the 
+  widget is still available on the screen. While this will most likely affect the 
+  page layout, it is more important that the content of the widget still be 
+  available, especially when working with disclosure widgets. Adobe ensures that 
+  default CSS states do not set visibility to hidden, 
+  and that HTML code is not positioned off screen.</p>
+<h3>Coding guidelines for developing Spry widgets</h3>
+<p>One of the goals of Spry is to enable the user community to build and share 
+  widgets. Adobe has a set of guidelines to use when authoring widgets for public 
+  distribution. Adobe is providing these guidelines with the hope that all widgets 
+  will have a consistent base functionality.</p>
+<ul>
+  <li>
+    <p>Use standard HTML code for structure</p>
+  </li>
+  <li>
+    <p>Don't require CSS code unless necessary</p>
+  </li>
+  <li>
+    <p>If you require CSS code for functionality, clearly document the 
+      requirements</p>
+  </li>
+  <li>
+    <p>Use a single line (if possible) of JavaScript to enable the widget 
+      functionality</p>
+  </li>
+  <li>
+    <p>Write keyboard navigation options in a function by default</p>
+  </li>
+  <li>
+    <p>When JavaScript is turned off, the content should still appear on the 
+      page</p>
+  </li>
+  <li>
+    <p>Widgets should be self-contained. Everything needed for the widget is 
+      provided in the HTML, JavaScript, and CSS files.</p>
+  </li>
+</ul>
+<p>Keeping to these guidelines will help ensure that widgets are easy to 
+  understand and use, plus consistency strengthens the framework for everyone.</p>
+<p>Using standard code is important because there is less to learn for the 
+  common user. It also makes it easy to use these widgets in WYSIWYG editors.</p>
+<p>CSS code is used in some widgets to show and hide content by switching the 
+  visibility rule in CSS code. This is an example of a required use of CSS. Such a 
+  use is acceptable because the CSS code is the obvious mechanism for showing and 
+  hiding content. CSS code that is pure styling, however, should not be required. 
+  The widget should always function without styling. Document required CSS rules 
+  with comments in the CSS file, and if you're providing further documentation, 
+  mention it there as well.</p>
+<p>Most widgets are activated with a single line of JavaScript code just after 
+  the actual widget code. Try to keep the JavaScript arguments to a minimum. 
+  Widths and heights of widgets should be set in CSS code, not in JavaScript, 
+  unless there are no other options.</p>
+<p>Keyboard navigation and accessibility are important to users and to Spry. 
+  Write keyboard navigation so that users can use common workflow keys (arrow 
+  keys, space bar) to access all parts of your widget. Use things like tab order 
+  where appropriate.</p>
+<p>It's vital that content not be hidden in non-scripting environments. Ensure 
+  that when JavaScript is turned off, your content is not hidden because of CSS 
+  visibility being turned off or content being positioned off 
+  screen.</p>
+<h3>Collapsible Panel widget overview and structure</h3>
+<p>A Collapsible Panel widget is a panel that can store content in a compact 
+  space. Users hide or reveal the content stored in the Collapsible Panel by 
+  clicking the tab of the widget. The following example shows a Collapsible Panel 
+  widget, expanded and collapsed.</p>
+<img class="smallImage" id="cp" alt="" 
+src="images/cp.gif" /> <br />
+<dl>
+  <dt>A.  </dt>
+  <dd>Expanded  </dd>
+  <dt>B.  </dt>
+  <dd>Collapsed </dd>
+</dl>
+<p>The HTML code for the Collapsible Panel widget is made up of an outer div tag that contains the content div tag and the tab container div tag. The HTML code for the Collapsible Panel widget also includes script tags in the head of the document and after the 
+  Collapsible Panel's HTML code.</p>
+<p>The script tag in the head of the document defines 
+  all of the JavaScript functions related to the Collapsible Panel widget. The script tag after the Collapsible Panel widget code 
+  creates a JavaScript object that makes the Collapsible Panel interactive. 
+  Following is the HTML code for an Collapsible Panel widget: </p>
+<pre>&lt;head&gt;
+...
+	&lt;!--Link the CSS style  sheet that styles the Collapsible Panel--&gt;
+	&lt;link href=&quot;SpryAssets/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; 
+		type=&quot;text/css&quot; /&gt;
+	&lt;!--Link the Spry Collapsible Panel JavaScript library--&gt;
+	&lt;script src=&quot;SpryAssets/SpryCollapsiblePanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body&gt;
+	&lt;!--Create the Collapsible Panel widget and assign classes to each element--&gt;
+	&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+		&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Tab&lt;/div&gt;
+		&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt; 
+	&lt;/div&gt;
+	&lt;!--Initialize the Collapsible Panel widget object--&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+	&lt;/script&gt; 
+&lt;/body&gt; </pre>
+<p>In the code, the new JavaScript operator 
+  initializes the Collapsible Panel widget object, and transforms the div content with the ID of CollapsiblePanel1 from static HTML code into an interactive 
+  page element. The Spry.Widget.CollapsiblePanel method 
+  is a constructor in the Spry framework that creates Collapsible Panel objects, 
+  and the information necessary to initialize the object is contained in the 
+  SpryCollapsiblePanel.js JavaScript library that you linked to in the head of the 
+  document.</p>
+<p>Each of the elements in the Collapsible Panel widget contains a CSS class. 
+  These classes control the style of the Collapsible Panel widget, and exist in 
+  the accompanying SpryCollapsiblePanel.css file.</p>
+<p>You can change the appearance of any given part of the Collapsible Panel 
+  widget by editing the CSS code that corresponds to the class names assigned to 
+  it in the HTML code. For example, to change the background color of the 
+  Collapsible Panel's tabs, edit the CollapsiblePanelTab rule in the SpryCollapsiblePanel.css file. Keep in mind that changing the CSS 
+  code in the SpryCollapsiblePanel.css file will affect all collapsible panels 
+  that are linked to that file.</p>
+<p>In addition to the classes shown in the HTML code, the Collapsible Panel 
+  widget includes certain default behaviors that are attached to the widget. These 
+  behaviors are a built‑in part of the Spry framework, and are in the 
+  SpryCollapsiblePanel.js JavaScript library file. The Collapsible Panel library 
+  includes behaviors related to hovering, clicking (to open and close the panel), 
+  panel focus, and keyboard navigation. </p>
+<p>You can change the look of the Collapsible Panel as it relates to these 
+  behaviors by editing the appropriate classes in the SpryCollapsiblePanel.css 
+  file. If for some reason you want to remove a given behavior, you can delete the 
+  CSS rules that correspond to that behavior.</p>
+<p><span class="notetitle">Note: </span>While you can change the look 
+        of the Collapsible Panel as it relates to a certain behavior, you cannot alter 
+        the built‑in behaviors themselves. For example, Spry still places a 
+        CollapsiblePanelFocused class on the currently open panel, even if no properties 
+        are set for the CollapsiblePanelFocused class in the SpryCollapsiblePanel.css 
+        file.</p>
+<h4>Variation on tags used for Collapsible Panel widget 
+  structure</h4>
+<p>In the preceding example, div tags create a nested 
+  tag structure for the widget:</p>
+<pre>Container div
+	Tab div
+	Content div</pre>
+<p>This 2-level, 3-container structure is essential for the Collapsible Panel 
+  widget to work properly; the structure, however, is more important than the 
+  actual tags you decide to use. Spry reads the structure (not div tags necessarily) and builds the widget accordingly. As 
+  long as the 2-level, 3-container structure is in place, you can use any 
+  block-level element to create the widget:</p>
+<pre>Container div 
+	H3 tag 
+	P tag</pre>
+<p>The div tags in the example are flexible and can 
+  contain other block-level elements. A p tag (or any 
+  other inline tag), however, cannot contain other block-level elements, so you 
+  cannot use it as a container or panel tag for the collapsible 
+  panel.</p>
+<h3>CSS code for the Collapsible Panel widget</h3>
+<p>The SpryCollapsiblePanel.css file contains the rules that style the 
+  Collapsible Panel widget. You can edit these rules to style the collapsible 
+  panel's look and feel. The names of the rules in the CSS file correspond 
+  directly to the names of the classes specified in the Collapsible Panel widget's 
+  HTML code.</p>
+<span class="notetitle">Note: </span>You can replace style-related 
+        class names in the SpryCollapsiblePanel.css file and HTML code with class names 
+        of your own. Doing so does not affect the functionality of the widget, as CSS 
+        code is not required for widget functionality.
+<p>The default functionality for the behaviors classes at the end of the style 
+  sheet are defined in the SpryCollapsiblePanel.js JavaScript library file. You 
+  can change the default functionality by adding properties and values to the 
+  behavior rules in the style sheet.</p>
+<p>The following is the CSS code for the SpryCollapsiblePanel.css file:</p>
+<pre>/*Collapsible Panel styling classes*/
+.CollapsiblePanel {
+	margin: 0px;
+	padding: 0px;
+	border-left: solid 1px #CCC;
+	border-right: solid 1px #999;
+}
+.CollapsiblePanelTab {
+	font: bold 0.7em sans-serif;
+	background-color: #DDD;
+	border-top: solid 1px #999;
+	border-bottom: solid 1px #CCC;
+	margin: 0px;
+	padding: 2px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+.CollapsiblePanelContent {
+	margin: 0px;
+	padding: 0px;
+	border-bottom: solid 1px #CCC;
+}
+.CollapsiblePanelTab a {
+	color: black;
+	text-decoration: none;
+}
+.CollapsiblePanelOpen .CollapsiblePanelTab {
+	background-color: #EEE;
+}
+.CollapsiblePanelTabHover,  .CollapsiblePanelOpen .CollapsiblePanelTabHover {
+background-color: #CCC;
+}
+.CollapsiblePanelFocused .CollapsiblePanelTab {
+	background-color: #3399FF;
+}</pre>
+<p>The SpryCollapsiblePanel.css file contains extensive comments, explaining the 
+  code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<h3>Insert the Collapsible Panel widget</h3>
+<ol>
+  <li><span>Locate the SpryCollapsiblePanel.js file and add it 
+    to your web site. You can find the SpryCollapsiblePanel.js file in the 
+    widgets/collapsiblepanel directory, located in the Spry directory that you 
+    downloaded from Adobe Labs. </span>
+    <p>For example, create a folder called <dfn>SpryAssets</dfn> in the 
+      root folder of your web site, and move the SpryCollapsiblePanel.js file to it. 
+      The SpryCollapsiblePanel.js file contains all of the information necessary for 
+      making the Collapsible Panel widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryCollapsiblePanel.css file and add it 
+    to your web site. You might choose to add it to the main directory, or to a 
+    CSS directory if you have one.</span>  </li>
+  <li><span>Open the web page to add the Collapsible Panel 
+    widget to and link the SpryCollapsiblePanel.js file to the page by inserting 
+    the following script tag in the page's head 
+    tag:</span>
+    <pre>&lt;script src=&quot;SpryAssets/SpryCollapsiblePanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+    <p>Make sure that the file path to the SpryCollapsiblePanel.js file is 
+      correct. This path varies depending on where you've placed the file in your 
+      web site.</p>
+  </li>
+  <li><span>Link the SpryCollapsiblePanel.css file to your web 
+    page by inserting the following link tag in the 
+    page's head tag:</span>
+    <pre>&lt;link href=&quot;SpryAssets/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+    <p>Make sure that the file path to the SpryCollapsiblePanel.css file is 
+      correct. This path varies depending on where you've placed the file in your 
+      web site.</p>
+  </li>
+  <li><span>To add the collapsible panel to your web page, 
+    insert the following div tag where you want the 
+    collapsible panel to appear on the page:</span>
+    <pre>&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+&lt;/div&gt; </pre>
+  </li>
+  <li><span>To add a tab to the collapsible panel, insert a div class=&quot;CollapsiblePanelTab&quot; tag inside the div class=&quot;CollapsiblePanel&quot; tag, as follows:</span>
+    <pre>&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Tab&lt;/div&gt;
+&lt;/div&gt; </pre>
+  </li>
+  <li><span>To add a content area to the panel, insert a div class=&quot;CollapsiblePanelContent&quot; tag inside the div class=&quot;CollapsiblePanel&quot; tag, as follows:</span>
+    <pre>&lt;div class=&quot;AccordionPanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Tab&lt;/div&gt;
+	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt;
+&lt;/div&gt; </pre>
+    <p>Insert the content between the opening and closing CollapsiblePanelContent tags (For example, Content, as in the preceding example). The content can be 
+      any valid HTML code, including HTML form elements.</p>
+  </li>
+  <li><span>To initialize the Spry collapsible panel object, 
+    insert the following script block after the HTML code for the Collapsible 
+    Panel widget:</span>
+    <pre>&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+. . .
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var acc1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+&lt;/script&gt; </pre>
+    <p>The new JavaScript operator initializes the 
+      Collapsible Panel widget object, and transforms the div content with the ID of CollapsiblePanel1 from static 
+      HTML code into an interactive collapsible panel object. The Spry.Widget.CollapsiblePanel method is a constructor in 
+      the Spry framework that creates collapsible panel objects. The information 
+      necessary to initialize the object is contained in the SpryCollapsiblePanel.js 
+      JavaScript library that you linked to at the beginning of this procedure.</p>
+    <p>Make sure that the ID of the collapsible panel's div tag matches the ID parameter you specified in the Spry.Widgets.CollapsiblePanel method. Make sure that 
+      the JavaScript call comes after the HTML code for the widget.</p>
+  </li>
+  <li><span>Save the page.</span>
+    <p>The complete code looks as follows:</p>
+    <pre>&lt;head&gt;
+...
+&lt;link href=&quot;SpryAssets/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;SpryAssets/SpryCollapsiblePanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+		&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Tab&lt;/div&gt;
+		&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt;
+	&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+  </li>
+</ol>
+<h3>Enable keyboard navigation</h3>
+<p>Making widgets accessible for keyboard navigation is an important part of 
+  every widget. Keyboard navigation lets the user control the widget open or close state using the arrows or user defined keys.</p>
+<p>The foundation of keyboard navigation is the tabIndex attribute. This attribute tells the browser how to 
+  use the tabs to navigate through the document.</p>
+<span>&nbsp;To enable keyboard 
+        navigation on the collapsible panel, add a TabIndex value to the collapsible panel tab tag, as follows:</span>
+<pre>&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot; tabIndex=&quot;0&quot;&gt;Tab&lt;/div&gt;
+	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>If the tabIndex attribute has a value of zero (0), 
+  the browser determines the order. If the tabIndex attribute has a positive integer value, that order value is used. </p>
+<p>To enable keyboard navigation, wrap the tab content with an a tag.</p>
+<span class="notetitle">Note: </span>Using tabIndex on a div tag 
+          is not XHTML 1.0 compliant.
+<p>You can also set custom keys for keyboard navigation. Custom keys are set as 
+            arguments of the collapsible constructor script:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;, {openPanelKeyCode:  34 /* PgDn key */, closePanelKeyCode: 33 /* PgUp key */});
+&lt;/script&gt;</pre>
+
+<h3>Set the default state of the panel</h3>
+<p>By default the Collapsible Panel widget is open when the web page loads in a 
+  browser. You can, however, change the status of the panel if you want the panel 
+  to be closed when the page loads.</p>
+<span>&nbsp;Set the contentIsOpen 
+        option in the constructor as follows:</span>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;, { contentIsOpen: false });
+&lt;/script&gt;</pre>
+<p>You can also check the status of the panel with the isOpen function. The 
+  following code returns true if the panel is open and false if it is not:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+function  getStatus(){
+var xx = CollapsiblePanel1.isOpen();
+document.form1.textfield.value = xx
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;CollapsiblePanel1&quot; class=&quot;CollapsiblePanel&quot;&gt;
+  &lt;div class=&quot;CollapsiblePanelTab&quot; tabIndex=&quot;0&quot; onclick=&quot;getStatus();&quot;&gt;Tab&lt;/div&gt;
+  &lt;div class=&quot;CollapsiblePanelContent&quot;&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+&lt;form id=&quot;form1&quot; name=&quot;form1&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+  &lt;input name=&quot;textfield&quot; type=&quot;text&quot; id=&quot;textfield&quot; value=&quot;a&quot; size=&quot;50&quot; /&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+//--&gt;
+&lt;/script&gt;</pre>
+<h3>Open the panel programatically</h3>
+<p>You can programatically open and close the Collapsible Panel widget by using 
+  JavaScript functions. For example, you might have a button on your page, that 
+  opens the collapsible panel when the user clicks the button.</p>
+<span>&nbsp;Use the following 
+        functions to open or close a collapsible panel:</span>
+<pre>&lt;input type=&quot;button&quot; onclick=&quot;CollapsiblePanel1.open();&quot; &gt;open panel&lt;/input&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;CollapsiblePanel1.close();&quot;&gt;close panel&lt;/input&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel1&quot;);
+&lt;/script&gt;</pre>
+<h3>Customize the Collapsible Panel widget</h3>
+<p>The SpryCollapsiblePanel.css file provides the default styling for the 
+  Collapsible Panel widget. You can, however, easily customize the widget by 
+  changing the appropriate CSS rule. The CSS rules in the SpryCollapsiblePanel.css 
+  file use the same class names as the related elements in the collapsible panel's 
+  HTML code, so it's easy for you to know which CSS rules correspond to the 
+  different sections of the Collapsible Panel widget. Additionally, the 
+  SpryCollapsiblePanel.css file contains class names for behaviors that are 
+  related to the widget (for example, hovering and clicking behaviors).</p>
+<p>The SpryCollapsiblePanel.css file should already be included in your website 
+  before you start customizing.</p>
+<span class="notetitle">Note: </span>Internet Explorer up to and 
+          including version 6 does not support Sibling and child contextual selectors (for 
+          example, .CollapsiblePanel + .CollapsiblePanel or .CollapsiblePanel &gt; 
+          .CollapsiblePanel).
+<h4>Style a CollapsiblePanel widget (general 
+  instructions)</h4>
+<p>Set properties for the entire Collapsible Panel widget container, or set 
+  properties for the components of the widget individually.</p>
+<ol>
+  <li><span>Open the SpryCollapsiblePanel.css file.</span>  </li>
+  <li><span>Locate the CSS rule for the part of the collapsible panel to change. 
+    For example, to change the background color of the collapsible panel's tab, 
+    edit the CollapsiblePanelTab rule in the 
+    SpryCollapsiblePanel.css file.</span>  </li>
+  <li><span>Make your changes to the CSS rule and save the file.</span> </li>
+</ol>
+<p>You can replace style-related class names in the SpryCollapsiblePanel.css 
+  file and HTML code with class names of your own. Doing so does not affect the 
+  functionality of the widget.</p>
+<p>The SpryCollapsiblePanel.css file contains extensive comments, explaining the 
+  code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<h4>Style Collapsible Panel widget text</h4>
+<p>Set properties for the entire Collapsible Panel widget container, or set 
+  properties for the components of the widget individually.</p>
+<span>&nbsp;To change the text 
+          format of a Collapsible Panel widget, use the following table to locate the 
+          appropriate CSS rule, and then add your own text styling properties and 
+          values.</span>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Style to change</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Example of properties and values to add or change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Text in the entire collapsible panel</p></td>
+      <td><p>.CollapsiblePanel</p></td>
+      <td><p>font: Arial; font-size:medium;</p></td>
+    </tr>
+    <tr>
+      <td><p>Text in panel tab only</p></td>
+      <td><p>.CollapsiblePanelTab</p></td>
+      <td><p>font: bold 0.7em sans-serif; (This is the default value.)</p></td>
+    </tr>
+    <tr>
+      <td><p>Text in content panel only</p></td>
+      <td><p>.CollapsiblePanelContent</p></td>
+      <td><p>font: Arial; 
+          font-size:medium;</p></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Change Collapsible Panel widget background colors</h4>
+<span>&nbsp;Use the following table 
+          to locate the appropriate CSS rule, and then add or change background color 
+          properties and values.</span>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Color to change</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Example of property and value to add or change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Background color of panel tab</p></td>
+      <td><p>.CollapsiblePanelTab</p></td>
+      <td><p>background-color: #DDD; (This is the default value.)</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of content panel</p></td>
+      <td><p>.CollapsiblePanelContent</p></td>
+      <td><p>background-color: #DDD;</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of tab when panel is open</p></td>
+      <td><p>.CollapsiblePanelOpen .CollapsiblePanelTab</p></td>
+      <td><p>background-color: #EEE; (This is the default value.)</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of open panel tab when the mouse pointer moves over 
+          it</p></td>
+      <td><p>.CollapsiblePanelTabHover, .CollapsiblePanelOpen 
+          .CollapsiblePanelTabHover</p></td>
+      <td><p>background-color: #CCC; (This is the default 
+          value.)</p></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Constrain the width of a collapsible panel</h4>
+<p>By default, the Collapsible Panel widget expands to fill available space. To 
+  constrain the width of a Collapsible Panel widget, set a width property for the 
+  collapsible panel container.</p>
+<ol>
+  <li><span>Locate the CollapsiblePanel CSS rule in 
+    the SpryCollapsiblePanel.css file. This rule defines properties for the main 
+    container element of the Collapsible Panel widget.</span>  </li>
+  <li><span>Add a width property and value to the rule, for example width: 300px;.</span> </li>
+</ol>
+<h4>Change collapsible panel height</h4>
+<p>To set the height of a collapsible panel, add a height property to the CollapsiblePanelContent rule or the CollapsiblePanel rule.</p>
+<span>&nbsp;In the 
+          SpryCollapsiblePanel.css file, add a height property and value to the CollapsiblePanelContent rule, for example, height: 300px;.</span> <span class="notetitle">Note: </span>Setting the height of the CollapsiblePanel rule sets the height of the entire 
+              widget, independent of the content panel size.
+<h4>Change collapsible panel behaviors</h4>
+<p>The collapsible panel widget includes a few predefined behaviors. These 
+  behaviors consist of changing CSS classes when a particular event occurs. For 
+  example, when a mouse pointer hovers over a collapsible panel tab, Spry applies 
+  the CollapsiblePanelTabHover class to the widget. 
+  (This behavior is similar to a:hover for links.) The 
+  behaviors are blank by default; to change them, add properties and values to the 
+  rules.</p>
+<ol>
+  <li><span>Open the SpryCollapsiblePanel.css file and locate 
+    the CSS rule for the collapsible panel behavior to change. The Collapsible 
+    Panel widget includes four built-in rules for behaviors.</span>
+    <table>
+      <thead align="left">
+        <tr>
+          <th> <p>Behavior</p></th>
+          <th> <p>Description</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><p>.CollapsiblePanelTabHover</p></td>
+          <td><p>Spry adds this class to the widget's tab element whenever the mouse 
+              enters hovers over it. The class is automatically removed when the mouse 
+              leaves the tab.</p></td>
+        </tr>
+        <tr>
+          <td><p>.CollapsiblePanelOpen</p></td>
+          <td><p>Spry adds this class to the widget's top-level element when the 
+              panel's content area is visible.</p></td>
+        </tr>
+        <tr>
+          <td><p>.CollapsiblePanelClosed</p></td>
+          <td><p>Spry adds this class to the widget's top-level element when the 
+              panel's content area is closed</p></td>
+        </tr>
+        <tr>
+          <td><p>.CollapsiblePanelFocused</p></td>
+          <td><p>Spry adds this class to the widget's top-level element when the 
+              widget has keyboard focus.</p></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>For examples, see the collapsible panel sample file located in the samples 
+      directory of the Spry directory that you downloaded from Adobe Labs.</p>
+  </li>
+  <li><span>Add CSS rules for any of the behaviors you want to 
+    enable.</span> </li>
+</ol>
+<span class="notetitle">Note: </span>You cannot replace 
+            behavior-related class names in the SpryCollapsiblePanel.css file with class 
+            names of your own because the behaviors are hard coded as part of the Spry 
+            framework. To override the default class with your class name, send the new 
+            values as arguments to the collapsible panel constructor:
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var CP2 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel2&quot;, { hoverClass: &quot;hover&quot;, openClass: &quot;open&quot;, closedClass: &quot;closed&quot;, focusedClass: &quot;focused&quot; });
+&lt;/script&gt;</pre>
+<h4>Turn off panel animation</h4>
+<p>By default, a collapsible panel uses animation to smoothly open and close. </p>
+<span>&nbsp;To turn off animation so 
+          that the panel instantly opens and closes, send an argument in the collapsible 
+          panel constructor, as follows:</span>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var CP5 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel5&quot;, { enableAnimation: false });
+&lt;/script&gt;</pre>
+<h4>Set panel animation timing</h4>
+<p>You can change the time it takes for a panel to open. Set the time in 
+  milliseconds (1000 = 1 second). By default, Spry uses 500 
+  milliseconds.</p>
+<span>&nbsp;Add the duration option to the constructor:</span>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var CP9 = new Spry.Widget.CollapsiblePanel(&quot;CollapsiblePanel9&quot;, { duration: 100 });
+&lt;/script&gt;</pre>
+<hr />
+<p>Copyright © 2006. Adobe Systems Incorporated.  All rights reserved.</p>
+</body>
+</html>

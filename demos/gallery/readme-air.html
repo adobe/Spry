@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Packaging an AIR application</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+li {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+-->
+</style>
+</head>
+
+<body>
+<h3>Building the Spry Photo Gallery as an AIR application</h3>
+<p>In order to build the Photo Gallery Demo as an AIR application you need to do the following:</p>
+<h4>INSTALL REQUIRED FILES </h4>
+<ul>
+  <li>download  the AIR platform and the Dreamweaver AIR extension from <a href="http://labs.adobe.com/wiki/index.php/AIR:Dreamweaver_CS3_Extension">Adobe Labs</a></li>
+  <li>install the AIR platform and then the AIR Dreamweaver extension, as instructed on the download page</li>
+</ul>
+<h4>CREATE A SITE</h4>
+  <ul>
+    <li>start Dreamweaver</li>
+    <li>define a site having the root folder identical to your Spry folder</li>
+    <li>in menu, go to Comamnds -&gt; Air Application settings dialog</li>
+  </ul>
+
+  <h4> FILLING &quot;Air Application settings&quot; dialog</h4>
+<p>Enter all the required data in this dialog:</p>
+<ul>
+        <li>File Name: a descriptive name, like Photo Gallery Demo</li>
+        <li>ID: you can use PhotoGalleryDemo<br />
+        </li>
+        <li>Initial content: demos/gallery/index-air.html</li>
+        <li>Window size: width=1024, height=600 (optimum size)</li>
+        <li>Included files:
+            <ul>
+                <li>demos/gallery/index-air.html (automatically put when you select it above as Initial Content)</li>
+                <li>demos/gallery/gallery.js</li>
+         </ul>
+        </li>
+        <li>Included folders:
+            <ul>
+                <li>css/</li>
+                <li>demos/gallery/galleries/</li>
+                <li>demos/images/</li>
+                <li>includes/</li>
+            </ul>
+        </li>
+        <li>Digital signature: 
+            <ul>	
+                <li>click the Set button</li>
+                <li>select the &quot;Sign the AIR package with a digital certificate&quot; radio button</li>
+                <li>then click Create button to create a certificate</li>
+                <li>save it on your hard drive</li>
+                <li>click OK twice to return to the main Air Application settings dialog</li>
+          </ul>
+	  </li>
+      <li>choose a destination for the AIR file</li>
+      <li>click &quot;Create AIR file&quot; button in the upper right corner</li>
+      <li>install and run the application</li>
+</ul>
+<p>Filling this dialog will generate an application.xml file at the root folder, that you can reuse later.</p>
+<hr />
+<p>Copyright &copy; 2008. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

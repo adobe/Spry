@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rating Widget Graceful Degradation Sample</title>
+
+<script language="JavaScript" type="text/javascript" src="../../widgets/rating/SpryRating.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/rating/SpryRating.css" rel="stylesheet" type="text/css" />
+<!-- user-defined class for hover-->
+
+
+<style type="text/css">
+	.sample{
+			float:left;
+			margin-top:5px;		
+	}
+	
+</style>
+</head>
+<body>
+<h3>Spry Rating Widget Graceful Degradation Sample</h3>
+<p>This page shows how to create a Rating widget to gracefull degrade in pages with Java Script disabled. It requires PHP scripting enabled on the server.<br />
+  Please disable the Java Script for your browser and see how the Rating widget will behave.<br />
+</p>
+<p>For  graceful degradation we added inside the main Rating widget container  an input element that will get in action when Java Script is off allowing you to rate and send the rated values to the server. If Java Script is enabled the input elements you add for graceful degradation are hidden by default, becoming visible only in pages with Java Script disabled.<br />
+</p>
+<p>To have your page  working also when Java Script is off and still be able to send your rate to the server, you have to include your Rating widget inside a form and provide a submit button to  send the data. <br />
+You can use any input element for graceful degradation:  text input, select input, radio input.</p>
+<!--  first widget, read-only -->
+
+	<form method="get" name="Ratingform" action="SpryRating.php">
+   
+   <div class="label">With Java Script off you can't change the rating value because the input field is readonly. (You have to add by hand the &quot;readonly&quot;
+    attribute on the textfield.)</div>
+	<span id="static" class="ratingContainer">	
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>	  
+            <input id="readOnly" type="text" name="spry_static" value="2.5" readonly="readonly" />
+         
+            <span class="ratingReadOnlyErrMsg sample">You can't vote here!</span>
+	</span>
+    <br />
+    <br />
+   	  <p>
+   	  	<input type="submit" name="button1" id="button1" value="Submit" />
+	  </p>
+  
+    </form>
+   <form method="get" name="Ratingform" action="SpryRating.php"> 
+  
+		<div class="label">When Java Script is off, the textfield below allows you to change the initial rate.</div>
+        <span id="rating" class="ratingContainer">
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <input id="dynamicElement" type="text" name="spry_dynamic" value="3" />
+      		  <span class="ratingRatedMsg sample">Thanks for your rating!</span>      	  </span>
+              <br />
+              <br />
+		
+		<p>
+		
+		  <input type="submit" name="button2" id="button2" value="Submit" />
+</p>
+		
+</form>
+		
+ <br />
+ <hr />
+
+    <script type="text/javascript">
+		var firstRating = new Spry.Widget.Rating("static", {ratingValueElement: 'readOnly', readOnly: true});	
+		var secondRating = new Spry.Widget.Rating("rating", {ratingValueElement:'dynamicElement' });
+
+	
+      </script>
+</body>
+</html>

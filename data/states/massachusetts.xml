@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Massachusetts</name>
+	<cities>
+		<city>
+			<name>Abington</name>
+		</city>
+		<city>
+			<name>Acushnet Center</name>
+		</city>
+		<city>
+			<name>Adams</name>
+		</city>
+		<city>
+			<name>Amesbury</name>
+		</city>
+		<city>
+			<name>Amherst</name>
+		</city>
+		<city>
+			<name>Andover</name>
+		</city>
+		<city>
+			<name>Arlington</name>
+		</city>
+		<city>
+			<name>Athol</name>
+		</city>
+		<city>
+			<name>Attleboro</name>
+		</city>
+		<city>
+			<name>Ayer</name>
+		</city>
+		<city>
+			<name>Baldwinville</name>
+		</city>
+		<city>
+			<name>Barnstable Village</name>
+		</city>
+		<city>
+			<name>Barre</name>
+		</city>
+		<city>
+			<name>Belchertown</name>
+		</city>
+		<city>
+			<name>Bellingham</name>
+		</city>
+		<city>
+			<name>Belmont</name>
+		</city>
+		<city>
+			<name>Beverly</name>
+		</city>
+		<city>
+			<name>Bliss Corner</name>
+		</city>
+		<city>
+			<name>Bondsville</name>
+		</city>
+		<city>
+			<name>Boston</name>
+		</city>
+		<city>
+			<name>Bourne</name>
+		</city>
+		<city>
+			<name>Boxford</name>
+		</city>
+		<city>
+			<name>Braintree</name>
+		</city>
+		<city>
+			<name>Brewster</name>
+		</city>
+		<city>
+			<name>Bridgewater</name>
+		</city>
+		<city>
+			<name>Brockton</name>
+		</city>
+		<city>
+			<name>Brookline</name>
+		</city>
+		<city>
+			<name>Burlington</name>
+		</city>
+		<city>
+			<name>Buzzards Bay</name>
+		</city>
+		<city>
+			<name>Cambridge</name>
+		</city>
+		<city>
+			<name>Centerville</name>
+		</city>
+		<city>
+			<name>Chatham</name>
+		</city>
+		<city>
+			<name>Chelmsford</name>
+		</city>
+		<city>
+			<name>Chelsea</name>
+		</city>
+		<city>
+			<name>Chicopee</name>
+		</city>
+		<city>
+			<name>Clinton</name>
+		</city>
+		<city>
+			<name>Cochituate</name>
+		</city>
+		<city>
+			<name>Cordaville</name>
+		</city>
+		<city>
+			<name>Cotuit</name>
+		</city>
+		<city>
+			<name>Danvers</name>
+		</city>
+		<city>
+			<name>Dedham</name>
+		</city>
+		<city>
+			<name>Dennis</name>
+		</city>
+		<city>
+			<name>Dennis Port</name>
+		</city>
+		<city>
+			<name>Dover</name>
+		</city>
+		<city>
+			<name>Duxbury</name>
+		</city>
+		<city>
+			<name>East Brookfield</name>
+		</city>
+		<city>
+			<name>East Dennis</name>
+		</city>
+		<city>
+			<name>East Douglas</name>
+		</city>
+		<city>
+			<name>East Falmouth</name>
+		</city>
+		<city>
+			<name>East Harwich</name>
+		</city>
+		<city>
+			<name>East Pepperell</name>
+		</city>
+		<city>
+			<name>East Sandwich</name>
+		</city>
+		<city>
+			<name>Essex</name>
+		</city>
+		<city>
+			<name>Everett</name>
+		</city>
+		<city>
+			<name>Fall River</name>
+		</city>
+		<city>
+			<name>Falmouth</name>
+		</city>
+		<city>
+			<name>Fiskdale</name>
+		</city>
+		<city>
+			<name>Fitchburg</name>
+		</city>
+		<city>
+			<name>Forestdale</name>
+		</city>
+		<city>
+			<name>Fort Devens</name>
+		</city>
+		<city>
+			<name>Foxborough</name>
+		</city>
+		<city>
+			<name>Framingham</name>
+		</city>
+		<city>
+			<name>Franklin</name>
+		</city>
+		<city>
+			<name>Gardner</name>
+		</city>
+		<city>
+			<name>Gloucester</name>
+		</city>
+		<city>
+			<name>Granby</name>
+		</city>
+		<city>
+			<name>Great Barrington</name>
+		</city>
+		<city>
+			<name>Green Harbor-Cedar Crest</name>
+		</city>
+		<city>
+			<name>Greenfield</name>
+		</city>
+		<city>
+			<name>Groton</name>
+		</city>
+		<city>
+			<name>Hanson</name>
+		</city>
+		<city>
+			<name>Harwich Center</name>
+		</city>
+		<city>
+			<name>Harwich Port</name>
+		</city>
+		<city>
+			<name>Hatfield</name>
+		</city>
+		<city>
+			<name>Haverhill</name>
+		</city>
+		<city>
+			<name>Hingham</name>
+		</city>
+		<city>
+			<name>Holbrook</name>
+		</city>
+		<city>
+			<name>Holland</name>
+		</city>
+		<city>
+			<name>Holyoke</name>
+		</city>
+		<city>
+			<name>Hopedale</name>
+		</city>
+		<city>
+			<name>Hopkinton</name>
+		</city>
+		<city>
+			<name>Housatonic</name>
+		</city>
+		<city>
+			<name>Hudson</name>
+		</city>
+		<city>
+			<name>Hull</name>
+		</city>
+		<city>
+			<name>Hyannis</name>
+		</city>
+		<city>
+			<name>Ipswich</name>
+		</city>
+		<city>
+			<name>Kingston</name>
+		</city>
+		<city>
+			<name>Lawrence</name>
+		</city>
+		<city>
+			<name>Lee</name>
+		</city>
+		<city>
+			<name>Lenox</name>
+		</city>
+		<city>
+			<name>Leominster</name>
+		</city>
+		<city>
+			<name>Lexington</name>
+		</city>
+		<city>
+			<name>Littleton Common</name>
+		</city>
+		<city>
+			<name>Longmeadow</name>
+		</city>
+		<city>
+			<name>Lowell</name>
+		</city>
+		<city>
+			<name>Lunenburg</name>
+		</city>
+		<city>
+			<name>Lynn</name>
+		</city>
+		<city>
+			<name>Lynnfield</name>
+		</city>
+		<city>
+			<name>Malden</name>
+		</city>
+		<city>
+			<name>Mansfield Center</name>
+		</city>
+		<city>
+			<name>Marblehead</name>
+		</city>
+		<city>
+			<name>Marion Center</name>
+		</city>
+		<city>
+			<name>Marlborough</name>
+		</city>
+		<city>
+			<name>Marshfield</name>
+		</city>
+		<city>
+			<name>Marshfield Hills</name>
+		</city>
+		<city>
+			<name>Marstons Mills</name>
+		</city>
+		<city>
+			<name>Mattapoisett Center</name>
+		</city>
+		<city>
+			<name>Maynard</name>
+		</city>
+		<city>
+			<name>Medfield</name>
+		</city>
+		<city>
+			<name>Medford</name>
+		</city>
+		<city>
+			<name>Melrose</name>
+		</city>
+		<city>
+			<name>Middleborough Center</name>
+		</city>
+		<city>
+			<name>Milford</name>
+		</city>
+		<city>
+			<name>Millers Falls</name>
+		</city>
+		<city>
+			<name>Millis-Clicquot</name>
+		</city>
+		<city>
+			<name>Milton</name>
+		</city>
+		<city>
+			<name>Monson Center</name>
+		</city>
+		<city>
+			<name>Monument Beach</name>
+		</city>
+		<city>
+			<name>Nahant</name>
+		</city>
+		<city>
+			<name>Nantucket</name>
+		</city>
+		<city>
+			<name>Needham</name>
+		</city>
+		<city>
+			<name>New Bedford</name>
+		</city>
+		<city>
+			<name>Newburyport</name>
+		</city>
+		<city>
+			<name>Newton</name>
+		</city>
+		<city>
+			<name>North Adams</name>
+		</city>
+		<city>
+			<name>North Amherst</name>
+		</city>
+		<city>
+			<name>North Attleborough Center</name>
+		</city>
+		<city>
+			<name>North Brookfield</name>
+		</city>
+		<city>
+			<name>North Eastham</name>
+		</city>
+		<city>
+			<name>North Falmouth</name>
+		</city>
+		<city>
+			<name>North Lakeville</name>
+		</city>
+		<city>
+			<name>North Pembroke</name>
+		</city>
+		<city>
+			<name>North Plymouth</name>
+		</city>
+		<city>
+			<name>North Scituate</name>
+		</city>
+		<city>
+			<name>North Seekonk</name>
+		</city>
+		<city>
+			<name>North Westport</name>
+		</city>
+		<city>
+			<name>Northampton</name>
+		</city>
+		<city>
+			<name>Northborough</name>
+		</city>
+		<city>
+			<name>Northfield</name>
+		</city>
+		<city>
+			<name>Northwest Harwich</name>
+		</city>
+		<city>
+			<name>Norton Center</name>
+		</city>
+		<city>
+			<name>Norwood</name>
+		</city>
+		<city>
+			<name>Ocean Bluff-Brant Rock</name>
+		</city>
+		<city>
+			<name>Ocean Grove</name>
+		</city>
+		<city>
+			<name>Onset</name>
+		</city>
+		<city>
+			<name>Orange</name>
+		</city>
+		<city>
+			<name>Orleans</name>
+		</city>
+		<city>
+			<name>Osterville</name>
+		</city>
+		<city>
+			<name>Oxford</name>
+		</city>
+		<city>
+			<name>Palmer</name>
+		</city>
+		<city>
+			<name>Peabody</name>
+		</city>
+		<city>
+			<name>Pepperell</name>
+		</city>
+		<city>
+			<name>Pinehurst</name>
+		</city>
+		<city>
+			<name>Pittsfield</name>
+		</city>
+		<city>
+			<name>Plymouth</name>
+		</city>
+		<city>
+			<name>Pocasset</name>
+		</city>
+		<city>
+			<name>Provincetown</name>
+		</city>
+		<city>
+			<name>Quincy</name>
+		</city>
+		<city>
+			<name>Randolph</name>
+		</city>
+		<city>
+			<name>Raynham Center</name>
+		</city>
+		<city>
+			<name>Reading</name>
+		</city>
+		<city>
+			<name>Revere</name>
+		</city>
+		<city>
+			<name>Rockport</name>
+		</city>
+		<city>
+			<name>Rowley</name>
+		</city>
+		<city>
+			<name>Rutland</name>
+		</city>
+		<city>
+			<name>Sagamore</name>
+		</city>
+		<city>
+			<name>Salem</name>
+		</city>
+		<city>
+			<name>Salisbury</name>
+		</city>
+		<city>
+			<name>Sandwich</name>
+		</city>
+		<city>
+			<name>Saugus</name>
+		</city>
+		<city>
+			<name>Scituate</name>
+		</city>
+		<city>
+			<name>Sharon</name>
+		</city>
+		<city>
+			<name>Shelburne Falls</name>
+		</city>
+		<city>
+			<name>Shirley</name>
+		</city>
+		<city>
+			<name>Smith Mills</name>
+		</city>
+		<city>
+			<name>Somerset</name>
+		</city>
+		<city>
+			<name>Somerville</name>
+		</city>
+		<city>
+			<name>South Amherst</name>
+		</city>
+		<city>
+			<name>South Ashburnham</name>
+		</city>
+		<city>
+			<name>South Deerfield</name>
+		</city>
+		<city>
+			<name>South Dennis</name>
+		</city>
+		<city>
+			<name>South Duxbury</name>
+		</city>
+		<city>
+			<name>South Lancaster</name>
+		</city>
+		<city>
+			<name>South Yarmouth</name>
+		</city>
+		<city>
+			<name>Southbridge</name>
+		</city>
+		<city>
+			<name>Spencer</name>
+		</city>
+		<city>
+			<name>Springfield</name>
+		</city>
+		<city>
+			<name>Stoneham</name>
+		</city>
+		<city>
+			<name>Sturbridge</name>
+		</city>
+		<city>
+			<name>Swampscott</name>
+		</city>
+		<city>
+			<name>Taunton</name>
+		</city>
+		<city>
+			<name>Teaticket</name>
+		</city>
+		<city>
+			<name>Three Rivers</name>
+		</city>
+		<city>
+			<name>Topsfield</name>
+		</city>
+		<city>
+			<name>Townsend</name>
+		</city>
+		<city>
+			<name>Turners Falls</name>
+		</city>
+		<city>
+			<name>Upton-West Upton</name>
+		</city>
+		<city>
+			<name>Vineyard Haven</name>
+		</city>
+		<city>
+			<name>Wakefield</name>
+		</city>
+		<city>
+			<name>Walpole</name>
+		</city>
+		<city>
+			<name>Waltham</name>
+		</city>
+		<city>
+			<name>Ware</name>
+		</city>
+		<city>
+			<name>Wareham Center</name>
+		</city>
+		<city>
+			<name>Warren</name>
+		</city>
+		<city>
+			<name>Watertown</name>
+		</city>
+		<city>
+			<name>Webster</name>
+		</city>
+		<city>
+			<name>Wellesley</name>
+		</city>
+		<city>
+			<name>West Barnstable</name>
+		</city>
+		<city>
+			<name>West Brookfield</name>
+		</city>
+		<city>
+			<name>West Chatham</name>
+		</city>
+		<city>
+			<name>West Concord</name>
+		</city>
+		<city>
+			<name>West Dennis</name>
+		</city>
+		<city>
+			<name>West Falmouth</name>
+		</city>
+		<city>
+			<name>West Springfield</name>
+		</city>
+		<city>
+			<name>West Wareham</name>
+		</city>
+		<city>
+			<name>West Yarmouth</name>
+		</city>
+		<city>
+			<name>Westborough</name>
+		</city>
+		<city>
+			<name>Westfield</name>
+		</city>
+		<city>
+			<name>Weweantic</name>
+		</city>
+		<city>
+			<name>Weymouth</name>
+		</city>
+		<city>
+			<name>White Island Shores</name>
+		</city>
+		<city>
+			<name>Whitinsville</name>
+		</city>
+		<city>
+			<name>Wilbraham</name>
+		</city>
+		<city>
+			<name>Williamstown</name>
+		</city>
+		<city>
+			<name>Wilmington</name>
+		</city>
+		<city>
+			<name>Winchendon</name>
+		</city>
+		<city>
+			<name>Winchester</name>
+		</city>
+		<city>
+			<name>Winthrop</name>
+		</city>
+		<city>
+			<name>Woburn</name>
+		</city>
+		<city>
+			<name>Worcester</name>
+		</city>
+		<city>
+			<name>Yarmouth Port</name>
+		</city>
+	</cities>
+</state>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data Set Master/Detail Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script type="text/javascript">
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "states/state");
+var dsCities = new Spry.Data.XMLDataSet("../../data/states/{dsStates::url}", "state/cities/city");
+</script>
+</head>
+<body>
+<h3>Data Set Master/Detail Sample
+	
+</h3>
+<p>This page demonstrates how to set up a Master/Detail relationship between two data sets. In this example, selecting a state from the &quot;State&quot; select form element causes the &quot;City&quot; select form element to be updated with the cities for the currently selected state.</p>
+<p>The master/detail relationship is established by simply using the value of the url column, in the currently selected row, of the dsStates data set, as the URL arg to the constructor for the dsCities data set. When a state is selected, the &quot;State&quot; select form element changes the current row on the dsStates data set, which triggers the dsCities data set to update, which in turn causes the &quot;City&quot; select form element to update. </p>
+<hr />
+<form name="selectForm" action="">
+	State:
+	<span spry:region="dsStates" id="stateSelector">
+		<select spry:repeatchildren="dsStates" name="stateSelect" onchange="document.forms[0].citySelect.disabled = true; dsStates.setCurrentRowNumber(this.selectedIndex);">
+			<option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+			<option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+		</select>
+	</span>
+	City:
+	<span spry:region="dsCities" id="citySelector">
+		<select spry:repeatchildren="dsCities" id="citySelect" name="citySelect">
+			<option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+			<option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+		</select>
+	</span>
+</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>States Example</title>
+<script type="text/javascript" src="../../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../../includes/SpryData.js"></script>
+<script type="text/javascript">
+var dsStates = new Spry.Data.XMLDataSet("../../../data/states/states.xml", "states/state");
+var dsCities = new Spry.Data.XMLDataSet("../../../data/states/{dsStates::url}", "state/cities/city");
+</script>
+</head>
+<body>
+<form name="selectForm" action="data-framework-overview-sample-02.html">
+	State:
+	<span spry:region="dsStates" id="stateSelector">
+		<select spry:repeatchildren="dsStates" name="stateSelect" onchange="document.forms[0].citySelect.disabled = true; dsStates.setCurrentRow(this.selectedIndex);">
+			<option spry:if="{ds_RowNumber} == 0" value="{name}" selected="selected">{name}</option>
+			<option spry:if="{ds_RowNumber} != 0" value="{name}">{name}</option>
+		</select>
+	</span>
+	City:
+	<span spry:region="dsCities" id="citySelector">
+		<select spry:repeatchildren="dsCities" name="citySelect">
+			<option spry:if="{ds_RowNumber} == 0" value="{name}" selected="selected">{name}</option>
+			<option spry:if="{ds_RowNumber} != 0" value="{name}">{name}</option>
+		</select>
+	</span>
+</form>
+</body>
+</html>

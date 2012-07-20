@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Validating Spry Data Pages</title>
+<link href="../../css/bparticles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Validating Pages that use Spry Data</h3>
+<p>Code validation is gaining more importance these days. HTML coders and their clients want to know that their code is done correctly. While the debate over standards and validation is a large one, the Spry team has taken steps to ensure that Spry pages will pass  W3C validation.</p>
+<p>The W3C recommends a couple methods for extending XHTML to encapsulate custom attributes. One is adding new attribute declarations to the actual page. Another is using a custom  Document Type Declaration (DTD). The Spry team wrote a custom DTD that can be appended to the doc type declaration at the top of the Spry page. This will cause the validator to pull in the linked DTD and use it in conjunction with the original DTD. This will ensure that Spry attributes  validate correctly.<br />
+  Further, the Spry DTD will help ensure that your Spry attributes are being used correctly. For instance, spry:repeat is allowed on some tags that spry:region is not (&lt;table&gt; for instance). The validator should show when spry attributes are used incorrectly.</p>
+<p>First, a bit about basic validation. Below is a typical doc type declaration. The doc type is typically the first line of the HTML page that is delivered to the client. The validator looks at the URL of the DTD: <a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a> and uses that as the baseline for validation. The URL, in this case, points to the XHTML transitional DTD. This DTD lists all the rules  to which this page need subscribe. There are different DTDs for different page types. For instance the strict DTD (<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</a>) doesn't allow some attributes that are deprecated in HTML 4.<br />
+  DTDs are meant to be machine readable, not human readable, but take a look at one and see how they are put together. </p>
+<pre class="codeSample">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+
+...
+
+&lt;/html&gt;</pre>
+<p>A bit about name spacing. Notice the Spry name space: xmlns:spry=&quot;http://ns.adobe.com/spry&quot;. This is added to pages that use Spry attributes. This name space declaration tells the browser that there are attributes that start with 'spry' on the page. This helps prevent conflicts with standard XHTML attributes, or  other   custom attributes from other name spaces that may be used in the page This doesn't help with validation but it is best practice to include it. You can read more about name spacing. here: <a href="http://en.wikipedia.org/wiki/XML_Namespaces">http://en.wikipedia.org/wiki/XML_Namespaces</a>. Pages that  use Spry widgets or effects do not need this name space declaration. There is no requirement that there be a document at the name space URL and, if there is a document, there is no requirement as to its contents. It can be whatever the writer wishes: human or machine readable.</p>
+<p>A note about Spry  widgets and validation: In our samples, and in the code that Dreamweaver CS3 generates, we use the 'tabindex' attribute to enable keyboard navigation between areas in our  widgets, like Tabbed Panel and Collapsible Panel. The Spry team chose to do this to enhance accessibility in our widgets. While using tab index on non-form elements is technically invalid, IE and Mozilla-based browsers support using tabindex on other page elements specifically for accessibility concerns. &lt;a&gt; tags can be used instead to allow tabbing if so desired, and tabindex can be removed from any widget without affecting base functionality.</p>
+<h3>Extending the DOCTYPE</h3>
+<p>In order to extend the doc type so that the page validates correctly, we need to add code to the original doc type. The example below shows how to do so.</p>
+<pre class="codeSample">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;
+<span class="highlited">[
+     &lt;!ENTITY % SPRY SYSTEM &quot;http://www.adobe.com/dtd/spry.dtd&quot;&gt;
+     %SPRY;
+]</span>&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+...
+&lt;/html&gt;</pre>
+<p>The &lt;!ENTITY&gt; line has the URL to the custom DTD. This is an absolute link to the Spry DTD on adobe.com: <a href="http://www.adobe.com/dtd/spry.dtd">ht<span class="highlited">tp://www.adobe.com/dtd/spry.dtd</span></a><span class="highlited">&quot;</span>. </p>
+<p>The '%SPRY;' line is the code that actually tells the validator to use it on this page. If that piece of code is missing, the page will not validate. The square brackets are also required. </p>
+<p>Now, the page should fully validate when running it through the W3C validator: <a href="http://validator.w3.org/">http://validator.w3.org/</a>.</p>
+<h3>Trouble</h3>
+<p>Ah..but you probably noticed the problem. Sure the page validates, but in the browser, there is code at the top of the page that looks like:</p>
+<pre> %SPRY; ]&gt;</pre>
+<p>The trouble is that most browsers get confused by the ENTITY tag and and think the doc type is closed at that point. Therefore, the trailing snippet of code renders in most browsers. While Opera 9 handles it correctly, IE, Firefox and Safari all fail.</p>
+<p>This is a browser bug and currently there is no fix for it, despite the code being strictly correct. </p>
+<p>So, if you need to ensure validation, add the entity extension. If you then need the page to look correct, remove it when going live.</p>
+<p>We will update this page as needed if this changes.</p>
+<hr />
+<p>Copyright © 2006. Adobe Systems Incorporated.  All rights reserved</p>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>loadURL() Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>loadURL() Sample</h3>
+<p>This page gives a few examples of how to use the Spry.Utils.loadURL() to send &quot;GET&quot; and &quot;POST&quot; requests to the server. The Spry.Utils.loadURL() function is currently located in SpryData.js, so before you use it, you must include it:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+
+...
+
+&lt;script src=&quot;../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+...
+
+&lt;/head&gt;
+</pre>
+<p>Before proceeding any further, let's take a look at the arguments for the loadURL function:</p>
+<pre>var req = Spry.Utils.loadURL = function(method, url, async, callback, opts);
+</pre>
+<p>The arguments are as follows:</p>
+<ul>
+	<li><strong>method</strong>
+		<ul>
+			<li>String.</li>
+			<li>Must be &quot;GET&quot;, &quot;POST&quot; or &quot;HEAD&quot;.</li>
+		</ul>
+	</li>
+	<li><strong>url</strong>
+		<ul>
+			<li>String.</li>
+			<li>An absolute URL to the data *or* a URL that is relative to the HTML document that is running your script. Note that the URL *MUST* refer to a document/server-side script that is on the same server from which the HTML document originated from. If it isn't, the request will fail.</li>
+		</ul>
+	</li>
+	<li><strong>async</strong>
+		<ul>
+			<li>Boolean.</li>
+			<li>If true, the request will be processed asynchronously, which means that the request will be made, but the response may come back some time *after* the call to loadURL() has finished. If false, the request will block until a response has been received from the server, or the request has timed out.</li>
+		</ul>
+	</li>
+	<li><strong>callback</strong>
+		<ul>
+			<li>Function reference. This argument is optional.</li>
+			<li>If specified, this callback function will be triggered after a response from the server has been received.</li>
+			<li>The signature of the callback is as follows:<br />
+				<pre>function MyCallback(req)
+{
+  // Do your processing here.
+}</pre>
+				<p>When the callback is triggered, the Spry.Utils.loadURL.Request object is passed to the callback. See below for more details.</p>
+			</li>
+		</ul>
+	</li>
+	<li><strong>opts</strong>
+		<ul>
+			<li>Object. This argument is optional.</li>
+			<li>Specifies any request options. Valid options are:
+				<ul>
+					<li><strong>errorCallback</strong>
+						<ul>
+							<li>Function Reference.</li>
+							<li>This callback will be triggered if the request fails. The signature of the callback is identical to the callback function argument of loadURL, mentioned above.</li>
+						</ul>
+					</li>
+					<li><strong>headers</strong>
+						<ul>
+							<li>Object.</li>
+							<li>Specifies additional HTTP Request header fields that should be sent along with the request. Each property in this object is the name of an HTTP header field to send. The value of the property, is the value of that field. Example:
+							<pre>// Example of creating a header object the literal way:
+
+var header = { &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot; };
+
+// Example of creating a header object manually:
+
+var header = new Object;
+header[&quot;Content-Type&quot;] = &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;;</pre>
+							</li>
+						</ul>
+					</li>
+					<li><strong>password</strong>
+						<ul>
+							<li>String.</li>
+							<li>The password to send to the server along with the request.</li>
+						</ul>
+					</li>
+					<li><strong>postData</strong>
+						<ul>
+							<li>String.</li>
+							<li>The format of the data in the string is up to the developer so this must be used in conjunction with the &quot;headers&quot; option, mentioned above, to specify the &quot;Content-type&quot; so the server knows how to deal with it.</li>
+						</ul>
+					</li>
+					<li><strong>userData</strong>
+						<ul>
+							<li>User Defined</li>
+							<li>This can be anything the developer wants it to be. This option is here so that a developer can attach some data to a request, and have that data passed along with the request to the loadURL callback or errorCallback functions.</li>
+						</ul>
+					</li>
+					<li><strong>username</strong>
+						<ul>
+							<li>String.</li>
+							<li>The username to send to the server along with the request.</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+<p>The return value of loadURL is an object of type Spry.Utils.loadURL.Request. This is the same object that will be past into any callbacks you've passed into loadURL. The fields in this object look just like options you pass into loadURL, but it also contains fields that contain the arguments passed into the loadURL call.</p>
+<p>Here's a list of the properties on the Request object.</p>
+<ul>
+	<li><strong>async</strong>
+		<ul>
+			<li>Boolean.</li>
+			<li>The value of the async argument that was passed into loadURL.</li>
+		</ul>
+	</li>
+	<li><strong>method</strong>
+		<ul>
+			<li>String.</li>
+			<li>The value of the method argument that was passed into loadURL.</li>
+		</ul>
+	</li>
+	<li><strong>password</strong>
+			<ul>
+				<li>String.</li>
+				<li>The password sent to the server. This could be null if none was specified.</li>
+			</ul>
+	</li>
+	<li><strong>postData</strong>
+			<ul>
+				<li>String.</li>
+				<li>The post data that was sent with the loadURL request. This could be null if no postData was specified.</li>
+			</ul>
+	</li>
+	<li><strong>successCallback</strong>
+		<ul>
+			<li>Function reference.</li>
+			<li>The value of the callback argument that was passed into loadURL. This could be null if a callback was not specified.</li>
+			</ul>
+	</li>
+	<li><strong>url</strong>
+		<ul>
+			<li>String.</li>
+			<li>The URL passed into the loadURL call.</li>
+		</ul>
+	</li>
+	<li><strong>userData</strong>
+			<ul>
+				<li>User Defined</li>
+				<li>The userData that was passed into loadURL via the 'userData' option.</li>
+			</ul>
+	</li>
+	<li><strong>username</strong>
+			<ul>
+				<li>String.</li>
+				<li>The username sent to the server. This could be null if none was specified.</li>
+			</ul>
+	</li>
+	<li><strong>xhRequest</strong>
+		<ul>
+			<li>Object.</li>
+			<li>The Browser native XMLHttpRequest object.</li>
+		</ul>
+	</li>
+</ul>
+<hr />
+<p>Now that we know all about loadURL, lets take a look at a few sample calls.</p>
+<h4>Example: Simple &quot;GET&quot; request with no callback.</h4>
+<p>In this example we just want to do an asynchronous &quot;GET&quot; request, but we don't care about the results, so we don't register a callback.</p>
+<pre>var req = Spry.Utils.loadURL(&quot;GET&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true);</pre>
+<h4>Example: &quot;GET&quot; request with callback.</h4>
+<p>In this example, we want to show an alert if the request completes successfully.</p>
+<pre>function MySuccessCallback(req)
+{
+  alert(req.url + &quot; completed successfully!&quot;);
+}
+
+...
+
+var req = Spry.Utils.loadURL(&quot;GET&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true, MySuccessCallback);
+</pre>
+<h4>Example: &quot;GET&quot; request with user-defined data passed to the callback function.</h4>
+<pre>function MySuccessCallback(req)
+{
+  // Throw an alert with the message that was
+  // passed to us via the userData.
+
+  alert(&quot;SUCCESS: &quot; + req.userData.msg);
+}
+
+...
+
+// Create some data to be sent along with the request.
+// This really can be anything you want, but I'm going to
+// use an object.
+
+var myObj = new Object;
+myObj.msg = &quot;Hello World&quot;;
+
+var req = Spry.Utils.loadURL(&quot;GET&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true, MySuccessCallback, { userData: myObj });
+</pre>
+<h4>Example: &quot;POST&quot; request with no callback.</h4>
+<pre>
+var req = Spry.Utils.loadURL(&quot;POST&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true, null, { postData: &quot;action=update&amp;genre=fiction&quot;, headers: { &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot; } });
+</pre>
+<h4>Example: &quot;POST&quot; request with user-defined data passed to the callback and errorCallback functions.</h4>
+<pre>function MySuccessCallback(req)
+{
+  // Throw an alert with the message that was
+  // passed to us via the userData.
+
+  alert(&quot;SUCCESS: &quot; + req.userData.msg);
+}
+
+function MyErrorCallback(req)
+{
+  // Throw an alert with the message that was
+  // passed to us via the userData.
+
+  alert(&quot;ERROR: &quot; + req.userData.msg);
+}
+
+...
+
+// Create some data to be sent along with the request.
+// This really can be anything you want, but I'm going to
+// use an object.
+
+var myObj = new Object;
+myObj.msg = &quot;Hello World&quot;;
+
+
+var req = Spry.Utils.loadURL(&quot;POST&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true, MySuccessCallback, { postData: &quot;action=update&amp;genre=fiction&quot;, headers: { &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot; }, errorCallback: MyErrorCallback });</pre>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<gallery
+base = ""
+background = "#FFFFFF"
+banner = "#F0F0F0"
+text = "#000000"
+link = "#0000FF"
+alink = "#FF0000"
+vlink = "#800080"
+date = "1/10/2006">
+	<sitename>Egypt Gallery</sitename>
+	<photographer>Don Booth</photographer>
+	<contactinfo>http://www.adobe.com</contactinfo>
+	<email>dbooth@adobe.com</email>
+	<security><![CDATA[]]> </security>
+
+<banner font = "Arial" fontsize = "3" color =  "#F0F0F0"> </banner>
+<thumbnail base ="../../gallery/galleries/egypt/thumbnails/" font = "Arial" fontsize = "4" color = "#F0F0F0" border = "0" rows = "3" col = "5"> </thumbnail> 
+<large base ="../../gallery/galleries/egypt/images/" font = "Arial" fontsize = "3" color = "#F0F0F0" border = "0"> </large>
+<photos id = "images">
+
+<photo
+path = "egypt_01.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_01.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_02.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_02.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_03.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_03.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_04.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_04.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_05.jpg"
+width = "262"
+height = "350"
+thumbpath = "egypt_05.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "egypt_06.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_06.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_07.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_07.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_08.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_08.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_09.jpg"
+width = "350"
+height = "199"
+thumbpath = "egypt_09.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_10.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_10.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_11.jpg"
+width = "262"
+height = "350"
+thumbpath = "egypt_11.jpg"
+thumbwidth = "56"
+thumbheight = "75">
+</photo>
+
+
+<photo
+path = "egypt_12.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_12.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_13.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_13.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_14.jpg"
+width = "350"
+height = "263"
+thumbpath = "egypt_14.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_15.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_15.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_16.jpg"
+width = "350"
+height = "263"
+thumbpath = "egypt_16.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_17.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_17.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+<photo
+path = "egypt_18.jpg"
+width = "350"
+height = "262"
+thumbpath = "egypt_18.jpg"
+thumbwidth = "75"
+thumbheight = "56">
+</photo>
+
+
+</photos>
+</gallery>

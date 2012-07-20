@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Default Row Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.selected {
+	background-color: #999999;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+//
+// STEP 1: Create a data set.
+//
+dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+
+//
+// Step 2: Add a data changed observer. The spry:region will kick off the loading
+//         of our data set, so we don't have to do it manually.
+//
+dsEmployees.addObserver({ onDataChanged: function(ds, type) { dsEmployees.setCurrentRowNumber(2); } });
+
+</script>
+
+</head>
+
+<body>
+<h3>Setting a Default Row Example </h3>
+<p>Data sets load their data asynchronously, so you can't just create a data set, fire off a load and then set the current row.
+You have to register a data changed observer on the data set and then set the current row. We'll try to make this a bit easier
+in the future. But till then, this is an example of how to do it.</p>
+<p>In this example we are going to load a bunch of names from an XML file into an
+HTML list, but we want to make sure that the default current row for the data set is the 3rd row. We'll add some conditionals to
+our list markup to ensure that our &quot;current row&quot; is hilited so we can verify that the 3rd row is indeed the current
+row. You'll have to view the source of this page to see how this is accomplished. </p>
+<hr />
+<p>Here's the running example:  </p>
+<div spry:region="dsEmployees">
+	<ul spry:repeatchildren="dsEmployees">
+		<li spry:if="{ds_CurrentRowNumber} == {ds_RowNumber}" class="selected">{firstname} {lastname}</li>
+		<li spry:if="{ds_CurrentRowNumber} != {ds_RowNumber}">{firstname} {lastname}</li>
+	</ul>
+</div>
+</body>
+</html>

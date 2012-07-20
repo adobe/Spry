@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Adobe Labs - Spry Validation Radio Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#insert_widget pre{
+	margin-left: -45px;
+}
+</style>
+</head>
+<body>
+<h1><a id="title"></a>Using Spry Widgets: Validation Radio Overview</h1>
+<h3>About Spry Widgets</h3>
+<p>A Spry widget is a page element containing built-in behaviors and functions that provide a richer user experience by enabling user interaction. These behaviors can include functionality that lets users show or hide content on the page, change the appearance (such as color of the input) in the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You can easily insert these widgets &mdash; the code is HTML and JavaScript at its simplest &mdash; and then style the widget according to your liking.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and JavaScript files. The CSS file contains everything necessary for styling the widget, and the JavaScript file gives the widget its functionality. You must link both of these files to the page on which you want the widget to function and appear styled. Otherwise, the widget won&rsquo;t have any functionality or styling. For more information, see the appropriate sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JavaScript files associated with a given widget are named after the widget, so it&rsquo;s easy for you to know which files correspond to which widgets. (For example, the files associated with the Validation Radio widget are called SpryValidationRadio.css and SpryValidationRadio.js). </p>
+<ul>
+  <li><a href="#anatomy">Anatomy of the Validation Radio widget</a></li>
+  <li><a href="#css">CSS for the Validation Radio widget</a></li>
+  <li><a href="#using">Using the Validation Radio widget</a></li>
+  <li><a href="#behaviors">Validation Radio Behaviors</a></li>
+</ul>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h3><a id="anatomy"></a>Anatomy of the Validation Radio widget</h3>
+<p>The Validation Radio widget is a group of radio buttons with validation support for the selection. Users can easily adjust the validation rules they need to enforce. The Validation Radio widget can enforce the selection of one radio button from the group.</p>
+<p>To create a Validation Radio widget, you only need a simple radio button input group that can be turned into a Spry Validation Radio widget by adding a few elements to it. </p>
+<p>The following illustration shows a Validation Radio widget as seen in browser: </p>
+<p><img src="RadioValidation.gif" style="clear:right; border: 0px;" alt="Radio Validation Widget"/></p>
+<p>You can create a widget by simply adding a HTML tag container (e.g. &lt;SPAN&gt;) around the group of INPUT type=&quot;radio button&quot; tags. The container tag must have an ID. </p>
+<p>The Validation Radio widget has a set of default states associated.  All these states are used to describe the browser behavior when the validation occurs. </p>
+<p>A Validation Radio widget can be in one of the following states:</p>
+<ul>
+  <li>Initial state &ndash; The state of the widget when the page is loaded or when the form is reset.</li>
+  <li>Required state &ndash; Notifies the user that there was an attempt to submit the form, but the radio button has not been selected. </li>
+  <li>Invalid state &ndash; Notifies the user that the chosen radio value from the group is not accepted. </li>
+  <li>Valid state &ndash; This state confirms that the radio button form field can be submitted. </li>
+</ul>
+<p>When the widget enters one of the above states, a specific CSS class is applied to the HTML tag container. The class definitions for each state are implemented in the SpryValidationRadio.css file associated to the widget.</p>
+<p>Error messages can be added to a Validation Radio widget by  creating a span tag (or any other tag type) to hold the error message text. By applying a specific css class on the message, you can hide the error message by default and show it only when the widget container has the specific class applied  (when the widget state changes).</p>
+<p>The code for the Validation Radio widget  requires JavaScript script tags in the head section of the document and after the HTML markup. The script tag in the head of the document includes a JavaScript file where  the functions related to the Validation Radio widget are defined. The script tag after the Validation Radio widget HTML code contains the constructor for the  widget object.</p>
+<p>The following is the HTML code for a Validation Radio widget along with an error message and the associated JavaScript code:</p>
+<pre> &lt;head&gt;<br />
+  &nbsp;&lt;script src=&quot;includes/SpryValidationRadio.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+  &nbsp;&lt;link href=&quot;SpryValidationRadio.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;<br />
+  &lt;/head&gt; &nbsp;<br />
+  &lt;body&gt;<br />
+  &nbsp;&lt;span id=&quot;RadioWidget&quot;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;1&quot;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;2&quot;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;radioRequiredMsg&quot;&gt;Please make a selection. &lt;/span&gt;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+  &nbsp;&lt;/span&gt;<br />
+  &nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp; &nbsp; &nbsp;  var radioWidgetObject &nbsp;= new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;);
+  &nbsp;&lt;/script&gt;
+  &lt;/body&gt;
+</pre>
+<p>The constructor in the sample receives one parameter, the ID of the HTML tag container that holds the widget markup.</p>
+<p>You&rsquo;ll also notice that the span tag for the error message has a CSS class applied. The message can be hidden or shown by triggering different CSS rules on the error message container. This is done dynamically by applying different classes on the HTML widget tag container when the widget enters a validation state.</p>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h4>Spry Validation Radio widget Structure</h4>
+<p>In the example above, SPANs are used to create the Validation Radio widget structure with its error messages.</p>
+<ul style="list-style-type: disc">
+  <li>&lt; SPAN id=&quot;widgetID&quot; &gt; 
+  <ul style="list-style-type: circle">
+    <li>&lt;input type="radio" name="name" value="value1"&gt; </li>
+    <li>&lt;input type="radio" name="name" value="value2"&gt; </li>
+    <li> &lt;SPAN Error Message&gt;</li>
+  </ul>
+	</li>
+</ul>
+<p>Instead of the SPAN tag, any HTML structure can be used, because Spry only uses the tag ID to identify the widget container. The appearance of the error message is done using CSS cascading that doesn't look at the actual tag type of the error message.</p>
+<p>In the above structure, the widget constructor identifies the HTML element whose ID has been passed as an argument and then looks inside the container for the corresponding radio button tags that needs to have validation applied. Error messages within the container SPAN can be used for validation. </p>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h3><a id="css"></a>CSS for the Validation Radio widget </h3>
+<p>The SpryValidationRadio.css file contains  rules which trigger the messages to display. The rules in the CSS file correspond to the class names specified in the HTML markup for the error messages. However, more complex selectors are required, which take into account the fact that a parent container can have a state class applied to it.</p>
+<p>The following is the CSS code for SpryValidationRadio.css file:</p>
+<pre>
+.radioRequiredMsg, .radioInvalidMsg{
+	display: none;
+}
+.radioRequiredState .radioRequiredMsg,
+.radioInvalidState .radioInvalidMsg{
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}
+<br />
+</pre>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h3><a id="using"></a>Using Validation Radio widget </h3>
+<p> This section contains the following topics:</p>
+<ul>
+  <li>Inserting a Validation Radio widget<br /><br />
+  </li>
+  <li>Styling the Validation Radio widget<br />
+  </li>
+</ul>
+<h4>Inserting a Validation Radio widget</h4>
+<ol id="insert_widget">
+	<li><p>Locate the SpryValidationRadio.js and add it to your  site, if you didn't do it already. You can find the SpryValidationRadio.js file in the 'widgets/radiovalidation' folder in the Spry zip.</p></li>
+	<li><p>Locate the SpryValidationRadio.css file and add it to your  site, if you haven't done so already. You might choose to add it to the root folder or to a CSS folder, if you have one.</p></li>
+	<li><p>In the page code, link the SpryValidationRadio.js file to your web page by inserting a script tag in the page&rsquo;s head section:</p>
+<pre> &lt;script src=&quot;includes/SpryValidationRadio.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+<p>Make sure the file path to the SpryValidationRadio.js file is correct. This path will vary depending on where you include the file in your web site.</p>
+</li>
+	<li>Link the SpryValidationRadio.css file to your web page by inserting a link tag in the page&rsquo;s head tag:
+<pre> &lt;link href=&quot;SpryValidationRadio.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+<p>Make sure the file path to the SpryValidationRadio.js file is correct. This path will vary depending on where you put the file in your web site. </p>
+	</li>
+	<li>Insert the number of Radio input fields you need.
+<pre> &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;1&quot; /&gt;<br />
+ &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;2&quot; /&gt;
+</pre>
+<br />
+</li>
+<li>Add a container to the Radio validation widget by inserting the span tag around the Radio input. Give the container an ID attribute.
+<pre>&lt;span id=&quot;RadioWidget&quot;&gt;<br />
+  &nbsp; &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;1&quot; /&gt;<br />
+  &nbsp; &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;2&quot; /&gt;<br />
+&lt;/span&gt;</pre>
+</li>
+<li>Initialize the Spry Validation Radio object by inserting the following script block in the HTML source code, after the container.
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  var radioWidgetObject  = new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;);<br />
+&lt;/script&gt;
+</pre>
+<p>It is important that you make sure the ID of the span tag matches the ID parameter you specified in the Spry.Widgets.ValidationRadio method. It is also important that you make sure the JavaScript call comes after the HTML code for the widget.</p>
+</li>
+<li>Save the page. The complete code looks as follows:
+<pre>&lt;head&gt;<br />
+  &nbsp;...<br />
+  &nbsp;&lt;script src=&quot;includes/SpryValidationRadio.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; <br />
+  &nbsp;&lt;link href=&quot;SpryValidationRadio.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;<br />
+  ...<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+  ...<br />
+  &lt;span id=&quot;RadioWidget&quot;&gt; &nbsp;<br />
+  &nbsp; &nbsp; &nbsp; &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;1&quot; /&gt;<br />
+  &nbsp; &nbsp; &nbsp; &lt;input type=&quot;radio&quot; name=&quot;fieldName&quot; value=&quot;2&quot; /&gt;<br />
+  &nbsp; &nbsp; &nbsp; &lt;span class=&quot;radioRequiredMsg&quot;&gt;Please enter a value.&lt;/span&gt;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+  &nbsp;&lt;/span&gt;<br />
+  &nbsp;&lt;script type=&quot;text/javascript&quot;&gt;<br />
+  &nbsp; &nbsp; var radioWidgetObject &nbsp;= new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;);<br />
+  &nbsp;&lt;/script&gt;<br />
+  ...<br />
+&lt;/body&gt; </pre>
+<br />
+</li>
+</ol>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h4>To style the Validation Radio widget </h4>
+<p >Styling the Validation Radio widget means changing the appearance of the error messages for different states.</p>
+<p>The Validation Radio widget comes with a CSS file  (SpryValidationRadio.css) that provides default styling for the error messages. You can easily style the error messages to your liking by simply changing the appropriate CSS rules.</p>
+<p class="style6">To change the state appearance of the Radio Validation widget:</p>
+<ol>
+	<li><p>Open the SpryValidationRadio.css file. You can find the SpryValidationRadio.css file in the 'widgets/radiovalidation' directory.</p></li>
+	<li><p>The Radio Validation widget comes with built-in CSS rules for the states and also for the elements (in this case, the error messages) that can be displayed for these states.</p>
+<p>The following classes define the look of the elements associated to the Validation Radio widget:</p>
+<pre> .radioRequiredState (Activates when the input radio button is not selected or is the same with the default empty value.) <br />
+ .radioInvalidState (Activates when the radio selected value is not allowed to be submitted.) <br /></pre>
+<p>The following classes define the look of the error messages that are added for a state. The names of these classes are not tied to the JavaScript code. You can change them in both CSS and HTML as you wish. We just provide them into the CSS file as default values for faster integration of the Validation Radio widget. These classes are: </p>
+<pre> .radioRequiredMsg (Defines the look and feel for required error message in different widget states.)
+ .radioInvalidMsg (Defines the look and feel for the &quot;invalid value selected&quot; message in different widget states.)</pre>
+</li>
+<li>Add/change CSS rules for any of the behaviors you want.
+<p>You cannot rename/replace class names associated with states in the SpryValidationRadio.css file only with class names of your own, because the behaviors are hard-coded into the Spry framework. However, you can replace the default class with your desired class name by sending the new value as argument to the radio button widget constructor. This does not apply for the error messages classes, as mentioned above. <br />
+  Here is an example on how you can change the required state's CSS class name, without breaking its functionality: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+var RadioWidgetObject = new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;, {requiredClass: &quot;required&quot;, invalidClass: &quot;invalid&quot; ,validClass: &quot;valid&quot;});
+&lt;/script&gt;  </pre>
+<p>The SpryValidationRadio.css file has extensive comments, explaining the selectors and the logic behind certain rules. Check it out for further information on styling.</p>
+</li></ol>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h3><a id="behaviors"></a>Validation Radio widget Behaviors</h3>
+<p>The behavior of the Validation Radio widget consists of:</p>
+<ul>
+  <li> Blocking form submission if the selection criteria is not met</li>
+  <li> Changing the CSS classes applied on the widget top container in order to trigger validation messages. </li>
+</ul>
+<p>For instance, when users try to submit the form with a required radio button from a group no&amp;t selected, the form submission is blocked and the radioRequiredState class is applied to the widget container.</p>
+<h4>Make the Validation Radio widget not required </h4>
+<p> By default, the 'isRequired' property is set to true  - that means that the user must select the radio button in order to submit the form. In order to allow the user to submit an un-selected value from the radio buttons group, the widget should have 'isRequired: false' as a property of the optional parameters.</p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;var RadioWidgetObject  = new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;, {isRequired:false});
+&lt;/script&gt; </pre>
+<div class="nav-up"><a href="#title">back to top</a></div>
+<h4>Define what action will trigger the validation process</h4>
+<p>The 'submit' action always checks the validity of the widget's selections. Besides the validation on submit, you can define other two options for the validation process: </p>
+<ul>
+  <li>validateOn: &quot;blur&quot;</li>
+  <li>validateOn: &quot;change&quot;. </li>
+</ul>
+<p>The validateOn:&quot;blur&quot; option will trigger the validation process when the Radio widget loses its focus. The validateOn: &quot;change&quot; option will trigger the validation process when the user is making the changes for the Radio widget.
+  You can add these options as follows:</p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var RadioWidgetObject  = new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;, {validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+&lt;/script&gt;</pre>
+<h4>Combining Attributes </h4>
+<p>To combine multiple attributes, simple include them within the {}, separated by commas. </p>
+<pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var RadioWidgetObject  = new Spry.Widget.ValidationRadio(&quot;RadioWidget&quot;, {defaultValue:&quot;None&quot;, invalidValue:&quot;None&quot;, validateOn:[&quot;blur&quot;, &quot;change&quot;]});
+  &lt;/script&gt; </pre>
+<div class="nav-up"><a href="#title">back to top</a>
+<br />
+<br /></div>
+<hr />
+<p>Copyright &copy; 2006. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

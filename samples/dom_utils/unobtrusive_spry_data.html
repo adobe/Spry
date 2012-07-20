@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unobtrusive Spry Data</title>
+<script src="../../includes/xpath.js" type="text/javascript" language="javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript" language="javascript"></script>
+<script src="../../includes/SpryDOMUtils.js" type="text/javascript" language="javascript"></script>
+<script src="unobtrusive_spry_data.js" type="text/javascript" language="javascript"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>Basic Unobtrusive Spry Data sample</h3>
+<p>This sample shows a simple example of how to use SpryDOMUtils.js (our Element Selector) to create unobtrusive Spry Data pages by removing the Spry custom attributes to an external javascript file. This also allows the page to pass validation with no extra effort.</p>
+<p>Note that to use this technique, IDs are places on the elements that would have had Spry attributes.</p>
+<p>This data comes from a standard XML data set and clicking the headers should sort the columns.</p>
+<p><strong>Note:</strong> This sample uses Spry.Utils.setAttribute to set namespaced attributes (spry:region, etc). This will fail on Safari 2.0 and earlier. This is a bug in Safari, but appears to have been fixed in version 3.0. <br />
+This function should work fine for regular, non-namespaced attributes.</p>
+<div id="myTable">
+  <table>
+    <tr>
+      <th id="theName">Name</th>
+      <th id="theCategory">Category</th>
+    </tr>
+    <tr id="repeatRow">
+      <td>{name}</td>
+      <td>{category}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

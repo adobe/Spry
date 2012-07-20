@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Even Odd Row Samples</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.even {
+	background-color: #66CCFF;
+}
+.odd {
+	background-color: #FFFFCC;
+}
+.other {
+	background-color: #6699CC;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+
+function ToggleFilter()
+{
+	if (!ToggleFilter.filtered)
+		dsEmployees.filter(function(ds, row, rowNum) { if (rowNum % 2) return row; return null; });
+	else
+		dsEmployees.filter(null);
+	ToggleFilter.filtered = !ToggleFilter.filtered;
+}
+-->
+</script>
+</head>
+<body>
+<h3>Even Odd Row  Samples</h3>
+<hr />
+<p>This sample demonstrates how you can give your tables an even and odd row color by using the built-in <strong>{ds_EvenOddRow}</strong> data reference inside a class attribute. The data reference is the value of a class attribute: 'class=&quot;{ds_EvenOddRow}&quot;'. When the region processes, it will evaluate the number of the row being written and will replace the data reference with the word 'even' or 'odd'. Define CSS classes with these names and the class is applied to the element, and therefore alternating classes are applied to the element. The classes can do whatever you wish to do with CSS. Alternating row colors is just one common scenario.</p>
+<p>
+  <input type="button" value="Toggle Sort" onclick="dsEmployees.sort(['lastname', 'firstname'], 'toggle');" />
+  <input type="button" value="Toggle Filter" onclick="ToggleFilter();" />
+</p>
+<div spry:region="dsEmployees">
+  <table>
+    <tr>
+      <th>Row # </th>
+      <th>Last Name</th>
+      <th>First Name</th>
+    </tr>
+    <tr spry:repeat="dsEmployees" class="{ds_EvenOddRow}">
+      <td>{ds_RowNumberPlus1}</td>
+      <td>{lastname}</td>
+      <td>{firstname}</td>
+    </tr>
+  </table>
+</div>
+<hr />
+<p>The following samples  demonstrate how to do the same thing with the <strong>spry:even</strong> and <strong>spry:odd</strong> attributes. These were introduced in Spry Prerelease 1.4. They can be more flexible because you don't have to use them together and the class names can be whatever you wish.</p>
+<p>This sample uses both spry:even and spry:odd attributes: </p>
+<div spry:region="dsEmployees">
+  <table>
+    <tr>
+      <th>Row # </th>
+      <th>Last Name</th>
+      <th>First Name</th>
+    </tr>
+    <tr spry:repeat="dsEmployees" spry:even="even" spry:odd="odd">
+      <td>{ds_RowNumberPlus1}</td>
+      <td>{lastname}</td>
+      <td>{firstname}</td>
+    </tr>
+  </table>
+</div>
+<hr />
+<p>This sample uses only the spry:even attribute but specifies the data set to use when determining the row number to use when determining &quot;even-ness&quot;, and a custom CSS class name which colors the even rows differently from what is used in the tables above: <br />
+</p>
+<div spry:region="dsEmployees">
+  <table>
+    <tr>
+      <th>Row # </th>
+      <th>Last Name</th>
+      <th>First Name</th>
+    </tr>
+    <tr spry:repeat="dsEmployees" spry:even="dsEmployees other" >
+      <td>{ds_RowNumberPlus1}</td>
+      <td>{lastname}</td>
+      <td>{firstname}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

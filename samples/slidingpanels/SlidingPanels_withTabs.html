@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="sliding_panels.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+
+<script type="text/javascript" src="../../widgets/slidingpanels/SprySlidingPanels.js"></script>
+<script type="text/javascript" src="sp_withTabs.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/samples.css" />
+</head>
+
+<body>
+<h3>Sliding Panels with tabs</h3>
+<p>This sample shows how to create a sliding panel widget with navigation based on tabs. By clicking on the tabs the content will slide and will display the active tab content.</p>
+<p>The look and feel of this sample is based on CSS styling and the functionality is provided by the sliding panel js file.</p>
+<div class="slidingTabPanelWrapper">
+
+      <ul class="slidingTabPanel">
+        <li><a href="#" id="nutshell" class="tabActive" title="Spry in a Nutshell"></a></li>
+        <li><a href="#" id="widgets" class="tab" title="Widgets"></a></li>
+        <li><a href="#" id="data" class="tab" title="Data"></a></li>
+        <li><a href="#" id="effects" class="tab" title="Effects"></a></li>
+  </ul>
+    </div>
+   <div id="slidingPanel">
+      <div>
+
+        <div id="nutshellPanel" class="p1">
+          <h2>Spry in a Nutshell</h2>
+          <ul>
+            <li>Spry is implemented as a set of JavaScript libraries. To use Spry on a page,  simply include the  JavaScript library that contains the Spry features you need, use those features on your page, and then deploy that JavaScript file to your site along with your page.</li>
+            <li>Spry has three  parts: Spry Data, Spry Widgets and Spry Effects. They can be used together or independently of one another.</li>
+            <li>No browser plug-ins or server-side modules are required for Spry to work. </li>
+            <li> Dreamweaver CS3 has features that ease the development of Spry pages but Spry itself is completely tool-agnostic. Any code editor can be used to develop Spry pages.</li>
+
+          </ul>
+        </div>
+        <div id="widgetsPanel" class="p2">
+          <h2>Widgets</h2>
+          <ul type="disc">
+            <li>Spry widgets are advanced web components expressed in basic HTML markup, CSS and a little JavaScript. </li>
+            <li>Customization and styling is easily done using your existing HTML &amp; CSS skills. </li>
+
+            <li>Spry widgets are accessible. They respond to keyboard navigation and degrade gracefully when JavaScript its turned off. </li>
+          </ul>
+          <p>Check out the <a href="samples/index.html">Spry Widget samples</a> </p>
+        </div>
+        <div id="dataPanel" class="p3">
+          <h2>Data</h2>
+
+          <ul type="disc">
+            <li>The Spry Data set transforms complex data sources into a familiar row/column format that can be placed anywhere within your page. </li>
+            <li>Supported data sources include XML, JSON and HTML </li>
+            <li>Easily add Dynamic Regions to your page that control retrieval and placement of data without writing any JavaScript. </li>
+          </ul>
+          <p>Check out the <a href="samples/index.html">Data set and Dynamic Region samples</a> </p>
+
+        </div>
+        <div id="effectsPanel" class="p4">
+          <h2>Effects</h2>
+          <ul type="disc">
+            <li>Spry effects allow you to add smooth and graceful&nbsp;transitions to almost any element on your page </li>
+            <li>A single line of JavaScript is used to add an effect to your page. </li>
+            <li>Effects can highlight information, create animated transitions, or visually alter a page element for a certain period of time </li>
+
+          </ul>
+          <p>Check out the <a href="samples/index.html">Spry Effects samples</a> </p>
+        </div>
+      </div>
+    </div>
+    <p class="clearfloat">&nbsp;</p>
+</body>
+</html>

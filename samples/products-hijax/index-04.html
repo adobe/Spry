@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks ("Marks") displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Products Demo</title>
+<script type="text/javascript" src="../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../includes/SpryData.js"></script>
+<script type="text/javascript" src="../../widgets/accordion/SpryAccordion.js"></script>
+<script type="text/javascript">
+<!--
+var dsProducts = new Spry.Data.XMLDataSet("products.xml", "products/product");
+dsProducts.setColumnType([ "boxshot", "overview", "features" ], "html");
+-->
+</script>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<h1>Products Demo<span class="return"><a href="../index.html">Back to Demos</a></span><span class="source"><a href="source.html">View Source </a></span></h1>
+	</div>
+	<div id="content">
+		<table id="products">
+			<caption> Adobe Software </caption>
+			<tr>
+				<th scope="col">Product</th>
+				<th scope="col">Category</th>
+			</tr>
+			<tr class="even">
+				<td><a href="index.html" onclick="dsProducts.setCurrentRowNumber(0); return false;">Adobe Photoshop CS2</a></td>
+				<td>Digital Imaging</td>
+			</tr>
+			<tr>
+				<td><a href="index-01.html" onclick="dsProducts.setCurrentRowNumber(1); return false;">Adobe Illustrator CS2</a></td>
+				<td>Print Publishing</td>
+			</tr>
+			<tr class="even">
+				<td><a href="index-02.html" onclick="dsProducts.setCurrentRowNumber(2); return false;">Adobe InDesign CS2</a></td>
+				<td>Print Publishing</td>
+			</tr>
+			<tr>
+				<td><a href="index-03.html" onclick="dsProducts.setCurrentRowNumber(3); return false;">Adobe GoLive CS2</a></td>
+				<td>Web Publishing</td>
+			</tr>
+			<tr class="even">
+				<td><a href="index-04.html" onclick="dsProducts.setCurrentRowNumber(4); return false;">Adobe Dreamweaver 8</a></td>
+				<td>Web Publishing</td>
+			</tr>
+		</table>
+	</div>
+	<div id="sidebar">
+		<p id="boxshot" spry:detailregion="dsProducts" spry:content="{boxshot}"><img src="../../demos/products/images/dreamweaver.gif" alt="product box shot" height="130" width="238" /></p>
+		<div id="Acc1" class="Accordion" tabindex="0">
+			<div class="AccordionPanel">
+				<div class="AccordionPanelTab">
+					<h3>Product Overview</h3>
+				</div>
+				<div class="AccordionPanelContent" spry:detailregion="dsProducts" spry:content="{overview}">
+					<div>
+						With Dreamweaver 8, web developers go from start to finish, creating and maintaining basic
+						websites to advanced applications that support best practices and the latest technologies.
+					</div>
+				</div>
+			</div>
+			<div class="AccordionPanel">
+				<div class="AccordionPanelTab">
+					<h3>New Features </h3>
+				</div>
+				<div class="AccordionPanelContent" spry:detailregion="dsProducts" spry:content="{features}">
+					<div>
+						<ul>
+							<li>Visual authoring with XML data</li>
+							<li>New, unified CSS panel</li>
+							<li>CSS layout visualization</li>
+							<li>Style rendering toolbar</li>
+							<li>CSS rendering improvements</li>
+							<li>Support for WCAG/W3C priority 2 checkpoints</li>
+							<li>Improved WebDAV</li>
+							<li>Background file transfer</li>
+							<li>Zoom</li>
+							<li>Guides</li>
+							<li>Coding toolbar</li>
+							<li>Code collapse</li>
+							<li>Workspace layouts</li>
+							<li>Tabbed documents for the Mac</li>
+							<li>New starter pages</li>
+							<li> Improved site synchronize and check in and check out</li>
+							<li>Compare files</li>
+							<li>Paste special</li>
+							<li> Site relative references</li>
+							<li> Code editing improvements</li>
+							<li> Support for ColdFusion MX 7</li>
+							<li> Support for PHP 5</li>
+							<li> Flash Video</li>
+							<li>Macromedia Web Publishing System notification and event logging</li>
+							<li>Updated reference material from O'Reilly</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+var Acc1 = new Spry.Widget.Accordion("Acc1");
+-->
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks ("Marks") displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Spry Demo Gallery Best Practice Demos</title>
+<link href="../css/screen.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+h3 {
+	margin:0;
+	padding:0;
+	font-weight:bold;
+	font-size:1.2em;
+}
+a.links {
+	color:#FFFFFF;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+<h1>Photo Gallery Demos</h1>
+<p>These versions use various coding techniques like, from inline Spry attributes to progressive enhancement for graceful degradation. DIfferent coders have different goals and these sample show various ways to accomplish the same end product..</p>
+<div>
+  <img src="images/gallery.gif" alt="Gallery Demo" width="300" height="200" border="1" />
+</div>
+<div>
+  <h3><a href="gallery/index.html" class="links">Original Photo Gallery</a> </h3>
+  <p>This version uses XML data and inline Spry attributes to generate the markup. This demonstrates how to build a HTML template. It also showcases multiple dependent data sets. With javascript off, it does not degrade gracefully.</p>
+  </div>
+<div>
+  <h3><a href="gallery_pe/dynamic/index.html" class="links">Photo Gallery version 2</a></h3>
+  <p>This version has been updated to use more modular code. The thumbnail region and the main image region have been written to act as widgets, with some code to bind them together. This makes the gallery easier to disassemble and modify. It also uses the XML Data set.  </p>
+  </div>
+<div>
+  <h3><a href="gallery_pe/static/china.html" class="links">Static Photo Gallery</a></h3>
+  <p>This uses progressive enhancement to add animations and additional functionality to static content. No Spry Data Sets are used; only the modular code pieces used in version 2 and the Element Selector do the work. This is a useful technique if the static content already exists and you want to upgrade the user experience. This also degrade nicely when javascript is turned off.</p>
+  </div>
+<div>
+  <h3><a href="gallery_pe/static_hd/china.html" class="links">HTML Data Set Photo Gallery</a></h3>
+  <p>Using inline content as a data source and using regions to change the look and feel of the gallery. Using internal HTML data sets is helpful with search engine optimization and graceful degradation.</p>
+  <p>&nbsp;</p>
+  <p>Note: Due to limitations of Safari 2.0, we have not presented a demo that unobtrusively attaches Spry attributes. This is because Safari does not handle adding namespaced attribute. It appears that Safari 3 has solved that limitation. We do have a sample of this technique <a href="../samples/dom_utils/unobtrusive_spry_data.html" class="links">here</a> and <a href="../samples/dom_utils/unobtrusive_spry_data2.html" class="links">here</a>. Unobtrusively adding Spry attributes is useful when page validation is important.</p>
+</div>
+<div><h3><a href="gallery/index-air.html" class="links">Spry Gallery for Adobe AIR</a></h3>
+<p>This version of the Photo Gallery shows how the page should be coded for Adobe AIR. Check this code against  the original version to see what changes were made. This is just the sample code. 
+Please read the <a href="gallery/readme-air.html">AIR packaging readme</a> in order to learn more on how to build the AIR package.</p>
+</div>
+</body>
+</html>

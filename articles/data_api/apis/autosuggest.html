@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Autosuggest API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="accordion">
+  <h3>Auto Suggest</h3>
+  <h4>Description</h4>
+  <p>The Spry Auto Suggest is a disclosure widget that consists of a  panel,  with a clickable tab and a content panel. Clicking on a tab will reveal the contents of that panel.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/autosuggest/SpryAutoSuggest.js">SpryAutoSuggest.js</a></p>
+    <p><a href="../../../widgets/autosuggest/SpryAutoSuggest.css">SpryAutoSuggest.css</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/autosuggest/SuggestSample.html">SuggestSample.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container&gt;
+      &lt;input textfield&gt;<br />      &lt;suggest container spry region&gt;<br />   &lt;/widget container&gt;<br /></pre>
+      <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;div id=&quot;productSample&quot;&gt;
+    &lt;input type=&quot;text&quot; id=&quot;product&quot; name=&quot;product&quot;/&gt;
+    &lt;div id=&quot;productMenu&quot; spry:region=&quot;dsProducts1&quot;&gt;
+      &lt;div spry:repeat=&quot;dsProducts1&quot; spry:suggest=&quot;{name}&quot;&gt;
+        &lt;div class=&quot;list&quot;&gt;{name}&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;<br />&lt;/div&gt;<br />&lt;script type=&quot;text/javascript&quot;&gt;<br />	var as1 = new Spry.Widget.AutoSuggest('productSample', 'productMenu', 'dsProducts1', 'name');<br />&lt;/script&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;    
+	var auto1 = new Spry.Widget.AutoSuggest('productSample', 'productMenu', 'dsProducts1', 'name');   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.AutoSuggest(&quot;id of widget container&quot;,&quot;id of suggest container&quot;, &quot;data set name&quot;, &quot;suggest data set column&quot;);   
+&lt;/script&gt;
+</pre>
+  <ul>
+    <li>The suggest data set column can be a single column or an array of columns To use an array, wrap in square brackets. &quot;[name, address, email]&quot;</li>
+  </ul>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.AutoSuggest(&quot;widgetContainer&quot;,&quot;suggestContainer&quot;, &quot;ds1&quot;, &quot;name&quot;,<span class="hilite">{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="817" cellpadding="4" id="options">
+    <tr>
+      <th width="110">Option </th>
+      <th width="446">Definition</th>
+      <th width="105">Default</th>
+      <th width="104">Values</th>
+    </tr>
+    <tr>
+      <td>containsString</td>
+      <td>By default, the widget returns results that &quot;starts&quot; with the typed string. Setting containString to 'true' will return results where the typed string is anywhere within the result.</td>
+      <td>false</td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>minCharsType</td>
+      <td>This determines how many characters have to be typed before results are listed. This is helpful in improving performance, esp. if retrieving results directly from the server</td>
+      <td>empty</td>
+      <td>number</td>
+    </tr>
+    <tr>
+      <td>maxListItems</td>
+      <td>Determines the maximum number of items in the list</td>
+      <td>empty</td>
+      <td>number</td>
+    </tr>
+    <tr>
+      <td>hoverSuggestClass</td>
+      <td>This attribute takes a CSS class that will be applied while hovering over the results list.</td>
+      <td>&nbsp;</td>
+      <td>CSS class name</td>
+    </tr>
+    <tr>
+      <td>loadFromServer</td>
+      <td>This attribute will fetch results from the server directly, rather than from the cached data set. This will trump the default data set caching setting and always fetch the results from the server.</td>
+      <td>false</td>
+      <td><ul>
+          <li>true</li>
+        <li>false</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>urlParam</td>
+      <td><p>This is the URL parameter name to which the search field value is attached.</p>
+          <p>i.e. www.adobe.com?urlParam=searchValue</p></td>
+      <td>required if loadFromServer<br />
+        is true.</td>
+      <td>URL Parameter Name</td>
+    </tr>
+		<tr>
+			<td>moveNextKeyCode</td>
+			<td>This option allows the user to assign a specific key to go to the next suggestion when the list of suggestions appears. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+			<td>number</td>
+			<td>40 (Down Arrow key code)</td>
+		</tr>
+		<tr>
+			<td>movePrevKeyCode</td>
+			<td>This option allows the user to assign a specific key to go to the previous suggestion when the list of suggestions appears. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+			<td>number</td>
+			<td>38 (Up Arrow key code)</td>
+		</tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var as1 = new Spry.Widget.AutoSuggest(&quot;widgetContainer&quot;,&quot;suggestContainer&quot;, &quot;ds1&quot;, &quot;name&quot;,{containsString: true, hoverSuggestClass: 'hoverClass'});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive.</p>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

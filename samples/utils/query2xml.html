@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Query to XML Samples</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.highlightedcode {background-color: #ff9;}
+</style>
+</head>
+
+<body>
+<h3>Converting Database queries to XML</h3>
+<p>Using XML as data sources presumes the existence of XML. Often, it is easier to have the server create the XML from a database on the fly. Below are some scripts for common server models that do such a thing.</p>
+<p>These are starting points. They will need to be customized for your particular scenario.<br />
+All these scripts will export the data from a database table with this structure:</p>
+<ul>
+  <li>ID: integer, primary key, autoincrement</li>
+  <li>AlbumName: text(255)</li>
+  <li>ImagePath: text(255)</li>
+  <li>ImageDescription: text(2000)</li>
+  <li>UploadDate: datetime</li>
+</ul>
+<p>The output of the manual scripts will look like:</p>
+<pre>
+  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt; 
+  &lt;images&gt;
+	&lt;image&gt;
+  		&lt;ID&gt;1&lt;/ID&gt; 
+ 		&lt;album&gt;&lt;![CDATA[ Family ]]&gt;&lt;/album&gt;
+ 		&lt;path&gt;&lt;![CDATA[ /family/us.jpg ]]&gt;&lt;/path&gt;
+		&lt;description&gt;&lt;![CDATA[ here goes the description ]]&gt;&lt;/description&gt;
+		&lt;date&gt;&lt;![CDATA[ 2006-11-20 10:20:00 ]]&gt;&lt;/date&gt;
+	&lt;/image&gt;
+	&lt;image&gt;
+  		&lt;ID&gt;2&lt;/ID&gt; 
+ 		&lt;album&gt;&lt;![CDATA[ Work ]]&gt;&lt;/album&gt;
+ 		&lt;path&gt;&lt;![CDATA[ /work/coleagues.jpg ]]&gt;&lt;/path&gt;
+		&lt;description&gt;&lt;![CDATA[ here goes the description ]]&gt;&lt;/description&gt;
+		&lt;date&gt;&lt;![CDATA[ 2006-11-21 12:34:00 ]]&gt;&lt;/date&gt;
+	&lt;/image&gt;
+  &lt;/images&gt;
+</pre>
+<p>These are all wrapped in CDATA because it is will work with all data types. They can be removed if you know you don't want them.  </p>
+<p><strong>Note:</strong> If using the column auto-generating versions, ensure that all the column types are text. Some data bases  have data type options like 'binary', that can't be converted to text. This will cause the script to fail. </p>
+<p><strong>ColdFusion</strong></p>
+<p>Manual: This version loops over a query. Edit the Query and XML node names to match your needs. </p>
+<pre>
+&lt;cfsetting enablecfoutputonly=&quot;yes&quot;&gt;
+&lt;cfsetting showdebugoutput=&quot;no&quot;&gt;
+&lt;!--- Query the database and get all the records from the Images table ---&gt;
+&lt;cfquery name=&quot;rsImages&quot; datasource=&quot;dsImages&quot;&gt;
+ <span class="highlightedcode">SELECT ID, AlbumName, ImagePath, ImageDescription, UploadDate FROM Images</span>
+&lt;/cfquery&gt;
+&lt;!--- Send the headers ---&gt;
+&lt;cfheader name=&quot;Content-type&quot; value=&quot;text/xml&quot;&gt;
+&lt;cfheader name=&quot;Pragma&quot; value=&quot;public&quot;&gt;
+&lt;cfheader name=&quot;Cache-control&quot; value=&quot;private&quot;&gt;
+&lt;cfheader name=&quot;Expires&quot; value=&quot;-1&quot;&gt;
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="highlightedcode">&lt;images&gt;</span>
+	&lt;cfoutput query=&quot;rsImages&quot;&gt;
+	<span class="highlightedcode">&lt;image&gt;</span>
+		<span class="highlightedcode">&lt;ID&gt;</span>#<span class="highlightedcode">ID</span>#<span class="highlightedcode">&lt;/ID&gt;</span>
+		<span class="highlightedcode">&lt;album&gt;</span>&lt;![CDATA[#<span class="highlightedcode">AlbumName</span>#]]&gt;<span class="highlightedcode">&lt;/album&gt;</span>
+		<span class="highlightedcode">&lt;path&gt;</span>&lt;![CDATA[#<span class="highlightedcode">ImagePath</span>#]]&gt;<span class="highlightedcode">&lt;/path&gt;</span>
+		<span class="highlightedcode">&lt;description&gt;</span>&lt;![CDATA[#<span class="highlightedcode">ImageDescription</span>#]]<span class="highlightedcode">&lt;/description&gt;</span>
+		<span class="highlightedcode">&lt;date&gt;</span>&lt;![CDATA[#<span class="highlightedcode">UploadDate</span>#]]&gt;<span class="highlightedcode">&lt;/date&gt;</span>
+	<span class="highlightedcode">&lt;/image&gt;</span>
+    &lt;/cfoutput&gt;
+<span class="highlightedcode">&lt;/images&gt;</span>
+</pre>
+
+<p>Automatic: This version evaluates the query and automatically builds the nodes from the column names</p>
+<pre>
+&lt;cfsetting enablecfoutputonly=&quot;yes&quot;&gt;
+&lt;cfsetting showdebugoutput=&quot;no&quot;&gt;
+&lt;!--- Query the database and get all the records ---&gt;
+&lt;cfquery name=&quot;rsAll&quot; datasource=&quot;dsImages&quot;&gt;
+<span class="highlightedcode">SELECT * FROM images</span>
+&lt;/cfquery&gt;
+&lt;cfset ColumnNames = ListToArray(rsAll.ColumnList)&gt;
+&lt;!--- Send the headers ---&gt;
+&lt;cfheader name=&quot;Content-type&quot; value=&quot;text/xml&quot;&gt;
+&lt;cfheader name=&quot;Pragma&quot; value=&quot;public&quot;&gt;
+&lt;cfheader name=&quot;Cache-control&quot; value=&quot;private&quot;&gt;
+&lt;cfheader name=&quot;Expires&quot; value=&quot;-1&quot;&gt;
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="highlightedcode">&lt;root&gt;</span>
+	&lt;cfoutput query=&quot;rsAll&quot;&gt;
+	<span class="highlightedcode">&lt;row&gt;</span>
+		&lt;cfloop from=&quot;1&quot; to=&quot;#ArrayLen(ColumnNames)#&quot; index=&quot;index&quot;&gt;
+		&lt;cfset column = LCase(ColumnNames[index])&gt;
+		&lt;cfset value = rsAll[column][rsAll.CurrentRow]&gt;
+			&lt;#column#&gt;&lt;![CDATA[#value#]]&gt;&lt;/#column#&gt;
+		&lt;/cfloop&gt;
+	<span class="highlightedcode">&lt;/row&gt;</span>
+    &lt;/cfoutput&gt;
+<span class="highlightedcode">&lt;/root&gt;</span>
+
+</pre>
+<p>There is also a CFTag written to do this very thing: <a href="http://www.cflib.org/udf.cfm?ID=648">http://www.cflib.org/udf.cfm?ID=648</a>. Massimo Foti also wrote a similar tag  specifically for Spry: <a href="http://www.olimpo.ch/tmt/tag/spryxml/">http://www.olimpo.ch/tmt/tag/spryxml/</a>.</p>
+<p><strong>PHP</strong> </p>
+<p>Manual: This version loops over a query. Edit the Query and XML node names to match your needs. </p>
+<pre>
+&lt;?php
+$hostname_conn = &quot;<span class="highlightedcode">localhost</span>&quot;;
+$database_conn = &quot;<span class="highlightedcode">image_gallery</span>&quot;;
+$username_conn = &quot;<span class="highlightedcode">root</span>&quot;;
+$password_conn = &quot;<span class="highlightedcode">password</span>&quot;;
+$conn = mysql_pconnect($hostname_conn, $username_conn, $password_conn) or trigger_error(mysql_error(),E_USER_ERROR); 
+?&gt;
+&lt;?php
+// Query the database and get all the records from the Images table 
+mysql_select_db($database_conn, $conn);
+$query_rsImages = &quot;<span class="highlightedcode">SELECT ID, AlbumName, ImagePath, ImageDescription, UploadDate FROM images</span>&quot;;
+$rsImages = mysql_query($query_rsImages, $conn) or die(mysql_error());
+$row_rsImages = mysql_fetch_assoc($rsImages);
+$totalRows_rsImages = mysql_num_rows($rsImages);
+
+// Send the headers
+header('Content-type: text/xml');
+header('Pragma: public');        
+header('Cache-control: private');
+header('Expires: -1');
+?&gt;&lt;?php echo('<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>'); ?&gt;
+<span class="highlightedcode">&lt;images&gt;</span>
+  &lt;?php if ($totalRows_rsImages &gt; 0) { // Show if recordset not empty ?&gt;
+  &lt;?php do { ?&gt;
+	<span class="highlightedcode">&lt;image&gt;</span>
+		<span class="highlightedcode">&lt;ID&gt;</span>&lt;?php echo $row_rsImages['<span class="highlightedcode">ID</span>']; ?&gt;<span class="highlightedcode">&lt;/ID&gt;</span>
+		<span class="highlightedcode">&lt;album&gt;</span>&lt;![CDATA[&lt;?php echo $row_rsImages['<span class="highlightedcode">AlbumName</span>']; ?&gt;]]&gt;<span class="highlightedcode">&lt;/album&gt;</span>
+		<span class="highlightedcode">&lt;path&gt;</span>&lt;![CDATA[&lt;?php echo $row_rsImages['<span class="highlightedcode">ImagePath</span>']; ?&gt;]]&gt;<span class="highlightedcode">&lt;/path&gt;</span>
+		<span class="highlightedcode">&lt;description&gt;</span>&lt;![CDATA[&lt;?php echo $row_rsImages['<span class="highlightedcode">ImageDescription</span>']; ?&gt;]]&gt;<span class="highlightedcode">&lt;/description&gt;</span>
+		<span class="highlightedcode">&lt;date&gt;</span>&lt;![CDATA[&lt;?php echo $row_rsImages['<span class="highlightedcode">UploadDate</span>']; ?&gt;]]&gt;<span class="highlightedcode">&lt;/date&gt;</span>
+	<span class="highlightedcode">&lt;/image&gt;</span>
+    &lt;?php } while ($row_rsImages = mysql_fetch_assoc($rsImages)); ?&gt;
+	&lt;?php } // Show if recordset not empty ?&gt;
+<span class="highlightedcode">&lt;/images&gt;</span>
+&lt;?php
+mysql_free_result($rsImages);
+?&gt;
+</pre>
+<p>&nbsp;</p>
+<p>Automatic: This version evaluates the query and automatically builds the nodes from the column names. </p>
+<pre>
+&lt;?php
+$hostname_conn = &quot;<span class="highlightedcode">localhost</span>&quot;;
+$database_conn = &quot;<span class="highlightedcode">image_gallery</span>&quot;;
+$username_conn = &quot;<span class="highlightedcode">root</span>&quot;;
+$password_conn = &quot;<span class="highlightedcode">password</span>&quot;;
+$conn = mysql_pconnect($hostname_conn, $username_conn, $password_conn) or trigger_error(mysql_error(),E_USER_ERROR); 
+?&gt;
+&lt;?php
+// Query the database and get all the records from the Images table 
+mysql_select_db($database_conn, $conn);
+$query_rsAll = &quot;<span class="highlightedcode">SELECT * FROM images</span>&quot;;
+$rsAll = mysql_query($query_rsAll, $conn) or die(mysql_error());
+$row_rsAll = mysql_fetch_assoc($rsAll);
+$totalRows_rsAll = mysql_num_rows($rsAll);
+
+// Send the headers
+header('Content-type: text/xml');
+header('Pragma: public');        
+header('Cache-control: private');
+header('Expires: -1');
+?&gt;&lt;?php echo('<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>'); ?&gt;
+<span class="highlightedcode">&lt;root&gt;</span>
+  &lt;?php if ($totalRows_rsAll &gt; 0) { // Show if recordset not empty ?&gt;
+  &lt;?php do { ?&gt;
+	<span class="highlightedcode">&lt;row&gt;</span>
+		&lt;?php foreach ($row_rsAll as $column=&gt;$value) { ?&gt;
+		&lt;&lt;?php echo $column; ?&gt;&gt;&lt;![CDATA[&lt;?php echo $row_rsAll[$column]; ?&gt;]]&gt;&lt;/&lt;?php echo $column; ?&gt;&gt;
+		&lt;?php } ?&gt;
+	<span class="highlightedcode">&lt;/row&gt;</span>
+    &lt;?php } while ($row_rsAll = mysql_fetch_assoc($rsAll)); ?&gt;
+	&lt;?php } // Show if recordset not empty ?&gt;
+<span class="highlightedcode">&lt;/root&gt;</span>
+&lt;?php
+mysql_free_result($rsAll);
+?&gt;
+
+</pre>
+<p>&nbsp; </p>
+<p><strong>ASP</strong></p>
+<p>Manual: This version loops over a query. Edit the Query and XML node names to match your needs. </p>
+<pre>
+&lt;%@LANGUAGE=&quot;VBSCRIPT&quot; CODEPAGE=&quot;65001&quot;%&gt;
+&lt;%
+Dim MM_conn_STRING
+MM_conn_STRING = &quot;<span class="highlightedcode">dsn=image_gallery;uid=xxxx;pwd=xxxx</span>&quot;
+%&gt;
+&lt;%
+Dim rsImages
+Dim rsImages_cmd
+Dim rsImages_numRows
+
+' Query the database and get all the records from the Images table
+Set rsImages_cmd = Server.CreateObject (&quot;ADODB.Command&quot;)
+rsImages_cmd.ActiveConnection = MM_conn_STRING
+rsImages_cmd.CommandText = &quot;<span class="highlightedcode">SELECT ID, AlbumName, ImagePath, ImageDescription, UploadDate FROM images</span>&quot; 
+rsImages_cmd.Prepared = true
+
+Set rsImages = rsImages_cmd.Execute
+
+' Send the headers
+Response.ContentType = &quot;text/xml&quot;
+Response.AddHeader &quot;Pragma&quot;, &quot;public&quot;
+Response.AddHeader &quot;Cache-control&quot;, &quot;private&quot;
+Response.AddHeader &quot;Expires&quot;, &quot;-1&quot;
+%&gt;<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="highlightedcode">&lt;images&gt;</span>
+  &lt;% While (NOT rsImages.EOF) %&gt;
+	<span class="highlightedcode">&lt;image&gt;</span>
+		<span class="highlightedcode">&lt;ID&gt;</span>&lt;%=(rsImages.Fields.Item(&quot;<span class="highlightedcode">ID</span>&quot;).Value)%&gt;<span class="highlightedcode">&lt;/ID&gt;</span>
+		<span class="highlightedcode">&lt;album&gt;</span>&lt;![CDATA[&lt;%=(rsImages.Fields.Item(&quot;<span class="highlightedcode">AlbumName</span>&quot;).Value)%&gt;]]&gt;<span class="highlightedcode">&lt;/album&gt;</span>
+		<span class="highlightedcode">&lt;path&gt;</span>&lt;![CDATA[&lt;%=(rsImages.Fields.Item(&quot;<span class="highlightedcode">ImagePath</span>&quot;).Value)%&gt;]]&gt;<span class="highlightedcode">&lt;/path&gt;</span>
+		<span class="highlightedcode">&lt;description&gt;</span>&lt;![CDATA[&lt;%=(rsImages.Fields.Item(&quot;<span class="highlightedcode">ImageDescription</span>&quot;).Value)%&gt;]]&gt;<span class="highlightedcode">&lt;/description&gt;</span>
+		<span class="highlightedcode">&lt;date&gt;</span>&lt;![CDATA[&lt;%=(rsImages.Fields.Item(&quot;<span class="highlightedcode">UploadDate</span>&quot;).Value)%&gt;]]&gt;<span class="highlightedcode">&lt;/date&gt;</span>
+	<span class="highlightedcode">&lt;/image&gt;</span>
+    &lt;% 
+  	rsImages.MoveNext()
+	Wend
+%&gt;
+<span class="highlightedcode">&lt;/images&gt;</span>
+&lt;%
+rsImages.Close()
+Set rsImages = Nothing
+%&gt;
+</pre>
+<p>&nbsp;</p>
+<p>Automatic: This version evaluates the query and automatically builds the nodes from the column names. </p>
+<pre>
+&lt;%@LANGUAGE=&quot;VBSCRIPT&quot; CODEPAGE=&quot;65001&quot;%&gt;
+&lt;%
+Dim MM_conn_STRING
+MM_conn_STRING = &quot;<span class="highlightedcode">dsn=image_gallery;uid=xxxx;pwd=xxxx</span>&quot;
+%&gt;
+&lt;%
+Dim rsAll
+Dim rsAll_cmd
+Dim rsAll_numRows
+
+' Query the database and get all the records from the Images table
+Set rsAll_cmd = Server.CreateObject (&quot;ADODB.Command&quot;)
+rsAll_cmd.ActiveConnection = MM_conn_STRING
+rsAll_cmd.CommandText = &quot;<span class="highlightedcode">SELECT * FROM Images</span>&quot; 
+rsAll_cmd.Prepared = true
+
+Set rsAll = rsAll_cmd.Execute
+
+' Send the headers
+Response.ContentType = &quot;text/xml&quot;
+Response.AddHeader &quot;Pragma&quot;, &quot;public&quot;
+Response.AddHeader &quot;Cache-control&quot;, &quot;private&quot;
+Response.AddHeader &quot;Expires&quot;, &quot;-1&quot;
+%&gt;<span class="highlightedcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="highlightedcode">&lt;root&gt;</span>
+  &lt;% While (NOT rsAll.EOF) %&gt;
+	<span class="highlightedcode">&lt;row&gt;</span>
+		 &lt;% 
+			For each field in rsAll.Fields
+			column = field.name
+		 %&gt;
+		&lt;&lt;%=column%&gt;&gt;&lt;![CDATA[&lt;%=(rsAll.Fields.Item(column).Value)%&gt;]]&gt;&lt;/&lt;%=column%&gt;&gt;
+		&lt;%
+			Next
+		%&gt;
+	<span class="highlightedcode">&lt;/row&gt;</span>
+    &lt;% 
+  	rsAll.MoveNext()
+	Wend
+%&gt;
+<span class="highlightedcode">&lt;/root&gt;</span>
+&lt;%
+rsAll.Close()
+Set rsAll = Nothing
+%&gt;
+
+</pre>
+</body>
+</html>

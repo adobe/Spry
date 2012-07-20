@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unobtrusive JavaScript</title>
+<link href="../../css/bparticles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style></head>
+
+<body>
+<h1>Separating Behavior From Structure</h1>
+<p>&quot;Separating Behavior from Structure&quot; refers to the practice of maintaining clean semantic HTML markup that is free of any attributes or script that introduces custom behaviors. Any custom behaviors that are introduced into your HTML page should come from external files that unobtrusively attach/bind the behaviors to elements within your semantic markup. Like the practice of separating style from structure, this has several benefits which include:</p>
+<ul>
+	<li>The ability to make incremental modifications to the HTML markup structure or the behavior code independently without having to modify the other.</li>
+	<li>Because the behavior implementation is externalized, it can be shared across multiple HTML pages, so the bandwidth necessary to view these pages is reduced since the files related to the behaviors are downloaded and cached by the browser once. This also results in smaller HTML pages since the behavior code is not duplicated within the actual markup itself.</li>
+	<li>Since the HTML markup is smaller and semantic, it is also easier to read which aids accessibility with screen readers, search engine web crawlers, and browsers or other user agents that don't necessarily support the behaviors you've implemented.</li>
+</ul>
+<p>This document will give you a brief introduction of the &quot;unobtrusive javascript&quot; technique and some utilities within Spry that aid with separating behavior from structure.</p>
+<h2>Unobtrusive JavaScript</h2>
+<p><a href="http://en.wikipedia.org/wiki/Unobtrusive_JavaScript">Unobtrusive JavaScript</a> is the practice of separating out any JavaScript behavior code from your content structure and presentation. With Unobtrusive JavaScript, only &lt;script&gt; tags that include external JavaScript files are allowed within your document. The goal is to eliminate the use of any &lt;script&gt; tags with inline JavaScript and the use of any HTML behavioral/event attributes, like onclick, onmouseover, etc, that make use of JavaScript from within the content markup itself, and externalize this code in a separate JavaScript file which gets included by a &lt;script&gt; tag with a &quot;src&quot; attribute. The idea here is that these externalized behaviors will get programmatically attached to the elements at some point during the document loading process, most likely after the window onload event fires, with the use of the <a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-registration">DOM APIs</a> which allow you to add/remove event handlers programmatically.</p>
+<p>As an example, consider this markup which has its &quot;obtrusive&quot; JavaScript highlighted:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Obtrusive JavaScript Sample&lt;/title&gt;
+&lt;link href=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href=&quot;#&quot; <span class="hilite">onclick=&quot;cp.open(); return false;&quot;</span>&gt;Open Panel&lt;/a&gt; |
+&lt;a href=&quot;#&quot; <span class="hilite">onclick=&quot;cp.close(); return false;&quot;</span>&gt;Close Panel&lt;/a&gt;
+&lt;div id=&quot;cp&quot; class=&quot;CollapsiblePanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Lorem Ipsum&lt;/div&gt;
+	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot;&gt;
+var cp = new Spry.Widget.CollapsiblePanel('cp', { contentIsOpen: false });
+&lt;/script&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-01.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>Applying the Unobtrusive JavaScript methodology to it, you would end up with something like this:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Obtrusive JavaScript Sample&lt;/title&gt;
+&lt;link href=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;ujs-02.js&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a <span class="hilite">id=&quot;openLink&quot;</span> href=&quot;#&quot;&gt;Open Panel&lt;/a&gt; |
+&lt;a <span class="hilite">id=&quot;closeLink&quot;</span> href=&quot;#&quot;&gt;Close Panel&lt;/a&gt;
+&lt;div id=&quot;cp&quot; class=&quot;CollapsiblePanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Lorem Ipsum&lt;/div&gt;
+	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-02.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>The onclick attributes that were on the links, and the &lt;script&gt; block that was at the bottom of the &lt;body&gt; element have been replaced with a &lt;script&gt; tag at the top which includes &quot;ujs-02.js&quot;. A couple of id attributes were also added to the links on the page so they can be identified programmatically when we attempt to attach the onclick behaviors unobtrusively.</p>
+<p>The contents of &quot;ujs-02.js&quot; looks something like this:</p>
+<pre>
+var cp;
+
+function AddEventListener(element, eventType, handler, capture)
+{
+	if (element.addEventListener)
+		element.addEventListener(eventType, handler, capture);
+	else if (element.attachEvent)
+		element.attachEvent(&quot;on&quot; + eventType, handler);
+}
+
+window.onload = function()
+{
+	AddEventListener(document.getElementById(&quot;openLink&quot;), &quot;click&quot;, function(e)
+	{
+		cp.open();
+
+		if (e.preventDefault) e.preventDefault();
+		else e.returnResult = false;
+		if (e.stopPropagation) e.stopPropagation();
+		else e.cancelBubble = true;
+	}, false);
+
+	AddEventListener(document.getElementById(&quot;closeLink&quot;), &quot;click&quot;, function(e)
+	{
+		cp.close();
+
+		if (e.preventDefault) e.preventDefault();
+		else e.returnResult = false;
+		if (e.stopPropagation) e.stopPropagation();
+		else e.cancelBubble = true;
+	}, false);
+
+	cp = new Spry.Widget.CollapsiblePanel('cp', { contentIsOpen: false });
+};
+</pre>
+<p><a href="samples/ujs-02.js" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>The AddEventListener() function is a convenience function that encapsulates the add event listener functionality of the browser. IE uses a proprietary method called attachEvent(), while all other browsers use addEventListener as defined in the <a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html">W3C DOM Event Spec</a>.</p>
+<p>After that, we have some code that defines a function to be called when the window's onload event fires. The window's onload event fires once the markup for the entire page, and all images have loaded. Most pages that attach behaviors unobtrusively, wait for this event to occur because then they know all of the elements they will need to access will be available. Our onload function does 3 things:</p>
+<ol>
+	<li>Adds an onclick listener for &quot;openLink&quot;.</li>
+	<li>Adds an onclick listener for &quot;closeLink&quot;.</li>
+	<li>Adds the CollapsiblePanel behaviors to the 'cp' element.</li>
+</ol>
+<p>The adding of the Collapsible panel behaviors is pretty straight forward, since it looks just as it did when embedded within the original HTML file, but, if you look at the event listener code for the &quot;openLink&quot;, what used to look like this:</p>
+<pre>onclick=&quot;cp.open(); return false;&quot;</pre>
+<p>gets translated to this:</p>
+<pre>
+function(e)
+{
+	cp.open();
+
+	if (e.preventDefault) e.preventDefault();
+	else e.returnResult = false;
+	if (e.stopPropagation) e.stopPropagation();
+	else e.cancelBubble = true;
+}
+</pre>
+<p>In the original &quot;untranslated&quot; case, the &quot;return false;&quot; tells the browser that you want to prevent the event from being processed by any of the link's parent elements (propagation), and you also want to prevent the browser from executing the link's default action which is to load the page specified in the link's href attribute. When you programmatically attach an event handler with the DOM API, propagation and default actions are treated separately. The code after the &quot;cp.open()&quot; call in the &quot;translated&quot; case is basically the equivalent of returning false in an on* attribute. Once again IE has a proprietary way of preventing the default action and stopping propagation, so rather than being 2 simple DOM calls to e.preventDefault() and e.stopPropagation(), the code must check for the presence of the standard calls, and if they aren't present, fall back to the IE way of doing things.</p>
+<h2>Unobtrusive Utilities in Spry</h2>
+<p>In the examples above, we tried to stick to using the DOM APIs to illustrate the basic concepts of Unobtrusive JavaScript. Now, lets make use of some of the utilities within Spry that allow you to do the same thing with less code.</p>
+<p>Starting with the markup from the last example above, the first thing we need to do is include some of our DOM manipulating utilities from &quot;SpryDOMUtils.js&quot;.</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Obtrusive JavaScript Sample&lt;/title&gt;
+&lt;link href=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script type=&quot;text/javascript&quot; src=&quot;ujs-03.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a id=&quot;openLink&quot; href=&quot;#&quot;&gt;Open Panel&lt;/a&gt; |
+&lt;a id=&quot;closeLink&quot; href=&quot;#&quot;&gt;Close Panel&lt;/a&gt;
+&lt;div id=&quot;cp&quot; class=&quot;CollapsiblePanel&quot;&gt;
+	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Lorem Ipsum&lt;/div&gt;
+	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-03.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>SpryDOMUtils.js contains utility functions for adding/removing class names on elements, <a href="../../samples/dom_utils/add_event_listener.html">adding/removing event handlers</a>, an <a href="../element_selector/index.html">element selector</a> for retrieving elements within the page based on CSS 3 selectors, etc. If we make use of some of these utilities, the code in our externalized JS file (ujs-03.js) becomes:</p>
+<pre>
+var cp;
+
+Spry.Utils.addLoadListener(function()
+{
+	Spry.Utils.addEventListener(&quot;openLink&quot;, &quot;click&quot;, function(e) { cp.open(); return false; }, false);
+	Spry.Utils.addEventListener(&quot;closeLink&quot;, &quot;click&quot;, function(e) { cp.close(); return false; }, false);
+
+	cp = new Spry.Widget.CollapsiblePanel('cp', { contentIsOpen: false });
+});
+</pre>
+<p><a href="samples/ujs-03.js" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>The code above does the same thing as our previous example, but this version makes use of some of the Spry utilities that hide some of the differences between browsers when it comes to dealing with registering the event handler and dealing with the actual event object. Once again, taking a look at the event listener code for the &quot;openLink&quot;, what used to be:</p>
+<pre>onclick=&quot;<span class="hilite">cp.open(); return false;</span>&quot;</pre>
+<p>now gets translated to:</p>
+<pre>
+	Spry.Utils.addEventListener(&quot;openLink&quot;, &quot;click&quot;, function(e) { <span class="hilite">cp.open(); return false;</span> }, false);
+</pre>
+<p>which looks a bit more like the original code wrapped with some syntactic sugar.</p>
+<p>You'll also notice that the example above makes use of Spry.Utils.addLoadListener() rather than setting the window.onload property directly. It's usually better to avoid setting the on* properties of an element directly, especially in an environment that makes use of several different JavaScript libraries from different vendors. The reason is that each library may want to override the window's onload property so if you include 3 libraries that did this, only the last one would work properly. Spry.Utils.addLoadListener() uses the DOM APIs underneath the hood to programmatically add an onload listener. Doing so allows multiple onload event listeners to exist on the same element, so even if one of the libraries you included sets the window.onload function directly, your code will still be called when the onload event fires.</p>
+<p>One of the newest features in Spry 1.6 is the <a href="../element_selector/index.html">element selector</a> which allows a developer to call a single function with a specified CSS selector and get back an array of matching elements. The array that the element selector returns is enhanced with utility methods that allow the developer to do frequent tasks, such as adding/removing class names or adding event listeners, on the resulting set of nodes with a single function call instead of having to code a loop that operates on individual elements within the array.</p>
+<p>Consider the following markup that contains onmouseover and onmouseout attributes that change the background color of a table row as the user hovers the mouse over it:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Unobtrusive JavaScript Sample&lt;/title&gt;
+&lt;link href=&quot;css/sample.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table id=&quot;hoverExample&quot; border=&quot;1&quot;&gt;
+	&lt;tr on<span class="hilite">mouseover=&quot;this.className = 'hover';&quot; onmouseout=&quot;this.className = '';&quot;</span>&gt;
+		&lt;td&gt;row1&lt;/td&gt;
+		&lt;td&gt;These rows&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr on<span class="hilite">mouseover=&quot;this.className = 'hover';&quot; onmouseout=&quot;this.className = '';&quot;</span>&gt;
+		&lt;td&gt;row2&lt;/td&gt;
+		&lt;td&gt;have a hover&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr on<span class="hilite">mouseover=&quot;this.className = 'hover';&quot; onmouseout=&quot;this.className = '';&quot;</span>&gt;
+		&lt;td&gt;row3&lt;/td&gt;
+		&lt;td&gt;behavior&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr on<span class="hilite">mouseover=&quot;this.className = 'hover';&quot; onmouseout=&quot;this.className = '';&quot;</span>&gt;
+		&lt;td&gt;row4&lt;/td&gt;
+		&lt;td&gt;attached to them&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-04.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>To separate the hover behavior from the actual markup, we would simply remove all of the onmouseover and onmouseout attributes, and add references to SpryDOMUtils.js and another JavaScript file (ujs-05.js) that will attach our hover behavior unobtrusively:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Unobtrusive JavaScript Sample&lt;/title&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;ujs-05.js&quot;&gt;&lt;/script&gt;</span>
+&lt;link href=&quot;css/sample.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table id=&quot;hoverExample&quot; border=&quot;1&quot;&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row1&lt;/td&gt;
+		&lt;td&gt;These rows&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row2&lt;/td&gt;
+		&lt;td&gt;have a hover&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row3&lt;/td&gt;
+		&lt;td&gt;behavior&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row4&lt;/td&gt;
+		&lt;td&gt;attached to them&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-05.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>The code in our JavaScript file (ujs-05.js) would look something like this:</p>
+<pre>
+Spry.Utils.addLoadListener(function()
+{
+	// Find the row elements in the table with an id of &quot;hoverExample&quot;.
+
+	var matchingElementsArray = Spry.$$(&quot;#hoverExample tr&quot;);
+
+	// Add event handlers to every element in the resulting array.
+
+	matchingElementsArray.addEventListener(&quot;mouseover&quot;, function(e){ this.className = &quot;hover&quot;; }, false);
+	matchingElementsArray.addEventListener(&quot;mouseout&quot;, function(e){ this.className = &quot;&quot;; }, false);
+});
+</pre>
+<p>Or, since the array returned by the element selector is extended with utility functions that return the array itself, the code above could be shortened to what looks like a &quot;chained list&quot; of function calls:</p>
+<pre>
+Spry.Utils.addLoadListener(function()
+{
+	Spry.$$(&quot;#hoverExample tr&quot;).addEventListener(&quot;mouseover&quot;, function(e){this.className=&quot;hover&quot;;}, false).addEventListener(&quot;mouseout&quot;, function(e){this.className=&quot;&quot;;}, false);
+});
+</pre>
+<p><a href="samples/ujs-05.js" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<h2>Unobtrusive Behavior Attributes</h2>
+<p>The element selector can be very useful when you want to find a set of elements based on a class name, or even its position within the document and attach some behaviors to it. It is also useful for attaching attributes unobtrusively to elements that enable browser or Spry behaviors. An example of this would be the tabindex attribute. According to the <a href="http://www.w3.org/TR/xhtml1/dtds.html#a_dtd_XHTML-1.0-Transitional">XHTML 1.0 DTD</a>, the tabindex attribute is only allowed on, anchor, map, object, and form input elements, but browsers like IE and Mozilla/FireFox allow it to be placed on other elements like divs and spans for the sake of accessibility. The W3C's WAI group has picked up on this and are proposing extensions to XHTML, within their <a href="http://www.w3.org/TR/aria-roadmap/">WAI-ARIA Roadmap</a> and <a href="http://www.w3.org/TR/aria-role/">WAI-ARIA Roles proposal</a>, that allow for tabindex on other elements.</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Tabindex Test&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;span id=&quot;cb1&quot; class=&quot;triStateCheckbox&quot; <span class="hilite">tabindex=&quot;0&quot;</span>&gt;&lt;/span&gt;
+&lt;span id=&quot;cb2&quot; class=&quot;triStateCheckbox&quot; <span class="hilite">tabindex=&quot;0&quot;</span>&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The problem today is that even though adding tabindex to a div within your document improves accessibility, it causes <a href="http://validator.w3.org/">markup validators</a> to flag the attribute as invalid because it is not currently part of the XHTML DTD they are using. With the element selector, developers can take advantage of the tabindex attribute and keep their documents validating by leaving off the tabindex attribute:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Tabindex Test&lt;/title&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;triStateCheckbox.js&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;span id=&quot;cb1&quot; class=&quot;triStateCheckbox&quot;&gt;&lt;/span&gt;
+&lt;span id=&quot;cb2&quot; class=&quot;triStateCheckbox&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>And attaching it unobtrusively like this:</p>
+<pre>
+Spry.Utils.addLoadListener(function()
+{
+	Spry.$$(&quot;.toggleButton&quot;).setAttribute(&quot;tabindex&quot;, &quot;0&quot;);
+});
+</pre>
+<p>This same concept can also be applied to Spry regions. The following markup fails to validate using the W3C Validator because it considers all of the attributes namespaced with the spry prefix as invalid even though there is a namespace declaration:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Unobtrusive JavaScript Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot;&gt;
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../../data/employees-01.xml&quot;, &quot;/employees/employee&quot;);
+&lt;/script&gt;</span>
+&lt;link href=&quot;css/sample.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div <span class="hilite">spry:region=&quot;dsEmployees&quot;</span>&gt;
+	&lt;table id=&quot;hoverExample&quot; border=&quot;1&quot;&gt;
+		&lt;tr&gt;
+			&lt;th <span class="hilite">spry:sort=&quot;lastname&quot;</span>&gt;Last Name&lt;/th&gt;
+			&lt;th <span class="hilite">spry:sort=&quot;firstname&quot;</span>&gt;First Name&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr <span class="hilite">spry:repeat=&quot;dsEmployees&quot;</span>&gt;
+			&lt;td&gt;{lastname}&lt;/td&gt;
+			&lt;td&gt;{firstname}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-06.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>Using the element selector, we can remove the namespaced spry attributes from our markup:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Unobtrusive JavaScript Sample&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;ujs-07.js&quot;&gt;&lt;/script&gt;</span>
+&lt;link href=&quot;css/sample.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+	&lt;table id=&quot;hoverExample&quot; border=&quot;1&quot;&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Last Name&lt;/th&gt;
+			&lt;th&gt;First Name&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;{lastname}&lt;/td&gt;
+			&lt;td&gt;{firstname}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/ujs-07.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>and move them into an external file (ujs-07.js) which unobtrusively attaches them:</p>
+<pre>
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../../data/employees-01.xml&quot;, &quot;/employees/employee&quot;);
+
+// Since this JavaScript file can load before the browser has even read in and created the actual
+// DOM elements we want to attach attributes to, we need to add a load listener that will set the
+// attributes on the appropriate elements after the onload event fires.
+
+Spry.Utils.addLoadListener(function()
+{
+	// Attach the spry namespaced attributes unobtrusively.
+
+	Spry.$$(&quot;div&quot;).setAttribute(&quot;spry:region&quot;, &quot;dsEmployees&quot;);
+	Spry.$$(&quot;#hoverExample th:nth-child(1)&quot;).setAttribute(&quot;spry:sort&quot;, &quot;lastname&quot;);
+	Spry.$$(&quot;#hoverExample th:nth-child(2)&quot;).setAttribute(&quot;spry:sort&quot;, &quot;firstname&quot;);
+	Spry.$$(&quot;#hoverExample tr:nth-child(2)&quot;).setAttribute(&quot;spry:repeat&quot;, &quot;dsEmployees&quot;);
+
+	// Tell Spry to process regions within the document.
+
+	Spry.Data.initRegions();
+});
+</pre>
+<p><a href="samples/ujs-07.js" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>Running the resulting markup through the W3C validator now passes with a &quot;This Page Is Valid XHTML 1.0 Transitional!&quot; result.</p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved</p>
+</body>
+</html>

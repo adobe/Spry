@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>spry:setrow and spry:setrownumber Attributes  Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.product {
+	cursor: pointer;
+}
+.hover {
+	background-color: #FFFFCC;
+}
+.selected {
+	background-color: #CCCCCC;
+}
+</style>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "products/product");
+//-->
+</script>
+</head>
+
+<body>
+<h3>spry:setrow and spry:setrownumber Attribute  Sample</h3>
+<p>This page demonstrates the use of the spry:setrow and spry:setrownumber attributes. Both attributes require a single name of a data set as their value. After a spry:region or spry:detailregion is re-generated Spry will run through the resulting region content and attach a non-destructive click event handler to each element that has a spry:setrow or spry:setrownumber. For spry:setrow, this event handler calls setCurrentRow() with the ds_RowID of the row that was used at the time that particular element was generated. Likewise, for spry:setrownumber, the event handler calls setCurrentRowNumber() with the ds_RowNumber of the row that was used at the time that element was generated. </p>
+<p>These attributes were meant to be used as a short cut, so instead of setting the current row on a click manually like this:</p>
+<p>&lt;ul spry:region=&quot;dsEmps&quot; spry:repeatchildren=&quot;dsEmps&quot;&gt;<br />
+ &lt;li onclick=&quot;dsEmps.setCurrentRow('{ds_RowID}');&quot;&gt;{name}&lt;/li&gt;<br />
+&lt;/ul&gt;</p>
+<p>you can now do this:</p>
+<p>&lt;ul spry:region=&quot;dsEmps&quot; spry:repeatchildren=&quot;dsEmps&quot;&gt;<br />
+&lt;li spry:setrow=&quot;dsEmps&quot; &gt;{name}&lt;/li&gt;<br />
+&lt;/ul&gt;</p>
+<hr />
+<p>This sample uses the spry:setrow attribute. Click on the name of a product, and the detail region will update. </p>
+<table width="100%" border="0">
+	<tr>
+		<td width="21%"><ul spry:region="ds1" spry:repeatchildren="ds1">
+			<li class="product" spry:setrow="ds1" spry:select="selected" spry:hover="hover">{name}</li>
+		</ul></td>
+		<td width="79%"><div id="description" spry:detailregion=" ds1">{desc}</div></td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<hr />
+<p>This sample uses the spry:setrownumber attribute. Click on the name of a product, and the detail region will update. </p>
+<table width="100%" border="0">
+	<tr>
+		<td width="21%"><ul spry:region="ds1" spry:repeatchildren="ds1">
+			<li class="product" spry:setrownumber="ds1" spry:select="selected" spry:hover="hover">{name}</li>
+		</ul></td>
+		<td width="79%"><div id="div" spry:detailregion=" ds1">{desc}</div></td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>
+ 

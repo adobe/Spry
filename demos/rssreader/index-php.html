@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>RSS Reader Demo</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../includes/SpryData.js"></script>
+<script type="text/javascript">
+	var dsCategories = new Spry.Data.XMLDataSet("data/feeds.php", "feeds/feed/category", { distinctOnLoad: true, sortOnLoad: "category" });
+	var dsFeeds = new Spry.Data.XMLDataSet("data/feeds.php", "feeds/feed", { sortOnLoad: "title" });
+	var dsChannel = new Spry.Data.XMLDataSet("data/feeds.php?id={dsFeeds::@id}", "//channel");
+	var dsArticles = new Spry.Data.XMLDataSet("data/feeds.php?id={dsFeeds::@id}", "//item");
+	dsArticles.setColumnType("pubDate", "date");
+</script>
+</head>
+<body>
+<noscript><h1>This page requires JavaScript. Please enable JavaScript in your browser and reload this page.</h1></noscript>
+<div id="wrap">
+  <h1>RSS Reader Demo<span class="return"><a href="../index.html">Back to Demos</a></span><span class="source"><a href="source.html">View Source </a></span></h1>
+  <div id="LeftColumn">
+    <div id="RSSFeedsTitle">
+      <h2>Feeds</h2>
+    </div>
+    <div id="RSSFeedsList" spry:region="dsCategories dsFeeds" class="SpryHiddenRegion">
+      <div spry:repeat="dsCategories" class="ListBoxItemGroup">
+        <div class="ListBoxItemTitle">{dsCategories::category}</div>
+        <div spry:repeat="dsFeeds" class="ListBoxItem" spry:test="'{dsCategories::category}' == '{dsFeeds::category}'" spry:setrow="dsFeeds" spry:selectgroup="feedsList" spry:select="SelectedListBoxItem" spry:hover="ListBoxItemHover">{dsFeeds::title}</div>
+      </div>
+    </div>
+  </div>
+  <div id="RightColumn">
+    <div id="articles">
+      <!--<div id="RSSChannelTitle" spry:region="dsChannel" class="SpryHiddenRegion">
+        <h2>{title}</h2>
+      </div>-->
+      <div id="columnHeadings">
+        <div id="SubjectTitle" onclick="dsArticles.sort('title', 'toggle');">Subject</div>
+        <div id="PubDateTitle" onclick="dsArticles.sort('pubDate', 'toggle');">Published Date</div>
+      </div>
+      <div id="RSSItemsList" spry:region="dsArticles" class="SpryHiddenRegion">
+        <div spry:state="ready" spry:repeat="dsArticles">
+          <div spry:choose="spry:choose">
+            <div spry:when="{ds_RowNumber}%2 != 0" class="EvenRow RSSItemListRow" onclick="document.getElementById('RSSItemContentIFrame').src='{link}';" spry:selectgroup="itemsList" spry:select="SelectedListBoxItem" spry:hover="ListBoxItemHover">
+              <div class="SubjectColumn">{title}</div>
+              <div class="PubDateColumn">{pubDate}</div>
+            </div>
+            <div spry:default="spry:default" class="RSSItemListRow" onclick="document.getElementById('RSSItemContentIFrame').src='{link}';" spry:selectgroup="itemsList" spry:select="SelectedListBoxItem" spry:hover="ListBoxItemHover">
+              <div class="SubjectColumn">{title}</div>
+              <div class="PubDateColumn">{pubDate}</div>
+            </div>
+          </div>
+        </div>
+        <table spry:state="ready" spry:if="{ds_RowCount} == 0" class="RSSItemListFeedback"><tr><td valign="middle">Feed contains no items.</td></tr></table>
+        <table spry:state="loading" class="RSSItemListFeedback"><tr><td class="RSSItemListLoading" valign="middle">Loading feed items ...</td></tr></table>
+        <table spry:state="error" class="RSSItemListFeedback"><tr><td valign="middle">Failed to load feed items!</td></tr></table>
+      </div>
+    </div>
+    <div id="RSSItemContent">
+      <iframe id="RSSItemContentIFrame" src=""></iframe>
+    </div>
+  </div>
+  <div class="ClearAll">&nbsp;</div>
+</div>
+</body>
+</html>

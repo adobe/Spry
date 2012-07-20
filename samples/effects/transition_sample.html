@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2007. Adobe Systems Incorporated. All rights reserved. -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Spry Effects Transitions Sample</title>
+	<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+	<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+	<style type="text/css">
+	.demoDiv{
+		background-color: #CCC;
+		height: 300px;
+		width: 660px;
+		border: 1px solid black;
+		margin-left: 1px;
+		float: left;
+		overflow: hidden;
+	}
+	.animationContainer{
+		height: 330px;
+		width: 1000px;
+	}
+	select{
+		width: 100px;
+	}
+	label{
+		display: block;
+		float: left;
+		width: 180px;
+	}
+	br{
+		clear: both;
+	}
+	#graph{
+		width: 300px;
+		height: 300px;
+		border: 1px solid red;
+		float:right;
+	}
+	.transitionDot{
+		position: relative;
+		float: left;
+		top: 300px;
+		left: 0px;
+		width: 1px;
+		height: 1px;
+		line-height: 1px;
+		background-color: green;
+		overflow:hidden
+	}
+
+	.evolutionDot{
+		position: relative;
+		float: left;
+		top: 300px;
+ 		width: 4px;
+		height: 4px;
+		background-color: blue;
+		line-height:1px;
+		overflow: hidden
+	}
+	</style>
+</head>
+<body>
+<h3>Spry Effect Transitions</h3>
+<hr />
+<!--
+
+Sample: How the transition, fps and time affect each of the effects
+
+-->
+
+<p>The smoothness of a running effect is affected by three factors: transition equation, 
+frames painted per second (fps) and the duration. In this sample you may customize 
+these parameters for different effects to find the best smoothness of a running effect. 
+We also display the transition equation graph and the position in this graph while 
+the effect run.</p>
+<p>An effect should run on both direction before passing to a new effect.</p>
+<div style="float:left">
+<!-- This is the form that allow effect customization -->
+<form method="get" action="observers_sample.html">
+	<label for="effect">Effect:</label>
+	<select name="effect" id="effect">
+		<option value="Blind">Blind</option>
+		<option value="Fade">Fade</option>
+		<option value="Grow">Grow</option>
+		<option value="Highlight">Highlight</option>
+		<option value="Slide">Slide</option>
+		<option value="Squish">Squish</option>
+	</select>
+	<br />
+	<label for="transition">Transition:</label>
+	<select name="transition" id="transition">
+		<option value="linearTransition">Linear</option>
+		<option value="sinusoidalTransition">Sinusoidal</option>
+		<option value="squareTransition">Square</option>
+		<option value="squarerootTransition">Square Root</option>
+		<option value="fifthTransition">Fifth</option>
+		<option value="circleTransition">Circle</option>
+		<option value="pulsateTransition">Fade Pulsate</option>
+		<option value="growSpecificTransition">Grow Specific</option>
+	</select>
+	<br />
+	<label for="duration">Duration:</label>
+	<select name="duration" id="duration">
+		<option value="500">0.5</option>
+		<option value="700">0.7</option>
+		<option value="1000" selected="selected">1</option>
+		<option value="1500">1.5</option>
+		<option value="2000">2</option>
+		<option value="2500">2.5</option>
+		<option value="3000">3</option>
+	</select>
+	<br />
+	<label for="FPS">FPS:</label>
+	<select name="FPS" id="FPS">
+		<option value="20">20</option>
+		<option value="25">25</option>
+		<option value="30">30</option>
+		<option value="35">35</option>
+		<option value="40">40</option>
+		<option value="50">50</option>
+		<option value="60" selected="selected">60</option>
+		<option value="76">76</option>
+		<option value="90">90</option>
+	</select>
+	<br />
+	<label for="stopAnimation">Stop Transition Animation:</label>
+	<input type="checkbox" id="stopAnimation" name="stopAnimation" />
+	<br />
+	<input type="button" onclick="animateStart(); return false;" value="Click Me" />
+</form>
+</div>
+<br />
+
+<div class="animationContainer">
+
+	<!-- This is the animated div -->
+
+	<div id="leftElement" class="demoDiv">
+		<div style="width:640px;">
+			<h4>Lore Ipsum Content</h4>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel
+			sem nec massa cursus interdum. Class aptent taciti sociosqu ad litora
+			torquent per conubia nostra, per inceptos hymenaeos. Duis euismod eros
+			consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus vel,
+			aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis
+			bibendum consequat, odio erat volutpat ipsum, sed dignissim ligula mi
+			in justo. Nam placerat. Nullam fringilla tortor. Quisque lacinia,
+			mi non iaculis adipiscing, turpis lacus eleifend velit, dictum facilisis
+			pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis,
+			faucibus sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus. </p>
+
+			<p>Donec volutpat rhoncus velit. Etiam est quam, vulputate id, consequat id,
+			luctus eget, neque. Sed imperdiet ipsum at eros. Cras pharetra urna a arcu.
+			Proin quam magna, imperdiet vitae, luctus sed, semper eu, odio. Proin egestas
+			est ut leo. Integer porttitor, erat in elementum placerat, augue lectus bibendum
+			metus, ac placerat turpis eros tristique felis. Integer tempus vulputate
+			mauris. Praesent quis erat. Duis ut quam. Nullam pretium tellus in est. Pellentesque
+			diam. Suspendisse vehicula turpis ut ligula. Aenean augue nisl, venenatis nec,
+			sagittis pretium, iaculis sit amet, lacus. Suspendisse nulla. Integer tempor
+			ipsum sed ante. Mauris magna.</p>
+
+			<p>Ut elementum quam et dui. Duis hendrerit, nulla vel laoreet dignissim, arcu
+			justo luctus orci, quis porttitor ante justo interdum purus. Mauris ornare euismod
+			dolor. Curabitur sed lorem. Nam non enim. Mauris dictum mollis massa. Proin a quam
+			eget sem aliquet convallis. Proin dapibus felis vitae arcu. Pellentesque nonummy.
+			</p>
+		</div>
+	</div>
+	
+	<!-- 
+			 This is the div that show transition evolution. Initially empty, will be filled 
+			 later by custom JavaScript.
+	-->
+	
+	<div id="graph"></div>
+
+	<br />
+</div>
+<p><b>Spry Effect contructor code:</b></p>
+<pre id="codeHint"></pre>
+
+<!-- The JavaScript Code for the sample -->
+
+<script type="text/javascript">
+//<!--
+	// This object will contain all distinct animations that ran
+	var testEffects = {};
+
+	// We define a default animation to use for initial draw of the transition evolution
+	testEffects['Blind'] = new Spry.Effect.Blind('leftElement', {from: '100%', to: '0%', duration: 1000, toggle: true, transition: Spry.linearTransition, fps: 60});
+	eff = testEffects['Blind'];
+
+	// The observer that will be registered to all effects to compute the transition position
+	var obs = new Object;
+
+	/**
+	*	 onPreEffect()
+	*	 	  This function is called before the animation to start and will sync the transition animation
+	*			with the current settings on the effect
+	*
+	*		Parameters:
+	*			- effect - The effect which calls this method
+	*/
+	obs.onPreEffect = function(effect){
+		var graph = document.getElementById('graph');
+		graph.innerHTML = '';
+		steps = parseInt(effect.options.duration/effect.options.interval, 10);
+		for (var i=0; i < steps; i++){
+			var dot = document.createElement('div');
+			dot.className = 'transitionDot';
+			var pos = Math.floor(effect.options.transition(i * effect.options.interval, 0, 300, effect.options.duration));
+			dot.style.cssText = 'top:'+(300-pos)+'px; left:'+ parseInt(i*300/steps-i, 10) +'px;';
+			graph.appendChild(dot);
+		}
+		var pointer = document.createElement('div');
+		pointer.className = 'evolutionDot';
+		pointer.style.cssText = 'left: -'+(i+3)+'px;';
+		graph.appendChild(pointer);
+
+		var timeEv = document.createElement('div');
+		timeEv.className = 'evolutionDot';
+		timeEv.style.cssText = 'left: -'+(i+7)+'px;';
+		graph.appendChild(timeEv);
+
+		this.stop = document.getElementById('stopAnimation').checked;
+		updateCodeHint(effect);
+
+		this.pointer = pointer;
+		this.timeEv = timeEv;
+	};
+
+	/**
+	*	 onStep()
+	*	 	  This function is called after every draw of the effect.
+	*			We will compute the new position of the dot element that display the transition evolution.
+	*
+	*		Parameters:
+	*			- effect - The effect which calls this method
+	*/
+	obs.onStep = function(effect){
+		if (!this.stop){
+			var time = effect.getElapsedMilliseconds();
+			this.pointer.style.left = (parseInt(300 * effect.getElapsedMilliseconds() / effect.options.duration, 10) - steps)+'px';
+			this.pointer.style.top = Math.floor(300 - effect.options.transition(time, 0, 300, effect.options.duration))+'px';
+			this.timeEv.style.left = (parseInt(this.pointer.style.left, 10) - 4)+'px';
+		}
+	};
+
+	// register this observer to the default effect
+	testEffects['Blind'].addObserver(obs);
+	obs.onPreEffect(testEffects['Blind']);
+
+	/**
+	*	 animateStart()
+  *	 	  Animate start will read the values in the form, create the effect if necessary and
+  * 		overwrite the settings to match the user defined. The effect is than started.
+	*
+	*/
+	function animateStart(){
+		var name = document.getElementById('effect').value;
+		if (typeof testEffects[name] == 'undefined'){
+			var from = '100%';
+			var to = '0%';
+			switch (name){
+				case 'Fade':
+					from = 100;
+					to = 0;
+					break;
+				case 'Highlight':
+					from = '#CCCCCC';
+					to = '#FFDD22';
+					break;
+			}
+			testEffects[name] = new Spry.Effect[name]('leftElement', {from: from, to: to, toggle: true});
+			testEffects[name].addObserver(obs);
+		}
+		var eff = testEffects[name];
+		eff.setFps(document.getElementById('FPS').value);
+		eff.setDuration(document.getElementById('duration').value);
+		eff.setTransition(document.getElementById('transition').value);
+		eff.start();
+	}
+	/**
+	*	 updateCodeHint()
+  *	 	  Generate the effect code using the options user chose to insert in its pages.
+	*
+	*/
+	function updateCodeHint(effect){
+		var code = document.getElementById('codeHint');
+		var from = effect.options.from;
+		var to = effect.options.to;
+		if (typeof from == 'string'){
+			from = "&quot;" + from + "&quot;";
+			to = "&quot;" + to + "&quot;";
+		}
+
+		var str = '&lt;script type=&quot;text/javascript&quot;&gt;' + "\n";
+		str += '  var effect = new Spry.Effect.' + document.getElementById('effect').value + '(&quot;leftElement&quot;,{from: ' + from + ', to: ' + to + ', duration: ' + effect.options.duration + ', toggle: true, transition: Spry.'+document.getElementById('transition').value+', fps: '+effect.options.fps+'});';
+		str += "\n  effect.start(); \n";
+		str += '&lt;/script&gt;';
+		code.innerHTML = str;
+	}
+// -->
+</script>
+<hr />
+</body>
+</html>

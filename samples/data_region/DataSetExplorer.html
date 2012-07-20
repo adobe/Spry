@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Show Data Set</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#dstable table {
+	background-color: black;
+}
+
+#dstable th {
+	background-color: #CCCCCC;
+	padding: 4px;
+}
+#dstable td {
+	background-color: white;
+}
+#schema {
+	background-color: #CCFFCC;
+	border: solid 1px black;
+	height: 200px;
+	overflow: auto;
+	margin: 10px;
+}
+form {
+	background-color: #FFFFCC;
+	border: solid 1px black;
+	padding: 10px;
+	margin: 10px;
+}
+.code {
+	width: 100%;
+	margin: 10px;
+	padding: 10px;
+	background-color: #CCCCCC;
+	border: 1px solid black;
+	overflow: auto;
+}
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryXML.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var ds = new Spry.Data.XMLDataSet(null, null);
+var dsObserver = null;
+
+function LoadSchema()
+{
+	var url = document.getElementById("urlTF").value;
+	if (!url)
+	{
+		alert("A valid URL is required.");
+		return;
+	}
+
+	document.getElementById("schema").innerHTML = "";
+	document.getElementById("dstable").innerHTML = "";
+	
+	GetRequestParameters();
+
+	// Load the URL via the data set so it gets cached.
+	ds.removeObserver(dsObserver);
+	dsObserver = { onDataChanged: function(ds, type) { LoadSchemaCB(ds.url, ds.doc); } };
+	ds.addObserver(dsObserver);
+	ds.setURL(gReqInfo.url, gReqInfo);
+	ds.setXPath("/*");
+	ds.useCache = document.getElementById("useCacheCB").checked;
+	ds.loadData();
+}
+
+function LoadSchemaCB(url, doc)
+{
+	var schemaRoot = Spry.XML.getSchema(doc);
+	if (!schemaRoot)
+	{
+		document.getElementById("schema").innerHTML = "<p>Failed to get schema!</p>";
+		return;
+	}
+	
+	document.getElementById("schema").innerHTML = "<ul>" + GenListItems(schemaRoot, url, "") + "</ul>";
+}
+
+function LoadDataSet(url, xpath)
+{
+	ds.removeObserver(dsObserver);
+	dsObserver = { onDataChanged: function(ds, type) { GenerateTable(ds, url, xpath); } };
+	ds.addObserver(dsObserver);
+	ds.setURL(gReqInfo.url, gReqInfo);
+	ds.setXPath(xpath);
+	ds.useCache = document.getElementById("useCacheCB").checked;
+	ds.loadData();
+	return false;
+}
+
+var gReqInfo = new Spry.Utils.loadURL.Request();
+
+function GetRequestParameters()
+{
+	gReqInfo.method = document.getElementById("methodSelect").value;
+	gReqInfo.url = 	document.getElementById("urlTF").value;
+	gReqInfo.postData = document.getElementById("postDataTF").value;
+	gReqInfo.headers = [];
+	if (gReqInfo.method == "POST")
+	{
+		var contentType = document.getElementById("contentTypeTF").value;
+		if (contentType)
+			gReqInfo.headers["Content-Type"] = 	contentType;
+	}
+}
+
+function GenListItems(schemaNode, url, path)
+{
+	var pathToNode = path + "/" + schemaNode.nodeName;
+	var str = "<li><a href=\"#\" onclick=\"return LoadDataSet('" + url + "', '" + pathToNode + "');\">" + schemaNode.nodeName + (schemaNode.appearsMoreThanOnce ? " (REPEATING NODE)" : "") + "</a>";
+	
+	var needsUL = true;
+	
+	for (var childName in schemaNode.children)
+	{
+		if (needsUL)
+		{
+			str += "<ul>";
+			needsUL = false;
+		}
+
+		str += GenListItems(schemaNode.children[childName], url, pathToNode);
+	}
+
+	if (!needsUL)
+		str += "</ul>";
+
+	str += "</li>";
+	return str;
+}
+
+function GetDataSetConstructorStr(url, xpath)
+{
+	var str = "var dsData = new Spry.Data.XMLDataSet(\"" + url + "\", \"" + xpath + "\"";
+	var hasOptions = false;
+
+	if (!document.getElementById("useCacheCB").checked)
+	{
+		str += ", { useCache: false";
+		hasOptions = true;
+	}
+
+	if (gReqInfo.method == "POST")
+	{
+		if (!hasOptions)
+			str += ", { ";
+		else
+			str += ", ";
+			
+		hasOptions = true;
+
+		str += "method: \"POST\"";
+		
+		if (gReqInfo.postData)
+			str += ", postData: \"" + gReqInfo.postData + "\"";
+		if (gReqInfo.headers["Content-Type"])
+		{
+			str += ", headers: { \"Content-Type\": \"" + gReqInfo.headers["Content-Type"] + "\"";
+		}
+	}
+
+	if (hasOptions)
+		str += " }";
+
+	str += ");";
+	return str;
+}
+
+function GenerateTable(dataset, url, xpath)
+{
+	var str = "<p><b>XPath:</b> " + xpath + "</p>";
+	str += "<p><b>Data Set Constructor Code:</b></p>";
+	str += "<p class=\"code\">" + GetDataSetConstructorStr(url, xpath) + "</p>";
+
+	var rows = dataset.getData();
+	if (!rows || rows.length < 1)
+	{
+		str += "<p>Data set contains no data!</p>";
+		document.getElementById("dstable").innerHTML = str;
+		return;
+	}
+
+	str += "<table><tr>";
+
+	var colNames = [];
+
+	// Generate the header row:
+	
+	for (var cname in rows[0])
+	{
+		str += "<th>" + cname + "</th>";
+		colNames.push(cname);
+	}
+
+	str += "</tr>";
+	
+	// Now write out a table row for every data set row.
+	
+	for (var i = 0; i < rows.length; i++)
+	{
+		str += "<tr>";
+		for (var j = 0; j < colNames.length; j++)
+		{
+			str += "<td>" + Spry.Utils.encodeEntities("" + rows[i][colNames[j]]) + "</td>";
+		}
+		str += "</tr>";
+	}
+	str += "</table>";
+	
+	document.getElementById("dstable").innerHTML = str;
+}
+-->
+</script>
+</head>
+
+<body>
+<p><strong>Data Set Explorer</strong></p>
+<p>This file allows you to set the values to create a Spry XML data set and the see the end results of the data set. It will parse the XML scheme and then display the tree. Clicking on a node in the tree will show the resultant data set. This will allow you to quickly visualize and confirm your data set info.</p>
+<p>Place this file in the same directory as the Spry file you are creating. That way the information you will use to create the data set will be the same as the data entered here.</p>
+<p>For GET, enter a relative path to the XML file you wish to parse. By default, the field is set to explore an XML file we included in the download of Spry. <br />
+For POST, set the URL and the POST Data. Change the content type if needed. POST data is formatted as usual: name1=value1&amp;name2=value2.<br />
+The Data Set Constructor code will show you the exact code needed to produce the displayed data set. </p>
+<p>1. Set the request parameters your XML source, then hit the "Load Schema" button:</p>
+<form action="">
+<table>
+	<tr>
+		<td>method:</td>
+		<td><select id="methodSelect" onchange="document.getElementById('postDataTF').disabled = (this.value == 'GET'); document.getElementById('contentTypeTF').disabled = (this.value == 'GET');"><option value="GET" selected="selected">GET</option><option value="POST">POST</option></select></td>
+	</tr>
+	<tr>
+		<td>url:</td>
+		<td><input type="text" id="urlTF" value="../../demos/gallery/galleries/china/photos.xml" size="64" /></td>
+	</tr>
+	<tr>
+		<td>postData:</td>
+		<td><input type="text" id="postDataTF" value="name1=foo&amp;name22=bar" size="64" disabled="disabled" /></td>
+	</tr>
+	<tr>
+		<td>Content-type:</td>
+		<td><input type="text" id="contentTypeTF" value="application/x-www-form-urlencoded; charset=UTF-8" size="64" disabled="disabled" /></td>
+	</tr>
+	<tr>
+		<td>useCache:</td>
+		<td><input type="checkbox" id="useCacheCB" checked="checked" /></td>
+	</tr>
+</table>
+<input type="button" value="Load Schema" onclick="LoadSchema();" />
+</form>
+<p>2. Click on a Schema list item, in the green area below, to generate a data set:</p>
+<div id="schema"></div>
+<div id="dstable"></div>
+</body>
+</html>

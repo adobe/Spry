@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Sort Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+caption {
+	font-weight: bold;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsEmployees1 = new Spry.Data.XMLDataSet("../../data/employees-03.xml", "/employees/employee");
+var dsEmployees2 = new Spry.Data.XMLDataSet("../../data/employees-03.xml", "/employees/employee");
+var dsEmployees3 = new Spry.Data.XMLDataSet("../../data/employees-03.xml", "/employees/employee");
+var dsEmployees4 = new Spry.Data.XMLDataSet("../../data/employees-03.xml", "/employees/employee");
+dsEmployees3.setColumnType("@id", "number");
+
+function DoSort()
+{
+	dsEmployees2.sort("firstname", "toggle");
+	dsEmployees3.sort(["firstname", "lastname"], "toggle");
+	dsEmployees4.sort(["firstname", "lastname", "@id"], "toggle");
+}
+-->
+</script>
+</head>
+<body>
+<h3>Sort Sample</h3>
+<p>This page is an example that illustrates the different results you can get when sorting by a single column and sorting with a secondary and tertiary column specified. </p>
+<input type="button" value="Sort" onclick="DoSort();" />
+<div spry:region="dsEmployees1 dsEmployees2 dsEmployees3 dsEmployees4">
+  <table>
+    <tr>
+      <td><table>
+          <caption>
+          Unsorted
+          </caption>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">ds_RowID</th>
+          </tr>
+          <tr spry:repeat="dsEmployees1">
+            <td>{@id}</td>
+            <td>{firstname}</td>
+            <td>{lastname}</td>
+            <td>{ds_RowID}</td>
+          </tr>
+        </table>
+        <p><b>Sort Column:</b> "{dsEmployees1::ds_SortColumn}"<br />
+          <b>Sort Order:</b> "{dsEmployees1::ds_SortOrder}"</p> </td>
+      <td><table>
+          <caption>
+          Sort: "firstname"
+          </caption>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">ds_RowID</th>
+          </tr>
+          <tr spry:repeat="dsEmployees2">
+            <td>{dsEmployees2::@id}</td>
+            <td>{dsEmployees2::firstname}</td>
+            <td>{dsEmployees2::lastname}</td>
+            <td>{dsEmployees2::ds_RowID}</td>
+          </tr>
+        </table>
+        <p><b>Sort Column:</b> "{dsEmployees2::ds_SortColumn}"<br />
+          <b>Sort Order:</b> "{dsEmployees2::ds_SortOrder}"</p> </td>
+      <td><table>
+          <caption>
+          Sort: [ "firstname", "lastname" ]
+          </caption>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">ds_RowID</th>
+          </tr>
+          <tr spry:repeat="dsEmployees3">
+            <td>{dsEmployees3::@id}</td>
+            <td>{dsEmployees3::firstname}</td>
+            <td>{dsEmployees3::lastname}</td>
+            <td>{dsEmployees3::ds_RowID}</td>
+          </tr>
+        </table>
+        <p><b>Sort Column:</b> "{dsEmployees3::ds_SortColumn}"<br />
+          <b>Sort Order:</b> "{dsEmployees3::ds_SortOrder}"</p> </td>
+      <td><table>
+          <caption>
+          Sort: [ "firstname", "lastname", "@id" ]
+          </caption>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">ds_RowID</th>
+          </tr>
+          <tr spry:repeat="dsEmployees4">
+            <td>{dsEmployees4::@id}</td>
+            <td>{dsEmployees4::firstname}</td>
+            <td>{dsEmployees4::lastname}</td>
+            <td>{dsEmployees4::ds_RowID}</td>
+          </tr>
+        </table>
+        <p><b>Sort Column:</b> "{dsEmployees4::ds_SortColumn}"<br />
+          <b>Sort Order:</b> "{dsEmployees4::ds_SortOrder}"</p> </td>
+    </tr>
+  </table>
+</div>
+<h3>Using spry:sort</h3>
+<p>spry:sort is an attribute of convenience for sorting data sets. It is functionaly equivalent to using <em>onclick=&quot;ds.sort('colname', 'toggle');&quot;</em>. </p>
+<p>The format of the attribute is as follows:</p>
+<pre>spry:sort=&quot;[dsName] col [col2 ... coln] [order]&quot;</pre>
+<p>Both  the data set name and the sort order to use are *optional*, but if  specified, they *must* appear in the order above. You must specify at  least one column to sort on, but you can also specify more columns for  secondary, tertiary, etc sorts.</p>
+<p>If a data set is not specified,  the sort defaults to sorting whatever data set is listed first in the  spry:region. If sort order is not specified, it defaults to toggle.</p>
+<div spry:region="dsEmployees3">
+  <table>
+    <tr>
+      <th spry:sort="@id">ID</th>
+      <th spry:sort="firstname lastname">Sort First and Last Name</th>
+      <th spry:sort="lastname @id">Last Name and ID</th>
+      <th spry:sort="ds_RowID">ds_RowID</th>
+    </tr>
+    <tr spry:repeat="dsEmployees3">
+      <td>{@id}</td>
+      <td>{firstname}</td>
+      <td>{lastname}</td>
+      <td>{ds_RowID}</td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validation Select with Spry Data</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script src="../../widgets/selectvalidation/SpryValidationSelect.js" type="text/javascript"></script>
+<script type="text/javascript">
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "states/state");
+var dsCities = new Spry.Data.XMLDataSet("../../data/states/{dsStates::url}", "state/cities/city");
+</script>
+<link href="../../widgets/selectvalidation/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Validation Select with Spry Data</h3>
+<p>This page demonstrates how to set up a Select Form Validation widget that works with Spry Data. <br />
+As with all widgets that use Spry Data, the data refreshing wipes out the widget functionality. Therefore, after the data updates in the region, the widget constructor needs to be rerun. There are 2 ways to do that.</p>
+<p>One is to include the widget constructor script is put INSIDE the spry:region. Spry recognizes scripts within regions and automatically runs them after the data is loaded.</p>
+<p>The other way it to set an observer on the region and run the constructor onPostLoad.</p>
+<hr />
+<form name="selectForm" action="">
+	State:
+  <span spry:region="dsStates" id="stateSelector">
+		<select spry:repeatchildren="dsStates" name="stateSelect" onchange="document.forms[0].citySelect.disabled = true; dsStates.setCurrentRowNumber(this.selectedIndex);">
+            <option spry:if="{ds_RowNumber} == 0" value="-1">INVALID</option>
+			<option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+			<option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+		</select>
+  </span>
+	City:<span spry:region="dsCities" id="citySelector">
+	<select spry:repeatchildren="dsCities" id="citySelect" name="citySelect">
+      <option spry:if="{ds_RowNumber} == 0" value="-1">INVALID</option>
+      <option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+      <option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+    </select>
+	<span class="selectInvalidMsg">Please select a valid item.</span> <span class="selectRequiredMsg">Please select an item.</span>
+    <script type="text/javascript">
+<!--
+var spryselect1 = new Spry.Widget.ValidationSelect("citySelector", {validateOn:["change", "blur"], invalidValue:"-1"});
+//-->
+</script>
+	</span>
+
+</form>
+
+<hr />
+<p><strong>Observer Version</strong></p>
+<p>This form uses an observer to recreate the widget.</p>
+<form name="selectForm" action="">
+	State:
+  <span spry:region="dsStates" id="stateSelector2">
+		<select spry:repeatchildren="dsStates" name="stateSelect" onchange="document.forms[0].citySelect.disabled = true; dsStates.setCurrentRowNumber(this.selectedIndex);">
+		  <option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+		  <option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+		</select>
+  </span>
+	City:<span spry:region="dsCities" id="citySelector2">
+	<select spry:repeatchildren="dsCities" id="citySelect2" name="citySelect2">
+       <option value="-1">INVALID</option>
+      <option spry:if="{ds_RowNumber} == {ds_CurrentRowNumber}" value="{name}" selected="selected">{name}</option>
+      <option spry:if="{ds_RowNumber} != {ds_CurrentRowNumber}" value="{name}">{name}</option>
+    </select>
+	<span class="selectInvalidMsg">Please select a valid item.</span> <span class="selectRequiredMsg">Please select an item.</span>
+	</span>
+
+</form><script type="text/javascript">
+<!--
+Spry.Data.Region.addObserver('citySelector2',{onPostUpdate:function(){var spryselect2 = new Spry.Widget.ValidationSelect("citySelector2", {validateOn:["change", "blur"], invalidValue:"-1"});}});
+//-->
+</script>
+</body>
+</html>

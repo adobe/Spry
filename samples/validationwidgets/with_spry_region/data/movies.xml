@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<movie-list>
+	<movie>
+		<id_movie>1</id_movie>
+		<title>Day 13</title>
+		<rating>5</rating>
+		<year>03/15/1972</year>
+		<running_time></running_time>
+		<studio>13Foxes</studio>
+		<description>A journalist discovers that earth has 13 days left before total extinction.</description>
+		<dvd_version></dvd_version>
+</movie>
+<movie>
+		 <id_movie>2</id_movie>
+     <title>The Last Sounds</title>
+     <rating>4</rating>
+		 <year>10/22/2006</year>
+		 <running_time>142</running_time>
+		 <studio>StudioMartin</studio>
+		 <description>The drama of a violinist that loses his memory in a car crash.</description>
+		 <dvd_version>N</dvd_version>
+</movie>
+<movie>
+		 <id_movie>3</id_movie>
+     <title>Running</title>
+     <rating>4</rating>
+		 <year></year>
+		 <running_time>102</running_time>
+		 <studio>Kristal</studio>
+		 <description>Two bank robbers try to escape police and a handful of Detroit mobsters.</description>
+		 <dvd_version>Y</dvd_version>
+</movie>
+<movie>
+		 <id_movie>4</id_movie>
+     <title>Conflict</title>
+     <rating>4</rating>
+		 <year>1994</year>
+		 <running_time>154</running_time>
+		 <studio>StudioMartin</studio>
+		 <description>A team of space-explorers find themselves in the middle of a galactic conflict.</description>
+		 <dvd_version>Y</dvd_version>
+</movie>
+<movie>
+		 <id_movie>5</id_movie>
+     <title>Wild Vegas</title>
+     <rating>3</rating>
+		 <year>03/27/1952</year>
+		 <running_time>103</running_time>
+		 <studio></studio>
+		 <description>A group of teenagers go to Vegas to stop their friend from getting married and get married themselves.</description>
+		 <dvd_version>N</dvd_version>
+</movie>
+<movie>
+		 <id_movie>6</id_movie>
+     <title>Conquistador</title>
+     <rating>3</rating>
+		 <year>99/90/1960</year>
+		 <running_time>87</running_time>
+		 <studio>NortheastStars</studio>
+		 <description>The story of a historian accompanying Cortez in his quest in the New World.</description>
+		 <dvd_version>Y</dvd_version>
+</movie>
+<movie>
+		 <id_movie>7</id_movie>
+     <title>Dark</title>
+     <rating>4</rating>
+		 <year>10/15/1940</year>
+		 <running_time>-150</running_time>
+		 <studio>Multiplex</studio>
+		 <description>A terrifying abandoned mine traps within a team of explorers.</description>
+		 <dvd_version></dvd_version>
+</movie>
+<movie>
+		 <id_movie>8</id_movie>
+     <title>Maison du Vert</title>
+     <rating>4</rating>
+		 <year>08/16/1995</year>
+		 <running_time>106</running_time>
+		 <studio>Multiplex</studio>
+		 <description>The story of a family in a small French village in the Second World War.</description>
+		 <dvd_version>N</dvd_version>
+</movie>
+</movie-list>

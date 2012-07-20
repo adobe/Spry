@@ -1,0 +1,1246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Progressive Enhancement</title>
+<link href="../../css/bparticles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.liveSample {
+	margin: 10px;
+	padding: 10px;
+	border: solid 1px black;
+	background-color: #FFFFCC;
+}
+
+.CollapsiblePanelClosed .hide, .CollapsiblePanelOpen .show { display: none; }
+
+.style1 {color: #FF0000}
+.style2 {color: #E2E1D9}
+</style>
+<script type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+<script type="text/javascript" src="../../widgets/collapsiblepanel/SpryCollapsiblePanel.js"></script>
+<script type="text/javascript">
+Spry.Utils.addLoadListener(function()
+{
+	Spry.$$(".CollapsiblePanel").forEach(function(n){ new Spry.Widget.CollapsiblePanel(n, { contentIsOpen: false }); });
+});
+</script>
+
+</head>
+<body>
+<h1>Progressive Enhancement with Spry</h1>
+<p><a href="http://en.wikipedia.org/wiki/Progressive_Enhancement">Progressive enhancement</a>  is a technique used by web developers to ensure that their pages are accessible to as wide an audience as possible while at the same time trying to take advantage of the latest browser enhancements to provide the best user experience for their users. The basic idea behind progressive enhancement is to start off by creating a basic version of your page that contains your content and <a href="http://en.wikipedia.org/wiki/Semantic_markup">semantic markup</a> that is supported by the lowest common denominator browser you intend to target. Once you are done, you can then alter the display and behavior of elements on the page with the use of technologies such as CSS, JavaScript, and Flash.</p>
+<p>By designing your pages in this manner, the user and any <a href="http://en.wikipedia.org/wiki/Assistive_technology">assistive technologies</a> they use, or search engine spiders, should be able to access your page content, even in the absence of CSS, JavaScript and Flash.</p>
+<p>This document will give examples of how to use the various components within Spry in a progressive enhancement scenario and introduce some techniques and utilities that will hopefully make it easy:</p>
+<ul>
+	<li><a href="#widgetsandeffects">Spry Widgets and Effects</a></li>
+	<li><a href="#datasetsandregions">Spry Data Sets and Regions</a></li>
+	<li><a href="#dynamicloading">Progressive Enhancement and Dynamic Loading  of Content With Spry</a>
+		<ul>
+			<li><a href="#updatecontent">Using Spry.Utils.updateContent()</a></li>
+			<li><a href="#htmlpanel">Using the HTML Panel Widget</a></li>
+			<li><a href="#datasets">Using Data Sets without Regions</a></li>
+			<li><a href="#sprycontent">Using the spry:content Attribute with Regions</a></li>
+			<li><a href="#htmldataset">Using the HTML Data Set with Region</a></li>
+		</ul>
+	</li>
+</ul>
+<p>Here is a very basic example that illustrates progressive enhancement with JavaScript. Given the following basic markup:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Basic Markup&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>We can progressively enhance it so that each time the user's cursor is over the content, it turns a different color:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Basic Markup&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;event&quot; <span class="hilite">onmouseover=&quot;this.style.backgroundColor = 'yellow';&quot; onmouseout=&quot;this.style.backgroundColor = 'white'&quot;</span>&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>In the example above, onmouseover and onmouseout attributes were added to the &lt;div&gt; with the id of &quot;event&quot;. The value of each of those attributes is some JavaScript that the browser will execute anytime the user's cursor enters or exits the &quot;event&quot; &lt;div&gt;. While this is a very trivial example, it illustrates the addition of a behavior to the basic page. With JavaScript on, users will see this new behavior as they move the cursor around on the page, but, with JavaScript off, all of the content on the page is still accessible.</p>
+<h2><a name="widgetsandeffects" id="widgetsandeffects"></a>Spry Widgets and Effects</h2>
+<p>Because Spry Effects and Widgets both work on elements that *must* be present within the page, they are well suited for use with progressive enhancement. For example, given this basic semantic markup:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Basic Markup&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-01.html" target="SpryPESample">(Click here to see a live version of the example above.)</a></p>
+<p>We can progressively enhance this markup with CSS and some JavaScript behaviors that turn it into a collapsible panel:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Progressively Enhanced Markup&lt;/title&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../../widgets/collapsiblepanel/SpryCollapsiblePanel.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;css/sample.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var cp = new Spry.Widget.CollapsiblePanel(&quot;event&quot;, { contentIsOpen: false });
+--&gt;
+&lt;/script&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-02.html" target="SpryPESample">(Click here to see a live version of the example above.)</a></p>
+<p>In the example above, SpryCollapsiblePanel.js was included to enable support for a collapsible panel. We also includes a stylesheet that has some rules that make the &quot;event&quot; div look like a collapsible panel. At the very bottom of the document is a script block which attaches the collapsible panel behaviors to the &quot;event&quot; element and some of its descendants.</p>
+<p>If you load the example above into your browser, you'll notice that the page displays a collapsible panel tab. If you click on this tab, it animates to reveal additional content. If you turn off CSS and JavaScript support in your browser and re-load this same example, you will notice that the content is entirely accessible, just as it is in the <a href="samples/pe-01.html" target="SpryPESample">basic example</a>.</p>
+<p>Here's an example of progressively enhancing the same basic source with an effect that highlights the content as you mouse over its header:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Progressively Enhanced Markup&lt;/title&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;div class=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot; <span class="hilite">onmouseover=&quot;Spry.Effect.DoHighlight('AquoThonContent', {from: '#FFF', to:'#FFCC33', toggle: true });&quot;</span> <span class="hilite">onmouseout=&quot;Spry.Effect.DoHighlight('AquoThonContent', {from: '#FFF', to:'#FFCC33', toggle: true });&quot;</span>&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div <span class="hilite">id=&quot;AquoThonContent&quot;</span> class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-02b.html" target="SpryPESample">(Click here to see the sample above in a browser.)</a></p>
+<p>As with the previous example, if you turn off CSS and JavaScript in your browser, the content is still accessible.</p>
+<h2><a name="datasetsandregions" id="datasetsandregions"></a>Spry Data Sets and Regions</h2>
+<p>Before integrating support for Spry data sets and regions into your existing pages, take a moment to think about how and where within your site this support will be surfaced, and  about the potential impact this may have on the accessibility and search engine indexing of your site. For some folks, after playing with some of the Spry demos and samples, their first inclination is to externalize all of the content from their existing pages so they can use data sets and regions to swap out the page contents without full page refreshes. For example, they start using pages that look like this throughout their site:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Page With No Content Sample&lt;/title&gt;
+&lt;script src=&quot;../../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsEvents = new Spry.Data.XMLDataSet(&quot;events.xml&quot;, &quot;/events/event&quot;);
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;content&quot; spry:region=&quot;dsEvents&quot;&gt;
+	&lt;div spry:repeat=&quot;dsEvents&quot; class=&quot;event&quot;&gt;
+		&lt;h2 class=&quot;name&quot;&gt;{name}&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;{location}&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;{date}&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;{description}&lt;/p&gt;
+			&lt;a href=&quot;{location}&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-03.html" target="SpryPESample">(Click here to see the sample above in a browser.)</a></p>
+<p>Although it looks fine and renders with content in a browser when JavaScript is turned on, it renders without content when JavaScript is turned off:</p>
+<div class="liveSample">
+	<div>
+		<h2>{name}</h2>
+		<div>		
+			<div>{location}</div>
+			<div>{date}</div>
+			<p>{description}</p>
+			<a href="{location}">directions...</a>
+		</div>
+	</div>
+</div>
+<p><a href="samples/pe-03b.html" target="SpryPESample">(Click here to see the example above in a browser.)</a></p>
+<p>This means the content is not accessible to users and screen readers when running in an environment where JavaScript must be turned off. This is also what most search engine <a href="http://en.wikipedia.org/wiki/Search_engine_spider">web crawlers</a> will see, which means your content will not be found and indexed.</p>
+<p>The only way to solve this problem is to follow the progressive enhancement methodology, and start with a basic page that actually contains static content.</p>
+<p>Over the last few releases, the Spry team has been steadily introducing new features within the framework that will allow the developer to progressively enhance their pages to load content dynamically. These features include the use of the spry:content attribute within regions, the HTML Data Set, Spry.Utils.updateContent() utility method, and the HTML Panel Widget.</p>
+<h2><a name="dynamicloading" id="dynamicloading"></a>Progressive Enhancement and Dynamic Loading  of Content With Spry</h2>
+<p>Below are some samples of how to use various features within Spry to progressively enhance your static pages so they can dynamically load new content.</p>
+<p>Each feature comes with a set of requirements, so which feature you decide to use depends on what it is you are trying to accomplish. For example, if you are trying to make a page dynamically load and display *existing* HTML content without resorting to modifying or creating any server-side scripts to serve up fragments of your existing pages, you may want to use an HTML Data Set or the HTML Panel since they both have the ability to extract HTML fragments out of existing pages. Or, if you want to take a server side approach and serve up HTML fragments embedded within XML/JSON or some other format, along with instructions on where to insert them on the page, perhaps using a data set, suited to the particular format being served (XML, JSON, etc), with or without regions is a better approach.</p>
+<p>The samples below all start with a page that contains static content, and links that take you to other pages with static content. They are then progressively enhanced with JavaScript to intercept clicks on links to prevent the browser from following the link and instead trigger some code we added to dynamically load content and replace portions of the page without a full page refresh. If this concept sounds familiar to some folks, its because it is the same approach described by the <a href="http://domscripting.com/blog/display/41">Hijax methodology</a>.</p>
+<ul>
+	<li><a href="#updatecontent">Using Spry.Utils.updateContent()</a></li>
+	<li><a href="#htmlpanel">Using the HTML Panel Widget</a></li>
+	<li><a href="#datasets">Using Data Sets without Regions</a></li>
+	<li><a href="#sprycontent">Using the spry:content Attribute with Regions</a></li>
+	<li><a href="#htmldataset">Using the HTML Data Set with Region</a></li>
+</ul>
+<h3><a name="updatecontent" id="updatecontent"></a>Using Spry.Utils.updateContent()</h3>
+<div class="CollapsiblePanel">
+<div class="CollapsiblePanelTab"><a href="#">Click to <span class="show">show</span><span class="hide">hide</span> the content for this section.</a></div>
+<div class="CollapsiblePanelContent">
+<p>The Spry.Utils.updateContent() utility function allows developers to easily load HTML fragments into a specific element on the page. You simply call it with the node or id of the element who's content you want to replace, and the URL to the HTML fragment and it does the rest. Unlike some of the other methods for dynamically loading content mentioned in this document, Spry.Utils.updateContent() is a no-frills implementation that uses the XMLHttpRequest object under the hood to load the HTML fragment off the network, and the innerHTML property of the element it was given to insert the fragment into the document.</p>
+<p>The Spry.Utils.updateContent() function takes an optional callback function as an argument. If supplied, this callback will be called *after* the HTMLFragment is inserted into the document. It does *not* provide a mechanism for examining the content received by the server before it is inserted into the document. Also, unlike the HTMLPanel widget, Spry.Utils.updateContent() does *not* have the ability to extract a fragment out of a larger HTML document. It will always insert *everything* it receives into the document.</p>
+<p>Spry.Utils.updateContent() is well suited for pages that need a quick way to interact with a server application that can deliver raw HTML fragments to minimize page refreshes.</p>
+<p>Here's an example of a basic page that contains links that take you to other pages:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot;&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-08.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>Here is that same page progressively enhanced to intercept a click on a link so that an HTML fragment can be loaded directly into an element on the page:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="hilite">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;Spry.Utils.updateContent('event', 'data/AquoThonFrag.html'); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;Spry.Utils.updateContent('event', 'data/AquoSwingFrag.html'); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;Spry.Utils.updateContent('event', 'data/AquoUltraMarathonFrag.html'); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;Spry.Utils.updateContent('event', 'data/AquoExtremeSkiFrag.html'); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-09.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>In the example above, onclick attributes were added to override the default link behavior. When JavaScript is enabled, and the user clicks on a link, the onclick code will call Spry.Utils.updateContent() with the id of the element on the page to update, and the URL to the HTML fragment to load. As you click on the links in this example, pay attention to the URL displayed by the browser. When JavaScript is on, the URL never changes because fragments of HTML are being loaded dynamically and replacing content on the page. When JavaScript is off, clicking on the links actually take you to a different page so the URL displayed by the browser changes.</p>
+<p>Here's a version of the previous example that has been enhanced to use a fade transition whenever the content changes:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="hilite">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+function FadeAndUpdateContent(ele, url)
+{
+try {
+	Spry.Effect.DoFade(ele,{ duration: 500, from: 100, to: 0, finish: function() {
+		Spry.Utils.updateContent(ele, url, function() {
+				Spry.Effect.DoFade(ele,{ duration: 500, from: 0, to: 100 });
+		});
+	}});
+}catch(e){ alert(e); }
+}
+
+--&gt;
+&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+/* IE HACK to prevent bad rendering when fading. */
+#event { background-color: white; }
+&lt;/style&gt;</span>
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;FadeAndUpdateContent('event', 'data/AquoThonFrag.html'); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;FadeAndUpdateContent('event', 'data/AquoSwingFrag.html'); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;FadeAndUpdateContent('event', 'data/AquoUltraMarathonFrag.html'); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;FadeAndUpdateContent('event', 'data/AquoExtremeSkiFrag.html'); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-10.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>As with the previous example,  the example above uses the same onclick attribute on links technique to override the default link behavior. In this particular example instead of calling Spry.Utils.updateContent() directly, an intermediate function is called which fires of an effect to fade out the current content within the &quot;event&quot; element. Once that effect completes, it fires off a call to Spry.Utils.updateContent(), but notice that in this example a 3rd argument is passed into the updateContent() call. This is a callback which will fade the content back in after updateContent() has finished loading and updating the &quot;event&quot; element's content.</p>
+</div>
+</div>
+<h3><a name="htmlpanel" id="htmlpanel"></a>Using the HTML Panel Widget</h3>
+<div class="CollapsiblePanel">
+<div class="CollapsiblePanelTab"><a href="#">Click to <span class="show">show</span><span class="hide">hide</span> the content for this section.</a></div>
+<div class="CollapsiblePanelContent">
+<p>The <a href="../html_panel/index.html">HTML Panel widget</a> is a JavaScript object that is bound to a specific element container on the page, and has the ability to load a remote HTML fragment, or a piece of an existing HTML page into that element container. Developers can register observers on the HTML Panel Widget to hook into the pre/post load of the HTML fragments, and pre/post update of the element container processes. The HTML Panel widget also introduces the concept of states and provides automatic class name addition/removal for styling different states, and the ability to automatically swap in content provided by the developer during specific panel states.</p>
+<p>The HTML Panel is well suited for pages that have well defined areas of the page that can be replaced dynamically. Although it can be used in scenarios that interact with a server application that can deliver raw HTML fragments, the HTML Panel also has the ability to extract out a portion of a full HTML page, based on an element id you give it. This makes it ideal for use in sites where there are lots of pages that differ slightly in well defined areas, for example the main content area, or the header of the page.</p>
+<p>Here's an example of progressively enhancing a basic page:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot;&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-08.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>to use an HTML Panel widget to load event data directly into the element with the id of &quot;event&quot;:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../widgets/htmlpanel/SpryHTMLPanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;hp.loadContent(this.href); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;hp.loadContent(this.href); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;hp.loadContent(this.href); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;hp.loadContent(this.href); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot;&gt;
+var hp = new Spry.Widget.HTMLPanel(&quot;event&quot;);
+
+hp.addObserver(function(notificationType, notifier, data)
+{
+	// We are about to load some content for the panel, make sure we modify
+	// the URL so that the server knows we want a fragment.
+
+	if (notificationType == &quot;onPreLoad&quot;)
+		data.url = data.url.replace(/\.html/, &quot;Frag.html&quot;);
+});
+&lt;/script&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-11.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>In the example above, an HTML Panel widget is created and bound to the element that has an id of &quot;event&quot;. An observer function is then added to the HTML Panel so that it gets called anytime the HTML Panel is told to load a URL. This observer function is used to automatically modify the URL in some way to let the server know that we want a fragment instead of a full HTML page.</p>
+<pre>
+hp.addObserver(function(notificationType, notifier, data)
+{
+	// We are about to load some content for the panel, make sure we modify
+	// the URL so that the server knows we want a fragment.
+
+	if (notificationType == &quot;onPreLoad&quot;)
+		<span class="hilite">data.url = data.url.replace(/\.html/, &quot;Frag.html&quot;);</span>
+});
+</pre>
+<p>In this particular case, we are modifying the URL so that it loads a file that is named the same as the one in the URL, except it ends with Frag.html, but you can imagine that in a real-world scenario we might do something like add an extra query param to the url:</p>
+<pre>
+hp.addObserver(function(notificationType, notifier, data)
+{
+	// We are about to load some content for the panel, make sure we modify
+	// the URL so that the server knows we want a fragment.
+
+	if (notificationType == &quot;onPreLoad&quot;)
+		<span class="hilite">data.url = data.url + &quot;?frag=true&quot;;</span>
+});
+</pre>
+<p>Next, onclick attributes were  added to the links on the page to override their default action. When JavaScript is enabled, and the user clicks on a link, the onclick code will call the loadContent() function on the HTML Panel we created, passing it the href for the link that was just clicked. This results in our observer function being invoked, which then transforms the URL into a request for an HTML fragment instead of an entire page. After the URL is transformed, the HTML Panel then loads the transformed URL. When the HTML Panel receives the fragment from the server, it automatically replaces the content underneath the &quot;event&quot; element, with the content in the fragment.</p>
+<p>When running the example above, as you click the links, pay attention to the URL displayed by the browser. When JavaScript is on, the URL never changes because fragments of HTML are being loaded dynamically and replacing content on the page. When JavaScript is off, clicking on the links actually take you to a different page so the URL displayed by the browser changes.</p>
+<p>The following example builds on the previous one to show the use of state content and observers:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;link href=&quot;../../../widgets/htmlpanel/SpryHTMLPanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</span>
+&lt;script src=&quot;../../../widgets/htmlpanel/SpryHTMLPanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; onclick=&quot;hp.loadContent(this.href); return false;&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; onclick=&quot;hp.loadContent(this.href); return false;&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; onclick=&quot;hp.loadContent(this.href); return false;&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; onclick=&quot;hp.loadContent(this.href); return false;&quot;&gt;Aquo Extreme Ski&lt;/a&gt; |
+<span class="hilite">&lt;a href=&quot;data/non-existent-file.html&quot; onclick=&quot;hp.loadContent(this.href); return false;&quot;&gt;Non-Existent File&lt;/a&gt;</span>
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+	<span class="hilite">&lt;div class=&quot;HTMLPanelLoadingContent&quot;&gt;Loading ...&lt;/div&gt;</span>
+	<span class="hilite">&lt;div class=&quot;HTMLPanelErrorContent&quot;&gt;Failed to load content!&lt;/div&gt;</span>
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var hp = new Spry.Widget.HTMLPanel(&quot;event&quot;);
+
+hp.addObserver(function(notificationType, notifier, data)
+{
+	if (notificationType == &quot;onPreLoad&quot;)
+	{
+		// We are about to load some content for the panel, make sure we modify
+		// the URL so that the server knows we want a fragment.
+
+		data.url = data.url.replace(/\.html/, &quot;Frag.html&quot;);
+	}
+<span class="hilite">	else if (notificationType == &quot;onPreUpdate&quot;)
+	{
+		// We are about to replace the content of the panel with the
+		// content we just received from the server. Set the background
+		// of the panel to yellow to draw the user's attention to the panel.
+
+		document.getElementById(&quot;event&quot;).style.backgroundColor = &quot;#FF0&quot;;
+	}
+	else if (notificationType == &quot;onPostUpdate&quot;)
+	{
+		// We are done replacing the content within the panel. Fire off
+		// a Highlight effect to slowly change the panel's background
+		// from yellow, back to white.
+
+		Spry.Effect.DoHighlight(&quot;event&quot;, { to: &quot;#FFF&quot;, duration: 1000 });
+	}</span>
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-12.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>With the example above, anytime the user clicks on a link, the HTML Panel will clear its content area and display the string &quot;Loading ...&quot;. Once the fragment is received from the server, the HTML Panel will insert the fragment into the panel and then trigger a <a href="http://www.37signals.com/svn/archives/000558.php">Yellow Fade Technique</a> (YFT) effect to draw the user's attention to the panel. Should an error occur while loading the HTML fragment, the HTML Panel will automatically show the string &quot;Failed to load content!&quot;. An extra link to a non-existent file was added to the example to demonstrate the failure to load content.</p>
+<p>Note that because the actual fragments being loaded by the panel are small, some browsers may actually load the fragment and update the panel contents so fast that you don't actually see the &quot;Loading ...&quot; string appear.</p>
+<p>To get the HTML Panel to automatically show the &quot;Loading ...&quot; and &quot;Failed to load content!&quot; content at the appropriate times, all that was necessary was to add the content and tag each one with either the &quot;HTMLPanelLoadingContent&quot; or &quot;HTMLPanelErrorContent&quot; class and include the SpryHTMLPanel.css file.</p>
+<p>To implement the YFT effect, the observer we added in the previous example was modified to listen for onPreUpdate and onPostUpdate notifications. On the onPreUpdate notification, it set the background color of the HTML Panel to yellow, and on the onPostUpdate notification, it simply triggers a highlight effect which gradually sets the background-color of the HTML Panel back to white.</p>
+<p>As with the previous example, if JavaScript is turned off, clicking on any of the links simply take you to another page to show you the appropriate content.</p>
+<p>This last example demonstrates the HTML Panel's ability to extract a fragment out of an existing HTML page:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;link href=&quot;../../../widgets/htmlpanel/SpryHTMLPanel.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;../../../widgets/htmlpanel/SpryHTMLPanel.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; onclick=&quot;hp.loadContent(this.href, <span class="hilite">{ id: 'event' }</span>); return false;&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; onclick=&quot;hp.loadContent(this.href, <span class="hilite">{ id: 'event' }</span>); return false;&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; onclick=&quot;hp.loadContent(this.href, <span class="hilite">{ id: 'event' }</span>); return false;&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; onclick=&quot;hp.loadContent(this.href, <span class="hilite">{ id: 'event' }</span>); return false;&quot;&gt;Aquo Extreme Ski&lt;/a&gt; |
+&lt;a href=&quot;data/non-existent-file.html&quot; onclick=&quot;hp.loadContent(this.href, <span class="hilite">{ id: 'event' }</span>); return false;&quot;&gt;Non-Existent File&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;HTMLPanelLoadingContent&quot;&gt;Loading ...&lt;/div&gt;
+	&lt;div class=&quot;HTMLPanelErrorContent&quot;&gt;Failed to load content!&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var hp = new Spry.Widget.HTMLPanel(&quot;event&quot;);
+
+hp.addObserver(function(notificationType, notifier, data)
+{
+	if (notificationType == &quot;onPreUpdate&quot;)
+	{
+		// We are about to replace the content of the panel with the
+		// content we just received from the server. Set the background
+		// of the panel to yellow to draw the user's attention to the panel.
+
+		document.getElementById(&quot;event&quot;).style.backgroundColor = &quot;#FF0&quot;;
+	}
+	else if (notificationType == &quot;onPostUpdate&quot;)
+	{
+		// We are done replacing the content within the panel. Fire off
+		// a Highlight effect to slowly change the panel's background
+		// from yellow, back to white.
+
+		Spry.Effect.DoHighlight(&quot;event&quot;, { to: &quot;#FFF&quot;, duration: 1000 });
+	}
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-13.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>In the example above, we made 2 small tweaks to the previous example. First, for each of the links in our page, we modified the loadContent() function call so that we passed in an option object, that contained an id property, that told the panel that we want to extract a fragment out of the content it is about to load with the given URL. The last change was the removal of the code that was listening for onPreLoad messages within our HTML Panel observer. Since the HTML Panel is now loading full pages, there is no need to modify the URL, we'll let the HTML Panel load the href in the link and pull out the fragment we need from it.</p>
+<p>With JavaScript on, clicking on a link causes the HTML Panel to load the page referred to by the links href. After it loads the page, it searches through the page for an element with the specified id. If it finds one, it then extracts the content inside that element, and then inserts it into the panel.</p>
+<p>When JavaScript is turned off, clicking on a link causes the browser to follow the link.</p>
+</div>
+</div>
+<h3><a name="datasets" id="datasets"></a>Using Data Sets without Regions</h3>
+<div class="CollapsiblePanel">
+<div class="CollapsiblePanelTab"><a href="#">Click to <span class="show">show</span><span class="hide">hide</span> the content for this section.</a></div>
+<div class="CollapsiblePanelContent">
+<p>Some developers like the idea of using a data set as a mechanism for automatically loading and parsing data, but don't like the idea of using regions because it uses name spaced attributes and/or requires the embedding of the actual region template markup within the page.</p>
+<p>It is possible to use data sets to load data and/or HTML fragments for selective page updates, without the use of regions, with a tiny bit of code that inserts the data/HTML fragments into the document manually.</p>
+<p>Because data sets require the use of a transport format (XML, JSON, etc), in a progressive enhancement scenario this approach would require the duplication of your HTML content. That is the HTML content would appear in the original static page, and embedded within the XML, or other transport format used by the data set. This approach would make the most sense when you're taking a server side approach where you have a server-side application that is able to serve up the same content within full pages or as fragments.</p>
+<p>What's particularly nice about using data sets, is it allows the developer to define what delivery format (XML, JSON, CSV, etc) to use, *and* the structure  of the data within that format. For example, the developer could define the data format so that each time the URL on the data set is changed, the server sends back a single set of fragments that contain information on what parts of the page to update:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;update&gt;
+	&lt;header&gt;Aquo-Thon&lt;/header&gt;
+	&lt;content&gt;&lt;![CDATA[	
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	]]&gt;
+	&lt;/content&gt;
+&lt;/update&gt;</pre>
+<p>In the sample XML above, the developer has designed things so that the names of the tags underneath the &lt;update&gt; node actually correspond to the id of an element within the HTML page to update. So in the sample above the child content of the element with the id of &quot;header&quot; would be replaced with the word &quot;Aquo-Thon&quot;, likewise, the child content of the element with the id of &quot;content&quot; would be replaced with the HTML markup that gave information about the &quot;Aquo-Thon&quot; event. What's great about this particular scheme, is that it allows the server to decide what portions of the page need to be updated for a particular request.</p>
+<p>Alternatively, the developer could  define a data format where a group of page updates were sent with a single request (batched) to minimize the number of requests made to the server:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;updates&gt;
+	&lt;update&gt;
+		&lt;header&gt;Aquo-Thon&lt;/header&gt;
+		&lt;content&gt;&lt;![CDATA[	
+			&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		]]&gt;
+		&lt;/content&gt;
+	&lt;/update&gt;
+	&lt;update&gt;
+		&lt;header&gt;Aquo Swing&lt;/header&gt;
+		&lt;content&gt;&lt;![CDATA[	
+			&lt;div class=&quot;location&quot;&gt;Sacramento, CA&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;June 10th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		]]&gt;
+		&lt;/content&gt;
+	&lt;/update&gt;
+	&lt;update&gt;
+		&lt;header&gt;Aquo Ultra Marathon&lt;/header&gt;
+		&lt;content&gt;&lt;![CDATA[	
+			&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;June 22nd&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		]]&gt;
+		&lt;/content&gt;
+	&lt;/update&gt;
+	&lt;update&gt;
+		&lt;header&gt;Aquo Extreme Ski&lt;/header&gt;
+		&lt;content&gt;&lt;![CDATA[	
+			&lt;div class=&quot;location&quot;&gt;Jackson Hole, WY&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;December 17th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		]]&gt;
+		&lt;/content&gt;
+	&lt;/update&gt;
+&lt;/updates&gt;
+</pre>
+<p>The next 2 examples show how a developer can progressively enhance the following markup, to consume the 2 data formats above:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot;&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-08.html" target="SpryPESample">(Click here to view the sample above.)</a></p>
+<p>In the scenario where the server sends back a single set of page updates, we could progressively enhance the markup in the following manner:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+var dsUpdate = new Spry.Data.XMLDataSet(null, &quot;//update&quot;, { entityEncodeStrings: false });
+
+function dsUpdateObserver(notificationType, ds, data)
+{
+	if (notificationType == &quot;onDataChanged&quot; || notificationType == &quot;onCurrentRowChanged&quot;)
+	{
+		var row = ds.getCurrentRow();
+		if (row)
+		{	
+			for (var columnName in row)
+			{
+				if (columnName &amp;&amp; !columnName.match(/^ds_/))
+				{
+					var element = document.getElementById(columnName);
+					if (element)
+						Spry.Utils.setInnerHTML(element, row[columnName]);
+				}
+			}
+		}
+	}
+}
+
+dsUpdate.addObserver(dsUpdateObserver);
+
+function LoadURL(url)
+{
+	url = url.replace(&quot;.html&quot;, &quot;.xml&quot;);
+	dsUpdate.setURL(url);
+	dsUpdate.loadData();
+}
+
+--&gt;
+&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;LoadURL(this.href); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;LoadURL(this.href); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;LoadURL(this.href); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;LoadURL(this.href); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 <span class="hilite">id=&quot;header&quot;</span>&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div <span class="hilite">id=&quot;content&quot;</span>&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-08b.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>In the example above, an observer function called dsUpdateObserver() is placed on the dsUpdate data set. Any time the data changes in the data set, the dsUpdateObserver() function will be triggered. Since the tag names of our XML data are the ids of elements on our page, the dsUpdateObserver function simply enumerates the column names (aka. xml tag names) of the data set, it then finds the corresponding element on the page that has an id equivalent to a given column name. If an element is found, it inserts the content in that column underneath the element.</p>
+<p>The links on the page are enhanced with onclick attributes that override the default link behavior. Anytime the user clicks on a link, the LoadURL() function is called with the value of the link's href attribute. The LoadURL() function then has a chance to modify the URL in some way to tell the server that we want fragments. In this particular example we swap the .html extension of the URL with .xml, but you could easily imagine that if your pages were coming from a server side script that you could also append query params to the URL that told the server side script to serve up frags dynamically. After modifying the URL, the LoadURL() function simply tells the dsUpdate data set to load it. When the dsUpdate data set receives the data from the server, the dsUpdateObserver() function is automatically triggered, and the page gets updated.</p>
+<p>To support the scenario where the server sends back a set of page updates, a slight tweak to the previous example needs to be made:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;script src=&quot;../../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+var dsUpdate = new Spry.Data.XMLDataSet(<span class="hilite">&quot;data/event_updates.xml&quot;</span>, &quot;//update&quot;, { entityEncodeStrings: false });
+<span class="hilite">dsUpdate.loadData();</span>
+
+function dsUpdateObserver(notificationType, ds, data)
+{
+	if (notificationType == &quot;onDataChanged&quot; || notificationType == &quot;onCurrentRowChanged&quot;)
+	{
+		var row = ds.getCurrentRow();
+		if (row)
+		{	
+			for (var columnName in row)
+			{
+				if (columnName &amp;&amp; !columnName.match(/^ds_/))
+				{
+					var element = document.getElementById(columnName);
+					if (element)
+						Spry.Utils.setInnerHTML(element, row[columnName]);
+				}
+			}
+		}
+	}
+}
+
+dsUpdate.addObserver(dsUpdateObserver);
+
+--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;dsUpdate.setCurrentRowNumber(0); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;dsUpdate.setCurrentRowNumber(1); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;dsUpdate.setCurrentRowNumber(2); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;dsUpdate.setCurrentRowNumber(3); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 id=&quot;header&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div id=&quot;content&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-08c.html" target="SpryPESample">(Click here to view the example above.)</a></p>
+<p>In the example above, a URL is specified at the time the dsUpdate data set is created. This allows the page to pre-load multiple sets of updates ahead of time so when the user clicks on a link on the page, the updates can happen instantly without hitting the server again. As with the previous example, onclick attributes are added to the links to override the default behavior, but this time, the links simply set the current row of the data set which triggers dsUpdateObserver() to update the parts of the page that have data specified in the new current row of the data set.</p>
+</div>
+</div>
+<h3><a name="sprycontent" id="sprycontent"></a>Using the spry:content Attribute with Regions</h3>
+<div class="CollapsiblePanel">
+<div class="CollapsiblePanelTab"><a href="#">Click to <span class="show">show</span><span class="hide">hide</span> the content for this section.</a></div>
+<div class="CollapsiblePanelContent">
+<p>The spry:content attribute is a processing instruction for the Spry dynamic-region processing code, which tells it to replace the static data, currently contained underneath that element, with the data represented by the data reference in the spry:content attribute value, when there is data in the data set the region is bound to.</p>
+<p>Using spry:content with regions is analogous to the method shown in the &quot;Data Sets without Regions&quot; section above, except that it leverages the existing region mechanism within Spry to automatically update elements with a spry:content attribute on them.</p>
+<p>Because regions rely on data sets, and data sets require the use of a transport format (XML, JSON, etc), in a progressive enhancement scenario this approach would require the duplication of your HTML content. That is the HTML content would appear in the original static page, and embedded within the XML, or other transport format used by the data set. This approach would make the most sense when you're taking a server side approach where you have a server-side application that is able to serve up the same content within full pages or as fragments.</p>
+<p>The following examples will progressively enhance this basic markup:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot;&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot;&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot;&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot;&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>There are actually 2 ways to use the spry:content attribute with a Spry region. The first is to place the attribute on the same element that contains the spry:region or spry:detailregion attribute:</p>
+<pre>
+&lt;div <span class="hilite">spry:detailregion=&quot;dsEvents&quot;</span> <span class="hilite">spry:content=&quot;{event}&quot;</span> id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>When used in this manner, all of the static content underneath the region element will be replaced with dynamic content from the &quot;event&quot; column of the data set the region is bound to, whenever new data is loaded, or when the current row of the data set changes. In this particular example, the data in the &quot;event&quot; column can be fully formatted HTML content:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;events&gt;
+	&lt;event&gt;&lt;![CDATA[
+		&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[
+		&lt;h2 class=&quot;name&quot;&gt;Aquo Swing&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Sacramento, CA&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;June 10th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[	
+		&lt;h2 class=&quot;name&quot;&gt;Aquo Ultra Marathon&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;June 22nd&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+		]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[
+		&lt;h2 class=&quot;name&quot;&gt;Aquo Extreme Ski&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Jackson Hole, WY&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;December 17th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[	
+		&lt;h2 class=&quot;name&quot;&gt;Aquo Baja 400&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;San Filipe, Baja California&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;October 3rd&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Come south of the border and watch the dirt fly. This Baja 400 promises to be the best yet, with all the top seeds being there.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[
+		&lt;h2 class=&quot;name&quot;&gt;Big Wave Challenge&lt;/h2&gt;
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Mavericks, CA&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;November 8th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Watch the worlds best big wave surfers take on the legendary break at Mavericks.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;h2 class=&quot;name&quot;&gt;Aquo Classic&lt;/h2&gt;
+	]]&gt;&lt;/event&gt;
+
+	&lt;event&gt;&lt;![CDATA[
+		&lt;div class=&quot;info&quot;&gt;		
+			&lt;div class=&quot;location&quot;&gt;Carlsbad, CA&lt;/div&gt;
+			&lt;div class=&quot;date&quot;&gt;August 15th&lt;/div&gt;
+			&lt;p class=&quot;description&quot;&gt;Join us for the 10th annual Aquo Classic at Alvaro Pines in sunny Carlsbad California.&lt;/p&gt;
+			&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+		&lt;/div&gt;
+	]]&gt;&lt;/event&gt;
+&lt;/events&gt;
+</pre>
+<p>Here's the full source for a progressively enhanced page that uses spry:content in this manner:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="hilite">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsEvents = new Spry.Data.XMLDataSet(&quot;events_formatted.xml&quot;, &quot;/events/event&quot;);
+dsEvents.setColumnType(&quot;event&quot;, &quot;html&quot;);
+&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(0); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(1); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(2); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(3); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+&lt;div <span class="hilite">spry:detailregion=&quot;dsEvents&quot;</span> <span class="hilite">spry:content=&quot;{event}&quot;</span> id=&quot;event&quot;&gt;
+	&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;		
+		&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-04.html" target="SpryPESample">(Click here to see a working example.)</a></p>
+<p>In the example above, an XMLDataSet is used to preload several sets of updates. After the data set loads all regions that are bound to that data set are told to re-generate their content. Because our detail region has a spry:content attribute on the region container, all of the content of the region will be replaced with whatever value is in the &quot;event&quot; column of the data set, which in this particular example, is HTML markup.</p>
+<p>The links on the page were modified with onclick attributes to override the default link behavior. When a user clicks on a link the setCurrentRowNumber() is called on the data set to change its current row. This triggers the detail region to update, and the contents of the &quot;event&quot; column for the current row to be inserted into the region container.</p>
+<p>In this particular example, the order of the updates embedded in the XML is known so it was convenient to use of setCurrentRow() to trigger the correct update, but you can also set the current row based on the value of a particular column, or you could even trigger the data set to load new content.</p>
+<p>Make sure you run the example with JavaScript on and off, to see how the behavior of the page changes, but the content is still accessible. With JavaScript on, clicking on the links changes only the region containing the event content, and you remain on the same page. With JavaScript off, clicking on the links take you to different pages that have the same content.</p>
+<p>The 2nd way to use spry:content, is within a spry:region or spry:detailregion:</p>
+<pre>
+&lt;div <span class="hilite">spry:detailregion=&quot;dsEvents&quot;</span> class=&quot;event&quot;&gt;
+	&lt;h2 <span class="hilite">spry:content=&quot;{name}&quot;</span> class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;
+		&lt;div <span class="hilite">spry:content=&quot;{location}&quot;</span> class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div <span class="hilite">spry:content=&quot;{date}&quot;</span> class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p <span class="hilite">spry:content=&quot;{description}&quot;</span> class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;span <span class="hilite">spry:content=&quot;{directions}&quot;</span>&gt;&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>You can use spry:content in this manner if you want to let the markup for the static content you start out with, dictate how your data will be formatted. So for example, if you had XML data for each event that was delivered in this format:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;events&gt;
+		&lt;event&gt;
+			&lt;photo path=&quot;i/photo_events_aquothon.jpg&quot; desc=&quot;Aquo-Thon&quot; /&gt;
+			&lt;name&gt;Aquo-Thon&lt;/name&gt;
+			&lt;location&gt;Whistler, British Columbia&lt;/location&gt;
+			&lt;date&gt;May 26th&lt;/date&gt;
+			&lt;description&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/description&gt;
+			&lt;directions url=&quot;#&quot;&gt;&lt;![CDATA[&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;]]&gt;&lt;/directions&gt;
+		&lt;/event&gt;
+
+		&lt;event&gt;
+			&lt;photo path=&quot;i/photo_events_swingsacramento.jpg&quot; desc=&quot;Aquo Swing&quot; /&gt;
+			&lt;name&gt;Aquo Swing&lt;/name&gt;
+			&lt;location&gt;Sacramento, CA&lt;/location&gt;
+			&lt;date&gt;June 10th&lt;/date&gt;
+			&lt;description&gt;Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.&lt;/description&gt;
+			&lt;directions url=&quot;#&quot;&gt;&lt;![CDATA[&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;]]&gt;&lt;/directions&gt;
+		&lt;/event&gt;
+
+		&lt;event&gt;
+			&lt;photo path=&quot;i/photo_events_ultramarathon.jpg&quot; desc=&quot;Aquo Ultra Marathon&quot; /&gt;
+			&lt;name&gt;Aquo Ultra Marathon&lt;/name&gt;
+			&lt;location&gt;Whistler, British Columbia&lt;/location&gt;
+			&lt;date&gt;June 22nd&lt;/date&gt;
+			&lt;description&gt;Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.&lt;/description&gt;
+			&lt;directions url=&quot;#&quot;&gt;&lt;![CDATA[&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;]]&gt;&lt;/directions&gt;
+		&lt;/event&gt;
+
+		&lt;event&gt;
+			&lt;photo path=&quot;i/photo_events_extremeski.jpg&quot; desc=&quot;Aquo Extreme Ski&quot; /&gt;
+			&lt;name&gt;Aquo Extreme Ski&lt;/name&gt;
+			&lt;location&gt;Jackson Hole, WY&lt;/location&gt;
+			&lt;date&gt;December 17th&lt;/date&gt;
+			&lt;description&gt;Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.&lt;/description&gt;
+			&lt;directions url=&quot;#&quot;&gt;&lt;![CDATA[&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;]]&gt;&lt;/directions&gt;
+		&lt;/event&gt;
+&lt;/events&gt;
+</pre>
+<p>It would automatically be &quot;poured&quot; into the markup used by the original static content. Here's the full source for a progressively enhanced page that uses spry:content in this manner:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="hilite">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Aquo Events&lt;/title&gt;
+<span class="hilite">&lt;script src=&quot;../../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsEvents = new Spry.Data.XMLDataSet(&quot;events.xml&quot;, &quot;/events/event&quot;);
+dsEvents.setColumnType(&quot;directions&quot;, &quot;html&quot;);
+&lt;/script&gt;</span>
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;a href=&quot;data/AquoThon.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(0); return false;&quot;</span>&gt;Aquo-Thon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoSwing.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(1); return false;&quot;</span>&gt;Aquo Swing&lt;/a&gt; |
+&lt;a href=&quot;data/AquoUltraMarathon.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(2); return false;&quot;</span>&gt;Aquo Ultra Marathon&lt;/a&gt; |
+&lt;a href=&quot;data/AquoExtremeSki.html&quot; <span class="hilite">onclick=&quot;dsEvents.setCurrentRowNumber(3); return false;&quot;</span>&gt;Aquo Extreme Ski&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div <span class="hilite">spry:detailregion=&quot;dsEvents&quot;</span> class=&quot;event&quot;&gt;
+	&lt;h2 <span class="hilite">spry:content=&quot;{name}&quot;</span> class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+	&lt;div class=&quot;info&quot;&gt;	
+		&lt;div <span class="hilite">spry:content=&quot;{location}&quot;</span> class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+		&lt;div <span class="hilite">spry:content=&quot;{date}&quot;</span> class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+		&lt;p <span class="hilite">spry:content=&quot;{description}&quot;</span> class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+		&lt;span <span class="hilite">spry:content=&quot;{directions}&quot;</span>&gt;&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-05.html" target="SpryPESample">(Click here to see a working example.)</a></p>
+<p>In this example, clicking on a link causes the Spry region to replace the data references within the static markup with the appropriate data. When JavaScript is turned off the clicking on the links take you to pages with the appropriate content.</p>
+</div>
+</div>
+<h3><a name="htmldataset" id="htmldataset"></a>Using the HTML Data Set with Regions</h3>
+<div class="CollapsiblePanel">
+<div class="CollapsiblePanelTab"><a href="#">Click to <span class="show">show</span><span class="hide">hide</span> the content for this section.</a></div>
+<div class="CollapsiblePanelContent">
+<p>The HTML Data Set allows developers to use  content within an HTML document or fragment, as a data source. This content can be embedded within your page, or retrieved from an external data source (file, web app, etc). To read more about the HTML Data Set, checkout the <a href="../html_dataset/index.html">HTML Data Set Overview</a> and <a href="../../samples/htmldataset/index.html">samples</a>.</p>
+<p>Unlike other data sets, in a progressive enhancement scenario there is no duplication of HTML content because the HTML Data Set extracts its data directly from HTML documents or fragments. This means that the HTML Data Set can work with static HTML files, without the need for a server side application.</p>
+<p>In a progressive enhancement scenario, the HTML Data Set can be used to present static content in a whole new way. For example, we can take a page with static content that looks something like this:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;Aquo Energy Drink - Events&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;container&quot;&gt;		
+	&lt;div id=&quot;header&quot;&gt;	
+	...
+	&lt;/div&gt;&lt;!-- close header --&gt;	
+	
+	&lt;div id=&quot;title&quot;&gt;&lt;/div&gt;	
+	
+	&lt;div id=&quot;staticcontent&quot;&gt;
+
+		&lt;div class=&quot;event&quot;&gt;
+			&lt;div class=&quot;eventimage&quot;&gt;&lt;img src=&quot;i/photo_events_aquothon.jpg&quot; alt=&quot;Aquo-Thon&quot; /&gt;&lt;/div&gt;
+			&lt;div class=&quot;eventinfo&quot;&gt;		
+				&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+				&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+				&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+				&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+
+		&lt;div class=&quot;event&quot;&gt;
+			&lt;div class=&quot;eventimage&quot;&gt;
+				&lt;img src=&quot;i/photo_events_swingsacramento.jpg&quot; alt=&quot;Aquo Swing&quot; /&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;eventinfo&quot;&gt;
+				&lt;h2 class=&quot;name&quot;&gt;Aquo Swing&lt;/h2&gt;
+				&lt;div class=&quot;location&quot;&gt;Sacramento, CA&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt;June 10th&lt;/div&gt;
+				&lt;p class=&quot;description&quot;&gt;Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.&lt;/p&gt;
+				&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+
+		...
+
+	&lt;/div&gt;
+	&lt;!-- close staticcontent --&gt;
+
+	&lt;div id=&quot;border_bottom&quot;&gt;&lt;/div&gt;&lt;!-- close border_bottom  --&gt;
+	
+	&lt;div id=&quot;footer&quot;&gt;
+	...
+	&lt;/div&gt;&lt;!-- close footer --&gt;
+
+&lt;/div&gt;&lt;!-- close container --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-06.html" target="SpryPESample">(Click here to view the example above and see the full source.)</a></p>
+<p>then transform it into something completely different by progressively adding an HTMLDataSet and a couple of dynamic regions:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="hilite">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;title&gt;Aquo Energy Drink - Events&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;css/global.css&quot; media=&quot;screen&quot; /&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;css/events.css&quot; media=&quot;screen&quot; /&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;css/basic.css&quot; media=&quot;screen&quot; /&gt;
+
+<span class="hilite">&lt;script src=&quot;../../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../../includes/SpryHTMLDataSet.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsEvents = new Spry.Data.HTMLDataSet(null, &quot;staticcontent&quot;, {firstRowAsHeaders:false, rowSelector:&quot;.event&quot;, dataSelector:&quot;.eventimage, h2, .location, .date, .description&quot;, columnNames:[&quot;eventimage&quot;,&quot;name&quot;,&quot;location&quot;,&quot;displaydate&quot;,&quot;description&quot;]});
+//--&gt;
+&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;container&quot;&gt;		
+	&lt;div id=&quot;header&quot;&gt;	
+	...
+	&lt;/div&gt;&lt;!-- close header --&gt;	
+	
+	&lt;div id=&quot;title&quot;&gt;&lt;/div&gt;	
+	
+	&lt;div id=&quot;staticcontent&quot;&gt;
+
+		&lt;div class=&quot;event&quot;&gt;
+			&lt;div class=&quot;eventimage&quot;&gt;&lt;img src=&quot;i/photo_events_aquothon.jpg&quot; alt=&quot;Aquo-Thon&quot; /&gt;&lt;/div&gt;
+			&lt;div class=&quot;eventinfo&quot;&gt;		
+				&lt;h2 class=&quot;name&quot;&gt;Aquo-Thon&lt;/h2&gt;
+				&lt;div class=&quot;location&quot;&gt;Whistler, British Columbia&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt;May 26th&lt;/div&gt;
+				&lt;p class=&quot;description&quot;&gt;Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.&lt;/p&gt;
+				&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+
+		&lt;div class=&quot;event&quot;&gt;
+			&lt;div class=&quot;eventimage&quot;&gt;
+				&lt;img src=&quot;i/photo_events_swingsacramento.jpg&quot; alt=&quot;Aquo Swing&quot; /&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;eventinfo&quot;&gt;
+				&lt;h2 class=&quot;name&quot;&gt;Aquo Swing&lt;/h2&gt;
+				&lt;div class=&quot;location&quot;&gt;Sacramento, CA&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt;June 10th&lt;/div&gt;
+				&lt;p class=&quot;description&quot;&gt;Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.&lt;/p&gt;
+				&lt;a href=&quot;#&quot;&gt;directions...&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+
+		...
+
+	&lt;/div&gt;
+	&lt;!-- close staticcontent --&gt;
+	
+<span class="hilite">	&lt;div id=&quot;content&quot;&gt;
+		&lt;div id=&quot;full-column&quot;&gt;
+			&lt;h1 id=&quot;events_selectanevent&quot;&gt;Select an Event&lt;/h1&gt;
+
+			&lt;div id=&quot;content1&quot; spry:region=&quot;dsEvents&quot;&gt;
+				&lt;table id=&quot;events&quot;&gt;
+					&lt;tr&gt;
+						&lt;th id=&quot;eventheader&quot; spry:sort=&quot;date&quot;&gt;Event&lt;/th&gt;
+						&lt;th id=&quot;locationheader&quot; spry:sort=&quot;location&quot;&gt;Location&lt;/th&gt;
+					&lt;/tr&gt;
+					&lt;tr class=&quot;eventrow&quot; spry:repeat=&quot;dsEvents&quot; spry:hover=&quot;rowHover&quot; spry:select=&quot;rowSelected&quot; spry:setrow=&quot;dsEvents&quot;&gt;
+						&lt;td&gt;
+							&lt;span class=&quot;eventname&quot;&gt;{name}&lt;/span&gt;&lt;br /&gt;
+							&lt;span class=&quot;date&quot;&gt;{displaydate}&lt;/span&gt;
+						&lt;/td&gt;
+						&lt;td&gt;{location}&lt;/td&gt;
+					&lt;/tr&gt;
+				&lt;/table&gt;
+			&lt;/div&gt;
+
+			&lt;div id=&quot;sidebar&quot;&gt;
+				&lt;div id=&quot;sidebar_brace&quot; spry:detailregion=&quot;dsEvents&quot;&gt;
+					&lt;div id=&quot;eventbanner&quot;&gt;{eventimage}&lt;/div&gt;
+					&lt;div id=&quot;eventdesc&quot;&gt;
+						&lt;h3&gt;Event Information&lt;/h3&gt;
+						&lt;div&gt;{description}&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;&lt;!-- close full_column --&gt;
+	&lt;/div&gt;&lt;!-- close content --&gt;
+</span>
+	&lt;div id=&quot;border_bottom&quot;&gt;&lt;/div&gt;&lt;!-- close border_bottom  --&gt;
+	
+	&lt;div id=&quot;footer&quot;&gt;
+	...
+	&lt;/div&gt;&lt;!-- close footer --&gt;
+
+&lt;/div&gt;&lt;!-- close container --&gt;
+
+<span class="hilite">&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+Spry.$(&quot;content&quot;).style.display = &quot;block&quot;;
+//--&gt;
+&lt;/script&gt;
+</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><a href="samples/pe-07.html" target="SpryPESample">(Click here to view the example above and see the full source.)</a></p>
+<p>In the example above, an HTML Data Set is used to extract data from the &lt;div&gt; with the &quot;staticContent&quot; id within the page. Some markup containing regions was added at the bottom of the page. This markup starts off as display:none so that it doesn't show up if JavaScript is turned off, and is made visible by the &lt;script&gt; block that was added at the bottom of the file if JavaScript is turned on. By default, once the data set finishes loading its data, it automatically sets its HTML data source to display:none, in effect causing the original static content to not display. It then notifies all regions it is bound to that it should re-generate its content. As the regions are re-generated, content from the data set is poured into elements that have the spry:content attribute on them.</p>
+</div>
+</div>
+<hr />
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

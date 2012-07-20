@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Alaska</name>
+	<cities>
+		<city>
+			<name>Adak Station</name>
+		</city>
+		<city>
+			<name>Akhiok</name>
+		</city>
+		<city>
+			<name>Akiachak</name>
+		</city>
+		<city>
+			<name>Akiak</name>
+		</city>
+		<city>
+			<name>Akutan</name>
+		</city>
+		<city>
+			<name>Alakanuk</name>
+		</city>
+		<city>
+			<name>Alcan</name>
+		</city>
+		<city>
+			<name>Aleknagik</name>
+		</city>
+		<city>
+			<name>Allakaket</name>
+		</city>
+		<city>
+			<name>Ambler</name>
+		</city>
+		<city>
+			<name>Amchitka</name>
+		</city>
+		<city>
+			<name>Anaktuvuk Pass</name>
+		</city>
+		<city>
+			<name>Anchor Point</name>
+		</city>
+		<city>
+			<name>Anchorage</name>
+		</city>
+		<city>
+			<name>Anderson</name>
+		</city>
+		<city>
+			<name>Angoon</name>
+		</city>
+		<city>
+			<name>Aniak</name>
+		</city>
+		<city>
+			<name>Annette</name>
+		</city>
+		<city>
+			<name>Anvik</name>
+		</city>
+		<city>
+			<name>Arctic Village</name>
+		</city>
+		<city>
+			<name>Atka</name>
+		</city>
+		<city>
+			<name>Atmautluak</name>
+		</city>
+		<city>
+			<name>Atqasuk</name>
+		</city>
+		<city>
+			<name>Barrow</name>
+		</city>
+		<city>
+			<name>Beaver</name>
+		</city>
+		<city>
+			<name>Bethel</name>
+		</city>
+		<city>
+			<name>Bettles</name>
+		</city>
+		<city>
+			<name>Big Delta</name>
+		</city>
+		<city>
+			<name>Big Lake</name>
+		</city>
+		<city>
+			<name>Birch Creek</name>
+		</city>
+		<city>
+			<name>Brevig Mission</name>
+		</city>
+		<city>
+			<name>Buckland</name>
+		</city>
+		<city>
+			<name>Butte</name>
+		</city>
+		<city>
+			<name>Cantwell</name>
+		</city>
+		<city>
+			<name>Central</name>
+		</city>
+		<city>
+			<name>Chalkyitsik</name>
+		</city>
+		<city>
+			<name>Chase</name>
+		</city>
+		<city>
+			<name>Chefornak</name>
+		</city>
+		<city>
+			<name>Chenega</name>
+		</city>
+		<city>
+			<name>Chevak</name>
+		</city>
+		<city>
+			<name>Chickaloon</name>
+		</city>
+		<city>
+			<name>Chignik</name>
+		</city>
+		<city>
+			<name>Chignik Lagoon</name>
+		</city>
+		<city>
+			<name>Chignik Lake</name>
+		</city>
+		<city>
+			<name>Chiniak</name>
+		</city>
+		<city>
+			<name>Chistochina</name>
+		</city>
+		<city>
+			<name>Chitina</name>
+		</city>
+		<city>
+			<name>Chuathbaluk</name>
+		</city>
+		<city>
+			<name>Circle</name>
+		</city>
+		<city>
+			<name>Circle Hot Springs Station</name>
+		</city>
+		<city>
+			<name>Clam Gulch</name>
+		</city>
+		<city>
+			<name>Clarks Point</name>
+		</city>
+		<city>
+			<name>Coffman Cove</name>
+		</city>
+		<city>
+			<name>Cohoe</name>
+		</city>
+		<city>
+			<name>Cold Bay</name>
+		</city>
+		<city>
+			<name>College</name>
+		</city>
+		<city>
+			<name>Cooper Landing</name>
+		</city>
+		<city>
+			<name>Copper Center</name>
+		</city>
+		<city>
+			<name>Copperville</name>
+		</city>
+		<city>
+			<name>Cordova</name>
+		</city>
+		<city>
+			<name>Covenant Life</name>
+		</city>
+		<city>
+			<name>Craig</name>
+		</city>
+		<city>
+			<name>Crooked Creek</name>
+		</city>
+		<city>
+			<name>Crown Point</name>
+		</city>
+		<city>
+			<name>Cube Cove</name>
+		</city>
+		<city>
+			<name>Deadhorse</name>
+		</city>
+		<city>
+			<name>Deering</name>
+		</city>
+		<city>
+			<name>Delta Junction</name>
+		</city>
+		<city>
+			<name>Dillingham</name>
+		</city>
+		<city>
+			<name>Diomede</name>
+		</city>
+		<city>
+			<name>Dora Bay</name>
+		</city>
+		<city>
+			<name>Dot Lake</name>
+		</city>
+		<city>
+			<name>Dry Creek</name>
+		</city>
+		<city>
+			<name>Eagle</name>
+		</city>
+		<city>
+			<name>Eagle Village</name>
+		</city>
+		<city>
+			<name>Edna Bay</name>
+		</city>
+		<city>
+			<name>Eek</name>
+		</city>
+		<city>
+			<name>Egegik</name>
+		</city>
+		<city>
+			<name>Eielson AFB</name>
+		</city>
+		<city>
+			<name>Ekwok</name>
+		</city>
+		<city>
+			<name>Elfin Cove</name>
+		</city>
+		<city>
+			<name>Elim</name>
+		</city>
+		<city>
+			<name>Emmonak</name>
+		</city>
+		<city>
+			<name>English Bay</name>
+		</city>
+		<city>
+			<name>Ester</name>
+		</city>
+		<city>
+			<name>Evansville</name>
+		</city>
+		<city>
+			<name>Eyak</name>
+		</city>
+		<city>
+			<name>Fairbanks</name>
+		</city>
+		<city>
+			<name>False Pass</name>
+		</city>
+		<city>
+			<name>Ferry</name>
+		</city>
+		<city>
+			<name>Fort Greely</name>
+		</city>
+		<city>
+			<name>Fort Yukon</name>
+		</city>
+		<city>
+			<name>Fox</name>
+		</city>
+		<city>
+			<name>Fox River</name>
+		</city>
+		<city>
+			<name>Freshwater Bay</name>
+		</city>
+		<city>
+			<name>Fritz Creek</name>
+		</city>
+		<city>
+			<name>Gakona</name>
+		</city>
+		<city>
+			<name>Galena</name>
+		</city>
+		<city>
+			<name>Gambell</name>
+		</city>
+		<city>
+			<name>Game Creek</name>
+		</city>
+		<city>
+			<name>Glennallen</name>
+		</city>
+		<city>
+			<name>Golovin</name>
+		</city>
+		<city>
+			<name>Goodnews Bay</name>
+		</city>
+		<city>
+			<name>Grayling</name>
+		</city>
+		<city>
+			<name>Gulkana</name>
+		</city>
+		<city>
+			<name>Gustavus</name>
+		</city>
+		<city>
+			<name>Haines</name>
+		</city>
+		<city>
+			<name>Halibut Cove</name>
+		</city>
+		<city>
+			<name>Happy Valley</name>
+		</city>
+		<city>
+			<name>Harding Lake</name>
+		</city>
+		<city>
+			<name>Healy</name>
+		</city>
+		<city>
+			<name>Healy Lake</name>
+		</city>
+		<city>
+			<name>Hobart Bay</name>
+		</city>
+		<city>
+			<name>Hollis</name>
+		</city>
+		<city>
+			<name>Holy Cross</name>
+		</city>
+		<city>
+			<name>Homer</name>
+		</city>
+		<city>
+			<name>Hoonah</name>
+		</city>
+		<city>
+			<name>Hooper Bay</name>
+		</city>
+		<city>
+			<name>Hope</name>
+		</city>
+		<city>
+			<name>Houston</name>
+		</city>
+		<city>
+			<name>Hughes</name>
+		</city>
+		<city>
+			<name>Huslia</name>
+		</city>
+		<city>
+			<name>Hydaburg</name>
+		</city>
+		<city>
+			<name>Hyder</name>
+		</city>
+		<city>
+			<name>Igiugig</name>
+		</city>
+		<city>
+			<name>Iliamna</name>
+		</city>
+		<city>
+			<name>Ivanof Bay</name>
+		</city>
+		<city>
+			<name>Jakolof Bay</name>
+		</city>
+		<city>
+			<name>Juneau</name>
+		</city>
+		<city>
+			<name>Kachemak</name>
+		</city>
+		<city>
+			<name>Kake</name>
+		</city>
+		<city>
+			<name>Kaktovik</name>
+		</city>
+		<city>
+			<name>Kalifonsky</name>
+		</city>
+		<city>
+			<name>Kaltag</name>
+		</city>
+		<city>
+			<name>Karluk</name>
+		</city>
+		<city>
+			<name>Kasaan</name>
+		</city>
+		<city>
+			<name>Kasigluk</name>
+		</city>
+		<city>
+			<name>Kasilof</name>
+		</city>
+		<city>
+			<name>Kenai</name>
+		</city>
+		<city>
+			<name>Kenny Lake</name>
+		</city>
+		<city>
+			<name>Ketchikan</name>
+		</city>
+		<city>
+			<name>Kiana</name>
+		</city>
+		<city>
+			<name>King Cove</name>
+		</city>
+		<city>
+			<name>King Salmon</name>
+		</city>
+		<city>
+			<name>Kipnuk</name>
+		</city>
+		<city>
+			<name>Kivalina</name>
+		</city>
+		<city>
+			<name>Klawock</name>
+		</city>
+		<city>
+			<name>Klukwan</name>
+		</city>
+		<city>
+			<name>Knik</name>
+		</city>
+		<city>
+			<name>Kobuk</name>
+		</city>
+		<city>
+			<name>Kodiak</name>
+		</city>
+		<city>
+			<name>Kodiak Station</name>
+		</city>
+		<city>
+			<name>Kokhanok</name>
+		</city>
+		<city>
+			<name>Koliganek</name>
+		</city>
+		<city>
+			<name>Kongiganak</name>
+		</city>
+		<city>
+			<name>Kotlik</name>
+		</city>
+		<city>
+			<name>Kotzebue</name>
+		</city>
+		<city>
+			<name>Koyuk</name>
+		</city>
+		<city>
+			<name>Koyukuk</name>
+		</city>
+		<city>
+			<name>Kupreanof</name>
+		</city>
+		<city>
+			<name>Kwethluk</name>
+		</city>
+		<city>
+			<name>Kwigillingok</name>
+		</city>
+		<city>
+			<name>Labouchere Bay</name>
+		</city>
+		<city>
+			<name>Lake Minchumina</name>
+		</city>
+		<city>
+			<name>Larsen Bay</name>
+		</city>
+		<city>
+			<name>Lazy Mountain</name>
+		</city>
+		<city>
+			<name>Levelock</name>
+		</city>
+		<city>
+			<name>Lignite</name>
+		</city>
+		<city>
+			<name>Lime Village</name>
+		</city>
+		<city>
+			<name>Long Island</name>
+		</city>
+		<city>
+			<name>Lower Kalskag</name>
+		</city>
+		<city>
+			<name>Lutak</name>
+		</city>
+		<city>
+			<name>Manley Hot Springs</name>
+		</city>
+		<city>
+			<name>Manokotak</name>
+		</city>
+		<city>
+			<name>Marshall</name>
+		</city>
+		<city>
+			<name>McCarthy</name>
+		</city>
+		<city>
+			<name>McGrath</name>
+		</city>
+		<city>
+			<name>McKinley Park</name>
+		</city>
+		<city>
+			<name>Meadow Lakes</name>
+		</city>
+		<city>
+			<name>Mekoryuk</name>
+		</city>
+		<city>
+			<name>Mendeltna</name>
+		</city>
+		<city>
+			<name>Mentasta Lake</name>
+		</city>
+		<city>
+			<name>Metlakatla</name>
+		</city>
+		<city>
+			<name>Meyers Chuck</name>
+		</city>
+		<city>
+			<name>Minto</name>
+		</city>
+		<city>
+			<name>Moose Creek</name>
+		</city>
+		<city>
+			<name>Moose Pass</name>
+		</city>
+		<city>
+			<name>Mosquito Lake</name>
+		</city>
+		<city>
+			<name>Mountain Village</name>
+		</city>
+		<city>
+			<name>Naknek</name>
+		</city>
+		<city>
+			<name>Napakiak</name>
+		</city>
+		<city>
+			<name>Napaskiak</name>
+		</city>
+		<city>
+			<name>Naukati Bay</name>
+		</city>
+		<city>
+			<name>Nelson Lagoon</name>
+		</city>
+		<city>
+			<name>Nenana</name>
+		</city>
+		<city>
+			<name>New Stuyahok</name>
+		</city>
+		<city>
+			<name>Newhalen</name>
+		</city>
+		<city>
+			<name>Newtok</name>
+		</city>
+		<city>
+			<name>Nightmute</name>
+		</city>
+		<city>
+			<name>Nikiski</name>
+		</city>
+		<city>
+			<name>Nikolaevsk</name>
+		</city>
+		<city>
+			<name>Nikolai</name>
+		</city>
+		<city>
+			<name>Nikolski</name>
+		</city>
+		<city>
+			<name>Ninilchik</name>
+		</city>
+		<city>
+			<name>Noatak</name>
+		</city>
+		<city>
+			<name>Nome</name>
+		</city>
+		<city>
+			<name>Nondalton</name>
+		</city>
+		<city>
+			<name>Noorvik</name>
+		</city>
+		<city>
+			<name>North Pole</name>
+		</city>
+		<city>
+			<name>Northway</name>
+		</city>
+		<city>
+			<name>Northway Junction</name>
+		</city>
+		<city>
+			<name>Northway Village</name>
+		</city>
+		<city>
+			<name>Nuiqsut</name>
+		</city>
+		<city>
+			<name>Nulato</name>
+		</city>
+		<city>
+			<name>Nunapitchuk</name>
+		</city>
+		<city>
+			<name>Old Harbor</name>
+		</city>
+		<city>
+			<name>Oscarville</name>
+		</city>
+		<city>
+			<name>Ouzinkie</name>
+		</city>
+		<city>
+			<name>Palmer</name>
+		</city>
+		<city>
+			<name>Paxson</name>
+		</city>
+		<city>
+			<name>Pedro Bay</name>
+		</city>
+		<city>
+			<name>Pelican</name>
+		</city>
+		<city>
+			<name>Perryville</name>
+		</city>
+		<city>
+			<name>Petersburg</name>
+		</city>
+		<city>
+			<name>Pilot Point</name>
+		</city>
+		<city>
+			<name>Pilot Station</name>
+		</city>
+		<city>
+			<name>Pitkas Point</name>
+		</city>
+		<city>
+			<name>Platinum</name>
+		</city>
+		<city>
+			<name>Pleasant Valley</name>
+		</city>
+		<city>
+			<name>Point Baker</name>
+		</city>
+		<city>
+			<name>Point Hope</name>
+		</city>
+		<city>
+			<name>Point Lay</name>
+		</city>
+		<city>
+			<name>Polk Inlet</name>
+		</city>
+		<city>
+			<name>Port Alexander</name>
+		</city>
+		<city>
+			<name>Port Alice</name>
+		</city>
+		<city>
+			<name>Port Alsworth</name>
+		</city>
+		<city>
+			<name>Port Clarence</name>
+		</city>
+		<city>
+			<name>Port Graham</name>
+		</city>
+		<city>
+			<name>Port Heiden</name>
+		</city>
+		<city>
+			<name>Port Lions</name>
+		</city>
+		<city>
+			<name>Port Protection</name>
+		</city>
+		<city>
+			<name>Primrose</name>
+		</city>
+		<city>
+			<name>Prudhoe Bay</name>
+		</city>
+		<city>
+			<name>Quinhagak</name>
+		</city>
+		<city>
+			<name>Rampart</name>
+		</city>
+		<city>
+			<name>Red Devil</name>
+		</city>
+		<city>
+			<name>Ridgeway</name>
+		</city>
+		<city>
+			<name>Rowan Bay</name>
+		</city>
+		<city>
+			<name>Ruby</name>
+		</city>
+		<city>
+			<name>Russian Mission</name>
+		</city>
+		<city>
+			<name>Salamatof</name>
+		</city>
+		<city>
+			<name>Salcha</name>
+		</city>
+		<city>
+			<name>Sand Point</name>
+		</city>
+		<city>
+			<name>Savoonga</name>
+		</city>
+		<city>
+			<name>Saxman</name>
+		</city>
+		<city>
+			<name>Scammon Bay</name>
+		</city>
+		<city>
+			<name>Selawik</name>
+		</city>
+		<city>
+			<name>Seldovia</name>
+		</city>
+		<city>
+			<name>Seward</name>
+		</city>
+		<city>
+			<name>Shageluk</name>
+		</city>
+		<city>
+			<name>Shaktoolik</name>
+		</city>
+		<city>
+			<name>Sheldon Point</name>
+		</city>
+		<city>
+			<name>Shishmaref</name>
+		</city>
+		<city>
+			<name>Shungnak</name>
+		</city>
+		<city>
+			<name>Sitka</name>
+		</city>
+		<city>
+			<name>Skagway</name>
+		</city>
+		<city>
+			<name>Skwentna</name>
+		</city>
+		<city>
+			<name>Slana</name>
+		</city>
+		<city>
+			<name>Sleetmute</name>
+		</city>
+		<city>
+			<name>Soldotna</name>
+		</city>
+		<city>
+			<name>South Naknek</name>
+		</city>
+		<city>
+			<name>St. John Harbor</name>
+		</city>
+		<city>
+			<name>St. Mary's</name>
+		</city>
+		<city>
+			<name>St. Michael</name>
+		</city>
+		<city>
+			<name>Stebbins</name>
+		</city>
+		<city>
+			<name>Sterling</name>
+		</city>
+		<city>
+			<name>Stevens Village</name>
+		</city>
+		<city>
+			<name>Stony River</name>
+		</city>
+		<city>
+			<name>Sutton</name>
+		</city>
+		<city>
+			<name>Takotna</name>
+		</city>
+		<city>
+			<name>Talkeetna</name>
+		</city>
+		<city>
+			<name>Tanacross</name>
+		</city>
+		<city>
+			<name>Tanana</name>
+		</city>
+		<city>
+			<name>Tatitlek</name>
+		</city>
+		<city>
+			<name>Teller</name>
+		</city>
+		<city>
+			<name>Tenakee Springs</name>
+		</city>
+		<city>
+			<name>Tetlin</name>
+		</city>
+		<city>
+			<name>Thorne Bay</name>
+		</city>
+		<city>
+			<name>Togiak</name>
+		</city>
+		<city>
+			<name>Tok</name>
+		</city>
+		<city>
+			<name>Toksook Bay</name>
+		</city>
+		<city>
+			<name>Tonsina</name>
+		</city>
+		<city>
+			<name>Trapper Creek</name>
+		</city>
+		<city>
+			<name>Tuluksak</name>
+		</city>
+		<city>
+			<name>Tuntutuliak</name>
+		</city>
+		<city>
+			<name>Tununak</name>
+		</city>
+		<city>
+			<name>Twin Hills</name>
+		</city>
+		<city>
+			<name>Two Rivers</name>
+		</city>
+		<city>
+			<name>Tyonek</name>
+		</city>
+		<city>
+			<name>Unalakleet</name>
+		</city>
+		<city>
+			<name>Unalaska</name>
+		</city>
+		<city>
+			<name>Upper Kalskag</name>
+		</city>
+		<city>
+			<name>Valdez</name>
+		</city>
+		<city>
+			<name>Venetie</name>
+		</city>
+		<city>
+			<name>Wainwright</name>
+		</city>
+		<city>
+			<name>Wales</name>
+		</city>
+		<city>
+			<name>Wasilla</name>
+		</city>
+		<city>
+			<name>Whale Pass</name>
+		</city>
+		<city>
+			<name>White Mountain</name>
+		</city>
+		<city>
+			<name>Whitestone Logging Camp</name>
+		</city>
+		<city>
+			<name>Whittier</name>
+		</city>
+		<city>
+			<name>Willow</name>
+		</city>
+		<city>
+			<name>Womens Bay</name>
+		</city>
+		<city>
+			<name>Wrangell</name>
+		</city>
+		<city>
+			<name>Yakutat</name>
+		</city>
+	</cities>
+</state>

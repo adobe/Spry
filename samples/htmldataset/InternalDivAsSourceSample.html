@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>HTMLDataSet using Nested Structure as Source</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.product {
+	cursor: pointer;
+}
+.hover {
+	background-color: #FFFFCC;
+}
+.selected {
+	background-color: #CCCCCC;
+}
+
+#sourceContainer div {
+	padding: 5px;
+}
+#sourceContainer div span {
+	padding-right: 10px;
+}
+
+</style>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+//
+// Create a HTMLDataSet that loads all the children from the root element whose tag name is 'div' and class is 'rowData'
+// and gets all the items that have tag name 'span'.
+//
+var ds1 = new Spry.Data.HTMLDataSet(null, "sourceContainer", {rowSelector:"div.rowData", dataSelector:"span", columnNames:["Product", "Description"]});
+//-->
+</script>
+</head>
+
+<body>
+<h3>HTMLDataSet using Internal Nested Structure as Data Source</h3>
+<p>This page demonstrates how to use a HTMLDataSet to load the data from a Div container located in this file.</p>
+<p>
+The use HTMLDataSet is similar to that of a XMLDataSet. The data can be loaded from a HTML element located in the same file 
+or in a different file under the same domain. <br/>
+Optional parameters used with XMLDataSet to specify sorting, caching, distinct, loadInterval work in a similar way with the HTMLDataSet.
+</p>
+
+<hr />
+
+<p>
+	In this sample the HTMLDataSet is loading its data from a DIV container with a nested structure like this:
+</p>
+     <ul>
+       <li>Source Container DIV
+         <ul>
+           <li>Row DIV class=&quot;rowData&quot;
+             <ul>
+               <li>SPAN Item</li>
+             </ul>
+           </li>
+         </ul>
+       </li>
+     </ul>
+<p>     
+     
+     When using a HTML structure other then a TABLE, the HTMLDataSet needs some extra information in order to
+     extract data from such three-level nested structure. There are two optional parameters 
+     that can be used to accomplish this:</p>
+
+<ul>
+     		<li><strong>rowSelector</strong> - instructs the data set on what elements inside the current DIV container are considered row blocks. Equivalent to defining the &lt;TR&gt; tag.</li>
+     		<li><strong>dataSelector</strong> - tell the data set  what elements are data items inside each row identified by rowSelector. Equal to a &lt;TD&gt; in a table data set.</li>
+</ul>
+<p>
+		Values that can be used for rowSelector or dataSelector:
+</p>
+		<ul>
+			<li>tag name: &quot;DIV&quot;, &quot;SPAN&quot;, &quot;*&quot;</li>
+			<li>class name: &quot;.rowData&quot;, &quot;.even&quot;</li>
+			<li>id: &quot;#product1&quot;</li>
+			<li>tag name with class name: &quot;DIV.rowData&quot;, &quot;*.header&quot;</li>
+			<li>tag name with id: &quot;DIV#product1&quot;</li>
+			<li>child selector (first-level descendents): &quot;&gt;&quot;</li>
+			<li>child selector combined with any of the above: &quot;&gt; DIV.rowData&quot;</li>
+			<li>comma delimited list of selectors (the node will be selected if it matches at least one from the list): &quot;#product1, #product2, #product3&quot;</li>
+		</ul>
+<p>    
+     DIVs are used in this sample because they are flexible and can contain other block level elements. Remember that, for instance, you cannot put other block level elements within a &lt;p&gt; tag.
+</p>
+<p>
+		You <strong>cannot</strong> use firstRowAsHeaders parameter with any other structure than Table.<br/>
+		In order to get the data using other markup then the default one ({column0}, {column1}) you can pass in an array of columNames:[&quot;Product&quot;, &quot;Description&quot;]. 
+Don't use spaces inside the column names.</p>
+<hr />
+<br/>
+
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<ul spry:region="ds1" spry:repeatchildren="ds1">
+				<li class="product" spry:setrow="ds1" spry:select="selected" spry:hover="hover">{Product}</li>
+			</ul>
+		</td>
+	  <td width="79%" valign="top">
+	  	
+	  	<div  spry:detailregion="ds1">
+	  		<div><strong>Brief Description:</strong></div>
+	  		<div>{Description}</div>
+	  	</div>
+	  </td>
+  </tr>
+</table>
+
+<br/>
+
+<p>
+ Here's the HTMLDataSet constructor:
+ </p>
+<pre>
+	var ds1 = new Spry.Data.HTMLDataSet(null, &quot;sourceContainer&quot;, {rowSelector:&quot;div.rowData&quot;, dataSelector:&quot;span&quot;, columnNames:[&quot;Product&quot;, &quot;Description&quot;]});
+</pre>
+<p>
+ Here's what the Source Container DIV looks like:
+ </p>
+		 <pre>
+&lt;div id=&quot;sourceContainer&quot;&gt; 
+	&lt;div class=&quot;rowData&quot; id=&quot;product1&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Photoshop CS2&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;The professional standard in desktop digital imaging&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product2&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Illustrator CS2&lt;/span&gt;
+		&lt;span&gt;Adobe&amp;reg; Illustrator&amp;reg; CS2 software gives you new creative freedom 
+		that lets you realize your ideas quickly and powerfully. 
+		Instantly convert bitmaps to vector artwork and paint more intuitively. 
+		Save time with intelligent palettes and optimized workspaces. 
+		Plus, tight integration with other software allows you to produce extraordinary graphics for print, 
+		video, the web, and mobile devices.&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product3&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe InDesign CS2&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;A new standard in professional layout and design&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product4&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe GoLive CS2&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;Professional, standards-based Web and mobile authoring&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product5&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Dreamweaver 8&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;Dreamweaver 8 is the industry-leading web development tool, 
+		enabling users to efficiently design, develop and maintain standards-based websites and applications.&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product6&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Flash 8 Professional&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;Introducing Macromedia's biggest Flash release to date.&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;rowData&quot; id=&quot;product7&quot;&gt;
+		&lt;span class=&quot;header&quot;&gt;Adobe Fireworks 8&lt;/span&gt;
+		&lt;span class=&quot;description&quot;&gt;Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, 
+		edit and optimize images for the web with precise control.&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;		 
+		 </pre>
+
+
+
+<br />
+<!--  DIV STRUCTURE SOURCE -->
+<div id="sourceContainer"> 
+	<div class="rowdata" id="product1">
+		<span class="header">Adobe Photoshop CS2</span>
+		<span class="description">The professional standard in desktop digital imaging</span>
+	</div>
+	<div class="rowdata" id="product2">
+		<span class="header">Adobe Illustrator CS2</span>
+		<span class="description">Adobe&reg; Illustrator&reg; CS2 software gives you new creative freedom that lets you realize your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.</span>
+	</div>
+	<div class="rowdata" id="product3">
+		<span class="header">Adobe InDesign CS2</span>
+		<span class="description">A new standard in professional layout and design</span>
+	</div>
+	<div class="rowdata" id="product4">
+		<span class="header">Adobe GoLive CS2</span>
+		<span class="description">Professional, standards-based Web and mobile authoring</span>
+	</div>
+	<div class="rowdata" id="product5">
+		<span class="header">Adobe Dreamweaver 8</span>
+		<span class="description">Dreamweaver 8 is the industry-leading web development tool, enabling users to efficiently design, develop and maintain standards-based web sites and applications.</span>
+	</div>
+	<div class="rowdata" id="product6">
+		<span class="header">Adobe Flash 8 Professional</span>
+		<span class="description">Introducing Macromedia's biggest Flash release to date.</span>
+	</div>
+	<div class="rowdata" id="product7">
+		<span class="header">Adobe Fireworks 8</span>
+		<span class="description">Fireworks 8 lets you balance maximum image quality with minimum compression size as you create, edit and optimize images for the web with precise control.</span>
+	</div>
+</div>
+
+</body>
+</html>
+ 

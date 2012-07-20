@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Maryland</name>
+	<cities>
+		<city>
+			<name>Aberdeen</name>
+		</city>
+		<city>
+			<name>Aberdeen Proving Ground</name>
+		</city>
+		<city>
+			<name>Accident</name>
+		</city>
+		<city>
+			<name>Accokeek</name>
+		</city>
+		<city>
+			<name>Adelphi</name>
+		</city>
+		<city>
+			<name>Andrews AFB</name>
+		</city>
+		<city>
+			<name>Annapolis</name>
+		</city>
+		<city>
+			<name>Arbutus</name>
+		</city>
+		<city>
+			<name>Arden-on-the-Severn</name>
+		</city>
+		<city>
+			<name>Arnold</name>
+		</city>
+		<city>
+			<name>Ashton-Sandy Springs</name>
+		</city>
+		<city>
+			<name>Aspen Hill</name>
+		</city>
+		<city>
+			<name>Ballenger Creek</name>
+		</city>
+		<city>
+			<name>Baltimore</name>
+		</city>
+		<city>
+			<name>Barclay</name>
+		</city>
+		<city>
+			<name>Barnesville</name>
+		</city>
+		<city>
+			<name>Barton</name>
+		</city>
+		<city>
+			<name>Bel Air</name>
+		</city>
+		<city>
+			<name>Bel Air North</name>
+		</city>
+		<city>
+			<name>Bel Air South</name>
+		</city>
+		<city>
+			<name>Beltsville</name>
+		</city>
+		<city>
+			<name>Berlin</name>
+		</city>
+		<city>
+			<name>Berwyn Heights</name>
+		</city>
+		<city>
+			<name>Bethesda</name>
+		</city>
+		<city>
+			<name>Betterton</name>
+		</city>
+		<city>
+			<name>Bladensburg</name>
+		</city>
+		<city>
+			<name>Boonsboro</name>
+		</city>
+		<city>
+			<name>Bowie</name>
+		</city>
+		<city>
+			<name>Bowleys Quarters</name>
+		</city>
+		<city>
+			<name>Braddock Heights</name>
+		</city>
+		<city>
+			<name>Brandywine</name>
+		</city>
+		<city>
+			<name>Brentwood</name>
+		</city>
+		<city>
+			<name>Bridgeport</name>
+		</city>
+		<city>
+			<name>Brookeville</name>
+		</city>
+		<city>
+			<name>Brooklyn Park</name>
+		</city>
+		<city>
+			<name>Brookview</name>
+		</city>
+		<city>
+			<name>Brunswick</name>
+		</city>
+		<city>
+			<name>Bryans Road</name>
+		</city>
+		<city>
+			<name>Burkittsville</name>
+		</city>
+		<city>
+			<name>Burtonsville</name>
+		</city>
+		<city>
+			<name>Cabin John-Brookmont</name>
+		</city>
+		<city>
+			<name>California</name>
+		</city>
+		<city>
+			<name>Calvert Beach-Long Beach</name>
+		</city>
+		<city>
+			<name>Calverton</name>
+		</city>
+		<city>
+			<name>Cambridge</name>
+		</city>
+		<city>
+			<name>Camp Springs</name>
+		</city>
+		<city>
+			<name>Cape St. Claire</name>
+		</city>
+		<city>
+			<name>Capitol Heights</name>
+		</city>
+		<city>
+			<name>Carmody Hills-Pepper Mill Village</name>
+		</city>
+		<city>
+			<name>Carney</name>
+		</city>
+		<city>
+			<name>Catonsville</name>
+		</city>
+		<city>
+			<name>Cecilton</name>
+		</city>
+		<city>
+			<name>Centreville</name>
+		</city>
+		<city>
+			<name>Charlestown</name>
+		</city>
+		<city>
+			<name>Charlotte Hall</name>
+		</city>
+		<city>
+			<name>Chesapeake Beach</name>
+		</city>
+		<city>
+			<name>Chesapeake City</name>
+		</city>
+		<city>
+			<name>Chesapeake Ranch Estates</name>
+		</city>
+		<city>
+			<name>Chestertown</name>
+		</city>
+		<city>
+			<name>Cheverly</name>
+		</city>
+		<city>
+			<name>Chevy Chase</name>
+		</city>
+		<city>
+			<name>Chevy Chase</name>
+		</city>
+		<city>
+			<name>Chevy Chase Section Five</name>
+		</city>
+		<city>
+			<name>Chevy Chase Section Three</name>
+		</city>
+		<city>
+			<name>Chevy Chase Village</name>
+		</city>
+		<city>
+			<name>Chillum</name>
+		</city>
+		<city>
+			<name>Church Creek</name>
+		</city>
+		<city>
+			<name>Church Hill</name>
+		</city>
+		<city>
+			<name>Clear Spring</name>
+		</city>
+		<city>
+			<name>Clinton</name>
+		</city>
+		<city>
+			<name>Clover Hill</name>
+		</city>
+		<city>
+			<name>Cloverly</name>
+		</city>
+		<city>
+			<name>Cockeysville</name>
+		</city>
+		<city>
+			<name>Colesville</name>
+		</city>
+		<city>
+			<name>College Park</name>
+		</city>
+		<city>
+			<name>Colmar Manor</name>
+		</city>
+		<city>
+			<name>Columbia</name>
+		</city>
+		<city>
+			<name>Coral Hills</name>
+		</city>
+		<city>
+			<name>Cottage City</name>
+		</city>
+		<city>
+			<name>Cresaptown-Bel Air</name>
+		</city>
+		<city>
+			<name>Crisfield</name>
+		</city>
+		<city>
+			<name>Crofton</name>
+		</city>
+		<city>
+			<name>Crownsville</name>
+		</city>
+		<city>
+			<name>Cumberland</name>
+		</city>
+		<city>
+			<name>Damascus</name>
+		</city>
+		<city>
+			<name>Deale</name>
+		</city>
+		<city>
+			<name>Deer Park</name>
+		</city>
+		<city>
+			<name>Delmar</name>
+		</city>
+		<city>
+			<name>Denton</name>
+		</city>
+		<city>
+			<name>Discovery-Spring Garden</name>
+		</city>
+		<city>
+			<name>District Heights</name>
+		</city>
+		<city>
+			<name>Dodge Park</name>
+		</city>
+		<city>
+			<name>Dundalk</name>
+		</city>
+		<city>
+			<name>Eagle Harbor</name>
+		</city>
+		<city>
+			<name>East New Market</name>
+		</city>
+		<city>
+			<name>East Riverdale</name>
+		</city>
+		<city>
+			<name>Easton</name>
+		</city>
+		<city>
+			<name>Edgemere</name>
+		</city>
+		<city>
+			<name>Edgewood</name>
+		</city>
+		<city>
+			<name>Edmonston</name>
+		</city>
+		<city>
+			<name>Eldersburg</name>
+		</city>
+		<city>
+			<name>Eldorado</name>
+		</city>
+		<city>
+			<name>Elkridge</name>
+		</city>
+		<city>
+			<name>Elkton</name>
+		</city>
+		<city>
+			<name>Ellicott City</name>
+		</city>
+		<city>
+			<name>Emmitsburg</name>
+		</city>
+		<city>
+			<name>Essex</name>
+		</city>
+		<city>
+			<name>Fairland</name>
+		</city>
+		<city>
+			<name>Fairmount Heights</name>
+		</city>
+		<city>
+			<name>Fallston</name>
+		</city>
+		<city>
+			<name>Federalsburg</name>
+		</city>
+		<city>
+			<name>Ferndale</name>
+		</city>
+		<city>
+			<name>Forest Heights</name>
+		</city>
+		<city>
+			<name>Forestville</name>
+		</city>
+		<city>
+			<name>Fort Meade</name>
+		</city>
+		<city>
+			<name>Fort Ritchie</name>
+		</city>
+		<city>
+			<name>Fort Washington</name>
+		</city>
+		<city>
+			<name>Frederick</name>
+		</city>
+		<city>
+			<name>Friendly</name>
+		</city>
+		<city>
+			<name>Friendsville</name>
+		</city>
+		<city>
+			<name>Frostburg</name>
+		</city>
+		<city>
+			<name>Fruitland</name>
+		</city>
+		<city>
+			<name>Funkstown</name>
+		</city>
+		<city>
+			<name>Gaithersburg</name>
+		</city>
+		<city>
+			<name>Galena</name>
+		</city>
+		<city>
+			<name>Galestown</name>
+		</city>
+		<city>
+			<name>Garrett Park</name>
+		</city>
+		<city>
+			<name>Garrison</name>
+		</city>
+		<city>
+			<name>Germantown</name>
+		</city>
+		<city>
+			<name>Glen Burnie</name>
+		</city>
+		<city>
+			<name>Glen Echo</name>
+		</city>
+		<city>
+			<name>Glenarden</name>
+		</city>
+		<city>
+			<name>Glenn Dale</name>
+		</city>
+		<city>
+			<name>Goddard</name>
+		</city>
+		<city>
+			<name>Golden Beach</name>
+		</city>
+		<city>
+			<name>Goldsboro</name>
+		</city>
+		<city>
+			<name>Grantsville</name>
+		</city>
+		<city>
+			<name>Grasonville</name>
+		</city>
+		<city>
+			<name>Greater Upper Marlboro</name>
+		</city>
+		<city>
+			<name>Green Haven</name>
+		</city>
+		<city>
+			<name>Green Valley</name>
+		</city>
+		<city>
+			<name>Greenbelt</name>
+		</city>
+		<city>
+			<name>Greensboro</name>
+		</city>
+		<city>
+			<name>Hagerstown</name>
+		</city>
+		<city>
+			<name>Halfway</name>
+		</city>
+		<city>
+			<name>Hampstead</name>
+		</city>
+		<city>
+			<name>Hampton</name>
+		</city>
+		<city>
+			<name>Hancock</name>
+		</city>
+		<city>
+			<name>Havre de Grace</name>
+		</city>
+		<city>
+			<name>Hebron</name>
+		</city>
+		<city>
+			<name>Henderson</name>
+		</city>
+		<city>
+			<name>Herald Harbor</name>
+		</city>
+		<city>
+			<name>Highland Beach</name>
+		</city>
+		<city>
+			<name>Hillandale</name>
+		</city>
+		<city>
+			<name>Hillcrest Heights</name>
+		</city>
+		<city>
+			<name>Hillsboro</name>
+		</city>
+		<city>
+			<name>Hillsmere Shores</name>
+		</city>
+		<city>
+			<name>Hughesville</name>
+		</city>
+		<city>
+			<name>Hurlock</name>
+		</city>
+		<city>
+			<name>Hyattsville</name>
+		</city>
+		<city>
+			<name>Indian Head</name>
+		</city>
+		<city>
+			<name>Jarrettsville</name>
+		</city>
+		<city>
+			<name>Jessup</name>
+		</city>
+		<city>
+			<name>Joppatowne</name>
+		</city>
+		<city>
+			<name>Keedysville</name>
+		</city>
+		<city>
+			<name>Kensington</name>
+		</city>
+		<city>
+			<name>Kentland</name>
+		</city>
+		<city>
+			<name>Kettering</name>
+		</city>
+		<city>
+			<name>Kingstown</name>
+		</city>
+		<city>
+			<name>Kingsville</name>
+		</city>
+		<city>
+			<name>Kitzmiller</name>
+		</city>
+		<city>
+			<name>La Plata</name>
+		</city>
+		<city>
+			<name>La Vale</name>
+		</city>
+		<city>
+			<name>Lake Shore</name>
+		</city>
+		<city>
+			<name>Landover</name>
+		</city>
+		<city>
+			<name>Landover Hills</name>
+		</city>
+		<city>
+			<name>Langley Park</name>
+		</city>
+		<city>
+			<name>Lanham-Seabrook</name>
+		</city>
+		<city>
+			<name>Lansdowne-Baltimore Highlands</name>
+		</city>
+		<city>
+			<name>Largo</name>
+		</city>
+		<city>
+			<name>Laurel</name>
+		</city>
+		<city>
+			<name>Lawsonia</name>
+		</city>
+		<city>
+			<name>Laytonsville</name>
+		</city>
+		<city>
+			<name>Leonardtown</name>
+		</city>
+		<city>
+			<name>Lexington Park</name>
+		</city>
+		<city>
+			<name>Linganore-Bartonsville</name>
+		</city>
+		<city>
+			<name>Linthicum</name>
+		</city>
+		<city>
+			<name>Loch Lynn Heights</name>
+		</city>
+		<city>
+			<name>Lochearn</name>
+		</city>
+		<city>
+			<name>Lonaconing</name>
+		</city>
+		<city>
+			<name>Londontowne</name>
+		</city>
+		<city>
+			<name>Long Meadow</name>
+		</city>
+		<city>
+			<name>Luke</name>
+		</city>
+		<city>
+			<name>Lutherville-Timonium</name>
+		</city>
+		<city>
+			<name>Manchester</name>
+		</city>
+		<city>
+			<name>Marbury</name>
+		</city>
+		<city>
+			<name>Mardela Springs</name>
+		</city>
+		<city>
+			<name>Marlow Heights</name>
+		</city>
+		<city>
+			<name>Marlton</name>
+		</city>
+		<city>
+			<name>Martin's Additions</name>
+		</city>
+		<city>
+			<name>Marydel</name>
+		</city>
+		<city>
+			<name>Maryland City</name>
+		</city>
+		<city>
+			<name>Mayo</name>
+		</city>
+		<city>
+			<name>Mays Chapel</name>
+		</city>
+		<city>
+			<name>Middle River</name>
+		</city>
+		<city>
+			<name>Middletown</name>
+		</city>
+		<city>
+			<name>Midland</name>
+		</city>
+		<city>
+			<name>Milford Mill</name>
+		</city>
+		<city>
+			<name>Millington</name>
+		</city>
+		<city>
+			<name>Mitchellville</name>
+		</city>
+		<city>
+			<name>Montgomery Village</name>
+		</city>
+		<city>
+			<name>Morningside</name>
+		</city>
+		<city>
+			<name>Mount Aetna</name>
+		</city>
+		<city>
+			<name>Mount Airy</name>
+		</city>
+		<city>
+			<name>Mount Rainier</name>
+		</city>
+		<city>
+			<name>Mountain Lake Park</name>
+		</city>
+		<city>
+			<name>Myersville</name>
+		</city>
+		<city>
+			<name>Naval Academy</name>
+		</city>
+		<city>
+			<name>New Carrollton</name>
+		</city>
+		<city>
+			<name>New Market</name>
+		</city>
+		<city>
+			<name>New Windsor</name>
+		</city>
+		<city>
+			<name>North Beach</name>
+		</city>
+		<city>
+			<name>North Bethesda</name>
+		</city>
+		<city>
+			<name>North Brentwood</name>
+		</city>
+		<city>
+			<name>North East</name>
+		</city>
+		<city>
+			<name>North Kensington</name>
+		</city>
+		<city>
+			<name>North Laurel</name>
+		</city>
+		<city>
+			<name>North Potomac</name>
+		</city>
+		<city>
+			<name>Oakland</name>
+		</city>
+		<city>
+			<name>Oakland</name>
+		</city>
+		<city>
+			<name>Ocean City</name>
+		</city>
+		<city>
+			<name>Ocean Pines</name>
+		</city>
+		<city>
+			<name>Odenton</name>
+		</city>
+		<city>
+			<name>Olney</name>
+		</city>
+		<city>
+			<name>Overlea</name>
+		</city>
+		<city>
+			<name>Owings Mills</name>
+		</city>
+		<city>
+			<name>Oxford</name>
+		</city>
+		<city>
+			<name>Oxon Hill-Glassmanor</name>
+		</city>
+		<city>
+			<name>Palmer Park</name>
+		</city>
+		<city>
+			<name>Parkville</name>
+		</city>
+		<city>
+			<name>Parole</name>
+		</city>
+		<city>
+			<name>Pasadena</name>
+		</city>
+		<city>
+			<name>Perry Hall</name>
+		</city>
+		<city>
+			<name>Perryman</name>
+		</city>
+		<city>
+			<name>Perryville</name>
+		</city>
+		<city>
+			<name>Pikesville</name>
+		</city>
+		<city>
+			<name>Pittsville</name>
+		</city>
+		<city>
+			<name>Pleasant Hills</name>
+		</city>
+		<city>
+			<name>Pocomoke City</name>
+		</city>
+		<city>
+			<name>Poolesville</name>
+		</city>
+		<city>
+			<name>Port Deposit</name>
+		</city>
+		<city>
+			<name>Port Tobacco Village</name>
+		</city>
+		<city>
+			<name>Potomac</name>
+		</city>
+		<city>
+			<name>Potomac Heights</name>
+		</city>
+		<city>
+			<name>Preston</name>
+		</city>
+		<city>
+			<name>Prince Frederick</name>
+		</city>
+		<city>
+			<name>Princess Anne</name>
+		</city>
+		<city>
+			<name>Pumphrey</name>
+		</city>
+		<city>
+			<name>Queen Anne</name>
+		</city>
+		<city>
+			<name>Queenstown</name>
+		</city>
+		<city>
+			<name>Randallstown</name>
+		</city>
+		<city>
+			<name>Redland</name>
+		</city>
+		<city>
+			<name>Reisterstown</name>
+		</city>
+		<city>
+			<name>Ridgely</name>
+		</city>
+		<city>
+			<name>Rising Sun</name>
+		</city>
+		<city>
+			<name>Riva</name>
+		</city>
+		<city>
+			<name>Riverdale</name>
+		</city>
+		<city>
+			<name>Riviera Beach</name>
+		</city>
+		<city>
+			<name>Rock Hall</name>
+		</city>
+		<city>
+			<name>Rockville</name>
+		</city>
+		<city>
+			<name>Rosaryville</name>
+		</city>
+		<city>
+			<name>Rosedale</name>
+		</city>
+		<city>
+			<name>Rosemont</name>
+		</city>
+		<city>
+			<name>Rossmoor</name>
+		</city>
+		<city>
+			<name>Rossville</name>
+		</city>
+		<city>
+			<name>Salisbury</name>
+		</city>
+		<city>
+			<name>Savage-Guilford</name>
+		</city>
+		<city>
+			<name>Seat Pleasant</name>
+		</city>
+		<city>
+			<name>Secretary</name>
+		</city>
+		<city>
+			<name>Selby-on-the-Bay</name>
+		</city>
+		<city>
+			<name>Severn</name>
+		</city>
+		<city>
+			<name>Severna Park</name>
+		</city>
+		<city>
+			<name>Shady Side</name>
+		</city>
+		<city>
+			<name>Sharpsburg</name>
+		</city>
+		<city>
+			<name>Sharptown</name>
+		</city>
+		<city>
+			<name>Silver Spring</name>
+		</city>
+		<city>
+			<name>Smithsburg</name>
+		</city>
+		<city>
+			<name>Snow Hill</name>
+		</city>
+		<city>
+			<name>Somerset</name>
+		</city>
+		<city>
+			<name>South Gate</name>
+		</city>
+		<city>
+			<name>South Kensington</name>
+		</city>
+		<city>
+			<name>South Laurel</name>
+		</city>
+		<city>
+			<name>St. Charles</name>
+		</city>
+		<city>
+			<name>St. Michaels</name>
+		</city>
+		<city>
+			<name>Stevensville</name>
+		</city>
+		<city>
+			<name>Stevensville South</name>
+		</city>
+		<city>
+			<name>Sudlersville</name>
+		</city>
+		<city>
+			<name>Suitland-Silver Hill</name>
+		</city>
+		<city>
+			<name>Sykesville</name>
+		</city>
+		<city>
+			<name>Takoma Park</name>
+		</city>
+		<city>
+			<name>Taneytown</name>
+		</city>
+		<city>
+			<name>Temple Hills</name>
+		</city>
+		<city>
+			<name>Templeville</name>
+		</city>
+		<city>
+			<name>Thurmont</name>
+		</city>
+		<city>
+			<name>Towson</name>
+		</city>
+		<city>
+			<name>Trappe</name>
+		</city>
+		<city>
+			<name>Union Bridge</name>
+		</city>
+		<city>
+			<name>University Park</name>
+		</city>
+		<city>
+			<name>Upper Marlboro</name>
+		</city>
+		<city>
+			<name>Vienna</name>
+		</city>
+		<city>
+			<name>Waldorf</name>
+		</city>
+		<city>
+			<name>Walker Mill</name>
+		</city>
+		<city>
+			<name>Walkersville</name>
+		</city>
+		<city>
+			<name>Washington Grove</name>
+		</city>
+		<city>
+			<name>West Laurel</name>
+		</city>
+		<city>
+			<name>West Ocean City</name>
+		</city>
+		<city>
+			<name>Westernport</name>
+		</city>
+		<city>
+			<name>Westminster</name>
+		</city>
+		<city>
+			<name>Westminster South</name>
+		</city>
+		<city>
+			<name>Wheaton-Glenmont</name>
+		</city>
+		<city>
+			<name>White Marsh</name>
+		</city>
+		<city>
+			<name>White Oak</name>
+		</city>
+		<city>
+			<name>White Plains</name>
+		</city>
+		<city>
+			<name>Willards</name>
+		</city>
+		<city>
+			<name>Williamsport</name>
+		</city>
+		<city>
+			<name>Woodlawn</name>
+		</city>
+		<city>
+			<name>Woodlawn</name>
+		</city>
+		<city>
+			<name>Woodmore</name>
+		</city>
+		<city>
+			<name>Woodsboro</name>
+		</city>
+	</cities>
+</state>

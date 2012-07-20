@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Tabbed Panels</title>
+<link href="../../widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.TabbedPanels {
+	width: 500px;
+}
+.TabbedPanelsTab {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+hr {
+	clear: left;
+}
+.TabbedPanels1 {	width: 500px;
+}
+.TabbedPanelsTab1 {	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript" src="../../widgets/tabbedpanels/SpryTabbedPanels.js"></script>
+</head>
+<body>
+<h3>Tabbed Panels Widget Sample</h3>
+<p>The Tabbed Panels widget is a disclosure widget that has a series of tabs along the top (or side) of the widget that opens content panels attached to the tabs.</p>
+<p>By default, the Tabbed Panel CSS does not define a height or width to the widget. The height of the widget will change depending on the size of the content of the current open panel.</p>
+<p>To set a fixed size for the widget, set the 'height' of the class .TabbedPanelsContent to whatever value you need. Overflow should be set to handle content longer than the set height. </p>
+<p>Default Panel set to open the 3rd panel when the page loads. Spry has a 0 based counting system, so the constructor option {defaultTab: 2} will open the 3rd panel. </p>
+<p>.TabbedPanels class has been set to a width of 500 pixels, so all widgets that use that class on this page will be that width. </p>
+<p>Tabindex=&quot;0&quot; can be set on every tab element for keyboard navigation to work. You may also use anchors to enable the keyboard navigation. The 3rd sample down shows this functionality. As a note, using TabIndex for accessibility will not validate at W3C but include it here because IE and Mozilla browsers support it for accessibility reasons. Use anchors if your page needs to validate.</p>
+<div class="TabbedPanels" id="tp1">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab" tabindex="0">Tab 1</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 2</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 3</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 4</li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent"> Tab 1 Content </div>
+    <div class="TabbedPanelsContent"> Tab 2 Content </div>
+    <div class="TabbedPanelsContent">
+      <p>Tab 3 Content </p>
+      <p>More Content</p>
+      <p>More Content</p>
+    </div>
+    <div class="TabbedPanelsContent"> Tab 4 Content</div>
+  </div>
+</div>
+<hr />
+<h4>Using Links to open tabs</h4>
+<p></p>
+<p>Open Panel with Panel Number <a href="#" onclick="TabbedPanels1.showPanel(0); return false;">Tab 1</a> | <a href="#" onclick="TabbedPanels1.showPanel(1); return false;">Tab 2</a> | <a href="#" onclick="TabbedPanels1.showPanel(2); return false;">Tab 3</a> | <a href="#" onclick="TabbedPanels1.showPanel(3); return false;">Tab 4</a> </p>
+<div id="TabbedPanels1" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab">Tab 1 </li>
+    <li class="TabbedPanelsTab">Tab 2 </li>
+    <li class="TabbedPanelsTab">Tab 3 </li>
+    <li class="TabbedPanelsTab">Tab 4 </li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">Open Panels programmatically by putting function calls on the &lt;a&gt; tag. </div>
+    <div class="TabbedPanelsContent">onclick=&quot;TabbedPanels1.showPanel(1);&quot; where &quot;TabbedPanels1 is the widget id. </div>
+    <div class="TabbedPanelsContent">onclick=&quot;TabbedPanels1.showPanel(2);&quot;</div>
+    <div class="TabbedPanelsContent">onclick=&quot;TabbedPanels1.showPanel(3);&quot;</div>
+  </div>
+</div>
+<hr />
+<h4>&nbsp;</h4>
+<p>Open Panel with Tab ID <a href="#" onclick="TabbedPanels6.showPanel('first'); return false;">Tab 1</a> | <a href="#" onclick="TabbedPanels6.showPanel('second'); return false;">Tab 2</a> | <a href="#" onclick="TabbedPanels6.showPanel('third'); return false;">Tab 3</a> | <a href="#" onclick="TabbedPanels6.showPanel('fourth'); return false;">Tab 4</a> </p>
+<div id="TabbedPanels6" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab" tabindex="0" id="first">Tab 1</li>
+    <li class="TabbedPanelsTab" tabindex="0" id="second">Tab 2</li>
+    <li class="TabbedPanelsTab" tabindex="0" id="third">Tab 3</li>
+    <li class="TabbedPanelsTab" tabindex="0" id="fourth">Tab 4</li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">Content 1</div>
+    <div class="TabbedPanelsContent">Content 2</div>
+    <div class="TabbedPanelsContent">Content 3</div>
+    <div class="TabbedPanelsContent">Content 4</div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4>&nbsp;</h4>
+<h4>Vertical Tabs and Anchors for Keyboard Navigation</h4>
+<p>Tabbed Panels can just as well be rendered vertically.</p>
+<p>Using the default CSS file that comes with the widget,  set the class of the main widget container tag from class=&quot;TabbedPanels&quot; to class=&quot;VTabbedPanels&quot;. The widget will now use the VTabbedPanels classes and the tabs will render vertically, on the left. The markup is identical as is the other functionality. </p>
+<p>This sample uses anchors in the tabs to enable switching between tabs. Use the Tab key to choose the tab and Enter to open the panel.</p>
+<div id="TabbedPanels2" class="VTabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab"><a href="#">Tab 1</a> </li>
+    <li class="TabbedPanelsTab"><a href="#">Tab 2</a> </li>
+    <li class="TabbedPanelsTab"><a href="#">Tab 3</a> </li>
+    <li class="TabbedPanelsTab"><a href="#">Tab 4</a> </li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">
+      <p>Tabbed Panels can just as well be rendered vertically.</p>
+      <p>Using the default CSS file that comes with the widget,  set the class of the main widget container tag from class=&quot;TabbedPanels&quot; to class=&quot;VTabbedPanels&quot;.</p>
+      <p>The widget will now use the VTabbedPanels classes and the tabs will render vertically, on the left. The markup is identical as is the other functionality. </p>
+    </div>
+    <div class="TabbedPanelsContent">This sample also shows how keyboard navigation can be enabled by wrapping each tab content with an &lt;a&gt;. </div>
+    <div class="TabbedPanelsContent">Content 3 </div>
+    <div class="TabbedPanelsContent">Content 4 </div>
+  </div>
+</div>
+<hr />
+<h4>Alternate Markup</h4>
+<p>Widget can use almost any tag to create the structure, as long as the correct nesting structure is maintained.</p>
+<div id="TabbedPanels3" class="TabbedPanels">
+  <div class="TabbedPanelsTabGroup">
+    <h3 class="TabbedPanelsTab">Tab 1 </h3>
+    <h3 class="TabbedPanelsTab">Tab 2 </h3>
+    <h3 class="TabbedPanelsTab">Tab 3 </h3>
+  </div>
+  <div class="TabbedPanelsContentGroup">
+    <p class="TabbedPanelsContent">Alternate Content Version. Check the markup used in this sample. </p>
+    <p class="TabbedPanelsContent">One of the rules of Spry Widgets is that we don't really care about the actual markup; what matters is the structure of the widget. As long as tags are nested in the same order, it doesn't matter what the markup is, as long it it follows HTML rules. </p>
+    <div class="TabbedPanelsContent">
+      <p>Content 3 </p>
+    </div>
+  </div>
+</div>
+<hr />
+<h4>Setting the Panels to open with onMouseOver</h4>
+<p> This example demonstrates how to open panels using the showPanel() behavior.</p>
+<div id="TabbedPanels4" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab" tabindex="0" onmouseover="TabbedPanels4.showPanel(this);">Tab 1</li>
+    <li class="TabbedPanelsTab" tabindex="0" onmouseover="TabbedPanels4.showPanel(this);">Tab 2</li>
+    <li class="TabbedPanelsTab" tabindex="0" onmouseover="TabbedPanels4.showPanel(this);">Tab 3</li>
+    <li class="TabbedPanelsTab" tabindex="0" onmouseover="TabbedPanels4.showPanel(this);">Tab 4</li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">Content 1</div>
+    <div class="TabbedPanelsContent">Content 2</div>
+    <div class="TabbedPanelsContent">Content 3</div>
+    <div class="TabbedPanelsContent">Content 4</div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<script language="JavaScript" type="text/javascript">
+var tp1 = new Spry.Widget.TabbedPanels("tp1", { defaultTab: 2 });
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+var TabbedPanels2 = new Spry.Widget.TabbedPanels("TabbedPanels2");
+var TabbedPanels3 = new Spry.Widget.TabbedPanels("TabbedPanels3");
+var TabbedPanels4 = new Spry.Widget.TabbedPanels("TabbedPanels4");
+var TabbedPanels6 = new Spry.Widget.TabbedPanels("TabbedPanels6");
+</script>
+</body>
+</html>

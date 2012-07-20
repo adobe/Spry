@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unobtrusive JavaScript Sample</title>
+<script type="text/javascript" src="../../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../../includes/SpryData.js"></script>
+<script type="text/javascript">
+var dsEmployees = new Spry.Data.XMLDataSet("../../../data/employees-01.xml", "/employees/employee");
+</script>
+<link href="css/sample.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div spry:region="dsEmployees">
+	<table id="hoverExample" border="1">
+		<tr>
+			<th spry:sort="lastname">Last Name</th>
+			<th spry:sort="firstname">First Name</th>
+		</tr>
+		<tr spry:repeat="dsEmployees">
+			<td>{lastname}</td>
+			<td>{firstname}</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

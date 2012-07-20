@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Element Selector Examples</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+td pre {
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+-->
+</style>
+</head>
+<body>
+<h3>Spry Element Selector Utility</h3>
+<p>This file contains code samples of each of the supported selectors in the Spry Element Selector utility. </p>
+<p>Note: According to the spec, spaces are generally not allowed within the selector except where part of the actual selector, so</p>
+<pre>Spry.$$(&quot;div p&quot;).addClassName(&quot;redText&quot;); <strong>Correct</strong>
+Spry.$$(&quot;p[class~=dev&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;); <strong>Correct.</strong>
+
+Spry.$$(&quot;p[class ~= dev&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;); <strong>Not correct.</strong></pre>
+<table>
+  <thead>
+    <tr>
+      <th width="133">Pattern</th>
+      <th width="474">Code</th>
+    </tr>
+    <tr>
+      <td>E</td>
+      <td><p>An element of type E</p>
+        <p><strong>Spry.$$(&quot;span&quot;).addClassName(&quot;boldText&quot;);</strong></p>
+      <p><em>&quot;Get all &lt;span&gt; tags and add the 'boldText' class to them.</em></p></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E.ClassName</td>
+      <td><p>An E element with a specified class name</p>
+        <p><strong>Spry.$$(&quot;span.highlight&quot;).removeClassName(&quot;highlight&quot;);</strong></p>
+        <p><em>&quot;Get all &lt;span&gt; tags with the class 'highlight' and remove the 'highlight' class.&quot;</em></p></td>
+    </tr>
+    <tr>
+      <td>E#myid</td>
+      <td><p>An E element with ID equal to &quot;myid&quot;.</p>
+        <p><strong>Spry.$$(&quot;div#container&quot;).removeClassName(&quot;mainBlock&quot;);</strong></p>
+        <p><em>&quot;Get the &lt;div&gt; with an ID of 'container' and remove <br />
+          the class 'mainblock'&quot;</em></p></td>
+    </tr>
+    <tr>
+      <td>E F</td>
+      <td><p>An F element descendant of an E element</p>
+        <p><strong>Spry.$$(&quot;div p&quot;).addClassName(&quot;redText&quot;);</strong></p>
+        <p><em>&quot;Select every &lt;p&gt; tag that is within any <br />
+          &lt;div&gt; tag and apply the 'redText' class to them.&quot;</em></p></td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td><p>Any element</p>
+        <p><strong>Spry.$$(&quot;*.hightlight&quot;).addClassName(&quot;boldText&quot;);</strong></p>
+        <p><em>&quot;Get any tag with the class 'highlight' and add<br /> 
+      the class 'boldText'.&quot;</em></p></td>
+    </tr>
+    <tr>
+      <td>E:first-child</td>
+      <td><p>An E element, first child of its parent</p>
+      <p><strong>Spry.$$(&quot;p:first-child&quot;).setClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select all the &lt;p&gt; tags that is the first tag within <br />
+      a container tag.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo]</td>
+      <td><p>An E element with a &quot;foo&quot; attribute</p>
+        <p><strong>Spry.$$(&quot;p[id]&quot;).setAttribute(&quot;tabindex&quot;, &quot;0&quot;);</strong></p>
+        <p><em>&quot;Select any &lt;p&gt;tag that has an ID defined <br />
+          and add a 'tabindex' attribute with a value of 0.</em><br />
+        Note: This will fail on Internet Explorer, when using E[class]. In the DOM, IE adds a class attribute to every element, regardless of the markup.</p></td>
+    </tr>
+    <tr>
+      <td>E &gt; F</td>
+      <td><p>An F element child of an E element</p>
+        <p><strong>Spry.$$(&quot;div&gt;span&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select any &lt;span&gt; that is a direct descendent of a &lt;div&gt; and apply the 'red'class.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo~=bar]</td>
+      <td><p>An E element whose &quot;foo&quot; attribute value <br />
+          is a list of space-separated values, <br />
+          one of which is exactly equal to &quot;bar&quot;</p>
+        <p><strong>Spry.$$(&quot;p[class~=bodyText]&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;);</strong></p>
+        <p><em>&quot;Select any &lt;p&gt;tag that has a class attribute <br />
+          that contains the 'bodyText' class <br />
+          and set the 'align' attribute with a value of 'left'.&quot;</em></p></td>
+    </tr>
+    <tr>
+      <td>E[hreflang|=en]</td>
+      <td><p>An E element whose &quot;hreflang&quot; attribute has<br />
+          a hyphen-separated        list of values <br />
+          beginning (from the left) with &quot;en&quot;</p>
+        <p><strong>Spry.$$(&quot;[hreflang|=en]&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;);</strong></p>
+        <p><em>Select all elements that have a hreflang attribute that<br />
+          lists &quot;en&quot; first among the values.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo=bar]</td>
+      <td><p>An E element whose &quot;foo&quot; attribute value is<br />
+          exactly        equal to &quot;bar&quot;</p>
+        <p><strong>Spry.$$(&quot;[class=highlight]&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select any element with a class name only equal <br />
+          to 'highlight' and add the class name 'red' to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo$=bar]</td>
+      <td><p>An E element whose &quot;foo&quot; attribute value <br />
+          ends exactly with the string &quot;bar&quot;</p>
+        <p><strong>Spry.$$(&quot;[class$=red]&quot;).addClassName(&quot;blue&quot;);</strong></p>
+        <p><em>Select all elements that have a class attribute <br />
+          who's last value is 'red' and add the 'blue' class to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo^=bar]</td>
+      <td><p>An E element whose &quot;foo&quot; attribute value <br />
+          begins exactly with the string &quot;bar&quot;</p>
+        <p><strong>Spry.$$(&quot;[class^=red]&quot;).addClassName(&quot;blue&quot;);</strong></p>
+        <p><em>Select all elements that have a class attribute <br />
+          who's first value is 'red' and add the 'blue' class to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E[foo*=bar]</td>
+      <td><p>An E element whose &quot;foo&quot; attribute value <br />
+          contains the substring &quot;bar&quot;</p>
+        <p><strong>Spry.$$(&quot;[class*=red]&quot;).addClassName(&quot;blue&quot;);</strong></p>
+        <p><em>Select all elements that have a class attribute <br />
+          that has value  'red' in it and add the 'blue' class to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E + F</td>
+      <td><p>An F element immediately preceded<br />
+          by an E element</p>
+        <p><strong>Spry.$$(&quot;div+p&quot;).removeClassName(&quot;bodyText&quot;);</strong></p>
+        <p><em>Select any &lt;p&gt; that comes right after a &lt;div&gt; tag <br />
+          and remove the 'bodyText' class from it.</em> &lt;div&gt;&lt;/div&gt;&lt;p&gt;, not &lt;div&gt;&lt;p&gt;&lt;/div&gt;</p></td>
+    </tr>
+    <tr>
+      <td>E ~ F</td>
+      <td>An F element preceded by an E element
+        <p><strong>Spry.$$(&quot;div~span&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select any &lt;span&gt; that is  preceeded by a &lt;div&gt; tag <br />
+          and add the red class from it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:last-child</td>
+      <td><p>An E element, last child of its parent</p>
+        <p><strong>Spry.$$(&quot;p:last-child&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>If a &lt;p&gt; is the last tag within another tag, <br />
+          add the 'red' class name to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:nth-last-of-type(n)</td>
+      <td><p>An E element, the n-th sibling of its type, <br />
+        counting        from the last one</p>
+        <p><strong>Spry.$$(&quot;span:nth-last-of-type(1)&quot;).removeClassName(&quot;highlight&quot;);</strong></p>
+        <p><em>Select the first &lt;span&gt; tag, starting from the bottom, <br />
+        and remove the 'highlight' class.</em></p>        </td>
+    </tr>
+    <tr>
+      <td>E:nth-of-type(n)</td>
+      <td><p>An E element, the n-th sibling of its type</p>
+      <p><strong>Spry.$$(&quot;p:nth-of-type(3)&quot;).addClassName('red&quot;);</strong></p>
+      <p><em>Select the 3rd &lt;p&gt; tag within any parent element and<br />
+      apply the 'red' class to it.</em></p>      </td>
+    </tr>
+    <tr>
+      <td>E:nth-last-child(n)</td>
+      <td><p>An E element, the n-th child of its parent, <br />
+        counting        from the last one</p>
+        <p><strong>Spry.$$(&quot;p:nth-last-child(3)&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select the 3rd  tag  from the bottom within any parent element. If it is a &lt;p&gt;, apply the 'red' class to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:empty</td>
+      <td><p>An E element that has no children<br />
+          (including text nodes)</p>
+        <p><strong>Spry.$$(&quot;div:empty&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select any &lt;div&gt; that does not have tags <br />
+      within it and add the 'red' class to it.</em></p>      </td>
+    </tr>
+    <tr>
+      <td>E:nth-child(n)</td>
+      <td><p>An E element, the n-th child of its parent</p>
+      <p><strong>Spry.$$(&quot;div:nth-child(3)&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select any 3rd child tag that is a DIV and apply the 'red' class name.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:not(s)</td>
+      <td><p>An E element that does not match <br />
+        simple selector s</p>
+        <p><strong>Spry.$$(&quot;p:not(.closer)&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select any &lt;p&gt; that does not have a 'closer' class and add the 'red' class.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:only-child</td>
+      <td><p>An E element, only child of its parent</p>
+      <p><strong>Spry.$$(&quot;p:only-child&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select all the &lt;p&gt; tags only if they are the only child tag of the parent tag.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:only-of-type</td>
+      <td><p>An E element, only sibling of its type</p>
+      <p><strong>Spry.$$(&quot;p.bodyText:only-child&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select all &lt;p.bodyText&gt; tags but only if it is the only <br />
+      instance of that tag within the parent.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:last-of-type</td>
+      <td><p>An E element, last sibling of its type</p>
+      <p><strong>Spry.$$(&quot;span.highlight:last-of-type&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select the last  &lt;span&gt; <br />
+      in the parent tag and, if it has the 'highlight' class, adds the 'red' class name.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:first-of-type</td>
+      <td><p>An E element, first sibling of its type</p>
+      <p><strong>Spry.$$(&quot;p.bodyText:first-of-type&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select the first instance of &lt;p&gt; in the parent tag <br />
+      and if it has the 'bodyText' class, applies the 'red' class to it.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:enabled<br /></td>
+      <td><p>An interface element E which is enabled </p>
+      <p><strong>Spry.$$(&quot;input:enabled&quot;).addClassName(&quot;green&quot;);</strong></p>
+      <p><em>Select all &lt;input&gt; tags that are currently enabled and <br />
+        apply the 'green' class to them.</em> (Enabled form fields are <br />
+        all those that aren't explicitly disabled.)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>E:disabled</td>
+      <td><p>An interface element E which is enabled</p>
+      <p><strong>Spry.$$(&quot;input:disabled&quot;).addClassName(&quot;red&quot;);</strong></p>
+      <p><em>Select all &lt;input&gt; tags that are set to 'disabled' and <br />
+      add the 'red' class name.</em></p></td>
+    </tr>
+    <tr>
+      <td>E:checked
+        <!--<br>E:indeterminate--></td>
+      <td><p>An interface element E which is checked
+          <!-- or in an        indeterminate state-->
+        (for instance a radio-button or checkbox)</p>
+        <p><strong>Spry.$$(&quot;input:checked&quot;).addClassName(&quot;red&quot;);</strong></p>
+        <p><em>Select all &lt;input&gt; tags that are currently checked and <br />
+        apply the 'red' class to them.</em></p></td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+  All rights reserved.</p>
+</body>
+</html>

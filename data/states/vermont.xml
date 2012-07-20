@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Vermont</name>
+	<cities>
+		<city>
+			<name>Albany</name>
+		</city>
+		<city>
+			<name>Alburg</name>
+		</city>
+		<city>
+			<name>Arlington</name>
+		</city>
+		<city>
+			<name>Barre</name>
+		</city>
+		<city>
+			<name>Barton</name>
+		</city>
+		<city>
+			<name>Bellows Falls</name>
+		</city>
+		<city>
+			<name>Bennington</name>
+		</city>
+		<city>
+			<name>Bradford</name>
+		</city>
+		<city>
+			<name>Brandon</name>
+		</city>
+		<city>
+			<name>Brattleboro</name>
+		</city>
+		<city>
+			<name>Bristol</name>
+		</city>
+		<city>
+			<name>Burlington</name>
+		</city>
+		<city>
+			<name>Cabot</name>
+		</city>
+		<city>
+			<name>Cambridge</name>
+		</city>
+		<city>
+			<name>Chester-Chester Depot</name>
+		</city>
+		<city>
+			<name>Derby Center</name>
+		</city>
+		<city>
+			<name>Derby Line</name>
+		</city>
+		<city>
+			<name>Enosburg Falls</name>
+		</city>
+		<city>
+			<name>Essex Junction</name>
+		</city>
+		<city>
+			<name>Fair Haven</name>
+		</city>
+		<city>
+			<name>Graniteville-East Barre</name>
+		</city>
+		<city>
+			<name>Hyde Park</name>
+		</city>
+		<city>
+			<name>Island Pond</name>
+		</city>
+		<city>
+			<name>Jacksonville</name>
+		</city>
+		<city>
+			<name>Jeffersonville</name>
+		</city>
+		<city>
+			<name>Jericho</name>
+		</city>
+		<city>
+			<name>Johnson</name>
+		</city>
+		<city>
+			<name>Ludlow</name>
+		</city>
+		<city>
+			<name>Lyndonville</name>
+		</city>
+		<city>
+			<name>Manchester</name>
+		</city>
+		<city>
+			<name>Manchester Center</name>
+		</city>
+		<city>
+			<name>Marshfield</name>
+		</city>
+		<city>
+			<name>Middlebury</name>
+		</city>
+		<city>
+			<name>Milton</name>
+		</city>
+		<city>
+			<name>Montpelier</name>
+		</city>
+		<city>
+			<name>Morrisville</name>
+		</city>
+		<city>
+			<name>Newbury</name>
+		</city>
+		<city>
+			<name>Newfane</name>
+		</city>
+		<city>
+			<name>Newport</name>
+		</city>
+		<city>
+			<name>North Bennington</name>
+		</city>
+		<city>
+			<name>North Troy</name>
+		</city>
+		<city>
+			<name>North Westminster</name>
+		</city>
+		<city>
+			<name>Northfield</name>
+		</city>
+		<city>
+			<name>Old Bennington</name>
+		</city>
+		<city>
+			<name>Orleans</name>
+		</city>
+		<city>
+			<name>Perkinsville</name>
+		</city>
+		<city>
+			<name>Poultney</name>
+		</city>
+		<city>
+			<name>Richford</name>
+		</city>
+		<city>
+			<name>Rutland</name>
+		</city>
+		<city>
+			<name>Saxtons River</name>
+		</city>
+		<city>
+			<name>South Barre</name>
+		</city>
+		<city>
+			<name>South Burlington</name>
+		</city>
+		<city>
+			<name>Springfield</name>
+		</city>
+		<city>
+			<name>St. Albans</name>
+		</city>
+		<city>
+			<name>St. Johnsbury</name>
+		</city>
+		<city>
+			<name>Stowe</name>
+		</city>
+		<city>
+			<name>Swanton</name>
+		</city>
+		<city>
+			<name>Vergennes</name>
+		</city>
+		<city>
+			<name>Wallingford</name>
+		</city>
+		<city>
+			<name>Waterbury</name>
+		</city>
+		<city>
+			<name>Wells River</name>
+		</city>
+		<city>
+			<name>West Brattleboro</name>
+		</city>
+		<city>
+			<name>West Burke</name>
+		</city>
+		<city>
+			<name>West Rutland</name>
+		</city>
+		<city>
+			<name>Westminster</name>
+		</city>
+		<city>
+			<name>White River Junction</name>
+		</city>
+		<city>
+			<name>Wilder</name>
+		</city>
+		<city>
+			<name>Winooski</name>
+		</city>
+		<city>
+			<name>Woodstock</name>
+		</city>
+	</cities>
+</state>

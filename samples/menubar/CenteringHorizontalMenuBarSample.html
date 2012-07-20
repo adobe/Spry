@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Centering a Horizontal Menu Bar</title>
+<script src="../../widgets/menubar/SpryMenuBar.js" type="text/javascript"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.clearAll {
+	clear: both;
+}
+.sidebar {
+	float: left;
+	width: 25%;
+	background-color: #FFCC66;
+	height: 40em;
+}
+.main {
+	float: left;
+	width: 50%;
+	background-color: #3399FF;
+	height: 40em;
+}
+
+.menubarWrapper {
+	background-color: #EEE;
+	float: left;
+	width: 100%;
+}
+ul.MenuBarHorizontal#Step1MenuBar {
+	width: 32.2em;
+	margin: auto;
+}
+
+ul.MenuBarHorizontal#Step2MenuBar a {
+	text-align: center;
+}
+
+ul.MenuBarHorizontal#Step2MenuBar ul a {
+	text-align: left;
+}
+
+ul.MenuBarHorizontal#Step3MenuBar a {
+	text-align: center;
+}
+
+ul.MenuBarHorizontal#Step4MenuBar {
+	width: 32.2em;
+	margin: auto;
+}
+
+ul.MenuBarHorizontal#Step4MenuBar a {
+	text-align: center;
+}
+
+ul.MenuBarHorizontal#Step4MenuBar ul a {
+	text-align: left;
+}
+-->
+</style>
+</head>
+<body>
+<h3>Centering a Horizontal Menu Bar</h3>
+<p>This page shows you how to modify the default styles for a Horizontal Menu Bar, so you can center the menu bar within the page, and/or center the menu items within a menu bar.</p>
+<p>Below, you'll notice that each CSS code sample starts off by including the default menu bar style sheet, and then declares a &lt;style&gt; block immediately after it, to override some of the default style properties set in the style sheet. The code is presented this way to show the minimal set of changes  that are necessary to accomplish the task. If you want these changes to affect more than one page, then you may want to integrate these changes directly into the style sheet.</p>
+<ul>
+	<li><a href="#defaultmenubar">Default Horizontal Menu Bar Style</a></li>
+	<li><a href="#centeringmenubar">Centering the Menu Bar</a></li>
+	<li><a href="#centeringmenubarmenuitems">Centering the Menu Items in a Menu Bar</a></li>
+	<li><a href="#centeringallmenuitems">Centering All Menu Items</a></li>
+	<li><a href="#example3panelayout">Menu Bar in a 3 Pane Layout</a></li>
+</ul>
+<h4><a name="defaultmenubar" id="defaultmenubar"></a>Default Horizontal Menu Bar Style</h4>
+<p>This is what the standard Horizontal Menu Bar looks like:</p>
+<div class="liveSample">
+	<ul id="DefaultStyleMenuBar1" class="MenuBarHorizontal">
+		<li><a class="MenuBarItemSubmenu" href="#">Item 1</a>
+				<ul>
+					<li><a href="#">Item 1.1</a></li>
+					<li><a href="#">Item 1.2</a></li>
+					<li><a href="#">Item 1.3</a></li>
+					<li><a href="#">Item 1.4</a></li>
+				</ul>
+		</li>
+		<li><a href="#">Item 2</a></li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item 3</a>
+				<ul>
+					<li><a class="MenuBarItemSubmenu" href="#">Item 3.1</a>
+							<ul>
+								<li><a href="#">Item 3.1.1</a></li>
+								<li><a href="#">Item 3.1.2</a></li>
+								<li><a href="#">Item 3.1.3</a></li>
+							</ul>
+					</li>
+					<li><a href="#">Item 3.2</a></li>
+					<li><a href="#">Item 3.3</a></li>
+					<li><a href="#">Item 3.4</a></li>
+				</ul>
+		</li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item4</a>
+				<ul>
+					<li><a class="MenuBarItemSubmenu" href="#">Item 4.1</a>
+							<ul>
+								<li><a href="#">Item 4.1.1</a></li>
+								<li><a href="#">Item 4.1.2</a></li>
+								<li><a href="#">Item 4.1.3</a></li>
+							</ul>
+					</li>
+					<li><a href="#">Item 4.2</a></li>
+					<li><a href="#">Item 4.3</a></li>
+					<li><a href="#">Item 4.4</a></li>
+				</ul>
+		</li>
+	</ul>
+	<div class="clearAll">&nbsp;</div>
+	<script type="text/javascript">
+<!--
+var DefaultStyleMenuBar1 = new Spry.Widget.MenuBar("DefaultStyleMenuBar1", {imgDown:"../../widgets/menubar/SpryMenuBarDownHover.gif", imgRight:"../../widgets/menubar/SpryMenuBarRightHover.gif"});
+//-->
+	</script>
+</div>
+<p>The menu bar and its menu items are left aligned. The sub menus of the menu bar also contain menu items that are left aligned.</p>
+<h4><a name="centeringmenubar" id="centeringmenubar"></a>Centering the Menu Bar</h4>
+<p>To center the menu bar itself, you must make sure that the top-level &lt;ul&gt; element of the menu bar has a width specified. You can then use a margin:auto property on it to center it within its parent container:</p>
+<pre>
+&lt;link href=&quot;../../widgets/menubar/SpryMenuBarHorizontal.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+/* Give the menu bar a width and set the margins to &quot;auto&quot;
+ * so that the browser does the centering.
+ */
+
+ul.MenuBarHorizontal {
+	width: 32.2em;
+	margin: auto;
+}
+--&gt;
+&lt;/style&gt;
+</pre>
+<p>In our example below we have 4 menu items in our menu bar. Because the default style sheet gives each menu item a width of 8em, we specified a width of 32.2em on the menu bar, in the code sample above, which is just enough to hold all 4 menu items with sub menu indicators. This gives us a centered menu bar:</p>
+<div class="liveSample">
+	<ul id="Step1MenuBar" class="MenuBarHorizontal">
+		<li><a class="MenuBarItemSubmenu" href="#">Item 1</a>
+			<ul>
+				<li><a href="#">Item 1.1</a></li>
+				<li><a href="#">Item 1.2</a></li>
+				<li><a href="#">Item 1.3</a></li>
+				<li><a href="#">Item 1.4</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Item 2</a></li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item 3</a>
+			<ul>
+				<li><a class="MenuBarItemSubmenu" href="#">Item 3.1</a>
+					<ul>
+						<li><a href="#">Item 3.1.1</a></li>
+						<li><a href="#">Item 3.1.2</a></li>
+						<li><a href="#">Item 3.1.3</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Item 3.2</a></li>
+				<li><a href="#">Item 3.3</a></li>
+				<li><a href="#">Item 3.4</a></li>
+			</ul>
+		</li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item4</a>
+			<ul>
+				<li><a class="MenuBarItemSubmenu" href="#">Item 4.1</a>
+					<ul>
+						<li><a href="#">Item 4.1.1</a></li>
+						<li><a href="#">Item 4.1.2</a></li>
+						<li><a href="#">Item 4.1.3</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Item 4.2</a></li>
+				<li><a href="#">Item 4.3</a></li>
+				<li><a href="#">Item 4.4</a></li>
+			</ul>
+		</li>
+	</ul>
+	<div class="clearAll">&nbsp;</div>
+<script type="text/javascript">
+<!--
+var Step1MenuBar = new Spry.Widget.MenuBar("Step1MenuBar", {imgDown:"../../widgets/menubar/SpryMenuBarDownHover.gif", imgRight:"../../widgets/menubar/SpryMenuBarRightHover.gif"});
+//-->
+</script>
+</div>
+<h4><a name="centeringmenubarmenuitems" id="centeringmenubarmenuitems"></a>Centering the Menu Items in a Menu Bar</h4>
+<p>To center the menu items inside a menu bar, but not the menu items in the sub menus:</p>
+<pre>
+&lt;link href=&quot;../../widgets/menubar/SpryMenuBarHorizontal.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+/* Center the text within all menu item links.
+ */
+
+ul.MenuBarHorizontal a {
+	text-align: center;
+}
+
+/* Set the the alignment back to left for any
+ * menu item links that are in a sub menu.
+ */
+
+ul.MenuBarHorizontal ul a {
+	text-align: left;
+}
+--&gt;
+&lt;/style&gt;
+</pre>
+<p>Here's a live sample:</p>
+<div class="liveSample">
+	<ul id="Step2MenuBar" class="MenuBarHorizontal">
+			<li><a class="MenuBarItemSubmenu" href="#">Item 1</a>
+					<ul>
+						<li><a href="#">Item 1.1</a></li>
+						<li><a href="#">Item 1.2</a></li>
+						<li><a href="#">Item 1.3</a></li>
+						<li><a href="#">Item 1.4</a></li>
+					</ul>
+			</li>
+			<li><a href="#">Item 2</a></li>
+			<li><a class="MenuBarItemSubmenu" href="#">Item 3</a>
+					<ul>
+						<li><a class="MenuBarItemSubmenu" href="#">Item 3.1</a>
+								<ul>
+									<li><a href="#">Item 3.1.1</a></li>
+									<li><a href="#">Item 3.1.2</a></li>
+									<li><a href="#">Item 3.1.3</a></li>
+								</ul>
+						</li>
+						<li><a href="#">Item 3.2</a></li>
+						<li><a href="#">Item 3.3</a></li>
+						<li><a href="#">Item 3.4</a></li>
+					</ul>
+			</li>
+			<li><a class="MenuBarItemSubmenu" href="#">Item4</a>
+					<ul>
+						<li><a class="MenuBarItemSubmenu" href="#">Item 4.1</a>
+								<ul>
+									<li><a href="#">Item 4.1.1</a></li>
+									<li><a href="#">Item 4.1.2</a></li>
+									<li><a href="#">Item 4.1.3</a></li>
+								</ul>
+						</li>
+						<li><a href="#">Item 4.2</a></li>
+						<li><a href="#">Item 4.3</a></li>
+						<li><a href="#">Item 4.4</a></li>
+					</ul>
+			</li>
+	</ul>
+		<div class="clearAll">&nbsp;</div>
+	<script type="text/javascript">
+<!--
+var Step2MenuBar = new Spry.Widget.MenuBar("Step2MenuBar", {imgDown:"../../widgets/menubar/SpryMenuBarDownHover.gif", imgRight:"../../widgets/menubar/SpryMenuBarRightHover.gif"});
+//-->
+	</script>
+</div>
+<h4><a name="centeringallmenuitems" id="centeringallmenuitems"></a>Centering all Menu Items</h4>
+<p>To center all menu items in the menu bar *and* in sub menus, simply define a rule that centers all links:</p>
+<pre>
+&lt;link href=&quot;../../widgets/menubar/SpryMenuBarHorizontal.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+/* Center the text within all menu item links. This
+ * causes the text in menu items for both the menu bar and
+ * sub menus to center.
+ */
+
+ul.MenuBarHorizontal a {
+	text-align: center;
+}
+--&gt;
+&lt;/style&gt;
+</pre>
+<p>Here's a live sample:</p>
+<div class="liveSample">
+	<ul id="Step3MenuBar" class="MenuBarHorizontal">
+		<li><a class="MenuBarItemSubmenu" href="#">Item 1</a>
+				<ul>
+					<li><a href="#">Item 1.1</a></li>
+					<li><a href="#">Item 1.2</a></li>
+					<li><a href="#">Item 1.3</a></li>
+					<li><a href="#">Item 1.4</a></li>
+				</ul>
+		</li>
+		<li><a href="#">Item 2</a></li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item 3</a>
+				<ul>
+					<li><a class="MenuBarItemSubmenu" href="#">Item 3.1</a>
+							<ul>
+								<li><a href="#">Item 3.1.1</a></li>
+								<li><a href="#">Item 3.1.2</a></li>
+								<li><a href="#">Item 3.1.3</a></li>
+							</ul>
+					</li>
+					<li><a href="#">Item 3.2</a></li>
+					<li><a href="#">Item 3.3</a></li>
+					<li><a href="#">Item 3.4</a></li>
+				</ul>
+		</li>
+		<li><a class="MenuBarItemSubmenu" href="#">Item4</a>
+				<ul>
+					<li><a class="MenuBarItemSubmenu" href="#">Item 4.1</a>
+							<ul>
+								<li><a href="#">Item 4.1.1</a></li>
+								<li><a href="#">Item 4.1.2</a></li>
+								<li><a href="#">Item 4.1.3</a></li>
+							</ul>
+					</li>
+					<li><a href="#">Item 4.2</a></li>
+					<li><a href="#">Item 4.3</a></li>
+					<li><a href="#">Item 4.4</a></li>
+				</ul>
+		</li>
+	</ul>
+	<div class="clearAll">&nbsp;</div>
+	<script type="text/javascript">
+<!--
+var Step3MenuBar = new Spry.Widget.MenuBar("Step3MenuBar", {imgDown:"../../widgets/menubar/SpryMenuBarDownHover.gif", imgRight:"../../widgets/menubar/SpryMenuBarRightHover.gif"});
+//-->
+	</script>
+</div>
+<h4><a name="example3panelayout" id="example3panelayout"></a>Example in a 3 Pane layout</h4>
+<p>This example uses the styles mentioned above to center the menu bar within the main content area of a 3 pane layout. An extra div was used to wrap the menu bar to extend the background color of the menu bar to the edges of the main content area:</p>
+<pre>
+&lt;link href=&quot;../../widgets/menubar/SpryMenuBarHorizontal.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+/* Give the menu bar a width and set the margins to &quot;auto&quot;
+ * so that the browser does the centering.
+ */
+
+ul.MenuBarHorizontal {
+	width: 32.2em;
+	margin: auto;
+}
+
+/* Center the text within all menu item links.
+ */
+
+ul.MenuBarHorizontal a {
+	text-align: center;
+}
+
+/* Set the the alignment back to left for any
+ * menu item links that are in a sub menu.
+ */
+
+ul.MenuBarHorizontal ul a {
+	text-align: left;
+}
+
+/* Style rules for 3 pane layout:
+ */
+
+.sidebar {
+	float: left;
+	width: 25%;
+	background-color: #FFCC66;
+	height: 40em;
+}
+
+.main {
+	float: left;
+	width: 50%;
+	background-color: #3399FF;
+	height: 40em;
+}
+
+.menubarWrapper {
+	background-color: #EEE;
+	float: left;
+	width: 100%;
+}
+--&gt;
+&lt;/style&gt;
+</pre>
+<p>&nbsp;</p>
+<p>Here's a live sample:</p>
+<div class="liveSample">
+	<div class="sidebar"><p>Left Side Bar</p></div>
+	<div class="main">
+		<div class="menubarWrapper">
+			<ul id="Step4MenuBar" class="MenuBarHorizontal">
+				<li><a class="MenuBarItemSubmenu" href="#">Item 1</a>
+					<ul>
+						<li><a href="#">Item 1.1</a></li>
+							<li><a href="#">Item 1.2</a></li>
+							<li><a href="#">Item 1.3</a></li>
+							<li><a href="#">Item 1.4</a></li>
+						</ul>
+				</li>
+				<li><a href="#">Item 2</a></li>
+				<li><a class="MenuBarItemSubmenu" href="#">Item 3</a>
+					<ul>
+						<li><a class="MenuBarItemSubmenu" href="#">Item 3.1</a>
+							<ul>
+								<li><a href="#">Item 3.1.1</a></li>
+										<li><a href="#">Item 3.1.2</a></li>
+										<li><a href="#">Item 3.1.3</a></li>
+									</ul>
+							</li>
+							<li><a href="#">Item 3.2</a></li>
+							<li><a href="#">Item 3.3</a></li>
+							<li><a href="#">Item 3.4</a></li>
+						</ul>
+				</li>
+				<li><a class="MenuBarItemSubmenu" href="#">Item4</a>
+					<ul>
+						<li><a class="MenuBarItemSubmenu" href="#">Item 4.1</a>
+							<ul>
+								<li><a href="#">Item 4.1.1</a></li>
+										<li><a href="#">Item 4.1.2</a></li>
+										<li><a href="#">Item 4.1.3</a></li>
+									</ul>
+							</li>
+							<li><a href="#">Item 4.2</a></li>
+							<li><a href="#">Item 4.3</a></li>
+							<li><a href="#">Item 4.4</a></li>
+						</ul>
+				</li>
+			</ul>
+		</div>
+		<p class="clearAll">&nbsp;</p>
+		<p>Main Content Area</p>
+	</div>
+	<div class="sidebar"><p>Right Side Bar</p></div>
+	<div class="clearAll">&nbsp;</div>
+<script type="text/javascript">
+<!--
+var Step4MenuBar = new Spry.Widget.MenuBar("Step4MenuBar", {imgDown:"../../widgets/menubar/SpryMenuBarDownHover.gif", imgRight:"../../widgets/menubar/SpryMenuBarRightHover.gif"});
+//-->
+</script>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

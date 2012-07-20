@@ -1,0 +1,1225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Accordion Widget</title>
+
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryEffects.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../widgets/accordion/SpryAccordion.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/accordion/SpryAccordion.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.Accordion, .AquaAccordion {
+	width: 300px;
+}
+
+#Acc1.Accordion {
+	width: 100%;
+}
+.AccordionPanelTab a {
+	display: block;
+	color: black;
+	text-decoration: none;
+}
+.AccordionPanelContent {
+	height: 250px;
+}
+
+span.AccordionPanelContent {
+	display: block;
+}
+
+/* Here's an example of an accordion Aqua Gradient theme that uses
+ * different class names from the ones used in SpryAccordion.css,
+ * to style the different parts of the accordion.
+ */
+.AquaAccordion {
+	border-left: solid 1px gray;
+	border-right: solid 1px black;
+	border-bottom: solid 1px gray;
+	overflow: hidden;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+
+.AquaAccordion .Tab {
+	height: 24px;
+	background-image: url(images/aqua-gradient.gif);
+	background-repeat: repeat-x;
+	background-color: #6dc1fc;
+	border-top: solid 1px black;
+	border-bottom: solid 1px gray;
+	margin: 0px;
+	padding: 2px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	text-align: center;
+}
+
+.AquaAccordion .Content {
+	overflow: auto;
+	height: 300px;
+	margin: 0px;
+	padding: 0px;
+	background-image: url(images/gray-gradient.gif);
+	background-repeat: repeat-x;
+}
+
+.AquaAccordion .hover {
+	background-image: none;
+	background-color: #33CCFF;
+}
+
+.AquaAccordion .open {
+	/* Add properties here. */
+}
+
+.AquaAccordion .closed {
+	/* Add properties here. */
+}
+
+.AquaAccordion .focused {
+	/* Add properties here. */
+}
+
+</style>
+
+<style type="text/css" media="print">
+.Accordion, .AquaAccordion {
+	overflow: visible !important;
+}
+.AccordionPanelContent, .AquaAccordion .Content {
+	display: block !important;
+	overflow: visible !important;
+	height: auto !important;
+}
+</style>
+
+</head>
+<body>
+<h3>Accordion Samples</h3>
+<p>This page gives examples of how to modify the behavior and style of accordions.</p>
+<ul>
+	<li><a href="#DefaultBehavior">Default Behavior and Style</a></li>
+	<li><a href="#SettingDefaultPanel">Setting the Default Panel</a></li>
+	<li><a href="#EnablingKeyboardNavigation">Enabling Keyboard Navigation</a></li>
+	<li><a href="#ChangingNavigationKeys">Changing Navigation Keys</a></li>
+	<li><a href="#EnablingKeyboardNavigationWithLinks">Enabling Keyboard Navigation with Links</a></li>
+	<li><a href="#AdjustingAnimation">Adjusting Animation Duration and FPS</a></li>
+	<li><a href="#SettingTheTransition">Setting the Transition/Easing of the Animation</a></li>
+	<li><a href="#TurningAnimationOff">Turning Animation Off</a></li>
+	<li><a href="#VariablePanelHeights">Variable Panel Heights</a></li>
+	<li><a href="#AllPanelsClosed">Starting with All Panels Closed</a></li>
+	<li><a href="#ProgramaticOpenAndClose">Programatically Opening and Closing Panels</a></li>
+	<li><a href="#UsingOtherBlockElements">Using Other Block Level Elements</a></li>
+	<li><a href="#CSSClassNames">Styling With Different CSS Class Names</a></li>
+	<li><a href="#PrintAccordionContent">Printing the Contents of an Accordion</a></li>
+	<li><a href="#GeneratingAccordionMarkup">Generating Accordion Markup with Spry Data</a></li>
+</ul>
+<p>Most of the examples use this basic markup structure and JavaScript:</p>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;../../widgets/accordion/SpryAccordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+...
+
+&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot;&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;Panel 1&lt;/div&gt;
+    &lt;div class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;Panel 2&lt;/div&gt;
+    &lt;div class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;Panel 3&lt;/div&gt;
+    &lt;div class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;Panel 4&lt;/div&gt;
+    &lt;div class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+&lt;/script&gt;
+</pre>
+<p>Each example will show only the set of changes to the markup and JS above, that were necessary to enable the behavior.</p>
+<hr />
+<h3><a name="DefaultBehavior" id="DefaultBehavior"></a>Default Behavior and Style</h3>
+<p>This is an example of what an accordion with the markup above would look like using the default styles from SpryAccordion.css. By default, the accordion will expand horizontally to fit its parent container, unless you use CSS to constrain the width of the top-level element (div) of the Accordion. Animation is enabled by default, and the heights of all the Accordion content panels are the same.</p>
+<div id="Acc1" class="Accordion">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc1 = new Spry.Widget.Accordion("Acc1");
+</script>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="SettingDefaultPanel" id="SettingDefaultPanel"></a>Setting the Default Panel</h3>
+<p>This is an example of how to create an accordion that has its 3rd panel open by default. </p>
+<div id="Acc2" class="Accordion">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="PaAccordionPanelnel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc2 = new Spry.Widget.Accordion("Acc2", { defaultPanel: 2 });
+</script>
+<p>This is accomplished by passing the zero-based index of the panel into the Accordion's constructor with the &quot;defaultPanel&quot; option:</p>
+<pre>
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { defaultPanel: 2 });
+&lt;/script&gt;
+</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="EnablingKeyboardNavigation" id="EnablingKeyboardNavigation"></a>Enabling Keyboard Navigation with tabindex</h3>
+<p>This is an example of an Accordion which has the ability to gain focus and has keyboard navigation enabled.</p>
+<div id="Acc2b" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc2b = new Spry.Widget.Accordion("Acc2b");
+</script>
+<p>To enable the ability for the accordion to gain keyboard focus and open  panels via the keyboard, place a tabindex attribute on the top-level accordion div element. You can give the accordion focus by tabbing to it, or by clicking on a panel tab. After the accordion has keyboard focus, you can use the Up and Down arrow keys to switch between the different panels.</p>
+<pre>
+...
+
+&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot; tabindex=&quot;0&quot;&gt;
+
+...
+
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+&lt;/script&gt;
+</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="ChangingNavigationKeys" id="ChangingNavigationKeys"></a>Changing Navigation Keys</h3>
+<p>This is an example of how to override the default up/down arrow key codes used for navigating. The accordion below uses the 'n' and 'p' keys to open the next or previous panel. </p>
+<div id="Acc3" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc3 = new Spry.Widget.Accordion("Acc3", { nextPanelKeyCode: 78 /* n key */, previousPanelKeyCode: 80 /* p key */ });
+</script>
+<p>To override the default key codes, specify the new keycodes with the &quot;nextPanelKeyCode&quot; and &quot;previousPanelKeyCode&quot; Accordion constructor options:</p>
+<pre>
+...
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+// Keycode for 'n' is 78
+// Keycode for 'p' is 80
+
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { nextPanelKeyCode: 78, previousPanelKeyCode: 80 });
+
+&lt;/script&gt;
+</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="EnablingKeyboardNavigationWithLinks" id="EnablingKeyboardNavigationWithLinks"></a>Enabling Keyboard Navigation with Links</h3>
+<p>This is an example of an Accordion that uses &lt;a&gt; tags within its AccordionPanelTab elements to enable keyboard navigation via the tab key. To open a tab, use the tab key until the link in the panel tab is selected, then hit the return key to activate it.</p>
+<div id="Acc2c" class="Accordion">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab"><a href="#p1">Panel 1</a></div>
+    <div id="p1" class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab"><a href="#p2">Panel 2</a></div>
+    <div id="p2" class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab"><a href="#p3">Panel 3</a></div>
+    <div id="p3" class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab"><a href="#p4">Panel 4</a></div>
+    <div id="p4" class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc2c = new Spry.Widget.Accordion("Acc2c", { enableKeyboardNavigation: false });
+</script>
+<p>To enable this behavior, remove any tabindex attribute that may be on the top-level Accordion element, and simply embed your &lt;a&gt; tags in the panel tab:</p>
+<pre>
+...
+
+&lt;style type=&quot;text/css&quot;&gt;
+
+.AccordionPanelTab a {
+	display: block;
+	color: black;
+	text-decoration: none;
+}
+
+&lt;/style&gt;
+
+...
+
+&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot;&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;&lt;a href=&quot;#p1&quot;&gt;Panel 1&lt;/a&gt;&lt;/div&gt;
+    &lt;div id=&quot;p1&quot; class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;&lt;a href=&quot;#p2&quot;&gt;Panel 2&lt;/a&gt;&lt;/div&gt;
+    &lt;div id=&quot;p2&quot; class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;&lt;a href=&quot;#p3&quot;&gt;Panel 3&lt;/a&gt;&lt;/div&gt;
+    &lt;div id=&quot;p3&quot; class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;div class=&quot;AccordionPanelTab&quot;&gt;&lt;a href=&quot;#p4&quot;&gt;Panel 4&lt;/a&gt;&lt;/div&gt;
+    &lt;div id=&quot;p4&quot; class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { enableKeyboardNavigation: false });
+&lt;/script&gt;
+</pre>
+<p>The &quot;enableKeyboardNavigation: false&quot; constructor option is necessary to get around the problem in IE where querying for the presence of the tabindex attribute, via the DOM API, always reports that one exists, even if it is not in the markup.</p>
+<p>Note that the example above is setup so that clicking on the links when JavaScript is disabled, takes you to the AccordionPanelContent immediately below the AccordionPanelTab.</p>
+<hr />
+<h3><a name="AdjustingAnimation" id="AdjustingAnimation"></a>Adjusting Animation Duration and FPS</h3>
+<p>This is an example of how to change the duration and/or the frames per second (fps) of the Accordion's open/close panel animation.</p>
+<div id="Acc4" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc4 = new Spry.Widget.Accordion("Acc4", { duration: 250, fps: 90 });
+</script>
+<p> You can pass the duration of the animation in milliseconds using the &quot;duration&quot; constructor. You can also adjust the frame rate (fps) by specifying the number of frames per second:</p>
+<pre>
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { duration: 250, fps: 90 });
+&lt;/script&gt;</pre>
+<hr />
+<h3><a name="SettingTheTransition" id="SettingTheTransition"></a>Setting the Transition/Easing of the Animation</h3>
+<p>The Accordion's panel animation code uses a transition function to calculate the size of the panel at each frame of the open/close animation. The signature of this function matches the signature of the transition functions defined in SpryEffects.js and in <a href="http://www.robertpenner.com/easing/">Robert Penner's Easing Library</a>. This means that it is possible to use a transition function from either of those libraries to animate the Accordion panels.</p>
+<div id="Acc5" class="Accordion" tabindex="0">
+	<div class="AccordionPanel">
+		<div class="AccordionPanelTab">Panel 1</div>
+		<div class="AccordionPanelContent">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+				ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+				voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+				sint occaecat cupidatat non proident, sunt in culpa qui officia
+				deserunt mollit anim id est laborum.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+				ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+				voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+				sint occaecat cupidatat non proident, sunt in culpa qui officia
+				deserunt mollit anim id est laborum.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+				ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+				voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+				sint occaecat cupidatat non proident, sunt in culpa qui officia
+				deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="AccordionPanel">
+		<div class="AccordionPanelTab">Panel 2</div>
+		<div class="AccordionPanelContent">Panel 2 Content</div>
+	</div>
+	<div class="AccordionPanel">
+		<div class="AccordionPanelTab">Panel 3</div>
+		<div class="AccordionPanelContent">Panel 3 Content</div>
+	</div>
+	<div class="AccordionPanel">
+		<div class="AccordionPanelTab">Panel 4</div>
+		<div class="AccordionPanelContent">Panel 4 Content</div>
+	</div>
+</div>
+<script type="text/javascript">
+var acc5 = new Spry.Widget.Accordion("Acc5", { transition: Spry.circleTransition });
+</script>
+<p>To change the transition function, you simply include the JS file that defines the function and pass the function into the Accordion's constructor with the &quot;transition&quot; option:</p>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryEffects.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;../../widgets/accordion/SpryAccordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { transition: Spry.circleTransition });
+&lt;/script&gt;
+</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="TurningAnimationOff" id="TurningAnimationOff"></a>Turning Animation Off</h3>
+<p>This is an example of an accordion with panel animations turned off.</p>
+<div id="Acc6" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">Panel 2 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">Panel 3 Content</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">Panel 4 Content</div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc6 = new Spry.Widget.Accordion("Acc6", { enableAnimation: false });
+</script>
+<p> This is accomplished by passing a false value for the &quot;enableAnimation&quot; constructor option. :</p>
+<pre>
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { enableAnimation: false });
+&lt;/script&gt;
+</pre>
+<hr />
+<h3><a name="VariablePanelHeights" id="VariablePanelHeights"></a>Variable Panel Heights</h3>
+<p>This is an example of how to create an accordion with varying panel heights. </p>
+<div id="Acc7" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+	</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc7 = new Spry.Widget.Accordion("Acc7", { useFixedPanelHeights: false });
+</script>
+<p> You enable variable height panels by passing a false as the value of the &quot;useFixedPanelHeights&quot; constructor option:</p>
+<pre>
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { useFixedPanelHeights: false });
+&lt;/script&gt;
+</pre>
+<p>In this mode, the Accordion automatically sizes the height of each content panel to fit all of the content within it.</p>
+<hr />
+<h3><a name="AllPanelsClosed" id="AllPanelsClosed"></a>Starting with All Panels Closed</h3>
+<p>This is an example of how to create an accordion that is initially closed.</p>
+<div id="Acc7b" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+	</div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat.</p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc7b = new Spry.Widget.Accordion("Acc7b", { useFixedPanelHeights: false, defaultPanel: -1 });
+</script>
+<p> This feature is only supported when using variable height panels, so you must pass a false into the Accordion's constructor for the &quot;useFixedPanelHeights&quot; constructor option, and a -1 for the &quot;defaultPanel&quot; option:</p>
+<pre>
+...
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { useFixedPanelHeights: false, defaultPanel: -1 });
+&lt;/script&gt;
+</pre>
+<hr />
+<h3><a name="ProgramaticOpenAndClose" id="ProgramaticOpenAndClose"></a>Programatically Opening and Closing Panels</h3>
+<p>This is an example of how to programatically open or close the panels of an Accordion. Click on the links below to manipulate the accordion below:</p>
+<p>Open by Simple Navigation:
+<a href="#" onclick="acc7c.openFirstPanel(); return false;">First</a> |
+<a href="#" onclick="acc7c.openPreviousPanel(); return false;">Previous</a> |
+<a href="#" onclick="acc7c.openNextPanel(); return false;">Next</a> |
+<a href="#" onclick="acc7c.openLastPanel(); return false;">Last</a>
+</p>
+<p>Open by Panel Index:
+<a href="#" onclick="acc7c.openPanel(0); return false;">0</a> |
+<a href="#" onclick="acc7c.openPanel(1); return false;">1</a> |
+<a href="#" onclick="acc7c.openPanel(2); return false;">2</a> |
+<a href="#" onclick="acc7c.openPanel(3); return false;">3</a>
+</p>
+<p>Open by Panel ID:
+<a href="#" onclick="acc7c.openPanel('panel1'); return false;">panel1</a> |
+<a href="#" onclick="acc7c.openPanel('panel2'); return false;">panel2</a> |
+<a href="#" onclick="acc7c.openPanel('panel3'); return false;">panel3</a> |
+<a href="#" onclick="acc7c.openPanel('panel4'); return false;">panel4</a>
+</p>
+<p>Close:
+<a href="#" onclick="acc7c.closePanel(); return false;">Current Panel</a>
+</p>
+<div id="Acc7c" class="Accordion" tabindex="0">
+  <div id="panel1" class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 1</div>
+    <div class="AccordionPanelContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div id="panel2" class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 2</div>
+    <div class="AccordionPanelContent">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+	</div>
+  </div>
+  <div id="panel3" class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 3</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat.</p>
+    </div>
+  </div>
+  <div id="panel4" class="AccordionPanel">
+    <div class="AccordionPanelTab">Panel 4</div>
+    <div class="AccordionPanelContent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var acc7c = new Spry.Widget.Accordion("Acc7c", { useFixedPanelHeights: false });
+</script>
+<p> Note that the programatic closing of the current panel is only supported when using variable height panels. Here's the code for the example above:</p>
+<pre>
+...
+
+&lt;p&gt;Open by Simple Navigation:
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openFirstPanel(); return false;&quot;&gt;First&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPreviousPanel(); return false;&quot;&gt;Previous&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openNextPanel(); return false;&quot;&gt;Next&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openLastPanel(); return false;&quot;&gt;Last&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Open by Panel Index:
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel(0); return false;&quot;&gt;0&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel(1); return false;&quot;&gt;1&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel(2); return false;&quot;&gt;2&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel(3); return false;&quot;&gt;3&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Open by Panel ID:
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel('panel1'); return false;&quot;&gt;panel1&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel('panel2'); return false;&quot;&gt;panel2&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel('panel3'); return false;&quot;&gt;panel3&lt;/a&gt; |
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel('panel4'); return false;&quot;&gt;panel4&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Close:
+  &lt;a href=&quot;#&quot; onclick=&quot;acc1.closePanel(); return false;&quot;&gt;Current Panel&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot; tabindex=&quot;0&quot;&gt;
+  &lt;div id=&quot;panel1&quot; class=&quot;AccordionPanel&quot;&gt;
+
+  ...
+
+  &lt;/div&gt;
+  &lt;div id=&quot;panel2&quot; class=&quot;AccordionPanel&quot;&gt;
+
+  ...
+
+  &lt;/div&gt;
+  &lt;div id=&quot;panel3&quot; class=&quot;AccordionPanel&quot;&gt;
+
+  ...
+
+  &lt;/div&gt;
+  &lt;div id=&quot;panel4&quot; class=&quot;AccordionPanel&quot;&gt;
+
+  ...
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { useFixedPanelHeights: false });
+&lt;/script&gt;
+</pre>
+<hr />
+<h3><a name="UsingOtherBlockElements" id="UsingOtherBlockElements"></a>Using Other Block Level Elements</h3>
+<p>This example&nbsp;demonstrates the ability to use other block level elements, other than divs, to build the structure of an Accordion. It dosen't matter what tags are used to build up the structure of the Accordion. What does matter is that the elements that make up the structure are styled as block elements, and that they are properly nested.</p>
+<div id="Acc8" class="Accordion" tabindex="0">
+  <div class="AccordionPanel">
+    <h3 class="AccordionPanelTab">Panel 1</h3>
+    <span class="AccordionPanelContent"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+    sint occaecat cupidatat non proident, sunt in culpa qui officia
+    deserunt mollit anim id est laborum. </span> </div>
+  <div class="AccordionPanel">
+    <h2 class="AccordionPanelTab">Panel 2</h2>
+    <p class="AccordionPanelContent">Panel 2 Content</p>
+  </div>
+  <div class="AccordionPanel">
+    <p class="AccordionPanelTab">Panel 3</p>
+    <p class="AccordionPanelContent">Panel 3 Content</p>
+  </div>
+  <div class="AccordionPanel">
+    <pre class="AccordionPanelTab">Panel 4</pre>
+    <ol class="AccordionPanelContent">
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ol>
+  </div>
+</div>
+<script type="text/javascript">
+var acc8 = new Spry.Widget.Accordion("Acc8");
+</script>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;../../widgets/accordion/SpryAccordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+
+span.AccordionPanelContent {
+  display: block;
+}
+
+&lt;/style&gt;
+
+...
+
+&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot; tabindex=&quot;0&quot;&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;h3 class=&quot;AccordionPanelTab&quot;&gt;Panel 1&lt;/h3&gt;
+    &lt;span class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;h2 class=&quot;AccordionPanelTab&quot;&gt;Panel 2&lt;/h2&gt;
+    &lt;p class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+  &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;p class=&quot;AccordionPanelTab&quot;&gt;Panel 3&lt;/p&gt;
+    &lt;p class=&quot;AccordionPanelContent&quot;&gt;
+
+    ...
+
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;AccordionPanel&quot;&gt;
+    &lt;pre class=&quot;AccordionPanelTab&quot;&gt;Panel 4&lt;/pre&gt;
+    &lt;ol class=&quot;AccordionPanelContent&quot;&gt;
+      &lt;li&gt;
+
+      ...
+
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+&lt;/script&gt;
+</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="CSSClassNames" id="CSSClassNames"></a>Styling With Different CSS Class Names</h3>
+<p>This is an example of styling an accordion using totally different class names than the ones specified in SpryAccordion.css. This example also shows how to override the built-in CSS class names used by the hover, panel open, panel closed, and accordion focused
+	behaviors. </p>
+<div id="Acc9" class="AquaAccordion" tabindex="0">
+  <div class="Panel">
+    <div class="Tab">
+      <div class="Label">Panel 1</div>
+    </div>
+    <div class="Content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <div class="Panel">
+    <div class="Tab">Panel 2</div>
+    <div class="Content">Panel 2 Content</div>
+  </div>
+  <div class="Panel">
+    <div class="Tab">Panel 3</div>
+    <div class="Content">Panel 3 Content</div>
+  </div>
+  <div class="Panel">
+    <div class="Tab">Panel 4</div>
+    <div class="Content">Panel 4 Content</div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var acc9 = new Spry.Widget.Accordion("Acc9", { hoverClass: "hover", openClass: "open", closedClass: "closed", focusedClass: "focused" });
+</script>
+<p>The code for this (minus the panel content) looks like this:</p>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;../../widgets/accordion/SpryAccordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+
+.AquaAccordion {
+	border-left: solid 1px gray;
+	border-right: solid 1px black;
+	border-bottom: solid 1px gray;
+	overflow: hidden;
+	font-family: &quot;Times New Roman&quot;, Times, serif;
+	font-size: 16px;
+}
+
+.AquaAccordion .Tab {
+	height: 24px;
+	background-image: url(images/aqua-gradient.gif);
+	background-repeat: repeat-x;
+	background-color: #6dc1fc;
+	border-top: solid 1px black;
+	border-bottom: solid 1px gray;
+	margin: 0px;
+	padding: 2px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	text-align: center;
+}
+
+.AquaAccordion .Content {
+	overflow: auto;
+	height: 300px;
+	margin: 0px;
+	padding: 0px;
+	background-image: url(images/gray-gradient.gif);
+	background-repeat: repeat-x;
+}
+
+.AquaAccordion .hover {
+	background-image: none;
+	background-color: #33CCFF;
+}
+
+.AquaAccordion .open {
+	/* Add properties here. */
+}
+
+.AquaAccordion .closed {
+	/* Add properties here. */
+}
+
+.AquaAccordion .focused {
+	/* Add properties here. */
+}
+
+&lt;/style&gt;
+
+...
+
+&lt;div id=&quot;Acc9&quot; class=&quot;AquaAccordion&quot; tabindex=&quot;0&quot;&gt;
+  &lt;div class=&quot;Panel&quot;&gt;
+    &lt;div class=&quot;Tab&quot;&gt;
+      &lt;div class=&quot;Label&quot;&gt;Panel 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;Content&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;Panel&quot;&gt;
+    &lt;div class=&quot;Tab&quot;&gt;Panel 2&lt;/div&gt;
+    &lt;div class=&quot;Content&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;Panel&quot;&gt;
+    &lt;div class=&quot;Tab&quot;&gt;Panel 3&lt;/div&gt;
+    &lt;div class=&quot;Content&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;Panel&quot;&gt;
+    &lt;div class=&quot;Tab&quot;&gt;Panel 4&lt;/div&gt;
+    &lt;div class=&quot;Content&quot;&gt;
+
+    ...
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;, { hoverClass: &quot;hover&quot;, openClass: &quot;open&quot;, closedClass: &quot;closed&quot;, focusedClass: &quot;focused&quot; });
+&lt;/script&gt;
+</pre>
+<hr />
+<h3><a name="PrintAccordionContent" id="PrintAccordionContent"></a>Printing the Contents of an Accordion</h3>
+<p>When printing a document that contains an Accordion, it may sometimes be desireable to print the content in content panels that are currently closed on screen. To do this, you need to add some CSS print media style rules which force the Accordion panels to show all their content:</p>
+<pre>
+&lt;link href=&quot;../../css/samples.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;link href=&quot;../../widgets/accordion/SpryAccordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;style type=&quot;text/css&quot; media=&quot;print&quot;&gt;
+
+.Accordion {
+  overflow: visible !important;
+}
+
+.AccordionPanelContent {
+  display: block !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+&lt;/style&gt;
+</pre>
+<p>The &quot;!important&quot; on these rules is necessary because the Accordion widget places inline styles on the actual AccordionPanelContent elements when opening and closing them. Since inline styles have a higher CSS specificity then CSS class rules, &quot;!important&quot; is necessary to &quot;trump&quot; the inline styles.</p>
+<hr />
+<p>&nbsp;</p>
+<h3><a name="GeneratingAccordionMarkup" id="GeneratingAccordionMarkup"></a>Generating Accordion Markup with Spry Data</h3>
+<p>To see an example of how to build an accordion from XML data using Spry's Data Set and Dynamic Region support, click <a href="AccordionSample2.html">here</a>. </p>
+</body>
+</html>

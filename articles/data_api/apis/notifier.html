@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry.Utils.Notifier API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="htmldataset">
+  <h3><a name="notifier" id="notifier"></a>Notifier</h3>
+  <h4>Description</h4>
+  <p>The Spry.Utils.Notifier class provides the base functionality necessary to maintain a list of observers and send notifications to them.</p>
+  <p>The Notifier class does not define any notification messages, so it is up to the developer to define the notifications sent via the Notifier. Notifications consist of a string (the name of the notification) and some optional data which the developer may want to pass from the point of notification to any observers.</p>
+  <p>Observers can be functions (callbacks) or objects, and can be added or removed dynamically from the notifier. See <a href="#addobserver">addObserver</a> for more details.</p>
+  <p>Developers can create an instance of the Spry.Utils.Notifier class directly, or use it as a base class for one of their own classes.</p>
+  <h4>File</h4>
+  <p><a href="../../../includes/SpryData.js">SpryData.js</a></p>
+  <h4>Inheritance</h4>
+  <p>N/A</p>
+</div>
+<div  id="getdataselector" >
+  <h3><a name="constructor" id="constructor"></a>Notifier constructor</h3>
+  <h4>Description</h4>
+  <p>Spry.Utils.Notifier is the constructor function for the Notifier. The constructor does not take any arguments.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">Spry.Utils.Notifier()</pre>
+  <h4>Example</h4>
+  <p>The following example shows how to invoke an instance of a notifier directly:</p>
+  <pre class="codeSample">
+var n = new Spry.Utils.Notifier();</pre>
+	<p>The following example shows how to use the Notifier as a base class for your own class:</p>
+	<pre>// Define a constructor for MyClass:
+
+function MyClass()
+{
+  ...
+
+  Spry.Utils.Notifier.call(this);
+
+  ...
+}
+
+// Make sure the MyClass prototype object has all
+// of the Notifier methods on it.
+
+MyClass.prototype = new Spry.Utils.Notifier();
+
+// Reset the constructor on MyClass.
+
+MyClass.prototype.constructor = MyClass;</pre>
+</div>
+<div id="getrowselector" >
+  <h3><a name="addobserver" id="addobserver"></a>addObserver </h3>
+  <h4>Description</h4>
+  <p>addObserver adds an observer function or object to the list of observers to notify.</p>
+  <p>Observer functions should have an interface like this:</p>
+  <pre>function MyObserverFunc(notificationType, notifier, data)
+{
+
+  ...
+
+}</pre>
+  <p>The notificationType is a string that is the name of the notification. The notifier is the object instance of the notifier that was used to fire off the notification. The data argument is any data that may have been passed along with the notification. If no data is passed at the time of notification, data will be undefined. See notifiyObservers for more details.</p>
+  <p>Observer objects should have method properties on them with the same name as the notifications they are interested in recieving. The interface for these methods is as follows:</p>
+  <pre>var observer = new Object;
+
+// We are interested in the onComplete notification,
+// so define it on our observer object:
+
+observer.onComplete = function(notifier, data)
+{
+  ...
+};</pre>
+  <p>As with the function observer, the notifier argument is the instance of the notifier that was used to fire off the notification, and the data is the optional data that was passed along with the notification.</p>
+  <p>The big difference between the a function observer and an object observer is that a function observer will get called for *all* notifications made with the notifier it is observing, where an object observer will only get notified for the notifications it has methods defined for.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">addObserver(observer)</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">// Create a notifier:
+
+var n = new Spry.Utils.Notifier();
+
+// Here's an example of adding an object as an observer:
+
+var obj = new Object;
+
+obj.onComplete = function(notifier, data)
+{
+	alert(&quot;onComplete recieved!&quot;);
+}
+
+n.addObserver(obj);
+
+// Here's an example of adding a function as an observer:
+
+function MyObserverFunc(notificationType, notifier, data)
+{
+  // Thow an alert for *every* notification!
+
+  alert(notificationType);
+}
+
+n.addObserver(MyObserverFunc);</pre>
+</div>
+<div id="getsourceelementid">
+  <h3><a name="disablenotifications" id="disablenotifications"></a>disableNotifications</h3>
+  <h4>Description</h4>
+  <p>Disables the notification mechanism of the notifier. Any calls made with notifyObservers will be ignored until enableNotifications is called.</p>
+  <p>The disableNotifications method uses a counter internally which allows multiple calls to disableNotification to be nested within the developers code. If multiple calls to disableNotifications are made, the same number of enableNotifications calls must be made before notifications are re-enabled.</p>
+  <h4>Format</h4>
+  <pre class="codeSample"> disableNotifications()</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var n = new Spry.Utils.Notifier();
+
+// Turn off any notifications, until we
+// are ready.
+
+n.disableNotifications();
+</pre>
+</div>
+<div id="geturl">
+  <h3><a name="enablenotifications" id="enablenotifications" ></a>enableNotifications</h3>
+  <h4>Description</h4>
+  <p>Enables the internal notification mechanism of the notifier. When enabled, this allows the notifyObservers method of the notifier to dispatch notifications to all of its observers. The notification mechanism of the notifier is enabled by default so a call to enableNotifications is only necessary if a call to disableNotifications was made.</p>
+  <p>The enableNotifications method decrements the internal counter used by disableNotifications, so the number of calls to enableNotifications must match the number of calls made to disableNotifications before notifications are truly enabled.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">enableNotifications()</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">
+var n = new Spry.Utils.Notifier();
+
+// Turn off any notifications, until we
+// are ready.
+
+n.disableNotifications();
+
+
+...
+
+// Turn on notifications because we're ready!
+
+n.enableNotifications();</pre>
+</div>
+<div id="setdataselector">
+  <h3><a name="notifyobservers" id="notifyobservers" ></a>notifyObservers</h3>
+  <h4>Description</h4>
+  <p>Sends a notification to all interested observers registered with the notifier.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">notifyObservers(notificationType, data)</pre>
+  <p>notificationType is a string that is the name of the notification. For example &quot;onComplete&quot;. The data argument is optional and is provided as a means for passing data from the point of notification to all interested observers. If not used, observers will get an undefined value for data if they try to access it.</p>
+  <h4>Example</h4>
+  <pre id="line25">var n = new Spry.Utils.Notifier();
+
+...
+
+
+// Fire off a notification for any observers interested in
+// profiling information. Pass the current time as data.
+
+
+var d = new Date();
+
+n.notifyObservers(&quot;onProfileComplete&quot;, d.getTime());
+
+// Fire off a notification that we are complete now. The onComplete
+// notification doesn't require any data to be passed to the observers.
+
+n.notifyObservers(&quot;onComplete&quot;);</pre>
+</div>
+<div id="setrowselector">
+  <h3><a name="removeobserver" id="removeobserver" ></a>removeObserver</h3>
+  <h4>Description</h4>
+  <p>Removes an observer from the notifier's list of observers.</p>
+  <h4>Format</h4>
+  <pre class="codeSample">removeObserver(observer)</pre>
+  <p>observer is the observer function reference or object to remove from the list.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">// Create a notifier:
+
+var n = new Spry.Utils.Notifier();
+
+// Here's an example of adding an object as an observer:
+
+var obj = new Object;
+
+obj.onComplete = function(notifier, data)
+{
+	alert(&quot;onComplete recieved!&quot;);
+}
+
+n.addObserver(obj);
+
+// Here's an example of adding a function as an observer:
+
+function MyObserverFunc(notificationType, notifier, data)
+{
+  // Thow an alert for *every* notification!
+
+  alert(notificationType);
+}
+
+n.addObserver(MyObserverFunc);
+
+...
+
+// Remove the observers we added:
+
+n.removeObserver(obj);
+n.removeObserver(MyObserverFunc);</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Filter XPath with URL Parameters</title>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryURLUtils.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var params = Spry.Utils.getLocationParamsAsObject();
+
+var xpath = "/employees/employee";
+if ((params.lastname) && (params.firstname))
+  xpath = "/employees/employee[lastname = '"+params.lastname+"' and firstname= '"+params.firstname+"']";
+  
+var ds1 = new Spry.Data.XMLDataSet("../../data/employees-01.xml", xpath);
+-->
+</script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Filtering With XPath and URL Parameters</h3>
+<p>This sample shows how you can use the Spry URL Utilities to filter the XPath of the data set. Straight XPath filtering can be seen in this <a href="XPathFilteringSample.html">sample</a>.</p>
+<p>The Spry URL Utilities allow you to grab URL params and hashes and use then in your page. </p>
+<p>This code for this sample is:</p>
+<pre>&lt;script src=&quot;../../includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../includes/SpryURLUtils.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+ var params = Spry.Utils.getLocationParamsAsObject();
+
+ var xpath = &quot;/employees/employee&quot;;
+
+   if ((params.lastname) &amp;&amp; (params.firstname))
+   xpath = &quot;/employees/employee[lastname = '&quot;+params.lastname+&quot;' and firstname= '&quot;+params.firstname+&quot;']&quot;;
+   
+   var ds1 = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml&quot;, xpath);
+&lt;/script&gt;</pre>
+<p>We attach the Spry data scripts and include the SpryURLUtils.js file.</p>
+<p>Then we declare a variable 'params'. This uses a function that gathers all the URL parameters into an object.</p>
+<p>We make a var called 'xapth'. We use this variable as the default value for XPath in the Data Set constructor.</p>
+<p>Then we check to see if the two URL params are defined (params.lastname and params.firstname). If they are, we construct the new XPath with the parameter values and assign it to the var 'xpath'.</p>
+<p>Finally the Data Set is called.</p>
+<p>The URLs below look like:</p>
+<pre>&lt;a href=&quot;FilterXPath_with_params.html?firstname=Edward&amp;lastname=Smith&quot;&gt;&quot;Edward Smith&quot;&lt;/a&gt;</pre>
+<p><a href="FilterXPath_with_params.html?firstname=Edward&amp;lastname=Smith">"Edward Smith"</a> | <a href="FilterXPath_with_params.html?firstname=Neil&amp;lastname=Johnson">"Neil Johnson"</a> | <a href="FilterXPath_with_params.html">Show All </a> </p>
+<div spry:region="ds1">
+  <table>
+    <tr>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Phone</th>
+      <th>Username</th>
+      <th>@id</th>
+    </tr>
+    <tr spry:repeat="ds1">
+      <td>{lastname}</td>
+      <td>{firstname}</td>
+      <td>{phone}</td>
+      <td>{username}</td>
+      <td>{@id}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

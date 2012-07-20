@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry setURL set XPath</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee",{useCache:false});
+function setText(url){
+	dsEmployees.setURL(url);
+	dsEmployees.loadData();
+	document.getElementById('theURL').innerHTML = dsEmployees.getURL();
+}
+var ds1 = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "employees/employee");
+function newXPath(thepath){
+	ds1.setXPath(thepath);
+	ds1.loadData();
+	document.getElementById('thexpath').innerHTML = ds1.getXPath();
+}
+</script>
+</head>
+<body>
+<h3>setURL </h3>
+<p>You can programmatically change the URL and the XPath of the data set. This will allow you to pull in data from another XML file without having to define a separate data set. </p>
+<p>Just changing the values of the URL or XPath won't cause the data to reload. Use the loadData() function to load the new data. </p>
+<p><a href="#" onclick="setText('../../data/employees-02.xml');">Load Employees 2 </a> | <a href="#" onclick="setText('../../data/employees-03.xml');">Load Employees 3</a></p>
+<div spry:region="dsEmployees">
+  <table width="363">
+    <tr>
+      <th width="97">Last Name</th>
+      <th width="90">First Name</th>
+      <th width="121"><span spry:if="'{phone}' != 'undefined'">Phone</span></th>
+    </tr>
+    <tr spry:repeat="dsEmployees">
+      <td><div align="center">{lastname}</div></td>
+      <td><div align="center">{firstname}</div></td>
+      <td><span spry:if="'{phone}' != 'undefined'">{phone}</span></td>
+    </tr>
+  </table>
+</div>
+<p>The current URL for the data set is: "<span id="theURL">../../data/employees-01.xml</span>"</p>
+<p>In the above example, 'employees-3.xml' does not have a 'phone' node, so we use spry:if to hide the column if undefined. </p>
+<h3>setXPath</h3>
+<p>XPath can also be set to refine the data set. Be aware that changing the XPath will change the data references that are available to the data set. Ensure that undefined data references are dealt with.</p>
+<div spry:region="ds1">
+  <table width="240">
+    <tr>
+      <th><span spry:if="'{lastname}' != 'undefined'">Last Name</span></th>
+      <th><span spry:if="'{firstname}' != 'undefined'">First Name</span></th>
+    </tr>
+    <tr spry:repeat="ds1">
+      <td><div align="center" spry:if="'{lastname}' != 'undefined'">{lastname}</div></td>
+      <td><div align="center" spry:if="'{firstname}' != 'undefined'">{firstname}</div></td>
+    </tr>
+  </table>
+</div>
+<p><a href="#" onclick="newXPath('employees/employee/lastname');">Last Name only</a> | <a href="#" onclick="newXPath('employees/employee/firstname');">First Name only</a> | <a href="#" onclick="newXPath('employees/employee');">Original</a> </p>
+<p>The current XPath for the data set is "<span id="thexpath">employees/employee</span>". </p>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Products Demo Source</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="codesample">
+<div id="wrap">
+<h1>Products Demo Source<span class="return"><a href="../index.html">Back to Demos</a></span><span class="demo"><a href="index.html">Return to Products Demo</a></span> </h1>
+<div class="sample">
+<pre class="codeSample">
+<code>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks (&quot;Marks&quot;) displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+--&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="highlightedcode">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+&lt;title&gt;Products Demo&lt;/title&gt;
+<span class="highlightedcode">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryNestedXMLDataSet.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../widgets/accordion/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+<span class="highlightedcode">var dsProducts = new Spry.Data.XMLDataSet(&quot;products.xml&quot;, &quot;products/product&quot;);</span>
+<span class="highlightedcode">var dsProductFeatures = new Spry.Data.NestedXMLDataSet(dsProducts, &quot;features/feature&quot;);</span>
+--&gt;
+&lt;/script&gt;
+&lt;link href=&quot;../../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;noscript&gt;&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;&lt;/noscript&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+	&lt;div id=&quot;header&quot;&gt;
+		&lt;h1&gt;Products Demo&lt;span class=&quot;return&quot;&gt;&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;source&quot;&gt;&lt;a href=&quot;source.html&quot;&gt;View Source &lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;
+	&lt;/div&gt;
+	&lt;div <span class="highlightedcode">spry:region=&quot;dsProducts&quot;</span> id=&quot;content&quot;&gt;
+		&lt;table id=&quot;products&quot;&gt;
+			&lt;caption&gt;
+			Adobe Software
+			&lt;/caption&gt;
+            &lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;th scope=&quot;col&quot; <span class="highlightedcode">spry:sort=&quot;name&quot;</span>&gt;Product&lt;/th&gt;
+				&lt;th scope=&quot;col&quot; <span class="highlightedcode">spry:sort=&quot;category&quot;</span>&gt;Category&lt;/th&gt;
+			&lt;/tr&gt;
+            &lt;/tbody&gt;
+			&lt;tbody <span class="highlightedcode">spry:repeatchildren=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:choose=&quot;choose&quot;</span>&gt;
+				&lt;tr <span class="highlightedcode">spry:when="{ds_RowID} == {ds_CurrentRowID}"</span> class=&quot;<span class="highlightedcode">{ds_EvenOddRow}</span>&quot; <span class="highlightedcode">spry:setrow=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:hover=&quot;rowHover&quot;</span> <span class="highlightedcode">spry:select=&quot;rowSelected&quot;</span> <span class="highlightedcode">spry:selected=&quot;selected&quot;</span>&gt;
+					&lt;td&gt;<span class="highlightedcode">{name}</span>&lt;/td&gt;
+					&lt;td&gt;<span class="highlightedcode">{category}</span>&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr <span class="highlightedcode">spry:default="default"</span> class=&quot;<span class="highlightedcode">{ds_EvenOddRow}</span>&quot; <span class="highlightedcode">spry:setrow=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:hover=&quot;rowHover&quot;</span> <span class="highlightedcode">spry:select=&quot;rowSelected&quot;</span>&gt;
+					&lt;td&gt;<span class="highlightedcode">{name}</span>&lt;/td&gt;
+					&lt;td&gt;<span class="highlightedcode">{category}</span>&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;sidebar&quot;&gt;
+		&lt;p <span class="highlightedcode">spry:detailregion=&quot;dsProducts&quot;</span> id=&quot;boxshot&quot;&gt;&lt;img src=&quot;<span class="highlightedcode">{boximage}</span>&quot; alt=&quot;product box shot&quot; width=&quot;238&quot; height=&quot;130&quot; /&gt;&lt;/p&gt;
+		&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot;&gt;
+			&lt;div class=&quot;AccordionPanel&quot;&gt;
+				&lt;div class=&quot;AccordionPanelTab&quot;&gt;
+					&lt;h3&gt;Product Overview&lt;/h3&gt;
+				&lt;/div&gt;
+				&lt;div <span class="highlightedcode">spry:detailregion=&quot;dsProducts&quot;</span> class=&quot;AccordionPanelContent&quot;&gt;
+					&lt;div&gt;<span class="highlightedcode">{desc}</span>&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;AccordionPanel&quot;&gt;
+				&lt;div class=&quot;AccordionPanelTab&quot;&gt;
+					&lt;h3&gt;New Features &lt;/h3&gt;
+				&lt;/div&gt;
+				&lt;div <span class="highlightedcode">spry:region=&quot;dsProductFeatures&quot;</span> class=&quot;AccordionPanelContent&quot;&gt;
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li <span class="highlightedcode">spry:repeat=&quot;dsProductFeatures&quot;</span>&gt;<span class="highlightedcode">{feature}</span>&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;p class=&quot;clear&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var Acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+--&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+</div>
+</div>
+</body>
+</html>
+

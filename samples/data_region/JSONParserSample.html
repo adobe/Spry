@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Preventing the Execution of Unauthorized Script in JSON</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryJSONDataSet.js"></script>
+<script type="text/javascript">
+var dsExample1 = new Spry.Data.JSONDataSet("../../data/json/preparse-test-01.js", { preparseFunc: Example1PreparseFunc });
+var dsExample2 = new Spry.Data.JSONDataSet("../../data/json/preparse-test-02.js", { preparseFunc: Example2PreparseFunc });
+var dsExample3 = new Spry.Data.JSONDataSet("../../data/json/preparse-test-03.js", { preparseFunc: Example3PreparseFunc });
+var dsExample4 = new Spry.Data.JSONDataSet("../../data/json/preparse-test-04.js", { useParser: true });
+var dsExample5 = new Spry.Data.JSONDataSet("../../data/json/preparse-test-01.js", { useParser: true, preparseFunc: Example1PreparseFunc });
+
+function Example1PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/^\s*while\s*\(1\);\s*/g, "");
+}
+
+function Example2PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/\/\*|\*\//g, "");
+}
+
+function Example3PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/results\(|\)\s*$/g, "");
+}
+</script>
+<style type="text/css">
+.even {
+	background-color: #CCFFFF;
+}
+.odd {
+	background-color: #FFFF99;
+}
+th {
+	background-color: #CCCCCC;
+	padding: 4px;
+}
+table {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+th, td {
+	border: solid 1px black;
+	padding: 4px;
+}
+</style>
+</head>
+
+<body>
+<h3>Preventing the Execution of Unauthorized Script in JSON</h3>
+<p>The JSON data set provides a couple of options for aiding in the prevention of executing unauthorized script that may have been injected by a 3rd party:</p>
+<ul>
+	<li>A constructor option that provides a hook for developers to register a function to pre-parse the raw JSON data string that was received from the server, before the JSONDataSet turns it into an actual JS object.
+		<ul>
+			<li>Some web applications that supply JSON data add characters before, after, or before and after, the actual JSON data. This is done as a security measure to prevent the accidental processing of script that may have been generated/inserted by an unauthorized 3rd party. The JSONDataSet allows the developer to specify a pre-processing function that can be used to strip these characters from the JSON data before processing/eval'ing the actual JSON data.</li>
+		</ul>
+	</li>
+	<li>A constructor option for using the JSON.org parser to insure that the JSON data only contains data types supported by JSON.
+		<ul>
+			<li><span style="color: red;"><strong>If you're seeing a red error message in the bottom right corner of the browser, that was intentional and due to the JSON.org parser catching invalid JS in the JSON data used in Example 4.</strong></span></li>
+	  </ul>
+  </li>
+</ul>
+<hr />
+<h4>Example 1</h4>
+<p>This example loads some JSON that is preceded by a while(1);. The idea here is to force the client to remove the while(1); before eval'ing the JSON data. If they don't, the browser will hang due to the while(1); execution during the eval. This technique is used by Google applications like GMAIL to prevent the execution of unauthorized script. Here's what the actual JSON data looks like:</p>
+<pre class="codeSample">
+while(1);
+[
+	{
+		&quot;name&quot;: &quot;Great Wall of China&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Hong Kong Skyline&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_24.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_24.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Pyramid of Giza&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Sphynx&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_07.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_07.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Eifel Tower&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_05.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_05.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Arc de Triomphe&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_10.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_10.jpg&quot;
+	}
+]
+</pre>
+<p>This is what the code to accomplish the preparsing looks like:</p>
+<pre class="codeSample">
+var dsExample1 = new Spry.Data.JSONDataSet(&quot;data/preparse-test-01.js&quot;, { preparseFunc: Example1PreparseFunc });
+
+function Example1PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/while\(1\);/g, &quot;&quot;);
+}
+</pre>
+<p>Which allows us to parse the JSON data and then display it:</p>
+<div spry:region="dsExample1">
+	<table>
+		<tr spry:repeat="dsExample1">
+			<td valign="middle" align="center"><img src="{thumbnail}" alt="{name}" /></td>
+			<td><a href="{photo}">{name}</a></td>
+		</tr>
+	</table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4>Example 2 </h4>
+<p>This example loads some JSON data that is wrapped with C-Style comments. If this data is eval'd without removing the '/*' and '*/', nothing is executed, and no data is created.  Here's what the actual JSON data looks like:</p>
+<pre class="codeSample">
+/*
+[
+	{
+		&quot;name&quot;: &quot;Great Wall of China&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Hong Kong Skyline&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_24.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_24.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Pyramid of Giza&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Sphynx&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_07.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_07.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Eifel Tower&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_05.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_05.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Arc de Triomphe&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_10.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_10.jpg&quot;
+	}
+]
+*/
+</pre>
+<p>This is what the code to accomplish the preparsing looks like:</p>
+<pre class="codeSample">
+var dsExample2 = new Spry.Data.JSONDataSet(&quot;data/preparse-test-02.js&quot;, { preparseFunc: Example2PreparseFunc });
+
+function Example2PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/\/\*|\*\//g, &quot;&quot;);
+}
+</pre>
+<p>Which allows us to parse the JSON data and then display it:</p>
+<div spry:region="dsExample2">
+	<table>
+		<tr spry:repeat="dsExample2">
+			<td valign="middle" align="center"><img src="{thumbnail}" alt="{name}" /></td>
+			<td><a href="{photo}">{name}</a></td>
+		</tr>
+	</table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4>Example 3 </h4>
+<p>This example loads some JSON that is wrapped in a function call. The idea here is that the client must remove the &quot;results(&quot; and &quot;)&quot; before doing the eval, or it will fail the JSON.org parser test.  Here's what the actual JSON data looks like:</p>
+<pre class="codeSample">
+results([
+	{
+		&quot;name&quot;: &quot;Great Wall of China&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Hong Kong Skyline&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/china/images/china_24.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_24.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Pyramid of Giza&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_01.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_01.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Great Sphynx&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_07.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_07.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Eifel Tower&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_05.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_05.jpg&quot;
+	},
+	{
+		&quot;name&quot;: &quot;Arc de Triomphe&quot;,
+		&quot;photo&quot;: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_10.jpg&quot;,
+		&quot;thumbnail&quot;: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_10.jpg&quot;
+	}
+])
+</pre>
+<p>This is what the code to accomplish the preparsing looks like:</p>
+<pre class="codeSample">
+var dsExample3 = new Spry.Data.JSONDataSet(&quot;data/preparse-test-03.js&quot;, { preparseFunc: Example3PreparseFunc });
+
+function Example3PreparseFunc(ds, jsonStr)
+{
+	return jsonStr.replace(/results\(|\)\s*$/g, &quot;&quot;);
+}
+</pre>
+<p>Which allows us to parse the JSON data and then display it</p>
+<div spry:region="dsExample3">
+	<table>
+		<tr spry:repeat="dsExample3">
+			<td valign="middle" align="center"><img src="{thumbnail}" alt="{name}" /></td>
+			<td><a href="{photo}">{name}</a></td>
+		</tr>
+	</table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4>Example 4 </h4>
+<p>This example demonstrates how to turn on the JSON.org parser within the JSONDataSet to avoid executing JSON that has embedded function calls:</p>
+<pre class="codeSample">
+[
+	{
+		name: &quot;Great Wall of China&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/china/images/china_01.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/<span class="hilighted">&quot;, foo: alert(&quot;This is code that was inserted but should never be executed!!&quot;), bar: &quot;</span>galleries/china/thumbnails/china_01.jpg&quot;
+	},
+	{!
+		name: &quot;Hong Kong Skyline&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/china/images/china_24.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/galleries/china/thumbnails/china_24.jpg&quot;
+	},
+	{
+		name: &quot;Great Pyramid of Giza&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_01.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_01.jpg&quot;
+	},
+	{
+		name: &quot;Great Sphynx&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/egypt/images/egypt_07.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/galleries/egypt/thumbnails/egypt_07.jpg&quot;
+	},
+	{
+		name: &quot;Eifel Tower&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_05.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_05.jpg&quot;
+	},
+	{
+		name: &quot;Arc de Triomphe&quot;,
+		photo: &quot;../../Spry/demos/gallery/galleries/paris/images/paris_10.jpg&quot;,
+		thumbnail: &quot;../../Spry/demos/gallery/galleries/paris/thumbnails/paris_10.jpg&quot;
+	}
+]
+</pre>
+<p>This is what the code to accomplish the preparsing looks like:</p>
+<pre class="codeSample">var dsExample4 = new Spry.Data.JSONDataSet(&quot;data/preparse-test-04.js&quot;, { useParser: true });
+</pre>
+<p>Which should result in an error being thrown because invalid JS was detected. The table below should not render anything:</p>
+<div spry:region="dsExample4">
+	<table>
+		<tr spry:repeat="dsExample4">
+			<td valign="middle" align="center"><img src="{thumbnail}" alt="{name}" /></td>
+			<td><a href="{photo}">{name}</a></td>
+		</tr>
+	</table>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h4>Example 5 </h4>
+<p>This example demonstrates that you can use both the preparsing hook and the JSON.org parser at the same time. It uses the JSON data from Example 1:</p>
+<pre class="codeSample">
+var dsExample5 = new Spry.Data.JSONDataSet(&quot;data/preparse-test-01.js&quot;, { useParser: true, preparseFunc: Example1PreparseFunc });
+</pre>
+<p>The data that is loaded in this example is passing through both the preparsing function and the JSON.org parser, and since it is valid JSON data, we are able to render the data:</p>
+<div spry:region="dsExample5">
+	<table>
+		<tr spry:repeat="dsExample5">
+			<td valign="middle" align="center"><img src="{thumbnail}" alt="{name}" /></td>
+			<td><a href="{photo}">{name}</a></td>
+		</tr>
+	</table>
+</div>
+<p>&nbsp;</p>
+<hr />
+</body>
+</html>

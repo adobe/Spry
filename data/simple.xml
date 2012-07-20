@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<products>
+	
+	<product>
+		<name>Adobe Photoshop CS2</name>
+		<category>Digital Imaging</category>
+		<boximage>images/photoshop.gif</boximage>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[The professional standard in desktop digital imaging]]></descheader>
+		<desc><![CDATA[Adobe&reg; Photoshop&reg; CS2 software, the professional image-editing standard and leader of the Photoshop digital imaging line, delivers more of what you crave. Groundbreaking creative tools help you achieve extraordinary results. Unprecedented adaptability lets you custom-fit Photoshop to the way you work. And with more efficient editing, processing, and file handling, there's no slowing you down.]]></desc>
+		<features>
+			<feature><![CDATA[Revolutionary Vanishing Point]]></feature>
+			<feature><![CDATA[Multiple layer control]]></feature>
+			<feature><![CDATA[Smart Objects]]></feature>
+			<feature><![CDATA[Multi-image digital camera raw file processing]]></feature>
+			<feature><![CDATA[Image Warp]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe Illustrator CS2</name>
+		<category>Print Publishing</category>
+		<boximage>images/illustrator.gif</boximage>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[Vector graphics reinvented]]></descheader>
+		<desc><![CDATA[Adobe&reg; Illustrator&reg; CS2 software gives you new creative freedom that lets you realize your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.]]></desc>
+		<features>
+			<feature><![CDATA[Live Trace]]></feature>
+			<feature><![CDATA[Live Paint]]></feature>
+			<feature><![CDATA[Control palette]]></feature>
+			<feature><![CDATA[Custom workspaces]]></feature>
+			<feature><![CDATA[Photoshop layer comp support]]></feature>
+		</features>
+	</product>
+	
+	<product>
+		<name>Adobe InDesign CS2</name>
+		<category>Print Publishing</category>
+		<boximage>images/indesign.gif</boximage>
+		<bkgimage></bkgimage>
+		<descheader><![CDATA[A new standard in professional layout and design]]></descheader>
+		<desc><![CDATA[Join the growing ranks of creative professionals discovering new levels of creative freedom and productivity using Adobe&reg; InDesign&reg; CS2 software. Tightly integrated with the Adobe applications you use most, InDesign CS2 delivers faster production workflows and a more fluid creative environment for designing professional layouts with sophisticated graphics and typography.]]></desc>
+		<features>
+			<feature><![CDATA[Object styles]]></feature>
+			<feature><![CDATA[Adobe Photoshop and Adobe PDF layer support]]></feature>
+			<feature><![CDATA[InDesign snippets]]></feature>
+			<feature><![CDATA[Adobe InCopy CS2 assignments]]></feature>
+			<feature><![CDATA[Save backwards to InDesign CS]]></feature>
+		</features>
+	</product>
+</products>
+

@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+.hover {
+	background-color: #6699FF;
+}
+
+#event {
+	width: 300px;
+	margin: 0px;
+	padding: 0px;
+	border-left: solid 1px #CCC;
+	border-right: solid 1px #999;
+	border-top: solid 1px #999;
+	border-bottom: solid 1px #CCC;
+}
+
+#event .name {
+	font: bold 0.7em sans-serif;
+	background-color: #DDD;
+	border-bottom: solid 1px #CCC;
+	margin: 0px;
+	padding: 2px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}

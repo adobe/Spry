@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>RSS Reader Demo Source</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="codesample">
+<div id="wrap">
+<h1>RSS Reader Demo Source<span class="return"><a href="../index.html">Back to Demos</a></span><span class="demo"><a href="index.html">Return to RSS Reader Demo</a></span> </h1>
+<div class="sample">
+<pre class="codeSample">
+<code>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. --&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="highlightedcode">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+&lt;title&gt;RSS Reader Demo&lt;/title&gt;
+&lt;link href=&quot;../../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;
+<span class="highlightedcode">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script type=&quot;text/javascript&quot;&gt;
+<span class="highlightedcode">var dsCategories = new Spry.Data.XMLDataSet(&quot;data/feeds.cfm&quot;, &quot;feeds/feed/category&quot;, { distinctOnLoad: true, sortOnLoad: &quot;category&quot; });
+var dsFeeds = new Spry.Data.XMLDataSet(&quot;data/feeds.cfm&quot;, &quot;feeds/feed&quot;, { sortOnLoad: &quot;title&quot; });
+var dsChannel = new Spry.Data.XMLDataSet(&quot;data/feeds.cfm?id={dsFeeds::@id}&quot;, &quot;//channel&quot;);
+var dsArticles = new Spry.Data.XMLDataSet(&quot;data/feeds.cfm?id={dsFeeds::@id}&quot;, &quot;//item&quot;);
+dsArticles.setColumnType(&quot;pubDate&quot;, &quot;date&quot;);</span>
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;noscript&gt;&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;&lt;/noscript&gt;
+
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;h1&gt;RSS Reader Demo&lt;span class=&quot;return&quot;&gt;&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;source&quot;&gt;&lt;a href=&quot;source.html&quot;&gt;View Source &lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;
+  &lt;div id=&quot;LeftColumn&quot;&gt;
+    &lt;div id=&quot;RSSFeedsTitle&quot;&gt;
+      &lt;h2&gt;Feeds&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;RSSFeedsList&quot; <span class="highlightedcode">spry:region=&quot;dsCategories dsFeeds&quot;</span> class=&quot;<span class="highlightedcode">SpryHiddenRegion</span>&quot;&gt;
+
+      &lt;div <span class="highlightedcode">spry:repeat=&quot;dsCategories&quot;</span> class=&quot;ListBoxItemGroup&quot;&gt;
+        &lt;div class=&quot;ListBoxItemTitle&quot;&gt;<span class="highlightedcode">{dsCategories::category}</span>&lt;/div&gt;
+        &lt;div <span class="highlightedcode">spry:repeat=&quot;dsFeeds&quot;</span> class=&quot;ListBoxItem&quot; <span class="highlightedcode">spry:test=&quot;'{dsCategories::category}' == '{dsFeeds::category}'&quot;</span> <span class="highlightedcode">spry:setrow=&quot;dsFeeds&quot;</span> <span class="highlightedcode">spry:selectgroup=&quot;feedsList&quot;</span> <span class="highlightedcode">spry:select=&quot;SelectedListBoxItem&quot;</span> <span class="highlightedcode">spry:hover=&quot;ListBoxItemHover&quot;</span>&gt;<span class="highlightedcode">{dsFeeds::title}</span>&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;RightColumn&quot;&gt;
+    &lt;div id=&quot;articles&quot;&gt;
+      &lt;div id=&quot;columnHeadings&quot;&gt;
+        &lt;div id=&quot;SubjectTitle&quot; onclick=&quot;<span class="highlightedcode">dsArticles.sort('title', 'toggle');</span>&quot;&gt;Subject&lt;/div&gt;
+        &lt;div id=&quot;PubDateTitle&quot; onclick=&quot;<span class="highlightedcode">dsArticles.sort('pubDate', 'toggle');</span>&quot;&gt;Published Date&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;RSSItemsList&quot; <span class="highlightedcode">spry:region=&quot;dsArticles&quot;</span> class=&quot;<span class="highlightedcode">SpryHiddenRegion</span>&quot;&gt;
+        &lt;div <span class="highlightedcode">spry:state=&quot;ready&quot;</span> <span class="highlightedcode">spry:repeat=&quot;dsArticles&quot;</span>&gt;
+          &lt;div <span class="highlightedcode">spry:choose=&quot;spry:choose&quot;</span>&gt;
+
+            &lt;div <span class="highlightedcode">spry:when=&quot;{ds_RowNumber}%2 != 0&quot;</span> class=&quot;EvenRow RSSItemListRow&quot; onclick=&quot;document.getElementById('RSSItemContentIFrame').src='<span class="highlightedcode">{link}</span>';&quot; <span class="highlightedcode">spry:selectgroup=&quot;itemsList&quot;</span> <span class="highlightedcode">spry:select=&quot;SelectedListBoxItem&quot;</span> <span class="highlightedcode">spry:hover=&quot;ListBoxItemHover&quot;</span>&gt;
+              &lt;div class=&quot;SubjectColumn&quot;&gt;<span class="highlightedcode">{title}</span>&lt;/div&gt;
+              &lt;div class=&quot;PubDateColumn&quot;&gt;<span class="highlightedcode">{pubDate}</span>&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div <span class="highlightedcode">spry:default=&quot;spry:default&quot;</span> class=&quot;RSSItemListRow&quot; onclick=&quot;document.getElementById('RSSItemContentIFrame').src='<span class="highlightedcode">{link}</span>';&quot; <span class="highlightedcode">spry:selectgroup=&quot;itemsList&quot;</span> <span class="highlightedcode">spry:select=&quot;SelectedListBoxItem&quot;</span> <span class="highlightedcode">spry:hover=&quot;ListBoxItemHover&quot;</span>&gt;
+              &lt;div class=&quot;SubjectColumn&quot;&gt;<span class="highlightedcode">{title}</span>&lt;/div&gt;
+              &lt;div class=&quot;PubDateColumn&quot;&gt;<span class="highlightedcode">{pubDate}</span>&lt;/div&gt;
+
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;table <span class="highlightedcode">spry:state=&quot;ready&quot;</span> <span class="highlightedcode">spry:if=&quot;{ds_RowCount} == 0&quot;</span> class=&quot;RSSItemListFeedback&quot;&gt;&lt;tr&gt;&lt;td valign=&quot;middle&quot;&gt;Feed contains no items.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;table <span class="highlightedcode">spry:state=&quot;loading&quot;</span> class=&quot;RSSItemListFeedback&quot;&gt;&lt;tr&gt;&lt;td class=&quot;RSSItemListLoading&quot; valign=&quot;middle&quot;&gt;Loading feed items ...&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;table <span class="highlightedcode">spry:state=&quot;error&quot;</span> class=&quot;RSSItemListFeedback&quot;&gt;&lt;tr&gt;&lt;td valign=&quot;middle&quot;&gt;Failed to load feed items!&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;RSSItemContent&quot;&gt;
+      &lt;iframe id=&quot;RSSItemContentIFrame&quot; src=&quot;&quot;&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ClearAll&quot;&gt;&amp;nbsp;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Spry Effects Fade Sample</title>
+	<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+	<script  src="../../includes/SpryEffects.js" type="text/javascript" > </script>
+	<style type="text/css">
+		.demoDiv{
+			background-color: #CCC; 
+			height: 150px; 
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+<h3>Spry Fade Effect Samples</h3>
+<hr />
+<!--
+
+		Example 1: The default behaviour for Fade
+
+-->
+<p>
+	The default Fade effect behaviour will increase the opacity of a given 
+	element from 0 to 100 in 1 second.</p>
+
+<form method="get" action="fade_sample.html">
+	<input type="button" onclick="firstFade.start();" value="Fade Example 1" />
+</form>
+
+<br />
+
+<div class="demoDiv" id="first">
+	<h4>Example 1</h4>
+	<p class="sampleText">
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no 
+			sea takimata sanctus est Lorem ipsum dolor<br />
+			sit amet.		</p>
+</div>
+
+<script type="text/javascript">
+	var firstFade = new Spry.Effect.Fade('first');
+</script>
+
+<hr />
+<!--
+
+		Example 2: The default behaviour for Fade
+
+		-->
+<p><strong>Toggle</strong></p>
+<p>Toggle will reverse the effect on the subsequent click. Toggle is an option in the constructor.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var secondFade = new Spry.Effect.Fade('second', {toggle:true});
+&lt;/script&gt;</pre>
+<form method="get" action="fade_sample.html">
+	<input type="button" onclick="secondFade.start();" value="Fade Example 2" />
+</form>
+
+<br />
+
+<div class="demoDiv" id="second">
+	<h4>Example 2</h4>
+	<p class="sampleText"> 
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+    justo duo dolores et ea rebum. Stet clita kasd gubergren, no 
+		sea takimata sanctus est Lorem ipsum dolor sit amet.	</p>
+</div>
+
+<script type="text/javascript">
+	var secondFade = new Spry.Effect.Fade('second', {toggle:true});
+</script>
+
+<hr />
+<!--
+
+		Example 3: Custom from:, to:, duration options for Fade
+
+-->
+
+<p><strong>From, To, Duration</strong></p>
+<p>You can set the &quot;From&quot; and &quot;To&quot; opacity levels and the duration of the effect by setting options in the constructor.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var thirdFade = new Spry.Effect.Fade('third', {duration: 2000, from: 100, to: 20, toggle:true});
+&lt;/script&gt;</pre>
+<form method="get" action="fade_sample.html">
+	<input type="button" onclick="thirdFade.start();" value="Fade Example 3" />
+	<input type="button" onclick="fourthFade.start();" value="Fade Example 4" style="margin-left:300px;"/>
+</form>
+
+<br />
+
+<div class="demoDiv" id="third" style="float:left;">
+	<h4>Example 3 - Fade Out from 100% to 20% in 2 seconds</h4>
+	<p class="sampleText"> 
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+    justo duo dolores et ea rebum. Stet clita kasd gubergren, no 
+		sea takimata sanctus est Lorem ipsum dolor sit amet.	</p>
+</div>
+
+<script type="text/javascript">
+	var thirdFade = new Spry.Effect.Fade('third', {duration: 2000, from: '100%', to: '20%', toggle:true});
+</script>
+
+<div class="demoDiv" id="fourth" style="opacity:0.3; filter:alpha(opacity=30); float:left; margin-left:20px;">
+	<h4>Example 4 - Fade In from 30 to 80 in 3 seconds</h4>
+	<p class="sampleText"> 
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+    justo duo dolores et ea rebum. Stet clita kasd gubergren, no 
+		sea takimata sanctus est Lorem ipsum dolor sit amet.	</p>
+</div>
+
+<script type="text/javascript">
+	var fourthFade = new Spry.Effect.Fade('fourth', {duration: 3000, from: 30, to: 80, toggle:true});
+</script>
+<br style="clear: both"/>
+
+<hr />
+<!--
+
+		Example 4: Custom setup and finish JavaScript functions call by the Fade example
+
+-->
+
+<p><strong>Setup, Finish functions </strong></p>
+<p>Setup and Finish functions allow you to run other functions before the effect begins and after the effect finishes. This is usefull when you try to modify other page elements while the effect is running, do other computation etc.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt; var animation_start = function(){
+   var button = document.getElementById('button_animation');
+   if (button){
+   button.disabled = true;
+   button.style.backgroundColor = 'white';
+   }
+   } var animation_stop = function(){
+   var button = document.getElementById('button_animation');
+   if (button){
+   button.disabled = false;
+   button.style.backgroundColor = '';
+   }
+   } 
+  var fifthFade = new Spry.Effect.Fade('fifth', {setup: animation_start, finish:animation_stop, duration: 1000, from: 100, to: 0, toggle:true});
+   &lt;/script&gt;</pre>
+<form method="get" action="fade_sample.html">
+	<input type="button" id="button_animation" onclick="fifthFade.start();" value="Fade Example 5" />
+</form>
+
+<br />
+
+<div class="demoDiv" id="fifth">
+	<h4>Example 5 - Setup and Finish functions</h4>
+	<p class="sampleText"> 
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+    justo duo dolores et ea rebum. Stet clita kasd gubergren, no 
+		sea takimata sanctus est Lorem ipsum dolor sit amet.	</p>
+</div>
+
+<script type="text/javascript">
+
+	var animation_start = function(){
+		var button = document.getElementById('button_animation');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = 'white';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('button_animation');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+
+	var fifthFade = new Spry.Effect.Fade('fifth', {setup: animation_start, finish:animation_stop, duration: 1000, from: 100, to: 0, toggle:true});
+</script>
+</body>
+</html>

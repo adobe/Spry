@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rating Widget Observers Sample</title>
+
+<script language="JavaScript" type="text/javascript" src="../../widgets/rating/SpryRating.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/rating/SpryRating.css" rel="stylesheet" type="text/css" />
+<!-- user-defined class for hover-->
+
+
+<style type="text/css">
+
+	.sample{
+			float:left;
+			margin-top:5px;		
+	}
+	.dmessage{
+		margin-top:25px; 
+		margin-left:-100px;
+		border:none !important;
+		}
+#dating.ratingContainer{
+	width:140px;
+	
+	}
+#dstatic.ratingContainer{
+	margin-left:30px;
+	height:100px;
+	width:300px;
+	border:1px solid green;
+
+}	
+.slabel{
+	margin-left:20px;
+	height:100px;
+	border:1px solid red;	
+	}
+td{
+	width:350px;
+	height:55px;
+	}
+</style>
+</head>
+<body>
+<h3>Spry Rating Widget Observers Sample</h3>
+<p>This page is an example of how to register an observer object on a Spry  Rating widget to allow some additional processing after the user clicks on the widget to vote. It requires PHP scripting enabled on the server.</p>
+<p>The sample shows how to &quot;connect&quot; two Rating widgets using the observers mechanism.</p>
+<p>The first Rating widget (from left side) allows you to vote and the second one is in read only mode. After the user votes on the first widget, the voted value is sent to the server and a notification is sent to the second widget, informing it that the first widget is in voted state. The second Rating widget will update it's value based on the server response. (We have an alert message that will display the server response value which is the current rated value minus one).</p>
+
+
+<table border="0">  
+<tr>
+<td>
+	<div>Give your rate:</div>
+
+
+<span id="rating" class="ratingContainer">
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>
+		    <span class="ratingButton"></span>	
+<input id="ratedElement" type="hidden" name="ratingField" value="1" />
+			<span class="ratingRatedMsg sample message">Thanks for your rating!</span>			
+</span>
+</td>
+
+
+  <td>
+   	  <div>Server returned value (widget in read-only mode): </div>
+
+
+    	<span id="static" class="ratingContainer">	
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+  
+	<input id="updatedElement" type="hidden" name="serverField" value="1" />
+	<span class="ratingReadOnlyErrMsg sample message">You can't vote here!</span>
+	</span>
+    </td>
+  </tr>
+</table>
+	
+<script type="text/javascript">
+
+		var firstRating = new Spry.Widget.Rating("rating", {saveUrl: 'SpryRating.php?id=rating&val=@@ratingValue@@'});
+		var secondRating = new Spry.Widget.Rating("static", {ratingValueElement: 'updatedElement', readOnly: true});
+	
+	var myObs = {};
+	firstRating.addObserver(myObs);
+	
+	
+	myObs.onServerUpdate = function(obj, req){
+		
+		var returnVal = parseFloat(req.xhRequest.responseText);
+		alert('Server computed value: ' + returnVal);
+		if (!isNaN(returnVal)){		
+			secondRating.setValue(returnVal, true);
+		}
+	}
+	
+	
+</script>
+</body>
+</html>

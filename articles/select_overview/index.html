@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Validation Select Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Working with the Validation Select widget</h2>
+<!-- -->
+<h3>Validation Select widget overview and structure</h3>
+<p>A Spry Validation Select widget is a drop-down menu that displays valid or 
+  invalid states when the user makes a selection. For example, you can insert a 
+  Validation Select widget that contains a list of states, grouped into different 
+  sections and divided by horizontal lines. If the user accidentally selects one 
+  of the divider lines as opposed to one of the states, the Validation Select 
+  widget returns a message to the user stating that their selection is 
+  invalid.</p>
+<p>A version of this file is available on <a href="http://livedocs.adobe.com/en_US/Spry/SDG/index.html" target="_blank">Adobe LiveDocs</a>. Please check it for comments and updates. </p>
+<p>The following example shows an expanded Validation Select widget, as well as 
+  the collapsed form of the widget in various states.</p>
+	<p><img class="smallImage" id="vailidationselect" alt="" src="SelectDetails.gif" /></p>
+<dl>
+  <dt>A. </dt>
+  <dd>Validation Select widget in focus </dd>
+  <dt>B. </dt>
+  <dd>Select widget, valid state </dd>
+  <dt>C. </dt>
+  <dd>Select widget, required state </dd>
+  <dt>D. </dt>
+  <dd>Select widget, invalid state </dd>
+</dl>
+<p>The Validation Select widget includes a number of states (for example, valid, 
+  invalid, required value, and so on). You can alter the properties of these 
+  states by using the Property inspector, depending on the desired validation 
+  results. A Validation Select widget can validate at various points (for example, 
+  when the user clicks outside the widget, as the user makes selections, or when 
+  the user tries to submit the form).</p>
+<dl>
+  <dt>Initial state </dt>
+  <dd> When the page loads in the browser, or when the user resets the 
+    form.<br />
+  </dd>
+  <dt>Focus state </dt>
+  <dd> When the user clicks the widget.<br />
+  </dd>
+  <dt>Valid state </dt>
+  <dd> When the user selects a valid item, and the form can be submitted.<br />
+  </dd>
+  <dt>Invalid state </dt>
+  <dd> When the user selects an invalid item.<br />
+  </dd>
+  <dt>Required state </dt>
+  <dd> When the user fails to select a valid item. <br />
+  </dd>
+</dl>
+<p>Whenever a Validation Select widget enters one of the preceding states 
+  through user interaction, the Spry framework logic applies a specific CSS class 
+  to the HTML container for the widget at run time. For example, if a user tries 
+  to submit a form, but did not select an item from the menu, Spry applies a class 
+  to the widget so that it displays the error message, &ldquo;Please select an item.&rdquo; 
+  The rules that control the style and display states of error messages reside in 
+  the SpryValidationSelect.css file that accompanies the widget.</p>
+<p>The default HTML code for the Validation Select widget, usually inside of a 
+  form, is made up of a container span tag that 
+  surrounds the select tag of the text area. The HTML 
+  code for the Validation Select widget also includes script tags in the head of the document and after the 
+  widget&rsquo;s HTML code.</p>
+<p>The HTML code for the Validation Select widget also includes script tags in the head of the document and after the 
+  widget&rsquo;s HTML code. The script tag in the head of the 
+  document defines all of the JavaScript functions related to the Select widget. 
+  The script tag after the widget code creates a 
+  JavaScript object that makes the widget interactive.</p>
+<p>Following is the HTML code for a Validation Select widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Select JavaScript library --&gt; 
+&lt;script src=&quot;SpryAssets/SpryValidationSelect.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href=&quot;SpryAssets/SpryValidationSelect.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id=&quot;form1&quot; name=&quot;form1&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+		&lt;!-- Create the select widget and assign a unique id--&gt;
+		&lt;span id=&quot;spryselect1&quot;&gt;
+		&lt;select name=&quot;select1&quot; id=&quot;select1&quot;&gt;
+			&lt;!-- Add items and values to the widget--&gt;
+			&lt;option&gt;--Please select an item--&lt;/option&gt;
+			&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+			&lt;option value=&quot;item2&quot;&gt;Item 2&lt;/option&gt;
+			&lt;option value=&quot;-1&quot;&gt;Invalid Item&lt;/option&gt;
+			&lt;option value=&quot;item3&quot;&gt;Item 3&lt;/option&gt;
+			&lt;option&gt;Empty Item&lt;/option&gt;
+		&lt;/select&gt;
+		&lt;!--Add an error message--&gt;
+		&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select an item.&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;!-- Initialize the Validation Select widget object--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var spryselect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the new JavaScript operator initializes the Select widget object, and transforms the span content with the ID of spryselect1 from static HTML code into an interactive page 
+  element.</p>
+<p>The span tag for the error message in the widget 
+  has a CSS class applied to it. This class (which is set to display:none; by default), controls the style and visibility 
+  of the error message, and exists in the accompanying SpryValidationSelect.css 
+  file. When the widget enters different states as a result of user interaction, 
+  Spry places different classes on the container for the widget, which in turn 
+  affects the error-message class.</p>
+<p>You can add other error messages to a Validation Select widget by creating a span tag (or any other type of tag) to hold the text 
+  of the error message. Then, by applying a CSS class to it, you can hide or show 
+  the message, depending on the widget state.</p>
+<p>You can change the default appearance of the Validation Select widget's state 
+  by editing the corresponding CSS rule in the SpryValidationSelect.css file. For 
+  example, to change the background color for a state, edit the corresponding rule 
+  or add a new rule (if it&rsquo;s not already present) in the style sheet.</p>
+<h4>Variation on tags used for Select widget structure</h4>
+<p>In the preceding example, span tags create the 
+  structure for the widget:</p>
+<pre>Container SPAN
+	SELECT tag
+	Error message SPAN</pre>
+<p>You can, however, use almost any container tag to create the widget.</p>
+<pre>Container DIV
+	SELECT tag
+	Error Message P</pre>
+<p>Spry uses the tag ID (not the tag itself) to create the widget. Spry also 
+  displays error messages using CSS code that is indifferent to the actual tag 
+  used to contain the error message.</p>
+<p>The ID passed into the widget constructor identifies a specific HTML element. 
+  The constructor finds this element and looks inside the identified container for 
+  a corresponding select tag. If the ID passed to the 
+  constructor is the ID of the select tag (rather than a 
+  container tag), the constructor attaches validation triggers directly to the select tag. If no container tag is present, however, 
+  the widget cannot display error messages, and different validation states will 
+  only alter the appearance of the select tag element 
+  (for example, its background color).</p>
+	<p><span class="notetitle">Note: </span>Multiple select tags do not work inside the same HTML widget 
+	container. Each select list should be its own widget.</p>
+<!-- -->
+<h3>CSS code for the Validation Select widget</h3>
+<p>The SpryValidationSelect.css file contains the rules that style the 
+  Validation Select widget and its error messages. You can edit these rules to 
+  style the look and feel of the widget and error messages. The names of the rules 
+  in the CSS file correspond to the names of the classes specified in the widget&rsquo;s 
+  HTML code.</p>
+<p>The following is the CSS code for the SpryValidationSelect.css file:</p>
+<pre>/*Validation Select styling classes*/
+.selectRequiredMsg, .selectInvalidMsg {
+	display: none;
+}
+.selectRequiredState .selectRequiredMsg,
+.selectInvalidState .selectInvalidMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}
+.selectValidState select, select.selectValidState {
+	background-color: #B8F5B1;
+}
+select.selectRequiredState, .selectRequiredState select,
+select.selectInvalidState, .selectInvalidState select {
+	background-color: #FF9F9F;
+}
+.selectFocusState select, select.selectFocusState {
+	background-color: #FFFFCC;
+}</pre>
+<p>The SpryValidationSelect.css file also contains extensive comments, 
+  explaining the code and the purpose for certain rules. For further information, 
+  see the comments in the file.</p>
+<!-- -->
+<h3>Insert the Validation Select widget</h3>
+<ol>
+  <li><span>Locate the SpryValidationSelect.js file and add it 
+    to your web site. You can find the SpryValidationSelect.js file in the 
+    widgets/selectvalidation directory, located in the Spry directory that you 
+    downloaded from Adobe Labs. </span>
+      <p>For example, create a folder called <dfn>SpryAssets</dfn> in the 
+        root folder of your web site, and upload the SpryValidationSelect.js file to 
+        it. The SpryValidationSelect.js file contains all of the information necessary 
+        for making the Select widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryValidationSelect.css file and add it 
+    to your web site. You might choose to add it to the main directory, a 
+    SpryAssets directory, or to a CSS directory if you have one.</span> </li>
+  <li><span>Open the web page to add the Select widget to and 
+    link the SpryValidationSelect.js file to the page by inserting the following script tag in the page&rsquo;s head tag:</span>
+      <pre>&lt;script src=&quot;SpryAssets/SpryValidationSelect.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+      <p>Make sure that the file path to the SpryValidationSelect.js file is 
+        correct. This path varies depending on where you&rsquo;ve placed the file in your 
+        web site.</p>
+  </li>
+  <li><span>Link the SpryValidationSelect.css file to your web 
+    page by inserting the following link tag in the 
+    page&rsquo;s head tag:</span>
+      <pre>&lt;link href=&quot;SpryAssets/SpryValidationSelect.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+      <p>Make sure that the file path to the SpryValidationSelect.css file is 
+        correct. This path varies depending on where you&rsquo;ve placed the file in your 
+        web site.</p>
+  </li>
+  <li><span>Add a select list to the page and give it a name 
+    and a unique ID:</span>
+      <pre>&lt;select name=&quot;myselect&quot; id=&quot;myselect&quot;&gt;&lt;/select&gt;</pre>
+  </li>
+  <li><span>Add options to the select list, as follows:</span>
+      <pre>&lt;select name=&quot;myselect&quot; id=&quot;myselect&quot;&gt;
+	&lt;option&gt;--Please select an item--&lt;/option&gt;
+	&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+	&lt;option value=&quot;item2&quot;&gt;Item 2&lt;/option&gt;
+	&lt;option value=&quot;-1&quot;&gt;Invalid Item&lt;/option&gt;
+	&lt;option value=&quot;item3&quot;&gt;Item 3&lt;/option&gt;
+	&lt;option&gt;Empty Item&lt;/option&gt;
+&lt;/select&gt;</pre>
+  </li>
+  <li><span>To add a container around the select list, insert span tags around the select tags, and assign a unique ID to the widget, as 
+    follows:</span>
+      <pre>&lt;span id=&quot;spryselect1&quot;&gt;
+	&lt;select name=&quot;myselect&quot; id=&quot;myselect&quot;&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+		&lt;option value=&quot;item2&quot;&gt;Item 2&lt;/option&gt;
+		&lt;option value=&quot;-1&quot;&gt;Invalid Item&lt;/option&gt;
+		&lt;option value=&quot;item3&quot;&gt;Item 3&lt;/option&gt;
+		&lt;option&gt;Empty Item&lt;/option&gt;
+	&lt;/select&gt;
+&lt;/span&gt; </pre>
+  </li>
+  <li><span>To initialize the Spry validation select object, 
+    insert the following script block after the HTML 
+    code for the widget:</span>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var spryselect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;);
+&lt;/script&gt; </pre>
+      <p>The new JavaScript operator initializes the 
+        Select widget object, and transforms the span tag 
+        content with the ID of spryselect1 from static HTML 
+        code into an interactive select object. The Spry.Widget.ValidationSelect method is a constructor in 
+        the Spry framework that creates select objects. The information necessary to 
+        initialize the object is contained in the SpryValidationSelect.js JavaScript 
+        library that you linked to at the beginning of this procedure.</p>
+    <p>Make sure that the ID of the select list&rsquo;s container span tag matches the ID parameter you specified in the 
+      Spry.Widgets.ValidationSelect method. Make sure that the JavaScript call comes 
+      after the HTML code for the widget.</p>
+  </li>
+  <li><span>Save the page.</span>
+      <p>The complete code looks as follows:</p>
+    <pre>&lt;head&gt; 
+... 
+&lt;script src=&quot;SpryAssets/SpryValidationSelect.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;link href=&quot;SpryAssets/SpryValidationSelect.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;span id=&quot;spryselect1&quot;&gt;
+		&lt;select name=&quot;myselect&quot; id=&quot;myselect&quot;&gt;
+			&lt;option&gt;--Please select an item--&lt;/option&gt;
+			&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+			&lt;option value=&quot;item2&quot;&gt;Item 2&lt;/option&gt;
+			&lt;option value=&quot;-1&quot;&gt;Invalid Item&lt;/option&gt;
+			&lt;option value=&quot;item3&quot;&gt;Item 3&lt;/option&gt;
+			&lt;option&gt;Empty Item&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/span&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var spryselect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+  </li>
+</ol>
+<!-- -->
+<h3>Display error messages</h3>
+<p>&nbsp;Create a span tag (or any other type of tag) to display the error 
+        message, and assign the appropriate class to it, as follows:</p>
+<pre>&lt;span id=&quot;spryselect1&quot;&gt;
+	&lt;select name=&quot;select1&quot; id=&quot;select1&quot;&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+		. . .
+	&lt;/select&gt;
+	&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select an item.&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>The selectRequiredMsg rule is located in the 
+  SpryValidationSelect.css file, and is set to display:none by default. When the widget enters a different 
+  state through user interaction, Spry applies the appropriate class&mdash;the state 
+  class&mdash;to the container of the widget. This action affects the error-message 
+  class, and by extension, the appearance of the error message.</p>
+<p>For example, the following shows a portion of the CSS rule from the 
+  SpryValidationSelect.css file:</p>
+<pre>.selectRequiredMsg, .selectInvalidMsg {
+	display: none;
+}
+.selectRequiredState .selectRequiredMsg,
+.selectInvalidState .selectInvalidMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}</pre>
+<p>By default, no state class is applied to the widget container, so that when 
+  the page loads in a browser, the error message text in the preceding HTML code 
+  example only has the .selectRequiredMsg class applied 
+  to it. (The property and value pair for this rule is display:none, so the message remains hidden.) If the user 
+  fails to make a selection, however, Spry applies the appropriate class to the 
+  widget container, as follows:</p>
+<pre>&lt;span id=&quot;spryselect1&quot; class=&quot;selectRequiredState&quot;&gt;
+	&lt;select name=&quot;select1&quot; id=&quot;select1&quot;&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value=&quot;item1&quot;&gt;Item 1&lt;/option&gt;
+		. . .
+	&lt;/select&gt;
+	&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select an item.&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>In the preceding CSS code, the state rule with the contextual selector .selectRequiredState . selectRequiredMsg overrides the 
+  default error-message rule responsible for hiding the error-message text. Thus, 
+  when Spry applies the state class to the widget container, the state rule 
+  determines the appearance of the widget, and displays the error message inline 
+  in red with a 1-pixel solid border.</p>
+<p>Following is a list of default error-message classes and their descriptions. 
+  You can change these classes and rename them. If you do so, don&rsquo;t forget to 
+  change them in the contextual selector also.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Error message class</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>.selectRequiredMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the required 
+        state</p></td>
+    </tr>
+    <tr>
+      <td><p>.selectInvalidMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the invalid 
+        state</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><span class="notetitle">Note: </span>You cannot rename 
+          state-related class names because they are hard-coded as part of the Spry 
+         framework.</p>
+<!-- -->
+<h3>Specify when validation occurs</h3>
+<p>By default, the Validation Select widget validates when the user clicks the 
+  submit button. You can, however, set two other options: blur or change. The validateOn:[&quot;blur&quot;] parameter causes the widget to validate 
+  whenever the user clicks outside the select list. The validateOn:[&quot;change&quot;] parameter causes the widget to 
+  validate as the user makes selections.</p>
+<p>&nbsp;To specify when 
+        validation occurs, add a validateOn parameter to the 
+        constructor as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var spryselect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;, {validateOn:[&quot;blur&quot;]});
+&lt;/script&gt;</pre>
+<p>As a convenience, you can discard the brackets if your validateOn parameter contains a single value (for example, validateOn: &quot;blur&quot;). If the parameter contains both 
+  values, however (validateOn:[&quot;blur&quot;, &quot;change&quot;]), 
+  include brackets in the syntax.</p>
+<!-- -->
+<h3>Change required status of a select list</h3>
+<p>By default, Validation Select widgets require the user to make a selection 
+  before submitting the form. You can, however, make selections optional for the 
+  user.</p>
+<p>&nbsp;To change the required 
+        status of a select list, add the isRequired property 
+        to the constructor and set its value to false, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var selectwidget1 = new Spry.Widget.ValidationSelect(&quot;selectwidget1&quot;, {isRequired:false});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Specify an invalid value</h3>
+<p>You can specify a value that registers as invalid if the user selects a menu 
+  item that is associated with that value. For example, if you specify -1 as an 
+  invalid value, and you assign the value to an option tag, the widget returns an 
+  error message if the user selects that menu item.</p>
+<ol>
+  <li><span>Assign a negative value to an option tag, for 
+    example:</span>
+      <pre>&lt;option value=&quot;-1&quot;&gt; ------------------- &lt;/option&gt;</pre>
+  </li>
+  <li><span>Add the invalid option and the value you specified 
+    to the widget constructor, as follows:</span>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var selectwidget1 = new Spry.Widget.ValidationSelect(&quot;selectwidget1&quot;, {invalidValue:&quot;-1&quot;});
+&lt;/script&gt;</pre>
+  </li>
+</ol>
+<!-- -->
+<h3>Customize the Validation Select widget</h3>
+<p>The SpryValidationSelect.css file provides the default styling for the 
+  Validation Select widget. You can, however, customize the widget by changing the 
+  appropriate CSS rule. The CSS rules in the SpryValidationSelect.css file use the 
+  same class names as the related elements in the widget&rsquo;s HTML code, so it&rsquo;s easy 
+  for you to know which CSS rules correspond to the widget and its error 
+  states.</p>
+<p>The SpryValidationSelect.css file should already be included in your website 
+  before you start customizing.</p>
+<!-- -->
+<h4>Style a Validation Select widget (general 
+  instructions)</h4>
+<ol>
+  <li><span>Open the SpryValidationSelect.css file.</span> </li>
+  <li><span>Locate the CSS rule for the part of the widget to change. For 
+    example, to change the background color of the Select widget&rsquo;s required state, 
+    edit the .selectRequiredState rule in the 
+    SpryValidationSelect.css file.</span> </li>
+  <li><span>Make your changes to the CSS rule and save the file.</span> </li>
+</ol>
+<p>The SpryValidationSelect.css file contains extensive comments, explaining the 
+  code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<!-- -->
+<h4>Style Validation Select widget error message text</h4>
+<p>By default, error messages for the Validation Select widget appear in red 
+  with a 1-pixel solid border surrounding the text.</p>
+<p>&nbsp;To change the text 
+          styling of Validation Select widget error messages, use the following table to 
+          locate the appropriate CSS rule, and then change the default properties, or add 
+          your own text styling properties and values.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Text to style</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Relevant properties to change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Error message text</p></td>
+      <td><p>.selectRequiredState .selectRequiredMsg, .selectInvalidState 
+        .selectInvalidMsg</p></td>
+      <td><p>color: #CC3333; border: 1px solid 
+        #CC3333;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Change Validation Select widget background colors</h4>
+<p>&nbsp;To change the background 
+          colors of the Validation Select widget in various states, use the following 
+          table to locate the appropriate CSS rule, and then change the default background 
+          color values.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Background color to change</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Relevant property to change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Background color of widget in valid state</p></td>
+      <td><p>.selectValidState select, select.selectValidState</p></td>
+      <td><p>background-color: #B8F5B1;</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of widget in invalid state</p></td>
+      <td><p>select.selectRequiredState, .selectRequiredState select, 
+        select.selectInvalidState, .selectInvalidState select</p></td>
+      <td><p>background-color: #FF9F9F;</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of widget in focus</p></td>
+      <td><p>.selectFocusState select, select.selectFocusState</p></td>
+      <td><p>background-color: 
+        #FFFFCC;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Customize state-related class names</h4>
+<p>While you can replace error message-related class names with class names of 
+  your own by changing the rules in the CSS and the class names in the HTML code, 
+  you cannot change or replace state-related class names, because the behaviors 
+  are hard-coded as part of the Spry framework. You can, however, override the 
+  default state-related class name with your own class name by specifying a new 
+  value in the third parameter of the widget constructor.</p>
+<p>&nbsp;To change widget 
+          state-related class names, add one of the overriding options to the third 
+          parameter of the widget constructor, and specify your custom class name, as 
+          follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var spryselect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;, {requiredClass:&quot;required&quot;});
+&lt;/script&gt;</pre>
+<p>The following table provides a list of options you can use to override 
+  built-in state-related class names.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>requiredClass</p></td>
+      <td><p>Overrides the &quot;selectRequiredState&quot; built-in value </p></td>
+    </tr>
+    <tr>
+      <td><p>validClass</p></td>
+      <td><p>Overrides the &quot;selectValidState&quot; built-in value </p></td>
+    </tr>
+    <tr>
+      <td><p>focusClass</p></td>
+      <td><p>Overrides the &quot;selectFocusState&quot; built-in value </p></td>
+    </tr>
+    <tr>
+      <td><p>invalidClass</p></td>
+      <td><p>Overrides the &quot;selectInvalidState&quot; built-in value </p></td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<p>Copyright &copy; 2006. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

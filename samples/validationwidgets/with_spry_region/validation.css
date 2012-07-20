@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+/* Overrides some of the default styles 
+   for widget error messages to include images
+----------------------------------------------- */
+input{
+	width:180px;
+}
+select{
+	width: 185px;
+	font-size:small;
+	border: 1px solid #b1b1bc;
+	background-color: #fff;
+	color: #000;	
+}
+input, select, textarea{
+	margin-left: 10px;
+}
+.validcheckbox{
+	float:left;
+	width:70px;
+}
+#checkboxes{
+	width: 650px;
+	height: 60px;
+}
+#checkboxes input{
+	margin-left:0px;
+	width:14px;
+	margin-left: 29px;
+}
+#checkboxes label{
+	display:block;
+	width: 68px;
+	text-align:center;
+	margin-left:0px;
+}
+#checkboxes .input_container{
+	width: 68px;
+}
+#radios input{
+	margin-left:0px;
+	width:14px;
+}
+#radios label{
+	width:14px;
+	margin-left: 29px;
+}
+.buttons{
+	margin-top:15px;
+}
+.buttons input{
+	width: 70px;
+	font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+	margin-left:2px;
+	padding-left:0px;
+}
+
+.formLabel{
+	width:150px;
+	margin-bottom:7px;
+	margin-top:7px;
+}
+#errors{
+	float:left;
+	height:25px;
+	margin-top:10px;
+}
+.checkboxRequiredState .formLabel, .checkboxMaxSelectionsState .formLabel,
+.selectRequiredState .formLabel, .selectInvalidState .formLabel,
+.textareaRequiredState .formLabel, .textareaMinCharsState .formLabel, .textareaMaxCharsState .formLabel,
+.textfieldRequiredState .formLabel, .textfieldInvalidFormatState .formLabel, .textfieldMinValueState .formLabel, .textfieldMaxValueState .formLabel, .textfieldMinCharsState .formLabel, .textfieldMaxCharsState .formLabel, .radioRequiredState .formLabel{
+	color: #CC3333;	
+}
+.ratingMovies{
+	margin-right:10px;
+	float:right;
+	color:#FF3333;
+}
+#Countvalidta1{
+	width:17px;
+}
+#articles{
+	border: 1px solid #404040;
+	padding-left:12px;
+	height:600px;
+}
+.checkboxRequiredState .checkboxRequiredMsg, .checkboxMaxSelectionsState .checkboxMaxSelectionsMsg, .selectRequiredState .selectRequiredMsg, .textareaRequiredState .textareaRequiredMsg, .textareaMinCharsState .textareaMinCharsMsg, .textareaMaxCharsState .textareaMaxCharsMsg, .textfieldRequiredState .textfieldRequiredMsg, .textfieldInvalidFormatState .textfieldInvalidFormatMsg, .radioRequiredState .radioRequiredMsg{
+	border:0px;	
+	padding-left:22px;
+	margin-left:4px;
+	background-image:url(images/error.gif);
+	background-repeat:no-repeat;
+}
+
+.validMsg{
+	width:16px;
+	height:16px;
+	margin-left:6px;
+	margin-top:-2px;
+	display:none;
+}
+
+.textfieldValidState .validMsg, .textareaValidState .validMsg, .selectValidState .validMsg, .checkboxValidState .validMsg, .radioValidState .validMsg{
+	display:inline;
+}
+
+#okmessage{
+	margin-top:10px;
+	color: green;
+	display:none;
+}
+
+#CentralColumn {
+	margin:0;
+	padding:0;
+	height: 600px;
+	float: left;
+	width: 700px;
+}

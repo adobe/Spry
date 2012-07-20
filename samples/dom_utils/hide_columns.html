@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Manipulating Tables with Element Selector</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.hideIt{display:none;}
+.red{background-color:#FF0000}
+</style>
+<script language="javascript" type="text/javascript" src="../../includes/SpryDOMUtils.js"></script>
+<script language="javascript" type="text/javascript">
+function changeText(theButton,startText,endText){
+   var curButton = Spry.$(theButton);
+     if(curButton.value == startText)
+	  {
+	  curButton.value = endText;
+	  }
+	  else
+	  {
+	  curButton.value = startText;
+	  }
+}
+function hideIt(){
+	Spry.$$("#first th:nth-child(3),#first td:nth-child(3)").toggleClassName("hideIt");
+	changeText("button","Hide Name","Show Name");
+}
+function hideAll(){
+	Spry.$$("#second th:nth-child(n+5),#second td:nth-child(n+5)").toggleClassName("hideIt");
+	changeText("button2","Hide Detail","Show Detail");
+}
+function hideRows(){
+	Spry.$$("#third tr:nth-child(n+7) td").toggleClassName("hideIt");
+	changeText("button3","Hide Rows","Show All Rows");
+}
+function checkerboard(){
+	var rowArray = Spry.$$("tr:nth-child(2n+1)");
+	if(Spry.Utils.hasClassName(rowArray[1],"grayBG")){
+	  Spry.$$("tr:nth-child(2n+1)").removeClassName("grayBG");
+	  Spry.$$("tr:nth-child(2n) td:nth-child(2n), tr:nth-child(2n+1) td:nth-child(2n+1)").addClassName("red");
+	  Spry.$$("table").setAttribute("border","2");
+	  Spry.$$("th").setStyle("color:white;background-color:black;");
+	  }
+	else{
+	  Spry.$$("tr:nth-child(2n) td:nth-child(2n), tr:nth-child(2n+1) td:nth-child(2n+1)").removeClassName("red");
+	  Spry.$$("tr:nth-child(2n+1)").addClassName("grayBG");
+	  Spry.$$("table").setAttribute("border","0");
+	 	  Spry.$$("th").setStyle("color:black;background-color:#CCCCCC;");
+	  }
+}
+Spry.Utils.addLoadListener(function(){
+	hideRows();								
+	Spry.$$("tr:nth-child(2n+1)").addClassName("grayBG");
+	});
+</script>
+</head>
+
+<body>
+<h3>Hiding Table Columns with the Spry Element Selector</h3>
+<p>This sample shows how to use the Element Selector to select parts of a table and manipulate them</p>
+<p>Note that Spry.$ (used in the changeText function) works like Prototype's &quot;getElementById&quot; convention and Spry.$$ is the Element Selector syntax.</p>
+<p>Here are some samples. First:</p>
+<p>In these samples, we use the Element Selector to do the alternating row colors.</p>
+<pre> Spry.$$(&quot;tr:nth-child(<span class="highlited">2n+1</span>)&quot;).addClassName(&quot;grayBG&quot;);</pre>
+<p>This selector adds the gray background to every even numbered row(2n), but doesn't count the first(+1), &lt;th&gt;, row. There is a sample on alternating row colors <a href="altColorRows.html">here</a> and <a href="table_row_colors.html">here</a>.</p>
+<p>This function is fired off after the page loads using the Spry.Utils.addLoadListener function. This activates the Selector after the page is loaded. We also added a 'hideRows' function call in there so the some table rows were hidden by default in the third sample.</p>
+<hr />
+<h4>Hide a single column</h4>
+<p>The &quot;Hide Name&quot; button triggers a function that is used to hide the 'Name' column. Using the 'nth-child' psuedo-selector, we specify the column we want to hide, in this case, the 3rd column. The selector should be read as &quot;Select all &lt;th&gt; or &lt;td&gt; elements that are the 3rd child   element of their parent, and toggle the 'hideIt' class name. Toggling will add the class if it is not there and remove it if it is. </p>
+<p> Note that we have to specify both the &lt;th&gt; and &lt;td&gt; tags, since the first row uses &lt;th&gt;s We also specify  '#first' so that we only affect the  table with an id of 'first'. If we didn't add that to the selector, it would affect all the tables on the page.</p>
+<pre>
+Spry.$$(&quot;#first th:nth-child(3),#first td:nth-child(3)&quot;).toggleClassName(&quot;hideIt&quot;);</pre>
+<p>Then we use a function to toggle the button text.</p>
+<p>
+  <input type="button" name="button" id="button" value="Hide Name" onclick="hideIt();" />
+</p>
+<table id="first">
+  <tr>
+    <th>No</th>
+    <th>Atomicweight</th>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>MP</th>
+    <th>BP</th>
+    <th>Density</th>
+    
+    <th>DiscoveryYear</th>
+    <th>Group</th>
+    <th>Period</th>
+    <th>Electron_configuration</th>
+    <th>Element_Type</th>
+  </tr>
+  <tr style="">
+    <td>1</td>
+    <td>1.0079</td>
+    <td>Hydrogen</td>
+    <td>H</td>
+    <td>-259</td>
+    <td>-253</td>
+    <td>0.09</td>
+    
+    <td>1776</td>
+    <td>1</td>
+    <td>one</td>
+    <td>1s1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>4.0026</td>
+    <td>Helium</td>
+    <td>He</td>
+    <td>-272</td>
+    <td>-269</td>
+    <td></td>
+    
+    <td>1895</td>
+    <td>18</td>
+    <td>one</td>
+    <td>1s2</td>
+    <td>Inert</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>6.941</td>
+    <td>Lithium</td>
+    <td>Li</td>
+    <td>180</td>
+    <td>1347</td>
+    <td>0.53</td>
+    
+    <td>1817</td>
+    <td>1</td>
+    <td>two</td>
+    <td>[He] 2s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>9.0122</td>
+    <td>Beryllium</td>
+    <td>Be</td>
+    <td>1278</td>
+    <td>2970</td>
+    <td>1.85</td>
+    
+    <td>1797</td>
+    <td>2</td>
+    <td>two</td>
+    <td>[He] 2s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>10.811</td>
+    <td>Boron</td>
+    <td>B</td>
+    <td>2300</td>
+    <td>2550</td>
+    <td>2.34</td>
+    
+    <td>1808</td>
+    <td>13</td>
+    <td>two</td>
+    <td>[He] 2s2 2p1</td>
+    <td>NonMetal</td>
+  </tr>
+</table>
+<hr />
+<h4>Show/Hide more Detail</h4>
+<p>The &quot;Hide Columns&quot; button triggers a function that  hides all the columns except the first 4. </p>
+<pre>Spry.$$(&quot;#second th:nth-child(n+5),#second td:nth-child(n+5)&quot;).toggleClassName(&quot;hideIt&quot;);</pre>
+<p>
+  <input type="button" name="button2" id="button2" value="Hide Detail" onclick="hideAll();" />
+</p>
+<table id="second">
+  <tr>
+    <th>No</th>
+    <th>Atomicweight</th>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>MP</th>
+    <th> BP</th>
+    <th>Density</th>
+    <th>DiscoveryYear</th>
+    <th>Group</th>
+    <th>Period</th>
+    <th>Electron_configuration</th>
+    <th>Element_Type</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1.0079</td>
+    <td>Hydrogen</td>
+    <td>H</td>
+    <td>-259</td>
+    <td>-253</td>
+    <td>0.09</td>
+    <td>1776</td>
+    <td>1</td>
+    <td>one</td>
+    <td>1s1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>4.0026</td>
+    <td>Helium</td>
+    <td>He</td>
+    <td>-272</td>
+    <td>-269</td>
+    <td></td>
+    <td>1895</td>
+    <td>18</td>
+    <td>one</td>
+    <td>1s2</td>
+    <td>Inert</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>6.941</td>
+    <td>Lithium</td>
+    <td>Li</td>
+    <td>180</td>
+    <td>1347</td>
+    <td>0.53</td>
+    <td>1817</td>
+    <td>1</td>
+    <td>two</td>
+    <td>[He] 2s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>9.0122</td>
+    <td>Beryllium</td>
+    <td>Be</td>
+    <td>1278</td>
+    <td>2970</td>
+    <td>1.85</td>
+    <td>1797</td>
+    <td>2</td>
+    <td>two</td>
+    <td>[He] 2s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>10.811</td>
+    <td>Boron</td>
+    <td>B</td>
+    <td>2300</td>
+    <td>2550</td>
+    <td>2.34</td>
+    <td>1808</td>
+    <td>13</td>
+    <td>two</td>
+    <td>[He] 2s2 2p1</td>
+    <td>NonMetal</td>
+  </tr>
+</table>
+<hr />
+<h4>Show/Hide Table Rows</h4>
+<p>The &quot;Show All Rows&quot; button uses a function that  toggle a group of rows on and off.</p>
+<pre>
+ Spry.$$(&quot;tr:nth-child(n+7) td&quot;).toggleClassName(&quot;hideIt&quot;);
+</pre>
+<p>In this function, we want to grab the row and not the column. So we use &lt;tr&gt; as the tag to select and use the nth-child to specify a particular starting row number. Then we add 'td' to the selector because we need to add the class to the &lt;td&gt;. </p>
+<p> Notice that we are using 7 in the (n+7) notation. 'n' denotes every row and the +7 says 'start applying this rule on the 7th instance. 1 header row and 5 content rows is 6, so we want to start hiding the 7th row.</p>
+<p>
+  <input type="button" name="button2" id="button3" value="Hide Rows" onclick="hideRows();" />
+</p>
+<table id="third">
+  <tr>
+    <th>No</th>
+    <th>Atomicweight</th>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>MP</th>
+    <th> BP</th>
+    <th>Density</th>
+    <th>DiscoveryYear</th>
+    <th>Group</th>
+    <th>Period</th>
+    <th>Electron_configuration</th>
+    <th>Element_Type</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1.0079</td>
+    <td>Hydrogen</td>
+    <td>H</td>
+    <td>-259</td>
+    <td>-253</td>
+    <td>0.09</td>
+    <td>1776</td>
+    <td>1</td>
+    <td>one</td>
+    <td>1s1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>4.0026</td>
+    <td>Helium</td>
+    <td>He</td>
+    <td>-272</td>
+    <td>-269</td>
+    <td></td>
+    <td>1895</td>
+    <td>18</td>
+    <td>one</td>
+    <td>1s2</td>
+    <td>Inert</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>6.941</td>
+    <td>Lithium</td>
+    <td>Li</td>
+    <td>180</td>
+    <td>1347</td>
+    <td>0.53</td>
+    <td>1817</td>
+    <td>1</td>
+    <td>two</td>
+    <td>[He] 2s1</td>
+    <td>AlkaliMetals</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>9.0122</td>
+    <td>Beryllium</td>
+    <td>Be</td>
+    <td>1278</td>
+    <td>2970</td>
+    <td>1.85</td>
+    <td>1797</td>
+    <td>2</td>
+    <td>two</td>
+    <td>[He] 2s2</td>
+    <td>AlkaliEarthMetal</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>10.811</td>
+    <td>Boron</td>
+    <td>B</td>
+    <td>2300</td>
+    <td>2550</td>
+    <td>2.34</td>
+    <td>1808</td>
+    <td>13</td>
+    <td>two</td>
+    <td>[He] 2s2 2p1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>12.01</td>
+    <td>Carbon</td>
+    <td>C</td>
+    <td>3500</td>
+    <td>4827</td>
+    <td>2.26</td>
+    <td> ancient</td>
+    <td>14</td>
+    
+    <td>three</td>
+    <td>[He] 2s2 2p2</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>14.00</td>
+    <td>Nitrogen</td>
+    <td>N</td>
+    <td>-210</td>
+    <td>-196</td>
+    <td>1.25</td>
+    <td>1772</td>
+    <td>15</td>
+    
+    <td>three</td>
+    <td>[He] 2s2 2p3</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>15.99</td>
+    <td>Oxygen</td>
+    <td>O</td>
+    <td>-218</td>
+    <td>-183</td>
+    <td>1.43</td>
+    <td>1774</td>
+    <td>16</td>
+    
+    <td>three</td>
+    <td>[He] 2s2 2p4</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>18.99</td>
+    <td>Fluorine</td>
+    <td>F</td>
+    <td>-220</td>
+    <td>-188</td>
+    <td>1.7</td>
+    <td>1886</td>
+    <td>17</td>
+    
+    <td>three</td>
+    <td>[He] 2s2 2p5</td>
+    <td>Halogen</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>20.17</td>
+    <td>Neon</td>
+    <td>Ne</td>
+    <td>-249</td>
+    <td>-246</td>
+    <td></td>
+    <td>1898</td>
+    <td>18</td>
+    
+    <td>three</td>
+    <td>[He] 2s2 2p6</td>
+    <td>Inert</td>
+  </tr>
+</table>
+<p>
+  <input type="button" name="buttona" id="buttona" value="Needless Table Coloring and Styling" onclick="checkerboard();" />
+</p>
+<p>&nbsp;</p>
+<hr />
+<p>&copy; 2007, Adobe Systems, Inc.</p>
+</body>
+</html>

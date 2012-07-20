@@ -1,0 +1,17 @@
+<div id="previews">
+	<div id="controls">
+		<ul id="transport">
+			<li><a href="#" class="previousBtn" title="Previous">Previous</a></li>
+			<li><a href="#" class="playBtn" title="Play/Pause" id="playLabel"><span class="playLabel">Play</span><span class="pauseLabel">Pause</span></a></li>
+			<li><a href="#" class="nextBtn" title="Next">Next</a></li>
+		</ul>
+	</div>
+	<div id="thumbnails" spry:region="dsPhotos">
+		<div class="thumbnail" spry:repeat="dsPhotos"><a href="{path}"><img alt="" src="{thumbpath}" width="24" height="24" style="left: 0px; right: 0px;" /></a></div>
+		<p class="ClearAll"></p>
+	</div>
+</div>
+<div id="picture">
+	<div id="mainImageOutline"><img id="mainImage" alt="main image" src=""/></div>
+</div>
+<p class="clear"></p>

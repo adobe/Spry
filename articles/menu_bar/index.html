@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html40/strict.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Working with the Menu Bar widget</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY>
+<H2>Working with the Menu Bar widget</H2>
+
+<H3>Menu Bar widget overview and structure</H3>
+<P>A Menu Bar widget is a set of navigational menu buttons that display submenus 
+  when a mouse pointer hovers over one of the buttons. Menu Bars let you display a 
+  large amount of navigational information in a compact space, and also give 
+  visitors to the site a sense of what is available on the site without having to 
+  browse it extensively.</P>
+<P>The following example shows a horizontal Menu Bar widget, with the third menu 
+  item expanded.</P>
+	<p><IMG src="img1.jpg" alt="Menu Bar structure"> <br />
+Menu Bar widget (consists of &lt;ul&gt;, &lt;li&gt;, and 
+&lt;a&gt; tags)<br />
+</p>
+<DL>
+  <DT>A.
+  <DD>Menu item has submenu
+  <DT>B.
+  <DD>Submenu item has submenu </DD>
+</DL>
+<P>The HTML code for the Menu Bar widget consists of an outer ul tag that contains an li tag for 
+  each of the top-level menu items. The top-level menu items (li tags) in turn contain ul and li tags that define submenus for each of the items, 
+  and submenus can likewise contain submenus. Top-level menus and submenus can 
+  contain an unlimited number of submenu items. </P>
+	<p><SPAN class=notetitle>Note: </SPAN>As a best practice, try not 
+          to list every page on your site in the various levels of a menu bar. If a user 
+          has JavaScript turned off in their browser (and many do), the user can see only 
+					the top-level menu items of the menu bar.</p>
+<P>The HTML code for the Menu Bar widget also includes script tags in the head of the document and after the Menu 
+  Bar's HTML code. These tags create a JavaScript object, which makes the Menu Bar 
+  interactive. You define whether the Menu Bar widget will be vertical or 
+  horizontal in the main container ul tag for the Menu 
+  Bar. Following is the HTML code for a horizontal Menu Bar widget:</P>
+<PRE>&lt;head&gt;
+...
+&lt;!--Link the Spry Manu Bar JavaScript library--&gt;
+&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;!--Link the CSS style sheet that styles the menu bar. You can select between horizontal and vertical--&gt;
+&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--Create a Menu bar widget and assign classes to each element--&gt;
+&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 1&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.2&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.3&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 3.1&lt;/a&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 3.1.2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 3.2&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 3.3&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--Initialize the Menu Bar widget object--&gt;
+&lt;script type="text/javascript"&gt;
+	var menubar1 = new Spry.Widget.MenuBar("menubar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+<P>In the code, the new JavaScript operator 
+  initializes the Menu Bar object, and transforms the ul content with the ID of menubar1 from static HTML code 
+  into an interactive page element. The Spry.Widget.MenuBar method is a constructor in the Spry 
+  framework that creates Menu Bar objects, and the information necessary to 
+  initialize the object is contained in the MenuBar.js JavaScript library that you 
+  linked to in the head of the document. </P>
+<P>Many of the a tags that create the widget contain a 
+  CSS class. These classes control the style of the Menu Bar widget, and exist in 
+  the accompanying CSS file, SpryMenuBarHorizontal.css or SpryMenuBarVertical.css, 
+  depending on your selection.</P>
+<P>You can change the appearance of any given part of the Menu Bar widget by 
+  editing the CSS rule that corresponds to the class names assigned to it in the 
+  HTML code. For example, to change the background color of the Menu Bar's 
+  top-level menu items, edit the corresponding CSS rule in the 
+  SpryMenuBarHorizontal.css file. Keep in mind that changing the CSS code in the 
+  SpryManuBarHorizontal.css file will affect all menu bars that are linked to that 
+  file.</P>
+<P>In addition to the classes shown in the HTML code, the Menu Bar widget 
+  includes certain default behaviors that are attached to the widget. These 
+  behaviors are a built‑in part of the Spry framework, and are in the 
+  SpryMenuBar.js JavaScript library file. The library file includes behaviors 
+  related to hovering.</P>
+<P>You can change the look of the Menu Bar as it relates to these behaviors by 
+  editing the appropriate classes in one of the CSS files. If for some reason you 
+  want to remove a given behavior, you can delete the CSS rules that correspond to 
+  that behavior.</P>
+
+<H3>CSS code for the Menu Bar widget</H3>
+<P>The SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files contain the 
+  rules that style the Menu Bar widget. You can edit these rules to style the menu 
+  bar's look and feel. The names of the rules in the CSS file correspond directly 
+  to the names of the classes specified in the Menu Bar widget's HTML code.</P>
+	<p><SPAN class=notetitle>Note: </SPAN>You can replace style-related 
+        class names in the SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files 
+        and HTML code with class names of your own. Doing so does not affect the 
+        functionality of the widget, as CSS code is not required for widget 
+       functionality.</p>
+<P>The default functionality for the behaviors classes at the end of the style 
+  sheet are defined in the SpryMenuBar.js JavaScript library file. You can change 
+  the default functionality by adding properties and values to the behavior rules 
+  in the style sheet.</P>
+<P>The following is the CSS code for the SpryMenuBarHorizontal.css file:</P>
+<PRE>/*Menu Bar styling classes*/
+ul.MenuBarHorizontal{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	cursor: default;
+	width: auto;
+}
+ul.MenuBarActive{
+	z-index: 1000;
+}
+ul.MenuBarHorizontal li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	position: relative;
+	text-align: left;
+	cursor: pointer;
+	width: 8em;
+	float: left;
+}
+ul.MenuBarHorizontal ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	z-index: 1020;
+	cursor: default;
+	width: 8.2em;
+	position: absolute;
+	left: -1000em;
+}
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible{
+	left: auto;
+}
+ul.MenuBarHorizontal ul li{
+	width: 8.2em;
+}
+ul.MenuBarHorizontal ul ul{
+	position: absolute;
+	margin: -5% 0 0 95%;
+}
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible{
+	left: auto;
+	top: 0;
+}
+ul.MenuBarHorizontal ul{
+	border: 1px solid #CCC;
+}
+ul.MenuBarHorizontal a{
+	display: block;
+	cursor: pointer;
+	background-color: #EEE;
+	padding: 0.5em 0.75em;
+	color: #333;
+	text-decoration: none;
+}
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus{
+	background-color: #33C;
+	color: #FFF;
+}
+ul.MenuBarHorizontal a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal a.MenuBarSubmenuVisible{
+	background-color: #33C;
+	color: #FFF;
+}
+ul.MenuBarHorizontal a.MenuBarItemSubmenu{
+	background-image: url(SpryMenuBarDown.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu{
+	background-image: url(SpryMenuBarRight.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover{
+	background-image: url(SpryMenuBarDownHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover{
+	background-image: url(SpryMenuBarRightHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+ul.MenuBarHorizontal iframe{
+	position: absolute;
+	z-index: 1010;
+}
+@media screen, projection{
+	ul.MenuBarHorizontal li.MenuBarItemIE{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}</PRE>
+<P>The SpryMenuBar.css file contains extensive comments, explaining the code and 
+  the purpose for certain rules. For further information, see the comments in the 
+  file.</P>
+
+<H3>Insert the Menu Bar widget</H3>
+<OL>
+  <LI><SPAN>Locate the SpryMenuBar.js file and add it to your 
+    web site. You can find the SpryMenuBar.js file in the widgets/menubar 
+    directory, located in the Spry directory that you downloaded from Adobe Labs. </SPAN>
+    <P>For example, create a folder called <DFN>SpryAssets</DFN> in the 
+      root folder of your web site, and move the SpryMenuBar.js file to it. The 
+      SpryMenuBar.js file contains all of the information necessary for making the 
+      Menu Bar widget interactive.</P>
+  <LI><SPAN>Locate the SpryMenuBarHorizontal.css or 
+    SpryMenuBarVertical.css file (depending on which kind of menu bar you want to 
+    create), and add it to your web site. You might choose to add it to the main 
+    directory, a SpryAssets directory, or to a CSS directory if you have 
+    one.</SPAN>
+  <LI><SPAN>Open the web page to add the Menu Bar widget to and 
+    link the SpryMenuBar.js file to the page by inserting the following script tag in the page's head tag:</SPAN>
+    <PRE>&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt; </PRE>
+    <P>Make sure that the file path to the SpryMenuBar.js file is correct. This 
+      path varies depending on where you've placed the file in your web site.</P>
+  <LI><SPAN>Link the SpryMenuBarHorizontal.css or 
+    SpryMenuBarVertical.css file to your web page by inserting the following link tag in the page's head tag:</SPAN>
+    <PRE>&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt; </PRE>
+    <P>Make sure that the file path to the SpryMenuBarHorizontal.css or 
+      SpryMenuBarVertical.css file is correct. This path varies depending on where 
+      you've placed the file in your web site.</P>
+  <LI><SPAN>Add the menu bar HTML code to your web page by 
+    inserting a ul tag as a container tag, and then li tags with some sample text for each top-level 
+    menu item in the menu bar, as follows:</SPAN>
+    <PRE>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Item 1&lt;/li&gt;
+		&lt;li&gt;Item 2&lt;/li&gt;
+		&lt;li&gt;Item 3&lt;/li&gt;
+		&lt;li&gt;Item 4&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </PRE>
+  <LI><SPAN>Wrap the text of the li tags with a tags:</SPAN>
+    <PRE>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </PRE>
+  <LI><SPAN>Nest another unordered list (including a tags) in the third menu item (or any other menu item), 
+    as follows:</SPAN>
+    <PRE>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </PRE>
+    <P>This nested unordered list is the submenu for the third menu item. Make 
+      sure that the nested list is not within the a tag of 
+      the top-level menu item.</P>
+  <LI><SPAN>Add a unique ID that identifies the menu bar 
+    container (ul tag), as follows:</SPAN>
+    <PRE>&lt;body&gt;
+	&lt;ul id="menubar1"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </PRE>
+    <P>Later, you'll use this ID to identify the container in the widget 
+      constructor.</P>
+  <LI><SPAN>To add styling to the menu bar, add the appropriate 
+    classes, as follows:</SPAN>
+    <PRE>&lt;body&gt;
+	&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </PRE>
+    <P>Identify whether you're creating a horizontal menu bar or a vertical menu 
+      bar. Assign the MenuBarItemSubmenu class to a tags 
+      when top-level menu bar items have submenus. This class displays a down-arrow 
+      image that lets the user know submenu is present.</P>
+  <LI><SPAN>To initialize the Spry menu bar object, insert the 
+    following script block after the HTML code for the 
+    Menu Bar widget:</SPAN>
+    <PRE>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+. . .
+&lt;/ul&gt;
+&lt;script type="text/javascript"&gt;
+	var menubar1 = new Spry.Widget.MenuBar("menubar1");
+&lt;/script&gt; </PRE>
+    <P>The new JavaScript operator initializes the Menu 
+      Bar widget object, and transforms the ul content 
+      with the ID of menubar1 from static HTML code into 
+      an interactive menu bar object. The Spry.Widget.MenuBar method is a constructor in the Spry 
+      framework that creates menu bar objects. The information necessary to 
+      initialize the object is contained in the SpryMenuBar.js JavaScript library 
+      that you linked to at the beginning of this procedure.</P>
+    <P>Make sure that the ID of the menu bar's ul container tag matches the ID parameter you specified in the Spry.Widgets.MenuBar method. Make sure that the JavaScript 
+      call comes after the HTML code for the widget.</P>
+  <LI><SPAN>Save the page.</SPAN>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+...
+&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;script type="text/javascript"&gt;
+	var menubar1 = new Spry.Widget.MenuBar("menubar1");
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<p><SPAN class=notetitle>Note: </SPAN>The Spry Menu Bar widget uses 
+            DHTML layers to display sections of HTML code on top of other sections. If your 
+            page contains Flash content, this might cause a problem because Flash movies are 
+            always displayed on top of all other DHTML layers, so the Flash content might be 
+            displayed on top of your submenus. The workaround for this situation is to 
+            change the parameters for the Flash content to use wmode="transparent". For more information, see <A 
+href="http://www.adobe.com/go/15523" target="_blank">http://www.adobe.com/go/15523</A></p>
+<H3>Add or delete menus and submenus</H3>
+
+<H4>Add a main menu item</H4>
+<p>To add a main menu item, add a new list item (li tag) to the container ul tag. For example:</p>
+<PRE>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 5--NEW MENU ITEM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</PRE>
+
+<H4>Add a submenu item</H4>
+<P>&nbsp;To add a submenu item, add a new list item (li tag) to a submenu ul tag. For example:</P>
+<PRE>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 3--NEW SUBMENU ITEM&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</PRE>
+
+<H4>Delete a main menu or submenu item</H4>
+<P>&nbsp;Delete the li tag for the menu item or submenu item to delete.</P>
+
+<h3>Enable keyboard navigation</h3>
+<p>Making widgets accessible for keyboard navigation is an important part of 
+  every widget. Keyboard navigation lets the user control the widget with the 
+  Space bar or the Enter key.</p>
+<p>You can enable and disable the keyboard navigation or set custom keys to be used by keyboard navigation. Custom keys are set as 
+            arguments of the menu bar constructor script:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var menubar1 = new Spry.Widget.MenuBar("menubar1", {upKeyCode:87 /* w key */, downKeyCode:83 /* s key */, leftKeyCode:65 /* a key */, rightKeyCode:68 /* d key */});
+&lt;/script&gt;</pre>
+
+<H3>Create a tool tip for a menu item</H3>
+<P>&nbsp;To create a tooltip for a menu item, add a title attribute to the a tag of the relevant menu item. For example:</P>
+<PRE>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="contacts.html" title="Contacts"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</PRE>
+
+<H3>Preload images</H3>
+<p>&nbsp;To preload the images 
+        used for the down and right submenu arrows, add either the imgDown option, the imgRight option, or both options to the widget constructor, as follows:</p>
+<PRE>&lt;script type="text/javascript"&gt;
+	var menubar1 = new Spry.Widget.MenuBar("menubar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+&lt;/script&gt;</PRE>
+<P>Add the correct path to the image as the value for the option. This path 
+  varies depending on where you store the images.</P>
+
+<H3>Change the orientation of a Menu Bar widget</H3>
+<P>You can change the orientation of a Menu Bar widget from horizontal to 
+  vertical, and vice versa. To do so, alter the HTML code for the menu bar and 
+  make sure you have the correct CSS file in your website.</P>
+<P>The following procedure changes a horizontal Menu Bar widget to a vertical 
+  Menu Bar widget.</P>
+<OL>
+  <LI><SPAN>Make sure you have the SpryMenuBarVertical.css file 
+    in your website. (For example, you might store this file in a SpryAssets 
+    folder somewhere in the site.)</SPAN>
+  <LI><SPAN>Replace the link to the SpryMenuBarHorizontal.css 
+    file with a link to the SpryMenuBarVertical.css file in the head of your 
+    document, as follows:</SPAN>
+    <PRE>&lt;link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" /&gt;</PRE>
+  <LI><SPAN>Locate the MenuBarHorizontal class in the HTML code 
+    for the horizontal menu bar, and change it to MenuBarVertical. The 
+    MenuBarHorizontal class is defined in the container ul tag for the menu bar (&lt;ul 
+    id="menubar1" class="MenuBarHorizontal"&gt;).</SPAN>
+  <LI><SPAN>After the code for the menu bar, locate the menu 
+    bar constructor:</SPAN>
+    <PRE>var menubar1 = new Spry.Widget.MenuBar("menubar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});</PRE>
+  <LI><SPAN>Remove the imgDown preload option (and comma) from the constructor:</SPAN>
+    <PRE>var menubar1 = new Spry.Widget.MenuBar("menubar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});</PRE>
+    <SPAN class=notetitle>Note: </SPAN>If you are converting from 
+    a vertical menu bar to a horizontal menu bar, add the imgDown preload option and comma instead.
+  <LI><SPAN>(Optional) If your page no longer contains any 
+    other horizontal Menu Bar widgets, delete the link to the former 
+    MenuBarHorizontal.css file in the head of the document.</SPAN>
+  <LI><SPAN>Save the page.</SPAN> </LI>
+</OL>
+
+<H3>Customize the Menu Bar widget</H3>
+<P>The SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files provide the 
+  default styling for the Menu Bar widget. You can, however, customize the widget 
+  by changing the appropriate CSS rule. The CSS rules in the 
+  SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files use the same class 
+  names as the related elements in the menu bar's HTML code, so it's easy for you 
+  to know which CSS rules correspond to the different sections of the Menu Bar 
+  widget. Additionally, the SpryMenuBarHorizontal.css and SpryMenuBarVertical.css 
+  files contain class names for behaviors that are related to the widget (for 
+  example, hovering and clicking behaviors).</P>
+<P>The horizontal or vertical styling sheet for the widget should already be a 
+  included in your website before you start customizing. </P>
+
+<H4>Style a Menu Bar widget (general instructions)</H4>
+<P>You can style an Menu Bar widget by setting properties for the entire Menu 
+  Bar widget container, or by setting properties for the components of the widget 
+  individually.</P>
+<OL>
+  <LI><SPAN>Open the SpryMenuBarHorizontal.css or SpryMenuBarVertical.css 
+    file.</SPAN>
+  <LI><SPAN>Locate the CSS rule for the part of the menu bar to change. For 
+    example, to change the background color of the top-level menu items, edit the ulMenuBarHorizontal a or ulMenuBarVertical a rule in the SpryAccordion.css 
+    file.</SPAN>
+  <LI><SPAN>Make your changes to the CSS and save the file.</SPAN> </LI>
+</OL>
+<P>You can replace style-related class names in the CSS files and HTML code with 
+  class names of your own. Doing so does not affect the functionality of the 
+  widget.</P>
+<P>The SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files have 
+  extensive comments, explaining the code and the purpose for certain rules. For 
+  further information, see the comments in the file.</P>
+
+<H4>Change text styling of a menu item</H4>
+<P>The CSS code attached to the a tag contains the 
+  information for text styling. Several relevant text-styling class values that 
+  pertain to different menu states are attached to the a tag.</P>
+<P>&nbsp;To change the text 
+          styling of a menu item, use the following table to locate the appropriate CSS 
+          rule, and then change the default value.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Style to change</P></TH>
+      <TH> <P>CSS rule for vertical or horizontal menu bar</P></TH>
+      <TH> <P>Relevant properties and default values</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>Default text</P></TD>
+      <TD><P>ul.MenuBarVertical a, ul.MenuBarHorizontal a</P></TD>
+      <TD><P>color: #333; text-decoration: none;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Text color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a:hover, ul.MenuBarHorizontal a:hover</P></TD>
+      <TD><P>color: #FFF;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Text color when in focus</P></TD>
+      <TD><P>ul.MenuBarVertical a:focus, ul.MenuBarHorizontal a:focus</P></TD>
+      <TD><P>color: #FFF;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Menu Bar item color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a.MenuBarItemHover, ul.MenuBarHorizontal 
+          a.MenuBarItemHover</P></TD>
+      <TD><P>color: #FFF;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Submenu item color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal 
+          a.MenuBarItemSubmenuHover</P></TD>
+      <TD><P>color: #FFF;</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4>Change the background color of a menu item</H4>
+<P>The CSS rule attached to the a tag contains the 
+  information for a menu item's background color. Several relevant background 
+  color class values are attached to the a tag that 
+  pertain to different menu states.</P>
+<P>&nbsp;To change the background 
+          color of a menu item, use the following table to locate the appropriate CSS 
+          rule, and then change the default value.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Color to change</P></TH>
+      <TH> <P>CSS rule for vertical or horizontal menu bar</P></TH>
+      <TH> <P>Relevant properties and default values</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>Default background</P></TD>
+      <TD><P>ul.MenuBarVertical a, ul.MenuBarHorizontal a</P></TD>
+      <TD><P>background-color: #EEE;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Background color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a:hover, ul.MenuBarHorizontal a:hover</P></TD>
+      <TD><P>background-color: #33C;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Background color when in focus</P></TD>
+      <TD><P>ul.MenuBarVertical a:focus, ul.MenuBarHorizontal a:focus</P></TD>
+      <TD><P>background-color: #33C;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Menu Bar item color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a.MenuBarItemHover, ul.MenuBarHorizontal 
+          a.MenuBarItemHover</P></TD>
+      <TD><P>background-color: #33C;</P></TD>
+    </TR>
+    <TR>
+      <TD><P>Submenu item color when mouse pointer moves over it</P></TD>
+      <TD><P>ul.MenuBarVertical a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal 
+          a.MenuBarItemSubmenuHover</P></TD>
+      <TD><P>background-color: #33C;</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4>Change the dimension of menu items</H4>
+<P>To change the dimension of menu items by changing the width properties of the 
+  menu item's li and ul tags.</P>
+<OL>
+  <LI><SPAN>Locate the ul.MenuBarVertical li or ul.MenuBarHorizontal li rule.</SPAN>
+  <LI><SPAN>Change the width property to a desired width, or change the property 
+    to auto to remove a fixed width, and add the 
+    property and value white-space: nowrap; to the 
+    rule.</SPAN>
+  <LI><SPAN>Locate the ul.MenuBarVertical ul or ul.MenuBarHorizontal ul rule.</SPAN>
+  <LI><SPAN>Change the width property to a desired width (or change the property 
+    to auto to remove a fixed width).</SPAN>
+  <LI><SPAN>Locate the ul.MenuBarVertical ul li or ul.MenuBarHorizontal ul li rule.</SPAN>
+  <LI><SPAN>Add the following properties to the rule: float: 
+    none; and background-color: 
+    transparent;.</SPAN>
+  <LI><SPAN>Delete the width: 8.2em; property and 
+    value.</SPAN> </LI>
+</OL>
+
+<H4>Position submenus</H4>
+<P>The position of Spry Menu Bar submenus is controlled by the margin property 
+  on submenu ul tags.</P>
+<OL>
+  <LI><SPAN>Locate the ul.MenuBarVertical ul or ul.MenuBarHorizontal ul rule.</SPAN>
+  <LI><SPAN>Change the margin: -5% 0 0 95%; default 
+    values to the desired values.</SPAN></LI>
+</OL>
+<hr>
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. <br />
+  All rights reserved.
+</BODY>
+</HTML>

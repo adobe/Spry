@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<feeds>
+
+	<feed id="1" url="data/feed1.xml">
+		<category>Category 1</category>
+		<title>Feed 1</title>
+	</feed>
+
+	<feed id="2" url="data/feed2.xml">
+		<category>Category 1</category>
+		<title>Feed 2</title>
+	</feed>
+
+<feed id="3" url="data/feed3.xml">
+		<category>Category 2</category>
+		<title>Feed 3</title>
+	</feed>
+	<feed id="4" url="data/feed4.xml">
+		<category>Category 1</category>
+		<title>Feed 4</title>
+	</feed>
+	
+	<feed id="5" url="data/feed5.xml">
+		<category>Category 1</category>
+		<title>Feed 5</title>
+	</feed>
+	
+	<feed id="6" url="data/feed6.xml">
+		<category>Category 2</category>
+		<title>Feed 6</title>
+	</feed>
+	
+	<feed id="7" url="data/feed7.xml">
+		<category>Category 1</category>
+		<title>Feed 7</title>
+	</feed>
+	
+	<feed id="8" url="data/feed8.xml">
+		<category>Category 1</category>
+		<title>Feed 8</title>
+	</feed>
+	
+	<feed id="9" url="data/feed9.xml">
+		<category>Category 1</category>
+		<title>Feed 9</title>
+	</feed>
+	
+	<feed id="10" url="data/feed10.xml">
+		<category>Category 2</category>
+		<title>Feed 10</title>
+	</feed>
+	
+	<feed id="11" url="data/feed11.xml">
+		<category>Category 2</category>
+		<title>Feed 11</title>
+	</feed>
+	
+	<feed id="12" url="data/feed12.xml">
+		<category>Category 1</category>
+		<title>Feed 12</title>
+	</feed>
+	
+	<feed id="13" url="data/feed13.xml">
+		<category>Category 1</category>
+		<title>Feed 13</title>
+	</feed>
+	
+	<feed id="14" url="data/feed14.xml">
+		<category>Category 2</category>
+		<title>Feed 14</title>
+	</feed>
+	
+	<feed id="15" url="data/feed15.xml">
+		<category>Category 1</category>
+		<title>Feed 15</title>
+	</feed>
+	
+	<feed id="16" url="data/feed16.xml">
+		<category>Category 1</category>
+		<title>Feed 16</title>
+	</feed>
+	
+	<feed id="17" url="data/feed17.xml">
+		<category>Category 1</category>
+		<title>Feed 17</title>
+	</feed>
+	<feed id="18" url="data/feed18.xml">
+		<category>Category 2</category>
+		<title>Feed 18</title>
+	</feed>
+	
+	<feed id="19" url="data/feed19.xml">
+		<category>Category 2</category>
+		<title>Feed 19</title>
+	</feed>
+
+</feeds>

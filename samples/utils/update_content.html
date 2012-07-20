@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Update Content Sample</title>
+<script language="javascript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="javascript" type="text/javascript" src="../../includes/SpryEffects.js"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+function fadeIt(ele,url){
+	Spry.Effect.DoFade('apDiv1',{ duration: 500, from: 100, to: 0, finish: function() {
+		Spry.Utils.updateContent(ele, url, function() {
+			Spry.Effect.DoFade('apDiv1',{ duration: 500, from: 0, to: 100 });
+		});
+  }
+ });
+}
+</script>
+<style type="text/css">
+<!--
+#apDiv1 {
+	position: absolute;
+	left: 1px;
+	top: 170px;
+	width: 585px;
+	z-index: 1;
+	border: 1px solid #333333;
+}
+#apDiv1 table {
+	background-color: white;
+}
+-->
+</style>
+</head>
+<body onload="Spry.Utils.updateContent('thetext','frags/frag2.html');">
+<h3>Spry.Utils.updateContent </h3>
+<p><a href="#" onclick="Spry.Utils.updateContent('apDiv1', 'frags/frag1.html'); return false;">Pull in new content</a> | <a href="#" onclick="fadeIt('apDiv1','frags/frag3.html'); return false;">Pull in other new content</a>
+</p>
+<div id="thetext"></div>
+<p>&nbsp;</p>
+<div id="apDiv1" class="liveSample">This is old static content.</div>
+</body>
+</html>

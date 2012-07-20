@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<name>HTML Markup Entity Encoded Once</name>
+	<tvalue>&lt;p&gt;Plain Text &lt;span style=&quot;font-weight: bold;&quot;&gt;Bold Text&lt;/span&gt; &lt;span style=&quot;color: red;&quot;&gt;Red Text&lt;/span&gt;&lt;/p&gt;</tvalue>
+	<cvalue><![CDATA[<p>Plain Text <span style="font-weight: bold;">Bold Text</span> <span style="color: red;">Red Text</span></p>]]></cvalue>
+</data>

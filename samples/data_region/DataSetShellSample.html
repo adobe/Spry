@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data Shell Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<br />
+<style type="text/css">
+.SpryHiddenRegion {
+	display: none;
+}
+#liveTable th {
+	cursor: pointer;
+}
+.dataTable th {
+	background-color: #CCCCCC;
+	padding: 4px;
+}
+table.dataTable {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+.dataTable th, .dataTable td {
+	border: solid 1px black;
+}
+</style>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script src="../../includes/SpryDataSetShell.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.HTMLDataSet(null, "empData");
+var ds2 = new Spry.Data.XMLDataSet("../../data/employees-02.xml", "employees/employee");
+var dsShell = new Spry.Data.DataSetShell(ds1);
+//-->
+</script>
+</head><body>
+<h3>Data Shell Sample</h3>
+<p>This sample demonstrates the use of the Shell Data Set. The Shell Data Set can be bound to a region like any other data set, but its purpose is to serve as a placeholder for other data sets so that developers can &quot;hot swap&quot;  them.</p>
+<p>The example below demonstrates the hot swapping of an HTML Data Set with an XML Data Set. Because the 2 data sets load data that use the same column names, nothing special needs to be done within the spry:region used to display the Shell Data Set. All that needs to happen is for some code to be triggered which sets the data set to use *inside* the Shell Data Set.</p>
+<pre>var <span class="highlited">ds1</span> = new Spry.Data.HTMLDataSet(null, &quot;empData&quot;);
+var ds2 = new Spry.Data.XMLDataSet(&quot;../../data/employees-02.xml&quot;, &quot;employees/employee&quot;);
+var dsShell = new Spry.Data.DataSetShell(<span class="highlited">ds1</span>);</pre>
+<p>In the above code sample, there are 2 data sets: One XML data set and one HTML Data Set. While the data sets are of different types, they have the same structure/node names, so as data sets, they are interchangeable. The Data Shell does this interchanging. When the page loads, the 'dsShell' is loaded with data from 'ds1'.</p>
+<p>The spry:region looks like:</p>
+<pre>&lt;div id=&quot;liveTable&quot; spry:region=&quot;<span class="highlited">dsShell</span>&quot; class=&quot;SpryHiddenRegion&quot;&gt;
+ &lt;table border=&quot;1&quot; class=&quot;dataTable&quot;&gt;
+   &lt;tr&gt;
+     &lt;th spry:sort=&quot;@id&quot;&gt;@id&lt;/th&gt;
+     &lt;th spry:sort=&quot;firstname&quot;&gt;firstname&lt;/th&gt;
+     &lt;th spry:sort=&quot;lastname&quot;&gt;lastname&lt;/th&gt;
+     &lt;th spry:sort=&quot;username&quot;&gt;username&lt;/th&gt;
+   &lt;/tr&gt;
+   &lt;tr <span class="highlited">spry:repeat=&quot;dsShell&quot;</span>&gt;
+     &lt;td&gt;{dsShell::@id}&lt;/td&gt;
+     &lt;td&gt;{dsShell::firstname}&lt;/td&gt;
+     &lt;td&gt;{dsShell::lastname}&lt;/td&gt;
+     &lt;td&gt;{dsShell::username}&lt;/td&gt;
+   &lt;/tr&gt;
+ &lt;/table&gt;
+&lt;/div&gt;</pre>
+<p>Since both data sets have the same structure, this spry region could be used for either the XML or HTML data set. But instead, we assign the region to 'dsShell' and  simply fill 'dsShell' with the data from 'ds1' or 'ds2'. We use the 'setInternalDataSet' method to change the data set that fills the Data Shell. The 'true' value tells Spry to automatically load the data. When you click between the buttons, the data set is automatically loaded and the regions update.</p>
+<pre>&lt;form style=&quot;display: none&quot;&gt;
+   &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;ds&quot; <span class="highlited">onclick=&quot;dsShell.setInternalDataSet(ds1, true);&quot;</span> checked=&quot;checked&quot; /&gt; HTML Data Set&lt;/label&gt;
+   &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;ds&quot; <span class="highlited">onclick=&quot;dsShell.setInternalDataSet(ds2, true);&quot;</span> /&gt; XML Data Set&lt;/label&gt;
+ &lt;/form&gt;</pre>
+<p>Notice in the source code that we use 2 small scripts to show and hide the tables and form in case javascript is turned off.</p>
+<hr />
+<div class="liveSample">
+  <form style="display: none">
+    <label>
+    <input type="radio" name="ds" onclick="dsShell.setInternalDataSet(ds1, true);" checked="checked" />
+    HTML Data Set</label>
+    <label>
+    <input type="radio" name="ds" onclick="dsShell.setInternalDataSet(ds2, true);" />
+    XML Data Set</label>
+  </form>
+  <script type="text/javascript">
+// If JS is enabled, show the form.
+document.forms[0].style.display = "";
+</script>
+  <p>&nbsp;</p>
+  <div id="liveTable" spry:region="dsShell" class="SpryHiddenRegion">
+    <table border="1" class="dataTable">
+      <tr>
+        <th class="liveSample" spry:sort="@id">@id</th>
+        <th class="liveSample" spry:sort="firstname">firstname</th>
+        <th class="liveSample" spry:sort="lastname">lastname</th>
+        <th class="liveSample" spry:sort="username">username</th>
+      </tr>
+      <tr spry:repeat="dsShell">
+        <td class="liveSample">{@id}</td>
+        <td class="liveSample">{firstname}</td>
+        <td class="liveSample">{lastname}</td>
+        <td class="liveSample">{username}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<table id="empData" class="dataTable">
+  <script type="text/javascript">
+// If JS is enabled, we want to prevent the table from flashing
+// when the page is first loaded.
+Spry.$("empData").style.display = "none";
+</script>
+  <tbody>
+    <tr>
+      <th>@id</th>
+      <th>firstname</th>
+      <th>lastname</th>
+      <th>username</th>
+    </tr>
+    <tr>
+      <td>123456</td>
+      <td>Edward</td>
+      <td>Smith</td>
+      <td>esmith</td>
+    </tr>
+    <tr>
+      <td>127937</td>
+      <td>Neil</td>
+      <td>Johnson</td>
+      <td>njohnson</td>
+    </tr>
+    <tr>
+      <td>126474</td>
+      <td>Steve</td>
+      <td>Williams</td>
+      <td>swilliams</td>
+    </tr>
+    <tr>
+      <td>120585</td>
+      <td>John</td>
+      <td>Jones</td>
+      <td>jjones</td>
+    </tr>
+    <tr>
+      <td>127493</td>
+      <td>Joe</td>
+      <td>Brown</td>
+      <td>jbrown</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

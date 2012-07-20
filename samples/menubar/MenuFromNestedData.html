@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Nested Data Menu Bar</title>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"></script>
+<script src="../../widgets/menubar/SpryMenuBar.js" type="text/javascript"></script>
+<script type="text/javascript">
+var dsItems1 = new Spry.Data.XMLDataSet("../../data/donuts.xml", "/items/item");
+var dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, "topping");
+</script>
+<link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3>Creating a Menu Bar from Spry Nested Data</h3>
+<p>Most Spry Widgets can be created from Spry Data. Due to the nested list structure used with the Menu Bar widget, Spry Nested data sets are a good way to generate dynamic Menu Bars.</p>
+<h4>Simple Version</h4>
+<p>This version is the minimum code required to output a Menu. This does not take into account a menu item with no submenu(Buttermilk). </p>
+<ul id="MenuBar1" class="MenuBarHorizontal"  spry:region="dsItems1 dsToppings">
+  <li spry:repeat="dsItems1"><a class="MenuBarItemSubmenu" href="#" >{name}</a>
+    <ul>
+      <li spry:repeat="dsToppings"><a href="#">{dsToppings::topping}</a></li>
+    </ul>
+  </li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<h4>No Submenu</h4>
+<p>There are instances where some menu items do not have submenus. This sample has extra code to detect this and write out the correct code. </p>
+<ul id="MenuBar2" class="MenuBarHorizontal"  spry:region="dsItems1 dsToppings">
+  <li spry:repeat="dsItems1"> <a class="MenuBarItemSubmenu" href="#" spry:if="{dsToppings::ds_RowCount} != 0">{name}</a> <a href="#" spry:if="{dsToppings::ds_RowCount} == 0">{name}</a>
+    <ul spry:if="{dsToppings::ds_RowCount} != 0">
+      <li spry:repeat="dsToppings"><a href="#">{dsToppings::topping}</a></li>
+    </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Important Note:</strong> Due to how the Menu Bar applies styles, you should use the Observer method to activate the widget.
+  <script type="text/javascript">
+Spry.Data.Region.addObserver('MenuBar1',{onPostUpdate:function(){var MenuBar2 = new Spry.Widget.MenuBar("MenuBar1");}});
+Spry.Data.Region.addObserver('MenuBar2',{onPostUpdate:function(){var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2");}});
+  </script>
+</p>
+</body>
+</html>

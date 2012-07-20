@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Aquo Events</title>
+<script src="../../../includes/SpryEffects.js" type="text/javascript"></script>
+<script src="../../../includes/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+
+function FadeAndUpdateContent(ele, url)
+{
+try {
+	Spry.Effect.DoFade(ele,{ duration: 500, from: 100, to: 0, finish: function() {
+		Spry.Utils.updateContent(ele, url, function() {
+				Spry.Effect.DoFade(ele,{ duration: 500, from: 0, to: 100 });
+		});
+	}});
+}catch(e){ alert(e); }
+}
+
+-->
+</script>
+<style type="text/css">
+/* IE HACK to prevent bad rendering when fading. */
+#event { background-color: white; }
+</style>
+</head>
+
+<body>
+<p>
+<a href="data/AquoThon.html" onclick="FadeAndUpdateContent('event', 'data/AquoThonFrag.html'); return false;">Aquo-Thon</a> |
+<a href="data/AquoSwing.html" onclick="FadeAndUpdateContent('event', 'data/AquoSwingFrag.html'); return false;">Aquo Swing</a> |
+<a href="data/AquoUltraMarathon.html" onclick="FadeAndUpdateContent('event', 'data/AquoUltraMarathonFrag.html'); return false;">Aquo Ultra Marathon</a> |
+<a href="data/AquoExtremeSki.html" onclick="FadeAndUpdateContent('event', 'data/AquoExtremeSkiFrag.html'); return false;">Aquo Extreme Ski</a>
+</p>
+
+<div id="event">
+	<h2 class="name">Aquo-Thon</h2>
+	<div class="info">		
+		<div class="location">Whistler, British Columbia</div>
+		<div class="date">May 26th</div>
+		<p class="description">Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</p>
+		<a href="#">directions...</a>
+	</div>
+</div>
+</body>
+</html>

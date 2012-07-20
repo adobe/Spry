@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Region State Mapping Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.odd {
+	background-color: #FFFFCC;
+}
+.even {
+	background-color: #6699FF;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+
+function switchMode(state)
+{
+	var rgn = Spry.Data.getRegion("emps");
+	rgn.mapState("ready", state);
+	rgn.updateContent();
+}
+</script>
+
+</head>
+
+<body>
+<h3>Spry State Mapping Sample </h3>
+<p>This sample shows you how to map a built-in region state to a custom state of your choice.</p>
+<p>&nbsp;In the example below, the spry:region has no markup that would render when the &quot;ready&quot; state for the region is fired. All of the markup in the region belongs to a specific custom region.</p>
+<p>&nbsp;The reason why the data shows up initially in a table is because there is a spry:readystate attribute on the region which maps the &quot;ready&quot; state to &quot;tableState&quot;. This means that whenever the region fires off its &quot;ready&quot; state, the region will render whatever content is marked with the &quot;tableState&quot;.</p>
+<p>&nbsp;You can use the buttons below to map the &quot;ready&quot; state to other custom states.</p>
+<p>&nbsp;Changing the value of the select form element causes the data set to load new data. Notice that whenever new data is loaded,  the region displays this data with whatever custom state was last used. This is because mapped region states persist across changes in the data, until they are unmapped, or mapped to some other state. </p>
+<hr />
+<select onchange="dsEmployees.setURL(this.value); dsEmployees.loadData();">
+	<option value="../../data/employees-01.xml" selected="selected">Employee Set 1</option>
+	<option value="../../data/employees-02.xml">Employee Set 2</option>
+	<option value="../../data/employees-03.xml">Employee Set 3</option>
+</select>
+<input type="button" value="Display as List" onclick="switchMode('listState');" />
+<input type="button" value="Display as Table" onclick="switchMode('tableState');" />
+<input type="button" value="Display as Paragraph" onclick="switchMode('paragraphState');" />
+<input type="button" value="Hide All Content" onclick="switchMode('hiddenState');" />
+<input type="button" value="Unmap Ready State" onclick="switchMode('');" />
+<p>&nbsp;</p>
+<div id="emps" spry:region="dsEmployees" spry:readystate="tableState">
+	<ul spry:state="listState">
+		<li spry:repeat="dsEmployees">{firstname} {lastname}</li>
+	</ul>
+	<p spry:state="paragraphState" spry:repeatchildren="dsEmployees">
+		{firstname} {lastname}
+	</p>
+	<table spry:state="tableState" cellspacing="0">
+    <tr><th>Name</th><th>ID</th><th>username</th><th>Phone</th></tr>
+		<tr spry:repeat="dsEmployees" class="{ds_EvenOddRow}"><td>{lastname}, {firstname}</td><td>{@id}</td><td>{username}</td><td>{phone}</td></tr>
+	</table>
+</div>
+</body>
+</html>

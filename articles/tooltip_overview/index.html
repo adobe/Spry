@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Tooltip Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Working with the Spry Tooltip Widget</h1>
+<p>The Spry Tooltip widget allows users to mouse over page elements and expose addition information/markup. This additional content will disappear after the mouse moves away. This document describes how to implement a Spry tooltip widget and how to control its functionality.</p>
+<h3 id="about_widgets">About Spry widgets</h3>
+<p>A <dfn>Spry widget</dfn> is a page element that combines HTML, CSS 
+  and JavaScript code to enable user interaction. A Spry widget is made up of the 
+  following parts:</p>
+<dl>
+  <dt>Widget structure </dt>
+  <dd> An HTML code block that defines the structural composition of the 
+    widget.<br />
+  </dd>
+  <dt>Widget behavior </dt>
+  <dd> JavaScript code that controls how the widget responds to user-initiated 
+    events.<br />
+  </dd>
+  <dt>Widget styling </dt>
+  <dd> CSS code that specifies the appearance of the widget.<br />
+  </dd>
+</dl>
+<p>The Spry framework supports a set of reusable widgets written in standard 
+  HTML, CSS, and JavaScript code. You can easily insert these widgets—the code is 
+  HTML and CSS at its simplest—and then style the widget. The behaviors in the 
+  framework include functionality that lets users show or hide content on the 
+  page, change the appearance (such as color) of the page, interact with menu 
+  items, and much more.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and 
+  JavaScript files, available on Adobe Labs. The CSS file contains everything 
+  necessary for styling the widget, and the JavaScript file gives the widget its 
+  functionality. The CSS and JavaScript files associated with a given widget are 
+  named after the widget, so it's easy for you to know which files correspond to 
+  which widgets. (For example, the files associated with the Accordion widget are 
+  called SpryAccordion.css and SpryAccordion.js).</p>
+<!-- -->
+<h3 id="about_accessibility">About Spry widget accessibility and JavaScript 
+  degradation</h3>
+<p>It is critical to the usability of the widget that it be accessible when 
+  following established web navigation conventions. You can't assume that the user 
+  is using a mouse, and therefore Adobe has taken steps to ensure that all aspects 
+  of the currently available widgets are accessible through the keyboard. In the 
+  Accordion widget, for example, you can use up and down arrow keys to open 
+  content panels. Adobe encourages all widget developers to build in this kind of 
+  functionality.</p>
+<p>It's also impossible to control the end user's environment. Adobe develops 
+  widgets to ensure that when JavaScript is turned off, all the content of the 
+  widget is still available on the screen. While this will most likely affect the 
+  page layout, it is more important that the content of the widget still be 
+  available, especially when working with disclosure widgets. Adobe ensures that 
+  default CSS states do not set visibility to hidden, 
+  and that HTML code is not positioned off screen.</p>
+<h2>Before you begin</h2>
+<!-- -->
+<h3 id="prepare_files">Prepare your files</h3>
+<p>Before you add Spry widgets to your web pages, download and link the 
+  appropriate files.</p>
+<ol>
+  <li><span>Locate the Spry ZIP file on the Adobe® Labs 
+    website.</span> </li>
+  <li><span>Download and unzip the Spry ZIP file to your hard 
+    drive.</span> </li>
+  <li><span>Open the unzipped Spry folder and locate the 
+    widgets folder. This folder contains all of the files necessary for adding and 
+    styling Spry widgets.</span> </li>
+  <li><span>Add widget files to your website by doing one of 
+    the following:</span>
+      <ul>
+        <li> Copy the widgets folder and paste or drag a copy of it to the root 
+          directory of your web site. If you do this, you will have all of the files 
+          necessary for all of the widgets that Spry supports. </li>
+        <li> Create a folder in your website (for example, a folder called <dfn>SpryAssets</dfn>), open the widgets folder, and copy only the 
+          files or folders that pertain to the widgets you want to add. For example, 
+          to add only an Accordion widget to your web pages, copy the accordion 
+          folder, or the SpryTooltip.js and SpryTooltip.css files.</li>
+      </ul>
+    <span class="notetitle">Note: </span>If you drag the original 
+    widgets folder or individual files out of the unzipped Spry folder, the demos 
+    in the Spry folder won't work properly. Be sure to copy and paste to your 
+    website instead of dragging.</li>
+  <li><span>When the correct widget JavaScript and CSS files 
+    are part of your website, you are ready to link them and add Spry widgets to 
+    your pages. For specific instructions on adding each widget to a page, see the 
+    individual widget sections.</span> </li>
+</ol>
+<!-- -->
+<h2>Working with the Tooltip widget</h2>
+<!-- -->
+<h3 id="overview">Tooltip widget overview and structure</h3>
+<p>A tooltip widget consists of:</p>
+<ul>
+  <li>The tooltip container. This element contains the markup to be displayed when the tooltip is activated.</li>
+  <li>The page element(s) that activates the tooltip.</li>
+  <li>The constructor script. This javascript tells Spry to create the tooltip functionality.</li>
+</ul>
+<p>The tooltip is a relatively simple widgets. Here are some ideas to keep in mind about the tooltip.</p>
+<ul>
+  <li>Any open tooltip will close before the next one opens. </li>
+  <li>The tooltip will persist while the mouse is in the trigger area.</li>
+  <li>There should be no limitations as to which tags can be triggers and what can be tooltip content.</li>
+  <li>By default, the tooltip opens 20 pixels down and right of the cursor. offsetX and offsetY are used to set a custom opening point. These are measured from the cursor, not the default location.</li>
+  <li>Both trigger and tooltip markup should come before the constructor script.</li>
+  <li>There is currently no way to have a tooltip open onLoad.</li>
+</ul>
+<p>Here is an example of a basic tooltip widget.</p>
+<pre>&lt;p&gt;The master/detail &lt;a href=&quot;#&quot; id=&quot;relationship&quot;&gt;The trigger&lt;/a&gt; is established by ... &lt;/p&gt; 
+&lt;div id=&quot;firstFixed&quot;&gt;This is the tooltip&lt;/div&gt;
+ 
+&lt;script type=&quot;text/javascript&quot;&gt;	
+   var static_tooltip = new Spry.Widget.Tooltip('firstFixed', '#relationship' , {closeOnTooltipLeave: true, hideDelay: 1000});
+&lt;/script&gt;</pre>
+<p>In the above example, the &lt;a&gt; with the id=&quot;relationship&quot; in the first line is the trigger element. When the user mouses over this tag, the tooltip will show. <br />
+The &lt;div&gt; with the id=&quot;firstFixed&quot; is the tooltip content. This will show when the user mouses over.</p>
+<p>The constructor script works as follows.</p>
+<ul>
+  <li>The var defines the widget name. In this case, the name of the widget is &quot;static_tooltip&quot;.</li>
+  <li>Within Spry.Widget.Tooltip, the required arguments are:
+    <ul>
+      <li>ID of the tooltip content: &quot;firstFixed&quot;</li>
+      <li>CSS selector of the trigger element. This can be a class, a HTML Tag, ID or combination. In this sample, we use an id CSS selector: &quot;#relationship&quot;.</li>
+      <li>Options: These define options for the tooltip, such as how long to display the tooltip and where to place it. Options are described in detail later in this document.</li>
+    </ul>
+  </li>
+</ul>
+<p>The Spry Tooltip widget depends on the ID and CSS selectors of the elements to order to function correctly. The markup used for or within the elements does not matter. The trigger can be anything and the content can be anything. Note that some additional steps are needed in order to combine this widget with Spry Data.</p>
+<h3 id="css">CSS code for the Tooltip Widget</h3>
+<p>The tooltip widget does not require much CSS. We use javascript to show, hide and position the tooltip. All other look and feel of the widget itself is done with standard CSS techniques, as your page requires. The only rule that the default CSS file contains is a workaround for IE6 so that the tooltip appears above form elements or flash objects.</p>
+<h3 id="insert">Insert a Tooltip Widget</h3>
+<ol>
+  <li><span>Locate the SpryTooltip.js file and add it to your 
+    web site. You can find the SpryTooltip.js file in the widgets/tooltip 
+    directory, located in the Spry directory that you downloaded from Adobe Labs. </span>
+      <p>Create a folder called <dfn>SpryAssets</dfn> in the 
+        root folder of your web site, and move the SpryTooltip.js file to it. The 
+        SpryTooltip.js file contains all of the information necessary for making the 
+        Tooltip widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryTooltip.css file and add it to 
+    your web site. You might choose to add it to the main directory, a SpryAssets 
+    directory, or to a CSS directory if you have one.</span> </li>
+  <li><span>Open the web page to add the Tooltip widget to 
+    and link the SpryTooltip.js file to the page by inserting the following script tag in the page's head tag:</span>
+      <pre>&lt;script src=&quot;SpryAssets/SpryTooltip.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+      <p>Make sure that the file path to the SpryTooltip.js file is correct. This 
+        path varies depending on where you've placed the file in your web site.</p>
+  </li>
+  <li><span>Link the SpryTooltip.css file to your web page by 
+    inserting the following link tag in the page's head 
+    tag:</span>
+      <pre>&lt;link href=&quot;SpryAssets/SpryTooltip.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+      <p>Make sure that the file path to the SpryTooltip.css file is correct. This 
+        path varies depending on where you've placed the file in your web site.</p>
+  </li>
+  <li>
+   In the body of the page, add text and create a container tag. This will be the trigger area.
+ Notice that the &lt;span&gt; has an ID=&quot;trigger&quot;.
+     <pre>&lt;p&gt;This will be the &lt;span id=&quot;trigger&quot;&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt;
+</pre>
+  </li>
+  <li>Add the tooltip container and populate it with the tooltip content. This container will have an id=&quot;container&quot;.
+    <pre>&lt;p&gt;This will be the &lt;span id=&quot;trigger&quot;&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&quot;container&quot;&gt;This is the tooltip content&lt;/div&gt;
+</pre>
+  </li>
+  <li>Next we add the constructor script. It is important that this script tag be below the tooltip widget markup.
+    <pre>&lt;p&gt;This will be the &lt;span id=&quot;trigger&quot;&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&quot;container&quot;&gt;This is the tooltip content&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var tt_one = new Spry.Widget.Tooltip(&quot;container&quot;,&quot;#trigger&quot;);
+&lt;/script&gt;
+</pre>
+ 
+  The arguments for the constructor are:
+  <ol>
+    <li>The ID of the tooltip container.</li>
+    <li>The CSS selector of the trigger. Notice that we have to put the # in front of this ID, to transform the ID in a CSS selector. The selector can specify an element ID, can be a class name, HTML tag name or a more complex selector as a combination of the these.<br />
+      <br />
+    </li>
+    </ol>
+  </li>
+  <li>It's that easy. View the page in the browser and mouse over the trigger. The tooltip should show up.</li>
+</ol>
+<p>You may want to make the trigger a link, so that people know that it does something. If so you can change the &lt;span id=&quot;trigger&quot;&gt; to &lt;a href=&quot;#&quot; id=&quot;trigger&quot;&gt; and change the closing tag as well. Or because the tooltip isn't exactly a link, a CSS class can be defined that can denote a tooltip element, such as a different background color.</p>
+<h3 id="options">Tooltip Defaults and Options</h3>
+<p>There are a few options for the tooltip that will let you customize the behavior of the tooltip.</p>
+<table width="675">
+  <tr>
+    <th>Option Name</th>
+    <th>Description</th>
+    <th>Default</th>
+    <th>Values</th>
+  </tr>
+  <tr id="closeOnTooltipLeave">
+    <td>closeOnTooltipLeave</td>
+		<td> The content within the &quot;tooltip&quot; element may contain links or other interactive elements. Using this option will keep the &quot;tooltip&quot; element open even if the mouse leave the &quot;trigger&quot; element until the mouse leaves the &quot;tooltip&quot; element. If set to 'false', the &quot;tooltip&quot; element will close when the mouse exits from the &quot;trigger&quot; area. <br/><br />Note:It is recommended when enabling this option to also use the hideDelay option to allow the necessary time for the mouse to go over the &quot;tooltip&quot; element.</td>
+    <td>false</td>
+    <td>Boolean: true or false</td>
+  </tr>
+  <tr id="followMouse">
+    <td>followMouse</td>
+    <td>When set to &quot;true&quot;, the &quot;tooltip&quot; element position will move along with the mouse movement inside the &quot;trigger&quot; element, using the specified offset values.</td>
+    <td>false</td>
+    <td>Boolean: true or false</td>
+  </tr>
+  <tr id="showDelay">
+    <td>showDelay</td>
+    <td>The delay in milliseconds for the tooltip element display after the mouseover event is received. </td>
+    <td>0</td>
+    <td>number in milliseconds</td>
+  </tr>
+ 	<tr id="hideDelay">
+    <td>hideDelay</td>
+    <td>The delay in milliseconds for the tooltip element to hide after the mouseout event is received.</td>
+    <td>0</td>
+    <td>number in milliseconds</td>
+  </tr>
+  <tr id="hoverClass">
+    <td>hoverClass</td>
+    <td>The specified class name will be appended to the 'class' attribute for the &quot;trigger&quot; element on mouse over to style differently a hovered &quot;trigger&quot; element. This value is removed when the &quot;tooltip&quot; element is hidden.</td>
+    <td>null</td>
+    <td>CSS class name</td>
+  </tr>
+  <tr id="offsetX">
+    <td>offsetX</td>
+    <td>The offset value given as an integer or in pixels for the x-axis. Using this value and the mouse entering position the widget compute the &quot;tooltip&quot; element horizontal position.</td>
+    <td>&quot;20px&quot;</td>
+    <td>string or number - X axis offset distance</td>
+  </tr>
+  <tr id="offsetY">
+    <td>offsetY</td>
+    <td>The offset value given as an integer or in pixels for the y-axis. Using this value and the mouse entering position the widget compute the &quot;tooltip&quot; element vertical position. </td>
+    <td>&quot;20px&quot;</td>
+    <td>string or number - Y axis offset distance</td>
+  </tr>
+  <tr id="useEffect">
+    <td>useEffect</td>
+    <td>The effect to be used when the &quot;tooltip&quot; is displayed or hidden. Could receive two parameters: 'blind' and 'fade'. Default value is none: useEffect:&quot;&quot;</td>
+    <td>empty</td>
+    <td>&quot;blind&quot; or &quot;fade&quot;</td>
+  </tr>
+</table>
+<h4 id="using_options">Using Options</h4>
+<p>Options are set in the constructor, within curly braces {}. For example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+var tt1 = new Spry.Widget.Tooltip(&quot;apDiv1&quot;, &quot;#myDiv&quot;, {hideDelay:500, showDelay:200, hoverClass:&quot;toolTipHover&quot;, useEffect:&quot;blind&quot;, followMouse:true, offsetX:&quot;30px&quot;, offsetY:20});
+&lt;/script&gt;
+</pre>
+<h3 id="tooltip_with_data">Using a Tooltip Widget with Spry Data</h3>
+<p>As with other Spry widgets, you may want to either generate the markup with Spry Data or populate the content with Spry Data. A common tooltip scenario is a variation of the master/detail pattern. As in our products demo, the table is the master element, and the detail region updates in response to the mouse click on the row. With the tooltip, we can make that detail region the tooltip and the row click the trigger. A working sample is <a href="../../samples/data_region/TooltipwithData.html">here</a>.</p>
+<p>The key to working with Spry Data and the Tooltip Widget, much like other widgets, is that due to the asynchronous nature of Spry Data, you have to control the regeneration of the widget when the data updates. The simplest way to do this is with <a href="../../articles/data_set_overview/index.html#observers">Observers.</a> Using Observers, we regenerate the Tooltip widget every time the main region is updated. We use the onPostUpdate notification for this. The basic code looks like:</p>
+<pre>&lt;div spry:region=&quot;ds1&quot; id=&quot;<span class="hilite">mainRegion</span>&quot;&gt;
+ &lt;!-- Set the onMouseOver event to trigger the detail region update. The class name 'trigger' is used in the constructor. --&gt;
+ &lt;div spry:repeat=&quot;ds1&quot; <span class="hilite">onmouseover=&quot;ds1.setCurrentRow('{ds_RowID}');&quot;</span> <span class="hilite">class=&quot;trigger&quot;</span>&gt;{firstname} {lastname}&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- The tooltip container. The id is used in the constructor. --&gt;
+&lt;p spry:detailregion=&quot;ds1&quot; <span class="hilite">id=&quot;tooltip&quot;</span>&gt;Phone:{phone}&lt;br /&gt;
+ UserName:{username}&lt;br /&gt;
+ ID:{@id}&lt;/p&gt;
+ &lt;!-- The Observer script. Add an observer to run the tooltip constructor after the detail region is loaded. <br />'mainRegion' is the ID of the main region. onPostUpdate tells the function() to run after the new data is loaded. <br />The actual widget constructor is the function in the observer. --&gt;<br />
+&lt;script type=&quot;text/javascript&quot;&gt;
+ Spry.Data.Region.addObserver('<span class="hilite">mainRegion</span>',{onPostUpdate:function(){var tt1 = new Spry.Widget.Tooltip(<span class="hilite">'tooltip'</span>,'<span class="hilite">.trigger</span>');}});
+&lt;/script&gt;</pre>
+<ul>
+  <li>'mainRegion' is the ID of the Spry region we are listening to for data updates.</li>
+  <li>The class 'trigger' is used so we can attach one tooltip to multiple elements.</li>
+  <li>The ID 'tooltip' is the detailregion. </li>
+  <li>We use the onmouseover event to trigger the data set update with 'setCurrentRow'.</li>
+</ul>
+<hr />
+<p>Copyright &copy; 2007. Adobe&reg; Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Montana</name>
+	<cities>
+		<city>
+			<name>Absarokee</name>
+		</city>
+		<city>
+			<name>Alberton</name>
+		</city>
+		<city>
+			<name>Anaconda</name>
+		</city>
+		<city>
+			<name>Arlee</name>
+		</city>
+		<city>
+			<name>Ashland</name>
+		</city>
+		<city>
+			<name>Bainville</name>
+		</city>
+		<city>
+			<name>Baker</name>
+		</city>
+		<city>
+			<name>Bearcreek</name>
+		</city>
+		<city>
+			<name>Belgrade</name>
+		</city>
+		<city>
+			<name>Belt</name>
+		</city>
+		<city>
+			<name>Big Sandy</name>
+		</city>
+		<city>
+			<name>Big Timber</name>
+		</city>
+		<city>
+			<name>Billings</name>
+		</city>
+		<city>
+			<name>Bonner-West Riverside</name>
+		</city>
+		<city>
+			<name>Boulder</name>
+		</city>
+		<city>
+			<name>Bozeman</name>
+		</city>
+		<city>
+			<name>Bridger</name>
+		</city>
+		<city>
+			<name>Broadus</name>
+		</city>
+		<city>
+			<name>Broadview</name>
+		</city>
+		<city>
+			<name>Brockton</name>
+		</city>
+		<city>
+			<name>Browning</name>
+		</city>
+		<city>
+			<name>Busby</name>
+		</city>
+		<city>
+			<name>Butte</name>
+		</city>
+		<city>
+			<name>Cascade</name>
+		</city>
+		<city>
+			<name>Charlo</name>
+		</city>
+		<city>
+			<name>Chester</name>
+		</city>
+		<city>
+			<name>Chinook</name>
+		</city>
+		<city>
+			<name>Choteau</name>
+		</city>
+		<city>
+			<name>Circle</name>
+		</city>
+		<city>
+			<name>Clyde Park</name>
+		</city>
+		<city>
+			<name>Colstrip</name>
+		</city>
+		<city>
+			<name>Columbia Falls</name>
+		</city>
+		<city>
+			<name>Columbus</name>
+		</city>
+		<city>
+			<name>Conrad</name>
+		</city>
+		<city>
+			<name>Crow Agency</name>
+		</city>
+		<city>
+			<name>Culbertson</name>
+		</city>
+		<city>
+			<name>Cut Bank</name>
+		</city>
+		<city>
+			<name>Darby</name>
+		</city>
+		<city>
+			<name>Deer Lodge</name>
+		</city>
+		<city>
+			<name>Denton</name>
+		</city>
+		<city>
+			<name>Dillon</name>
+		</city>
+		<city>
+			<name>Dodson</name>
+		</city>
+		<city>
+			<name>Drummond</name>
+		</city>
+		<city>
+			<name>Dutton</name>
+		</city>
+		<city>
+			<name>East Glacier Park Village</name>
+		</city>
+		<city>
+			<name>East Helena</name>
+		</city>
+		<city>
+			<name>Ekalaka</name>
+		</city>
+		<city>
+			<name>Ennis</name>
+		</city>
+		<city>
+			<name>Eureka</name>
+		</city>
+		<city>
+			<name>Evergreen</name>
+		</city>
+		<city>
+			<name>Fairfield</name>
+		</city>
+		<city>
+			<name>Fairview</name>
+		</city>
+		<city>
+			<name>Finley Point</name>
+		</city>
+		<city>
+			<name>Flaxville</name>
+		</city>
+		<city>
+			<name>Forsyth</name>
+		</city>
+		<city>
+			<name>Fort Belknap</name>
+		</city>
+		<city>
+			<name>Fort Benton</name>
+		</city>
+		<city>
+			<name>Fort Peck</name>
+		</city>
+		<city>
+			<name>Frazer</name>
+		</city>
+		<city>
+			<name>Froid</name>
+		</city>
+		<city>
+			<name>Fromberg</name>
+		</city>
+		<city>
+			<name>Geraldine</name>
+		</city>
+		<city>
+			<name>Glasgow</name>
+		</city>
+		<city>
+			<name>Glendive</name>
+		</city>
+		<city>
+			<name>Grass Range</name>
+		</city>
+		<city>
+			<name>Great Falls</name>
+		</city>
+		<city>
+			<name>Hamilton</name>
+		</city>
+		<city>
+			<name>Hardin</name>
+		</city>
+		<city>
+			<name>Harlem</name>
+		</city>
+		<city>
+			<name>Harlowton</name>
+		</city>
+		<city>
+			<name>Havre</name>
+		</city>
+		<city>
+			<name>Havre North</name>
+		</city>
+		<city>
+			<name>Hays</name>
+		</city>
+		<city>
+			<name>Heart Butte</name>
+		</city>
+		<city>
+			<name>Helena</name>
+		</city>
+		<city>
+			<name>Helena Valley Northeast</name>
+		</city>
+		<city>
+			<name>Helena Valley Northwest</name>
+		</city>
+		<city>
+			<name>Helena Valley Southeast</name>
+		</city>
+		<city>
+			<name>Helena Valley West Central</name>
+		</city>
+		<city>
+			<name>Helena West Side</name>
+		</city>
+		<city>
+			<name>Hingham</name>
+		</city>
+		<city>
+			<name>Hobson</name>
+		</city>
+		<city>
+			<name>Hot Springs</name>
+		</city>
+		<city>
+			<name>Hysham</name>
+		</city>
+		<city>
+			<name>Ismay</name>
+		</city>
+		<city>
+			<name>Joliet</name>
+		</city>
+		<city>
+			<name>Jordan</name>
+		</city>
+		<city>
+			<name>Judith Gap</name>
+		</city>
+		<city>
+			<name>Kalispell</name>
+		</city>
+		<city>
+			<name>Kevin</name>
+		</city>
+		<city>
+			<name>Kicking Horse</name>
+		</city>
+		<city>
+			<name>Lame Deer</name>
+		</city>
+		<city>
+			<name>Laurel</name>
+		</city>
+		<city>
+			<name>Lavina</name>
+		</city>
+		<city>
+			<name>Lewistown</name>
+		</city>
+		<city>
+			<name>Libby</name>
+		</city>
+		<city>
+			<name>Lima</name>
+		</city>
+		<city>
+			<name>Livingston</name>
+		</city>
+		<city>
+			<name>Lockwood</name>
+		</city>
+		<city>
+			<name>Lodge Grass</name>
+		</city>
+		<city>
+			<name>Lolo</name>
+		</city>
+		<city>
+			<name>Malmstrom AFB</name>
+		</city>
+		<city>
+			<name>Malta</name>
+		</city>
+		<city>
+			<name>Manhattan</name>
+		</city>
+		<city>
+			<name>Medicine Lake</name>
+		</city>
+		<city>
+			<name>Melstone</name>
+		</city>
+		<city>
+			<name>Miles City</name>
+		</city>
+		<city>
+			<name>Missoula</name>
+		</city>
+		<city>
+			<name>Moore</name>
+		</city>
+		<city>
+			<name>Muddy</name>
+		</city>
+		<city>
+			<name>Nashua</name>
+		</city>
+		<city>
+			<name>Neihart</name>
+		</city>
+		<city>
+			<name>North Browning</name>
+		</city>
+		<city>
+			<name>Opheim</name>
+		</city>
+		<city>
+			<name>Orchard Homes</name>
+		</city>
+		<city>
+			<name>Outlook</name>
+		</city>
+		<city>
+			<name>Pablo</name>
+		</city>
+		<city>
+			<name>Philipsburg</name>
+		</city>
+		<city>
+			<name>Pinesdale</name>
+		</city>
+		<city>
+			<name>Plains</name>
+		</city>
+		<city>
+			<name>Plentywood</name>
+		</city>
+		<city>
+			<name>Plevna</name>
+		</city>
+		<city>
+			<name>Polson</name>
+		</city>
+		<city>
+			<name>Poplar</name>
+		</city>
+		<city>
+			<name>Pryor</name>
+		</city>
+		<city>
+			<name>Red Lodge</name>
+		</city>
+		<city>
+			<name>Rexford</name>
+		</city>
+		<city>
+			<name>Richey</name>
+		</city>
+		<city>
+			<name>Ronan</name>
+		</city>
+		<city>
+			<name>Roundup</name>
+		</city>
+		<city>
+			<name>Ryegate</name>
+		</city>
+		<city>
+			<name>Saco</name>
+		</city>
+		<city>
+			<name>Scobey</name>
+		</city>
+		<city>
+			<name>Shelby</name>
+		</city>
+		<city>
+			<name>Sheridan</name>
+		</city>
+		<city>
+			<name>Sidney</name>
+		</city>
+		<city>
+			<name>South Browning</name>
+		</city>
+		<city>
+			<name>St. Ignatius</name>
+		</city>
+		<city>
+			<name>Stanford</name>
+		</city>
+		<city>
+			<name>Starr School</name>
+		</city>
+		<city>
+			<name>Stevensville</name>
+		</city>
+		<city>
+			<name>Sun Prairie</name>
+		</city>
+		<city>
+			<name>Sunburst</name>
+		</city>
+		<city>
+			<name>Superior</name>
+		</city>
+		<city>
+			<name>Terry</name>
+		</city>
+		<city>
+			<name>Thompson Falls</name>
+		</city>
+		<city>
+			<name>Three Forks</name>
+		</city>
+		<city>
+			<name>Townsend</name>
+		</city>
+		<city>
+			<name>Troy</name>
+		</city>
+		<city>
+			<name>Twin Bridges</name>
+		</city>
+		<city>
+			<name>Valier</name>
+		</city>
+		<city>
+			<name>Virginia City</name>
+		</city>
+		<city>
+			<name>Walkerville</name>
+		</city>
+		<city>
+			<name>West Yellowstone</name>
+		</city>
+		<city>
+			<name>Westby</name>
+		</city>
+		<city>
+			<name>White Sulphur Springs</name>
+		</city>
+		<city>
+			<name>Whitefish</name>
+		</city>
+		<city>
+			<name>Whitehall</name>
+		</city>
+		<city>
+			<name>Wibaux</name>
+		</city>
+		<city>
+			<name>Winifred</name>
+		</city>
+		<city>
+			<name>Winnett</name>
+		</city>
+		<city>
+			<name>Wolf Point</name>
+		</city>
+	</cities>
+</state>

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Custom Data Set Columns Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.even {
+	background-color: #CCCCCC;
+}
+.scoreValue {
+	text-align: right;
+}
+th {
+	background-color: black;
+	color: white;
+}
+.winner {
+	background-color: #66FF99;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsTeams = new Spry.Data.XMLDataSet("../../data/scores.xml", "//team");
+
+// Make sure that all our our round* columns get converted into numbers
+// so we can do some math on them.
+
+dsTeams.setColumnType([ "round1", "round2", "round3", "round4", "round5" ], "number");
+
+function PreProcessScoreData(notificationType, notifier, data)
+{
+	if (notificationType != "onPostLoad")
+		return;
+
+	// Get access to all of the rows of a data set with getData().
+
+	var rows = dsTeams.getData();
+	var numRows = rows.length;
+	var numRounds = 5;
+
+	var highTotal = 0;
+	var highTotalRow = null;
+
+	// Now run through each row and column of the table calculating
+	// the total, high, and average score for each team.
+	//
+	// During this processing we will dynanmically add the following columns to
+	// each row of the data set:
+	//
+	//     highScore
+	//     average
+	//     total
+	//     round1Winner
+	//     round2Winner
+	//     round3Winner
+	//     round4Winner
+	//     round5Winner
+	//     totalWinner
+
+	for (var i = 0; i < numRows; i++)
+	{
+		var total = 0;
+		var highScore = 0;
+		var row = rows[i];
+
+		for (var j = 1; j <= numRounds; j++)
+		{
+			var colName = "round" + 1;
+			var score = row[colName];
+			row[colName] = score;
+			total += score;
+			highScore = (score > highScore) ? score : highScore;
+		}
+		
+		// Add some custom columns:
+
+		row.total = total;
+		row.average = total/numRounds;
+		row.highScore = highScore;
+		row.totalWinner = "";
+
+		if (total > highTotal)
+		{
+			highTotal = total;
+			highTotalRow = row;
+		}
+	}
+
+	// Set the CSS class for the totalWinner column.
+
+	highTotalRow.totalWinner = "winner";
+
+	for (var i = 1; i <= numRounds; i++)
+	{
+		var colName = "round" + i;
+		var colNameWinner = colName + "Winner";
+		var highScore = 0;
+		var highScoreRow = null;
+
+		for (var j = 0; j < numRows; j++)
+		{
+			var row = rows[j];
+			var score = row[colName];
+			
+			if (score > highScore)
+			{
+				highScore = score;
+				highScoreRow = row;
+			}
+
+			// Add a custom column to hold the CSS class name to use
+			// for the highest score.
+			
+			row[colNameWinner] = "";
+		}
+
+		// Set the CSS class for the winner of the round.
+		
+		highScoreRow[colNameWinner] = "winner";
+	}
+}
+
+dsTeams.addObserver(PreProcessScoreData);
+-->
+</script>
+
+</head>
+
+<body>
+<h3>Custom Data Set Columns  Sample </h3>
+<p>This sample shows you how to do some preliminary processing of the data in your data set, and add custom columns to it so that it is accessible from a region. </p>
+<p>&nbsp;In this example, the data loaded into the data set from the XML file contains the following columns:</p>
+<ul>
+	<li>name</li>
+	<li>round1</li>
+	<li>round2</li>
+	<li>round3</li>
+	<li>round4</li>
+	<li>round5</li>
+</ul>
+<p>An onPostLoad observer function is added to our dsTeams data set so that after the data is loaded, we can run through the data in each row and add additional info to custom columns  based on some calculations. The custom columns that will be added to the data set are:</p>
+<ul>
+	<li> highScore</li>
+	<li>		average</li>
+	<li>total</li>
+	<li>		round1Winner</li>
+	<li>		round2Winner</li>
+	<li>		round3Winner</li>
+	<li>		round4Winner</li>
+	<li>		round5Winner</li>
+	<li>		totalWinner</li>
+</ul>
+<p>After this processing, these custom columns, as well as the original columns that were loaded from the XML data, are accessible within any spry:region or spry:detailregion that depends on the dsTeams data set. </p>
+<hr />
+<div spry:region="dsTeams">
+<table style="width: 50%;" border="1" cellspacing="0">
+	<tr>
+		<th>Team</th>
+		<th>Round 1</th>
+		<th>Round 2</th>
+		<th>Round 3</th>
+		<th>Round 4</th>
+		<th>Round 5</th>
+		<th>High Score</th>
+		<th>Average</th>
+		<th>Total</th>
+	</tr>
+	<tr spry:repeat="dsTeams" spry:even="even">
+		<td>{name}</td>
+		<td class="scoreValue {round1Winner}">{round1}</td>
+		<td class="scoreValue {round2Winner}">{round2}</td>
+		<td class="scoreValue {round3Winner}">{round3}</td>
+		<td class="scoreValue {round4Winner}">{round4}</td>
+		<td class="scoreValue {round5Winner}">{round5}</td>
+		<td class="scoreValue">{highScore}</td>
+		<td class="scoreValue">{average}</td>
+		<td class="scoreValue {totalWinner}">{total}</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

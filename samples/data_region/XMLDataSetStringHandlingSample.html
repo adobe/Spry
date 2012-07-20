@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XMLDataSet String Handling</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var dsExample1a = new Spry.Data.XMLDataSet("../../data/encode-01.xml", "/data", { entityEncodeStrings: -1 });
+var dsExample2a = new Spry.Data.XMLDataSet("../../data/encode-01.xml", "/data");
+var dsExample2b = new Spry.Data.XMLDataSet("../../data/encode-01.xml", "/data");
+dsExample2b.setColumnType("tvalue", "html");
+var dsExample2c = new Spry.Data.XMLDataSet("../../data/encode-01.xml", "/data");
+dsExample2c.setColumnType([ "tvalue", "cvalue" ], "html");
+var dsExample3a = new Spry.Data.XMLDataSet("../../data/encode-01.xml", "/data", { entityEncodeStrings: false });
+var dsExample3b = new Spry.Data.XMLDataSet("../../data/encode-02.xml", "/data", { entityEncodeStrings: false });
+//-->
+</script>
+</head>
+
+<body>
+<h3>XML Data Set String Handling</h3>
+<p>This example describes how string values in XML are handled by the XMLDataSet.</p>
+<ul>
+	<li><a href="#example1">Example 1: Entity encoding/decoding of string values in Spry 1.5 and earlier.</a></li>
+	<li><a href="#example2">Example 2: Entity encode string values mode. (The default mode)</a></li>
+	<li><a href="#example3">Example 3: Entity decode string values mode.</a></li>
+</ul>
+<hr />
+<h3><a name="example1" id="example1"></a>Example 1: Entity Encoding/Decoding of Text Values in Spry 1.5 and earlier.</h3>
+<p>In Spry Pre-Release 1.5 and earlier versions, the XML Data Set handled the string content of #text nodes differently from #cdata nodes. To illustrate the difference, consider the following XML:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;data&gt;
+  &lt;name&gt;HTML Markup Entity Encoded Once&lt;/name&gt;
+  &lt;tvalue&gt;&amp;lt;p&amp;gt;Plain Text &amp;lt;span style=&amp;quot;font-weight: bold;&amp;quot;&amp;gt;Bold Text&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: red;&amp;quot;&amp;gt;Red Text&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&lt;/tvalue&gt;
+  &lt;cvalue&gt;&lt;![CDATA[&lt;p&gt;Plain Text &lt;span style=&quot;font-weight: bold;&quot;&gt;Bold Text&lt;/span&gt; &lt;span style=&quot;color: red;&quot;&gt;Red Text&lt;/span&gt;&lt;/p&gt;]]&gt;&lt;/cvalue&gt;
+&lt;/data&gt;
+</pre>
+<p>To an XML parser, the string content that ends up underneath the &lt;tvalue&gt; node and the &lt;cvalue&gt; node are identical after it is parsed and stored in the resulting XML DOM tree. But, if we used the following data set and region code in Spry 1.5 (and earlier) to print the values:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample1a = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;);
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample1a&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;
+</pre>
+<p>we end up with the following results:</p>
+<div class="liveSample" spry:region="dsExample1a">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<p>In the example above, the value of the 'tvalue' column shows up as raw HTML markup within the Browser's content area, whereas the the value of the 'cvalue' column was actually interpreted as HTML markup and rendered accordingly. The reason this happens is because in prior versions of Spry, the XML Data Set would entity encode any string data found in a #text node before storing it in a column in the data set. The thought was that developers would be writing out raw plain text string values from their data base into the XML they produced, so if they had a string value of &quot;X &lt; Y and Y &gt; Z&quot; in their data base, they would write it out like this:</p>
+<p>&lt;str&gt;X &amp;lt; and Y &amp;gt; Z&lt;/str&gt;</p>
+<p>But since the XML parser decodes and stores the final results in its XML DOM as &quot;X &lt; Y and Y &gt; Z&quot;, it meant that we would have to re-entity encode it to get the desired result when Spry regions were involved because the Spry region code simply inserts the values of a column directly into the HTML markup it builds up for a region. If it wasn't entity encoded, the &quot;&lt; Y and Y &gt;&quot; part of the value might be interpreted as a tag, and not appear properly.</p>
+<p>So the thought was that we would store the string content underneath #text nodes and #cdata nodes in the XML Data Set *exactly* as they appeared in the XML document. This gave developers a way to get plain text values with special characters to render properly, and embed HTML within XML using CDATA.</p>
+<p>This however confused some folks given the fact that in true XML, as in our XML example above, the string content should be identical and treated identically. To put an end to this confusion, and to make Spry more compatible with existing server side scripts/utilities that write out HTML embedded in XML, we've decided to introduce encode/decode modes within the XML Data Set. String content in both #text and #cdata nodes are treated identically, both entity encoded when stored in the data set, or both decoded when stored in the data set. Developers are able to select which mode (encoded/decoded) an XML Data Set uses.</p>
+<p> The default mode entity encodes all #text and #cdata values when storing values in the XML Data Set. We have provided a 3rd mode that mimics the behavior from Spry Pre-Release 1.5 and earlier, with the hopes of eventual deprecation.</p>
+<p>To turn on backwards compatibility for versions of Spry *after* Pre-Release 1.5, you simply have to pass a non-boolean value for the &quot;entityEncodeStrings&quot; constructor option:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample1a = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;, <span class="hilight">{ entityEncodeStrings: -1 }</span>);
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample1a&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>The value for &quot;entityEncodeStrings&quot; should be either a boolean true or false. In the code example above, we are passing a -1 which is a &quot;number&quot; so it triggers the backwards compatibility mode. The example above could have easily used some random string value instead (example: { entityEncodeStrings: &quot;backwards&quot; }) to turn this mode on.</p>
+<hr />
+<h3><a name="example2" id="example2"></a>Example 2: Entity Encode String Values Mode (The Default Mode)</h3>
+<p>In versions of Spry *after* Pre-Release 1.5, the string data in #text nodes and #cdata nodes are stored exactly the same way within the data set. After the string values are parsed by the XML parser, the strings are then entity encoded and stored in the data set during the flattening process, so that if they are used within a spry:region, the string content renders within the browser.</p>
+<p>To illustrate this point, loading this XML:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;data&gt;
+  &lt;name&gt;HTML Markup Entity Encoded Once&lt;/name&gt;
+  &lt;tvalue&gt;&amp;lt;p&amp;gt;Plain Text &amp;lt;span style=&amp;quot;font-weight: bold;&amp;quot;&amp;gt;Bold Text&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: red;&amp;quot;&amp;gt;Red Text&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&lt;/tvalue&gt;
+  &lt;cvalue&gt;&lt;![CDATA[&lt;p&gt;Plain Text &lt;span style=&quot;font-weight: bold;&quot;&gt;Bold Text&lt;/span&gt; &lt;span style=&quot;color: red;&quot;&gt;Red Text&lt;/span&gt;&lt;/p&gt;]]&gt;&lt;/cvalue&gt;
+&lt;/data&gt;
+</pre>
+<p>into an XML data set and using a spry:region to display the text data:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample2a = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;);
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample2a&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>gives us the following results:</p>
+<div class="liveSample" spry:region="dsExample2a">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<p>If the developer truly wants  the text in a specific column to be interpreted as HTML, they can make use of the &quot;html&quot; column type:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample2b = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;);
+
+<span class="hilight">dsExample2b.setColumnType(&quot;tvalue&quot;, &quot;html&quot;);</span>
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample2b&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>The example above sets the column type for the 'tvalue' column to &quot;html&quot;, which gives us these results:</p>
+<div class="liveSample" spry:region="dsExample2b">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<p>Since #text and #cdata nodes are treated identically, you can also set the column type for column values that were derived from #cdata nodes too, just as the 'cvalue' column was:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample2c = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;);
+
+<span class="hilight">dsExample2c.setColumnType([ &quot;tvalue&quot;, &quot;cvalue&quot; ], &quot;html&quot;);</span>
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample2c&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>In the code sample above, &quot;cvalue&quot; was added to the list of columns to set to &quot;html&quot;. This gives us these results:</p>
+<div class="liveSample" spry:region="dsExample2c">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<hr />
+<h3><a name="example3" id="example3"></a>Example 3: Entity Decode String Values Mode</h3>
+<p>As mentioned in <a href="#example2">Example 2</a>, by default, the strings in #text and #cdata nodes are stored in data set columns as entity encoded strings. A developer can change the &quot;entityEncodeStrings&quot; option, so that the strings are stored as entity decoded strings, instead, so that any HTML markup that is in the decoded string actually gets interpreted when the string is used in a spry:region.</p>
+<p>If we load the same XML we used in <a href="#example2">Example 2</a>:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;data&gt;
+  &lt;name&gt;HTML Markup Entity Encoded Once&lt;/name&gt;
+  &lt;tvalue&gt;&amp;lt;p&amp;gt;Plain Text &amp;lt;span style=&amp;quot;font-weight: bold;&amp;quot;&amp;gt;Bold Text&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: red;&amp;quot;&amp;gt;Red Text&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&lt;/tvalue&gt;
+  &lt;cvalue&gt;&lt;![CDATA[&lt;p&gt;Plain Text &lt;span style=&quot;font-weight: bold;&quot;&gt;Bold Text&lt;/span&gt; &lt;span style=&quot;color: red;&quot;&gt;Red Text&lt;/span&gt;&lt;/p&gt;]]&gt;&lt;/cvalue&gt;
+&lt;/data&gt;
+</pre>
+<p>into an XML data set that specified &quot;entityEncodeStrings:false&quot; and used a spry:region to display the strings:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample3a = new Spry.Data.XMLDataSet(&quot;../data/encode-01.xml&quot;, &quot;/data&quot;, { entityEncodeStrings: false });
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample3a&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>we would get the following results:</p>
+<div class="liveSample" spry:region="dsExample3a">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<p>If a developer wanted a string to be displayed that used angle brackets or ampersands, those characters would have to be double entity encoded if embeded in the XML as text, or entity encoded once if embeded in CDATA. So for example, if we wanted some HTML markup to be shown, the XML would look like this:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;data&gt;
+	&lt;name&gt;HTML Markup Entity Encoded Once&lt;/name&gt;
+	&lt;tvalue&gt;&amp;amp;lt;p&amp;amp;gt;Plain Text &amp;amp;lt;span style=&amp;amp;quot;font-weight: bold;&amp;amp;quot;&amp;amp;gt;Bold Text&amp;amp;lt;/span&amp;amp;gt; &amp;amp;lt;span style=&amp;amp;quot;color: red;&amp;amp;quot;&amp;amp;gt;Red Text&amp;amp;lt;/span&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;&lt;/tvalue&gt;
+	&lt;cvalue&gt;&lt;![CDATA[&amp;lt;p&amp;gt;Plain Text &amp;lt;span style=&amp;quot;font-weight: bold;&amp;quot;&amp;gt;Bold Text&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: red;&amp;quot;&amp;gt;Red Text&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;]]&gt;&lt;/cvalue&gt;
+&lt;/data&gt;
+</pre>
+<p>The code we would use would still look the same:</p>
+<pre>
+&lt;script src=&quot;../../Spry/includes/xpath.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../Spry/includes/SpryData.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var dsExample3b = new Spry.Data.XMLDataSet(&quot;../data/encode-02.xml&quot;, &quot;/data&quot;, { entityEncodeStrings: false });
+//--&gt;
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsExample3b&quot;&gt;
+	&lt;p&gt;Value of the 'tvalue' column:&lt;/p&gt;
+	{tvalue}
+	&lt;p&gt;Value of the 'cvalue' column:&lt;/p&gt;
+	{cvalue}
+&lt;/div&gt;</pre>
+<p>But it would render like this:</p>
+<div class="liveSample" spry:region="dsExample3b">
+	<p>Value of the 'tvalue' column:</p>
+	{tvalue}
+	<p>Value of the 'cvalue' column:</p>
+	{cvalue}
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

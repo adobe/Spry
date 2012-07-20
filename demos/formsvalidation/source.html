@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Validation Widgets Demo</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="codesample">
+<div id="wrap">
+<h1>Validation Widgets Demo<span class="return"><a href="../index.html">Back to Demos</a></span> <span class="demo"><a href="index.html">Return to Validation Widgets Demo</a></span></h1>
+<div class="sample">
+<pre>
+<code>
+
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. --&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="highlightedcode">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;Form Validation Widgets Demo&lt;/title&gt;
+&lt;link href=&quot;../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;
+<span class="highlightedcode">&lt;link href=&quot;../../widgets/textfieldvalidation/SpryValidationTextField.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;link href=&quot;../../widgets/selectvalidation/SpryValidationSelect.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;link href=&quot;../../widgets/textareavalidation/SpryValidationTextarea.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;link href=&quot;../../widgets/checkboxvalidation/SpryValidationCheckbox.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</span>
+&lt;link href=&quot;validation.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;
+
+<span class="highlightedcode">&lt;script type=&quot;text/javascript&quot; src=&quot;../../widgets/textfieldvalidation/SpryValidationTextField.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../widgets/selectvalidation/SpryValidationSelect.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../widgets/textareavalidation/SpryValidationTextarea.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../widgets/checkboxvalidation/SpryValidationCheckbox.js&quot;&gt;&lt;/script&gt;</span>
+
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;noscript&gt;&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;&lt;/noscript&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;h1&gt;Validation Widgets Demo
+  	&lt;span class=&quot;return&quot;&gt;
+  		&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;source&quot;&gt;
+		&lt;a href=&quot;source.html&quot;&gt;View Source &lt;/a&gt;
+	&lt;/span&gt;
+  &lt;/h1&gt;
+  
+ &lt;div id=&quot;CentralColumn&quot;&gt;
+	&lt;div id=&quot;articles&quot;&gt;
+		&lt;form id=&quot;form1&quot; name=&quot;form1&quot; method=&quot;post&quot;&gt;
+		&lt;div id=&quot;formregion&quot;&gt;
+			
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theTitle</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Title:&lt;/div&gt;
+			<span class="highlightedcode">&lt;input name=&quot;movieName&quot; type=&quot;text&quot; id=&quot;theMovieTitle&quot; value=&quot;Conquistador&quot; /&gt;</span>
+			&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+			<span class="highlightedcode">&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;Please enter a title.&lt;/span&gt;</span>
+		<span class="highlightedcode">&lt;/div&gt;</span>
+
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theRating</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Rating:&lt;/div&gt;
+			<span class="highlightedcode">&lt;select name=&quot;Rating&quot; id=&quot;movieRating&quot;&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;&quot;&gt;Please select&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;5&quot;&gt;*****&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;4&quot;&gt;****&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;3&quot;&gt;***&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;2&quot;&gt;**&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;1&quot;&gt;*&lt;/option&gt;</span>
+			<span class="highlightedcode">&lt;/select&gt;</span>
+			&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+			<span class="highlightedcode">&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select a rating.&lt;/span&gt;</span>
+		<span class="highlightedcode">&lt;/div&gt;</span>
+
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theDate</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Date:&lt;/div&gt;
+			<span class="highlightedcode">&lt;input name=&quot;movieDate&quot; type=&quot;text&quot; id=&quot;movieYear&quot; value=&quot;&quot; /&gt;</span>
+			&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+			<span class="highlightedcode">&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;Please enter a date.&lt;/span&gt;</span>
+			<span class="highlightedcode">&lt;span class=&quot;textfieldInvalidFormatMsg&quot;&gt;Please enter a valid date (mm/dd/yyyy).&lt;/span&gt;</span>
+		<span class="highlightedcode">&lt;/div&gt;</span>
+    
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theDuration</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Duration (minutes):&lt;/div&gt;
+			<span class="highlightedcode">&lt;input name=&quot;movieDuration&quot; type=&quot;text&quot; id=&quot;movieTime&quot; value=&quot;1h 35min&quot; /&gt;</span>
+			&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+			<span class="highlightedcode">&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;Please enter a duration.&lt;/span&gt;</span>
+			<span class="highlightedcode">&lt;span class=&quot;textfieldInvalidFormatMsg&quot;&gt;Please enter a positive number.&lt;/span&gt;</span>
+		<span class="highlightedcode">&lt;/div&gt;</span>
+		
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theStudio</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Studio:&lt;/div&gt;
+			<span class="highlightedcode">&lt;select name=&quot;movieStudio&quot; id=&quot;movieStudio&quot;&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;&quot; selected&gt;Please select&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;13Foxes&quot;&gt;Thirteen Foxes&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;StudioMartin&quot;&gt;Studio Martin&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;Kristal&quot;&gt;Kristal&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;NorthEastStars&quot;&gt;NorthEast Stars&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;Multiplex&quot;&gt;Multiplex&lt;/option&gt;</span>
+				<span class="highlightedcode">&lt;option value=&quot;ACME&quot;&gt;ACME&lt;/option&gt;</span>
+			<span class="highlightedcode">&lt;/select&gt;</span>
+			&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+			<span class="highlightedcode">&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select a studio.&lt;/span&gt;</span>
+		 <span class="highlightedcode">&lt;/div&gt;</span>
+
+		<span class="highlightedcode">&lt;div id=&quot;<strong>theDescription</strong>&quot;&gt;</span>
+		 	&lt;div class=&quot;formLabel&quot;&gt;Description:&lt;/div&gt;
+			&lt;table border=&quot;0&quot;&gt;
+			&lt;tr&gt;
+				&lt;td valign=&quot;top&quot; rowspan=&quot;2&quot;&gt;
+					<span class="highlightedcode">&lt;textarea name=&quot;movieDescription&quot; id=&quot;movieDescription&quot; cols=&quot;45&quot; rows=&quot;5&quot;&gt;The story of a historian accompanying Cortez in his quest in the New World.&lt;/textarea&gt;</span>
+				&lt;/td&gt;
+				&lt;td valign=&quot;top&quot; width=&quot;325&quot;&gt;				
+					&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+					<span class="highlightedcode">&lt;span class=&quot;textareaRequiredMsg&quot;&gt;Please enter a description.&lt;/span&gt;</span>
+					<span class="highlightedcode">&lt;span class=&quot;textareaMinCharsMsg&quot;&gt;Please enter at least 20 characters.&lt;/span&gt;</span>
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td valign=&quot;bottom&quot;&gt;<span class="highlightedcode">&lt;span id=&quot;Countvalidta1&quot;&gt;&nbsp;&lt;/span&gt;</span> / 180&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;/table&gt;
+		<span class="highlightedcode">&lt;/div&gt;</span>
+
+		<span class="highlightedcode">&lt;div id=&quot;<strong>checkboxes</strong>&quot;&gt;</span>
+			&lt;div class=&quot;formLabel&quot;&gt;Genre:&lt;/div&gt;
+			&lt;div id=&quot;validcheckbox&quot;&gt;
+				&lt;label for=&quot;checkbox_1&quot;&gt;Crime&lt;/label&gt;
+				&lt;div class=&quot;input_container&quot;&gt;
+						<span class="highlightedcode">&lt;input type=&quot;checkbox&quot; name=&quot;movieGenre&quot; id=&quot;checkbox_1&quot; value=&quot;1&quot;/&gt;</span>
+				&lt;/div&gt;
+			&lt;/div&gt;	
+			&lt;div id=&quot;validcheckbox&quot;&gt;
+				&lt;label for=&quot;checkbox_2&quot;&gt;Mystery&lt;/label&gt;
+				&lt;div class=&quot;input_container&quot;&gt;
+						<span class="highlightedcode">&lt;input type=&quot;checkbox&quot; name=&quot;movieGenre&quot; id=&quot;checkbox_2&quot; value=&quot;2&quot;/&gt;</span>
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div id=&quot;validcheckbox&quot;&gt;
+				&lt;label for=&quot;checkbox_3&quot;&gt;Drama&lt;/label&gt;
+				&lt;div class=&quot;input_container&quot;&gt;
+						<span class="highlightedcode">&lt;input type=&quot;checkbox&quot; name=&quot;movieGenre&quot; id=&quot;checkbox_3&quot; value=&quot;3&quot;/&gt;</span>
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div id=&quot;validcheckbox&quot;&gt;
+				&lt;label for=&quot;checkbox_4&quot;&gt;Romance&lt;/label&gt;
+				&lt;div class=&quot;input_container&quot;&gt;
+						<span class="highlightedcode">&lt;input type=&quot;checkbox&quot; name=&quot;movieGenre&quot; id=&quot;checkbox_4&quot; value=&quot;4&quot;/&gt;</span>
+				&lt;/div&gt;
+			&lt;/div&gt;
+			
+			&lt;div id=&quot;validcheckbox&quot;&gt;
+				&lt;label for=&quot;checkbox_5&quot;&gt;Comedy&lt;/label&gt;
+				&lt;div class=&quot;input_container&quot;&gt;
+						<span class="highlightedcode">&lt;input type=&quot;checkbox&quot; name=&quot;movieGenre&quot; id=&quot;checkbox_5&quot; value=&quot;5&quot;/&gt;</span>
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div id=&quot;errors&quot;&gt;
+				&lt;img src=&quot;images/ok.gif&quot; title=&quot;Valid&quot; alt=&quot;Valid&quot; class=&quot;validMsg&quot; border=&quot;0&quot;/&gt;
+				<span class="highlightedcode">&lt;span class=&quot;checkboxRequiredMsg&quot;&gt;Please select at least a genre.&lt;/span&gt;</span>
+				<span class="highlightedcode">&lt;span class=&quot;checkboxMaxSelectionsMsg&quot;&gt;Only maximum 3 genres can be selected.&lt;/span&gt;</span>
+			&lt;/div&gt;
+			&lt;br style=&quot;clear:both&quot;/&gt;
+		<span class="highlightedcode">&lt;/div&gt;</span>
+			
+		&lt;div class=&quot;buttons&quot;&gt;
+			&lt;input type=&quot;submit&quot; name=&quot;Submit&quot; id=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
+			&lt;input type=&quot;reset&quot; name=&quot;Reset&quot; id=&quot;reset&quot; value=&quot;Reset&quot; /&gt;
+		&lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ClearAll&quot;&gt;&nbsp;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+<span class="highlightedcode">	var theTitle = new Spry.Widget.ValidationTextField(&quot;<strong>theTitle</strong>&quot;, &quot;none&quot;, {useCharacterMasking:true, validateOn:[&quot;change&quot;]});
+	var theDate = new Spry.Widget.ValidationTextField(&quot;<strong>theDate</strong>&quot;, &quot;date&quot;, {useCharacterMasking:true, format:&quot;mm/dd/yyyy&quot;, hint:&quot;mm/dd/yyyy&quot;, validateOn:[&quot;change&quot;]});
+	var theDuration = new Spry.Widget.ValidationTextField(&quot;<strong>theDuration</strong>&quot;, &quot;integer&quot;, {useCharacterMasking:true, validateOn:[&quot;change&quot;], allowNegative:false});
+	var theRating = new Spry.Widget.ValidationSelect(&quot;<strong>theRating</strong>&quot;, {validateOn:[&quot;change&quot;]});
+	var theStudio = new Spry.Widget.ValidationSelect(&quot;<strong>theStudio</strong>&quot;, {validateOn:[&quot;change&quot;]});
+	var theDescription = new Spry.Widget.ValidationTextarea(&quot;<strong>theDescription</strong>&quot;, {useCharacterMasking:true, minChars:20, maxChars:180, counterType:&quot;chars_count&quot;, counterId:&quot;Countvalidta1&quot;, validateOn:[&quot;change&quot;]});
+	var checkboxes = new Spry.Widget.ValidationCheckbox(&quot;<strong>checkboxes</strong>&quot;, {validateOn:[&quot;change&quot;], maxSelections:3});</span>
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code>	
+</pre>
+</div></div>
+</body>
+</html>

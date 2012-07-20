@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Products Demo Source</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="codesample">
+<div id="wrap">
+<h1>Products Demo Source<span class="demo"><a href="index.html">Return to Products Demo</a></span> </h1>
+<div class="sample">
+<pre>
+<code>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!--
+Copyright (c) 2006. Adobe Systems Incorporated.
+
+All rights reserved.
+
+The trademarks, logos, and service marks (&quot;Marks&quot;) displayed in this sample
+application are the property of Adobe or other third parties. You are not
+permitted to use the Marks without the prior written consent of Adobe or such
+third party that may own the Marks. Adobe and the Adobe logo are trademarks of
+Adobe Systems Incorporated.
+
+For a current list of Adobe's Marks, as well as certain third-party Marks,
+please refer to trademark information. (http://www.adobe.com/misc/trademarks.html)
+--&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; <span class="highlightedcode">xmlns:spry=&quot;http://ns.adobe.com/spry&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+&lt;title&gt;Products Demo&lt;/title&gt;
+&lt;link href=&quot;css/accordion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+<span class="highlightedcode">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script type=&quot;text/javascript&quot; src=&quot;../includes/SpryAccordion.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+<span class="highlightedcode">var dsProducts = new Spry.Data.XMLDataSet(&quot;products.xml&quot;, &quot;products/product&quot;);
+dsProducts.setColumnType([ &quot;boxshot&quot;, &quot;overview&quot;, &quot;features&quot; ], &quot;html&quot;);</span>
+--&gt;
+&lt;/script&gt;
+&lt;link href=&quot;../../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+	&lt;div id=&quot;header&quot;&gt;
+		&lt;h1&gt;Products Demo&lt;span class=&quot;return&quot;&gt;&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;content&quot;&gt;
+		&lt;table id=&quot;products&quot;&gt;
+			&lt;caption&gt; Adobe Software &lt;/caption&gt;
+			&lt;tr&gt;
+				&lt;th scope=&quot;col&quot;&gt;Product&lt;/th&gt;
+				&lt;th scope=&quot;col&quot;&gt;Category&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr class=&quot;even&quot;&gt;
+				&lt;td&gt;&lt;a href=&quot;index.html&quot; onclick=&quot;<span class="highlightedcode">dsProducts.setCurrentRowNumber(0);</span> return false;&quot;&gt;Adobe Photoshop CS2&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Digital Imaging&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;index-01.html&quot; onclick=&quot;<span class="highlightedcode">dsProducts.setCurrentRowNumber(1);</span> return false;&quot;&gt;Adobe Illustrator CS2&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Print Publishing&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr class=&quot;even&quot;&gt;
+				&lt;td&gt;&lt;a href=&quot;index-02.html&quot; onclick=&quot;<span class="highlightedcode">dsProducts.setCurrentRowNumber(2);</span> return false;&quot;&gt;Adobe InDesign CS2&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Print Publishing&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;index-03.html&quot; onclick=&quot;<span class="highlightedcode">dsProducts.setCurrentRowNumber(3);</span> return false;&quot;&gt;Adobe GoLive CS2&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Web Publishing&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr class=&quot;even&quot;&gt;
+				&lt;td&gt;&lt;a href=&quot;index-04.html&quot; onclick=&quot;<span class="highlightedcode">dsProducts.setCurrentRowNumber(4);</span> return false;&quot;&gt;Adobe Dreamweaver 8&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Web Publishing&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;sidebar&quot;&gt;
+		&lt;p id=&quot;boxshot&quot; <span class="highlightedcode">spry:detailregion=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:content=&quot;{boxshot}&quot;</span>&gt;&lt;img src=&quot;images/photoshop.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;&lt;/p&gt;
+		&lt;div id=&quot;Acc1&quot; class=&quot;Accordion&quot;&gt;
+			&lt;div class=&quot;AccordionPanel&quot;&gt;
+				&lt;div class=&quot;AccordionPanelLabel&quot;&gt;
+					&lt;h3&gt;Product Overview&lt;/h3&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;AccordionPanelContent&quot; <span class="highlightedcode">spry:detailregion=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:content=&quot;{overview}&quot;</span>&gt;
+					&lt;div&gt;
+						Adobe&amp;reg; Photoshop&amp;reg; CS2 software, the professional image-editing standard and
+						leader of the Photoshop digital imaging line, delivers more of what you
+						crave. Groundbreaking creative tools help you achieve extraordinary
+						results. Unprecedented adaptability lets you custom-fit Photoshop to
+						the way you work. And with more efficient editing, processing, and file
+						handling, there's no slowing you down.
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;AccordionPanel&quot;&gt;
+				&lt;div class=&quot;AccordionPanelLabel&quot;&gt;
+					&lt;h3&gt;New Features &lt;/h3&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;AccordionPanelContent&quot; <span class="highlightedcode">spry:detailregion=&quot;dsProducts&quot;</span> <span class="highlightedcode">spry:content=&quot;{features}&quot;</span>&gt;
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Revolutionary Vanishing Point&lt;/li&gt;
+							&lt;li&gt;Multiple layer control&lt;/li&gt;
+							&lt;li&gt;Smart Objects&lt;/li&gt;
+							&lt;li&gt;Multi-image digital camera raw file processing&lt;/li&gt;
+							&lt;li&gt;Image Warp&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var Acc1 = new Spry.Widget.Accordion(&quot;Acc1&quot;);
+--&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>	
+</pre>
+</div>
+</div>
+</body>
+</html>
+

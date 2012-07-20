@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Utilities API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Spry Utilities</h2>
+<div id="addclassname">
+  <h3><a name="addclassname" id="addclassname_link"></a>addClassName  </h3>
+  <h4>Description</h4>
+  <p>addClassName will add a CSS class to the specified element. A class attribute does not have to be on the element. If the element has an existing class applied, this function will add it to the element, not replace it. </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.addClassName(element,classname);</p>
+  <h4>Arguments</h4>
+  <p>element </p>
+  <ul>
+    <li>The ID of the element that is getting the class</li>
+  </ul>
+  <p>classname</p>
+  <ul>
+    <li>The css class name to be appended to the element. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style type=&quot;text/css&quot;&gt;<br />&lt;!--<br />.dada {<br />	background-color: #FFCC33;<br />}<br />--&gt;<br />&lt;/style&gt;
+&lt;script&gt;
+function setClass(ele,class){<br />   Spry.Utils.addClassName(ele,class);<br />}
+&lt;/script&gt;
+
+&lt;a href=&quot;#&quot; onclick=&quot;setClass('content','dada');&quot;&gt;Add Class&lt;/a&gt;
+
+&lt;div id=&quot;content&quot;&gt;Change This Text&lt;/div&gt;</pre>
+</div>
+<div id="addeventlistener">
+  <h3><a name="addeventlistener" id="addeventlistener_link"></a>addEventListener  </h3>
+  <h4>Description</h4>
+  <p>addEventListener  registers a non-destructive event handler on the specified element. See also <a href="#removeeventlistener">removeEventListener</a>. </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.addEventListener = function(element, eventType, handler, capture)</p>
+  <h4>Arguments</h4>
+  <p>element </p>
+  <ul>
+    <li>The ID or the DOM node of the element that you want to attach an event handler to. </li>
+  </ul>
+  <p>eventType</p>
+  <ul>
+    <li>The event being listened for. This can be things like onPostLoad or onChange. </li>
+  </ul>
+  <p>handler</p>
+  <ul>
+    <li>The function that will fire when the event is received. </li>
+  </ul>
+  <p>capture</p>
+  <ul>
+    <li>If true, event handlers triggered during the capture phase (non IE browsers only) </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>&lt;div id=&quot;myDiv&quot;&gt;Click me!&lt;/div&gt;  ...  
+&lt;script type=&quot;text/javascript&gt;  
+  function myClickHandler(event) { 	
+    alert(&quot;myClickHandler was called!&quot;); 
+  }  
+Spry.Utils.addEventListener(&quot;myDiv&quot;, &quot;click&quot;, myClickHandler, false);  
+&lt;/script&gt;</pre>
+</div>
+<div id="addloadlistener">
+  <h3><a name="addloadlistener" id="addloadlistener_link"></a>addLoadListener  </h3>
+  <h4>Description</h4>
+  <p>addLoadListener  add non-destructive event listener to the onLoad event.</p>
+  <h4>Format</h4>
+  <p>Spry.Utils.addLoadListener = function(handler)</p>
+  <h4>Arguments</h4>
+  <p>Handler</p>
+  <ul>
+    <li>The function that will fire when the event is received. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>Spry.Utils.addLoadListener(function() { setTimeout(function() { Spry.Data.initRegions(); }, 0); });</pre>
+</div>
+<div id="eval">
+  <h3><a name="eval" id="eval_link"></a>eval  </h3>
+  <h4>Description</h4>
+  <p> Call this method from your JS function when you don't want the JS expression to access or interfere with any local variables in your JS function. A standard js eval.</p>
+  <h4>Format</h4>
+  <p>Spry.Utils.eval(string);</p>
+  <h4>Arguments</h4>
+  <p>String </p>
+  <ul>
+    <li>the string to be evaluated. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>Spry.Utils.eval(&quot;alert('Run Eval');&quot;;</pre>
+</div>
+<div id="getnodetext">
+  <h3><a name="getnodetext" id="getnodetext_link"></a>getNodeText  </h3>
+  <h4>Description</h4>
+  <p>Returns the text of the specified Element </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.getNodeText(elementID);</p>
+  <h4>Arguments</h4>
+  <p>elementiD</p>
+  <ul>
+    <li>The ID of the element. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;script&gt;<br />function getText(node){<br />	var x = Spry.Utils.getNodeText(node)<br />	alert(x);<br />}<br />&lt;/script&gt;<br /><br />&lt;p&gt;&lt;a href=&quot;#&quot; onclick=&quot;getText('removeMe');&quot;&gt;Get Inner Text&lt;/a&gt;&lt;/p&gt;<br />&lt;div id=&quot;removeMe&quot;&gt;This is the Inner Text&lt;/div&gt;</pre>
+</div>
+<div id="div">
+  <h3><a name="loadurl" id="loadurl_link"></a>loadURL  </h3>
+  <h4>Description</h4>
+  <p>loadURL gets the actual XMLHTTPRequest to the server and handles the returned value. </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.loadURL = function(method, url, async, callback, opts)</p>
+  <h4>Arguments</h4>
+  <p>method</p>
+  <ul>
+    <li> The method of sending the server request.
+      <ul>
+          <li>GET</li>
+        <li>POST </li>
+      </ul>
+    </li>
+  </ul>
+  <p>url</p>
+  <ul>
+    <li>Tthe URL source for the request.</li>
+  </ul>
+  <p>async</p>
+  <ul>
+    <li>Decides whether the request is synchronous or asynchronous. </li>
+  </ul>
+  <h4>Returns</h4>
+  <p>N/A</p>
+  <h4>Example</h4>
+  <pre class="codeSample">var req = Spry.Utils.loadURL(&quot;GET&quot;, &quot;/app/book.php?id=1&amp;code=54321&quot;, true);</pre>
+  <h4>Sample</h4>
+  <p><a href="../../../samples/utils/loadURL.html">loadURL Sample</a><br />
+  </p>
+</div>
+<div id="removeclassname">
+  <h3><a name="removeclassname" id="removeclassname_link"></a>removeClassName  </h3>
+  <h4>Description</h4>
+  <p>removeClassName will remove a CSS class to the specified element. A class attribute does not have to be defined on the element, it can remove a class that has been set with <a href="#addclassname">addClassName()</a>. If the element has an existing class applied, this function will remove the class name to the element.</p>
+  <h4>Format</h4>
+  <p>Spry.Utils.removeClassName(element,classname);</p>
+  <h4>Arguments</h4>
+  <p>element </p>
+  <ul>
+    <li>Tthe ID of the element that is losing the class</li>
+  </ul>
+  <p>classname</p>
+  <ul>
+    <li>Tthe css class name to be removed from the element. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style type=&quot;text/css&quot;&gt;<br />&lt;!--<br />.dada {<br />	background-color: #FFCC33;<br />}<br />--&gt;<br />&lt;/style&gt;
+&lt;script&gt;
+function removeClass(ele,class){<br />   Spry.Utils.removeClassName(ele,class);<br />}
+&lt;/script&gt;
+
+&lt;a href=&quot;#&quot; onclick=&quot;removeClass('content','dada');&quot;&gt;Remove Class&lt;/a&gt;
+
+&lt;div id=&quot;content&quot; class=&quot;dada&quot;&gt;Change This Text&lt;/div&gt;</pre>
+</div>
+<div id="removeeventlistener">
+  <h3><a name="removeeventlistener" id="removeeventlistener_link"></a>removeEventListener  </h3>
+  <h4>Description</h4>
+  <p>removeEventListener  removes the non-destructive event listener specified. See <a href="#addeventlistener">addEventListener</a> </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.removeEventListener = function(element, eventType, handler, capture)</p>
+  <h4>Arguments</h4>
+  <p>element </p>
+  <ul>
+    <li>The ID or the DOM node of the element that you want to remove an event handler from. </li>
+  </ul>
+  <p>eventType</p>
+  <ul>
+    <li>The event being listened for. This can be things like onPostLoad or onChange. </li>
+  </ul>
+  <p>handler</p>
+  <ul>
+    <li>Tthe function that was to fire when the event was received. </li>
+  </ul>
+  <h4>Example</h4>
+</div>
+<pre>&lt;script type=&quot;text/javascript&gt;     
+function myClickHandler(event) { 	     
+alert(&quot;myClickHandler was called!&quot;);    
+}   
+Spry.Utils.removeEventListener(&quot;myDiv&quot;, &quot;click&quot;, myClickHandler, false);   
+script&gt;</pre>
+<div id="stringtoxmldoc">
+  <h3><a name="stringtoxmldoc" id="stringtoxmldoc_link"></a>stringToXMLDoc  </h3>
+  <h4>Description</h4>
+  <p>stringToXMLDoc converts a string that is  XML into an actual XML DOM object. This object can now be used as a source for a data set. </p>
+  <h4>Format</h4>
+  <p>Spry.Utils.stringToXMLDoc(xmlStr);</p>
+  <h4>Argument</h4>
+  <p>xmlStr </p>
+  <ul>
+    <li>The XML string to be converted. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">var xmlStr = &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;iso-8859-1\&quot;?&gt; \<br />&lt;employees xmlns=\&quot;http://www.foo.com/employees\&quot;&gt; \<br />	&lt;employee id=\&quot;123456\&quot;&gt; \<br />		&lt;lastname&gt;Smith&lt;/lastname&gt; \<br />		&lt;firstname&gt;Edward&lt;/firstname&gt; \<br />		&lt;phone&gt;(415) 333-0235 &lt;/phone&gt; \<br />		&lt;username&gt;esmith&lt;/username&gt; \<br />	&lt;/employee&gt; \<br />	&lt;employee id=\&quot;127937\&quot;&gt; \<br />		&lt;lastname&gt;Johnson&lt;/lastname&gt; \<br />		&lt;firstname&gt;Neil&lt;/firstname&gt; \<br />		&lt;phone&gt;(415) 333-9475 &lt;/phone&gt; \<br />		&lt;username&gt;njohnson&lt;/username&gt; \<br />	&lt;/employee&gt; \
+&lt;/employees&gt;&quot;;
+var dsEmployees = new Spry.Data.XMLDataSet(null, &quot;/employees/employee&quot;);
+var xmlDOMDocument = Spry.Utils.stringToXMLDoc(xmlStr);
+dsEmployees.setDataFromDoc(xmlDOMDocument);</pre></div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

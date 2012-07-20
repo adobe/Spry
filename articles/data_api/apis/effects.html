@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Spry Effects API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#layerAbsolut {
+	position: absolute;
+	left: 75px;
+	top: 197px;
+	width: 134px;
+	height: 35px;
+	z-index: 1;
+	background-color: #CCCCCC;
+}
+-->
+</style>
+</head>
+<body>
+<a href="#top"></a>
+<h1>Spry Effects API </h1>
+<table   class="effectsIndex"  width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td><a href="effects.html">Overview </a></td>
+    <td>:</td>
+    <td><a href="#highlight">Highlight</a></td>
+    <td>:</td>
+    <td><a href="#appear">Fade</a></td>
+    <td>:</td>
+    <td ><a href="#grow">Grow</a></td>
+    <td>:</td>
+    <td><a href="#squish">Squish</a></td>
+    <td>:</td>
+    <td><a href="#shake">Shake</a></td>
+    <td>:</td>
+    <td><a href="#blind">Blind</a></td>
+    <td>:</td>
+    <td width="100%"><a href="#slide">Slide</a><a name="top" id="top"></a></td>
+  </tr>
+</table>
+<h4>Links</h4>
+<p><a href="../../effects_coding/index.html">An detailed overview of the functions inside the SpryEffects.js and how to call them </a></p>
+<h4>Samples</h4>
+<ul>
+  <li><a href="../../../demos/effects/index.html" target="_blank">All effects combined in on page </a>(Adobe Products Demo)</li>
+  <li><a href="../../../samples/effects/combo_sample.html" target="_blank">Several Effect combined on one page </a></li>
+  <li><a href="../../../samples/effects/growThumbnails.html">Demonstrates the Grow/Shrink effect on images</a>, also uses the setup &amp; finish callback function to set the z-index style property</li>
+</ul>
+<hr />
+<div id="blind">
+  <h3>Blind <a name="blind"></a></h3>
+  <p>The Blind Effect enables users simulating a window blind up/down, where the contents of the affected elements stay in place.</p>
+  <p>&nbsp;<a href="../../../samples/effects/blind_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">
+ &lt;a href=&quot;#&quot; onclick=&quot;theSlide.start();&quot; &gt;
+    Blind Up with toggle=true &lt;/a&gt;<br />&lt;div id=&quot;slideItUp1&quot;&gt;<br />  &lt;p&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed <br />    diam nonumy eirmod tempor invidunt ut labore et dolore magna <br />	&lt;/p&gt;<br />&lt;/div&gt;<br />&lt;script&gt;
+var theSlide = new Spry.Effect.Blind('slideItUp1', {duration: 1000, from:  '100%', to:  '0%', toggle: true});
+&lt;/script&gt;</pre>
+  <h4>Parameters for the Blind effect</h4>
+  <table width="675">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th scope="row">from</th>
+      <td>The start value of the effect as string value + % or px.  e.g from:&quot;10px&quot;</td>
+    </tr>
+    <tr>
+      <th scope="row">to</th>
+      <td>The end value of the effect as string value + % or px.</td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>If the effect should run in revers orde onc you select the trigger element again </td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){ alert(&quot;finish function&quot;)}</em></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">transition</th>
+      <td>Spry.linearTransition or Spry.sinusoidalTransition as object </td>
+    </tr>
+  </table>
+  <h4>Allowed elements</h4>
+  <p>address, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, p, ol, ul, li, applet, center, dir, menu, pre</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect.</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="fade">
+  <h3>Fade<a name="appear" id="appear"></a></h3>
+  <p>Makes an element appear/fade away </p>
+  <p>&nbsp;<a href="../../../samples/effects/fade_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample"> &lt;a href=&quot;#&quot; onclick=&quot;fadeIt.start();&quot;&gt;Fade It&lt;/a&gt;
+   &lt;div id=&quot;targetID&quot;&gt;Fade me, please.&lt;/div&gt;
+   &lt;script&gt;
+   var fadeIt = new Spry.Effect.Fade('targetID',{duration: 1000,from: 0, to: 100,toggle: true, setup:setupFunc,finish:finishFunc});
+ function setupFunc(elmentObj , FadeObj)
+   {
+   alert('The ' + FadeObj.name +' effect now starts');
+   }
+  function finishFunc(elmentObj , FadeObj)
+   {
+   elmentObj.style.backgroundColor= &quot;#ff0000&quot;; // set the element background color to red
+   }
+   &lt;/script&gt;<br /></pre>
+  <h4>Parameter for the Appear Fade effect</h4>
+  <table width="616">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th height="30" scope="row">from</th>
+      <td>The start value of the effect as integer value from:10</td>
+    </tr>
+    <tr>
+      <th scope="row">to</th>
+      <td>The end value of the effect as integer value</td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>If the effect should run in revers orde onc you select the trigger element again </td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">transition</th>
+      <td>Spry.linearTransition or Spry.sinusoidalTransition as object </td>
+    </tr>
+  </table>
+  <h4>Notes</h4>
+  <p>Works safely with most HTML elements, except body, table rows, table bodies and table heads.<br />
+    There is currently no common way to set the opacity of an element either use opacity:0.2 or filter:alpha(opacity=20)<br />
+    for IE.<br />
+    The  opacity is also not supported by [Firefox 1.5, Microsoft IE for Macintosh 5.2, Microsoft Internet Explorer 6.0, Netscape Navigator 8.0, Opera 8.0, Safari 2.0]</p>
+  <h4>Non supported Elements</h4>
+  <p> applet, body, iframe, object, tr, tbody, th</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect.</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="grow">
+  <h3>Grow <a name="grow"></a></h3>
+  <p>Shrinks or Grows the specified element. </p>
+  <p>&nbsp;<a href="../../../samples/effects/grow_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">
+&lt;a href=&quot;#&quot; onclick=&quot;theGrow.start();&quot; &gt; Shrink from 100%  to 20%  with toggle=true&lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed <br />    diam nonumy eirmod tempor invidunt ut labore et dolore magna&lt;/div&gt;
+&lt;script&gt;
+var theGrow = new Spry.Effect.Grow('example1',{duration:700, from:'100%', to:'20%',toggle:true,transition:Spry.linearTransition});
+&lt;/script&gt;</pre>
+  <h4>Parameter for the Grow/Shrink  effect</h4>
+  <table width="721">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th scope="row">from</th>
+      <td>The start value of the effect as string value + % or px.  e.g from:&quot;10px&quot;</td>
+    </tr>
+    <tr>
+      <th scope="row">to</th>
+      <td>The end value of the effect as string value + % or px.</td>
+    </tr>
+    <tr>
+      <th scope="row">referHeight</th>
+      <td>reference direction for the from/to parameters, if set in pixel (true: height, false: width), default: false</td>
+    </tr>
+    <tr>
+      <th scope="row">growCenter</th>
+      <td>growing position of the element (true: grow from center, false: grow from top left corner), default: true</td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>If the effect should run in revers order onc you select the trigger element again </td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">transition</th>
+      <td>Spry.linearTransition or Spry.sinusoidalTransition as a object </td>
+    </tr>
+  </table>
+  <h4>Allowed elements</h4>
+  <p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="highlight">
+  <h3>Highlight <a name="highlight"></a></h3>
+  <p>This effect Flashes a color as the background of an element. </p>
+  <p>&nbsp;<a href="../../../samples/effects/highlight_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">
+&lt;a href=&quot;#&quot; onclick=&quot;thehighlight.start();&quot; &gt; Highlight Box  &lt;/a&gt;&lt;/p&gt;<br />&lt;div id=&quot;highlight1&quot;&gt;Lorem ipsum dolor sit amet,consetetur sadipscing elitr&lt;/div&gt;
+&lt;script&gt;
+var thehighlight = new Spry.Effect.Highlight('highlight1',{duration:  2000,from:'#CCCCCC',to:'#FFCC33',restoreColor:'#FFCC33',toggle:true});
+&lt;/script&gt;<br /></pre>
+  <h4>Parameters for the Highlight effect</h4>
+  <table width="602">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th scope="row">from</th>
+      <td>startcolor value, sets the color of first frame of the highlight </td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>true or false, if true the restoreColor get ignored </td>
+    </tr>
+    <tr>
+      <th scope="row">to</th>
+      <td>endcolor value, sets the color of the last frame of the highlight. </td>
+    </tr>
+    <tr>
+      <th scope="row">restoreColor</th>
+      <td>Sets the background color of the element after the highlight has finished.</td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">transition</th>
+      <td>Spry.linearTransition or Spry.sinusoidalTransition as a object </td>
+    </tr>
+  </table>
+  <h4>Notes</h4>
+  <p>If you use the toggle option within the highlight effect ,  the restoreColor get ignored. </p>
+  <h3>Elements not allowed </h3>
+  <p> applet, body, frame, frameset, noframes</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="shake">
+  <h3>Shake <a name="shake"></a></h3>
+  <p>The Shake effect moves the specified element left and right in a rapid manner. </p>
+  <p>&nbsp;<a href="../../../samples/effects/shake_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">
+&lt;a href=&quot;#&quot; onclick=&quot;theShake.start();&quot;&gt; Shake it &lt;/a&gt;&lt;/p&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed <br />    diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqit amet&lt;/div&gt;
+&lt;script&gt;
+var theShake = new Spry.Effect.Shake('example1');
+&lt;/script&gt;</pre>
+  <h4>Parameters for the Shake  effect</h4>
+  <table width="578">
+    <tr>
+      <th scope="row">id</th>
+      <td>id of the element to be shaken. </td>
+    </tr>
+    <tr>
+      <th scope="row">duration</th>
+      <td>the length of the shaking. Default is 500 millliseconds.</td>
+    </tr>
+    <tr>
+      <th width="83" scope="row">setup</th>
+      <td width="624">function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+  </table>
+  <h4>Notes</h4>
+  <p>Shake only works left and right. It does not work up and down. The duration is fixed to 500ms. </p>
+  <h4>Allowed elements</h4>
+  <p>address, blockquote, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, iframe, img, object, p, ol, ul, li, applet, dir, hr, menu, pre, table</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect.</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="slide">
+  <h3>Slide<a name="slide"></a></h3>
+  <p>Simulates a window blind, where the contents of the specified element scrolls up or down or from left to right. </p>
+  <p>&nbsp;<a href="../../../samples/effects/slide_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">
+&lt;a href=&quot;#&quot; onclick=&quot;theSlide.start();&quot; &gt; Slide Up with toggle=true&lt;/a&gt;<br /> &lt;div id=&quot;example1&quot;&gt;<br />  &lt;div&gt;	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed <br />    diam nonumy eirmod tempor invidunt ut labore et dolore magna <br />&lt;/div&gt;<br /> &lt;/div&gt;
+&lt;script&gt;
+var theSlide = new Spry.Effect.Slide('example1',{duration:1000,from:'100%', to:'20%',toggle:true});
+&lt;/script&gt;</pre>
+  <h4>Parameter for the Slide  effect</h4>
+  <table width="607">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th scope="row">from</th>
+      <td>The start value of the effect as string value + % or px.  e.g from:&quot;10px&quot;</td>
+    </tr>
+    <tr>
+      <th scope="row">to</th>
+      <td>The end value of the effect as string value + % or px.</td>
+    </tr>
+    <tr>
+      <th scope="row">horizontal</th>
+      <td>The slide direction of the effect (true: horizontal or false: vertical (default))</td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>If the effect should run in revers orde onc you select the trigger element again </td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">transition</th>
+      <td>Spry.linearTransition or Spry.sinusoidalTransition as a object </td>
+    </tr>
+  </table>
+  <h4>Notes</h4>
+  <p>Slide effect always requires a single &lt;div&gt; around the content that should slide. The widget is attached to the outer container.</p>
+  <h4>Allowed elements</h4>
+  <p>blockquote, dd, form, div, center</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect.</p>
+  <p><a href="#top">top</a></p>
+</div>
+<div id="squish">
+  <h3> Squish<a name="squish"></a></h3>
+  <p>The Squish effect collapses the specified element into the upper left corner of itself until it disappears. </p>
+  <p>&nbsp;<a href="../../../samples/effects/squish_sample.html" target="_blank">View Example</a> </p>
+  <pre class="codeSample">&lt;a href=&quot;#&quot; onclick=&quot;theSquish.start();&quot; &gt; Squish Example 2 &lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br />diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqt&lt;/div&gt;
+&lt;script&gt;
+var theSquish = new Spry.Effect.Squish('example1');
+&lt;/script&gt; </pre>
+  <h4>Parameters for the Squish  effect</h4>
+  <table width="610">
+    <tr>
+      <th width="83" scope="row">duration</th>
+      <td width="624">The duration of the effect in milliseconds </td>
+    </tr>
+    <tr>
+      <th scope="row">toggle</th>
+      <td>If the effect should run in revers order once you select the trigger element again </td>
+    </tr>
+    <tr>
+      <th scope="row">setup</th>
+      <td>function that is called before the effect begins <em>e.g function setup (element,effect){}</em></td>
+    </tr>
+    <tr>
+      <th scope="row">finish</th>
+      <td>function that is called after the effect <em>e.g function finish (element,effect){}</em></td>
+    </tr>
+  </table>
+  <h4>Allowed elements</h4>
+  <p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+  <h4>Functions</h4>
+  <p>varname.start(); - Starts the effect.</p>
+  <p>varname.stop(); - Stops the effect.</p>
+  <p><a href="#top">top</a></p>
+</div>
+<h3>Pulsate</h3>
+<p>The Pulsate effect causes the element to quickly fade in and out during the duration. </p>
+<p><a href="../../../demos/effects/index.html">&nbsp;View Example</a><a href="../../../samples/effects/squish_sample.html" target="_blank"></a> </p>
+<pre class="codeSample">&lt;a href=&quot;#&quot; onclick=&quot;thePulse.start();&quot; &gt;Pulsate Example&lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br />diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqt&lt;/div&gt;
+&lt;script&gt;
+var thePulse = new Spry.Effect.Pulsate('example1');
+&lt;/script&gt; </pre>
+<h4>Parameters for the Pulse  effect</h4>
+<table width="607">
+  <tr>
+    <th width="83" scope="row">duration</th>
+    <td width="624">The duration of the effect in milliseconds </td>
+  </tr>
+  <tr>
+    <th scope="row">from</th>
+    <td>The start value of the effect as string value + % or px.  e.g from:&quot;10px&quot;</td>
+  </tr>
+  <tr>
+    <th scope="row">to</th>
+    <td>The end value of the effect as string value + % or px.</td>
+  </tr>
+  <tr>
+    <th height="31" scope="row">transition</th>
+    <td>Spry.linearTransition or Spry.sinusoidalTransition as a object </td>
+  </tr>
+</table>
+<h4>Allowed elements</h4>
+<p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+<h4>Functions</h4>
+<p>varname.start(); - Starts the effect.</p>
+<p>varname.stop(); - Stops the effect.</p>
+<p><a href="#top">top</a></p>
+<h3>Puff</h3>
+<p>The Puff effect causes the element to move towards the top left corner of the screen and fade out at the same time.. </p>
+<p><a href="../../../demos/effects/index.html">&nbsp;View Example</a><a href="../../../demos/effects/index.html" target="_blank"></a> </p>
+<pre class="codeSample">&lt;a href=&quot;#&quot; onclick=&quot;thePuff.start();&quot; &gt;Puff Example&lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br />diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqt&lt;/div&gt;
+&lt;script&gt;
+var thePuff = new Spry.Effect.Puff('example1');
+&lt;/script&gt; </pre>
+<h4>Parameters for the Pulse  effect</h4>
+Values for this effect are hard coded in SpryEffects.js
+<h4>Allowed elements</h4>
+<p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+<h4>Functions</h4>
+<p>varname.start(); - Starts the effect.</p>
+<p>varname.stop(); - Stops the effect.</p>
+<p><a href="#top">top</a></p>
+<h3>Fold</h3>
+<p>The Fold effect causes the element to disappear by blinding up and then to the left.</p>
+<p><a href="../../../demos/effects/index.html">&nbsp;View Example</a><a href="../../../demos/effects/index.html" target="_blank"></a> </p>
+<pre class="codeSample">&lt;a href=&quot;#&quot; onclick=&quot;theFold.start();&quot; &gt;Fold Example&lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br />diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqt&lt;/div&gt;
+&lt;script&gt;
+var theFold = new Spry.Effect.Fold('example1',{toggle:true});
+&lt;/script&gt; </pre>
+<h4>Parameters for the Pulse  effect</h4>
+Values for this effect are hard coded in SpryEffects.js
+<h4>Allowed elements</h4>
+<p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+<h4>Functions</h4>
+<p>varname.start(); - Starts the effect.</p>
+<p>varname.stop(); - Stops the effect.</p>
+<p><a href="#top">top</a></p>
+<h3>Dropout</h3>
+<p>The Fold effect causes the element to move down the page as it fades out.</p>
+<p><a href="../../../demos/effects/index.html">&nbsp;View Example</a><a href="../../../demos/effects/index.html" target="_blank"></a> </p>
+<pre class="codeSample">&lt;a href=&quot;#&quot; onclick=&quot;theDropOut.start();&quot; &gt;Dropout Example&lt;/a&gt;<br />&lt;div id=&quot;example1&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed<br />diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqt&lt;/div&gt;
+&lt;script&gt;
+var theDropOut = new Spry.Effect.DropOut('example1',{toggle:true});
+&lt;/script&gt; </pre>
+<h4>Parameters for the Pulse  effect</h4>
+Values for this effect are hard coded in SpryEffects.js
+<h4>Allowed elements</h4>
+<p>address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, pre</p>
+<h4>Functions</h4>
+<p>varname.start(); - Starts the effect.</p>
+<p>varname.stop(); - Stops the effect.</p>
+<p><a href="#top">top</a></p>
+<hr />
+<p>Copyright © 2006. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

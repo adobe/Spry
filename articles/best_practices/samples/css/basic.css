@@ -1,0 +1,28 @@
+.eventimage {
+	margin-left: 10px;
+	float:left;
+}
+
+.eventinfo {
+	margin-left:390px;
+	margin-right:40px;
+	font-size:110%;
+	line-height:140%;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+.event {
+	margin-top:20px;
+}
+
+div#staticcontent {
+	font-size: 85%;
+	float: left;
+	width: 800px;
+	background-color: #FFFFFF;
+}
+
+div#content {
+	display:none;
+}
+

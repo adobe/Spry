@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Spry Effects</title>
+	<link href="effects.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../../includes/SpryEffects.js"></script>
+	<script type="text/javascript" src="effects.js"></script>
+</head>
+<body>
+<div id="wrap">
+	<noscript><h1>This page requires JavaScript. Please enable JavaScript in your browser and reload this page.</h1></noscript>
+	<h1 id="albumName">Effects Demo <span class="return"><a href="../index.html">Back to Demos</a></span> <span class="source"><a href="source.html">View Source </a></span></h1>
+	<div  class="container" id="product_box">
+		<!-- NOTE: nested divs required for slide effect-->
+		<div class="content_panel" id="content_box"></div>
+	</div>
+	<div id="text_pane">Click on the buttons to see the effects. Most buttons toggle the effects, so click again to reverse the effect. </div>
+	<div class="navigation_pane" id="effectsControls">
+	  <div class="effectsTransport_1 effectsTransport"><a href="#" onclick="return runEffect('Fade', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Makes an HTML element appear or fade away.');" title="Fade">Fade</a></div>
+	  <div class="effectsTransport_2 effectsTransport"><a href="#" onclick="return runEffect('Blind', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Simulates a window blind up/down. The contents of the affected HTML element stay in place.')" title="Blind">Blind</a></div>
+	  <div class="effectsTransport_3 effectsTransport"><a href="#" onclick="return runEffect('Slide', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Simulates a window scroll. The contents of the affected HTML element are scrolled up/down.')" title="Slide">Slide</a></div>
+	  <div class="effectsTransport_4 effectsTransport"><a href="#" onclick="return runEffect('Squish','product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Moves an HTML element into or extends it from its upper left corner.');" title="Squish">Squish</a></div>
+	  <div class="effectsTransport_5 effectsTransport"><a href="#" onclick="return runEffect('Grow', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}); ExampleHelpText('Shrinks or grows the specified HTML element.');" title="Grow">Grow</a></div>
+	  <div class="effectsTransport_6 effectsTransport"><a href="#" onclick="return runEffect('Shake', 'product_box', {duration: 1000},'Moves the specified HTML element left and right in a rapid manner.');" title="Shake">Shake</a></div>
+	  <div class="effectsTransport_7 effectsTransport"><a href="#" onclick="return runEffect('Highlight', 'text_pane', {duration: 1000, from: '#000000', to: '#805600', restoreColor: '#805600', toggle:true}, 'Flashes a color as the background of an HTML element.')" title="Hilite">Hilite</a></div>
+	  <div class="effectsTransport_8 effectsTransport"><a href="#" onclick="return runEffect('FadeBlind', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'The Fade and Blind effects combined into a new one.');" title="Fade Blind">Fade &amp; Blind</a></div>
+	  <div class="effectsTransport_9 effectsTransport"><a href="#" onclick="return runEffect('FadeSlide', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'The Fade and Slide effects combined into a new one.');" title="Fade Slide">Fade &amp; Slide</a></div>
+	  <div class="effectsTransport_10 effectsTransport"><a href="#" onclick="return runEffect('Pulsate', 'product_box', {duration: 600, from: '100%', to: '0%', toggle: true},'Pulsate effect.')" title="Pulsate">Pulsate</a></div>  
+	  <div class="effectsTransport_11 effectsTransport"><a href="#" onclick="return runEffect('Puff', 'product_box', {duration: 1000, toggle: true}, 'Puff effect.')" title="Puff">Puff</a></div>  
+	  <div class="effectsTransport_12 effectsTransport"><a href="#" onclick="return runEffect('DropOut', 'product_box', {duration: 1000, toggle: true} ,'DropOut effect.')" title="DropOut">DropOut</a></div>  
+	  <div class="effectsTransport_13 effectsTransport"><a href="#" onclick="return runEffect('Fold', 'product_box', {duration: 1000, toggle: true} ,'Fold effect.')" title="Fold">Fold</a></div>  
+	  <div class="effectsReload_0" id="effectsReload"><a href="#" onclick="ReloadDocument()" title="Reload">Reload</a></div>
+	</div>
+</div>
+</body>
+</html>

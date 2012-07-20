@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rating Widget Submit Form Sample</title>
+
+<script language="JavaScript" type="text/javascript" src="../../widgets/rating/SpryRating.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/rating/SpryRating.css" rel="stylesheet" type="text/css" />
+<!-- user-defined class for hover-->
+
+
+<style type="text/css">
+	.sample{
+			float:left;
+			margin-top:5px;		
+	}
+	
+#static .ratingReadOnlyErrMsg{
+	border:none;
+	}	
+	
+</style>
+</head>
+<body>
+<h3>Spry Rating Widget Sumbit Form Sample</h3>
+<p>This page shows how to use more Rating widgets inside a form and submit all rated values at submit.It requires PHP scripting enabled on the server.</p>
+<p>The following Rating widgets are in the same form and the rated values will be send via GET.
+  <!--  first widget, read-only -->In this sample, the server will return the maximum rated value.</p>
+<form method="get" name="Ratingform" action="SpryRating.php">
+   
+   <div class="label">This Rating widget doesn't allow you to rate</div>
+<span id="static" class="ratingContainer">	
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>
+            <span class="ratingButton"></span>	  
+            <input id="readOnly" type="text" name="spry_static" value="2.5" readonly="readonly" />
+            <span class="ratingReadOnlyErrMsg sample">Rating is disabled.</span>
+	</span>
+    <p>&nbsp;</p>
+		<div class="label"> The next two Rating widgets allow you to rate</div>
+  <span id="rating1" class="ratingContainer">
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+<input id="dynamicElement1" type="text" name="spry_dynamic1" value="1" />
+      		  <span class="ratingRatedMsg sample">Thanks for your rating!</span>   	  </span>
+      
+          <br />
+          <br />
+          <br />
+<span id="rating2" class="ratingContainer">
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <span class="ratingButton"></span>
+		      <input id="dynamicElement2" type="text" name="spry_dynamic2" value="3" />
+      		  <span class="ratingRatedMsg sample">Thanks for your rating!</span>
+  </span>
+  <p>&nbsp; </p>
+		<p>
+		  <label><br />
+		  <input type="submit" name="button" id="button" value="Submit" />
+		  </label>
+		</p>
+</form>
+		<br />
+    <hr />
+    <script type="text/javascript">
+		var firstRating = new Spry.Widget.Rating("static", {ratingValueElement: 'readOnly', readOnly: true});	
+		var Rating1 = new Spry.Widget.Rating("rating1", {ratingValueElement:'dynamicElement1'});
+		var Rating2 = new Spry.Widget.Rating("rating2", {ratingValueElement:'dynamicElement2'});
+	
+      </script>
+</body>
+</html>

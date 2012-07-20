@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Accordion API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="accordion">
+  <h3>Accordion</h3>
+  <h4>Description</h4>
+  <p>The Spry Accordion is a disclosure widget that consists of a series of panels, each with a clickable tab and a content panel. Clicking on a tab will reveal the contents of that panel.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/accordion/SpryAccordion.js">SpryAccordion.js</a></p>
+    <p><a href="../../../widgets/accordion/SpryAccordion.css">SpryAccordion.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/accordion/SpryAccordion.html">SpryAccordion.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/accordion/AccordionSample.html">AccordionSample.html</a></p>
+    <p><a href="../../../samples/accordion/AccordionSample2.html">AccordionSample2.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>&lt;widget container&gt;
+   &lt;panel container&gt;
+      &lt;tab container&gt;<br />      &lt;content container&gt;<br />   &lt;/panel container&gt;
+   &lt;panel container&gt;
+      &lt;tab container&gt;<br />      &lt;content container&gt;<br />   &lt;/panel container&gt; <br />&lt;/widget container&gt;</pre>
+      <p>The accordion can have as many panels as needed.</p>
+      <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;div id=&quot;Accordion1&quot; class=&quot;Accordion&quot; tabindex=&quot;0&quot;&gt;
+   &lt;div class=&quot;AccordionPanel&quot;&gt;
+     &lt;div class=&quot;AccordionPanelTab&quot;&gt;Label 1&lt;/div&gt;
+     &lt;div class=&quot;AccordionPanelContent&quot;&gt;Content 1&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;AccordionPanel&quot;&gt;
+      &lt;div class=&quot;AccordionPanelTab&quot;&gt;Label 2&lt;/div&gt;
+      &lt;div class=&quot;AccordionPanelContent&quot;&gt;Content 2&lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   var Accordion1 = new Spry.Widget.Accordion(&quot;Accordion1&quot;);
+
+ &lt;/script&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt;    
+var Accordion1 = new Spry.Widget.Accordion(&quot;Accordion1&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.Accordion(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.Accordion(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>closedClass</td>
+      <td>CSS class name</td>
+      <td>null</td>
+      <td>This class will be applied to the content panel as it is closing.</td>
+    </tr>
+    <tr>
+      <td>defaultPanel</td>
+      <td>number</td>
+      <td>0</td>
+      <td>The topmost panel will be initially displayed by default. This option is used to set a non-default panel to be open when the page loads. Spry uses a zero-based counting system, so 0 is the first panel and 1 is the second, etc. </td>
+    </tr>
+    <tr>
+      <td>duration</td>
+      <td>number of milliseconds</td>
+      <td>500 milliseconds</td>
+      <td>Duration defines how long it will take to open a panel, no matter the distance.</td>
+    </tr>
+    <tr>
+      <td>enableAnimation</td>
+      <td><p>true or false</p>
+      <p><em>no quotes</em> <em>around values</em></p></td>
+      <td>true</td>
+      <td>By default, the panels will change by sliding the up or down to reveal the content. Setting enableAnimation:false will turn off the animation and the panels will instantly open and shut.</td>
+    </tr>
+    <tr>
+      <td>enableKeyboardNavigation</td>
+      <td><p>true or false</p>
+      <p><em>no quotes</em> <em>around values</em></p></td>
+      <td>true</td>
+      <td>In the case where &lt;a&gt; tags are used in the tabs to control panel navigation, turning off keyboard navigation allows the &lt;a&gt; tags to control. To open a tab, use the tab key until the link in the panel tab is selected, then hit the return key to activate it.</td>
+    </tr>
+    <tr>
+      <td>focusedClass</td>
+      <td>CSS class name</td>
+      <td>&nbsp;</td>
+      <td>This class will be applied to the accordion when it had focus in the browser</td>
+    </tr>
+    <tr>
+      <td>fps</td>
+      <td>number</td>
+      <td>60</td>
+      <td>Determines the frames per second of the panel animation. This may be raised if the panel animation is not smooth enough. This may occur if the panel has a lot of content.</td>
+    </tr>
+    <tr>
+      <td>hoverClass</td>
+      <td>CSS class name</td>
+      <td>&nbsp;</td>
+      <td>This class will be applied when hovering over the accordion tab.</td>
+    </tr>
+    <tr>
+      <td>nextPanelKeyCode</td>
+      <td>numbers</td>
+      <td>null</td>
+      <td>This option allows the user to assign a specific key to go to the next (lower) panel. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+    <tr>
+      <td>openClass</td>
+      <td>CSS class name</td>
+      <td>&nbsp;</td>
+      <td>This class we will applied to the content panel when it is open.</td>
+    </tr>
+    <tr>
+      <td>previousPanelKeyCode</td>
+      <td>numbers</td>
+      <td>null</td>
+      <td>This option allows the user to assign a specific key to go to the previous (upper) panel. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+
+    <tr>
+      <td>transition</td>
+      <td>name of transition function</td>
+      <td>easeOut</td>
+      <td>Determines the acceleration profile of the transition. </td>
+    </tr>
+    <tr>
+      <td>useFixedPanelHeights</td>
+      <td><p>true or false</p>
+      <p><em>no quotes</em> <em>around values</em></p></td>
+      <td>true</td>
+      <td><p>By default, accordions are designed to fit into a fixed height and the panels will scroll if the content is longer than the available window. Setting useFixedPanelHeights:false will allows the accordion to resize its height to show all the panel content without scrollbars.</p>
+      <p>&nbsp;</p></td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.Accordion(&quot;myAccordion&quot;,{defaultPanel:2, openClass:&quot;myClass&quot;, nextPanelKeyCode:78, duration:800, useFixedPanelHeights:true});   
+ &lt;/script&gt;
+  </pre>
+  <p>Recall that javascript is case sensitive. </p>
+  <p><strong>Starting with all panels closed</strong></p>
+  <p>To start the accordion with all panels closed, set useFixedPanelHeights:false and defaultPanel:-1</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.Accordion(&quot;myAccordion&quot;,<span class="hilite">{useFixedPanelHeights:false, defaultPanel:-1}</span>);   
+ &lt;/script&gt;
+  </pre>
+</div>
+<div id="methods">
+  <h2>Accordion Methods</h2>
+  <div id="closepanel">
+    <h3><strong>closePanel</strong></h3>
+    <p>Closes the open panel in the accordion. </p>
+    <p><strong>This method is only used when useFixedPanelHeights is set to false.</strong> Otherwise, the accordion will always have an open panel.</p>
+    <h4>Format</h4>
+    <p>accordionName.closePanel();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;acc1.closePanel(); return false;&quot;&gt;Current Panel&lt;/a&gt;</pre>
+  </div>
+  <div id="getcurrentpanel">
+    <h3><strong>getCurrentPanel</strong></h3>
+    <p>Returns the panel container element of the current panel.</p>
+    <h4>Format</h4>
+    <p>accordionName.getCurrentPanel();</p>
+    <h4>Example</h4>
+    <pre>var ele = acc1.getCurrentPanel();</pre>
+  </div>
+  <div id="getcurrentpanelindex">
+    <h3><strong>getCurrentPanelIndex</strong></h3>
+    <p>Returns the panel number of the current panel. Panel numbers are zero based, so the panel number for the first panel in the accordion is 0, the next one is 1, etc.</p>
+    <h4>Format</h4>
+    <p>accordionName.getCurrentPanelIndex();</p>
+    <h4>Example</h4>
+    <pre>var panelNumber = acc1.getCurrentPanelIndex();
+</pre>
+  </div>
+  <div id="getpanelcontent">
+    <h3><strong>getPanelContent</strong></h3>
+    <p>Returns the content container element for the specified panel element.</p>
+    <h4>Format</h4>
+    <p>accordionName.getPanelContent(panelElement);</p>
+    <h4>Example</h4>
+    <pre>
+// Get the container element for the 3rd panel in
+// the accordion.
+
+
+var panelArray = acc1.getPanels();
+var contentElement = acc1.getPanelContent(panelArray[2]);
+</pre>
+  </div>
+  <div id="getpanelindex">
+    <h3><strong>getPanelIndex</strong></h3>
+    <p>Returns the panel number of the specified panel container element. Panel numbers are zero-based, so the panel number for the first panel in the accordion is zero(0).</p>
+    <h4>Format</h4>
+    <p>accordionName.getPanelIndex(panelElement);</p>
+    <h4>Example</h4>
+    <pre>
+// Get the current panel element and figure out what its
+// panel number is:
+
+var ele = acc1.getCurrentPanel();
+var panelNumber = acc1.getPanelIndex(ele);
+</pre>
+  </div>
+  <div id="getpanels">
+    <h3><strong>getPanels</strong></h3>
+    <p>Returns an array containing all of the panel container elements inside the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.getPanels();</p>
+    <h4>Example</h4>
+    <pre>var panelsArray = acc1.getPanels();
+
+// Iterate over all the panel elements in the array.
+
+
+for (var i = 0; i &lt; panelsArray.length; i++)
+{
+  var ele = panelsArray[i];
+
+  ...
+}</pre>
+  </div>
+  <div id="getpaneltab">
+    <h3><strong>getPanelTab</strong></h3>
+    <p>Returns the tab container element for the specified panel element.</p>
+    <h4>Format</h4>
+    <p>accordionName.getPanelTab(panelElement);</p>
+    <h4>Example</h4>
+    <pre>
+// Get the tab element for the 3rd panel in
+// the accordion.
+
+
+var panelArray = acc1.getPanels();
+var tabElement = acc1.getPanelTab(panelArray[2]);
+</pre>
+  </div>
+  <div id="openfirstpanel">
+    <h3><strong>openFirstPanel</strong></h3>
+    <p>Opens the first (topmost) panel in the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.openFirstPanel();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;acc1.openFirstPanel(); return false;&quot;&gt;First&lt;/a&gt;</pre>
+  </div>
+  <div id="openlastpanel">
+    <h3><strong>openLastPanel</strong></h3>
+    <p>Opens the last (lowest) panel in the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.openLastPanel();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;acc1.openLastPanel(); return false;&quot;&gt;Last&lt;/a&gt; </pre>
+  </div>
+  <div id="opennextpanel">
+    <h3><strong>openNextPanel</strong></h3>
+    <p>Opens the next (lower) panel in the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.openNextPanel();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;acc1.openNextPanel(); return false;&quot;&gt;Next&lt;/a&gt; </pre>
+  </div>
+  <div id="openpanel">
+    <h3><strong>openPanel</strong></h3>
+    <p>Opens the specified panel in the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.openPanel(panelNumberOrID);</p>
+    <h4>Arguments</h4>
+    <p>panelNumberOrID - Number or String. If a number is passed into openPanel, it is assumed to be the panel number. Panels are numbered from top to bottom, beginning with zero (0). If a string is passed into openPanel, it is assumbed to be the ID of the panel container element.</p>
+    <h4>Example</h4>
+    <pre>
+//Open the first panel of the accordion:
+
+&lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel(0); return false;&quot;&gt;0&lt;/a&gt;
+
+// Open the panel with an id of &quot;panel2&quot;:
+
+&lt;a href=&quot;#&quot; onclick=&quot;acc1.openPanel('panel2'); return false;&quot;&gt;Panel 2&lt;/a&gt;</pre>
+  </div>
+  <div id="openpreviouspanel">
+    <h3><strong>openPreviousPanel</strong></h3>
+    <p>Opens the preceeding (above) panel in the accordion.</p>
+    <h4>Format</h4>
+    <p>accordionName.openPreviousPanel();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;acc1.openPreviousPanel(); return false;&quot;&gt;Previous&lt;/a&gt; </pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

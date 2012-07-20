@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Gallery</title>
+<link href="../../../css/screen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../../includes/SpryEffects.js"></script>
+<script type="text/javascript" src="../../../includes/SpryDOMUtils.js"></script>
+<script type="text/javascript" src="../../../includes/SpryImageLoader.js"></script>
+<script type="text/javascript" src="../../../includes/SpryNotifier.js"></script>
+<script type="text/javascript" src="../includes/SpryThumbViewer.js"></script>
+<script type="text/javascript" src="../includes/SpryImageViewer.js"></script>
+<script type="text/javascript" src="../includes/SprySlideShowControl.js"></script>
+<script type="text/javascript" src="../includes/gallery_init.js"></script>
+
+<script type="text/javascript" src="../../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../../includes/SpryData.js"></script>
+<script type="text/javascript" src="gallery_xds.js"></script>
+</head>
+<body>
+<div id="wrap">
+	<p id="galleryLinks"><a href="china.xml">China</a> | <a href="egypt.xml">Egypt</a> | <a href="paris.xml">Paris</a></p>
+	<div id="gallery" class="gallery">
+		<h1 class="galleryName" spry:region="dsPhotos">{sitename}</h1>
+		<div id="previews">
+			<div id="controls">
+				<ul id="transport">
+					<li><a href="#" class="previousBtn" title="Previous">Previous</a></li>
+					<li><a href="#" class="playBtn" title="Play/Pause" id="playLabel"><span class="playLabel">Play</span><span class="pauseLabel">Pause</span></a></li>
+					<li><a href="#" class="nextBtn" title="Next">Next</a></li>
+				</ul>
+			</div>
+			<div id="thumbnails" spry:region="dsPhotos">
+				<div class="thumbnail" spry:repeat="dsPhotos"><a href="{path}"><img alt="" src="{thumbpath}" /></a></div>
+				<p class="ClearAll"></p>
+			</div>
+		</div>
+		<div id="picture">
+			<div id="mainImageOutline"><img id="mainImage" alt="main image" src=""/></div>
+		</div>
+		<p class="clear"></p>
+	</div>
+</div>
+</body>
+</html>

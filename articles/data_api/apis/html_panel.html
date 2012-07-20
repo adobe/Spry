@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry HTML Panel API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="htmlpanel">
+  <h3>HTML Panel Widget</h3>
+  <h4>Description</h4>
+  <p>The Spry HTML Panel Widget is used to load and inject remote HTML content into a specific container on the page. The HTML Panel Widget can load a fragment file: a file with no HTML or BODY tags; just a small piece of HTML, or it can load the contents of an element with a specific id from a full HTML page.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/htmlpanel/SpryHTMLPanel.js">SpryHTMPanel.js</a></p>
+    <p><a href="../../../widgets/htmlpanel/SpryHTMLPanel.css">SpryHTMPanel.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/htmlpanel/SpryHTMLPanel.html">SpryHTMPanel.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/htmlpanel/html_panel_sample.html">HTMPanelSample.html</a></p>
+  </blockquote>
+</div>
+<div id="structure">
+  <h3> Structure</h3>
+  <p>The widget structure consists of a single container element, which can be any block or inline container, unless otherwise noted below. The widget container element can contain static markup/content, or contain no content at all. If widget container has static markup/content, this content will be discarded if the widget is told to load remote HTML content.</p>
+  <p>The following tags cannot be used for the panel, since InnerHTML is locked for these tags:</p>
+  <ul>
+    <li>col</li>
+    <li>colgroup</li>
+    <li>frameset</li>
+    <li>html</li>
+    <li>iframe</li>
+    <li>select</li>
+    <li>style</li>
+    <li>table</li>
+    <li>tbody</li>
+    <li>tfoot</li>
+    <li>thead</li>
+    <li>title</li>
+    <li>tr</li>
+  </ul>
+  <p>A basic example that uses an HTML panel would be:</p>
+  <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.loadContent(&quot;frag-01.html&quot;); return false;&quot;&gt;Fragment-1&lt;/a&gt;
+
+&lt;div class=&quot;HTMLPanel&quot; id=&quot;samplePanel&quot;&gt;
+  &lt;p&gt;This is some static content within an HTMLPanel container. It will disappear once content is loaded into the panel via one of the links above.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   var hpanel = new Spry.Widget.HTMLPanel(&quot;samplePanel&quot;);
+&lt;/script&gt;</pre>
+  <p>In the example above, an HTML Panel widget is created an bound to the &lt;div&gt; container element with the id of &quot;samplePanel&quot;. If the user clicks on the link, it will trigger the HTML Panel to load some remote/external HTML content from a file named &quot;frag-01.html&quot;.</p>
+</div>
+<div id="constructor">
+  <h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />&lt;!--<br />var hpanel = new Spry.Widget.HTMLPanel(&quot;samplePanel&quot;);<br />//--&gt;<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.HTMLPanel(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4><a name="options" id="options"></a>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <div id="cssclasses">
+    <p>&nbsp;</p>
+    <table border="0">
+      <tr>
+        <th>Option</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>evalScripts</td>
+        <td>Boolean</td>
+        <td>true</td>
+        <td>Determines if &lt;script&gt; tags found within the panel content are to be run. </td>
+      </tr>
+      <tr>
+        <td>errorStateClass</td>
+        <td>String</td>
+        <td>HTMLPanelError</td>
+        <td><p>The custom class to use if the HTML Panel encountered an error while loading content.<br />
+          This class is placed on the container if the region fails to load the content.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>loadingStateClass</td>
+        <td>String</td>
+        <td><p>HTMLPanelLoading</p></td>
+        <td>The custom class to use if the HTML Panel is in the process of loading content. This class is placed on the container element just before a load is kicked off.</td>
+      </tr>
+      <tr>
+        <td>loadingContentClass</td>
+        <td>string</td>
+        <td><p>HTMLPanelLoadingContent</p></td>
+        <td>The custom class to for the content to be used when the HTML Panel is loading data.</td>
+      </tr>
+      <tr>
+        <td>errorContentClass</td>
+        <td>String</td>
+        <td>HTMLPanelErrorContent</td>
+        <td>The custom class to use when the HTML Panel encounters an error while loading data.</td>
+      </tr>
+    </table>
+    </div>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.HTMLPanel(&quot;id of widget container&quot;<span class="hilite">,{evalScripts:false, errorContentClass:&quot;myerror&quot;}</span>);   
+ &lt;/script&gt;</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="notifications">
+  <h2>Notifications</h2>
+  <table border="0">
+    <tr>
+      <th>Notification</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>onPreLoad</td>
+      <td><p>The HTML Panel is about to load a new HTML Fragment.</p>
+        <p>An object that describes the load request will be passed to all observers. This object will have the following properties:</p>
+        <ul>
+          <li><strong>async</strong>
+            <ul>
+              <li>If true, the data will be loaded asynchronously, otherwise, the data will be loaded synchronously.</li>
+            </ul>
+          </li>
+          <li><strong>id</strong>
+            <ul>
+              <li>The id of an element within the data being fetched. The content underneath this element will be inserted into the region container.</li>
+            </ul>
+          </li>
+          <li><strong>method</strong>
+            <ul>
+              <li>A string with the value of &quot;GET&quot; or &quot;POST&quot;</li>
+            </ul>
+            <strong>url</strong>
+            <ul>
+              <li>The URL that will be used to load the data.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>This object may also contain other optional properties specified by the user during the call to loadContent(), which may include:</p>
+        <ul>
+          <li><strong>headers</strong>
+            <ul>
+              <li>An object with properties that specify the HTTP headers to send with the request. For an example, click <a href="#headers">here</a></li>
+            </ul>
+          </li>
+          <li><strong>password</strong>
+            <ul>
+              <li>A string that specifies the password to send along with the username when the request is made</li>
+            </ul>
+          </li>
+          <li><strong>postData</strong>
+            <ul>
+              <li>The format of this property is up to the developer so this must be used in conjunction with  the &quot;headers&quot; option, mentioned above, to specify the &quot;Content-type&quot; so  the server knows how to deal with it.</li>
+            </ul>
+          </li>
+          <li><strong>username</strong>
+            <ul>
+              <li>A string that specifies the username to send along with the data request.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>It should be noted that observers are allowed to modify this object to alter the loading behavior. For example, observers can use this notification to tack on extra query parameters to the URL or postData, or even add username/password info.</p></td>
+    </tr>
+    <tr>
+      <td>onPostLoad</td>
+      <td><p>The HTML Panel has successfully loaded the new HTML Fragment.</p>
+        <p>An object that describes the load request will be passed to all observers. This object will contain the same properties as those listed above for the onPreLoad notification, but will also contain the following properties:</p>
+        <ul>
+          <li><strong>xhRequest</strong>
+            <ul>
+              <li>The native XMLHttpRequest object used to load the data.</li>
+            </ul>
+          </li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td>onPreUpdate</td>
+      <td><p>The content within the region container is about to be updated/replaced.</p>
+        <p>An object with the following properties will be passed to all observers:</p>
+        <ul>
+          <li><strong>content</strong>
+            <ul>
+              <li>The HTML Fragment to be inserted into the region container.</li>
+            </ul>
+          </li>
+          <li><strong>id</strong>
+            <ul>
+              <li>The id of an element within the data being fetched. The content underneath this element will be inserted into the region container.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>It should be noted that observers are allowed to modify the data in this object to alter the actual content that is inserted into the region container.</p></td>
+    </tr>
+    <tr>
+      <td>onPostUpdate</td>
+      <td><p>The content within the region container has been updated.</p>
+        <p>The same object passed during the onPreUpdate notification is passed to the observers for this notification.</p></td>
+    </tr>
+    <tr>
+      <td>onLoadError</td>
+      <td><p>The request for the HTML Fragment failed.</p>
+        <p>An object that describes the load request will be passed to all observers. This object contains the same properties as those listed  for the onPreLoad notification, but will also contain the following properties:</p>
+        <ul>
+          <li><strong>xhRequest</strong>
+            <ul>
+              <li>The native XMLHttpRequest object used to load the data.</li>
+            </ul>
+          </li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td>onLoadCancelled</td>
+      <td><p>The request for the HTML Fragment was canceled.</p>
+        <p>An object that describes the load request will be passed to all observers. This object contains the same properties as those listed  for the onPreLoad notification, but will also contain the following properties:</p>
+        <ul>
+          <li><strong>xhRequest</strong>
+            <ul>
+              <li>The native XMLHttpRequest object used to load the data.</li>
+            </ul>
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+<div id="methods">
+  <h2>HTML Panel Widget Methods</h2>
+  <div id="addobserver">
+    <h3><strong>addObserver</strong></h3>
+    <p>Adds an observer to the region. As with other components within Spry, the observer can be either an object or a function callback.</p>
+    <h4>Format</h4>
+    <p>widgetName.addObserver(observer);</p>
+    <h4>Example</h4>
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   // Create an HTMLPanel widget and bind it to the element with
+   // the id of &quot;samplePanel&quot;.
+
+   var hpanel = new Spry.Widget.HTMLPanel(&quot;samplePanel&quot;);
+
+   // Add a function as an observer of the panel.
+
+   function myObserverFunc(notificationType, notifier, data)
+   {
+      if (notificationType == &quot;onPostUpdate&quot;)
+         alert(&quot;onPostUpdate fired!&quot;);
+   }
+
+   hpanel.addObserver(myObserverFunc);
+
+   // Add an object as an observer of the panel.
+
+   var obs = new Object;
+   obs.onPostUpdate = function(notifier, data) { alert(&quot;onPostUpdate was fired!&quot;); };
+   hpanel.addObserver(obs);
+&lt;/script&gt;</pre>
+  </div>
+  <div id="cancelload">
+    <h3><strong>cancelLoad</strong></h3>
+    <p>Cancels the currently loading content</p>
+    <h4>Format</h4>
+    <p>widgetName.cancelLoad();</p>
+    <h4>Notifications</h4>
+    <p>If a pending request is cancelled, this method will result in the following notifications:</p>
+    <ul>
+      <li>onLoadCancelled</li>
+    </ul>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.cancelLoad(); return false;&quot;&gt;Stop Loading&lt;/a&gt;</pre>
+  </div>
+  <div id="disablenotifications">
+    <h3><strong>disableNotifications</strong></h3>
+    <p>Disables the notification of observers.</p>
+    <h4>Format</h4>
+    <p>widgetName.disableNotifications();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.<strong>disableNotifications</strong>(); return false;&quot;&gt;Disable Notifications&lt;/a&gt;</pre>
+  </div>
+  <div id="enablenotifications">
+    <h3><strong>enableNotifications</strong></h3>
+    <p>Enables observer notifications. </p>
+    <p>Notifications are enabled by default within an HTML Panel.</p>
+    <h4>Format</h4>
+    <p>widgetName.enableNotifications();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.enableNotifications(); return false;&quot;&gt;Enable Notifications&lt;/a&gt;</pre>
+  </div>
+  <div id="evalscripts">
+    <h3><strong>evalScripts</strong></h3>
+    <p>Spry.Widget.HTMLPanel.evalScripts is a global variable that lets the developer decide whether all HTML Panel widgets will be able to execute script, embedded within HTML fragments, they load or not. The default value is false. This setting can be overridden for a specific HTML Panel by specifying the <a href="#options">evalScripts constructor option</a> when its constructor is invoked.</p>
+     <h4>Format</h4>
+    <p>Spry.Widget.HTMLPanel.evalScripts</p>
+    <h4>Example</h4>
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   // Enable the ability to execute script for *every*
+   // HTMLPanel that is created.
+
+   Spry.Widget.HTMLPanel.evalScripts = true;
+
+   // The following panel will have the ability to
+   // execute script.
+
+   var hpanel = new Spry.Widget.HTMLPanel(&quot;samplePanel&quot;);
+
+   // The following panel will *NOT* have the ability to
+   // execute script because it overrides the global setting.
+
+   var hpanel2 = new Spry.Widget.HTMLPanel(&quot;samplePanel2&quot;, { evalScripts: false });
+&lt;/script&gt;</pre>
+  </div>
+  <div id="loadcontent">
+    <h3><strong>loadContent</strong></h3>
+    <p>Loads a frag or part of a page into the widget. </p>
+    <h4>Format</h4>
+    <p>widgetName.loadContent(url, options);</p>
+    <h4>Arguments</h4>
+    <p>url: the path to the fragment or page to be loaded.</p>
+    <h4>Options</h4>
+    <ul>
+      <li><strong>async</strong>
+        <ul>
+          <li>Boolean.</li>
+          <li>If true, the request for the HTML Fragment will be  processed asynchronously, which means that the request will be made,  but the response may come back some time *after* the call to updateContent()  has finished. If false, the request will block until a response has  been received from the server, or the request has timed out.</li>
+        </ul>
+      </li>
+      <li><strong><a name="headers" id="headers2"></a>headers</strong>
+        <ul>
+          <li>Object.</li>
+          <li>Specifies additional HTTP  Request header fields that should be sent along with the request. Each  property in this object is the name of an HTTP header field to send.  The value of the property, is the value of that field. Example:
+            <pre>
+// Example of creating a header object the literal way:
+var header = { &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot; };
+
+// Example of creating a header object manually:
+var header = new Object;  header[&quot;Content-Type&quot;] = &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;;</pre>
+          </li>
+        </ul>
+      </li>
+      <li><strong>id</strong>
+        <ul>
+          <li>If defined,  the HTML Panel will search for an element with the given id inside the HTML fragment that was just loaded. If it finds it, it inserts the content *within* this node into the element on the page that the region is bound to. If not defined, the region inserts the entire HTML Fragment into the element on the page that it is bound to.</li>
+        </ul>
+      </li>
+      <li><strong>method</strong>
+        <ul>
+          <li>String.</li>
+          <li>Must be &quot;GET&quot;, &quot;POST&quot; or &quot;HEAD&quot;.</li>
+          <li>The default if unspecified is &quot;GET&quot;.</li>
+        </ul>
+      </li>
+      <li><strong>password</strong>
+        <ul>
+          <li>String.</li>
+          <li>The password to send to the server along with the request.</li>
+        </ul>
+      </li>
+      <li><strong>postData</strong>
+        <ul>
+          <li>String.</li>
+          <li>The format of the data in the  string is up to the developer so this must be used in conjunction with  the &quot;headers&quot; option, mentioned above, to specify the &quot;Content-type&quot; so  the server knows how to deal with it.</li>
+        </ul>
+      </li>
+      <li><strong>username</strong>
+        <ul>
+          <li>String.</li>
+          <li>The username to send to the server along with the request.</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>Notifications</h4>
+    <p>Calling this method will result in the following notifications:</p>
+    <ul>
+      <li>onPreLoad</li>
+      <li>onPostLoad</li>
+      <li>onPreUpdate</li>
+      <li>onPostUpdate</li>
+    </ul>
+    <p>The notifications above are listed in the order that they should fire. Should the load fail, an onLoadError notification will be fired in place of an onPostLoad notification.</p>
+    <p>If the HTML Panel is in the midst of loading content when this method is called. The previous load request is cancelled prior to making the new request.</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.loadContent(&quot;frag01.htm&quot;); return false;&quot;&gt;Load Frag 1&lt;/a&gt;
+
+&lt;a href=&quot;frag02.htm&quot; onclick=&quot;hpanel.loadContent(this.href); return false;&quot;&gt;Load Frag 2&lt;/a&gt;
+&lt;a href=&quot;page3.htm&quot; onclick=&quot;hpanel.loadContent(this.href,{id:&quot;products&quot;});&quot;&gt;Load Products&lt;/a&gt;</pre>
+  </div>
+  <div id="removeobservers">
+    <h3><strong>removeObserver</strong></h3>
+    <p>Removes the specified observer from the widget's list of observers. The same observer function or object that was used for the addObserver() call must be used in a call to removeObserver().</p>
+    <h4>Format</h4>
+    <p>widgetName.removeObserver(observer);</p>
+    <h4>Example</h4>
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+   // Create an HTMLPanel widget and bind it to the element with
+   // the id of &quot;samplePanel&quot;.
+
+   var hpanel = new Spry.Widget.HTMLPanel(&quot;samplePanel&quot;);
+
+   // Add a function as an observer of the panel.
+
+   function myObserverFunc(notificationType, notifier, data)
+   {
+      if (notificationType == &quot;onPostUpdate&quot;)
+         alert(&quot;onPostUpdate fired!&quot;);
+   }
+
+   hpanel.addObserver(myObserverFunc);
+
+   // Add an object as an observer of the panel.
+
+   var obs = new Object;
+   obs.onPostUpdate = function(notifier, data) { alert(&quot;onPostUpdate was fired!&quot;); };
+   hpanel.addObserver(obs);
+
+   ...
+
+   // Remove the observers that were added.
+
+  hpanel.removeObserver(myObserverFunc);
+  hpanel.removeObserver(obs);
+&lt;/script&gt;</pre>
+  </div>
+  <div id="removestateclasses">
+    <h3><strong>removeStateClasses</strong></h3>
+    <p>Removes any CSS Behavior class names from the region container element.</p>
+    <h4>Format</h4>
+    <p>widgetName.removeStateClasses();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;hpanel.removeStateClasses(); return false;&quot;&gt;Reset Classes&lt;/a&gt;</pre>
+  </div>
+  <div id="setcontent">
+    <h3><strong>setContent</strong></h3>
+    <p>Replaces the contents of the region container with the content in the specified html fragment string.</p>
+    <h4>Format</h4>
+    <p>widgetName.setContent(htmlString, id);</p>
+    <h4>Arguments</h4>
+    <ul>
+      <li><strong>htmlFrag</strong>
+        <ul>
+          <li>String.</li>
+          <li>A string containing HTML markup.</li>
+        </ul>
+      </li>
+      <li><strong>id</strong>
+        <ul>
+          <li>String. (Optional)</li>
+          <li>The id of an element inside the specified HTML fragment. If defined, the content underneath the specified element will be inserted into the region container instead of the entire fragment.</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>Notificiations</h4>
+    <p>Calling this method will result in the following notifications:</p>
+    <ul>
+      <li>onPreUpdate</li>
+      <li>onPostUpdate</li>
+    </ul>
+    <h4>Example</h4>
+    <pre>&lt;input type=&quot;button&quot; onclick=&quot;panelWidget.setContent('&lt;strong&gt;This is strong text&lt;/strong&gt;');&quot;&gt;</pre>
+   
+  </div>
+</div>
+<hr />
+ <p>Copyright 2007, Adobe Systems Inc.</p>
+</body>
+</html>

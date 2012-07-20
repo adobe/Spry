@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Grow example</title>
+<style type="text/css">
+<!--
+.thumbs {
+	clear: both;
+	margin: 10px auto;
+}
+.thumbnails div {
+	position: relative;
+	width: 60px;
+	height: 45px;
+	float: left;
+	margin: 8px;
+	padding: 0;
+	float: left;
+	display: inline;
+}
+.thumbnails img {
+	top: 0px;
+	left: 0px;
+	width: 60px;
+	height: 45px;
+	position: absolute;
+	z-index: 1;
+	border: 2px solid #000000;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+.preview {
+	padding: 10px 10px 20px 10px;
+	margin-bottom: 5px;
+	width: 180px;
+	float: left;
+	margin-right: 10px;
+	position: absolute;
+	left: 140px;
+	top: 104px;
+	height: 163px;
+}
+-->
+</style>
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<script type="text/JavaScript">
+<!--
+initCalled=false;
+
+if (! initCalled) {init()}
+
+function init ()
+{
+	zindexStart = 1000;  
+	initCalled = true;
+}
+
+function setzindex(element, effect)
+{
+	if (effect.direction == Spry.forwards)
+	{
+	element.style.zIndex=zindexStart;
+	
+		//seems that IE needs a seperate solution
+		if(/MSIE/.test(navigator.userAgent) && /Windows NT/.test(navigator.userAgent))
+		{
+				Spry.Effect.setStyleProp(	element.parentNode, 'zIndex', zindexStart);
+				//element.parentNode.style.zIndex = zindexStart;
+		}
+	}
+	zindexStart++;
+}
+
+function resetzindex(element, effect)
+{
+	if (effect.direction == Spry.backwards)
+	{
+ 		 element.style.zIndex=1;
+		
+		if(/MSIE/.test(navigator.userAgent) && /Windows NT/.test(navigator.userAgent))
+		 {
+			Spry.Effect.setStyleProp(	element.parentNode, 'zIndex', 1);
+		 }
+	}
+}
+var effects = [];
+function toggleThumb(targetElement)
+{
+	if (typeof effects[targetElement.id] == 'undefined')
+	{
+		effects[targetElement.id] = new Spry.Effect.Grow(targetElement, {duration: 400, from: '100%', to: '500%', toggle: true, setup:setzindex, finish:resetzindex});
+	}
+	
+	effects[targetElement.id].start();
+}
+
+//-->
+</script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<p>Demonstrates the Grow effect on images, also uses the setup &amp; finish callback function to set the z-index style property:</p>
+
+<div class="preview">
+<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/china/images/china_02.jpg" alt="First Image" name="img1" id="img1" title="" onclick="toggleThumb(this)"/></div>
+  </div>
+		<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/egypt/images/egypt_02.jpg" onclick="toggleThumb(this)" id="img2" alt="Second Image" title=""/></div>
+  </div>
+		<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/paris/images/paris_02.jpg" onclick="toggleThumb(this)" id="img3" alt="Third Image" title=""/></div>
+  </div>
+		<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/china/images/china_12.jpg" onclick="toggleThumb(this)" id="img4" alt="Fourth Image" title=""/></div>
+  </div>
+		<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/egypt/images/egypt_15.jpg" onclick="toggleThumb(this)" id="img5" alt="Fifth Image" title=""/></div>
+  </div>
+		<div class="thumbnails">
+			<div><img src="../../demos/gallery/galleries/paris/images/paris_12.jpg" onclick="toggleThumb(this)" id="img6" alt="Six Image" title=""/></div>
+  </div>
+</div>
+</body>
+</html>

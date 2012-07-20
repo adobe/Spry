@@ -1,0 +1,1595 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>Working with Spry Effects</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<link href="../../css/articles.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY>
+<H1>Working with Spry Effects</H1>
+<P>Spry Effects are visual enhancements that you can apply to 
+  almost any element on an HTML page. For example, an effect might highlight 
+  information, create animated transitions, or visually alter a page element for a 
+  certain period of time. Effects are a simple but elegant way of enhancing the 
+  look and feel of your website.</P>
+<p><strong>Note:</strong> Spry 1.5 brings many new features over the previous Spry Effects 1.4. 
+  These updates forced us to make some changes in the core code and the API. This 
+  may will cause some of the pages designed with a previous version of Spry Effects 
+  to not run correctly after updating to Spry 1.5. If you want to updated to Spry Effects 1.5, read the <a href="../effects_migration/effects_migration.htm" target="_blank">Spry Effects
+  migration documentation</a> and follow the  steps described there to fix the
+  compatibility problems.</p>
+<H3>Spry Effects basic overview</H3>
+<P>Effects refer to JavaScript methods and functions that run in the browser. Effects  can be used  
+  to grow images  in a gallery, or to move an element 
+  from one position to another.</P>
+<p> For example,  suppose there is the following content  on the page:</p>
+<pre>
+&lt;div id=&quot;content&quot;&gt;
+&lt;img src=&quot;logo.jpg&quot; width=&quot;150&quot; height=&quot;350&quot; alt=&quot;My Company&quot;&gt;
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce vel sem nec massa cursus 
+interdum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
+hymenaeos. Duis euismod eros consequat nibh. Pellentesque non purus. Nam lectus magna, faucibus 
+vel, aliquet id, commodo vitae, elit. Maecenas sollicitudin, nibh iaculis bibendum consequat, 
+odio erat volutpat ipsum, sed dignissim ligula mi in justo. Nam placerat. Nullam fringilla 
+tortor. Quisque lacinia, mi non iaculis adipiscing, turpis lacus eleifend velit, dictum 
+facilisis pede diam sagittis nulla. Nunc vestibulum elementum enim. Etiam lorem felis, faucibus 
+sit amet, vulputate sed, lobortis et, nunc. Morbi vitae lectus.
+
+
+&lt;/div&gt;
+</pre>
+<p> This content can be initially hidden when page loads while waiting for the images and other resources.
+  In this situation you use CSS to hide this area:</p>
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+#content{
+   visibility: hidden;
+}
+&lt;/style&gt;
+</pre>
+<p> When the page finishes loading, you can setup the animation to display the content with a 
+  transition.</p>
+<p> First, define a JavaScript Spry Effect animator <em>below</em> the main content area. For this example we will use a Fade in effect to make a gradual 
+  transition:</p>
+<pre>
+&lt;script type="text/javascript&quot;&gt;
+	var showContent = new Spry.Effect.Fade(&quot;content&quot;, {from: &quot;0%&quot;, to: &quot;100%&quot;});
+&lt;/script&gt;
+</pre>
+<p>In the above script, &quot;content&quot; is the ID of the element that will be faded in. 'From' and 'to' refer to the opacity of the element. 0% is invisible and 100% is fully visible.</p>
+<p>To start the effect, a function is used. 'showContent' is the variable name used in the above code sample. The start() function will begin the effect. </p>
+<pre>
+&lt;body onload=&quot;showContent.start();&quot;&gt;
+...
+</pre>
+<p><strong>Note:</strong> The examples in this document are for reading purposes only and not intended for execution. For working 
+  samples, see the demos and samples folder in the Spry folder on Adobe Labs.</p>
+<H3>Spry Effects</H3>
+<P> Adobe designed Spry Effects to be easy to implement while letting 
+  the framework do the real work. No new tags or difficult syntaxes are required. 
+  
+  The animated element will need to have  an  id attribute defined.</p>
+<P>The Spry framework for AJAX includes these effects:</P>
+<DL>
+  <DT>Fade
+  <DD> Makes an element appear or fade away.
+  <DT>Highlight
+  <DD> Changes the background color of an element.
+  <DT>Blind up/down
+  <DD> Simulates a window blind that moves up or down to hide or reveal the element.
+  <DT>Slide up/down
+  <DD> Moves the element up or down.
+  <DT>Grow
+  <DD> Increases or reduces the size of the element.
+  <DT>Shake
+  <DD> Simulates shaking the element from left to right.
+  <DT>Squish
+  <DD> Makes the element disappear into the upper-left corner of the 
+    page. </DD>
+</DL>
+<p>Each of the above effects are based on one or multiple of the following basic animators used together in a Cluster:</p>
+<dl>
+  <dt>Move
+  <dd>Move an element from a position to another.</dd>
+  <dt>Size
+  <dd>Changes the size dimension of an element.</dd>
+  <dt>Opacity
+  <dd>Modify the opacity property of an element.</dd>
+  <dt>Color
+  <dd>Changes the background color of an element.</dd>
+</dl>
+<H3>About the Spry effects library</H3>
+<P>The Spry Effects library, 'SpryEffects.js' , contains all of the 
+  Spry effects code. The file has no other 
+  dependencies. </P>
+<P>Before you add effects to a page,  link the SpryEffects.js file in the 
+  head of the HTML document, as follows:</P>
+<PRE>&lt;script type=&quot;text/javascript&quot; src=&quot;../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;</PRE>
+<strong>Note:</strong> The exact file path differs, 
+      depending on where you store the SpryEffects.js file.
+<P>Both the JavaScript file and the HTML file that contains the effects must 
+  reside on your server for Spry effects to work.</P>
+<H2>Before you begin</H2>
+<H3>Prepare your files</H3>
+<P>Before you attach Spry effects to elements on your web pages, download and 
+  link the appropriate file.</P>
+<OL>
+  <LI>Locate the Spry ZIP file on the Adobe Labs 
+    website.
+  <LI>Download and unzip the Spry ZIP file to your hard 
+    drive.
+  <LI>Open the unzipped Spry folder and locate the 
+    'includes' folder. This folder contains the file necessary for using Spry 
+    effects.
+  <LI>Add the SpryEffects.js file to your website by 
+    doing one of the following:
+    <UL>
+      <LI> Copy the includes folder and paste or drag a copy of it to the root 
+        directory of your web site. This gives you all of the files necessary for 
+        creating Spry effects as well as Spry XML data sets.
+      <LI> To create a folder on your website (for example, a folder called SpryAssets), open the includes folder, and copy the 
+        SpryEffects.js file to the new folder.</LI>
+    </UL>
+    Note: If you drag the original 
+    includes folder or individual files out of the unzipped Spry folder, the demos and samples
+    in the Spry folder won't work properly. Copy and paste to your website instead 
+    of dragging.
+  <LI>When the SpryEffects.js file is part of your 
+    website, you are ready to link it and add Spry effects to your pages. For 
+    specific instructions on adding a particular effect to a page, see the 
+    individual effects sections. </LI>
+</OL>
+<H2>Attach Effects</H2>
+<H3>Highlight </H3>
+<P>The Highlight effect changes the background color of a target element.</P>
+<P>You can attach the Highlight effect to any HTML element except applet, body, frame, frameset, or noframes.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path differs 
+    differ, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>
+&lt;div id=&quot;highlight1&quot;&gt; 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam 
+erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.&lt;/div&gt;
+</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    causes the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to 
+    highlight, you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;highlight1.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to highlight the below paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var highlight1 = new Spry.Effect.Highlight('highlight1', {duration: 1000, from:'#CCCCCC', to:'#FFCC33', restoreColor: '#FFCC33', toggle: true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('highlight1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;highlight1.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to highlight the below paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;highlight1&quot;&gt; 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam 
+erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var highlight1 = new Spry.Effect.Highlight('highlight1', {duration: 1000, from:'#CCCCCC', to:'#FFCC33', restoreColor: '#FFCC33', toggle: true});
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H4>Highlight effect options</H4>
+<P>The following table lists the available options for the Highlight effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start color value in RGB color format (#RRGGBB or #RGB). This value sets the 
+          color of the first frame of the highlight. The default is the background 
+          color of the target element.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End color value in RGB color format (#RRGGBB or #RGB). This value sets the 
+          color of the last frame of the highlight. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>restoreColor</P></TD>
+      <TD><P>Color value in RGB color format (#RRGGBB or #RGB) to be restored at the end of animation in forward direction.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false. If the value is set to true, the restoreColor option is ignored. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.sinusoidalTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Highlight(&quot;targetID&quot;, {duration:1000, from:&quot;#00ff00&quot;, to:&quot;#0000ff&quot;});
+effect.start();
+</PRE>
+<p>More <a href="../../samples/effects/highlight_sample.html" target="_blank">samples of the Highlight</a> effect can be found in the effects samples folder from the Spry package.</p>
+<h3>Transitions</h3>
+<p>Most effects provide the optional parameter <strong>'transition'</strong>. This parameter describes the transition of the effect while the effect is performing from start to stop. Values can be:</p>
+<ul>
+  <li>Spry.linearTransition</li>
+  <li>Spry.sinusoidalTransition</li>
+  <li>Spry.squareTransition</li>
+  <li>Spry.squarerootTransition</li>
+  <li>Spry.fifthTransition</li>
+  <li>Spry.circleTransition</li>
+  <li>Spry.pulsateTransition</li>
+  <li>Spry.growSpecificTransition</li>
+</ul>
+<H3>Fade </H3>
+<P>The Fade effect makes an element appear or fade away by modifing the element's opacity property.</P>
+<P>You can attach the Fade effect to any HTML element except applet, body, iframe, object, tr, tbody, or th.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id="fade1"&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy .&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    triggers the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to fade, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;fadeElement.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to make the paragraph fade out from 100% to 20%.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fadeElement = new Spry.Effect.Fade(&quot;fade1&quot;, {duration:1000, from:100, to:20, toggle:true});
+&lt;/script&gt;</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('fade1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . . 
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;fadeElement.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to make the paragraph fade out from 100% to 20%.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id="fade1"&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fadeElement = new Spry.Effect.Fade(&quot;fade1&quot;, {duration:1000, from:100, to:20, toggle:true});
+&lt;/script&gt;
+&lt;/body&gt;
+</PRE>
+  </LI>
+</OL>
+<H4>Fade effect options</H4>
+<P>The following table lists available options for the Fade effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH><P>Option</P></TH>
+      <TH><P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start opacity value in % ( "100%" ) or integer value. The default value is 0.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End opacity value in in % ( "100%" ) or integer value. The default value is 100. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.fifthTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Fade('targetID', {duration: 1000, from: 0, to: 100, toggle: true});
+effect.start();
+</PRE>
+<p>More <a href="../../samples/effects/fade_sample.html" target="_blank">samples of the Fade</a> effect can be found in the effects samples folder.</p>
+<H3>Blind up/Blind down </H3>
+<P>The Blind up/Blind down effect simulates a window blind that moves up or down 
+  to hide or reveal the element. This effect is similar to the Slide effect, but 
+  the content stays in place.</P>
+<P>You can only attach this effect to the following HTML elements: address, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, p, ol, ul, li, applet, center, dir, menu, or pre.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;blindup1&quot;&gt;
+	&lt;h4&gt;HEADER&lt;/h4&gt;
+	&lt;p&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    	diam nonumy eirmod tempor invidunt ut labore et dolore magna&lt;/p&gt;
+&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to blind 
+    up, you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;blind_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to blind up from 100% to 0%&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var blind_effect = new Spry.Effect.Blind(&quot;blindup1&quot;, {duration: 1000, from: &quot;100%&quot;, to: &quot;0%&quot;, toggle: true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('blindup1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;blind_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to blind up from 100% to 0%&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&quot;blindup1&quot;&gt;
+	&lt;h4&gt;HEADER&lt;/h4&gt;
+	&lt;p&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    	diam nonumy eirmod tempor invidunt ut labore et dolore magna&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var blind_effect = new Spry.Effect.Blind(&quot;blindup1&quot;, {duration: 1000, from: &quot;100%&quot;, to: &quot;0%&quot;, toggle: true});
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H4>Blind up/Blind down effect options</H4>
+<P>The following table lists available options for the Blind effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 
+          1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start size in %, integers or pixels. The default value is 100%.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End size in %, integers or pixels. The default value is 0%. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>useCSSBox</P></TD>
+      <TD><P>The border, margin and padding should be modified proportionally with the element inner content box. Default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.circleTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Blind('targetID',{duration: 1000, from: &quot;100%&quot;, to: &quot;0%&quot;});
+effect.start();</PRE>
+<p>More <a href="../../samples/effects/blind_sample.html" target="_blank">samples of Blind</a> effect can be found in the effects samples folder from the Spry package.</p>
+<H3>Slide</H3>
+<P>The Slide effect moves the target element up or down (or left to right). This 
+  effect is similar to the Blind effect but the contents move up and down (or left 
+  to right) instead of staying in the same place.</P>
+<P>You can only attach this effect to the following HTML elements: blockquote, dd, div, form, center, table, span, input, textarea, select, or image. The Slide effect require the content of the animated element to be wrapped into a single block element.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element is wrapped in a div that has a unique ID. The target element is the 
+    element that changes when the user interacts with the page to cause the 
+    effect.
+    <PRE>&lt;div id=&quot;slide1&quot;&gt;
+	&lt;div&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    	diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    	aliquyam erat, sed diam voluptua.&lt;/div&gt;
+&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    causes the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to slide 
+    up, you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;slide_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to slide the paragraph up from 100% to 20%&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var slide_effect = new Spry.Effect.Slide(&quot;slide1&quot;, {duration:1000, from:'100%', to:'20%',toggle:true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('slide1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;slide_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to slide the paragraph up from 100% to 20%&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&quot;slide1&quot;&gt;
+	&lt;div&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    	diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    	aliquyam erat, sed diam voluptua.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var slide_effect = new Spry.Effect.Slide(&quot;slide1&quot;, {duration:1000, from:'100%', to:'20%',toggle:true});
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H4>Slide effect options</H4>
+<P>The following table lists available options for the Slide effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 
+          1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start size in %, interger or pixels. The default value is '100%'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End size in % integer or pixels. The default value is '0%'. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.sinusoidalTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>horizontal</P></TD>
+      <TD><P>If set to true, slides the content horizontally instead of vertically. 
+          The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Slide(&quot;targetID&quot;, {duration: 1000, from: '100%', to: '0%'});
+effect.start();</PRE>
+<p>More <a href="../../samples/effects/slide_sample.html" target="_blank">samples of the Slide</a> effect can be found in the effects samples folder from the Spry package.</p>
+<H3>Grow </H3>
+<P>The Grow effect increases or reduces the size of the element. The movement grows toward or away from the center of the element.</P>
+<P>You can only attach this effect to the following HTML objects: address, dd, div, dl, dt, form, p, ol, ul, applet, center, dir, menu, img or pre.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect:
+    <PRE>&lt;div id=&quot;shrink1&quot;&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod .&lt;/p&gt;
+&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to shrink, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;grow_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to shrink the paragraph from 100% to 20%.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var grow_effect = new Spry.Effect.Grow(&quot;shrink1&quot;, {duration:1000, from:&quot;100%&quot;, to:&quot;20%&quot;, toggle: true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('shrink1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;grow_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to shrink the paragraph from 100% to 20%.&lt;/a&gt;&lt;/p&gt;<br>&lt;div id=&quot;shrink1&quot;&gt;<br>&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;script type=&quot;text/javascript&quot;&gt;<br>var grow_effect = new Spry.Effect.Grow(&quot;shrink1&quot;, {duration:1000, from:&quot;100%&quot;, to:&quot;20%&quot;, toggle: true});<br>&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H4>Grow effect options</H4>
+<P>The following table lists available options for the Grow effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start size in %, integer or pixels. The default value is 0%.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End size in %, integer or pixels. The default value is 100%. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>growCenter</P></TD>
+      <TD><P>Growing and shrinking position of the element. The default value is true (grow and shrink from center). If set to false, the element grows or shrinks from the top left corner.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>useCSSBox</P></TD>
+      <TD><P>The border, margin and padding should be modified proportionally with the element inner content box. Default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 
+          'Spry.squareTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Grow(&quot;targetID&quot;, {duration: 1000, from: &quot;0%&quot;, to: &quot;100%&quot;});
+effect.start();</PRE>
+<p>More <a href="../../samples/effects/grow_sample.html" target="_blank">samples of the Grow</a> effect can be found in the effects samples folder from the Spry package.</p>
+<H3> Squish </H3>
+<P>The Squish effect makes the target element disappear into the upper-left 
+  corner of the page. The Squish effect produces the same effect as the Grow 
+  effect when the Grow effect's growCenter option is set to false.</P>
+<P>You can only attach this effect to the following HTML elements: address, dd, div, dl, dt, form, img, p, ol, ul, applet, center, dir, menu, or pre.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;squish1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to squish, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;squish_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to squish the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var squish_effect = new Spry.Effect.Squish(&quot;squish1&quot;);
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('squish1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;squish_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to squish the paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;squish1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var squish_effect = new Spry.Effect.Squish(&quot;squish1&quot;);
+&lt;/script&gt;
+&lt;/body&gt; </PRE>
+  </LI>
+</OL>
+<H4>Squish effect options</H4>
+<P>The following table lists optional available options:</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>from</P></TD>
+      <TD><P>Start size in %, integer or pixels. The default value is 0%.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>to</P></TD>
+      <TD><P>End size in %, integer or pixels. The default value is 100%. </P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>useCSSBox</P></TD>
+      <TD><P>The border, margin and padding should be modified proportionally with the element inner content box. Default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 
+          'Spry.squareTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Squish(&quot;targetID&quot;,{duration: 1000, from: "100%", to: "0%"});
+effect.start();
+</PRE>
+<p>More <a href="../../samples/effects/squish_sample.html" target="_blank">samples of the Squish</a> effect can be found in the effects samples folder from the Spry package.</p>
+<H3>Shake </H3>
+<P>The Shake effect simulates rapidly shaking the target element 20 pixels from 
+  left to right.</P>
+<P>You can only attach this effect to the following HTML elements: address, blockquote, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, iframe, img, object, p, ol, ul, li, applet, dir, hr, menu, pre, or table.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id="shake1"&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqit amet.&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to shake, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;shake_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Shake it!&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var shake_effect = new Spry.Effect.Shake('shake1');
+&lt;/script&gt;</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('shake1' in the preceding example).</P>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;shake_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Shake it!&lt;/a&gt;&lt;/p&gt;
+&lt;div id="shake1"&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr.&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var shake_effect = new Spry.Effect.Shake('shake1');
+&lt;/script&gt;
+&lt;/body&gt; </PRE>
+  </LI>
+</OL>
+<H4>Shake effect options</H4>
+<P>The following table lists available options for the Shake effect.</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>Fixed at 500 milliseconds in Spry 1.4. Only editable in Spry 1.5 and 
+          later.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.linearTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect Spry.Effect.Shake('targetID');
+effect.start();</PRE>
+<p>More <a href="../../samples/effects/shake_sample.html" target="_blank">samples of the Shake</a> effect can be found in the effects samples folder from the Spry package.</p>
+<h3>Cluster Effects overview</h3>
+<p>The Spry Effects Cluster is the way of combining multiple 
+  effects to run together on a single element. Depending on the 
+  method the animators are added to a Cluster class, the effects 
+  can either run in parallel or in queue (an effect is started 
+  only when the previous effect ended). </p>
+<p>When you define a cluster, you can combine simple Animators 
+  like Move, Size, Opacity or Color, or a previous predefined Cluster 
+  effect. Using this ability you can create a new cluster 
+  effect as a combination of the current defined effects above described. 
+  Two good examples can be found in the <a href="../../demos/effects/index.html" target="_blank"> Spry Effects Demo</a>. There are two new clustered effects 
+  defined inside this demo: Fade &amp; Slide and Fade &amp; Blind.</p>
+<p>A Cluster can contain an unlimited number of effects to 
+  animate. There is no restriction the clustered effects on the same element in a page. You can animate  two or more different elements  using a 
+  cluster, either in 
+  parallel or one after the other.</p>
+<p>All the predefined effects Fade, Grow, Highlight, Slide, Shake and Blind, listed above, 
+  are clustered effects of the basic Animators: Move, Size, Opacity or Color.</p>
+<h4>Create a Cluster</h4>
+<!-- p>Currently there are two ways available to create your own cluster of effects.</p -->
+<ol>
+  <li>
+    <p>Extend the Spry Cluster JavaScript class</p>
+    <p> The Spry Effects  includes a class called Spry.Effect.Cluster. 
+      Any new effect that extends this class will became a Cluster. </p>
+    To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+    <p>Suppose you we want to create a new effect that will 
+      fade in or out in parallel with sliding an element.</p>
+    <p>Let's create our class to extend the Spry.Effect.Cluster. The constructor should receive two parameters: the element to animate and the animation options.</p>
+    <pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;
+</pre>
+    <p>We will have to define first some default values for the options we would like to support which will define the Effect behavior when no options are used:</p>
+    <pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	var toogle = false;
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;
+</pre>
+    <p>These default options should be replaced with the values received as parameters.</p>
+    <pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	var toggle = false;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+		if (options.toggle != null) toggle = options.toggle;
+	}
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;
+</pre>
+    <p>The next step will be to define the effects that will effectivelly run and animate our given element</p>
+    <pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+	}
+	var fadeEffect = new Spry.Effect.Fade(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	var blindEffect = new Spry.Effect.Blind(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;
+</pre>
+    <p>Note: In this situation, the options sent to the individual effect are the same. There are situation when the values for the defined effects need a more complex computation for each effect participating into the cluster.</p>
+    <p>After the effects are defined , as a last step, should be register to the cluster. The registration is done using one of the the two methods that are made available by the original Cluster class from Spry Effects: <em>addParallelEffect</em> and <em>addNextEffect</em>. Using the first method of registering the effects to the cluster will cause all the effects registered to run in parallel. Below is the complete code of the FadeSlide with the two animations registered in parallel:</p>
+    <pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+	}
+	var fadeEffect = new Spry.Effect.Fade(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	var blindEffect = new Spry.Effect.Blind(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	this.addParallelEffect(fadeEffect);
+	this.addParallelEffect(blindEffect);
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;
+</pre>
+    <p>The only thing that remains is to use the new effect you just created, same as any other effect. </p>
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;myFadeSlide.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to Fade and Blind the below paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;content&quot;&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
+ut labore et dolore magna aliqit amet.&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var myFadeSlide = new FadeSlide(&quot;content&quot;, {from: &quot;100%&quot;, to: &quot;0%&quot;, duration: 1500, toogle: true}
+&lt;/script&gt;</PRE>
+  </li>
+</ol>
+<H3>Transition overview</H3>
+<p>The mathematical algorithms inside the Spry Effects used to compute the path between a starting value and the end value are called 'transition' algorithms.</p>
+<p>A transition function will have a different impact on each effect's smoothness and perception. An effect may look nice using a certain transition while using the same algorithm with another effect may have a different perception. For instance, a boucing transition is good for moving panels, but might not be right for changing colors.</p>
+<p>When you want to move from a point of origin to an ending point, the simplest and shortest path is a linear transition. The transitions are time dependent functions. This means that a transition will always take the same amount of time. Therefore, a transition will go faster if it has to go farther, growing for instance.</p>
+<p>The transition functions will return the current position of the value at any given time between the starting and the ending desired values.</p>
+<p>All the effects in Spry framework are designed to receive as parameter the transition to use. There are 8 transitions function included in Spry that you can use depending on your need.</p>
+<ul>
+  <li>Spry.linearTransition</li>
+  <li>Spry.sinusoidalTransition</li>
+  <li>Spry.squareTransition</li>
+  <li>Spry.squarerootTransition</li>
+  <li>Spry.fifthTransition</li>
+  <li>Spry.circleTransition</li>
+  <li>Spry.pulsateTransition</li>
+  <li>Spry.growSpecificTransition</li>
+</ul>
+<p>The actual transitions are hard to describe. The Spry 'samples' folder includes a <a href="../../samples/effects/transition_sample.html" target="_blank">transition sample</a> so you can see how the tranistions work with the effects. The graph gives a visual representation of the transition.</p>
+<h3>Extending transitions</h3>
+<p>The current transition mechanism allows you to define your own transition functions and use them with  Effects. Depending on the mathematical algorithm used, you have control over the animation acceleration and deceleration periods from the animation.</p>
+<p>In your page you'll have to define a new function that receive the following parameters: elapsed time (time), starting value (begin), the difference between the finish and the start values (change) and the total time duration of the effect (duration).</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+function myTransition(time, begin, change, duration)
+{ /* ... */}
+&lt;/script&gt;
+</pre>
+<p>The value the function returns should be the current value for the time elapsed from the moment the transition started.</p>
+<p>The new  transition function can be now used with any of the effects. You will have to pass as the value the name of your transition function.</p>
+<P>Sample code:</P>
+<PRE>myTransition = function(time, begin, change, duration){
+	if (time &gt; duration) return (change+finish);
+	return begin + Math.sqrt(time/duration) * change;
+}
+var effect = new Spry.Effect.Fade(&quot;targetID&quot;, {duration: 1000, transition: myTransition, toggle: true, from: 100, to: 0});
+effect.start();
+</PRE>
+<H3>Attach a Color effect</H3>
+<P>The Color effect makes the transition of the target element background 
+  from a color to another. This effect is used by the Highlight Cluster 
+  effect for animation.</P>
+<P>You can attach the Color effect to any HTML element except applet, body, frame, frameset, or noframes.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;color1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to change color
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;color_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to change the background color of the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var color_effect = new Spry.Effect.Color(&quot;color1&quot;, &quot;#FFCC33&quot;, &quot;#CC5512&quot;, {duration: 1000});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('color1' in the preceding example).</P>
+    <P>The second argument required is the start color of the background in RGB format.</p>
+    <P>The third argument is the ending color of the background in RGB format.</p>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;color_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to change the background color of the paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;color1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var color_effect = new Spry.Effect.Color(&quot;color1&quot;, &quot;#FFCC33&quot;, &quot;#CC5512&quot;, {duration: 1000});
+&lt;/script&gt;
+&lt;/body&gt; </PRE>
+  </LI>
+</OL>
+<H4>Color effect options</H4>
+<P>The following table lists optional available options:</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 'Spry.linearTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Color(&quot;targetID&quot;, &quot;#FFCC33&quot;, &quot;#CC5512&quot;, {duration: 1000, transition: Spry.fifthTransition, toggle: true}););
+effect.start();
+</PRE>
+<H3>Move </H3>
+<P>The Move effect change the target element position within the page. The Move effect is used 
+  by many of the clustered effects: Grow, Slide, Shake, Squish.</P>
+<P>You can only attach this effect to the following HTML elements: address, dd, div, dl, dt, form, img, ol, ul, applet, center, dir, menu, or pre.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;move1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    causes the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to change the dimentions, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;move_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to move the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fromPos = new Spry.Effect.Utils.Position();
+fromPos.x = 0;
+fromPos.y = 0;
+
+var toPos = new Spry.Effect.Utils.Position();
+toPos.x = 300;
+toPos.y = 0;
+
+Spry.Effect.makePositioned(document.getElementById(&quot;move1&quot;));
+var move_effect = new Spry.Effect.Move(&quot;move1&quot;, fromPos, toPos, {duration: 1000, toggle: true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is the target element's 
+      ID ('move1' in the preceding example).</P>
+    <p>The second argument the position  that represent the start coordinates
+      of the element. The default units of mesure are pixels. You can change this 
+      value by using the 'units' property of the position object: fromRect.units = 'em';</p>
+    <p>The third argument the position  that represent the ending coordinates
+      of the element. The default units of mesure are pixels. You can change this 
+      value by using the 'units' property of the position object: fromRect.units = 'em';</p>
+    <p>Note: the units for both starting and ending positions  should be the same
+      otherwise the effect will not accept them as valid parameters.</p>
+    <p>You can observe in the code above the following line:</p>
+    <pre>Spry.Effect.makePositioned(document.getElementById(&quot;move1&quot;));</pre>
+    <p>The animated element should have the position CSS property set to absolute or relative. 
+      The code line above is making sure the element position property is correct for the Move animation to work.</p>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;move_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to move the paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;move1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fromPos = new Spry.Effect.Utils.Position();
+fromPos.x = 0;
+fromPos.y = 0;
+
+var toPos = new Spry.Effect.Utils.Position();
+toPos.x = 300;
+toPos.y = 0;
+
+Spry.Effect.makePositioned(document.getElementById(&quot;move1&quot;));
+var move_effect = new Spry.Effect.Move(&quot;move1&quot;, fromPos, toPos, {duration: 1000, toggle: true});
+&lt;/script&gt;
+&lt;/body&gt; </PRE>
+  </LI>
+</OL>
+<H4>Size effect options</H4>
+<P>The following table lists optional available options:</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+	<TR>
+  	<TD><P>toggle</P></TD>
+    <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+  </TR>
+  <TR>
+    <TD><P>transition</P></TD>
+    <TD><P>Determines the type of transition. The default is 
+        'Spry.linearTransition'.</P></TD>
+  </TR>
+  <TR>
+    <TD><P>fps</P></TD>
+    <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+  </TR>
+  <TR>
+    <TD><P>setup</P></TD>
+    <TD><P>Lets you define a function that is called before the effect begins, 
+        e.g., setup:function (element,effect){/* ... 
+        */}.</P></TD>
+  </TR>
+  <TR>
+    <TD><P>finish</P></TD>
+    <TD><P>Lets you define a function that is called after the effect finishes, 
+        e.g., finish:function (element,effect){/* ... 
+        */}.</P></TD>
+  </TR>
+  </TBODY>
+  
+</TABLE>
+<P>Sample code:</P>
+<PRE>var fromRect = new Spry.Effect.Utils.Rectangle;
+fromRect.width = 100;
+fromRect.height = 100;
+
+var toRect = new Spry.Effect.Utils.Rectangle;
+toRect.width = 300;
+toRect.height = 300;
+
+Spry.Effect.makeClipping(document.getElementById(&quot;targetID&quot;));
+var size_effect = new Spry.Effect.Size(&quot;targetID&quot;, fromRect, toRect, {duration: 1000, toggle: true, scaleContent: true, transition: Spry.fifthTransition});
+</PRE>
+<H3>Opacity</H3>
+<P>The Opacity effect makes the target element disappear or appear by changing the CSS opacity property. 
+  The Opacity effect is used by the Fade Cluster effect.</P>
+<P>You can attach the Fade effect to any HTML element except applet, body, iframe, object, tr, tbody, or th.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;opacity1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph dissapear by changing the opacity, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;opacity_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to hide the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var opacity_effect = new Spry.Effect.Opacity(&quot;opacity1&quot;, 1, 0.1, {duration: 1000});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is always the target element's 
+      ID ('opacity1' in the preceding example).</P>
+    <p>The second and the third arguments are the start and end opacity values. These values should be float numbers between 0 and 1 where 0 make  the element to be invisible and 1 is the value for the element opac.</p>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;opacity_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to hide the paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;opacity1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var opacity_effect = new Spry.Effect.Opacity(&quot;opacity1&quot;, 1, 0.1, {duration: 1000});
+&lt;/script&gt;
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H4>Opacity effect options</H4>
+<P>The following table lists optional available options:</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 
+          'Spry.linearTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var effect = new Spry.Effect.Opacity(&quot;targetID&quot;, 1, 0.5, {duration: 1000, toggle: true});
+effect.start();
+</PRE>
+<H3>Size</H3>
+<P>The Size effect change the target element width and height. The Size effect is used 
+  by many of the clustered effects: Grow, Blind, Slide</P>
+<P>You can only attach this effect to the following HTML elements: address, dd, div, dl, dt, form, img, ol, ul, applet, center, dir, menu, or pre.</P>
+<OL>
+  <LI>To link the SpryEffects.js file on your web page, 
+    add the following code to the head of your document:
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    Note: The exact file path 
+    differs, depending on where you store the SpryEffects.js file.
+  <LI>Make sure your target element has a unique ID. The 
+    target element is the element that changes when the user interacts with the 
+    page to cause the effect.
+    <PRE>&lt;div id=&quot;size1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</PRE>
+  <LI>To create the effect, add a JavaScript event that 
+    starts the effect when the user interacts with the page. For example, if you 
+    want the user to click on a sentence that causes another paragraph to change the dimentions, 
+    you might add the following event to the sentence's p tag:
+    <PRE>&lt;p&gt;&lt;a onclick=&quot;size_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to resize the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fromRect = new Spry.Effect.Utils.Rectangle;
+fromRect.width = 100;
+fromRect.height = 300;
+
+var toRect = new Spry.Effect.Utils.Rectangle;
+toRect.width = 300;
+toRect.height = 900;
+
+Spry.Effect.makeClipping(document.getElementById(&quot;size1&quot;));
+var size_effect = new Spry.Effect.Size(&quot;size1&quot;, fromRect, toRect, {duration: 1000, toggle: true});
+&lt;/script&gt;
+</PRE>
+    <P>The first argument of the JavaScript method is the target element's 
+      ID ('size1' in the preceding example).</P>
+    <p>The second argument is a rectangle that represent the start dimensions 
+      of the element. The default units of mesure are pixels. You can change this 
+      value by using the 'units' property of the rectangle: fromRect.units = 'em';</p>
+    <p>The third argument is a rectangle that represent the ending dimensions
+      of the element. The default units of mesure are pixels. You can change this 
+      value by using the 'units' property of the rectangle: fromRect.units = 'em';</p>
+    <p>Note: the units for both starting and ending rectangles should be the same
+      otherwise the effect will not accept them as valid parameters.</p>
+    <p>You can observe in the code above the following line:</p>
+    <pre>Spry.Effect.makeClipping(document.getElementById(&quot;size1&quot;));</pre>
+    <p>The animated element should have the CSS overflow property set to hidden or scroll. 
+      When shrinking the element dimentions, we do not want the  content to be 
+      displayed outside the inner content area. The code line above is making sure the element 
+      overflow property is correct for the Size animation to work.</p>
+    <P>The complete code looks as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script src=&quot;../includes/SpryEffects.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick=&quot;size_effect.start(); return false;&quot; href=&quot;#&quot;&gt;Click here to resize the paragraph.&lt;/a&gt;&lt;/p&gt;
+
+&lt;div id=&quot;size1&quot;&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var fromRect = new Spry.Effect.Utils.Rectangle;
+fromRect.width = 100;
+fromRect.height = 300;
+
+var toRect = new Spry.Effect.Utils.Rectangle;
+toRect.width = 300;
+toRect.height = 900;
+
+Spry.Effect.makeClipping(document.getElementById(&quot;size1&quot;));
+var size_effect = new Spry.Effect.Size(&quot;size1&quot;, fromRect, toRect, {duration: 1000, toggle: true});
+&lt;/script&gt;
+&lt;/body&gt; </PRE>
+  </LI>
+</OL>
+<H4>Size effect options</H4>
+<P>The following table lists optional available options:</P>
+<TABLE>
+  <THEAD align=left>
+    <TR>
+      <TH> <P>Option</P></TH>
+      <TH> <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD><P>duration</P></TD>
+      <TD><P>The duration of the effect in milliseconds. The default value is 1000.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>scaleContent</P></TD>
+      <TD><P>The content of the element is scaled proportionally with the dimensions animation. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>toggle</P></TD>
+      <TD><P>Produces a toggle effect. The default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>useCSSBox</P></TD>
+      <TD><P>The border, margin and padding should be modified proportionally with the element inner content box. Default value is false.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>transition</P></TD>
+      <TD><P>Determines the type of transition. The default is 
+          'Spry.linearTransition'.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>fps</P></TD>
+      <TD><P>Determines the number of frames per second of the animation. The default is 60.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>setup</P></TD>
+      <TD><P>Lets you define a function that is called before the effect begins, 
+          e.g., setup:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+    <TR>
+      <TD><P>finish</P></TD>
+      <TD><P>Lets you define a function that is called after the effect finishes, 
+          e.g., finish:function (element,effect){/* ... 
+          */}.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Sample code:</P>
+<PRE>var fromRect = new Spry.Effect.Utils.Rectangle;
+fromRect.width = 100;
+fromRect.height = 100;
+
+var toRect = new Spry.Effect.Utils.Rectangle;
+toRect.width = 300;
+toRect.height = 300;
+
+Spry.Effect.makeClipping(document.getElementById(&quot;targetID&quot;));
+var size_effect = new Spry.Effect.Size(&quot;targetID&quot;, fromRect, toRect, {duration: 1000, toggle: true, scaleContent: true, transition: Spry.fifthTransition});
+</PRE>
+<hr />
+<h3>Observers</h3>
+<H4>Observer notifications overview</H4>
+<p>The Effects supports an observer mechanism that allows an object or callback function to receive event notifications. Using this system you can implement your own custom functions or objects to register to any effect. Everytime the effect will pass through some predefined execution points the observers will executed.</p>
+<p>Using this mechanism you can synchronize other actions with the running effect.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th><p>Notification</p></th>
+      <th><p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>onPreEffect</p></td>
+      <td><p>The effect is about to start the element animation.</p></td>
+		</tr>
+    <tr>
+      <td><p>onStep</p></td>
+      <td><p>The animation executed a new animation step. The code you execute here should not be time consuming otherwise you'll affect the animation smoothness that wait at each step for your code to finish.</p></td>
+		</tr>
+		<tr>
+			<td><p>onPostEffect</p></td>
+      <td><p>The animation finished all the steps and will stop.</p></td>
+		</tr>
+		<tr>
+			<td><p>onCancel</p></td>
+      <td><p>The effect was canceled and the animation will stop.</p></td>
+    </tr>
+		<tr>
+			<td><p>onToggle</p></td>
+      <td><p>The animation is about to start in the backward direction. This notification will be fired only if the toggle option is on.</p></td>
+    </tr>
+</table>
+<p><strong>Note:</strong>The onPostEffect and onCancel observers will be notified just before effect to end execution. If in these functions you'll like to restart the effect, for example, to run in the backward direction, or you need to change some of the options in the effect, you should use the setTimeout() JS function to postpone your action just after the effect finish. Not using this system is possible the effect to stop your effect run command or to restore the old properties.</p>
+<h4>Objects as observers</h4>
+<p>To receive notifications, an object must define a method for each notification it is interested in receiving, and then register itself as an observer on the Effect. The registration to the effect should be done after the effect is instantiated but before the effect to be started. For example, an object interested in onPostEffect notifications must define an onPostEffect() method. Calling the addObserver() method of the instantiated effect you register then the new created observer to the effect.</p>
+<p>A single observer object can contain multiple methods for each action to be notified. However, if the observer don't need to be notified on certain events than it can ignore them by not implementing their corresponding functions.</p>
+<pre>
+var effect = new Spry.Effect.Blind("myElement", {from: '100%', to: '0%', toggle: true});
+
+var myObserver = new Object();
+myObserver.onPreEffect = function(eff)
+{
+	alert('onPreEffect called! The effect is running in '+(eff.direction == Spry.forwards?'forward':'backward')+' direction');
+};
+myObserver.onStep = function(eff)
+{
+	alert('onStep called!');
+};
+effect.addObserver(myObserver);
+
+effect.start();
+</pre>
+<p>The first argument for each notification method is the object that is sending the notification. For the effects observers, this is always the effect object.</p>
+<p>To stop an object from receiving notifications, the object must be removed from the list of observers with a call to removeObserver().</p>
+<pre>
+var effect = new Spry.Effect.Blind("myElement", {from: '100%', to: '0%', toggle: true});
+...
+effect.removeObserver(myObserver);
+</pre>
+<p>More <a href="../../samples/effects/observers_sample.html" target="_blank">samples of the Observers</a> can be found in the effects samples folder from the Spry package.</p>
+<h4>Functions as observers</h4>
+<p>Functions can also be registered as observers. The main difference between object and function observers is that an object is only notified for the notification methods it defines, whereas a function observer is called for every type of event notification.</p>
+<pre>
+var effect = new Spry.Effect.Blind("myElement", {from: '100%', to: '0%', toggle: true});
+
+function myObserverFunc(notificationType, eff)
+{
+	if (notificationType == 'onPreEffect'){
+		alert('onPreEffect called !');
+	}else if (notificationType == 'onStep'){
+		alert('onStep called !');
+	}
+};
+</pre>
+<p>A function observer is registered with the same call to addObserver.</p>
+<p>When the function is called, the first argument to be passed into it is the notification type. This is a string that is the name of the notification. The second argument is the notifier, which in this case is the effect.</p>
+<p>To stop a function from receiving notifications, the function must be removed from the list of observers with a call to removeObserver().</p>
+<pre>
+var effect = new Spry.Effect.Blind("myElement", {from: '100%', to: '0%', toggle: true});
+...
+effect.removeObserver(myObserverFunc);
+</pre>
+<p>More <a href="../../samples/effects/observers_sample.html" target="_blank">samples of the Observers</a> can be found in the effects samples folder from the Spry package.</p>
+<p>Copyright &copy; 2006. Adobe Systems Incorporated. <br />
+  All rights reserved.
+</BODY>
+</HTML>

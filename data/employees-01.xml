@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<employees xmlns="http://www.foo.com/employees">
+	<employee id="123456">
+		<lastname>Smith</lastname>
+		<firstname>Edward</firstname>
+		<phone>(415) 333-0235 </phone>
+		<username>esmith</username>
+	</employee>
+	<employee id="127937">
+		<lastname>Johnson</lastname>
+		<firstname>Neil</firstname>
+		<phone>(415) 333-9475 </phone>
+		<username>njohnson</username>
+	</employee>
+	<employee id="126474">
+		<lastname>Williams</lastname>
+		<firstname>Steve</firstname>
+		<phone>(415) 333-4573 </phone>
+		<username>swilliams</username>
+	</employee>
+	<employee id="120585">
+		<lastname>Jones</lastname>
+		<firstname>John</firstname>
+		<phone>(415) 333-9345 </phone>
+		<username>jjones</username>
+	</employee>
+	<employee id="127493">
+		<lastname>Brown</lastname>
+		<firstname>Joe</firstname>
+		<phone>(415) 333-5938 </phone>
+		<username>jbrown</username>
+	</employee>
+</employees>

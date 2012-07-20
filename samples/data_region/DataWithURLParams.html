@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Using Spry Data with URL params</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryURLUtils.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+//Define the Data Set
+var ds1 = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "products/product");
+//Get the URL parameter for the row number
+var params = Spry.Utils.getLocationParamsAsObject();
+//Set an observer so that when the data is loaded, we update the current row to the url param value
+ds1.addObserver({ onPostLoad: function(ds, type) { 
+	ds1.setCurrentRow(params.row); } 
+});
+
+//Data set for the second example.
+var ds2 = new Spry.Data.XMLDataSet("../../demos/products/products.xml", "products/product");
+//If the URL parameter 'product' has a value, set the XPath that includes a filter and then load the data.
+if (params.product){
+ds2.setXPath("products/product[name = '"+params.product+"']");
+ds2.loadData();
+
+}
+//-->
+</script>
+</head>
+<body>
+<h3>Using URL Parameters to Control Data Regions</h3>
+<p>This sample shows how to use the SpryURLUtils.js functions with Spry Data to control the data from external URLs. In the scenario when you want to link to a Spry Data page and have particular data showing in Detail Regions, you can pass a URL parameter to set the Current Row of the data set. This will let allow the page to load in the wanted state. </p>
+<p><strong>Set by RowID</strong>- In this example, we set the detail region by sending the row ID of the product we want.</p>
+<p spry:region="ds1" spry:repeat="ds1"><a href="DataWithURLParams.html?row={ds_RowID}">{name}</a> | </p>
+<table width="761" class="liveSample">
+  <tr>
+    <td width="433"><div spry:region="ds1">
+        <table width="418">
+          <tr>
+            <th spry:sort="name">Name</th>
+            <th spry:sort="category">Category</th>
+          </tr>
+          <tr spry:repeat="ds1" spry:setrow="ds1">
+            <td>{name}</td>
+            <td>{category}</td>
+          </tr>
+        </table>
+      </div></td>
+    <td width="316"><div spry:detailregion="ds1">{desc}</div></td>
+  </tr>
+</table>
+<p>The idea here is that the URL contains parameters that Spry can read and use on the page. In this example, the URL can contain a 'row' parameter that we can use to set the currentRow.</p>
+<pre>http://labs.adobe.com/technologies/spry/samples/data_region/DataWithURLParams.html?<span class="highlited">row=17</span></pre>
+<p>In this example, the URLs are generated dynamically by writing the file name (this page) and adding a URL parameter 'row' that has a value of {ds_RowID}. When run in the browser, this creates a real URL with a incrementing row value.</p>
+<pre>&lt;p spry:region=&quot;ds1&quot; spry:repeat=&quot;ds1&quot;&gt;
+&lt;a href=&quot;<span class="highlited">DataWithURLParams.html?row={ds_RowID}&quot;</span>&gt;{name}&lt;/a&gt; | 
+&lt;/p&gt;</pre>
+<p>In order to keep this sample to one page, these links refer to this same page. The real usefulness of this is that these links can be on other pages and it will set the currentRow when the page is loaded.</p>
+<p>To extract this info, we use the SpryURLUtils.js file, linked in the head. Then, we declare a variable and add the Spry function that gets the values from URL.</p>
+<pre>&lt;script src=&quot;../../includes/SpryURLUtils.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+<span class="highlited">var params = Spry.Utils.getLocationParamsAsObject();</span>
+&lt;/script&gt;</pre> 
+<p>This creates an object called 'params'. We use this name to get to the name of the parameters in the format of 'varName.parameterName'. In this example, we would use 'params.row' to get the value.</p>
+<p>We now update the currentRow of the data set. Because of the asynchronous nature of Ajax, we have to wait until the data is loaded before we can set the currentRow. We register an observer and once the data is updated (onPostLoad), we set the currentRow with the value of 'params.row'.</p>
+<pre>ds1.addObserver({ onPostLoad: function(ds, type) { 
+ ds1.setCurrentRow(<span class="highlited">params.row</span>); } 
+ });</pre>
+<p>So the whole thing looks like:</p>
+<pre>   //Define the Data Set
+<span class="highlited">var ds1 = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;products/product&quot;);</span>
+   //Get the URL parameter for the row number
+<span class="highlited">var params = Spry.Utils.getLocationParamsAsObject();</span>
+   //Set an observer so that when the data is loaded, we update the current row to the url param value
+<span class="highlited">ds1.addObserver({ onPostLoad: function(ds, type) { 
+ ds1.setCurrentRow(params.row); } 
+ });</span></pre><br />
+<hr />
+<p><strong>Set by Product Name - </strong>This sample uses XPath filtering to show one row of data. The filter value is the value of the url param, in this case, the product name. </p>
+<pre>&lt;a href=&quot;DataWithURLParams.html?product=Adobe Photoshop CS2&quot;&gt;</pre>
+<p>Click the links to have the page load with that product's details. These links are on this page for demonstration purposed. This example is to show how external links and URL params can control the Spry page.</p>
+<p><a href="DataWithURLParams.html?product=Adobe Photoshop CS2">Adobe Photoshop CS2 </a> | <a href="DataWithURLParams.html?product=Adobe%20Illustrator%20CS2">Adobe Illustrator CS2 </a> | <a href="DataWithURLParams.html?product=Adobe%20InDesign%20CS2">Adobe InDesign CS2 </a> | <a href="DataWithURLParams.html?product=Adobe%20GoLive%20CS2">Adobe GoLive CS2 </a> | <a href="DataWithURLParams.html?product=Adobe%20Dreamweaver%208">Adobe Dreamweaver 8 </a> | <a href="DataWithURLParams.html?product=Adobe%20Flash%208%20Professional">Adobe Flash 8 Professional</a><br />
+</p>
+<div class="liveSample" spry:region="ds2"><strong>{name}</strong><br />
+  {desc}</div>
+<p>This sample works similarly to the one above, except that the links are hard coded (they don't use Spry data). Instead of setting the currentRow, the product name is sent as a URL parameter called 'product' and we use that value to do an XPath filter.</p>
+<pre>    //Data set for the second example.
+<span class="highlited">var ds2 = new Spry.Data.XMLDataSet(&quot;../../demos/products/products.xml&quot;, &quot;products/product&quot;);</span>
+   //If the URL parameter 'product' has a value, set the XPath that includes a filter and then load the data.
+<span class="highlited">if (params.product){
+   ds2.setXPath(&quot;products/product[name = '&quot;+params.product+&quot;']&quot;);
+   ds2.loadData();
+}</span></pre> 
+<p>Since we called the URL utility above, we don't need to do it again for the second example. For the second example, we want 'params.product'.<br />
+</p>
+<hr />
+<p><strong>Using Multiple Parameters</strong></p>
+<p>Nothing says we can only use one parameter at a time. We can set multiple parameters in one URL and use them as we need. For instance, this URL will set the rowID for the first example and the Product for the second example. URL parameters are separated by an ampersand (&amp;).</p>
+<p><a href="DataWithURLParams.html?row=4&amp;product=Adobe Dreamweaver 8">DataWithURLParams.html?row=4&amp;product=Adobe Dreamweaver 8</a></p>
+<p>This should set both yellow areas to Dreamweaver. </p>
+</body>
+</html>

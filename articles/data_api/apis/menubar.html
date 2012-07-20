@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Menu Bar API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="accordion">
+  <h3>Menu Bar</h3>
+  <h4>Description</h4>
+  <p>The Spry Menu Bar is a widget that creates a navigation menu using nested lists.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/menubar/SpryMenuBar.js">SpryMenubar.js</a></p>
+    <p><a href="../../../widgets/menubar/SpryMenuBarHorizontal.css">SpryMenubarHorizontal.css</a></p>
+    <p><a href="../../../widgets/menubar/SpryMenuBarVertical.css">SpryMenuBarVertical.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/menubar/SpryMenuBar.html">SpryMenubar.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/menubar/">Menubar Samples</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+<div id="structure">
+  <h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container UL&gt;
+      &lt;li menu branch&gt;&lt;a menu item&gt;
+      &lt;li menu branch&gt;&lt;a menu item&gt;<br />         &lt;ul sub-branch&gt;
+            &lt;li submenu branch&gt;&lt;a menu item&gt;<br />   &lt;/widget container UL&gt;<br />
+</pre>
+  <p>The Menu Bar can have any level of menus and sub menus.</p>
+  <p>The markup and the CSS looks for ULs and LIs specifically. The actual menu items are the &lt;a&gt; elements on the &lt;li&gt;s. Any content or styling should happen to or within the &lt;a&gt;.</p>
+  <p>Using the provided files, the default mark up is:</p>
+  <pre>&lt;ul id=&quot;MenuBar1&quot; class=&quot;MenuBarHorizontal&quot;&gt;<br />  &lt;li&gt;&lt;a class=&quot;MenuBarItemSubmenu&quot; href=&quot;#&quot;&gt;Item 1&lt;/a&gt;<br />      &lt;ul&gt;<br />        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 1.1&lt;/a&gt;&lt;/li&gt;<br />        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 1.2&lt;/a&gt;&lt;/li&gt;<br />        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 1.3&lt;/a&gt;&lt;/li&gt;<br />      &lt;/ul&gt;<br />  &lt;/li&gt;<br />  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 2&lt;/a&gt;&lt;/li&gt;<br />&lt;li&gt;&lt;a class=&quot;MenuBarItemSubmenu&quot; href=&quot;#&quot;&gt;Item 3&lt;/a&gt;<br />      &lt;ul&gt;<br />        &lt;li&gt;&lt;a class=&quot;MenuBarItemSubmenu&quot; href=&quot;#&quot;&gt;Item 3.1&lt;/a&gt;<br />            &lt;ul&gt;<br />              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;<br />              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 3.1.2&lt;/a&gt;&lt;/li&gt;<br />            &lt;/ul&gt;<br />        &lt;/li&gt;<br />        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 3.2&lt;/a&gt;&lt;/li&gt;<br />        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 3.3&lt;/a&gt;&lt;/li&gt;<br />      &lt;/ul&gt;<br />  &lt;/li&gt;<br />  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 4&lt;/a&gt;&lt;/li&gt;<br />&lt;/ul&gt;</pre>
+</div>
+<div id="constructor">
+  <h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt;    
+var Menubar1 = new Spry.Widget.MenuBar(&quot;MenuBar1&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.MenuBar(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.MenuBar(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>imgDown</td>
+      <td>path to image</td>
+      <td>null</td>
+      <td>Preloads an image used to denote a submenu, down arrrows for instance.</td>
+    </tr>
+    <tr>
+      <td>imgRight</td>
+      <td>path to image</td>
+      <td>&nbsp;</td>
+      <td>Preloads an image used to denote a vertical submenu, right arrrows for instance.</td>
+    </tr>
+    <tr>
+      <td>enableKeyboardNavigation</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>By default, the arrow keys will allow you to navigate through the elements in the . Setting this option to false will disable that ability.</td>
+		</tr>
+    <tr>
+      <td>upKeyCode</td>
+      <td>numeric - key code</td>
+      <td>38 (Up arrow)</td>
+      <td>This option allows the user to assign a specific key to move the focus on the upper element then the current selected entry in the menu. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+    <tr>
+      <td>downKeyCode</td>
+      <td>numeric - key code</td>
+      <td>40 (Down Arrow)</td>
+      <td>This option allows the user to assign a specific key to move the focus on the lower element then the current selected entry in the menu. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+    <tr>
+      <td>leftKeyCode</td>
+      <td>numeric - key code</td>
+      <td>37 (Left Arrow)</td>
+      <td>This option allows the user to assign a specific key to move the focus on the left element then the current selected entry in the menu. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+    <tr>
+      <td>rightKeyCode</td>
+      <td>numeric - key code</td>
+      <td>39 (Right Arrow)</td>
+      <td>This option allows the user to assign a specific key to move the focus on the right element then the current selected entry in the menu. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+    </tr>
+
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.Menubar(&quot;MenuBar1&quot;,{imgDown:&quot;../downArrow.gif&quot;});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Menu Bar Methods</h2>
+  <div id="hidesubmenu">
+    <h3><strong>hideSubmenu</strong></h3>
+    <p>Hides the specified submenu..</p>
+    <h4>Format</h4>
+    <p>widgetName.hideSubmenu(submenu ID);</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;menu1.hideSubmenu('sub1'); return false;&quot;&gt;Hide Products&lt;/a&gt;</pre>
+  </div>
+  <div id="showsubmenu">
+    <h3><strong>showSubmenu</strong></h3>
+    <p>Shows a specified submenu, and all menus needed to get to it.</p>
+    <h4>Format</h4>
+    <p>widgetName.showSubmenu(submenu ID);</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;menu1.showSubmenu(); return false;&quot;&gt;Show Products&lt;/a&gt; </pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

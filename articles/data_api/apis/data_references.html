@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Data References</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3 id="SpryDataReferences">Spry Data References</h3>
+<p>Spry Data References are pieces of text that represent a column in the data set. They are used within spry:regions and spry:detailregions to present data from the data set in the body of the page.</p>
+<p>There are data references from the uses data set and there are built-in data references that are always availalble to the regions. This document will describe these built-in data references.</p>
+<p>All data references are denoted by curly braces: {data_reference}. All built-in data references begin with 'ds_', such as {ds_RowID}.</p>
+<p>Data References can only be used in the &lt;body&gt; or in data set constructor scripts. They cannot be used in other functions in the head. However, most built-in data references have equivalent functions in the API.</p>
+<p>Spry data references are used in a couple ways. First, they are used to provide basic information about the data set, like the total number of records: {ds_RowCount}. It also provides ways for users to specify specific rows in a variety of context. For instance, each row in the data set has a unique number, like the primary key in a data base. This number can always be used to identify that row. There are also references that keep track of row while doing things like looping. For instance, of you sort the data set, there is always a 'first row' of the data set {ds_rowNumber}, but depending on the sort order, the unique information in the first row might change. That data in the first row can have a different {ds_RowID}, depending on the sort.</p>
+<p>Spry uses a 0 based counting system.</p>
+<table >
+  <thead align="left">
+    <tr>
+      <th > <p>Data reference</p></th>
+      <th > <p>Description</p></th>
+    </tr>
+    <tr>
+      <td ><p>ds_CurrentRowID</p></td>
+      <td ><p>The ID of the current row of the data set.</p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_CurrentRowNumber</p></td>
+      <td ><p>The row number of the current row of the data set. </p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_EvenOddRow</p></td>
+      <td ><p>Looks at the current value of ds_RowNumber and returns the string &quot;even&quot; or &quot;odd&quot;.</p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_RowCount</p></td>
+      <td ><p>The number of rows in the data set.</p></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td ><p>ds_RowID</p></td>
+      <td ><p>The ID of a row in the data set. </p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_RowNumber</p></td>
+      <td ><p>The row number of the current row of the data set. </p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_RowNumberPlus1</p></td>
+      <td ><p>The same as ds_RowNumber, except that the 
+        first row starts at index 1 instead of index 0.</p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_SortColumn</p></td>
+      <td ><p>The name of the column last used for sorting.</p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_SortOrder</p></td>
+      <td ><p>The current sort order of the data in the data set. </p></td>
+    </tr>
+    <tr>
+      <td ><p>ds_UnfilteredRowCount</p></td>
+      <td ><p>The number of rows in the data set before any nondestructive filter is 
+        applied. </p></td>
+    </tr>
+  </tbody>
+</table>
+<div id="ds_CurrentRowID">
+  <h3><a name="ds_CurrentRowID"></a>ds_CurrentRowID</h3>
+  <p>{ds_CurrentRowID}</p>
+  <h4>Description</h4>
+  <p>The ID of the current row of the data set. </p>
+  <p>Each row as an unique RowID. The data set also has a concept of a 'currentRow': The active or selected row in the data set. </p>
+  <p>The {ds_CurrentRowID} is the RowID for current row of the data set.</p>
+  <p>This value does not change, 
+    even when used within a looping construct.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">{ds_CurrentRowID}</pre>
+</div>
+
+<div id="ds_CurrentRowNumber">
+  <h3><a name="ds_CurrentRowNumber"></a>ds_CurrentRowNumber</h3>
+  <p>{ds_CurrentRowNumber}</p>
+  <h4>Description</h4>
+  <p>The row number of the current row of the data set. </p>
+  <p>If there is a data set with 10 rows, there is always a first row, or fifth row, no matter what the data of that row is. This data reference returns the row number of the current row.</p>
+  <p>This value does not 
+    change, even when used within a looping, sorting or filtering construct.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">{ds_CurrentRowID}</pre>
+</div>
+
+<div id="ds_EvenOddRow">
+  <h3><a name="ds_EvenOddRow"></a>ds_EvenOddRow</h3>
+  <p>{ds_EvenOddRow}</p>
+  <h4>Description</h4>
+  <p>This data reference returns the word 'even' or 'odd', depending on the current value of the {ds_RowNumber}. </p>
+  <p>When used in the class attribute, this is useful in creating alternate row styles.</p>
+  <p>Create CSS classes called '.even' and '.odd' and style as needed.</p>
+  <p>As this data reference loops through the data set, it will write out 'even' or 'odd'.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style&gt;
+.even
+{
+background-color: yellow;
+}
+.odd
+{
+background-color: blue;
+}
+
+&lt;/style&gt;
+
+...
+&lt;tr spry:repeat=&quot;ds1&quot; class={ds_EvenOddRow}&quot;&gt;
+...</pre>
+</div>
+
+<div id="ds_RowCount">
+  <h3><a name="ds_RowCount"></a>ds_RowCount</h3>
+  <p>{ds_RowCount}</p>
+  <h4>Description</h4>
+  <p>The number of rows in the data set. </p>
+  <p>If a nondestructive filter is set 
+    on the data set, this is the total number of rows after the filter is 
+    applied. Use {ds_UnfilteredRowCount} to display the total number of rows in the unfiltered data.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+&lt;div spry:region=&quot;ds1&quot;&gt;<br />Total Number of Records: {ds_RowCount}<br />&lt;/div&gt;</pre>
+</div>
+
+<div id="ds_RowID">
+  <h3><a name="ds_RowID"></a>ds_RowID</h3>
+  <p>{ds_RowID}</p>
+  <h4>Description</h4>
+  <p>The ID of a row in the data set. This ID can be used to refer to a 
+        specific record in the data set. It does not change, even when the data is 
+  sorted. </p>
+  <p>This is often used when triggering detail regions with  ds.setCurrentRow. </p>
+  <p>The spry:setrow attribute uses this value behind the scenes to trigger detail regions.</p>
+  <p>This can be programatically assigned by the developer. </p>
+  <p>By default, it is a string.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;tr spry:repeat=&quot;ds1&quot; onclick=&quot;ds1.setCurrentRow('{ds_RowID}');&gt;
+</pre>
+<p>Note: We wrap the value in single quotes to deal with preparsing issues with Internet Explorer.</p>
+</div>
+
+<div id="ds_RowNumber">
+  <h3><a name="ds_RowNumber"></a>ds_RowNumber</h3>
+  <p>{ds_RowNumber}</p>
+  <h4>Description</h4>
+  <p>The row number of the current row of the data set. </p>
+  <p>Within a loop 
+    construct, this number reflects the position of the row currently being 
+    evaluated. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+{ds_RowNumber}<br /></pre>
+</div>
+
+<div id="ds_RowNumberPlus1">
+  <h3><a name="ds_RowNumberPlus1"></a>ds_RowNumberPlus1</h3>
+  <p>{ds_RowNumber}</p>
+  <h4>Description</h4>
+  <p>The same as ds_RowNumber, except that the 
+  first row starts at index 1 instead of index 0.</p>
+  <p>This is used for display purposes. Because Spry uses a zero based counting system, trying to use {ds_RowNumber} would start with 0. Using {ds_RowNumberPlus1} would start with 1, properly reflecting standard counting systems.</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+{ds_RowNumberPlus1}<br /></pre>
+</div>
+<div id="ds_SortColumn">
+  <h3><a name="ds_SortColumn"></a>ds_SortColumn</h3>
+  <p>{ds_RowNumber}</p>
+  <h4>Description</h4>
+  <p>The name of the column last used for sorting. If the data in the data 
+  set was never sorted, this outputs nothing (an empty string).</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+{ds_SortColumn}<br /></pre>
+</div>
+<div id="ds_SortOrder">
+  <h3><a name="ds_SortOrder"></a>ds_SortOrder</h3>
+  <p>{ds_RowNumber}</p>
+  <h4>Description</h4>
+  <p>The current sort order of the data in the data set. This data reference 
+  outputs the words ascending, descending, or nothing (an empty string).</p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+{ds_SortOrder}<br /></pre>
+</div>
+
+<div id="ds_UnfilteredRowCount">
+  <h3><a name="ds_UnfilteredRowCount"></a>ds_UnfilteredRowCount</h3>
+  <p>{ds_RowNumber}</p>
+  <h4>Description</h4>
+  <p>The number of rows in the data set before any nondestructive filter is 
+  applied. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">
+{ds_UnfilteredRowCount}<br /></pre>
+</div>
+
+<div id="functioncoloncolon">
+  <h3><a name="functioncoloncolon"></a>function::&lt;function name&gt;</h3>
+  <p>{function::&lt;function name&gt;}</p>
+  <h4>Description</h4>
+  <p>Invokes the JavaScript function with the specified name during region processing/markup re-generation, the function then has a chance to return a value that will be inserted directly into the markup in place of the data reference.</p>
+  <p>The signature of the function should be as follows:</p>
+  <pre>function myFunction(region, lookupFunction)
+{
+  // Code that returns a value.
+}</pre>
+  <p>When the function is invoked, it will be passed 2 arguments. The first argument is the name of the region that is currently being processed/re-generated. The second argument is a function that can be used to lookup the values of data references. The lookup function is very flexible in terms of the format of the data reference it is given. For example, given a region that is bound to a data set called &quot;ds1&quot;, the following calls to the lookup function are equivalent:</p>
+  <pre>var name = lookupFunction(&quot;@name&quot;);
+
+var name = lookupFunction(&quot;{@name}&quot;);
+
+var name = lookupFunction(&quot;ds1::@name&quot;);
+
+var name = lookupFunction(&quot;{ds1::@name}&quot;);
+
+var name = lookupFunction(&quot;ds1&quot;, &quot;@name&quot;);</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;script type=&quot;text/javascript&quot;&gt;
+
+function FormattedPrice(region, lookupFunc)
+{
+  // Format the number in the price column so that it
+  // becomes a string that starts with a dollar sign,
+  // and ends with a number that has 2 digits after
+  // the decimal point.
+
+  return &quot;$&quot; + parseInt(lookupFunc(&quot;{dsProducts::price}&quot;)).toFixed(2);
+}
+
+&lt;/script&gt;
+
+...
+
+&lt;div spry:region=&quot;dsProducts&quot;&gt;
+  &lt;ul spry:repeatchildren=&quot;dsProducts&quot;&gt;
+    &lt;li&gt;{name} - {function::FormattedPrice}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;<br /></pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

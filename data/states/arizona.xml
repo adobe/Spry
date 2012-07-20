@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Arizona</name>
+	<cities>
+		<city>
+			<name>Ajo</name>
+		</city>
+		<city>
+			<name>Ak-Chin Village</name>
+		</city>
+		<city>
+			<name>Apache Junction</name>
+		</city>
+		<city>
+			<name>Arizona City</name>
+		</city>
+		<city>
+			<name>Avondale</name>
+		</city>
+		<city>
+			<name>Avra Valley</name>
+		</city>
+		<city>
+			<name>Bagdad</name>
+		</city>
+		<city>
+			<name>Benson</name>
+		</city>
+		<city>
+			<name>Big Park</name>
+		</city>
+		<city>
+			<name>Bisbee</name>
+		</city>
+		<city>
+			<name>Black Canyon City</name>
+		</city>
+		<city>
+			<name>Blackwater</name>
+		</city>
+		<city>
+			<name>Bluewater</name>
+		</city>
+		<city>
+			<name>Buckeye</name>
+		</city>
+		<city>
+			<name>Bullhead City</name>
+		</city>
+		<city>
+			<name>Bylas</name>
+		</city>
+		<city>
+			<name>Cameron</name>
+		</city>
+		<city>
+			<name>Camp Verde</name>
+		</city>
+		<city>
+			<name>Canyon Day</name>
+		</city>
+		<city>
+			<name>Carefree</name>
+		</city>
+		<city>
+			<name>Casa Grande</name>
+		</city>
+		<city>
+			<name>Catalina</name>
+		</city>
+		<city>
+			<name>Cave Creek</name>
+		</city>
+		<city>
+			<name>Central Heights-Midland City</name>
+		</city>
+		<city>
+			<name>Chandler</name>
+		</city>
+		<city>
+			<name>Chinle</name>
+		</city>
+		<city>
+			<name>Chino Valley</name>
+		</city>
+		<city>
+			<name>Chuichu</name>
+		</city>
+		<city>
+			<name>Cibecue</name>
+		</city>
+		<city>
+			<name>Clarkdale</name>
+		</city>
+		<city>
+			<name>Claypool</name>
+		</city>
+		<city>
+			<name>Clifton</name>
+		</city>
+		<city>
+			<name>Colorado City</name>
+		</city>
+		<city>
+			<name>Coolidge</name>
+		</city>
+		<city>
+			<name>Cornville</name>
+		</city>
+		<city>
+			<name>Cottonwood</name>
+		</city>
+		<city>
+			<name>Cottonwood-Verde Village</name>
+		</city>
+		<city>
+			<name>Dennehotso</name>
+		</city>
+		<city>
+			<name>Desert Hills</name>
+		</city>
+		<city>
+			<name>Dewey-Humboldt</name>
+		</city>
+		<city>
+			<name>Dolan Springs</name>
+		</city>
+		<city>
+			<name>Douglas</name>
+		</city>
+		<city>
+			<name>Dudleyville</name>
+		</city>
+		<city>
+			<name>Duncan</name>
+		</city>
+		<city>
+			<name>Eagar</name>
+		</city>
+		<city>
+			<name>East Fork</name>
+		</city>
+		<city>
+			<name>Ehrenberg</name>
+		</city>
+		<city>
+			<name>El Mirage</name>
+		</city>
+		<city>
+			<name>Eloy</name>
+		</city>
+		<city>
+			<name>Flagstaff</name>
+		</city>
+		<city>
+			<name>Florence</name>
+		</city>
+		<city>
+			<name>Flowing Wells</name>
+		</city>
+		<city>
+			<name>Fort Defiance</name>
+		</city>
+		<city>
+			<name>Fortuna Foothills</name>
+		</city>
+		<city>
+			<name>Fountain Hills</name>
+		</city>
+		<city>
+			<name>Fredonia</name>
+		</city>
+		<city>
+			<name>Ganado</name>
+		</city>
+		<city>
+			<name>Gila Bend</name>
+		</city>
+		<city>
+			<name>Gilbert</name>
+		</city>
+		<city>
+			<name>Glendale</name>
+		</city>
+		<city>
+			<name>Globe</name>
+		</city>
+		<city>
+			<name>Golden Valley</name>
+		</city>
+		<city>
+			<name>Goodyear</name>
+		</city>
+		<city>
+			<name>Grand Canyon Village</name>
+		</city>
+		<city>
+			<name>Greasewood</name>
+		</city>
+		<city>
+			<name>Green Valley</name>
+		</city>
+		<city>
+			<name>Guadalupe</name>
+		</city>
+		<city>
+			<name>Hayden</name>
+		</city>
+		<city>
+			<name>Heber-Overgaard</name>
+		</city>
+		<city>
+			<name>Holbrook</name>
+		</city>
+		<city>
+			<name>Hotevilla</name>
+		</city>
+		<city>
+			<name>Huachuca City</name>
+		</city>
+		<city>
+			<name>Jerome</name>
+		</city>
+		<city>
+			<name>Kachina Village</name>
+		</city>
+		<city>
+			<name>Kaibito</name>
+		</city>
+		<city>
+			<name>Kayenta</name>
+		</city>
+		<city>
+			<name>Keams Canyon</name>
+		</city>
+		<city>
+			<name>Kearny</name>
+		</city>
+		<city>
+			<name>Kingman</name>
+		</city>
+		<city>
+			<name>Komatke</name>
+		</city>
+		<city>
+			<name>Kykotsmovi Village</name>
+		</city>
+		<city>
+			<name>Lake Havasu City</name>
+		</city>
+		<city>
+			<name>Lake Montezuma</name>
+		</city>
+		<city>
+			<name>Leupp</name>
+		</city>
+		<city>
+			<name>Litchfield Park</name>
+		</city>
+		<city>
+			<name>Lukachukai</name>
+		</city>
+		<city>
+			<name>Luke AFB</name>
+		</city>
+		<city>
+			<name>Mammoth</name>
+		</city>
+		<city>
+			<name>Many Farms</name>
+		</city>
+		<city>
+			<name>Marana</name>
+		</city>
+		<city>
+			<name>McNary</name>
+		</city>
+		<city>
+			<name>Mesa</name>
+		</city>
+		<city>
+			<name>Miami</name>
+		</city>
+		<city>
+			<name>Moenkopi</name>
+		</city>
+		<city>
+			<name>Mohave Valley</name>
+		</city>
+		<city>
+			<name>Morenci</name>
+		</city>
+		<city>
+			<name>New Kingman-Butler</name>
+		</city>
+		<city>
+			<name>Nogales</name>
+		</city>
+		<city>
+			<name>Oracle</name>
+		</city>
+		<city>
+			<name>Oro Valley</name>
+		</city>
+		<city>
+			<name>Page</name>
+		</city>
+		<city>
+			<name>Paradise Valley</name>
+		</city>
+		<city>
+			<name>Parker</name>
+		</city>
+		<city>
+			<name>Parker Strip</name>
+		</city>
+		<city>
+			<name>Patagonia</name>
+		</city>
+		<city>
+			<name>Payson</name>
+		</city>
+		<city>
+			<name>Peach Springs</name>
+		</city>
+		<city>
+			<name>Peoria</name>
+		</city>
+		<city>
+			<name>Peridot</name>
+		</city>
+		<city>
+			<name>Phoenix</name>
+		</city>
+		<city>
+			<name>Picture Rocks</name>
+		</city>
+		<city>
+			<name>Pima</name>
+		</city>
+		<city>
+			<name>Pinetop-Lakeside</name>
+		</city>
+		<city>
+			<name>Pinon</name>
+		</city>
+		<city>
+			<name>Pirtleville</name>
+		</city>
+		<city>
+			<name>Pisinemo</name>
+		</city>
+		<city>
+			<name>Polacca</name>
+		</city>
+		<city>
+			<name>Poston</name>
+		</city>
+		<city>
+			<name>Prescott</name>
+		</city>
+		<city>
+			<name>Prescott Valley</name>
+		</city>
+		<city>
+			<name>Quartzsite</name>
+		</city>
+		<city>
+			<name>Queen Creek</name>
+		</city>
+		<city>
+			<name>Rio Rico East</name>
+		</city>
+		<city>
+			<name>Rough Rock</name>
+		</city>
+		<city>
+			<name>Sacaton</name>
+		</city>
+		<city>
+			<name>Safford</name>
+		</city>
+		<city>
+			<name>San Carlos</name>
+		</city>
+		<city>
+			<name>San Luis</name>
+		</city>
+		<city>
+			<name>San Manuel</name>
+		</city>
+		<city>
+			<name>Santa Rosa</name>
+		</city>
+		<city>
+			<name>Santan</name>
+		</city>
+		<city>
+			<name>Sawmill</name>
+		</city>
+		<city>
+			<name>Scottsdale</name>
+		</city>
+		<city>
+			<name>Second Mesa</name>
+		</city>
+		<city>
+			<name>Sedona</name>
+		</city>
+		<city>
+			<name>Sells</name>
+		</city>
+		<city>
+			<name>Shongopovi</name>
+		</city>
+		<city>
+			<name>Shonto</name>
+		</city>
+		<city>
+			<name>Show Low</name>
+		</city>
+		<city>
+			<name>Sierra Vista</name>
+		</city>
+		<city>
+			<name>Sierra Vista Southeast</name>
+		</city>
+		<city>
+			<name>Snowflake</name>
+		</city>
+		<city>
+			<name>Somerton</name>
+		</city>
+		<city>
+			<name>South Tucson</name>
+		</city>
+		<city>
+			<name>Springerville</name>
+		</city>
+		<city>
+			<name>St. David</name>
+		</city>
+		<city>
+			<name>St. Johns</name>
+		</city>
+		<city>
+			<name>St. Michaels</name>
+		</city>
+		<city>
+			<name>Sun City</name>
+		</city>
+		<city>
+			<name>Sun City West</name>
+		</city>
+		<city>
+			<name>Sun Lakes</name>
+		</city>
+		<city>
+			<name>Supai</name>
+		</city>
+		<city>
+			<name>Superior</name>
+		</city>
+		<city>
+			<name>Surprise</name>
+		</city>
+		<city>
+			<name>Swift Trail Junction</name>
+		</city>
+		<city>
+			<name>Taylor</name>
+		</city>
+		<city>
+			<name>Teec Nos Pos</name>
+		</city>
+		<city>
+			<name>Tempe</name>
+		</city>
+		<city>
+			<name>Thatcher</name>
+		</city>
+		<city>
+			<name>Three Points</name>
+		</city>
+		<city>
+			<name>Tolleson</name>
+		</city>
+		<city>
+			<name>Tombstone</name>
+		</city>
+		<city>
+			<name>Tsaile</name>
+		</city>
+		<city>
+			<name>Tuba City</name>
+		</city>
+		<city>
+			<name>Tucson</name>
+		</city>
+		<city>
+			<name>Tucson Estates</name>
+		</city>
+		<city>
+			<name>Valencia West</name>
+		</city>
+		<city>
+			<name>Wellton</name>
+		</city>
+		<city>
+			<name>Whetstone</name>
+		</city>
+		<city>
+			<name>Whiteriver</name>
+		</city>
+		<city>
+			<name>Wickenburg</name>
+		</city>
+		<city>
+			<name>Willcox</name>
+		</city>
+		<city>
+			<name>Williams</name>
+		</city>
+		<city>
+			<name>Willow Valley</name>
+		</city>
+		<city>
+			<name>Window Rock</name>
+		</city>
+		<city>
+			<name>Winkelman</name>
+		</city>
+		<city>
+			<name>Winslow</name>
+		</city>
+		<city>
+			<name>Youngtown</name>
+		</city>
+		<city>
+			<name>Yuma</name>
+		</city>
+	</cities>
+</state>

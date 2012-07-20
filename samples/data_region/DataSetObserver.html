@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data Set Observer Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+
+function ToggleFilter()
+{
+	if (!ToggleFilter.filtered)
+		dsEmployees.filter(function(ds, row, rowNum) { if (rowNum % 2) return row; return null; });
+	else
+		dsEmployees.filter(null);
+	ToggleFilter.filtered = !ToggleFilter.filtered;
+}
+
+// Objects that wish to observe a data set must define a callback method
+// for each notification it wishes to receive. In this example, our object
+// will only be called for PostLoad and DataChanged notifications.
+
+var obs = new Object;
+obs.onPostLoad = function(notifier, data)
+{
+	Spry.Debug.trace("obs.onPostLoad called!");
+};
+
+obs.onDataChanged = function(notifier, data)
+{
+	Spry.Debug.trace("obs.onDataChanged called!");
+};
+
+dsEmployees.addObserver(obs);
+
+// If you want to catch all notifications, you can simply define a callback
+// function and register it as an observer. When called, the first arg passed
+// into your callback function will be the name of the notification method that
+// would have been invoked had your observer been an object, for example "onPreLoad",
+// "onPostLoad", "onDataChanged", etc.
+
+function MyObserverCallback(notificationType, notifier, data)
+{
+	Spry.Debug.trace("Observer Callback: " + notificationType);
+}
+
+dsEmployees.addObserver(MyObserverCallback);
+-->
+</script>
+</head>
+
+<body>
+<h3>Data Set Observer Sample</h3>
+<p>This page demonstrates the 2 different ways to register an observer on the data set. The first way involves creating an object that will receive notifications. Methods are added to this object for each notification it wishes to receive. The object is then added as an observer on the data set.</p>
+<p>The second way involves defining a callback function and registering it as an observer on the data set. The difference with using a callback function is that it will get called for *every* notification the data set dispatches. The function must check the notification type passed into it to see if it is a notification it is interested in handling. </p>
+<hr />
+<p>
+	<input type="button" value="Reload Data" onclick="dsEmployees.loadData();" />
+	<input type="button" value="Sort" onclick="dsEmployees.sort(['lastname', 'firstname'], 'toggle');" />
+	<input type="button" value="Filter" onclick="ToggleFilter();" />
+</p>
+<div spry:region="dsEmployees">
+<p spry:repeatchildren="dsEmployees"><span spry:if="{ds_RowNumber} == 0">{firstname} {lastname}</span><span spry:if="{ds_RowNumber} != 0">, {firstname} {lastname}</span></p>
+<table border="1">
+	<tr><th>ds_RowID</th><th>Last Name</th><th>First Name</th></tr>
+	<tr spry:repeat="dsEmployees"><td>{ds_RowID}</td><td>{lastname}</td><td>{firstname}</td></tr>
+</table>
+</div>
+</body>
+</html>

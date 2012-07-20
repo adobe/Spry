@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Element Selector Alt Row Colors</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="../../includes/SpryDOMUtils.js"></script>
+<style type="text/css">
+<!--
+.red {
+	background-color: #CC6699;
+}
+-->
+</style>
+</head>
+
+<body>
+<h3>Element Selector Alt Row Colors</h3>
+<p>This sample shows how to set up various row coloring schemes with the Element Selector. </p>
+<p>There is another  <a href="table_row_colors.html">sample</a> that shows how to set up row colors with Spry Data.</p>
+<h4>Even Rows No Header</h4>
+<p>Spry.$$(&quot;table#noheader tr:nth-child(even)&quot;).addClassName(&quot;grayBG&quot;);<br /> 
+  or<br />
+  Spry.$$(&quot;table#noheader tr:nth-child(2n)&quot;).addClassName(&quot;grayBG&quot;);<br />
+</p>
+<table width="200" id="noheader">
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+<h4>Even Rows With Header</h4>
+<p>Spry.$$(&quot;table#noheader tr:nth-child(2n+1)&quot;).addClassName(&quot;grayBG&quot;);</p>
+<table width="200" id="withheader">
+  <tr>
+    <th>Header</th>
+  </tr>
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+<h4>Odd  Rows No Header</h4>
+<p>Spry.$$(&quot;table#noheader tr:nth-child(odd)&quot;).addClassName(&quot;grayBG&quot;);<br />
+  or<br />
+  Spry.$$(&quot;table#noheader tr:nth-child(2n)&quot;).addClassName(&quot;grayBG&quot;);<br />
+</p>
+<table width="200" id="noheaderodd">
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+<h4>Odd Rows With Header</h4>
+<p>Spry.$$(&quot;table#withheaderodd tr:nth-child(2n)&quot;).addClassName(&quot;grayBG&quot;);</p>
+<table width="200" id="withheaderodd">
+  <tr>
+    <th>Header</th>
+  </tr>
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+<h4>Alternating Colors</h4>
+<p>Spry.$$(&quot;table#alternating tr:nth-child(2n)&quot;).addClassName(&quot;grayBG&quot;);<br />
+Spry.$$(&quot;table#alternating tr:nth-child(2n+1)&quot;).addClassName(&quot;highlited&quot;);</p>
+<table width="200" id="alternating">
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+
+<h4>3 Alternating Colors</h4>
+<p>Spry.$$(&quot;table#alternating tr:nth-child(2n)&quot;).addClassName(&quot;grayBG&quot;);<br />
+Spry.$$(&quot;table#alternating tr:nth-child(2n+1)&quot;).addClassName(&quot;highlited&quot;);<br />
+Spry.$$(&quot;table#alternating3 tr:nth-child(3n+3)&quot;).addClassName(&quot;red&quot;);</p>
+<table width="200" id="alternating3">
+  <tr>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>6</td>
+  </tr>
+</table>
+
+<script type="text/javascript" language="javascript">
+Spry.$$("table#noheader tr:nth-child(even)").addClassName("grayBG");
+
+Spry.$$("table#withheader tr:nth-child(2n+1)").addClassName("grayBG");
+
+Spry.$$("table#noheaderodd tr:nth-child(odd)").addClassName("grayBG");
+
+Spry.$$("table#withheaderodd tr:nth-child(2n)").addClassName("grayBG");
+
+Spry.$$("table#alternating tr:nth-child(2n)").addClassName("grayBG");
+Spry.$$("table#alternating tr:nth-child(2n+1)").addClassName("highlited");
+
+Spry.$$("table#alternating3 tr:nth-child(2n)").addClassName("grayBG");
+Spry.$$("table#alternating3 tr:nth-child(2n+1)").addClassName("highlited");
+Spry.$$("table#alternating3 tr:nth-child(3n+3)").addClassName("red");
+
+</script>
+
+
+</body>
+</html>

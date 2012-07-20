@@ -1,0 +1,58 @@
+<gallery>  
+  <photos>
+    <photo
+    path = "paris_01.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_01.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+    <photo
+    path = "paris_03.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_03.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+    <photo
+    path = "paris_06.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_06.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+    <photo
+    path = "paris_10.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_10.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+    <photo
+    path = "paris_11.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_11.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+    <photo
+    path = "paris_12.jpg"
+    width = "350"
+    height = "262"
+    thumbpath = "paris_12.jpg"
+    thumbwidth = "75"
+    thumbheight = "56">
+    </photo>
+
+  </photos>
+</gallery>

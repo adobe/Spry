@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data Set Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//
+// Step 1: Create an array of objects that contain your data. Each object in the
+//         array will serve as our rows in the data set. Each object should have
+//         the same set of properties on them.
+//
+
+var myArrayOfData = [
+	{ lastname: "Davis", firstname: "Kirk" },
+	{ lastname: "Miller", firstname: "James" },
+	{ lastname: "Wilson", firstname: "Alex" },
+	{ lastname: "Moore", firstname: "Albert" },
+	{ lastname: "Taylor", firstname: "Eric" },
+	{ lastname: "Anderson", firstname: "Vincent" },
+	{ lastname: "Thomas", firstname: "Anthony" },
+	{ lastname: "Lee", firstname: "John" },
+	{ lastname: "Smith", firstname: "Edward" },
+	{ lastname: "Johnson", firstname: "Neil" },
+	{ lastname: "Williams", firstname: "Steve" },
+	{ lastname: "Jones", firstname: "John" },
+	{ lastname: "Brown", firstname: "Joe" }
+];
+
+//
+// Step 2: Create a DataSet object.
+//
+
+var dsPeople = new Spry.Data.DataSet();
+
+//
+// Step 3: Call the data set's setDataFromArray() function and
+//         give it the data array.
+//
+
+dsPeople.setDataFromArray(myArrayOfData);
+-->
+</script>
+</head>
+
+<body>
+<h3>Data Set Sample</h3>
+<p>This page is an example of how to manually set up a non-XML data set that can be used with a spry:region or spry:detail region. </p>
+<hr />
+<p>&nbsp;</p>
+<div class="liveSample">
+<p>
+	<input type="button" value="Sort By Last Name" onclick="dsPeople.sort(['lastname', 'firstname'], 'toggle');" />
+	<input type="button" value="Sort By First Name" onclick="dsPeople.sort(['firstname', 'lastname'], 'toggle');" />
+</p>
+<div spry:region="dsPeople">
+<p spry:repeatchildren="dsPeople"><span spry:if="{ds_RowNumber} == 0">{firstname} {lastname}</span><span spry:if="{ds_RowNumber} != 0">, {firstname} {lastname}</span></p>
+<table>
+	<tr><th>ds_RowID</th><th>Last Name</th><th>First Name</th></tr>
+	<tr spry:repeat="dsPeople"><td>{ds_RowID}</td><td>{lastname}</td><td>{firstname}</td></tr>
+</table>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr />
+<p>The code used to set up the data set used in the live sample above looks like this:</p>
+<pre>
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+//
+// Step 1: Create an array of objects that contain your data. Each object in the
+//         array will serve as our rows in the data set. Each object should have
+//         the same set of properties on them.
+//
+
+var myArrayOfData = [
+	{ lastname: &quot;Davis&quot;, firstname: &quot;Kirk&quot; },
+	{ lastname: &quot;Miller&quot;, firstname: &quot;James&quot; },
+	{ lastname: &quot;Wilson&quot;, firstname: &quot;Alex&quot; },
+	{ lastname: &quot;Moore&quot;, firstname: &quot;Albert&quot; },
+	{ lastname: &quot;Taylor&quot;, firstname: &quot;Eric&quot; },
+	{ lastname: &quot;Anderson&quot;, firstname: &quot;Vincent&quot; },
+	{ lastname: &quot;Thomas&quot;, firstname: &quot;Anthony&quot; },
+	{ lastname: &quot;Lee&quot;, firstname: &quot;John&quot; },
+	{ lastname: &quot;Smith&quot;, firstname: &quot;Edward&quot; },
+	{ lastname: &quot;Johnson&quot;, firstname: &quot;Neil&quot; },
+	{ lastname: &quot;Williams&quot;, firstname: &quot;Steve&quot; },
+	{ lastname: &quot;Jones&quot;, firstname: &quot;John&quot; },
+	{ lastname: &quot;Brown&quot;, firstname: &quot;Joe&quot; }
+];
+
+//
+// Step 2: Create a DataSet object.
+//
+
+var dsPeople = new Spry.Data.DataSet();
+
+//
+// Step 3: Call the data set's setDataFromArray() function and
+//         give it the data array.
+//
+
+dsPeople.setDataFromArray(myArrayOfData);
+--&gt;
+&lt;/script&gt;
+</pre>
+</body>
+</html>

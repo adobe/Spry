@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* CSS Document */
+.SlidingPanels {
+	float: left;
+	position: relative;
+	width: 570px;
+	padding: 0px;
+	border: none;
+}
+#slidingPanel{
+
+	margin-left:30px;
+	border-left:1px solid #EEEEEE;
+}
+.SlidingPanelsContentGroup {
+	position: relative;
+	float: left;
+	width: 10000px;
+	margin: 0px;
+	padding: 0px;
+	sborder: none;
+}
+
+.SlidingPanelsContent {
+	float: left;
+	width: 570px;
+	overflow: hidden;
+	margin:0px;
+	padding-right:10px;
+	padding-left:10px;
+}
+
+
+.SlidingPanelsAnimating * {
+	overflow: hidden !important;
+}
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 10px; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	color: #000000;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+.slidingTabPanelWrapper {
+	
+	height:47px;
+	margin:20px 0 0px 30px;
+	display: none;
+	width:550px;
+	background:url(img/tab_shadow.png) bottom center no-repeat;
+}
+.slidingTabPanel {
+	list-style:none;
+	margin:0 auto;
+	padding:0;
+	width:220px;
+	height:46px;
+}
+.slidingTabPanel LI {
+	list-style:none;
+	float:left;
+	width:50px;
+	margin:0 2px;
+}
+.tabActive {
+	position:relative;
+	top:1px;
+	display:block;
+	width:50px;
+	height:46px;
+	cursor:default;
+	outline:none;
+	
+}
+.tab {
+	position:relative;
+	top:1px;
+	display:block;
+	width:50px;
+	height:46px;
+	background-position:-100px;
+	cursor:pointer;
+	outline:none;
+	
+}
+.tab:hover {
+	background-position:-50px;
+}
+#nutshell {
+	background-image:url(img/tab_nutshell_II.png);
+
+}
+#widgets {
+	background-image:url(img/tab_widgets_II.png);
+}
+#data {
+	background-image:url(img/tab_data_II.png);
+}
+#effects {
+	background-image:url(img/tab_effects_II.png);
+}
+
+ul{
+
+	padding-left:10px;
+	margin-left:0px;
+}
+
+ul li{
+
+	margin-left:10px;
+	font-size:12px;
+	color:#333;
+
+	
+}
+h2 {
+	font-size:12px;
+	color:#444;
+	color: #595959;
+	margin-top:5px;
+}
+h3 {
+	background-color: #F3F3F3;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	font-size: 100%;
+	line-height: 150%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+}

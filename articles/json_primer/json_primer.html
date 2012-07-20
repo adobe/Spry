@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Spry JSON Primer</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Spry JSON Primer</h1>
+<p>One of formats of data that Spry accepts is JSON.  This document will present an overview of setting up JSON for use with Spry. It will have tips and tricks for generating and using JSON for Spry.</p>
+<p><strong>What is JSON?</strong></p>
+<p>JSON stands for JavaScript Object Notation. This is a lightweight, flexible yet strict method of storing and transmitting data. Flexible in that the user can create the format and  names in any way they please; strict in the sense that JSON has a strict set of rules for structure.</p>
+<p>Basic JSON code looks like this:</p>
+<pre>{<br />    &quot;firstName&quot;: &quot;Jason&quot;,<br />    &quot;lastName&quot;: &quot;Jones&quot;,<br />    &quot;address&quot;: {<br />        &quot;city&quot;: &quot;San Francisco, CA&quot;,<br />        &quot;zip&quot;: 94121,<br />        &quot;address&quot;: &quot;444 Columbus Ave&quot;<br />    },<br />    &quot;email&quot;: [<br />        &quot;jason@sf.com&quot;,<br />        &quot;sjones@adobe.com&quot;<br />       ]<br />}
+</pre>
+<p>Let's break this down. A JavaScript object is a series of name/value pairs, written in a structured way. The basic structure is:</p>
+<p>{name:value,name:value,name:value}</p>
+<h3>Data Types</h3>
+<p>JSON supports the common data types listed below. Each has a set of rules for structure.</p>
+<strong>Boolean</strong>:<br />
+In JavaScript &quot;true&quot; and &quot;false&quot; are pre-defined keywords. To send a true simply send the word true:
+<pre>&quot;active&quot;:true</pre>
+<p>To send a false, send the word false: </p>
+<pre>&quot;active&quot;:false</pre>
+<strong>String</strong>:<br />
+In JSON, strings must be delimited by the double quote characters. For a list of what characters are allowed and what characters must be escaped, checkout the <a href="http://www.json.org/">JSON web site.</a>
+<pre>&quot;address&quot;: &quot;444 Columbus Ave&quot;</pre>
+<strong>Number</strong>:<br />
+JSON support for numbers includes positive integers:
+<pre>&quot;zip&quot;: 94121</pre>
+<p>Negative integers:</p>
+<pre>total points&quot;: -123</pre>
+<p>Floats:</p>
+<pre>&quot;length&quot;:122.2344</pre>
+<p>Scientific notation:</p>
+<pre>&quot;atoms per mole&quot;:-6.023e+23</pre>
+<strong>Array</strong>:<br />
+Arrays are delimited by square brackets. Each item within the array is separated by a comma. Arrays can contain *all* supported JSON constructs.
+<pre>&quot;values&quot;:[ 1, false, &quot;test&quot;, [ 2, 3 ], { &quot;test&quot;: 1 } ]</pre>
+<p>In the example above describes an array of 5 elements which include a number, boolean, string, array, and object. </p>
+<strong>Object</strong>:<br />
+Objects are delimited by braces. Objects contain zero or more property/value pairs separated by commas:
+<pre>{ &quot;count&quot;: 2, &quot;results&quot;: [ 2, 3 ] }</pre>
+The example above describes an object with two properties on it, the &quot;count&quot; and &quot;results&quot; property. The &quot;count&quot; property has an integer value of 2, and the &quot;results&quot; value is an array.
+<p><strong>Null:<br />
+  </strong>In JavaScript, null is a pre-defined object. To send a null in JSON notation, you simply send the word null: </p>
+<pre>&quot;email&quot;:null</pre>
+<h3>More Reading</h3>
+<p><a href="http://www.json.org/">http://www.json.org/</a></p>
+<p><a href="http://www.dustindiaz.com/json-for-the-masses/">http://www.dustindiaz.com/json-for-the-masses/</a></p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p>
+</body>
+</html>

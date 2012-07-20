@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<products>
+	
+	<product>
+		<name>Adobe Photoshop CS2</name>
+		<boxshot>&lt;img src=&quot;../../demos/products/images/photoshop.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;</boxshot>
+		<overview>
+					&lt;div&gt;
+						Adobe&#174; Photoshop&#174; CS2 software, the professional image-editing standard and
+						leader of the Photoshop digital imaging line, delivers more of what you
+						crave. Groundbreaking creative tools help you achieve extraordinary
+						results. Unprecedented adaptability lets you custom-fit Photoshop to
+						the way you work. And with more efficient editing, processing, and file
+						handling, there's no slowing you down.
+					&lt;/div&gt;
+		</overview>
+		<features>
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Revolutionary Vanishing Point&lt;/li&gt;
+							&lt;li&gt;Multiple layer control&lt;/li&gt;
+							&lt;li&gt;Smart Objects&lt;/li&gt;
+							&lt;li&gt;Multi-image digital camera raw file processing&lt;/li&gt;
+							&lt;li&gt;Image Warp&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+		</features>		
+	</product>
+	
+	<product>
+		<name>Adobe Illustrator CS2</name>
+		<boxshot>&lt;img src=&quot;../../demos/products/images/illustrator.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;</boxshot>
+		<overview>
+					&lt;div&gt;
+						Adobe&#174; Illustrator&#174; CS2 software gives you new creative freedom that lets you realize
+						your ideas quickly and powerfully. Instantly convert bitmaps to vector artwork and paint more
+						intuitively. Save time with intelligent palettes and optimized workspaces. Plus, tight integration
+						with other software allows you to produce extraordinary graphics for print, video, the web, and mobile devices.
+					&lt;/div&gt;
+		</overview>
+		<features>
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Live Trace&lt;/li&gt;
+							&lt;li&gt;Live Paint&lt;/li&gt;
+							&lt;li&gt;Control palette&lt;/li&gt;
+							&lt;li&gt;Custom workspaces&lt;/li&gt;
+							&lt;li&gt;Photoshop layer comp support&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+		</features>		
+	</product>
+	
+	<product>
+		<name>Adobe InDesign CS2</name>
+		<boxshot>&lt;img src=&quot;../../demos/products/images/indesign.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;</boxshot>
+		<overview>
+					&lt;div&gt;
+						Join the growing ranks of creative professionals discovering new levels of creative freedom and
+						productivity using Adobe&#174; InDesign&#174; CS2 software. Tightly integrated with the Adobe
+						applications you use most, InDesign CS2 delivers faster production workflows and a more fluid
+						creative environment for designing professional layouts with sophisticated graphics and typography.
+					&lt;/div&gt;
+		</overview>
+		<features>
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Object styles&lt;/li&gt;
+							&lt;li&gt;Adobe Photoshop and Adobe PDF layer support&lt;/li&gt;
+							&lt;li&gt;InDesign snippets&lt;/li&gt;
+							&lt;li&gt;Adobe InCopy CS2 assignments&lt;/li&gt;
+							&lt;li&gt;Save backwards to InDesign CS&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+		</features>		
+	</product>
+	
+	<product>
+		<name>Adobe GoLive CS2</name>
+		<boxshot>&lt;img src=&quot;../../demos/products/images/golive.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;</boxshot>
+		<overview>
+					&lt;div&gt;
+						Adobe&#174; GoLive&#174; CS2 software lets you unlock the power of CSS with intuitive visual
+						tools such as prebuilt CSS objects that you can drag and drop to build sophisticated sites.
+						Jump-start your designs by easily converting Adobe InDesign&#174; layouts into Web pages. Or,
+						design Web and mobile content in an advanced, standards-based coding environment.
+					&lt;/div&gt;
+		</overview>
+		<features>
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Enhanced live rendering&lt;/li&gt;
+							&lt;li&gt;Simple visual tools to build and edit CSS-based pages&lt;/li&gt;
+							&lt;li&gt;Visual CSS authoring for mobile devices&lt;/li&gt;
+							&lt;li&gt;Visual SVG-t inspection and authoring for mobile&lt;/li&gt;
+							&lt;li&gt;Total site management&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+		</features>		
+	</product>
+	
+	<product>
+		<name>Adobe Dreamweaver 8</name>
+		<boxshot>&lt;img src=&quot;../../demos/products/images/dreamweaver.gif&quot; alt=&quot;product box shot&quot; height=&quot;130&quot; width=&quot;238&quot;&gt;</boxshot>
+		<overview>
+					&lt;div&gt;
+						With Dreamweaver 8, web developers go from start to finish, creating and maintaining basic
+						websites to advanced applications that support best practices and the latest technologies.
+					&lt;/div&gt;
+		</overview>
+		<features>
+					&lt;div&gt;
+						&lt;ul&gt;
+							&lt;li&gt;Visual authoring with XML data&lt;/li&gt;
+							&lt;li&gt;New, unified CSS panel&lt;/li&gt;
+							&lt;li&gt;CSS layout visualization&lt;/li&gt;
+							&lt;li&gt;Style rendering toolbar&lt;/li&gt;
+							&lt;li&gt;CSS rendering improvements&lt;/li&gt;
+							&lt;li&gt;Support for WCAG/W3C priority 2 checkpoints&lt;/li&gt;
+							&lt;li&gt;Improved WebDAV&lt;/li&gt;
+							&lt;li&gt;Background file transfer&lt;/li&gt;
+							&lt;li&gt;Zoom&lt;/li&gt;
+							&lt;li&gt;Guides&lt;/li&gt;
+							&lt;li&gt;Coding toolbar&lt;/li&gt;
+							&lt;li&gt;Code collapse&lt;/li&gt;
+							&lt;li&gt;Workspace layouts&lt;/li&gt;
+							&lt;li&gt;Tabbed documents for the Mac&lt;/li&gt;
+							&lt;li&gt;New starter pages&lt;/li&gt;
+							&lt;li&gt; Improved site synchronize and check in and check out&lt;/li&gt;
+							&lt;li&gt;Compare files&lt;/li&gt;
+							&lt;li&gt;Paste special&lt;/li&gt;
+							&lt;li&gt; Site relative references&lt;/li&gt;
+							&lt;li&gt; Code editing improvements&lt;/li&gt;
+							&lt;li&gt; Support for ColdFusion MX 7&lt;/li&gt;
+							&lt;li&gt; Support for PHP 5&lt;/li&gt;
+							&lt;li&gt; Flash Video&lt;/li&gt;
+							&lt;li&gt;Macromedia Web Publishing System notification and event logging&lt;/li&gt;
+							&lt;li&gt;Updated reference material from O'Reilly&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/div&gt;
+		</features>		
+	</product>
+	
+</products>
+

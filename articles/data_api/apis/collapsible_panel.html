@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Collapsible Panel API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="accordion">
+  <h3>Collapsible Panel</h3>
+  <h4>Description</h4>
+  <p>The Spry Collapsible Panel is a disclosure widget that consists of a  panel,  with a clickable tab and a content panel. Clicking on a tab will reveal the contents of that panel.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/collapsiblepanel/SpryCollapsiblePanel.js">SpryCollapsiblePanel.js</a></p>
+    <p><a href="../../../widgets/collapsiblepanel/SpryCollapsiblePanel.css">SpryCollapsiblePanel.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/collapsiblepanel/SpryCollapsiblePanel.html">SpryCollapsiblePanel.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/collapsiblepanel/collapsible_panel_sample.htm">CollapsiblePanelSample.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container&gt;
+      &lt;tab container&gt;<br />      &lt;content container&gt;<br />   &lt;/widget container&gt;<br /></pre>
+      <p>The Collapsible Panel has one panel only.</p>
+      <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;div class=&quot;CollapsiblePanel&quot; id=&quot;cp1&quot;&gt;<br />	&lt;div class=&quot;CollapsiblePanelTab&quot;&gt;Panel 1&lt;/div&gt;<br />	&lt;div class=&quot;CollapsiblePanelContent&quot;&gt;<br />		Content for Panel 1 goes here.&lt;/div&gt;<br />&lt;/div&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+   var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;cp1&quot;);
+
+ &lt;/script&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt;    
+var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel(&quot;cp1&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.CollapsiblePanel(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.CollapsiblePanel(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>closedClass</td>
+      <td>CSS class name</td>
+      <td>null</td>
+      <td>This class will be applied to the content panel as it is closing. </td>
+    </tr>
+    <tr>
+      <td>contentIsOpen</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>Determines whether the panel is open or closed when the page loads. Default is open.</td>
+    </tr>
+    <tr>
+      <td>duration</td>
+      <td>number of milliseconds</td>
+      <td>500 milliseconds</td>
+      <td>Defines how long it will take to open or close the panel.</td>
+    </tr>
+    <tr>
+      <td>enableAnimation</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>By default, the panel smoothly opens and closes. Setting enableAnimation:false will cause the panel to open and close instantly, with no animation.</td>
+    </tr>
+    <tr>
+      <td>focusedClass</td>
+      <td>CSS class name</td>
+      <td>null</td>
+      <td>This class will be applied to the accordion when it had focus in the browser. This will trump the .CollapsiblePanelFocused defined in 'SpryCollapsiblePanel.css'. The .CollapsiblePanelFocused class can also be edited directly if that is easier.</td>
+    </tr>
+    <tr>
+      <td>hoverClass</td>
+      <td>CSS class name</td>
+      <td>null</td>
+      <td>This class will be applied when hovering over the accordion tab. This will trump the .CollapsiblePanelTabHover defined in 'SpryCollapsiblePanel.css'. The .CollapsiblePanelTabHover class can also be edited directly if that is easier.</td>
+    </tr>
+    <tr>
+      <td>openClass</td>
+      <td>CSS class name</td>
+      <td>null</td>
+      <td>This class we will applied to the content panel when it is open. This will trump the .CollapsiblePanelOpen defined in 'SpryCollapsiblePanel.css'. The .CollapsiblePanelOpen class can also be edited directly if that is easier.</td>
+    </tr>
+    <tr>
+      <td>enableKeyboardNavigation</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>By default, the Open and Close arrow keys will show/hide the panel. Setting this option to false will disable that ability.</td>
+		</tr>
+		<tr>
+			<td>openPanelKeyCode</td>
+			<td>This option allows the user to assign a specific key to close the collapsible panel having focus. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+			<td>number</td>
+			<td>40 (Down Arrow key code)</td>
+		</tr>
+		<tr>
+			<td>closePanelKeyCode</td>
+			<td>This option allows the user to assign a specific key to open the collapsible panel having focus. Keyboard code numbers are described <a href="http://www.geekpedia.com/Question53_A-list-of-keys-and-the-JavaScript-char-codes-they-correspond-to.html">here</a>. The value of the option is the keyboard code number.</td>
+			<td>number</td>
+			<td>38 (Up Arrow key code)</td>
+		</tr>
+ 
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.CollapsiblePanel(&quot;myCollapsiblePanel&quot;,{contentIsOpen:false, duration:200});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Collapsible Panel Methods</h2>
+  <div id="open">
+    <h3><strong>open</strong></h3>
+    <p>Opens the panel.</p>
+    <h4>Format</h4>
+    <p>Collapsible PanelName.open();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;cp1.open(); return false;&quot;&gt;Open&lt;/a&gt; </pre>
+  </div>
+  <div id="close">
+    <h3><strong>close</strong></h3>
+    <p>Closes the open panel. </p>
+    <h4>Format</h4>
+    <p>Collapsible PanelName.close();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;cp1.close(); return false;&quot;&gt;Close&lt;/a&gt;</pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

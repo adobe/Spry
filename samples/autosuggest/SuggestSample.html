@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Auto Suggest Widget Sample</title>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryJSONDataSet.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryHTMLDataSet.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../widgets/autosuggest/SpryAutoSuggest.js"></script>
+
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/autosuggest/SpryAutoSuggest.css" rel="stylesheet" type="text/css" />
+
+<script language="JavaScript" type="text/javascript">
+var dsProducts1 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProductsJson = new Spry.Data.JSONDataSet("../../data/json/adobe_products.js");
+var dsProducts2 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProducts3 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProducts4 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProducts5 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProducts6 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProductsmultiple = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProductslist = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "/products/product", { sortOnLoad: "name" });
+var dsProducts7 = new Spry.Data.XMLDataSet("products.php", "/products/product", { sortOnLoad: "name" });
+var dsProducts8 = new Spry.Data.XMLDataSet("products.asp", "/products/product", { sortOnLoad: "name" });
+var dsProducts9 = new Spry.Data.XMLDataSet("products.cfm", "/products/product", { sortOnLoad: "name" });
+</script>
+<style type="text/css">
+.container{
+	width: 300px;
+	height: 150px;
+	border: 1px solid #DDDDDD;
+	padding-left: 5px;
+}
+</style>
+</head>
+
+<body>
+<h3>Spry Auto Suggest Widget Sample</h3>
+<p>
+	This page will highlights the capabilities of the Spry Auto Suggest Widget . All the samples 
+	below use a list of the Adobe products. If you start typing "Adobe", the list 
+	of suggestion will be displayed.</p>
+<hr />
+<!--
+	First Example - The Auto Suggest default behaviour
+-->
+<p>
+	<strong>Default</strong><br />
+	This is an example of the Spry Auto Suggest widget.
+</p>
+	<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as1 = new Spry.Widget.AutoSuggest('productSample', 'productMenu', 'dsProducts1', 'name');
+&lt;/script&gt;</pre>
+<div id="productSample" class="container" style="float: left;">
+	Product Name (XML):<br /> 
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="product" name="product"/>
+		<div id="productMenu" spry:region="dsProducts1">
+			<div spry:repeat="dsProducts1" spry:suggest="{name}">
+				<div class="list">{name}</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as1 = new Spry.Widget.AutoSuggest('productSample', 'productMenu', 'dsProducts1', 'name');
+</script>
+<div id="productSampleJson" class="container" style="float: left;">
+	Product Name (JSON):<br /> 
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="productJson" name="productJson"/>
+		<div id="productMenuJson" spry:region="dsProductsJson">
+			<div spry:repeat="dsProductsJson" spry:suggest="{name}">
+				<div class="list">{name}</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	var asj1 = new Spry.Widget.AutoSuggest('productSampleJson', 'productMenuJson', 'dsProductsJson', 'name');
+</script>
+
+<br style="clear:both;"/>
+<hr />
+<!--
+
+	Second Example - The Auto Suggest samples with different suggest HTML structures: table, div, ul
+
+-->
+<p>
+<strong>Suggest list HTML structure</strong><br />
+The suggestions can be displayed in any HTML structure.  Spry uses the the tag ID to 
+identify the suggest list container. In this example, there are three different HTML structures based on: 
+table, div-span, ul-li. Because of a Safari bug we do not advise the use of tables because 
+you cannot navigate using the keyboard arrows.</p>
+
+<div id="productSampleTable" class="container" style="float:left">
+	Product name suggest using a &lt;table&gt;: <br /> 
+	<form method="get" action="SuggestSample.html">
+	<input type="text" id="productFilter" /> 
+	<div id="productMenuTable" spry:region="dsProducts2">
+		<table>
+			<tr spry:repeat="dsProducts2" spry:suggest="{name}">
+				<td class="list"><div>{name}</div></td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as2 = new Spry.Widget.AutoSuggest("productSampleTable", "productMenuTable", "dsProducts2", 'name');
+</script>
+
+
+<div id="productSampleDiv" class="container" style="float:left">
+	Product name suggest using &lt;div&gt;:<br />
+	<form method="get" action="SuggestSample.html">
+	<input type="text" id="productFilterDiv" /> 
+	<div id="productMenuDiv" spry:region="dsProducts3">
+			<div spry:repeat="dsProducts3" spry:suggest="{name}">{name}</div>
+	</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as3 = new Spry.Widget.AutoSuggest("productSampleDiv", "productMenuDiv", "dsProducts3", 'name');
+</script>
+
+<div id="productSampleUl" class="container" style="float:left">
+	Product name suggest using &lt;ul&gt;:<br /> 
+	<form method="get" action="SuggestSample.html">
+	<input type="text" id="productFilterUl" /> 
+	<ul id="productMenuUl" spry:region="dsProducts4">
+			<li spry:repeat="dsProducts4" spry:suggest="{name}">{name}</li>
+	</ul>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as4 = new Spry.Widget.AutoSuggest("productSampleUl", "productMenuUl", "dsProducts4", 'name');
+</script>
+<br style="clear:both" />
+<hr />
+<!-- 
+
+	Example 3: Position of the string in the suggested items
+
+-->
+<p>
+	<strong>Search text position</strong><br />
+	By default, the Auto Suggest will search into the data set for records that start with the entered 
+	text. You can change this behavior by enabling the "containsString" option which will look for 
+	the typed text at any position. In this example you can type directly "Acrobat" to see the Adobe 
+	products that contains this word.
+</p>
+	<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as5 = new Spry.Widget.AutoSuggest(&quot;productSampleContains&quot;, &quot;productMenuContains&quot;, &quot;dsProducts5&quot;, &quot;name&quot;, {containsString: true});
+&lt;/script&gt;</pre>
+
+<div id="productSampleContains" class="container">
+	Product name suggest that contains the string:<br />
+	<form method="get" action="SuggestSample.html">
+	<input type="text" id="inputMenuContains" /> 
+	<div id="productMenuContains" spry:region="dsProducts5">
+			<div spry:repeat="dsProducts5" spry:suggest="{name}">{name}</div>
+	</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as5 = new Spry.Widget.AutoSuggest("productSampleContains", "productMenuContains", "dsProducts5", 'name', {containsString: true});
+</script>
+<hr />
+
+<!-- 
+
+	Example 4: Search a string in more than one field
+
+-->
+<p>
+	<strong>Multiple dataset fields lookup</strong><br />
+	The text can be searched into multiple fields in the dataset. In this situation an array of fields 
+	to be searched should be passed as the fourth argument. Along with the product name in this sample 
+	the product list is also filtered by the category. When you'll type the 'web' keyword, the list of 
+	products in categories that contain this word will be displayed.
+</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as6 = new Spry.Widget.AutoSuggest(&quot;productSampleMultiple&quot;, &quot;productMenuMultiple&quot;, &quot;dsProductsmultiple&quot;, [&quot;name&quot;, &quot;category&quot;], {containsString: true});
+&lt;/script&gt;
+</pre>
+
+<div id="productSampleMultiple" class="container">
+		<br />
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="inputMenuMultiple" /> 
+		<div id="productMenuMultiple" spry:region="dsProductsmultiple">
+				<div spry:repeat="dsProductsmultiple" spry:suggest="{name}">{name}</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as6 = new Spry.Widget.AutoSuggest("productSampleMultiple", "productMenuMultiple", "dsProductsmultiple", ['name', 'category'], {containsString: true});
+</script>
+<hr />
+
+<!-- 
+
+	Example 5: Display the list of suggestions after the user typed a minimal number of characters
+
+-->
+<p>
+<strong>Minimal number of characters typed</strong><br />
+Sometimes the list of suggestions could be very long therefore you can restrict its appearance
+only after a user typed a minimal number of characters. In this example we display the suggest list 
+only after the first 3 letter of the "Adobe" are written.
+</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as7 = new Spry.Widget.AutoSuggest(&quot;productSampleMin&quot;, &quot;productMenuMin&quot;, &quot;dsProducts6&quot;, &quot;name&quot;, {containsString: true, minCharsType: 3});
+&lt;/script&gt;
+</pre>
+
+<div id="productSampleMin" class="container">
+	A minimal number of 3 characters required:<br />
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="inputMenuMin" /> 
+		<div id="productMenuMin" spry:region="dsProducts6">
+				<div spry:repeat="dsProducts6" spry:suggest="{name}">{name}</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as7 = new Spry.Widget.AutoSuggest("productSampleMin", "productMenuMin", "dsProducts6", 'name', {containsString: true, minCharsType: 3});
+</script>
+<hr />
+<!-- 
+
+	Example 6: Display the list of suggestions with limited to a maximum number
+
+-->
+<p>
+	<strong>Limit the number of suggestions</strong><br />
+	The AutoSuggest widget has the ability to also limit the number of suggestions. By defining a numeric non-zero value for the maxListItems option you can control this feature as you like.
+</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as_min = new Spry.Widget.AutoSuggest(&quot;productSampleList&quot;, &quot;productMenuList&quot;, &quot;dsProductslist&quot;, &quot;name&quot;, {containsString: true, maxListItems: 3});
+&lt;/script&gt;
+</pre>
+
+<div id="productSampleList" class="container">
+	Maximum 3 suggestions are displayed:<br />
+	<form method="get" action="SuggestSample.html">
+	<input type="text" id="inputMenuList" /> 
+	<div id="productMenuList" spry:region="dsProductslist">
+			<div spry:repeat="dsProductslist" spry:suggest="{name}">{name}</div>
+	</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+var as_min = new Spry.Widget.AutoSuggest("productSampleList", "productMenuList", "dsProductslist", 'name', {containsString: true, maxListItems: 3});
+</script>
+<hr />
+<!-- 
+
+	Example 7: Dynamically load the data from the server.
+
+-->
+<p>
+<strong>Dynamically load data from the server</strong><br />
+The Spry Suggest Widget has the ability to dynamically request the filtered information from the server.
+In this case we will replace or append the URL of the given data set with the value inserted by the user.
+You can define a URL parameter and regardless of the caching setting of that data set, we will 
+send the request on the server. A server side technology is required on server to filter and output
+the new data XML that we will display. We provide samples for PHP, ASP and ColdFusion.</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as7 = new Spry.Widget.AutoSuggest(&quot;productSamplePHP&quot;, &quot;productMenuPHP&quot;, &quot;dsProducts7&quot;, &quot;name&quot;, {loadFromServer: true, urlParam: &quot;prd&quot;});
+&lt;/script&gt;
+</pre>
+<p>Note: These samples will only work when running off a server with the appropriate server technology. They are presented here for proof of concept. Try them on your own server to see them run. They use the same source XML file as used above. The source files are here:</p>
+<ul>
+  <li><a href="products.php">PHP</a></li>
+  <li><a href="products.asp">ASP</a></li>
+  <li><a href="products.cfm">CF</a></li>
+</ul>
+<div id="productSamplePHP" class="container" style="float:left">
+	PHP sample:<br />
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="inputMenuPHP" /> 
+		<div id="productMenuPHP" spry:region="dsProducts7">
+				<div spry:repeat="dsProducts7" spry:suggest="{name}">{name}</div>
+		</div>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+var as7 = new Spry.Widget.AutoSuggest("productSamplePHP", "productMenuPHP", "dsProducts7", 'name', {loadFromServer: true, urlParam: 'prd'});
+</script>
+
+<div id="productSampleASP" class="container" style="float:left">
+	ASP sample:<br />
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="inputMenuASP" /> 
+		<div id="productMenuASP" spry:region="dsProducts8">
+			<div spry:repeat="dsProducts8" spry:suggest="{name}">{name}</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+var as8 = new Spry.Widget.AutoSuggest("productSampleASP", "productMenuASP", "dsProducts8", 'name', {loadFromServer: true, urlParam: 'prd'});
+</script>
+
+<div id="productSampleCF" class="container" style="float:left">
+	ColdFusion sample:<br />
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="inputMenuCF"/> 
+		<div id="productMenuCF" spry:region="dsProducts9">
+				<div spry:repeat="dsProducts9" spry:suggest="{name}">{name}</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+var as9 = new Spry.Widget.AutoSuggest("productSampleCF", "productMenuCF", "dsProducts9", 'name', {loadFromServer: true, urlParam: 'prd'});
+</script>
+
+<br style="clear:both;" />
+<hr />
+<p><strong>Keyboard Navigation</strong><br />
+The autosuggest widget has by default enabled the keyboard navigation using Up and Down arrow keys.<br />
+You can customize the keyboard keys used for the  navigation feature by adding on the widget's constructor the following options: moveNextKeyCode and movePrevKeyCode that receive as value the key code.<br />
+On the bellow exapmple for navigation are used the Page Up/ Page Down keys.</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var as7 = new Spry.Widget.AutoSuggest(&quot;keyboard&quot;, &quot;productMenu_&quot;, &quot;dsProducts1&quot;, &quot;name&quot;, {moveNextKeyCode:34, movePrevKeyCode: 33});
+&lt;/script&gt;
+</pre>
+<div id="keyboard" class="container">
+	Product Name:<br /> 
+	<form method="get" action="SuggestSample.html">
+		<input type="text" id="key_product" />
+	  <div id="productMenu_" spry:region="dsProducts1">
+			<div spry:repeat="dsProducts1" spry:suggest="{name}">
+				<div class="list">{name}</div>
+			</div>
+	  </div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var as1 = new Spry.Widget.AutoSuggest('keyboard', 'productMenu_', 'dsProducts1', 'name',{moveNextKeyCode:34, movePrevKeyCode:33});
+</script>
+</body>
+</html>

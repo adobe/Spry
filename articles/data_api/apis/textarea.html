@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Textarea Validation API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="accordion">
+  <h3>Textarea Validation Widget</h3>
+  <h4>Description</h4>
+  <p>The Spry Textarea Validation Widget is used to validate a textarea, mostly checking for content existence or content length. </p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/textareavalidation/SpryValidationTextarea.js">SpryValidationTextarea.js</a></p>
+    <p><a href="../../../widgets/textareavalidation/SpryValidationTextarea.css">SpryValidationTextarea.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/textareavalidation/SpryValidationTextArea.html">SpryValidationTextarea.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/validationwidgets/TextareaValidationSample.html">TextareaValidationSample.html</a></p>
+  </blockquote>
+  </div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container&gt;
+      &lt;input textarea&gt;<br />      &lt;message container(s)&gt;<br />   &lt;/widget container&gt;<br /></pre>
+  <p>The Textarea Validation Widget supports one text area per widget.</p>
+      <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;span id=&quot;comments&quot;&gt;<br />  &lt;textarea name=&quot;textarea3&quot; id=&quot;textarea3&quot; cols=&quot;32&quot; rows=&quot;5&quot;&gt;&lt;/textarea&gt;<br />&lt;span class=&quot;textareaRequiredMsg&quot;&gt;The value is required.&lt;/span&gt; 
+&lt;/span&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />var comments = new Spry.Widget.ValidationTextarea(&quot;comments&quot;);<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.ValidationTextarea(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.ValidationTextarea(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="991" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>counterID</td>
+      <td>string</td>
+      <td>null</td>
+      <td>This options specifies the markup container that will display the couter. It should be an empty container within the widget.</td>
+    </tr>
+    <tr>
+      <td>counterType</td>
+      <td>'chars_count' or 'chars_remaining'</td>
+      <td>null</td>
+      <td>Determines whether the counter counts the number of typed characters or counts the number of characters remaining before hitting the maxChars value. 'chars_remaing' must be used in conjuction with the 'maxChars' option.</td>
+    </tr>
+    <tr>
+      <td>hint</td>
+      <td>string</td>
+      <td>null</td>
+      <td>The defined string will show in the textarea when the page loads. It will be removed when the user starts typing within the field.</td>
+    </tr>
+    <tr>
+      <td>isRequired</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>Determines whether any checkboxes need to be checked. Set to 'false' to bypass validation.</td>
+    </tr>
+    <tr>
+      <td>maxChars</td>
+      <td>number</td>
+      <td>null</td>
+      <td>Determines the maximum number of characters that can be used with the textarea.</td>
+    </tr>
+    <tr>
+      <td>minChars</td>
+      <td>number</td>
+      <td>null</td>
+      <td>Determines the minimum number of characters that can be used with the textarea.</td>
+    </tr>
+    <tr>
+      <td>useCharacterMasking</td>
+      <td>true or false</td>
+      <td>null</td>
+      <td>Used only in conjunction with 'maxChars', this option will prevent the user from typing in more than the maximum number of characters.</td>
+    </tr>
+    <tr>
+      <td>validateOn</td>
+      <td>&quot;blur&quot;, &quot;change&quot;</td>
+      <td>submit</td>
+      <td>The widget always validates onSubmit. onBlur and onChange can be added with this option. Both can be applied with an array ['blur', 'change']</td>
+    </tr>
+    <tr>
+      <td><p>requiredClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaRequiredState&quot; built-in value .</p></td>
+    </tr>
+    <tr>
+      <td><p>validClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaValidState&quot; built-in value.</p></td>
+    </tr>
+    <tr>
+      <td><p>focusClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaFocusState&quot; built-in value..</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidCharsMinClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaMinCharsState&quot; built-in value.</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidCharsMaxClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaMaxCharsState&quot; built-in value.</p></td>
+    </tr>
+    <tr>
+      <td><p>textareaFlashClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaFlashState&quot; built-in value.</p></td>
+    </tr>
+    <tr>
+      <td><p>hintClass</p></td>
+      <td>class name</td>
+      <td>null</td>
+      <td><p>Overrides the &quot;textareaHintState&quot; built-in value.</p></td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var textarea1 = new Spry.Widget.ValidationTextarea(&quot;textarea1&quot;,{isRequired:false, minChars:20, maxChars:50, validateOn:['blur','change']});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Textarea Validation Widget Methods</h2>
+  <div id="reset">
+    <h3><strong>reset</strong></h3>
+    <p>Reset the widget to its original state.</p>
+    <h4>Format</h4>
+    <p>widgetName.reset();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;textarea1.reset(); return false;&quot;&gt;Reset Textarea&lt;/a&gt; </pre>
+  </div>
+  <div id="validate">
+    <h3><strong>validate</strong></h3>
+    <p>Validates the current state of the widget.</p>
+    <h4>Format</h4>
+    <p>widgetName.validate();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;textarea1.validate(); return false;&quot;&gt;Validate Textarea&lt;/a&gt;</pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

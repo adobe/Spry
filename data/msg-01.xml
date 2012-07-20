@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages count="5">
+	<message id="349348" recieved="Thu, 12 Oct 2006 16:29:35 -0800" size="1K" attachments="false">
+		<from id="123456" address="esmith@foo.com">Edward Smith</from>
+		<subject>Donuts in the break room.</subject>
+	</message>
+	<message id="351325" recieved="Wed, 25 Oct 2006 14:12:13 -0800" size="4K" attachments="false">
+		<from id="127937" address="njohnson@foo.com">Neil Johnson</from>
+		<subject>Please send check via certified-express snail mail!</subject>
+		<flags important="true" needsreply="true" returnreceipt="true" />
+	</message>
+	<message id="456848" recieved="Wed, 01 Nov 2006 09:35:57 -0800" size="720K" attachments="true">
+		<from id="126474" address="swilliams@foo.com">Steve Williams</from>
+		<subject>Sign the attached doc and return by Friday at the latest.</subject>
+		<flags returnreceipt="true" />
+	</message>
+	<message id="456976" recieved="Tue, 07 Nov 2006 14:36:04 -0800" size="100K" attachments="true">
+		<from id="120585" address="jjones@foo.com">John Jones</from>
+		<subject>Ship Party Details</subject>
+	</message>
+	<message id="567833" recieved="Mon, 04 Dec 2006 18:24:05 -0800" size="12K" attachments="false">
+		<from id="127493" address="jbrown@foo.com">Joe Brown</from>
+		<subject>Check this out!</subject>
+	</message>
+</messages>
+

@@ -1,0 +1,34 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Static Table Sample</title>
+<script type="text/javascript" src="../../../includes/xpath.js"></script>
+<script type="text/javascript" src="../../../includes/SpryData.js"></script>
+<script type="text/javascript">
+var dsEmployees = new Spry.Data.XMLDataSet("../../../data/employees-01.xml", "employees/employee");
+</script>
+</head>
+<body>
+
+<div spry:region="dsEmployees">
+<table border="1">
+	<tr>
+		<th scope="col" onclick="dsEmployees.sort('@id');">Employee ID </th>
+		<th scope="col" onclick="dsEmployees.sort('lastname');">Last Name </th>
+		<th scope="col" onclick="dsEmployees.sort('firstname');">First Name </th>
+		<th scope="col" onclick="dsEmployees.sort('phone');">Phone</th>
+		<th scope="col" onclick="dsEmployees.sort('username');">Username</th>
+	</tr>
+	<tr spry:repeat="dsEmployees">
+		<td>{@id}</td>
+		<td>{lastname}</td>
+		<td>{firstname}</td>
+		<td>{phone}</td>
+		<td>{username}</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

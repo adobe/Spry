@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Rhode Island</name>
+	<cities>
+		<city>
+			<name>Ashaway</name>
+		</city>
+		<city>
+			<name>Barrington</name>
+		</city>
+		<city>
+			<name>Bradford</name>
+		</city>
+		<city>
+			<name>Bristol</name>
+		</city>
+		<city>
+			<name>Central Falls</name>
+		</city>
+		<city>
+			<name>Cranston</name>
+		</city>
+		<city>
+			<name>Cumberland Hill</name>
+		</city>
+		<city>
+			<name>East Providence</name>
+		</city>
+		<city>
+			<name>Greenville</name>
+		</city>
+		<city>
+			<name>Harrisville</name>
+		</city>
+		<city>
+			<name>Hope Valley</name>
+		</city>
+		<city>
+			<name>Kingston</name>
+		</city>
+		<city>
+			<name>Melville</name>
+		</city>
+		<city>
+			<name>Narragansett Pier</name>
+		</city>
+		<city>
+			<name>Newport</name>
+		</city>
+		<city>
+			<name>Newport East</name>
+		</city>
+		<city>
+			<name>North Providence</name>
+		</city>
+		<city>
+			<name>Pascoag</name>
+		</city>
+		<city>
+			<name>Pawtucket</name>
+		</city>
+		<city>
+			<name>Providence</name>
+		</city>
+		<city>
+			<name>Tiverton</name>
+		</city>
+		<city>
+			<name>Valley Falls</name>
+		</city>
+		<city>
+			<name>Wakefield-Peacedale</name>
+		</city>
+		<city>
+			<name>Warwick</name>
+		</city>
+		<city>
+			<name>West Warwick</name>
+		</city>
+		<city>
+			<name>Westerly</name>
+		</city>
+		<city>
+			<name>Woonsocket</name>
+		</city>
+	</cities>
+</state>

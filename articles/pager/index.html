@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Paged View Data Set</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Spry Paged View Data Set</h1>
+<p>The Spry Paged View Data Set, (or Spry Pager) is a data abstraction mechanism that provides paging mechanisms for a standard data set. This document describes how the Spry Pager works with data and how to implement paging on your data set.</p>
+<h3>Spry Pager Overview</h3>
+<p>The Pager works by reading a data set and extracting  information out of it in order to generate a separate batch of information about paging. For example, Bind a paged data set to a XML data set with 120 rows of data. In the paged data set, tell Spry you want 20 rows of data per page. Now Spry knows that you have 6 pages of data. It knows where each of those pages starts and ends and can easily jump from one to another. It also knows that row 32 is in the 2nd page and can go straight to it.</p>
+<p>A key concept to understand is that for the paged data set, using the above example, the 20 rows currently showing for that page IS the whole data set. The number of rows (ds_rowCount) in that data set is 20. When you jump to another page, that new set of 20 rows IS the entire data set. The rowCount is still 20. Only the XML data set has the full 120 rows, but the pager knows how to get them.</p>
+<p>The paged data set knows how to do things like 'go to  next page' or 'go to previous page'. That information is built in to the data set.</p>
+<p>To see the pager in action, see the <a href="../../samples/data_region/SpryPagedViewSample.html">sample</a>.</p>
+<p>As noted below, there are many options and assumptions that need to be made.</p>
+<h3>Creating a Paged View Data Set</h3>
+<p>Since the paged data set only looks at data and doesn't actually gather data, we have to have a data set that contains data. The paged data set is based off this first data set. To create a paged data set, create a standard Spry data set, XML, JSON or whatever you need.</p>
+<p>For example, create a data set called 'ds1':</p>
+<pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/xpath.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryData.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+    var ds1 = new Spry.Data.XMLDataSet(&quot;myXML.xml&quot;,&quot;xpath&quot;);
+
+
+&lt;/script&gt;</pre>
+<p>This is a standard data set with, for argument's sake, 120 rows of data.</p>
+<p>Before the paged data set can be created, the pager javascript file needs to be attached.</p>
+<p>From that data set, create a paged view data set. This is the actual data to be paged.</p>
+<pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/xpath.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryData.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryPagedView.js&quot;&gt;&lt;/script&gt;</span><br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+    var ds1 = new Spry.Data.XMLDataSet(&quot;myXML.xml&quot;,&quot;xpath&quot;);
+    <span class="hilite">var pv1 = new Spry.Data.PagedView( ds1 ,{ pageSize: 20 });</span>
+
+&lt;/script&gt;</pre>
+<p>In the example above, we created a data set called 'pv1'. The value of the first parameter is 'ds1', which is the name of the first data set we created. As an option in the constructor, we specified the page size as 20 rows per page. Spry uses 10 rows as a default, if the pageSize option isn't set.</p>
+<p>So now, a simple Spry construct:</p>
+<pre>&lt;div spry:region=&quot;pv1&quot; spry:repeatchildren=&quot;pv1&quot;&gt;
+{data}
+&lt;/div&gt;</pre>
+<p>would output 10 pieces of data, in this case, from the first 20 rows of the master XML data set.</p>
+<p><strong>Options</strong></p>
+<p>Options on the constructor allow you to fine tune the behavior of the data set. The options available are:</p>
+<table>
+  <tr>
+    <th scope="col">Option Name </th>
+    <th scope="col">Default</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>pageSize</td>
+    <td>10</td>
+    <td>The max number of items in a page. </td>
+  </tr>
+  <tr>
+    <td>forceFullPages</td>
+    <td>false</td>
+    <td>If there is more than one page of data, force the last page of data to contain a full set of data. Note that this could cause some items to appear on both the last and next to last pages. </td>
+  </tr>
+  <tr>
+    <td>useZeroBasedIndexes</td>
+    <td>false</td>
+    <td>If true the caller will pass page indexes to the various paging functions that are between zero and n-1, where n is the total number of rows in the data set. The default is false, so page numbers are between 1 and n. </td>
+  </tr>
+</table>
+<p>Defaults are used if the option does not appear in the constructor.</p>
+<p>'forceFullPage' is used if layout is more important than the data. If a data set has 36 rows and a page size of 10, the last page will show only rows 30-36, leading to a shorter output. If this option is set to 'true', then 10 rows will be shown, 27-36, which may duplicate rows 27-29 from the previous page.</p>
+<p>Spry generally uses a zero based counting system. Since there is generally no such thing as &quot;Page 0&quot;, we made the Paged Data Set use a 1 based counting system. This would simplify using data references for paging. If you prefer the standard zero based counting system, set the 'useZeroBasedIndexes' to 'true'. Remember that Javascript is case sensitive.</p>
+<pre><span class="hilite">var pv1 = new Spry.Data.PagedView(ds1,{ pageSize:20, forceFullPages:true, useZeroBasedIndexes:true});</span></pre>
+<h3>Paging Behaviors</h3>
+<p>One of the main ideas of the pager is to allow you to page through your data set. Seems obvious. To enable the paging, behaviors are used.</p>
+<p>For example, to make  buttons that page, it would look like:</p>
+<pre>&lt;input type=&quot;button&quot; value=&quot;First&quot; onclick=&quot;pvCities.firstPage();&quot; /&gt;
+&lt;input type=&quot;button&quot; value=&quot;Prev&quot; onclick=&quot;pvCities.previousPage();&quot; /&gt;
+&lt;input type=&quot;button&quot; value=&quot;Next&quot; onclick=&quot;pvCities.nextPage();&quot; /&gt;
+&lt;input type=&quot;button&quot; value=&quot;Last&quot; onclick=&quot;pvCities.lastPage();&quot; /&gt;</pre>
+<p>Give the onclick handler the data set name &quot;pv1&quot; and use the nextPage(); behavior. On click, the paged data will update the paged view data set to show the next 20 rows in the master data set.</p>
+<p>Here is the set of built-in behaviors for the Paged View Data Set.</p>
+<table>
+  <tr>
+    <th scope="col">Method Name </th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>getPageCount()</td>
+    <td>Returns the number of pages that are necessary to accommodate all of the data. This count is based on the page size and number of rows of data in the data set. </td>
+  </tr>
+  <tr>
+    <td>getCurrentPage()</td>
+    <td>Returns the page number/index for the data that is returned by a call to getData(). By default, the number returned by this method will be between 1 and the page count number. If the use useZeroBasedIndexes constructor option was set to true, this method will return a number between zero and pageCount minus one. </td>
+  </tr>
+  <tr>
+    <td>goToPage(pageIndex)</td>
+    <td>Filter the data so that only rows associated with the specified page index are available via getData(). </td>
+  </tr>
+  <tr>
+    <td>goToPageContainingRowID(rowID)</td>
+    <td>Filter the data so that only rows on the same page as the row with the specified rowID are available.</td>
+  </tr>
+  <tr>
+    <td>goToPageContainingRowNumber(rowNumber)</td>
+    <td>Filter the data so that only rows on the same page as the row with the specified row number are available.</td>
+  </tr>
+  <tr>
+    <td>goToPageContainingItemNumber(itemNumber)</td>
+    <td>Filter the data so that only rows on the same page as the row with the specified item number are available.</td>
+  </tr>
+  <tr>
+    <td>firstPage()</td>
+    <td>Filter the data set so that only rows in the first page are available. </td>
+  </tr>
+  <tr>
+    <td>lastPage()</td>
+    <td>Filter the data set so that only rows in the last page are available.</td>
+  </tr>
+  <tr>
+    <td>previousPage()</td>
+    <td>Filter the data set so that only rows in the previous page are available.</td>
+  </tr>
+  <tr>
+    <td>nextPage()</td>
+    <td>Filter the data set so that only rows in the next page are available.</td>
+  </tr>
+  <tr>
+    <td>getPageForRowID(rowID)</td>
+    <td>Returns the index of the page that contains the row with the given ds_RowID. </td>
+  </tr>
+  <tr>
+    <td>getPageForRowNumber(rowNumber)</td>
+    <td>Returns the index of the page that contains the specified row number.</td>
+  </tr>
+  <tr>
+    <td>getPageForItemNumber(itemNumber)</td>
+    <td>Returns the index of the page that contains the specified item number.</td>
+  </tr>
+  <tr>
+    <td>setPageSize(pageSize)</td>
+    <td>Sets the maximum number of rows that can appear on any page. If zero, turns off paging. </td>
+  </tr>
+</table>
+<p>See the <a href="../../samples/data_region/SpryPagedViewSample.html">Paged View sample</a> for examples of these behaviors.</p>
+<h3>Paged View Data References</h3>
+<p>Because it is a data set, the paged data set uses data references as any normal data set. It also can use the standard data set references like {ds_RowID}. Because the PagedView extracts its data from the data set it depends on, the {ds_RowID} value for each row in the PagedView is identical to the ds_RowID of the corresponding row in the data set it depends on. </p>
+<p>The unique nature of the paged data set offers a set of paging specific data references that can be used in spry:regions.</p>
+<table>
+  <tr>
+    <th scope="col">Data Reference </th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>{ds_PageNumber}</td>
+    <td>The current page index. By default this will be a number between 1 and ds_PageCount. <br />
+      If the useZeroBasedIndexes constructor option was set to true, this will be a number between 1 and ds_PageCount minus one. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageSize}</td>
+    <td>The maximum number of items that can be in a page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageCount}</td>
+    <td>The total number of pages required to display all of the data. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemRowNumber}</td>
+    <td>The unfiltered row index for the current row being processed. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemNumber}</td>
+    <td>The unfiltered item number for the current row being processed. This is the unfiltered row index of the row plus one. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageFirstItemNumber}</td>
+    <td>The item number for the first row displayed in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageLastItemNumber}</td>
+    <td>The item number for the last row displayed in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemCount}</td>
+    <td>The total number of items in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageTotalItemCount}</td>
+    <td>The total number of items in all pages. </td>
+  </tr>
+  <tr>
+    <td>{ds_UnfilteredRowCount}</td>
+    <td>The total number of rows in the data set. </td>
+  </tr>
+  <tr>
+    <td>{ds_CurrentRowID}</td>
+    <td>For the PagedView, this is *always* the ID of the first row in the current page.</td>
+  </tr>
+  <tr>
+    <td>{ds_RowID}</td>
+    <td>The row id for the row being processed. </td>
+  </tr>
+  <tr>
+    <td>{ds_CurrentRowNumber}</td>
+    <td>For the PagedView, this is *always* zero, which is the index of the first row in the current page.</td>
+  </tr>
+  <tr>
+    <td>{ds_RowNumber}</td>
+    <td>This is the row index, of the row being processed, in the current page. </td>
+  </tr>
+</table>
+<p>This easily allows for common patterns like:</p>
+<pre>&lt;div spry:detailregion=&quot;pv1&quot;&gt;
+This is Page {ds_PageNumber} of {ds_PageCount}.
+&lt;/div&gt;</pre>
+<h3>Paged View Info</h3>
+<p>Paged View Info is a further abstraction of the paging data. It is used to enable common paging patterns. It is best described by example. The Paged View Info structure enables:</p>
+<blockquote>
+  <p id="spryregion1"> Go to Page: <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <strong>4</strong> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <a href="#">9</a> <a href="#">10</a></p>
+</blockquote>
+<p>to be created with:</p>
+<pre>&lt;p spry:region=&quot;pvInfo&quot; spry:repeatchildren=&quot;pvInfo&quot;&gt;
+   &lt;a spry:if=&quot;{ds_CurrentRowNumber} != {ds_RowNumber}&quot; href=&quot;#&quot; onclick=&quot;pvCities.goToPage('{ds_PageNumber}')&quot;&gt;{ds_PageNumber}&lt;/a&gt;
+   &lt;span spry:if=&quot;{ds_CurrentRowNumber} == {ds_RowNumber}&quot; class=&quot;currentPage&quot;&gt;{ds_PageNumber}&lt;/span&gt;<br />&lt;/p&gt;</pre>
+<p>or</p>
+<blockquote>
+  <p>1-20 <a href="#" onclick="pvCities.goToPage('2')">21-40</a> <a href="#" onclick="pvCities.goToPage('3')">41-60</a> <a href="#" onclick="pvCities.goToPage('4')">61-80</a> <a href="#" onclick="pvCities.goToPage('5')">81-100</a> <a href="#" onclick="pvCities.goToPage('6')">101-120</a></p>
+</blockquote>
+<p>is done with:</p>
+<pre>&lt;p spry:region=&quot;pvInfo&quot; spry:repeatchildren=&quot;pvInfo&quot;&gt;
+ &lt;a spry:if=&quot;{ds_CurrentRowNumber} != {ds_RowNumber}&quot; href=&quot;#&quot; onclick=&quot;pvCities.goToPage('{ds_PageNumber}')&quot;&gt;{ds_PageFirstItemNumber}-{ds_PageLastItemNumber}&lt;/a&gt;
+ &lt;span spry:if=&quot;{ds_CurrentRowNumber} == {ds_RowNumber}&quot; class=&quot;currentPage&quot;&gt;{ds_PageFirstItemNumber}-{ds_PageLastItemNumber}&lt;/span&gt;&lt;/p&gt; </pre>
+<p>This is done by creating a special data set that  contains these paging data references. It is enabled by creating a variable and populating it with the results of a function:</p>
+<pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/xpath.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryPagedView.js&quot;&gt;&lt;/script&gt;<br />&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+    var ds1 = new Spry.Data.XMLDataSet(&quot;myXML.xml&quot;,&quot;xpath&quot;);
+    var pv1 = new Spry.Data.PagedView( ds1 ,{ pageSize: 20 });
+    <span class="hilite">var pvInfo = pv1.getPagingInfo();</span>
+
+&lt;/script&gt;</pre>
+<p>where 'pv1' is the name of the paged data set.</p>
+<p>This creates a separate data set called pvInfo. This data set has a set of data references that know about the paged data set 'pv1'. We can loop over these data references to create these common patterns.</p>
+<p>The data references it creates are:</p>
+<table width="778">
+  <tr>
+    <th>name</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td>{ds_PageNumber}</td>
+    <td>The number of the page of a data.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageSize}</td>
+    <td>The number of rows of data per page.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageCount}</td>
+    <td>The total number of pages in the data set.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageFirstItemNumber}</td>
+    <td>The item number that is the first row of data for that page. If pages have 10 rows per page, item 11 is the first item number of page 2 and 21 is the first item number of page 3.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageLastItemNumber}</td>
+    <td>The item number that is the last row of data for that page. If pages have 10 rows per page, item 20 is the last item number of page 2 and 30 is the first item number of page 3.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemCount}</td>
+    <td>The actual number of rows of data on the current page. This will generally be same as {ds_pageSize} except for instance when the last page of the data has less than a full page of data.</td>
+  </tr>
+  <tr>
+    <td>{ds_PageTotalItemCount}</td>
+    <td>This is the sum of all the rows in all the pages.</td>
+  </tr>
+</table>
+<p>Since this is still a data set, it contains all the normal built-in data references, like {ds_RowID} and {ds_currentRowNumber}, plus it has the references listed above.<br />
+</p>
+<hr />
+<p>Copyright &copy; 2007. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

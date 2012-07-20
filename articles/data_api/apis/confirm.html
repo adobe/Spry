@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Textarea Validation API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="accordion">
+  <h3>Confirm Validation Widget</h3>
+  <h4>Description</h4>
+  <p>The Spry Confirm Validation Widget is used to verify a password field. It is used as a 'Repeat Password' field, ensuring that 2 password fields are identical. This widget is the second field that checks the first.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/confirmvalidation/SpryValidationConfirm.js">SpryValidationConfirm.js</a></p>
+    <p><a href="../../../widgets/confirmvalidation/SpryValidationConfirm.css">SpryValidationConfirm.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/confirmvalidation/SpryValidationConfirm.html">SpryValidationConfirm.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/validationwidgets/ConfirmValidationSample.html">ConfirmValidationSample.html</a></p>
+  </blockquote>
+</div>
+<div id="structure">
+  <h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>&lt;first password field&gt;
+  <br /> &lt;widget container&gt;
+      &lt;input password&gt;<br />      &lt;message container(s)&gt;<br /> &lt;/widget container&gt;<br />
+</pre>
+  <p>The Confirm Validation Widget supports one password or text field per widget.</p>
+  <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+  <p>Using the provided files, the default mark up is:</p>
+  <pre>&lt;input type=&quot;password&quot; id=&quot;password1&quot; name=&quot;password1&quot; /&gt;<br />...<br />&lt;span id=&quot;spryconfirm1&quot;&gt;
+ &lt;label for=&quot;confirm1&quot;&gt;Confirm:&lt;/label&gt;
+ &lt;input type=&quot;password&quot; name=&quot;confirm1&quot; id=&quot;confirm1&quot; /&gt;
+ &lt;span class=&quot;confirmRequiredMsg&quot;&gt;A value is required.&lt;/span&gt;
+ &lt;span class=&quot;confirmInvalidMsg&quot;&gt;The values don't match&lt;/span&gt;
+&lt;/span&gt; </pre>
+ <p>The type and number of error messages will depend on the developer's needs.</p>
+</div>
+<div id="constructor">
+  <h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />&lt;!--<br />var spryconfirm1 = new Spry.Widget.ValidationConfirm(&quot;sprypassword1&quot;, &quot;password1&quot;);<br />//--&gt;<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+	var <span class="hilite">widgetname</span> = new Spry.Widget.ValidationConfirm(&quot;<span class="hilite">id of widget container</span>&quot;, &quot;<span class="hilite">field id against to do the match</span>&quot;);
+&lt;/script&gt;
+</pre>
+</div>
+<div id="options">
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+	var widgetname = new Spry.Widget.ValidationConfirm(&quot;id of widget container&quot;, &quot;field id against to do the match&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+&lt;/script&gt;
+  </pre>
+  <table >
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>isRequired</td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td>Determines if the field is required to have a value.</td>
+    </tr>
+    <tr>
+      <td>additionalError</td>
+      <td>string</td>
+      <td>none</td>
+      <td>The id of an element in the page where the classes that applies to the main container also are added.</td>
+    </tr>
+    <tr>
+      <td>focusClass</td>
+      <td>string</td>
+      <td>confirmFocusState</td>
+      <td>Custom CSS class to use for the focus state. Replaces the default .confirmFocusState class.</td>
+    </tr>
+    <tr>
+      <td>invalidClass</td>
+      <td>string</td>
+      <td>confirmInvalidState</td>
+      <td>Custom CSS class to use for the invalid state. Replaces the default .confirmInvalidState class.</td>
+    </tr>
+    <tr>
+      <td>requiredClass</td>
+      <td>string</td>
+      <td>confirmFocusState</td>
+      <td>Custom CSS class to use for the required state. Replaces the default .confirmFocusState class.</td>
+    </tr>
+    <tr>
+      <td>validClass</td>
+      <td>string</td>
+      <td>confirmValidState</td>
+      <td>Custom CSS class to use for the valid state. Replaces the default .confirmValidState class.</td>
+    </tr>
+    <tr>
+      <td>validateOn</td>
+      <td>string</td>
+      <td>onSubmit</td>
+      <td>Determines what event will cause the field to be validated. It always checks onSubmit. Other values are 'blur' and 'change'.</td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;var ConfirmWidgetObject  = new Spry.Widget.ValidationConfirm(&quot;ConfirmWidget&quot;, &quot;password1&quot;, {isRequired:true, validateOn:[&quot;blur&quot;, &quot;change&quot;], focusClass:&quot;myfocus&quot;});
+ &lt;/script&gt;</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Confirm Validation Widget Methods</h2>
+  <div id="reset">
+    <h3><strong>reset();</strong></h3>
+    <p>Reset the widget to its original state.</p>
+    <h4>Format</h4>
+    <p>widgetName.reset();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;ConfirmWidgetObject.reset(); return false;&quot;&gt;Reset Confirm&lt;/a&gt; </pre>
+  </div>
+  <div id="validate">
+    <h3><strong>validate();</strong></h3>
+    <p>Validates the current state of the widget.</p>
+    <h4>Format</h4>
+    <p>widgetName.validate();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;ConfirmWidgetObject.validate(); return false;&quot;&gt;Validate Confirm&lt;/a&gt;</pre>
+  </div>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

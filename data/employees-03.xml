@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<employees xmlns="http://www.foo.com/employees">
+	<employee id="757584">
+		<lastname>Doe</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="768568">
+		<lastname>Smith</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="123543">
+		<lastname>Smith</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="5658944">
+		<lastname>Doe</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="647489">
+		<lastname>Smith</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="262673">
+		<lastname>Smith</lastname>
+		<firstname>John</firstname>
+	</employee>
+	<employee id="3484848">
+		<lastname>Doe</lastname>
+		<firstname>John</firstname>
+	</employee>
+</employees>

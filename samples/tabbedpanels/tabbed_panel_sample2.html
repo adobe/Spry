@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Creating an Tabbed Panels Widget with Spry Data</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.liveSample {
+	float: left;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../widgets/tabbedpanels/SpryTabbedPanels.js"></script>
+<script type="text/javascript">
+<!--
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "employees/employee");
+
+var observer = { onPostUpdate: function(notifier, data) { var p2 = new Spry.Widget.TabbedPanels("TP2"); } };
+Spry.Data.Region.addObserver("example2Region", observer);
+
+//-->
+</script>
+</head>
+<body>
+<h3>Creating a Tabbed Panels Widget with Spry Data</h3>
+<p>This page gives a couple of examples of how to generate an Tabbed Panels widget with Spry Data.</p>
+<hr />
+<h3>Example 1</h3>
+<p>In this example we are creating a TabbedPanels widget that has a panel for each employee within the data set called dsEmployees. We start off by creating a spry:region div. We then insert the markup for TabbedPanels widget with one tabbed panel. We then place a spry:repeat attribute on the TabbedPanelsTab &lt;li&gt; and TabbedpanelsContent &lt;div&gt; so that a tab button and content panel gets created 5for each row in the data set:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+
+...
+
+&lt;link href=&quot;../../widgets/tabbedpanels/SpryTabbedPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+...
+
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/tabbedpanels/SpryTabbedPanels.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml&quot;, &quot;employees/employee&quot;);
+
+&lt;/script&gt;
+
+...
+
+&lt;body&gt;
+
+...
+
+&lt;div id=&quot;example1Region&quot; spry:region=&quot;dsEmployees&quot;&gt;
+	&lt;div id=&quot;TP1&quot; class=&quot;TabbedPanels&quot;&gt;
+		&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+			&lt;li spry:repeat=&quot;dsEmployees&quot; class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt;{username}&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+			&lt;div spry:repeat=&quot;dsEmployees&quot; class=&quot;TabbedPanelsContent&quot;&gt;{firstname} {lastname}&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+var t1 = new Spry.Widget.TabbedPanels(&quot;TP1&quot;);
+&lt;/script&gt;
+&lt;/div&gt;
+
+...
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The interesting thing to note about the code above is that the script block for the widget constructor is *inside* the spry:region. By placing the script block inside the region, it means that the constructor will get run anytime the markup in the region is regenerated, creating a new widget object for the new markup.</p>
+<p>Here's a working version of the code above:</p>
+<div id="example1Region" spry:region="dsEmployees" class="liveSample">
+	<div id="TP1" class="TabbedPanels">
+		<ul class="TabbedPanelsTabGroup">
+			<li spry:repeat="dsEmployees" class="TabbedPanelsTab" tabindex="0">{username}</li>
+		</ul>
+		<div class="TabbedPanelsContentGroup">
+			<div spry:repeat="dsEmployees" class="TabbedPanelsContent">{firstname} {lastname}</div>
+		</div>
+	</div>
+<script type="text/javascript">
+var t1 = new Spry.Widget.TabbedPanels("TP1");
+</script>
+</div>
+<p>&nbsp;</p>
+<hr />
+<h3>Example 2</h3>
+<p>This example is almost identical to Example 1, except that it uses a spry:region observer which is triggered during the &quot;onPostUpdate&quot; event *after* the region regenerates its markup:</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+
+...
+
+&lt;link href=&quot;../../widgets/tabbedpanels/SpryTabbedPanels.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+...
+
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../widgets/tabbedpanels/SpryTabbedPanels.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var dsEmployees = new Spry.Data.XMLDataSet(&quot;../../data/employees-01.xml&quot;, &quot;employees/employee&quot;);
+
+var observer = { onPostUpdate: function(notifier, data) { var p2 = new Spry.Widget.TabbedPanels(&quot;TP2&quot;); } };
+Spry.Data.Region.addObserver(&quot;example2Region&quot;, observer);
+
+&lt;/script&gt;
+
+...
+
+&lt;body&gt;
+
+...
+
+&lt;div id=&quot;example2Region&quot; spry:region=&quot;dsEmployees&quot; class=&quot;liveSample&quot;&gt;
+	&lt;div id=&quot;TP2&quot; class=&quot;TabbedPanels&quot;&gt;
+		&lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;
+			&lt;li spry:repeat=&quot;dsEmployees&quot; class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt;{username}&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;
+			&lt;div spry:repeat=&quot;dsEmployees&quot; class=&quot;TabbedPanelsContent&quot;&gt;{firstname} {lastname}&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+...
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Here's a working version of the code above:</p>
+<div id="example2Region" spry:region="dsEmployees" class="liveSample">
+	<div id="TP2" class="TabbedPanels">
+		<ul class="TabbedPanelsTabGroup">
+			<li spry:repeat="dsEmployees" class="TabbedPanelsTab" tabindex="0">{username}</li>
+		</ul>
+		<div class="TabbedPanelsContentGroup">
+			<div spry:repeat="dsEmployees" class="TabbedPanelsContent">{firstname} {lastname}</div>
+		</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+</body>
+</html>

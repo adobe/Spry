@@ -1,0 +1,23 @@
+<galleries>
+  <gallery base="china/" file="photos.xml">
+    <sitename>China</sitename>
+    <photographer>Don Booth</photographer>
+    <contactinfo>http://www.adobe.com</contactinfo>
+    <email>dbooth@adobe.com</email>
+    <security><![CDATA[]]> </security>
+  </gallery>
+  <gallery base="egypt/" file="photos.xml">
+    <sitename>Egypt</sitename>
+    <photographer>Don Booth</photographer>
+    <contactinfo>http://www.adobe.com</contactinfo>
+    <email>dbooth@adobe.com</email>
+    <security><![CDATA[]]> </security>
+  </gallery>
+  <gallery base="paris/" file="photos.xml">
+    <sitename>Paris</sitename>
+    <photographer>Don Booth</photographer>
+    <contactinfo>http://www.adobe.com</contactinfo>
+    <email>dbooth@adobe.com</email>
+    <security><![CDATA[]]> </security>
+  </gallery>
+</galleries>

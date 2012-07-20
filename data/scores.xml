@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<teams>
+	<team>
+		<name>Blue Team</name>
+		<round1>12</round1>
+		<round2>43</round2>
+		<round3>12</round3>
+		<round4>23</round4>
+		<round5>6</round5>
+	</team>
+	<team>
+		<name>Red Team</name>
+		<round1>34</round1>
+		<round2>12</round2>
+		<round3>87</round3>
+		<round4>45</round4>
+		<round5>36</round5>
+	</team>
+	<team>
+		<name>Black Team</name>
+		<round1>23</round1>
+		<round2>32</round2>
+		<round3>21</round3>
+		<round4>52</round4>
+		<round5>65</round5>
+	</team>
+	<team>
+		<name>Green Team</name>
+		<round1>65</round1>
+		<round2>12</round2>
+		<round3>4</round3>
+		<round4>54</round4>
+		<round5>32</round5>
+	</team>
+</teams>

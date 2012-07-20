@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Sample Spry Effect Grow</title>
+	<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+	<script  src="../../includes/SpryEffects.js" type="text/javascript" > </script>
+	<style type="text/css">
+		.demoDiv{
+			background-color: #CCC; 
+			height: 150px; 
+			overflow: hidden;
+		}
+		.animationContainer{
+			height: 160px;
+		}
+		.demoDiv p, .demoDiv h4{
+			width: 397px;
+		}
+		.hideInitially{
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h3>Spry Grow Effect samples</h3>
+	<!--
+
+		Example 1: The default behaviour for Grow effect
+
+-->
+
+<p>
+	The default Grow effect behaviour is to grow a given element centered 
+	from 0 to full size in 1 second.</p>
+
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="first_example.start();" value="Grow Example 1" />
+</form>
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example1">
+	<h4>Example 1</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var first_example = new Spry.Effect.Grow('example1');
+</script>
+	
+<hr />
+
+<!--
+
+		Example 2: The Grow effect can be toggled
+
+-->
+<p><strong>Toggle/Multiple starting points </strong></p>
+<p>Toggle will reverse the effect on the second click. This sample also shows how multiple elements can start the same effect.</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var second_example = new Spry.Effect.Grow('example2', {toggle:true});
+&lt;/script&gt;
+</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="second_example.start();" value="Grow Example 2" />
+	<a href="#" onclick="second_example.start(); return false;">Grow Example 2</a>
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example2">
+		<h4>Example 2</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var second_example = new Spry.Effect.Grow('example2', {toggle:true});
+</script>
+	
+<hr />
+
+<!--
+
+		Example 3: How you can customize the from, to and duration options 
+
+-->
+
+<p><strong>
+ From, to, duration usage</strong></p>
+<p>By passing options in the constructor, you can control the duration of the effect and also the beginning and ending sizes. The sizes are difined in percentage of the current values of the element to be animated. Duration is in milliseconds.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var third_example = new Spry.Effect.Grow('example3', {duration: 2000, from: '100%', to: '30%', toggle:true});
+ &lt;/script&gt;</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="third_example.start();" value="Grow Example 3" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example3">
+		<h4>Example 3 - Grow Out from 100% to 30% in 2 seconds</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var third_example = new Spry.Effect.Grow('example3', {duration: 2000, from: '100%', to: '30%', toggle:true});
+</script>
+	
+<hr />
+<!--
+
+		Example 3.1: How you can make an initially hidden element to appear.
+
+-->
+
+<p><strong>
+ Initially hidden element</strong></p>
+<p>The target animated element can initially be hidden. To hide 
+an element ou can use one of two CSS properties: display and visibility.
+The difference between these two properties is the way the element 
+while hidden will alter the flow of the page. While using the display: none; 
+the element is completelly removed from page and the other elements 
+will take its place the visibility: hidden will leave the element in the page
+flow with all the sizes and other behaviours unaltered but the element 
+is simply not seen.
+</p>
+<p>In the following sample we will use the visibility: none; to initially 
+hide the element and using the Grow effect the element will appear in page.</p>
+
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+.hideInitially{
+	visibility: hidden;
+}
+&lt;/style&gt;
+...
+
+&lt;div class=&quot;animationContainer&quot;&gt;
+	&lt;div class=&quot;demoDiv hideInitially&quot; id=&quot;example31&quot;&gt;
+	...
+	&lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;script type=&quot;text/javascript&quot;&gt;
+ var third1_example = new Spry.Effect.Grow('example31', {duration: 2000, from: '0%', to: '100%', toggle:true});
+&lt;/script&gt;</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="third1_example.start();" value="Grow Example 3.1" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv hideInitially" id="example31">
+		<h4>Example 3.1 - Grow from 0% to 100% in 2 seconds</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var third1_example = new Spry.Effect.Grow('example31', {duration: 2000, from: '0%', to: '100%', toggle:true});
+</script>
+	
+<hr />
+
+<!--
+
+		Example 4: The Grow can run centered and the content to be scaled 
+
+-->
+
+<p><strong>
+ Not Centered</strong></p>
+<p>With an option in the constructor, you can tell Spry to Grow from the top left corner, rather than the center.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var fourth_example = new Spry.Effect.Grow('example4', {duration: 2000, from: '100%', to: '30%', toggle:true, growCenter:false});
+ &lt;/script&gt;</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="fourth_example.start();" value="Grow Example 4" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example4">
+		<h4>Example 4</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var fourth_example = new Spry.Effect.Grow('example4', {duration: 2000, from: '100%', to: '30%', toggle:true, growCenter:false});
+</script>
+
+<hr />
+<!--
+
+		Example 5: The Grow effect applied on the entier CSS box 
+
+-->
+
+<p><strong>Box Model</strong></p>
+<p>By default, the Grow effect does not collapse the CSS box model (margin and padding) area. By passing 'useCSSBox:true' in the constructor, you can tell Spry to also shrink the Box model rules of the element.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var fifth_example = new Spry.Effect.Grow('example5', {duration: 1000, from: '100%', to: '0%', toggle:true, useCSSBox: true});
+ &lt;/script&gt;</pre>
+<form method="get" action="grow_sample.html">
+  <input type="button" onclick="fifth_example.start();" value="With Box Model" />
+  <input type="button" onclick="fifth_without.start();" value="Without Box Model" />
+</form>
+
+<br />
+
+<div class="animationContainer" style="height: 200px; border: 1px solid blue; width: 450px">
+	<div class="demoDiv" id="example5" style="border:10px solid black; padding: 5px; margin: 10px;">
+		<h4>Example 5 - CSS Box</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var fifth_example = new Spry.Effect.Grow('example5', {duration: 1000, from: '100%', to: '0%', toggle:true, useCSSBox: true});
+	var fifth_without = new Spry.Effect.Grow('example5', {duration: 1000, from: '100%', to: '0%', toggle:true});
+</script>
+	
+<hr />
+
+<!--
+
+		Example 6: The Grow can stop content to be scaled 
+
+-->
+<p><strong>Not Scaling Content</strong></p>
+<p>By default the Grow will automatically scale the content size with the animation. This behavior can be stopped using the scaleContent: option set to false.</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var sixth_example = new Spry.Effect.Grow('example6', {toggle:true, from: '100%', to: '0%', scaleContent: false});
+&lt;/script&gt;
+</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="sixth_example.start();" value="Grow Example 6" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example6">
+		<h4>Example 6</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var sixth_example = new Spry.Effect.Grow('example6', {toggle:true, from: '100%', to: '0%', scaleContent: false});
+</script>
+	
+<hr />
+<!--
+
+		Example 7: Running custom code at the begin or the end of a Grow Effect without using observers
+
+-->
+
+<p><strong>Setup and finish functions</strong></p>
+<p>Spry allows you to specify custom made JS functions that should run before 
+the effect starts and after the effect finishes.</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var animation_start = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var sixth_example = new Spry.Effect.Grow('example6', {toggle:true, setup: animation_start, finish: animation_stop});
+&lt;/script&gt;
+</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" id="animation_button" onclick="seven_example.start();" value="Grow Example 7" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="example7">
+		<h4>Example 7</h4>
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var animation_start = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+	var seven_example = new Spry.Effect.Grow('example7', {toggle:true, setup: animation_start, finish: animation_stop});
+</script>
+	
+<hr />
+</body>
+</html>

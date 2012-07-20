@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Rating Widget Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1><a id="overview"></a>Using Spry Widgets: Rating Widget Overview</h1>
+<h3 id="about">About Spry Widgets</h3>
+<p>A Spry widget is a page element containing built-in behaviors and functions that provide a richer user experience by enabling user interaction. These behaviors can include functionality that lets users show or hide content on the page, change the appearance (such as color of the input) in the page, interact with menu items, and much more.</p>
+<p>The Spry framework supports a set of re-usable widgets, written in standard HTML, CSS, and JavaScript. You can easily insert these widgets &mdash; the code is HTML and JavaScript at its simplest &mdash; and then style the widget according to your liking.</p>
+<p>Each widget in the Spry framework is associated with unique CSS and JavaScript files. The CSS file contains everything necessary for styling the widget, and the JavaScript file gives the widget its functionality. You must link both of these files to the page on which you want the widget to function and appear styled. For more information, see the appropriate sections about linking associated files in the topics that follow.</p>
+<p>The CSS and JavaScript files associated with a given widget are named after the widget, so it&rsquo;s easy for you to know which files correspond to which widgets. (For example, the files associated with the Rating widget are called SpryRating.css and SpryRating.js). </p>
+<ul>
+  <li><a href="#anatomy">Anatomy of the Rating widget</a></li>
+  <li><a href="#degradability">Rating widget degrades gracefully when Java Script is off</a></li>
+  <li><a href="#css">CSS for the Rating widget</a></li>
+  <li><a href="#building">Building a Rating widget</a></li>
+  <li><a href="#behaviors"> Adding Options to the Rating widget</a></li>
+  <li><a href="#options">Constructor options list</a></li>
+</ul>
+<p>See the Rating widget <a href="../../widgets/rating/SpryRating.html">reference file</a> and <a href="../../samples/rating/RatingSample.html">sample</a>.</p>
+<h3><a id="anatomy"></a>Anatomy of the Rating widget</h3>
+<p>The Rating Widget can be used to display a rating of something and also to submit a new rating for the object. </p>
+<p>This widget can be used in two different cases: as a static rating widget that will not allow  the users to submit their own rating or as a dynamic rating widget where the user can add their own rating.</p>
+<p>All widgets have a constructor script that follows the widget markup. This constructor has one required value - the container element ID, and a set of optional values.</p>
+<pre>
+&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+    &lt;!--Add a custom message--&gt;
+	&lt;span class=&quot;ratingRatedMsg&quot;&gt;Thanks for voting !&lt;/span&gt;
+&lt;/span&gt;
+
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var spryrating1 = new Spry.Widget.Rating(&quot;spryrating1&quot;);
+&lt;/script&gt;</pre>
+<p>Each widget element has a set of CSS classes attached in order to control the widget appearance and some behavior. The widget behavior is set from js file using the classes defined in the css file.</p>
+<p>In the above code sample the first span tag is the container tag containing other five span tags each which represent the placeholders   for the rating images. These placeholders   are populated via css with star images which comprise the heart of the rating widget. By calling the &quot;ratingButton&quot; class on each span tag a background image is set. The number of the span tags that have this class attached defines the maximum number of the rating widget stars. </p>
+<p>You can change the look of the Rating widget      by editing the appropriate classes in the SpryRating.css file. If you want     to remove a given behavior, you can delete the CSS rules that correspond to that     behavior. For example if you want to use other images in place of the default stars, you can simply set another background-image in the corresponding CSS class.</p>
+<p>The span container tag must have an  ID attached. </p>
+<p>You can add custom messages to a Rating widget by creating     a span tag (or any other type of tag) to hold the text     of the error message. Then, by applying a CSS class to it, you can hide or show     the message, depending on the widget state.</p>
+<p>In the script tags, the new JavaScript operator initializes the Rating  widget object, and transforms the span content with the ID of  'spryrating1' from static HTML code into an interactive page element.</p>
+<p>You can use any HTML tag as container and placeholders   for stars, the only thing that is important is to be followed the widget structure: a main container that has inside it the placeholders   for rating widget.</p>
+<pre>Container SPAN
+	Star placeholder SPAN
+	Error message SPAN</pre>
+<p>You can, however, use almost any container tag to create the widget:</p>
+<pre>Container DIV
+	Star placeholder DIV
+	Error Message P</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="degradability"></a>Rating widget degrades gracefully when Java Script is off</h3>
+<p>The Rating widget supports graceful degradation when Java Script is off. </p>
+<p>To have the Rating widget work when Java Script is off, you have to add a few more HTML tags. The HTML elements needed for graceful degradation are by default hidden from CSS when Java Script is enabled.</p>
+<p>In the main widget container,  add a text input element which will be the replacement code for the Rating widget stars. To be able to send the rating to the server, you should have a form element that contains the text input element and a submit button to send the data.</p>
+<p>The HMTL mark-up for the Rating widget when the page degrades gracefully  should look as in the below code sample:</p>
+<pre>
+&lt;form method=&quot;get&quot; name=&quot;form1&quot; action=&quot;SpryRating.php&quot;>
+
+
+	&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+             &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+             &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+             &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+             &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+             &lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+             
+             &lt;input type=&quot;text&quot; name=&quot;elementName&quot; value=&quot;3.5&quot; /&gt;
+             &lt;input type=&quot;submit&quot; value=&quot;Vote&quot;/&gt;
+             
+	&lt;/span&gt;
+
+&lt;/form&gt;
+	</pre>
+<p>Depending on  requirements,you can use text input, select input or radio input elements for graceful degradation.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="css"></a>CSS for the Rating widget</h3>
+<p>The SpryRating.css file contains the rules that style the Rating     widget. You can edit these rules to style the widget look and feel. The     names of the rules in the CSS file correspond directly to the names of the     classes specified in the Rating widget’s HTML code.</p>
+<p>The following is the CSS code for the SpryRating.css file. </p>
+<pre>/* top-level container for rating widget */
+
+.ratingContainer{<br />	float: left;	<br />}<br />/* star */
+.ratingButton{
+ 	 background-repeat: no-repeat;
+	 background-position: center center;
+	 display: none;
+}  
+.ratingInitialState .ratingButton,
+.ratingReadOnlyState .ratingButton,
+.ratingRatedState .ratingButton
+{
+	display: block;
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+/* Hide the input fields that are used for graceful degradation when JavaScript is enabled. */
+.ratingInitialState input,
+.ratingReadOnlyState input,
+.ratingRatedState input
+{
+	display: none;
+}
+.ratingFull{
+	 background-image: url('SpryStarFull.png');
+} 
+.ratingEmpty{
+	 background-image: url('SpryStarEmpty.png');
+} 
+.ratingHalf{
+	 background-image: url('SpryStarHalf.png');
+}
+.ratingHover{
+	 background-image: url('SpryStarHover.png');
+	 cursor: pointer;
+}
+.ratingReadOnlyState .ratingFull{
+ 	background-image: url('SpryStarFullRO.png');
+}
+.ratingReadOnlyState .ratingHalf{
+ 	background-image: url('SpryStarHalfRO.png');
+}
+.ratingReadOnlyErrMsg, .ratingRatedMsg{	
+	display: none;
+}
+.ratingReadOnlyErrState .ratingReadOnlyErrMsg{
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;	
+}
+.ratingRatedState .ratingRatedMsg{
+	display: inline;
+	color: green;	
+}
+/* Customize the appearance of the rating counter */
+.ratingCounter{
+	color: green;
+}
+</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="building"></a>Building a Rating Widget</h3>
+<ol>
+  <li>In your page, attach the Rating javascript and css files: SpryRating.js and SpryRating.css.
+    Recall that javascript is case sensitive.
+    <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryRating.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;includes/SpryRating.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+</pre>
+  </li>
+  <li> To the document body, add a container tag &lt;SPAN&gt; and give it a unique ID. Add to this container also the &quot;ratingContainer&quot; class to prevent possible layout issues. This class floats the container itself.
+    <pre>&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;&lt;/span&gt;</pre>
+  </li>
+  <li>Add the placeholders for widget stars and attach on each one the &quot;ratingButton&quot; class. In this example we add  five span tags to have a rating widget with five stars.<br />
+    <pre>&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;</pre>
+  </li>
+  <li>Now that the markup is complete, we will add the constructor script. Below the markup, add a script tag and write the constructor within. The values are case sensitive.<br />
+    <pre>&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var rating = new Spry.Widget.Rating(&quot;spryrating1&quot;);
+&lt;/script&gt;
+</pre>
+  </li>
+  <li> Save the page. The complete code looks as follows: <br />
+    <pre>
+&lt;head&gt;
+...
+	&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;includes/SpryRating.js&quot;&gt;&lt;/script&gt;
+	&lt;link href=&quot;includes/SpryRating.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+...
+&lt;/head&gt;
+
+&lt;body&gt;
+	&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+	&lt;/span&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var rating = new Spry.Widget.Rating(&quot;spryrating1&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;</pre>
+  </li>
+</ol>
+<p>As it is described above, the Rating widget that we just created is a dynamic widget which allows you to give your rate. You can add more behaviors to this widget depending on your needs.</p>
+<p>The next section presents the options you can add to make this Rating widget more powerful.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="behaviors"></a>Adding Options to the Rating widget</h3>
+<p>If you want to add some optional functionality to this widget, add the options that fit your requests to the  widget constructor. Options are contained within {}.</p>
+<h4>make the rating widget read only</h4>
+<p>By adding the &quot;readOnly&quot; option set on true in the widget constructor, the user can't rate, the Rating widget behaves as an disabled element having only an informative role.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {readOnly:true});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4>set an initial value for rating widget</h4>
+<p>You can specify a static initial value for the Rating widget by adding the &quot;ratingValue&quot; option in the widget constructor.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {ratingValue:2.5});
+&lt;/script&gt;</pre>
+<p>The code above will instantiate a new Rating widget having the initial value 2.5. This value will change the default appearance of the Rating widget, showing two and a half stars colored in yellow.</p>
+<p>The initial value for the Rating widget can be also dynamic, retrieved   form  server and not only static, hard-coded in the widget constructor. To extract the initial value for the Rating widget from a server, you have to add in page an input element that will store the value and use the &quot;ratingValueElement&quot; option for passing the input element id.</p>
+<p>The HTML element that will provide the data from server can be any input element: text input, hidden input, select input and has to be inside the widget container. By default, we hide this input element from CSS. It's mandatory to add an ID attribute to this HTML element because the &quot;ratingValueElement&quot; option will take as parameter this ID value.</p>
+<p>The complete code when we extract the initial data from a input hidden element, will look like this:</p>
+<pre>&lt;body&gt;
+	&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+       
+		&lt;input type="hidden" id=&quot;ratingValue&quot; name=&quot;dynamic_rate&quot; value=&quot;2&quot;/&gt;
+
+	&lt;/span&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {ratingValueElement:"ratingValue"});
+&lt;/script&gt;
+
+&lt;/body&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4>send the rated value to the server</h4>
+<p>The Rating widget has a mechanism to send the user selected rating value to the server. You can choose the method to send data: GET or POST. The default method used to send the data is GET. If you want to send the data via POST you should add &quot;postData&quot; option in the widget constructor.</p>
+<p>When sending via GET method you only have to provide the &quot;saveURL&quot; option which takes the real URL for saving data. The widget constructor will look like:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {saveURL:'SpryRating.php?id=spryrating5&val=@@rw_Rating@@'});
+&lt;/script&gt;</pre>
+<p>If you need to send the data via  POST, you should add in the widget constructor the &quot;postData&quot; option- a string containing the url encode and the &quot;saveURL&quot; - url for saving data. The &quot;postData&quot; string can contain the placeholder for the rated value, in this format @@ratingValue@@. It is always send in conjunction with saveURL.<br />
+  The widget constructor in this case:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {postData: 'id=spryrating2&val=@@ratingValue@@', saveURL:'SpryRating.php});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4>Update the Ratings Value Dynamically </h4>
+<p>Using the &quot;afterRating&quot; option, you can specify  the new value of the widget: the current voted value, or the value returned from the server after rating. You have to add  an input element inside the widget container which will store the updated value. The id of the input element will be provided as value for &quot;ratingValueElement&quot; option. It may contain the placeholder for the rated value, in the form @@ratingValue@@. It is always send in conjunction with saveURL.The complete code for a real case when you want to display an average   value coming from the server looks like this:</p>
+<pre>&lt;body&gt;
+	&lt;span id=&quot;spryrating1&quot; class=&quot;ratingContainer&quot;&gt;
+
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;span class=&quot;ratingButton&quot;&gt;&lt;/span&gt;
+		&lt;input type="text" id=&quot;ratingValue&quot; name=&quot;dynamic_rate&quot; value=&quot;2&quot;/&gt;
+
+	&lt;/span&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {ratingValueElement:"ratingValue", afterRating:'serverValue', saveURL:'SpryRating.php?id=spryrating5&val=@@rw_Rating@@'});
+&lt;/script&gt;
+
+&lt;/body&gt;</pre>
+<p>In case you only want to display the voted value, is need to specify in the widget constructor only the option &quot;afterRating&quot; with a value of: &quot;currentValue&quot;.</p>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h4>keyboard navigation</h4>
+<p> Making widgets accessible for keyboard navigation is an important part of   	every widget. Keyboard navigation lets the user control the widget with arrow   	keys and custom keys. The keyboard navigation is enabled by default  for the Rating widget, but it can be disabled  by passing the &quot;enableKeyboardNavigation&quot; option on false.</p>
+<p>If you want to not use the default keys for navigation/voting, you can use specify which keys you want using the following options: &quot;moveNextKeyCode&quot;, &quot;movePreviousKeyCode&quot;, &quot;doRatingKeyCode&quot;.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var rate = new Spry.Widget.Rating(&quot;spryrating1&quot;, {moveNextKeyCode:34 /* PgUp key */, movePrevKeyCode: 33 /* PgDn key */, doRatingKeyCode:32 /*Space key*/});
+&lt;/script&gt;</pre>
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<h3><a id="options"></a>Constructor options list</h3>
+Below are listed all options available for the Rating widget.<br />
+<br />
+<table width="817" cellpadding="4" id="options">
+  <tr>
+    <th width="110">Option</th>
+    <th width="446">Definition</th>
+    <th width="105">Default</th>
+    <th width="104">Values</th>
+  </tr>
+  <tr id="containsString">
+    <td>ratingValue </td>
+    <td>Sets the default rating value that will appear as  when page loads.</td>
+    <td>0</td>
+    <td>number</td>
+  </tr>
+  <tr id="minCharsType">
+    <td>ratingValueElement </td>
+    <td>This option provides an id for an HTML element (this can be: text field,  hidden field) whose &quot;value&quot; attribute will be used as initial value  when page loads. This HTML element can be updated with the a value coming from the server after rating.</td>
+    <td>-</td>
+    <td>string</td>
+  </tr>
+  <tr id="maxListItems">
+    <td>afterRating </td>
+    <td>This option provides the Rating widget value after the user makes a rating.</td>
+    <td>currentValue</td>
+    <td><ul>
+        <li>currentValue</li>
+        <li>serverValue</li>
+      </ul></td>
+  </tr>
+  <tr id="hoverSuggestClass">
+    <td>allowMultipleRating</td>
+    <td>Using this option you can  leave the widget enabled or read-only  after the first rating.</td>
+    <td>true</td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr id="loadFromServer">
+    <td>readOnly </td>
+    <td>Sets the widget in read-only mode, where the user can't rate. Only display already collected information.</td>
+    <td>false</td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr id="urlParam">
+    <td>saveURL</td>
+    <td><p>The URL used for saving data on the server. It may contain the placeholder for the rated value, in the form @@ratingValue@@. If no postData option, the data will be sent on GET.</p></td>
+    <td>-</td>
+    <td>string</td>
+  </tr>
+  <tr id="movePrevKeyCode">
+    <td>postData </td>
+    <td><p>This option allows the user to specify a string containing url encoded form arguments or any value, that will get submitted by POST. It may contain the placeholder for the rated value, in the form @@ratingValue@@. It is always send in conjunction with saveURL. If this option is present, the data will be  automatically send by POST.</p></td>
+    <td>-</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>counter</td>
+    <td>By  adding this option you can  display the rate value when mouse hover the stars -e.g: a counter like [3.5 / 10].</td>
+    <td>false </td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td>rateHandler </td>
+    <td>In this option the user can specify a function  to be called  when the user makes a rating. If a saveUrl is present, this function will be called after the data has been sent on the server specified in saveURL.</td>
+    <td>-</td>
+    <td>function</td>
+  </tr>
+  <tr>
+    <td>enableKeyboardNavigation </td>
+    <td>This option allows to the user to vote using keyboard keys.</td>
+    <td>true</td>
+    <td><ul>
+        <li>true</li>
+        <li>false</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td>moveNextKeyCode</td>
+    <td>This option allows the user to assign a specific key to go to the next star. The value of the option is the keyboard code number.</td>
+    <td>number</td>
+    <td>39 (left arrow key)</td>
+  </tr>
+  <tr>
+    <td>movePrevKeyCode</td>
+    <td>This option allows the user to assign a specific key to go to the previous star. The value of the option is the keyboard code number.</td>
+    <td>number</td>
+    <td><p>37 (right arrow key)</p></td>
+  </tr>
+  <tr>
+    <td>doRatingKeyCode</td>
+    <td>This option allows  the users to make a rating by pressing a key.</td>
+    <td>number</td>
+    <td>13 (Enter key)</td>
+  </tr>
+  <tr>
+    <td>starFullClass</td>
+    <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingFull&quot;.</td>
+    <td>ratingFull</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>starHalfClass</td>
+    <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingHalf&quot;.</td>
+    <td>ratingHalf</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>starEmptyClass</td>
+    <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingEmpty&quot;.</td>
+    <td>ratingEmpty</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>starHoverClass </td>
+    <td>By adding this option and providing a new class as parameter value, you can override the default CSS class: &quot;ratingHover.&quot;</td>
+    <td>ratingHover</td>
+    <td>string</td>
+  </tr>
+</table>
+<br />
+<div class="nav-up"><a href="#overview">back to top</a></div>
+<hr />
+<p>Copyright &copy; 2008. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

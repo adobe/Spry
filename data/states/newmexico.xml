@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>New Mexico</name>
+	<cities>
+		<city>
+			<name>Acomita Lake</name>
+		</city>
+		<city>
+			<name>Agua Fria</name>
+		</city>
+		<city>
+			<name>Alamogordo</name>
+		</city>
+		<city>
+			<name>Albuquerque</name>
+		</city>
+		<city>
+			<name>Alcalde</name>
+		</city>
+		<city>
+			<name>Angel Fire</name>
+		</city>
+		<city>
+			<name>Anthony</name>
+		</city>
+		<city>
+			<name>Artesia</name>
+		</city>
+		<city>
+			<name>Aztec</name>
+		</city>
+		<city>
+			<name>Bayard</name>
+		</city>
+		<city>
+			<name>Belen</name>
+		</city>
+		<city>
+			<name>Bernalillo</name>
+		</city>
+		<city>
+			<name>Black Rock</name>
+		</city>
+		<city>
+			<name>Bloomfield</name>
+		</city>
+		<city>
+			<name>Boles Acres</name>
+		</city>
+		<city>
+			<name>Bosque Farms</name>
+		</city>
+		<city>
+			<name>Cannon AFB</name>
+		</city>
+		<city>
+			<name>Capitan</name>
+		</city>
+		<city>
+			<name>Carlsbad</name>
+		</city>
+		<city>
+			<name>Carlsbad North</name>
+		</city>
+		<city>
+			<name>Carrizozo</name>
+		</city>
+		<city>
+			<name>Causey</name>
+		</city>
+		<city>
+			<name>Central</name>
+		</city>
+		<city>
+			<name>Chama</name>
+		</city>
+		<city>
+			<name>Chamisal</name>
+		</city>
+		<city>
+			<name>Chaparral</name>
+		</city>
+		<city>
+			<name>Chimayo</name>
+		</city>
+		<city>
+			<name>Cimarron</name>
+		</city>
+		<city>
+			<name>Clayton</name>
+		</city>
+		<city>
+			<name>Cloudcroft</name>
+		</city>
+		<city>
+			<name>Clovis</name>
+		</city>
+		<city>
+			<name>Cochiti</name>
+		</city>
+		<city>
+			<name>Columbus</name>
+		</city>
+		<city>
+			<name>Corona</name>
+		</city>
+		<city>
+			<name>Corrales</name>
+		</city>
+		<city>
+			<name>Crownpoint</name>
+		</city>
+		<city>
+			<name>Cuba</name>
+		</city>
+		<city>
+			<name>Cuyamungue</name>
+		</city>
+		<city>
+			<name>Deming</name>
+		</city>
+		<city>
+			<name>Des Moines</name>
+		</city>
+		<city>
+			<name>Dexter</name>
+		</city>
+		<city>
+			<name>Dona Ana</name>
+		</city>
+		<city>
+			<name>Dora</name>
+		</city>
+		<city>
+			<name>Dulce</name>
+		</city>
+		<city>
+			<name>Eagle Nest</name>
+		</city>
+		<city>
+			<name>Edgewood</name>
+		</city>
+		<city>
+			<name>Eldorado at Santa Fe</name>
+		</city>
+		<city>
+			<name>Elida</name>
+		</city>
+		<city>
+			<name>Encino</name>
+		</city>
+		<city>
+			<name>Espanola</name>
+		</city>
+		<city>
+			<name>Estancia</name>
+		</city>
+		<city>
+			<name>Eunice</name>
+		</city>
+		<city>
+			<name>Farmington</name>
+		</city>
+		<city>
+			<name>Flora Vista</name>
+		</city>
+		<city>
+			<name>Floyd</name>
+		</city>
+		<city>
+			<name>Folsom</name>
+		</city>
+		<city>
+			<name>Fort Sumner</name>
+		</city>
+		<city>
+			<name>Gallup</name>
+		</city>
+		<city>
+			<name>Grady</name>
+		</city>
+		<city>
+			<name>Grants</name>
+		</city>
+		<city>
+			<name>Grenville</name>
+		</city>
+		<city>
+			<name>Hagerman</name>
+		</city>
+		<city>
+			<name>Hatch</name>
+		</city>
+		<city>
+			<name>Hobbs</name>
+		</city>
+		<city>
+			<name>Holloman AFB</name>
+		</city>
+		<city>
+			<name>Hope</name>
+		</city>
+		<city>
+			<name>House</name>
+		</city>
+		<city>
+			<name>Hurley</name>
+		</city>
+		<city>
+			<name>Isleta Pueblo</name>
+		</city>
+		<city>
+			<name>Jaconita</name>
+		</city>
+		<city>
+			<name>Jal</name>
+		</city>
+		<city>
+			<name>Jemez Pueblo</name>
+		</city>
+		<city>
+			<name>Jemez Springs</name>
+		</city>
+		<city>
+			<name>Kirtland</name>
+		</city>
+		<city>
+			<name>La Cienega</name>
+		</city>
+		<city>
+			<name>La Luz</name>
+		</city>
+		<city>
+			<name>Laguna</name>
+		</city>
+		<city>
+			<name>Lake Arthur</name>
+		</city>
+		<city>
+			<name>Las Cruces</name>
+		</city>
+		<city>
+			<name>Las Vegas</name>
+		</city>
+		<city>
+			<name>Logan</name>
+		</city>
+		<city>
+			<name>Lordsburg</name>
+		</city>
+		<city>
+			<name>Los Alamos</name>
+		</city>
+		<city>
+			<name>Los Chaves</name>
+		</city>
+		<city>
+			<name>Los Lunas</name>
+		</city>
+		<city>
+			<name>Los Ranchos de Albuquerque</name>
+		</city>
+		<city>
+			<name>Los Trujillos-Gabaldon</name>
+		</city>
+		<city>
+			<name>Loving</name>
+		</city>
+		<city>
+			<name>Lovington</name>
+		</city>
+		<city>
+			<name>Magdalena</name>
+		</city>
+		<city>
+			<name>Maxwell</name>
+		</city>
+		<city>
+			<name>Meadow Lake</name>
+		</city>
+		<city>
+			<name>Melrose</name>
+		</city>
+		<city>
+			<name>Mescalero</name>
+		</city>
+		<city>
+			<name>Mesilla</name>
+		</city>
+		<city>
+			<name>Mesita</name>
+		</city>
+		<city>
+			<name>Mexican Springs</name>
+		</city>
+		<city>
+			<name>Milan</name>
+		</city>
+		<city>
+			<name>Moriarty</name>
+		</city>
+		<city>
+			<name>Mosquero</name>
+		</city>
+		<city>
+			<name>Mountainair</name>
+		</city>
+		<city>
+			<name>Nambe</name>
+		</city>
+		<city>
+			<name>Naschitti</name>
+		</city>
+		<city>
+			<name>Navajo</name>
+		</city>
+		<city>
+			<name>Newcomb</name>
+		</city>
+		<city>
+			<name>North Acomita Village</name>
+		</city>
+		<city>
+			<name>North Valley</name>
+		</city>
+		<city>
+			<name>Ojo Amarillo</name>
+		</city>
+		<city>
+			<name>Paguate</name>
+		</city>
+		<city>
+			<name>Paradise Hills</name>
+		</city>
+		<city>
+			<name>Paraje</name>
+		</city>
+		<city>
+			<name>Pecos</name>
+		</city>
+		<city>
+			<name>Pena Blanca</name>
+		</city>
+		<city>
+			<name>Penasco</name>
+		</city>
+		<city>
+			<name>Peralta</name>
+		</city>
+		<city>
+			<name>Placitas</name>
+		</city>
+		<city>
+			<name>Pojoaque</name>
+		</city>
+		<city>
+			<name>Portales</name>
+		</city>
+		<city>
+			<name>Questa</name>
+		</city>
+		<city>
+			<name>Ranchos De Taos</name>
+		</city>
+		<city>
+			<name>Raton</name>
+		</city>
+		<city>
+			<name>Red River</name>
+		</city>
+		<city>
+			<name>Reserve</name>
+		</city>
+		<city>
+			<name>Rio Communities</name>
+		</city>
+		<city>
+			<name>Rio Rancho</name>
+		</city>
+		<city>
+			<name>Roswell</name>
+		</city>
+		<city>
+			<name>Roy</name>
+		</city>
+		<city>
+			<name>Ruidoso</name>
+		</city>
+		<city>
+			<name>Ruidoso Downs</name>
+		</city>
+		<city>
+			<name>San Felipe Pueblo</name>
+		</city>
+		<city>
+			<name>San Ildefonso Pueblo</name>
+		</city>
+		<city>
+			<name>San Jon</name>
+		</city>
+		<city>
+			<name>San Juan</name>
+		</city>
+		<city>
+			<name>San Ysidro</name>
+		</city>
+		<city>
+			<name>Sandia</name>
+		</city>
+		<city>
+			<name>Sandia Heights</name>
+		</city>
+		<city>
+			<name>Sanostee</name>
+		</city>
+		<city>
+			<name>Santa Ana Pueblo</name>
+		</city>
+		<city>
+			<name>Santa Clara Pueblo</name>
+		</city>
+		<city>
+			<name>Santa Cruz</name>
+		</city>
+		<city>
+			<name>Santa Fe</name>
+		</city>
+		<city>
+			<name>Santa Rosa</name>
+		</city>
+		<city>
+			<name>Santo Domingo Pueblo</name>
+		</city>
+		<city>
+			<name>Seama</name>
+		</city>
+		<city>
+			<name>Shiprock</name>
+		</city>
+		<city>
+			<name>Silver City</name>
+		</city>
+		<city>
+			<name>Skyline-Ganipa</name>
+		</city>
+		<city>
+			<name>Socorro</name>
+		</city>
+		<city>
+			<name>South Valley</name>
+		</city>
+		<city>
+			<name>Springer</name>
+		</city>
+		<city>
+			<name>Sunland Park</name>
+		</city>
+		<city>
+			<name>Taos</name>
+		</city>
+		<city>
+			<name>Taos Pueblo</name>
+		</city>
+		<city>
+			<name>Tatum</name>
+		</city>
+		<city>
+			<name>Tesuque</name>
+		</city>
+		<city>
+			<name>Texico</name>
+		</city>
+		<city>
+			<name>Tijeras</name>
+		</city>
+		<city>
+			<name>Tohatchi</name>
+		</city>
+		<city>
+			<name>Tome-Adelino</name>
+		</city>
+		<city>
+			<name>Truth or Consequences</name>
+		</city>
+		<city>
+			<name>Tucumcari</name>
+		</city>
+		<city>
+			<name>Tularosa</name>
+		</city>
+		<city>
+			<name>University Park</name>
+		</city>
+		<city>
+			<name>Vadito</name>
+		</city>
+		<city>
+			<name>Valencia</name>
+		</city>
+		<city>
+			<name>Vaughn</name>
+		</city>
+		<city>
+			<name>Virden</name>
+		</city>
+		<city>
+			<name>Wagon Mound</name>
+		</city>
+		<city>
+			<name>White Rock</name>
+		</city>
+		<city>
+			<name>White Sands</name>
+		</city>
+		<city>
+			<name>Willard</name>
+		</city>
+		<city>
+			<name>Williamsburg</name>
+		</city>
+		<city>
+			<name>Zia Pueblo</name>
+		</city>
+		<city>
+			<name>Zuni Pueblo</name>
+		</city>
+	</cities>
+</state>

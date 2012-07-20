@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Attributes API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="sprychoose">
+  <h3><a name="sprychoose" id="sprychoose_link"></a>spry:choose</h3>
+  <h4>Description</h4>
+  <p>The &quot;spry:choose&quot; construct provides the functional equivalent to a case statement, or an if/else if/else construct. To create an &quot;spry:choose&quot; structure, add an &quot;spry:choose&quot; attribute to an element. Next, add one or more child elements with &quot;spry:when&quot; attributes on them. The value of an &quot;spry:when&quot; attribute should be a JavaScript expression that returns a zero or non-zero value.. To make a default case, just in case all of the JS expressions for each spry:when attribute returns zero/false, add an element with an &quot;spry:default&quot; attribute. The &quot;spry:default&quot; attribute doesn't require a value, but XHTML states that all attributes must have a value, so we use the convention of setting the value of the attribute equal to its name. </p>
+  <p>The region processing engine will evaluate the &quot;spry:when&quot; attribute of each node in the order they are listed under their parent element. The &quot;spry:default&quot; element is always evaluated last, and only if no &quot;spry:when&quot; expression returned a non-zero value. </p>
+  <p>spry:choose constructs must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Format</h4>
+  <pre class="codeSample">spry:choose
+&nbsp;&nbsp;&nbsp;spry:when=&quot;javascript expression&quot;
+&nbsp;&nbsp;&nbsp;spry:default=&quot;sprydefault&quot;</pre>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;div spry:region=&quot;dsPhotos&quot;&gt;
+		&lt;div spry:choose=&quot;spry:choose&quot;&gt;
+			&lt;div spry:when=&quot;'{@path}' == 'surf.gif'&quot;&gt;{@path}&lt;/div&gt;
+			&lt;div spry:when=&quot;'{@path}' == 'undefined'&quot;&gt;Path was not defined.&lt;/div&gt;
+			&lt;div spry:default=&quot;spry:default&quot;&gt;Unexpected value for path!&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+</pre>
+</div>
+<div id="sprycontent">
+  <h3><a name="sprycontent" id="sprycontent_link"></a>spry:content </h3>
+  <h4>Description</h4>
+  <p>spry:Content does a  Inner HTML replacement of the existing content with the content specified in the attribute. This attribute is used for javascript degradation reasons. The existing content is displayed in non-scripting environments and the spry:content data is used when javascript is enabled.</p>
+  <p>spry:content supports a variety of content. The attribute accepts text, Spry data references or functions. </p>
+  <h4>Format</h4>
+  spry:content=&quot;sprydata&quot;<br />
+  <br />
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;div spry:content=&quot;This is dynamic content&quot;&gt;This is static content&lt;/div&gt;</pre>
+  <pre class="codeSample">&lt;div spry:content=&quot;dsData::description&quot;&gt;&lt;!--#include file=&quot;description.htm&quot; --&gt;  &lt;/div&gt;
+   
+&lt;div spry:region=&quot;dsData&quot;&gt;This is static &lt;span spry:content=&quot;{category}&quot;&gt;content &lt;/span&gt; &lt;/div&gt;
+</pre>
+</div>
+<div id="sprydefault">
+  <h3><a name="sprydefault" id="sprydefault_link"></a>spry:default</h3>
+  <p>spry:default=&quot;any value &quot;</p>
+  <h4>Description</h4>
+  <p>spry:default is used with <a href="#sprychoose">spry:choose</a> and <a href="#sprywhen">spry:when</a> to set up an if/then construct for displaying content. spry:default is used when all spry:when constructs return false. </p>
+  <p>spry:default will always be processed last. The placement of spry:default within spry:choose doesn't matter.</p>
+  <p>spry:default doesn't require a value, but XHTML demands that all attributes have values, so value can be used. </p>
+  <p>spry:default  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>No specific value is required but some value must be used to follow the rules of XHTML. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;div spry:choose=&quot;spry:choose&quot;&gt;
+	&lt;div spry:when=&quot;'{@path}' == 'surf.gif'&quot;&gt;{@path}&lt;/div&gt;
+	&lt;div spry:when=&quot;'{@path}' == 'undefined'&quot;&gt;Path was not defined.&lt;/div&gt;
+	&lt;div spry:default=&quot;spry:default&quot;&gt;Unexpected value for path!&lt;/div&gt;
+
+&lt;/div&gt;<br />
+  </pre>
+</div>
+<div id="sprydetailregion">
+  <h3><a name="spry:detailregion" id="spry:detailregion_link"></a>spry:detailregion</h3>
+  <p>spry:detailregion=&quot;data set name&quot; </p>
+  <h4>Description</h4>
+  <p>This function defines an element as a spry detail region. A spry:detailregion works just like a Spry region but is also regenerated automatically when a listed data set is updated. A spry:detailregion sets up a listener to the listed data sets. All  data references must be within a spry:detailregion or a <a href="#spry:region">spry:region</a>. A spry:detailregion can be defined on any HTML element that allows Inner HTML writing. </p>
+  <p>Those tags that cannot accept a spry:detailregion are: COL, COLGROUP, FRAMESET, HTML, IFRAME, STYLE, TABLE, TBODY, TFOOT, THEAD, TITLE, TR. <br />
+  Note: IE 7 has a bug that causes &lt;select&gt; tags that contain a spry:detailregion or spry:region to render incorrectly. It is not recommended that &lt;select&gt; tags be used as regions.</p>
+  <p>Although the elements listed above cannot be a dynamic region container, they can exist inside a dynamic region container.</p>
+  <h4>Value</h4>
+  <em>datasetname</em>
+  <ul>
+    <li>The <em>datasetname</em> value names the data set to be used within the region. Multiple dataset names can be used with a region. Separate data set names with a space.. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre id="line25_4">&lt;div spry:detailregion=&quot;dataset&quot;&gt;<br />&lt;div spry:detailregion=&quot;dataset dataset2 dataset3&quot;&gt;</pre>
+</div>
+<div id="spryeven">
+  <h3><a name="spryeven" id="spryeven_link"></a>spry:even</h3>
+  <p>spry:even=&quot;classname&quot;</p>
+  <h4>Description</h4>
+  <p>spry:even is a behavior that sets a CSS class name to the element when Spry is writing data while the value of currentRow is even. This is commonly used to set alternating row colors or tables or other repeating elements. </p>
+  <p>If multiple data sets are specified in the region, it will use the first listed. If you want to use other datasets, they need to be specified in the value: spry:even=&quot;ds2 classname&quot; </p>
+  <p>spry:even  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:even takes a CSS class name as a value. </p>
+  <p>Optional: data set name if the region uses multiple data sets. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style&gt;
+.evenClass{ background-color:{#FFFFFF}
+&lt;/style&gt;
+
+&lt;tr spry:repeat=&quot;ds1&quot; spry:even=&quot;evenClass&quot;&gt;
+</pre>
+  <p>This will change the background color of the table row when the currentRow number is even while looping over the &lt;tr&gt;.</p>
+</div>
+<div id="spryif">
+  <h3><a name="spryif" id="spryif_link"></a>spry:if</h3>
+  <h4>Description</h4>
+  <p>The  &quot;spry:if&quot; attribute is used to display a page element based on the results of a condition. The value of spry:if is a JavaScript expression that returns zero or non-zero values. A non-zero value returned by the JavaScript expression will result in the element being written to the final output.&nbsp; A zero result will cause the element not to be written to the page. </p>
+  <p>spry:if attributes must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Format</h4>
+  <p>spry:if=&quot;javascript expression &quot;</p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;ol class=&quot;spry:repeat&quot;&gt;
+ &lt;li spry:if=&quot;'{@path}'.search(/^s/) != -1;&quot;&gt;{@path}&lt;/li&gt;<br />&lt;/ol&gt;<br /><br />
+
+ &lt;select spry:repeatchildren=&quot;dsGalleries&quot; id=&quot;gallerySelect&quot; onchange=&quot;dsGalleries.setCurrentRowNumber(this.selectedIndex);&quot;&gt;<br />        &lt;option spry:if=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot; selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;<br />        &lt;option spry:if=&quot;{ds_RowNumber} != {ds_CurrentRowNumber}&quot;&gt;{sitename}&lt;/option&gt;<br /> &lt;/select&gt;</pre>
+</div>
+<div id="spryhover">
+  <h3><a name="spryhover" id="spryhover_link"></a>spry:hover</h3>
+  <p>spry:hover=&quot;classname&quot;</p>
+  <h4>Description</h4>
+  <p>spry:hover is a behavior that sets a CSS class name when the mouse is over the element that contains the attribute. The class is removed when the mouse moves off of the element. </p>
+  <p>spry:hover  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:hover takes a CSS class name as a value. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style&gt;
+.hoverClass{ background-color:{#FFF000}<br />&lt;/style&gt;
+
+&lt;tr spry:hover=&quot;hoverClass&quot;&gt;
+</pre>
+  <p>This will change the background color of the table row when the mouse moves over it. </p>
+</div>
+<div id="spryodd">
+  <h3><a name="spryodd" id="spryodd_link" ></a>spry:odd</h3>
+  <p>spry:odd=&quot;classname&quot;</p>
+  <h4>Description</h4>
+  <p>spry:even is a behavior that sets a CSS class name to the element when Spry is writing data while the value of currentRow is odd. This is commonly used to set alternating row colors or tables or other repeating elements. </p>
+  <p>If multiple data sets are specified in the region, it will use the first listed. If you want to use other datasets, they need to be specified in the value: spry:odd=&quot;ds2 classname&quot; </p>
+  <p>spry:odd  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:odd takes a CSS class name as a value. </p>
+  <p>Optional: data set name if the region uses multiple data sets. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style&gt;
+.evenClass{ background-color:{#FFFFFF}
+&lt;/style&gt;
+
+&lt;tr spry:repeat=&quot;ds1&quot; spry:odd=&quot;evenClass&quot;&gt;
+</pre>
+  <p>This will change the background color of the table row when the currentRow number is odd while looping over the &lt;tr&gt;. </p>
+</div>
+<div id="spryregion">
+  <h3><a name="spry:region" id="spry:region" ></a>spry:region</h3>
+  <p>spry:region=&quot;data set name(s)&quot; </p>
+  <h4>Description</h4>
+  <p>This function defines an element as a spry region. A Spry region contains data references to be processed by the Spry engine (and any other markup). All  data references must be within a spry:region or <a href="#spry:detailregion">spry:detailregion</a>. A spry region can only be used on any HTML element that allows Inner HTML writing. </p>
+  <p>Those tags that cannot accept a spry:region are: COL, COLGROUP, FRAMESET, HTML, IFRAME, STYLE, TABLE, TBODY, TFOOT, THEAD, TITLE, TR<br />
+  Note: IE 7 has a bug that causes &lt;select&gt; tags that contain a spry:detailregion or spry:region to render incorrectly. It is not recommended that &lt;select&gt; tags be used as regions.</p>
+  <p>Although the elements listed above cannot be a dynamic region container, they can exist inside a dynamic region container.</p>
+  <h4>Values</h4>
+  <em>datasetname(s)</em>
+  <ul>
+    <li>The <em>datasetname</em> argument names the data set to be used within the region. Multiple dataset names can be used with a region. Separate data set names with a space.. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre id="line25_5">&lt;div spry:region=&quot;dataset&quot;&gt;<br />&lt;div spry:region=&quot;dataset dataset2 dataset3&quot;&gt;
+</pre>
+</div>
+<div id="repeat">
+  <h3><a name="repeat" id="repeat_link"></a>spry:repeat</h3>
+  <p>spry:repeat=&quot;data set name&quot; </p>
+  <h4>Description</h4>
+  <p>spry:repeat repeats the tag and children that contains the spry:repeat attribute, looping through the data references for each record of the dataset.</p>
+  <h4>Value</h4>
+  <em>datasetname</em>
+  <ul>
+    <li>The <em>datasetname</em> value names the data set to be used for repeating. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre id="line25_1">
+&lt;ol&gt;<br />&lt;li spry:repeat=&quot;dataset&quot;&gt;{dataset::names}&lt;/li&gt;<br />&lt;/ol&gt;<br />
+</pre>
+  This example will repeat the data reference AND the &lt;li&gt; over every record in the data set. This will create a normal ordered list of names. <br />
+</div>
+<div id="repeatchildren">
+  <h3><a name="repeatchildren" id="repeatchildren_link"></a>spry:repeatchildren</h3>
+  <p>spry:repeatchildren=&quot;data set name&quot; </p>
+  <h4>Description</h4>
+  <p>spry:repeatchildren repeats the tags within the tag that contains the spry:repeat attribute, updating data references for each record of the dataset, but does not repeat the tag that contains the attribute..</p>
+  <h4>Value</h4>
+  <em>data set name</em>
+  <ul>
+    <li>The <em>data set name</em> value names the data set to be used within the region. Multiple dataset names can be used with a region. Separate data set names with a space.. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre id="line25_2">&lt;ol spry:repeatchildren=&quot;dataset&quot;&gt;<br />&lt;li&gt;{dataset::name}&lt;/li&gt;<br />&lt;/ol&gt;<br />
+</pre>
+  This creates a standard ordered list of 'name's from the dataset. spry:repeatchildren can be used when more a more flexible layout is needed or when the container tag shouldn't be repeated. <br />
+</div>
+<div id="spryselect">
+  <h3><a name="spryselect" id="spryselect_link"></a>spry:select</h3>
+  <p>spry:select=&quot;classname&quot;</p>
+  <h4>Description</h4>
+  <p>spry:select is a behavior that sets a CSS class name to the element when the mouse is over the element that contains the attribute. The class  persists on the element until the next click on another spry:select element. This is commonly used to highlight repeating elements. </p>
+  <p>spry:select  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:select takes a CSS class name as a value. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;style&gt;
+.selectClass{ background-color:{#FFFFFF}
+&lt;/style&gt;
+
+&lt;tr spry:select=&quot;selectClass&quot;&gt;
+</pre>
+  <p>This will change the background color of the table row when the user clicks on the row and will persist until the user clicks on another row. Then that row will have the class applied.</p>
+</div>
+<div id="spryselectgroup">
+  <h3><a name="spryselectgroup" id="spryselectgroup_link"></a>spry:selectgroup</h3>
+  <p>spry:selectgroup=&quot;unique id &quot;</p>
+  <h4>Description</h4>
+  <p>spry:selectgroup works in conjunction with spry:select to allow for multiple selects within a group of elements. This is used to ensure that multiple distinct selectable groups do not interfer with each other. </p>
+  <p>spry:selectgroup  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a> and must be used with a spry:select attribute. </p>
+  <h4>Value</h4>
+  <p>spry:select takes unique value to distinguish it from other groups. A number or string can be used. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;tr&gt;<br />	&lt;td&gt;&lt;ul spry:repeatchildren=&quot;dsEmployees&quot;&gt;<br />			&lt;li spry:select=&quot;selected&quot; spry:selectgroup=&quot;l1&quot;&gt;{firstname} {lastname}&lt;/li&gt;<br />		&lt;/ul&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;ul spry:repeatchildren=&quot;dsEmployees&quot;&gt;<br />			&lt;li spry:select=&quot;selected&quot; spry:selectgroup=&quot;l2&quot;&gt;{firstname} {lastname}&lt;/li&gt;<br />		&lt;/ul&gt;&lt;/td&gt;<br />	&lt;/tr&gt;</pre>
+  <p>This code ensures that the items in the respective lists can be selected independently. </p>
+</div>
+<div id="sprysetrow">
+  <h3><a name="setrow" id="spryselectgroup2"></a>spry:setrow</h3>
+  <p>spry:setrow=&quot;number&quot;</p>
+  <h4>Description</h4>
+  <p>spry:setrow is use to update the current row number of the data set. This in turn causes detailregions to update. This attribute can be used in the same way as the <a href="xml_data.html#setcurrentrow">setCurrentRow</a> function:<br />
+    onclick=&quot;ds1.setCurrentRow('{ds_RowID}'); </p>
+  <p>It is common to use a data reference to set the currentRow. If only one data set is defined for the region, and a data reference is used for the vaule, Spry will use that data set value. If multiple data sets are defined for the region, Spry will use the first data set listed in the region attribute, unless another data set is specified in the attribute. </p>
+  <p>spry:setrow defaults to onClick. </p>
+  <p>spry:setrow  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:setrow takes a number. This can either be hardcoded or populated with a data reference. </p>
+  <h4>Example</h4>
+  Single data set<br />
+  <pre class="codeSample">
+    &lt;ul spry:repeatchildren=&quot;dsEmployees&quot;&gt;<br />		&lt;li spry:setrow=&quot;dsEmployees&quot;&gt;{firstname} {lastname}&lt;/li&gt;<br />	&lt;/ul&gt;</pre>
+</div>
+<div id="sprysetrownumber">
+  <h3><a name="setrownumber" id="spryselectgroup3" ></a>spry:setrownumber</h3>
+  <p>spry:setrownumber=&quot;number&quot;</p>
+  <h4>Description</h4>
+  <p>spry:setrownumber is used to update the current row number of the data set.  This attribute can be used in the same way as the <a href="xml_data.html#setcurrentrownumber">setCurrentRowNumber</a> function:<br />
+    onclick=&quot;ds1.setCurrentRowNumber('{ds_RowID}'); </p>
+  <p> RowID is a unique, non-changing number of a specific row in the data set. RowNumber refers to the number of the row being processed. For example, in a looping construct repeating &lt;tr&gt;, the 3rd row written out is RowNumber 2 (zero based counting system), but the RowID of the data in RowNumber 2 may be anything. </p>
+  <p>It is common to use a data reference to set the currentRowNumber. If only one data set is defined for the region, and a data reference is used for the vaule, Spry will use that data set value. If multiple data sets are defined for the region, Spry will use the first data set listed in the region attribute, unless another data set is specified in the attribute. </p>
+  <p>spry:setrownumber defaults to onClick. </p>
+  <p>spry:setrownumber  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>spry:setrownumber takes a number. This can either be hardcoded or populated with a data reference. </p>
+  <h4>Example</h4>
+  Single data set<br />
+  <pre class="codeSample">
+&lt;tr&gt;<br />	&lt;td&gt;&lt;ul spry:repeatchildren=&quot;dsEmployees&quot;&gt;<br />			&lt;li spry:setrownumer=&quot;{ds_rowID}&quot;&gt;{firstname} {lastname}&lt;/li&gt;<br />		&lt;/ul&gt;&lt;/td&gt;<br />&lt;/tr&gt;</pre>
+  <br />
+  Multiple data sets<br />
+  <br />
+  <pre class="codeSample">
+&lt;tr&gt;<br />	&lt;td&gt;&lt;ul spry:repeatchildren=&quot;dsFirst dsEmployees&quot;&gt;<br />			&lt;li spry:setrownumber=&quot;dsEmployees {ds_rowID}&quot;&gt;{firstname} {lastname}&lt;/li&gt;<br />		&lt;/ul&gt;&lt;/td&gt;<br />&lt;/tr&gt;</pre>
+</div>
+<div id="sprysort">
+  <h3><a name="sprysort" id="sprysort_link"></a>spry:sort</h3>
+  <p>spry:sort=&quot;sortcolumn&quot;</p>
+  <h4>Description</h4>
+  <p>The spry:sort attribute is used to sort the specified column. It's equivalent to ds1.sort(&quot;column&quot;,&quot;toggle) </p>
+  <p>By default, spry:sort will toggle the sort order. Ascending and Descending can be set as options. </p>
+  <p>Columns can be set for secondary or tertiary sorting. </p>
+  <p>If multiple data sets are defined for the region that contains the sort, Spry will use the first data set listed, unless the desired data set is specified in the attribute. </p>
+  <p>spry:sort  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>sortcolumn</p>
+  <p><strong>Optional</strong></p>
+  <p>dataset name - the name of the data set if it is not the first listed in the spry:region or detailregion.</p>
+  <p>sort order - toggle, ascending or descending. Toggle is none is specified. </p>
+  <h4>Example</h4>
+  <br />
+  <strong>Single Sorting</strong><br />
+  <pre class="codeSample">
+&lt;div spry:region=&quot;ds1&quot;&gt;<br />  &lt;table&gt;<br />    &lt;tr&gt;<br />      &lt;th spry:sort=&quot;lastname&quot;&gt;Lastname&lt;/th&gt;<br />      &lt;th spry:sort=&quot;firstname&quot;&gt;Firstname&lt;/th&gt;<br />    &lt;/tr&gt;<br />    &lt;tr spry:repeat=&quot;ds1&quot;&gt;<br />      &lt;td&gt;{lastname}&lt;/td&gt;<br />      &lt;td&gt;{firstname}&lt;/td&gt;<br />    &lt;/tr&gt;<br />  &lt;/table&gt;<br />&lt;/div&gt;</pre>
+  <br />
+  <strong>Secondary sort, Multiple Data sets</strong><br />
+  <pre class="codeSample">&lt;div spry:region=&quot;ds1&quot;&gt;<br />  &lt;table&gt;<br />    &lt;tr&gt;<br />      &lt;th spry:sort=&quot;ds2 lastname,firstname&quot;&gt;Lastname&lt;/th&gt;<br />      &lt;th spry:sort=&quot;ds2 firstname,lastname ascending&quot;&gt;Firstname&lt;/th&gt;<br />    &lt;/tr&gt;<br />    &lt;tr spry:repeat=&quot;ds1&quot;&gt;<br />      &lt;td&gt;{lastname}&lt;/td&gt;<br />      &lt;td&gt;{firstname}&lt;/td&gt;<br />    &lt;/tr&gt;<br />  &lt;/table&gt;<br />&lt;/div&gt;</pre>
+</div>
+<div id="sprystate">
+  <h3><a name="sprystate" id="sprystate_link"></a>spry:state</h3>
+  <p>spry:state=&quot;statename&quot;</p>
+  <h4>Description</h4>
+  <p>The spry:state attribute is used to control which content displays while Spry is processing the data. Spry can show different content while the data is loading, when it's ready and if there is an error. </p>
+  <p>While Spry is processing the data, elements with the &quot;loading&quot; state will show.<br />
+    When Spry is finished processing, the &quot;ready&quot; state elements will show and the &quot;loading&quot; elements will disappear.<br />
+    If there is some error in processing the data, only the &quot;error&quot; state elements will show.</p>
+  <p>spry:state  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>There are 3 built in Spry states:</p>
+  <ul>
+    <li>&quot;loading&quot;</li>
+    <li>&quot;ready&quot;</li>
+    <li>&quot;error&quot;</li>
+  </ul>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;div spry:region=&quot;dsEmployees&quot;&gt;
+&lt;div spry:state=&quot;loading&quot;&gt;Loading employee data ...&lt;/div&gt;
+&lt;div spry:state=&quot;error&quot;&gt;Failed to load employee data!&lt;/div&gt;
+  &lt;ul spry:state=&quot;ready&quot;&gt;
+     &lt;li spry:repeat=&quot;dsEmployees&quot;&gt;{firstname} {lastname}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</pre>
+</div>
+<div id="sprytest">
+  <h3><a name="sprytest" id="sprytest_link"></a>spry:test </h3>
+  <h4>Description</h4>
+  <p>spry:test is used when you want to limit or filter what gets written out in a spry:repeat loop. Adding a spry:test attribute to an element that contains a spry:repeat or spry:repeatchildren will control which records get written out. </p>
+  <p>spry:test is different than spry:if because spry:test is only used with a spry:repeat(children). spry:if can be used anywhere within a region. </p>
+  <h4>Format</h4>
+  spry:test=&quot;javascript expression that returns 0 or a non-zero value &quot;<br />
+  <br />
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;ul&gt;
+&lt;li spry:repeat=&quot;dsPhotos&quot; spry:test=&quot;'{@path}'.search(/^s/) != -1;&quot;&gt;{@path}&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+  This will only output records where the @path column contains the letter 's'. <br />
+</div>
+<div id="sprywhen">
+  <h3><a name="sprywhen" id="sprywhen_link"></a>spry:when</h3>
+  <p>spry:when=&quot;javascript expression &quot;</p>
+  <h4>Description</h4>
+  <p>spry:when is used with <a href="#sprychoose">spry:choose</a> and <a href="#sprydefault">spry:default</a> to set up an if/then construct for displaying content. spry:when constructs are evaluated in the order in which they appear in the code. </p>
+  <p>The javascript expression in the spry:when should return a zero or non-zero (true/false).</p>
+  <p>spry:when  must be within a <a href="#spry:region">spry:region</a> or <a href="#spry:detailregion">spry:detailregion</a>. </p>
+  <h4>Value</h4>
+  <p>A javascript expression that returns zero or non-zero. </p>
+  <h4>Example</h4>
+  <pre class="codeSample">&lt;div spry:choose=&quot;spry:choose&quot;&gt;
+	&lt;div spry:when=&quot;'{@path}' == 'surf.gif'&quot;&gt;{@path}&lt;/div&gt;
+	&lt;div spry:when=&quot;'{@path}' == 'undefined'&quot;&gt;Path was not defined.&lt;/div&gt;
+	&lt;div spry:default=&quot;spry:default&quot;&gt;Unexpected value for path!&lt;/div&gt;
+
+&lt;/div&gt;<br />
+</pre>
+</div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

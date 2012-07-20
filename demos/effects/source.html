@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Spry Effects Demo Source</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="codesample">
+<div id="wrap">
+<h1>Effects Demo Source<span class="return"><a href="../index.html">Back to Demos</a></span><span class="demo"><a href="index.html">Return to Effects Demo</a></span> </h1>
+<div class="sample">
+<pre class="codeSample">
+
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. --&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+	&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;
+	&lt;title&gt;Spry Effects&lt;/title&gt;
+	&lt;link href=&quot;effects.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+	&lt;link href=&quot;../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+	<span class="highlightedcode">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;</span>
+	&lt;script type=&quot;text/javascript&quot; src=&quot;effects.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;noscript&gt;&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;&lt;/noscript&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+	&lt;h1 id=&quot;albumName&quot;&gt;Effects Demo &lt;span class=&quot;return&quot;&gt;&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;source&quot;&gt;&lt;a href=&quot;source.html&quot;&gt;View Source &lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;
+	&lt;div  class=&quot;container&quot; id=&quot;product_box&quot;&gt;
+		&lt;!-- NOTE: nested divs required for slide effect--&gt;
+		&lt;div class=&quot;content_panel&quot; id=&quot;content_box&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;text_pane&quot;&gt;Click on the buttons to see the effects. Most buttons toggle the effects, so click again to reverse the effect. &lt;/div&gt;
+		&lt;div class=&quot;navigation_pane&quot; id=&quot;effectsControls&quot;&gt;
+		&lt;div class=&quot;effectsTransport_1&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Fade', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true}, 'Makes an HTML element appear or fade away.');</span>&quot; title=&quot;Fade&quot;&gt;Fade&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_2&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Blind', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Simulates a window blind up/down. The contents of the affected HTML element stay in place.')</span>&quot; title=&quot;Blind&quot;&gt;Blind&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_3&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Slide', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Simulates a window scroll. The contents of the affected HTML element are scrolled up/down.')</span>&quot; title=&quot;Slide&quot;&gt;Slide&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_4&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Squish','product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}, 'Moves an HTML element into or extends it from its upper left corner.');</span>&quot; title=&quot;Squish&quot;&gt;Squish&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_5&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Grow', 'product_box', {duration: 1000, from: '100%', to: '0%', toggle: true}); ExampleHelpText('Shrinks or grows the specified html element.');</span>&quot; title=&quot;Grow&quot;&gt;Grow&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_6&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Shake', 'product_box', {duration: 1000},'Moves the specified HTML element left and right in a rapid manner.');</span>&quot; title=&quot;Shake&quot;&gt;Shake&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_7&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Highlight', 'text_pane', {duration: 1000, from: '#000000', to: '#805600', restoreColor: '#805600', toggle:true}, 'Flashes a color as the background of an HTML element.')</span>&quot; title=&quot;Hilite&quot;&gt;Hilite&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_8&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('FadeBlind', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true}, 'Combined fade and blind effect.')</span>;&quot; title=&quot;Fade Blind&quot;&gt;Fade &amp;amp; Blind&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_9&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('FadeSlide', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true}, 'Combined fade and slide effect.')</span>;&quot; title=&quot;Fade Slide&quot;&gt;Fade &amp;amp; Slide&lt;/a&gt;&lt;/div&gt;
+		&lt;div class=&quot;effectsTransport_10&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Pulsate', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true},'Pulsate effect.')</span>&quot; title=&quot;Pulsate&quot;&gt;Pulsate&lt;/a&gt;&lt;/div&gt; 
+		&lt;div class=&quot;effectsTransport_11&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Puff', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true}, 'Puff effect.')</span>&quot; title=&quot;Puff&quot;&gt;Puff&lt;/a&gt;&lt;/div&gt; 
+		&lt;div class=&quot;effectsTransport_12&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('DropOut', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true} ,'Combined appear and slide effect.')</span>&quot; title=&quot;DropOut&quot;&gt;DropOut&lt;/a&gt;&lt;/div&gt; 
+		&lt;div class=&quot;effectsTransport_13&quot; id=&quot;effectsTransport&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;<span class="highlightedcode">runEffect('Fold', 'product_box', {duration: 1000, from: 100, to: 0, toggle: true} ,'Fold effect.')</span>&quot; title=&quot;Fold&quot;&gt;Fold&lt;/a&gt;&lt;/div&gt; 
+		&lt;div class=&quot;effectsReload_0&quot; id=&quot;effectsReload&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;ReloadDocument()&quot; title=&quot;Reload&quot;&gt;Reload&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+</div>
+</div>
+</body>
+</html>

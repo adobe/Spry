@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data Set Sample</title>
+<link href="../../css/screen.css" rel="stylesheet" type="text/css" />
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.Accordion {
+	width: 200px;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../widgets/accordion/SpryAccordion.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//
+// Step 1: Define the data set:
+//
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", "/employees/employee");
+
+//
+// Step 2: Define an observer.
+//
+var observer = { onPostUpdate: function(notifier, data) { var acc = new Spry.Widget.Accordion("Acc1"); } };
+
+//
+// Step 3: Register the observer on the region so that it
+//         can auto-attach the Accordion behaviors.
+//
+Spry.Data.Region.addObserver("Acc1", observer);
+-->
+</script>
+</head>
+
+<body>
+<h3>Region Observer Sample</h3>
+<p>This page is an example of how to register an observer object on a Spry region to allow some additional processing after the region is updated. </p>
+<p>In this sample, we generate the accordion markup from a dataset. When that is done, we fire a function to activate the accordion javascript. </p>
+<hr />
+		<div id="Acc1" class="Accordion" spry:region="dsEmployees" tabindex="0">
+			<div class="AccordionPanel" spry:repeat="dsEmployees">
+				<div class="AccordionPanelTab">
+					<h3>{username}</h3>
+				</div>
+				<div class="AccordionPanelContent">
+					<div>{firstname} {lastname}</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

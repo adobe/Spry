@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<update>
+	<header>Aquo Swing</header>
+	<content><![CDATA[	
+		<div class="location">Sacramento, CA</div>
+		<div class="date">June 10th</div>
+		<p class="description">Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.</p>
+		<a href="#">directions...</a>
+	]]>
+	</content>
+</update>

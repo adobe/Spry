@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Region States Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.loading {
+	padding: 4px;
+	background-color: #FFFFCC;
+}
+.error {
+	padding: 4px;
+	background-color: #FF0000;
+}
+.ready {
+	padding: 4px;
+	background-color: #33FF99;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "//state");
+var dsPenn = new Spry.Data.XMLDataSet("../../data/states/pennsylvania.xml", "//city");
+var dsCali = new Spry.Data.XMLDataSet("../../data/states/california.xml", "//city");
+var dsBad = new Spry.Data.XMLDataSet("../../data/bad.xml", "//item");
+
+var dsArray = [ dsStates, dsPenn, dsCali, dsBad ];
+var numRegions = 9;
+
+function ReloadDataSets()
+{
+	for (var i = 0; i < dsArray.length; i++)
+		dsArray[i].loadData();
+}
+
+function SetState(rgnState)
+{
+	for (var i = 1; i <= numRegions; i++)
+		Spry.Data.getRegion("r" + i).setState(rgnState);
+}
+
+</script>
+
+</head>
+
+<body>
+<h3>Spry States Sample </h3>
+<p>This sample shows you how you can use region states to let Spry manage when specific markup gets displayed. </p>
+<p>In the table below, there are 7 dynamic regions. The first 4 are bound to individual data sets, the last three are bound to all, or some of the data sets. Notice that when you initially load this page, or if you press the &quot;Reload&quot; button below, that the markup in each region automatically switches between showing a loading message and either displaying data or displaying an error message.</p>
+<p>Notice that all of the regions that depend on dsBad, all show error messages after loading, and that all regions that depend on data sets that successfully loaded display data. </p>
+<p>The &quot;Loading&quot;, &quot;Error&quot;, &quot;Ready&quot;, &quot;Custom 1&quot;, and &quot;Custom 2&quot; buttons below allow you to manually switch each dynamic region into a specific state. </p>
+<p>The built-in region states that are automatically triggered are:</p>
+<ul>
+	<li> &quot;loading&quot; - One or more of the data sets bound to the region is loading.</li>
+	<li>&quot;error&quot; - One ore more of the data sets bound to the region failed to load.</li>
+	<li>&quot;ready&quot; - All data sets bound to the region have loaded successfully. </li>
+</ul>
+<p>The state of a region can be set manually with a call to setState(). If a region is called with a &quot;custom&quot; state that the region does not support, the setState() is ignored. </p>
+<hr />
+<p>
+	<input type="button" value="Reload" onclick="ReloadDataSets();" />
+	<input type="button" value="Loading" onclick="SetState('loading');" />
+	<input type="button" value="Error" onclick="SetState('error');" />
+	<input type="button" value="Ready" onclick="SetState('ready');" />
+	<input type="button" value="Custom 1" onclick="SetState('custom1');" />
+	<input type="button" value="Custom 2" onclick="SetState('custom2');;" />
+</p>
+<table border="1" cellpadding="4">
+	<tr>
+		<th scope="col">dsStates</th>
+		<th scope="col">dsPenn</th>
+		<th scope="col">dsCali</th>
+		<th scope="col">dsBad</th>
+		<th scope="col">All Data Sets </th>
+		<th scope="col">dsStates + dsPenn + dsCali</th>
+		<th scope="col">dsBad + dsPenn + dsCali</th>
+	</tr>
+	<tr>
+		<td>
+			<div id="r1" spry:region="dsStates">
+				<div class="loading" spry:state="loading">Loading all dsStates ...</div>
+				<div class="error" spry:state="error">Failed to load dsStates!</div>
+				<div class="ready" spry:state="ready">{name}</div>
+				<ul spry:state="custom1"><li spry:repeat="dsStates" spry:test="{ds_RowNumber} &lt; 10">{name}</li></ul>
+				<div spry:state="custom2" spry:repeatchildren="dsStates" spry:test="{ds_RowNumber} &lt; 10"><span spry:if="{ds_RowNumber} == 0">{name}</span><span spry:if="{ds_RowNumber} != 0">, {name}</span></div>
+			</div>
+		</td>
+		<td>
+			<div id="r2" spry:region="dsPenn">
+				<div class="loading" spry:state="loading">Loading dsPenn ...</div>
+				<div class="error" spry:state="error">Failed to load dsPenn!</div>
+				<div class="ready" spry:state="ready">{name}</div>
+				<ul spry:state="custom1"><li spry:repeat="dsPenn" spry:test="{ds_RowNumber} &lt; 10">{name}</li></ul>
+				<div spry:state="custom2" spry:repeatchildren="dsPenn" spry:test="{ds_RowNumber} &lt; 10"><span spry:if="{ds_RowNumber} == 0">{name}</span><span spry:if="{ds_RowNumber} != 0">, {name}</span></div>
+			</div>
+		</td>
+		<td>
+			<div id="r3" spry:region="dsCali">
+				<div class="loading" spry:state="loading">Loading dsCali ...</div>
+				<div class="error" spry:state="error">Failed to load dsCali!</div>
+				<div class="ready" spry:state="ready">{name}</div>
+				<ul spry:state="custom1"><li spry:repeat="dsCali" spry:test="{ds_RowNumber} &lt; 10">{name}</li></ul>
+				<div spry:state="custom2" spry:repeatchildren="dsCali" spry:test="{ds_RowNumber} &lt; 10"><span spry:if="{ds_RowNumber} == 0">{name}</span><span spry:if="{ds_RowNumber} != 0">, {name}</span></div>
+			</div>
+		</td>
+		<td>
+			<div id="r4" spry:region="dsBad">
+				<div class="loading" spry:state="loading">Loading dsBad ...</div>
+				<div class="error" spry:state="error">Failed to load dsBad!</div>
+				<div class="ready" spry:state="ready">{@value}</div>
+				<div spry:state="custom1">dsBad Custom 1 Content!</div>
+				<div spry:state="custom2">dsBad Custom 2 Content!</div>
+			</div>
+		</td>
+		<td>
+			<div id="r5" spry:region="dsStates dsPenn dsCali dsBad">
+				<div class="loading" spry:state="loading">Loading all data sets ...</div>
+				<div class="error" spry:state="error">Failed to load one or more data sets!</div>
+				<div class="ready" spry:state="ready">All data sets loaded successfully!</div>
+				<div spry:state="custom1">Custom 1 Content!</div>
+				<div spry:state="custom2">Custom 2 Content!</div>
+			</div>
+		</td>
+		<td>
+			<div id="r6" spry:region="dsStates dsPenn dsCali">
+				<div class="loading" spry:state="loading">Loading dsStates, dsPenn, and dsCali ...</div>
+				<div class="error" spry:state="error">Failed to load one or more data sets!</div>
+				<div class="ready" spry:state="ready">All data sets loaded successfully!</div>
+				<div spry:state="custom1">Custom 1 Content!</div>
+				<div spry:state="custom2">Custom 2 Content!</div>
+			</div>
+		</td>
+		<td>
+			<div id="r7" spry:region="dsBad dsPenn dsCali">
+				<div class="loading" spry:state="loading">Loading dsBad, dsPenn, and dsCali ...</div>
+				<div class="error" spry:state="error">Failed to load one or more data sets!</div>
+				<div class="ready" spry:state="ready">All data sets loaded successfully!</div>
+				<div spry:state="custom1">Custom 1 Content!</div>
+				<div spry:state="custom2">Custom 2 Content!</div>
+			</div>
+		</td>
+	</tr>
+</table>
+<p id="r8" spry:region="dsStates dsPenn dsCali dsBad">
+	You don't have to provide markup for all states:</p>
+<p spry:region="dsStates dsPenn dsCali dsBad">This will show up on error --&gt; <span class="error" spry:state="error">An error occurred!</span></p>
+<p id="r9" spry:region="dsStates">
+	This will show on custom1 --&gt; 
+	<span class="ready" spry:state="custom1">Custom 1 State</span></p>
+<hr />
+<p>The <a href="../../demos/rssreader/index.html">RSS Reader Demo</a> gives a real-world use example of region states. </p>
+<p>&nbsp;</p>
+</body>
+</html>

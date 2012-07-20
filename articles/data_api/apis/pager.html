@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Paged View API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Spry Paged View Data Set</h2>
+<p>The Paged View Data Set is a data set made from a master data set allows for simple paging in Spry. Refer to the <a href="../../pager/index.html">overview document</a> and the extensive <a href="../../../samples/data_region/SpryPagedViewSample.html">sample file</a>.</p>
+<table>
+  <tr>
+    <th scope="col">Method Name </th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><a href="#dataset">Paged View data set constructor</a></td>
+    <td>Sets up the Paged View data set.</td>
+  </tr>
+  <tr>
+    <td><a href="#firstpage">firstPage()</a></td>
+    <td>Filter the data set so that only rows in the first page are available. </td>
+  </tr>
+  <tr>
+    <td><a href="#getcurrentpage">getCurrentPage()</a></td>
+    <td>Returns the number of the current page.</td>
+  </tr>
+  <tr>
+    <td><a href="#getpagecount">getPageCount()</a></td>
+    <td>Returns the total number of pages currently set.</td>
+  </tr>
+  <tr>
+    <td><a href="#getpageforitemnumber">getPageForItemNumber(itemNumber)</a></td>
+    <td>Returns the index of the page that contains the specified item number.</td>
+  </tr>
+  <tr>
+    <td height="25"><a href="#getpageforrowid">getPageForRowID(rowID)</a></td>
+    <td>Returns the index of the page that contains the row with the given ds_RowID. </td>
+  </tr>
+  <tr>
+    <td><a href="#getpageforrownumber">getPageForRowNumber(rowNumber)</a></td>
+    <td>Returns the index of the page that contains the specified row number.</td>
+  </tr>
+  <tr>
+    <td><a href="#getpaginginfo">getPagingInfo()</a></td>
+    <td>A special data set that data references for common paging patterns.</td>
+  </tr>
+  <tr>
+    <td><a href="#gotopage">goToPage(pageIndex)</a></td>
+    <td>Filter the data so that only rows associated with the specified page index are available via getData(). </td>
+  </tr>
+  <tr>
+    <td><a href="#gotopagecontainingitemnumber">goToPageContainingItemNumber(itemNumber)</a></td>
+    <td>Filter the data so that only rows on the same page as the row with the specified item number are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#gotopagecontainingrowid">goToPageContainingRowID(rowID)</a></td>
+    <td>Filter the data so that only rows on the same page as the row with the specified rowID are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#gotopagecontainingrownumber">goToPageContainingRowNumber(rowNumber)</a></td>
+    <td>Filter the data so that only rows on the same page as the row with the specified row number are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#lastpage">lastPage()</a></td>
+    <td>Filter the data set so that only rows in the last page are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#nextpage">nextPage()</a></td>
+    <td>Filter the data set so that only rows in the next page are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#previouspage">previousPage()</a></td>
+    <td>Filter the data set so that only rows in the previous page are available.</td>
+  </tr>
+  <tr>
+    <td><a href="#setpagesize">setPageSize(pageSize)</a></td>
+    <td>Sets the maximum number of rows that can appear on any page. If zero, turns off paging. </td>
+  </tr>
+  <tr>
+    <td><a href="#datareferences">Data References</a></td>
+    <td>A list of data references available to the Paged View data set.</td>
+  </tr>
+</table
+>
+<h3>Definitions</h3>
+<p>Here are the terms used in the Paged View data set.</p>
+<table width="443">
+  <tr>
+    <th width="159" scope="col">Term</th>
+    <th width="272" scope="col">Definition</th>
+  </tr>
+  <tr>
+    <td>index</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>item number</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>row number</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>row ID</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<div id="dataset">
+  <h3><a name="dataset"></a>PagedView Data Set constructor</h3>
+  <p>The Paged View data set is a special data set because it gets its data from an existing Spry data set. The Paged View data set then computes the paging information from this parent data set. Therefore, the page must have an existing data set to work properly. The name of this data set is used in the Paged View constructor.</p>
+  <p>To use the Paged View data set, the Paged View javascript file must be included in the head of the page, below the SpryData.js script.</p>
+  <pre>&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot; src=&quot;../../includes/SpryPagedView.js&quot;&gt;&lt;/script&gt;</pre>
+  <p>A basic Paged View constructor looks like this:</p>
+  <pre>var pv1 = new Spry.Data.PagedView(datasetname, {options});</pre>
+  <p>As with other Spry data sets, the var 'pv1' is the name of the data set that will be used in the Spry regions. The datasetname is the name of the parent data set. You generally do not wrap this name in quotes.</p>
+  <h4>Paged View data set options</h4>
+  <table>
+    <tr>
+      <th scope="col">Option Name </th>
+      <th scope="col">Description</th>
+    </tr>
+    <tr>
+      <td>forceFullPages</td>
+      <td>Boolean. If true, and there is more than one page of data, force the last page of data to contain a full set of data. Note that this could cause some items to appear on both the last and next to last pages. </td>
+    </tr>
+    <tr>
+      <td>pageSize</td>
+      <td>Integer. The max number of items in a page.</td>
+    </tr>
+    <tr>
+      <td>setCurrentRowOnPageChange</td>
+      <td>Boolean. If true, the paged view will check to see if the data set's current row is in the current page. If it isn't, then it will force the current row of the data set to be the first item in the page.</td>
+    </tr>
+    <tr>
+      <td>useZeroBasedIndexes</td>
+      <td>Boolean. If true the caller will pass page indexes to the various paging functions that are between zero and n-1, where n is the total number of rows in the data set. The default is false, so page numbers are between 1 and n. </td>
+    </tr>
+  </table>
+  <p>By default, the Paged View data set will use 10 rows per page. To change this, set the 'pageSize' option in the constructor.</p>
+  <pre>var pv1 = new Spry.Data.PagedView(ds1, {pageSize:25, forceFullPages:true, setCurrentRowOnPageChange:false, useZeroBasedIndexes:true });</pre>
+</div>
+<div id="firstpage">
+  <h3><a name="firstpage" ></a>firstPage</h3>
+  <p>datasetname.firstPage();</p>
+  <h4>Description</h4>
+  <p>Sets the Paged View Data Set to the first page of data.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+    &lt;input type=&quot;button&quot; value=&quot;First&quot; onclick=&quot;pvCities.firstPage();&quot; /&gt;
+</pre>
+</div>
+<div id="getcurrentpage">
+  <h3>getCurrentPage</h3>
+  <p>datasetname.getCurrentPage();</p>
+  <h4>Description</h4>
+  <p>Returns the page number/index for the data that is returned by a call to getData(). This is the page number that contains the row with current row value. By default, the number returned by this method will be between 1 and the page count number. If the use useZeroBasedIndexes constructor option was set to true, this method will return a number between zero and pageCount minus one. </p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+&lt;script&gt;
+function getPage(){<br /> var x = pv1.getCurrentPage();<br />}
+&lt;/script&gt;</pre>
+</div>
+<div id="getpageforrowid">
+  <h3><a name="getpageforrowid" ></a>getPageForRowID</h3>
+  <p>datasetname.getPageForRowID(rowID);</p>
+  <h4>Description</h4>
+  <p>Returns the page number that contains the item with the specified rowID.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+   x = pv1.getPageForRowID('{ds_rowID}');
+</pre>
+</div>
+<div id="getpageforrownumber">
+  <h3><a name="getpageforrownumber"></a>getPageForRowNumber</h3>
+  <p>datasetname.getPageForRowNumber(rowNumber);</p>
+  <h4>Description</h4>
+  <p>Returns the page number that contains the item with the specified row number.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+    x = pv1.getPageForRoNumber(25);
+</pre>
+</div>
+<div id="getpageforitemnumber">
+  <h3><a name="getpageforitemnumber"></a>getPageForItemNumber</h3>
+  <p>datasetname.getPageForItemNumber(itemNumber);</p>
+  <h4>Description</h4>
+  <p>Returns the page number that contains the item with the specified item number.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+   x = pv1.getPageForItemNumber(20);
+</pre>
+</div>
+<div id="getPageCount">
+  <h3><a name="getpagecount" id="getpagecount"></a>getPageCount</h3>
+  <p>datasetname.getPageCount();</p>
+  <h4>Description</h4>
+  <p>Returns the number of pages in the Paged View data set. This number can change depending on the number of rows and the number of rows per page.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+&lt;script&gt;
+function getPages(){<br /> var x = pv1.getPageCount();<br />}
+&lt;/script&gt;
+</pre>
+</div>
+<div id="getpaginginfo">
+  <h3><a name="getpaginginfo"></a>getPagingInfo()</h3>
+  <p>getPagingInfo is a special data set that creates data references that are using in common paging patterns. It is used to generate things like: &quot;Go to Page: 1 2 3 4&quot; and &quot;Page 3 of 4&quot;. This data set is declared in the head, below the Paged View data set constructor. This data set only creates the following data references:</p>
+  <table width="579">
+    <tr>
+      <th scope="col">Data Reference </th>
+      <th scope="col">Description</th>
+    </tr>
+    <tr>
+      <td>{ds_PageCount}</td>
+      <td>The total number of pages in the paged view.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageNumber}</td>
+      <td>The page number within the paged view.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageSize}</td>
+      <td>The maximum number of items that can be in a page.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageFirstItemNumber}</td>
+      <td>The number of the first item in the page.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageLastItemNumber}</td>
+      <td>The number of the last item in the page.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageItemCount}</td>
+      <td>The number of items in the page.</td>
+    </tr>
+    <tr>
+      <td>{ds_PageTotalItemCount}</td>
+      <td>The total number of items from all pages.</td>
+    </tr>
+  </table>
+  <h4>Example</h4>
+  <pre>...  
+   var <span class="hilite">pv1</span> = new Spry.Data.PagedView(ds1,{pageSize:20});
+   var pagingInfo =<span class="hilite"> pv</span>1.getPagingInfo();
+&lt;/head&gt;
+
+&lt;div spry:region=&quot;pagingInfo&quot;&gt;
+{ds_PageNumber} of {ds_PageCount}
+&lt;/div&gt;</pre>
+</div>
+<div id="gotopage">
+  <h3><a name="gotopage"></a>goToPage()</h3>
+  <p>datasetname.goToPage(pageIndex)</p>
+  <h4>Description</h4>
+  <p>Sets the page to the page that contains the specified pageIndex.</p>
+  <h4>Arguments</h4>
+  <p>pageIndex</p>
+  <ul>
+    <li class="hilite">The function that will fire when the event is received. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>&lt;input type=&quot;button&quot; value=&quot;Go To Page 6&quot; onclick=&quot;pv1.goToPage(6);&quot; /&gt;</pre>
+</div>
+<div id="goToPageContainingItemNumber">
+  <h3><a name="gotopagecontainingitemnumber"></a>goToPageContainingItemNumber(itemNumber)</h3>
+  <p>datasetname.goToPageContainingItemNumber(pageIndex)</p>
+  <h4>Description</h4>
+  <p>Sets the page to the page that contains the specified item number.</p>
+  <h4>Arguments</h4>
+  <p>itemNumber</p>
+  <ul>
+    <li class="hilite">The function that will fire when the event is received. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>&lt;input type=&quot;button&quot; value=&quot;Go To Page 6&quot; onclick=&quot;pv1.goToPageContainingItemNumber(6);&quot; /&gt;</pre>
+</div>
+<div id="gotopagecontainingrowid">
+  <h3><a name="gotopagecontainingrowid"></a>goToPageContainingRowID()</h3>
+  <p>datasetname.goToPageContainingRowID(rowID)</p>
+  <h4>Description</h4>
+  <p>Sets the page to the page that contains the specified pageIndex.</p>
+  <h4>Arguments</h4>
+  <p>rowID</p>
+  <ul>
+    <li class="hilite">The function that will fire when the event is received. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>&lt;input type=&quot;button&quot; value=&quot;Go To Page 6&quot; onclick=&quot;pv1.goToPageContainingRowID(6);&quot; /&gt;</pre>
+</div>
+<div id="gotopagecontainingrownumber">
+  <h3><a name="gotopagecontainingrownumber"></a>goToPageContainingRowNumber(rowNumber)</h3>
+  <p>datasetname.goToPageContainingRowNumber(rowNumber)</p>
+  <h4>Description</h4>
+  <p>Sets the page to the page that contains the specified pageIndex.</p>
+  <h4>Arguments</h4>
+  <p>rowNumber</p>
+  <ul>
+    <li class="hilite">The function that will fire when the event is received. </li>
+  </ul>
+  <h4>Example</h4>
+  <pre>&lt;input type=&quot;button&quot; value=&quot;Go To Page 6&quot; onclick=&quot;pv1.goToPageContainingRowNumber(6);&quot; /&gt;</pre>
+</div>
+<div id="lastpage">
+  <h3><a name="lastpage" ></a>lastPage</h3>
+  <p>datasetname.lastPage();</p>
+  <h4>Description</h4>
+  <p>Sets the Paged View Data Set to the last page of data.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+    &lt;input type=&quot;button&quot; value=&quot;Last&quot; onclick=&quot;pv1.lastPage();&quot; /&gt;
+  </pre>
+</div>
+<div id="nextpage">
+  <h3><a name="nextpage" ></a>nextPage</h3>
+  <p>datasetname.nextPage();</p>
+  <h4>Description</h4>
+  <p>Sets the Paged View Data Set to the next page of data.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+    &lt;input type=&quot;button&quot; value=&quot;Next&quot; onclick=&quot;pv1.nextPage();&quot; /&gt;
+  </pre>
+</div>
+<div id="previouspage">
+  <h3><a name="previouspage"></a>previousPage</h3>
+  <p>datasetname.previousPage();</p>
+  <h4>Description</h4>
+  <p>Sets the Paged View Data Set to the previous page of data.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+    &lt;input type=&quot;button&quot; value=&quot;Previous&quot; onclick=&quot;pvCities.previousPage();&quot; /&gt;
+  </pre>
+</div>
+<div id="setpagesize">
+  <h3><a name="setpagesize"></a>setPageSize</h3>
+  <p>datasetname.setPageSize(number);</p>
+  <h4>Description</h4>
+  <p>Sets the number of items that will be shown per page.</p>
+  <p>This only works with a Paged View Data Set.</p>
+  <h4>Example</h4>
+  <pre>
+  &lt;input type=&quot;button&quot; value=&quot;Show 20 Records per Page&quot; onclick=&quot;pvCities.setPageSize(20);&quot; /&gt;
+  </pre>
+</div>
+<div id="datareferences">
+<h3><a name="datareferences"></a>Data References</h3>
+<p>Since the Paged View data set is still a Spry data set, these data references can be used in the same way as other Spry data references. They must be within a Spry region or detail region and the Paged View data set name must be listed in the Spry region attribute.</p>
+<table>
+  <tr>
+    <th scope="col">Data Reference </th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>{ds_PageNumber}</td>
+    <td>The current page index. By default this will be a number between 1 and ds_PageCount. If the useZeroBasedIndexes constructor option was set to true, this will be a number between 1 and ds_PageCount minus one. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageSize}</td>
+    <td>The maximum number of items that can be in a page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageCount}</td>
+    <td>The total number of pages required to display all of the data. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemRowNumber}</td>
+    <td>The unfiltered row index for the current row being processed. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemNumber}</td>
+    <td>The unfiltered item number for the current row being processed. This is the unfiltered row index of the row plus one. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageFirstItemNumber}</td>
+    <td>The item number for the first row displayed in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageLastItemNumber}</td>
+    <td>The item number for the last row displayed in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageItemCount}</td>
+    <td>The total number of items in the current page. </td>
+  </tr>
+  <tr>
+    <td>{ds_PageTotalItemCount}</td>
+    <td>The total number of items in all pages. </td>
+  </tr>
+  <tr>
+    <td>{ds_UnfilteredRowCount}</td>
+    <td>The total number of rows in the data set. </td>
+  </tr>
+  <tr>
+    <td>{ds_CurrentRowID}</td>
+    <td>For the PagedView, this is *always* the ID of the first row in the current page.</td>
+  </tr>
+  <tr>
+    <td>{ds_RowID}</td>
+    <td>The row id for the row being processed. </td>
+  </tr>
+  <tr>
+    <td>{ds_CurrentRowNumber}</td>
+    <td>For the PagedView, this is *always* zero, which is the index of the first row in the current page.</td>
+  </tr>
+  <tr>
+    <td>{ds_RowNumber}</td>
+    <td>This is the row index, of the row being processed, in the current page. </td>
+  </tr>
+</table></div>
+
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

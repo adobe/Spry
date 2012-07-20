@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Tabbed Panels API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="intro">
+  <h3>Tabbed Panels</h3>
+  <h4>Description</h4>
+  <p>The Spry Tabbed Panels is a disclosure widget that consists of a set of tabs at the top or side of the widget and a content panel for each tab. Clicking a tab will display its content panel.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/tabbedpanels/SpryTabbedPanels.js">SpryTabbedPanels.js</a></p>
+    <p><a href="../../../widgets/tabbedpanels/SpryTabbedPanels.css">SpryTabbedPanels.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/tabbedpanels/SpryTabbedPanels.html">SpryTabbedPanels.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/tabbedpanels/tabbed_panel_sample.htm">TabbedPanelsSample.html</a></p>
+    <p><a href="../../../samples/tabbedpanels/tabbed_panel_sample2.html">TabbedPanelsSample2.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container- the window&gt;
+      &lt;tab list&gt;
+         &lt;tab&gt;
+         &lt;tab&gt;
+     &lt;tab content container&gt;<br />         &lt;tab content panel&gt;
+         &lt;tab content panel&gt;<br />   &lt;/widget container&gt;<br /></pre>
+  <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting. </p>
+      <p>Using the provided files, the default mark up is:</p>
+<pre>&lt;div class=&quot;TabbedPanels&quot; id=&quot;TabbedPanels1&quot;&gt;<br />  &lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt;<br />    &lt;li class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt;Tab 1&lt;/li&gt;<br />    &lt;li class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt;Tab 2&lt;/li&gt;<br />    &lt;li class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt;Tab 3&lt;/li&gt;<br />  &lt;/ul&gt;<br />  &lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt;<br />    &lt;div class=&quot;TabbedPanelsContent&quot;&gt; Tab 1 Content&lt;/div&gt;<br />    &lt;div class=&quot;TabbedPanelsContent&quot;&gt; Tab 2 Content&lt;/div&gt;<br />    &lt;div class=&quot;TabbedPanelsContent&quot;&gt; Tab 3 Content&lt;/div&gt;<br />  &lt;/div&gt;<br />&lt;/div&gt;
+
+&lt;script&gt;
+  var tp1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);<br />&lt;/script&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;    
+   var tp1 = new Spry.Widget.TabbedPanels(&quot;TabbedPanels1&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.TabbedPanels(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.TabbedPanels(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+</pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>defaultTab</td>
+      <td>number </td>
+      <td>0</td>
+      <td>The number of the tab that should show when the page loads.</td>
+    </tr>
+    <tr>
+      <td>panelVisibleClass</td>
+      <td>class name string</td>
+      <td>null</td>
+      <td>This class is applied to the visible content panel.. This will trump the .TabbedPanelsContentVisible class defined in the default style sheet. <br />
+      You can also edit the .TabbedPanelsContentVisible in the default CSS file instead.</td>
+    </tr>
+    <tr>
+      <td>tabFocusedClass</td>
+      <td>class name string</td>
+      <td>null</td>
+      <td>This class is applied to the currently focused tab. This will trump the .TabbedPanelsTabSelected class defined in the default style sheet. <br />
+You can also edit the .TabbedPanelsTabSelected in the default CSS file instead.</td>
+    </tr>
+    <tr>
+      <td>tabHoverClass</td>
+      <td>class name string</td>
+      <td>null</td>
+      <td>This class is applied when hovering over a tab. This will trump the .TabbedPanelsTabHover class defined in the default style sheet. <br />
+      You can also edit the .TabbedPanelsTabHover in the default CSS file instead.</td>
+    </tr>
+    <tr>
+      <td>tabSelectedClass</td>
+      <td>class name string</td>
+      <td>null</td>
+      <td>This class is applied to the currently selected tab. </td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var tp1 = new Spry.Widget.TabbedPanels(&quot;myTabbedPanels&quot;,{defaultPanel:3, duration:200, tabHoverClass:'red'});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+  <h3>Using Vertical Tabs</h3>
+  <p>To use vertical tabs (tabs listed down the left side), simply change the class name on the widget container from 'TabbedPanels' to 'VTabbedPanels'.</p>
+  <pre>&lt;div class=&quot;VTabbedPanels&quot; id=&quot;tp1&quot;&gt;</pre>
+</div>
+<div id="methods">
+  <h2>Tabbed Panels Methods</h2>
+  <div id="getcontentpanelgroup">
+    <h3><strong>getContentPanelGroup</strong></h3>
+    <p>Returns the content panel group container element for the widget.</p>
+    <p>If the markup example from the <a href="#structure">&quot;Structure&quot; section</a> above was used to create the widget, calling this method would return the DOM element that represents the  &lt;div class=&quot;TabbedPanelsContentGroup&quot;&gt; element.</p>
+    <h4>Format</h4>
+    <p>widgetname.getContentPanelGroup();</p>
+    <h4>Example</h4>
+    <pre>// Get the content panel group element and change
+// its border color.
+
+var ele = tp1.getContentPanelGroup();
+
+ele.style.borderColor = &quot;#CCC&quot;;</pre>
+  </div>
+  <div id="getcontentpanels">
+    <h3><strong>getContentPanels</strong></h3>
+    <p>Returns an array containing all of the content panel container elements inside the tabbed panels widget.</p>
+    <p>If the markup example from the <a href="#structure">&quot;Structure&quot; section</a> above was used to create the widget, this method would return an array of DOM elements that represent the &lt;div class=&quot;TabbedPanelsContent&quot;&gt; elements.</p>
+    <h4>Format</h4>
+    <p>widgetname.getContentPanels();</p>
+    <h4>Example</h4>
+    <pre>// Get the 3rd content panel in the widget and set its content to
+// &quot;Hello World&quot;.
+
+var contentPanelsArray = tp1.getContentPanels();
+
+if (contentPanelsArray[2])
+	contentPanelsArray[2].innerHTML = &quot;&lt;strong&gt;Hello World!&lt;/strong&gt;&quot;;</pre>
+  </div>
+  <div id="getcurrenttabindex">
+    <h3><strong>getCurrentTabIndex</strong></h3>
+    <p>Returns the panel index of the panel that is currently visible. Panel indexes refer to the order of the panels within the widget. Indexes are zero-based, so the first panel has an index of zero, the 2nd an index of 1, etc.</p>
+    <h4>Format</h4>
+    <p>widgetname.getCurrentTabIndex();</p>
+    <h4>Example</h4>
+    <pre>var curIndex = tp1.getCurrentTabIndex();
+
+if (curIndex == 2)
+	alert(&quot;The 3rd panel is showing!&quot;);</pre>
+  </div>
+  <div id="gettabbedpanelcount">
+    <h3><strong>getTabbedPanelCount</strong></h3>
+    <p>Returns the number of tabbed panels within the widget.</p>
+    <p>If there is a mismatch between the number of tab buttons and content panels within the widget, this method will return lesser count.</p>
+    <h4>Format</h4>
+    <p>widgetname.getTabbedPanelCount();</p>
+    <h4>Example</h4>
+    <pre>// Make the panel, *after* the one currently showing,
+// visible. If we are already showing the last panel,
+// make the first panel visible.
+
+var nextIndex = tp1.getCurrenTabIndex() + 1;
+var numPanels = tp1.getTabbedPanelCount();
+
+if (nextIndex == numPanels)
+	nextIndex = 0;
+
+tp1.showPanel(nextIndex);</pre>
+  </div>
+  <div id="gettabindex">
+    <h3><strong>getTabIndex</strong></h3>
+    <p>Returns the panel index of the specified tab or content container element. Panel indexes refer to the order of the panels within the widget. Indexes are zero-based, so the first panel has an index of zero, the 2nd an index of 1, etc.</p>
+    <h4>Format</h4>
+    <p>widgetname.getTabIndex(tabOrContentContainerElement);</p>
+    <h4>Example</h4>
+    <pre>// The following example doesn't do anything useful, but it illustrates
+// what types of elements the getTabIndex method can take.
+
+var tabButtonsArray = tp1.getTabs();
+var contentPanelsArray = tp1.getContentPanels();
+
+var tab = tabButtonsArray[3];
+var contentPanel = contentPanelsArray[1];
+
+// The following example passes a tab button element to getPanelIndex
+// to figure out the index of the panel it belongs to.
+
+var panelIndex = tp1.getPanelIndex(tab); // panelIndex == 3
+
+
+// The following example passes a content panel element to getPanelIndex
+// to figure out the index of the panel it belongs to.
+
+panelIndex = tp1.getPanelIndex(contentPanel); // panelIndex == 1</pre>
+  </div>
+  <div id="gettabgroup">
+    <h3><strong>getTabGroup</strong></h3>
+    <p>Returns the tab button group container element for the widget.</p>
+    <p>If the markup example from the <a href="#structure">&quot;Structure&quot; section</a> above was used to create the widget, this method would return the DOM element that represents the &lt;ul class=&quot;TabbedPanelsTabGroup&quot;&gt; element.</p>
+    <h4>Format</h4>
+    <p>widgetname.getTabGroup();</p>
+    <h4>Example</h4>
+    <pre>// Get the tab button group element and change
+// its border color.
+
+var ele = tp1.geTabGroup();
+
+ele.style.borderColor = &quot;#CCC&quot;;</pre>
+  </div>
+  <div id="gettabs">
+    <h3><strong>getTabs</strong></h3>
+    <p>Returns an array containing all of the tab button elements inside the tabbed panels widget.</p>
+    <p>If the markup example from the <a href="#structure">&quot;Structure&quot; section</a> above was used to create the widget, this method would return an array of DOM elements that represent the &lt;li class=&quot;TabbedPanelsTab&quot; tabindex=&quot;0&quot;&gt; elements.</p>
+    <h4></h4>
+    <h4>Format</h4>
+    <p>widgetname.getTabs();</p>
+    <h4>Example</h4>
+    <pre>// Get the 3rd tab of the widget, if it has an id of &quot;foo&quot;
+// make it the current tab.
+
+var tabButtonsArray = tp1.getTabs();
+var tabButton = tabButtonsArray[2];
+
+if (tabButton &amp;&amp; tabButton.id == &quot;foo&quot;)
+	tp1.showPanel(tabButton);</pre>
+  </div>
+  <div id="showpanel">
+    <h3><strong>showPanel</strong></h3>
+    <p>Goes to the specified panel, using the panel number, tab or content container element, or the ID of the tab or content container element.</p>
+    <h4>Format</h4>
+    <p>widgetname.showPanel(panelIndexOrElementID);</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;tp1.showPanel(3);&quot;&gt;Tab 3&lt;/a&gt; 
+ or
+&lt;a href=&quot;#&quot; onclick=&quot;tp1.showPanel('panel3');&quot;&gt;Tab 3&lt;/a&gt; </pre>
+  </div>
+</div>
+<div id="showfirstpanel"></div>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<state>
+	<name>Nevada</name>
+	<cities>
+		<city>
+			<name>Battle Mountain</name>
+		</city>
+		<city>
+			<name>Beatty</name>
+		</city>
+		<city>
+			<name>Boulder City</name>
+		</city>
+		<city>
+			<name>Caliente</name>
+		</city>
+		<city>
+			<name>Carlin</name>
+		</city>
+		<city>
+			<name>Dayton</name>
+		</city>
+		<city>
+			<name>East Las Vegas</name>
+		</city>
+		<city>
+			<name>Elko</name>
+		</city>
+		<city>
+			<name>Ely</name>
+		</city>
+		<city>
+			<name>Enterprise</name>
+		</city>
+		<city>
+			<name>Fallon</name>
+		</city>
+		<city>
+			<name>Fallon Station</name>
+		</city>
+		<city>
+			<name>Fernley</name>
+		</city>
+		<city>
+			<name>Gabbs</name>
+		</city>
+		<city>
+			<name>Gardnerville</name>
+		</city>
+		<city>
+			<name>Gardnerville Ranchos</name>
+		</city>
+		<city>
+			<name>Hawthorne</name>
+		</city>
+		<city>
+			<name>Henderson</name>
+		</city>
+		<city>
+			<name>Incline Village-Crystal Bay</name>
+		</city>
+		<city>
+			<name>Indian Hills</name>
+		</city>
+		<city>
+			<name>Indian Springs</name>
+		</city>
+		<city>
+			<name>Johnson Lane</name>
+		</city>
+		<city>
+			<name>Kingsbury</name>
+		</city>
+		<city>
+			<name>Las Vegas</name>
+		</city>
+		<city>
+			<name>Laughlin</name>
+		</city>
+		<city>
+			<name>Lovelock</name>
+		</city>
+		<city>
+			<name>McDermitt</name>
+		</city>
+		<city>
+			<name>McGill</name>
+		</city>
+		<city>
+			<name>Mesquite</name>
+		</city>
+		<city>
+			<name>Minden</name>
+		</city>
+		<city>
+			<name>Moapa Valley</name>
+		</city>
+		<city>
+			<name>Nellis AFB</name>
+		</city>
+		<city>
+			<name>New Washoe City</name>
+		</city>
+		<city>
+			<name>North Las Vegas</name>
+		</city>
+		<city>
+			<name>Owyhee</name>
+		</city>
+		<city>
+			<name>Pahrump</name>
+		</city>
+		<city>
+			<name>Paradise</name>
+		</city>
+		<city>
+			<name>Reno</name>
+		</city>
+		<city>
+			<name>Schurz</name>
+		</city>
+		<city>
+			<name>Silver Springs</name>
+		</city>
+		<city>
+			<name>Smith Valley</name>
+		</city>
+		<city>
+			<name>Sparks</name>
+		</city>
+		<city>
+			<name>Spring Creek</name>
+		</city>
+		<city>
+			<name>Spring Valley</name>
+		</city>
+		<city>
+			<name>Stateline</name>
+		</city>
+		<city>
+			<name>Sun Valley</name>
+		</city>
+		<city>
+			<name>Sunrise Manor</name>
+		</city>
+		<city>
+			<name>Tonopah</name>
+		</city>
+		<city>
+			<name>Wadsworth</name>
+		</city>
+		<city>
+			<name>Wells</name>
+		</city>
+		<city>
+			<name>West Wendover</name>
+		</city>
+		<city>
+			<name>Winchester</name>
+		</city>
+		<city>
+			<name>Winnemucca</name>
+		</city>
+		<city>
+			<name>Yerington</name>
+		</city>
+		<city>
+			<name>Zephyr Cove-Round Hill Village</name>
+		</city>
+	</cities>
+</state>

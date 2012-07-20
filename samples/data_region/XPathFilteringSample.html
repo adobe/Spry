@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>XPath Filtering Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.selected {
+	background-color: #999999;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var dsStates1 = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state[position() >= 30 and position() < 40]");
+var dsStates2 = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state[name = 'New York']");
+-->
+</script>
+
+</head>
+
+<body>
+<h3>XPath Filtering   Sample </h3>
+<p>The XPath you pass to the data set constructor can also contain an XPath expression. You can use an XPath expression to filter out XML nodes before the data set actually has a chance to flatten it.</p>
+<p>Some example uses of XPath filtering are for data paging, or matching specific nodes based on attribute or node values.</p>
+<hr />
+<p>Here's an example where we are only displaying the names of 10 states from our XML file starting at offset 30.</p>
+<ul spry:region="dsStates1">
+	<li spry:repeat="dsStates1">{name}</li>
+</ul>
+<p>Here's an example where we are using XPath to match the state node for &quot;New York&quot;. </p>
+<ul spry:region="dsStates2">
+	<li spry:repeat="dsStates2">{name}</li>
+</ul>
+</body>
+</html>

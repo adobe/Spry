@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JSON Data Set Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Spry JSON Data Set Overview</h2>
+<p>JSON stands for JavaScript Object Notation. It is a lightweight data exchange format written in Javascript. Smaller file size and ease of use makes it a preferred choice for some developers.</p>
+<p>Spry can now make use of this data format in Spry pages. </p>
+<p>Since the Spry region mechanism doesn't care where the data comes from, using regions and data references doesn't change with a JSON data set. Similarly, JSON works the same way as the XML data set with things like filtering and caching. Because of these similarities, they will not be discussed in this document. Please refer to the <a href="../data_set_overview/index.html">Data Set Overview</a> for base data set functions.</p>
+<p>To see working examples of the different ways JSON can be used, see the <a href="../../samples/data_region/JSONDataSetSample.html">JSON sample</a>.</p>
+<p>This document will discuss the JSON specific features of the data set.</p>
+<h3>What is JSON?</h3>
+<p>Like XML, JSON is a repeating data structure used to pass data. Here is a basic sample:</p>
+<pre>{<br />    &quot;firstName&quot;: &quot;Jason&quot;,<br />    &quot;lastName&quot;: &quot;Jones&quot;,<br />    &quot;address&quot;: {<br />        &quot;city&quot;: &quot;San Francisco, CA&quot;,<br />        &quot;zip&quot;: 94121,<br />        &quot;address&quot;: &quot;444 Columbus Ave&quot;<br />    },<br />    &quot;email&quot;: [<br />        &quot;jason@sf.com&quot;,<br />        &quot;sjones@adobe.com&quot;<br />       ]<br />}
+</pre>
+<p>For more information about JSON, check our <a href="../json_primer/json_primer.html">JSON Primer</a>. JSON lends itself to complex, nested structures. (Which is why we didn't introduce it until we had our Nested Data Set solution...)</p>
+<h3>Creating JSON Data Sets</h3>
+<p>For those used to XML data sets, JSON will be similar, with a couple small differences.</p>
+<p>First, you need 'SpryJSONDataSet.js'. 'SpryData.js', which contains the region handling code and the filtering and other functionality, is required. You do not need 'xpath.js' for the JSON data set.</p>
+<pre>&lt;script src=&quot;SpryData.js&quot; language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;SpryJSONDataSet.js&quot; language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</pre>
+<p>As with all data sets, you point to a file that contains the JSON data and then specify the node of the data that defines the starting point of the data set.</p>
+<p>A typical data set constructor for a JSON data set is:</p>
+<pre>var dsExample4 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-02.js&quot;, { path: &quot;batters.batter&quot; });</pre>
+<p>The JSON file referenced  is <a href="../../data/json/object-02.js">here</a>.</p>
+<p>The constructor starts with defining a variable name which is the name of the data set. The name can be whatever you wish. Multiple data sets are possible and must have unique names.</p>
+<ul>
+  <li>var dsExample4</li>
+</ul>
+<p>Then create the new object:</p>
+<ul>
+  <li>new Spry.Data.JSONDataSet</li>
+</ul>
+<p>Remember that Javascript is case sensitive. </p>
+<p>Next, specify the path to the file that contains the JSON info:</p>
+<ul>
+  <li>new Spry.Data.JSONDataSet(<span class="hilite">&quot;../../data/json/object-02.js&quot;</span>);</li>
+</ul>
+<p>If it is a path to a file, wrap it in quotes as shown. Variables and Spry data references can also be used here, without quotes.</p>
+<p>This is the minimum amount of information required to create the data set.</p>
+<h3>Paths and Subpaths</h3>
+<p>If you need to specify a specific section of the JSON data, specify a path in the constructor. Since it is an option, it is wrapped in {}.</p>
+<ul>
+  <li>{ path: &quot;node.sub node&quot; }</li>
+</ul>
+<p><strong>Note:</strong> JSON uses a 'dot' notation to specify the path within the JSON. This works similar to XML and XPath, which uses a '/' to denote the node path.</p>
+<p>Using another example from the JSON sample above.</p>
+<pre>{<br />    &quot;firstName&quot;: &quot;Jason&quot;,<br />    &quot;lastName&quot;: &quot;Jones&quot;,<br />    &quot;address&quot;: {<br />        &quot;city&quot;: &quot;San Francisco, CA&quot;,<br />        &quot;zip&quot;: 94121,<br />        &quot;address&quot;: &quot;444 Columbus Ave&quot;<br />    },<br />    &quot;email&quot;: [<br />        &quot;jason@sf.com&quot;,<br />        &quot;sjones@adobe.com&quot;<br />       ]<br />}
+</pre>
+<p>If we wanted to just get the &quot;city&quot; node of the file, the constructor would be:</p>
+<pre>var ds1 = new Spry.Data.JSONDataSet(&quot;myfile.js&quot;, {path: &quot;address.city&quot;});</pre>
+<p><strong>Sub Paths</strong></p>
+<p>Because of the complexity of some JSON files, the JSON data set has a way to specify advanced flattening.</p>
+<p>Some JSON formats use nested structures to simply group data together. An example of this would be the &quot;image&quot; and &quot;thumbnail&quot; properties in the following example:</p>
+<pre>
+{
+	&quot;id&quot;: &quot;0001&quot;,
+	&quot;type&quot;: &quot;donut&quot;,
+	&quot;name&quot;: &quot;Cake&quot;,
+	&quot;image&quot;:
+		{
+			&quot;url&quot;: &quot;images/0001.jpg&quot;,
+			&quot;width&quot;: 200,
+			&quot;height&quot;: 200
+		},
+	&quot;thumbnail&quot;:
+		{
+			&quot;url&quot;: &quot;images/thumbnails/0001.jpg&quot;,
+			&quot;width&quot;: 32,
+			&quot;height&quot;: 32
+		}
+}
+</pre>
+<p> It is sometimes desirable to flatten these structures so they are also available as columns in the data set. You can use the &quot;subPaths&quot; constructor option to tell the JSON Data Set to include these nested structures when it flattens the top-level JSON object, or the data selected by the &quot;path&quot; constructor option. In this particular example, because we have not specified a &quot;path&quot; constructor option, the JSON data set will  attempt to flatten only the top-level object. Since we want to also include the data from the &quot;image&quot; nested structure, we specify the path to the data which is simply &quot;image&quot;.</p>
+<pre>var dsExample6 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-03.js&quot;, { subPaths: &quot;image&quot; });
+</pre>
+<p>Spry will take the information within the &quot;image&quot; node, and pull it to the top node, therefore, including the sub node information in the data set. Now, the image sub nodes can be used as data references by prepending 'image.' to the sub node name.</p>
+<table>
+  <tr>
+    <th>{id}</th>
+    <th>{type}</th>
+    <th>{name}</th>
+    <th>{image.width}</th>
+    <th>{image.height}</th>
+    <th>{image.url}</th>
+  </tr>
+</table>
+<p>Spry supports multiple sub paths. In the above sample, it is likely the 'thumbnail' information will be needed as well. To get this into the data set, specify the 'thumbnail' as another sub path.</p>
+<pre>var dsExample7 = new Spry.Data.JSONDataSet(&quot;../../data/json/object-03.js&quot;, { subPaths: [ &quot;image&quot;, &quot;thumbnail&quot; ] });</pre>
+<p>Note that multiple sub paths are sent as an array of strings, wrapped in []. Now the available data references look like:</p>
+<table>
+  <tr>
+    <th>{id}</th>
+    <th>{type}</th>
+    <th>{name}</th>
+    <th>{image.width}</th>
+    <th>{image.height}</th>
+    <th>{image.url}</th>
+    <th>{thumbnail.width}</th>
+    <th>{thumbnail.height}</th>
+    <th>{thumbnail.url}</th>
+  </tr>
+</table>
+<h3>Using Data Set functionality</h3>
+<p>As a Spry Data Set, the JSON Data Set can take advantage of all the base data set functionality.</p>
+<p>For instance, to turn off the cache and use distinct:</p>
+<pre>var ds1 = new Spry.Data.JSONDataSet(&quot;myfile.js&quot;, {path: &quot;address.city&quot;, useCache:false, distinctOnLoad:true});</pre>
+<p>One of the goals of Spry is that the region workflow is independent of the data set types. JSON, XML and HTML data sets can be used interchangeably with the same region markup..</p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated.  All rights reserved.</p>
+</body>
+</html>

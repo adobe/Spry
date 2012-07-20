@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>HTMLDataSet using External Table as Source</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.product {
+	cursor: pointer;
+}
+.hover {
+	background-color: #FFFFCC !important;
+}
+.selected {
+	background-color: #CCCCCC;
+}
+</style>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryHTMLDataSet.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+//
+// Create a HTMLDataSet that loads its data from a table with id="productsTable" located in an external file "products.html"
+// The DataSet will use the cells from the first row of data as the headers for the data columns
+//
+var ds1 = new Spry.Data.HTMLDataSet("products.html", "productsTable");
+
+//
+// Create a second HTMLDataSet that loads its data from the sample external table, but takes all the records as data.
+//
+var ds2 = new Spry.Data.HTMLDataSet("products.html", "productsTable", {firstRowAsHeaders:false});
+
+//
+// Create a third HTMLDataSet that loads its data from the sample external table, takes all the records as data and uses special column names
+//
+var ds3 = new Spry.Data.HTMLDataSet("products.html", "productsTable", {firstRowAsHeaders:false, columnNames:["Product", , "ShortD", , ,]});
+
+
+//-->
+</script>
+</head>
+
+<body>
+<h3>HTMLDataSet using External Table as Data Source</h3>
+<p>This page demonstrates how to use a HTMLDataSet to load the data from a table located in an external file, <a href="products.html">products.html</a></p>
+<p>
+The use HTMLDataSet is similar to that of a XMLDataSet. The data can be loaded from a HTML Element (such as a &lt;table&gt;) located in the same file 
+or in a different file under the same domain. <br/>
+Optional parameters used with XMLDataSet to specify sorting, caching, distinct, loadInterval work the same way with the HTMLDataSet.
+</p>
+
+<hr />
+<!-- FIRST SAMPLE -->
+<h3>1. Load an external table</h3>
+<p>
+In this sample the HTMLDataSet is loading its data from the table with the ID &quot;productsTable&quot; located in <a href="products.html">products.html</a> file.
+<br/>
+Here's the instantiation code for the Data Set:
+</p>
+<pre>
+	var ds1 = new Spry.Data.HTMLDataSet(&quot;products.html&quot;, &quot;productsTable&quot;);
+</pre>
+<p>
+By default, the cells from the first row are used as headers. 
+However, this can be changed by specifying 'firstRowAsHeaders:false' in the constructor's optional parameters. See the second sample. <br/>
+Also, an optional array with column names can be passed in order to specify your own column names to be used. See the third sample.<br/>
+<br/>
+Note: The values in the first row of data that are used as headers should not contain spaces or other tags. 
+The tags are removed and the spaces are replaced with underscore (_).<br/>
+E.g.: The values under the header <strong>&lt;strong&gt;product features&lt;/strong&gt;</strong> will be accessed inside a spry:region with this markup: <strong>{product_features}</strong>
+
+</p>
+
+<br/>
+<table width="100%" border="0">
+	<tr>
+		<td width="21%" valign="top">
+			<ul spry:region="ds1" spry:repeatchildren="ds1">
+				<li class="product" spry:setrow="ds1" spry:select="selected" spry:hover="hover">{name}</li>
+			</ul>
+		</td>
+	  <td width="79%" valign="top">
+	  	
+	  	<div  spry:detailregion="ds1">
+	  		<div><strong>Description:</strong></div>
+	  		<div>{desc}</div>
+	  		<div>&nbsp;</div>
+	  		<div><strong>Features:</strong> {product_features}</div>
+	  	</div>
+	  </td>
+  </tr>
+</table>
+
+<hr />
+<!-- SECOND SAMPLE -->
+<h3>2. Load an external table and don't use the first row of data as column names</h3>
+<p>
+In this  sample the HTMLDataSet is loading its data from the same external table, but uses all the rows as data. 
+This is specified with the additional 'firstRowAsHeaders:false' parameter:</p>
+<pre>
+	var ds2 = new Spry.Data.HTMLDataSet(&quot;products.html&quot;, &quot;productsTable&quot;, {firstRowAsHeaders:false});
+</pre>
+<p>
+These values can be accessed using this markup <strong>{column#}</strong>: {column0} for the first column of data in the source table, 
+{column1} for the second... <br/>
+Notice that the first row of the source table table  is now used as data:
+</p>
+<br/>
+<br/>
+<div spry:region="ds2"> 
+	<table width="70%" border="1" cellspacing="0" cellpadding="5">
+		<tr>
+		    <td>Row#</td>
+			<td><a href="javascript:;" spry:sort="ds2 column0">Sort 1<sup>st</sup> column from table source</a></td>
+			<td><a href="javascript:;" spry:sort="ds2 column2">Sort 3<sup>rd</sup> column from table source</a></td>
+		</tr>
+		<tr spry:repeat="ds2" spry:hover="hover" spry:odd="selected">
+			<td>{ds_RowNumberPlus1}</td>
+			<td nowrap="nowrap">{column0}</td>
+			<td>{column2}</td>
+	   </tr>		
+	</table>
+</div>
+
+<br/>
+<hr />
+<!-- THIRD SAMPLE -->
+<h3>3. Load an external table and use a custom array of column names</h3>
+<p>
+There might be situations where you want to use your own column names to access the data. Just use the optional 'columnNames' parameter. <br/>
+In this sample the HTMLDataSet is similar to the one in the second sample, it uses all the rows as data. 
+However, the columNames are taken from the  array in the constructor, so you have to use these values to access the data.</p>
+<pre>
+	var ds3 = new Spry.Data.HTMLDataSet(&quot;products.html&quot;, &quot;productsTable&quot;, {firstRowAsHeaders:false, columnNames:[&quot;Product&quot;, , &quot;ShortD&quot;, , ,]});
+</pre>
+<p>The values can be accessed using this markup: {Product}, {ShortD}, etc. </p>
+<p>Note: Don't use spaces for column names in your array. Use the same number of elements in the columnNames array as the actual number of columns. Use ,, to mark the missing (not used) columns.<br/>
+  Also, if you are not setting 'firstRowAsHeader:false', the first row of data will be removed from the data set and you'll use your custom column names.
+  </p>
+<br/>
+<br/>
+<div spry:region="ds3"> 
+	<table width="70%" border="1" cellspacing="0" cellpadding="5">
+		<tr>
+		  <td>Row#</td>
+			<td>Product</td>
+			<td>ShortD</td>
+		</tr>
+		<tr spry:repeat="ds3" spry:hover="hover" spry:odd="selected">
+			<td>{ds_RowNumberPlus1}</td>
+			<td nowrap="nowrap">{Product}</td>
+			<td>{ShortD}</td>
+	   </tr>
+	</table>
+</div>
+
+</body>
+</html>
+ 

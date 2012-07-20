@@ -1,0 +1,1724 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Validation Textfield Overview</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2>Working with the Validation Text Field widget</h2>
+<!-- -->
+<h3>Validation Text Field widget overview and structure</h3>
+<p>A Spry Validation Text Field widget is a text field that displays valid or 
+  invalid states when the site visitor enters text. For example, you can add a 
+  Validation Text Field widget to a form in which visitors type their e-mail 
+  addresses. If they fail to type the @ sign and a period (.) in the e-mail 
+  address, the widget returns a message stating that the information the user 
+  entered is invalid.</p>
+<p>A version of this file is available on <a href="http://livedocs.adobe.com/en_US/Spry/SDG/index.html">Adobe LiveDocs</a>. Please check it for comments and updates. </p>
+<p>The following example shows a Validation Text Field widget in various 
+  states:</p>
+<p><img src="TextfieldDetails.gif" alt="Text Field structure" width="278" height="257" /></p>
+
+<p>The Validation Text Field widget includes a number of states (for example, 
+  valid, invalid, required value, and so on). You can alter the properties of 
+  these states by editing the corresponding CSS file 
+  (SpryValidationTextField.css), depending on the desired validation results. A 
+  Validation Text Field widget can validate at various points&mdash;for example, when 
+  the site visitor clicks outside the widget, when they type, or when they try to 
+  submit the form.</p>
+<dl>
+  <dt>Initial state </dt>
+  <dd> When the page loads in the browser, or when the user resets the 
+    form.<br />
+  </dd>
+  <dt>Focus state </dt>
+  <dd> When the user places the insertion point in the widget.<br />
+  </dd>
+  <dt>Valid state </dt>
+  <dd> When the user enters information correctly, and the form can be 
+    submitted.<br />
+  </dd>
+  <dt>Hint On state </dt>
+  <dd> When the hint text is visible.<br />
+  </dd>
+  <dt>Invalid state </dt>
+  <dd> When the user enters text in an invalid format. (For example, 06 for a year 
+    instead of 2006).<br />
+  </dd>
+  <dt>Required state </dt>
+  <dd> When the user fails to enter required text in the text field.<br />
+  </dd>
+  <dt>Minimum Number Of Characters state </dt>
+  <dd> When the user enters fewer than the minimum number of characters required 
+    in the text field.<br />
+  </dd>
+  <dt>Maximum Number Of Characters state </dt>
+  <dd> When the user enters greater than the maximum number of characters allowed 
+    in the text field.<br />
+  </dd>
+  <dt>Minimum Value state </dt>
+  <dd> When the user enters a value that is less than the value that the text 
+    field requires. (Applies to integer, real, and data type validations.)<br />
+  </dd>
+  <dt>Maximum Value state </dt>
+  <dd> When the user enters a value that is greater than the maximum value that 
+    the text field allows. (Applies to integer, real, and data type 
+    validations.)          Whenever a Validation Text Field widget enters one of these states through 
+    user interaction, the Spry framework logic applies a specific CSS class to the 
+    HTML container for the widget at run time. For example, if a user tries to 
+    submit a form, but enters no text in a required text field, Spry applies a 
+    class to the widget that causes it to display the error message, &ldquo;A value is 
+    required,&rdquo; and blocks the form submission. The rules that control the style 
+    and display states of error messages exist in the SpryValidationTextField.css 
+    file that accompanies the widget.<br />
+  </dd>
+</dl>
+<p>The default HTML code for the Validation Text Field widget, usually inside a 
+  form, is made up of a container span tag that 
+  surrounds the input tag of the text field. The HTML 
+  code for the Validation Text Field widget also includes script tags in the head of the document and after the 
+  widget&rsquo;s HTML code. The script tag in the head of the 
+  document defines all of the JavaScript functions related to the Text Field 
+  widget. The script tag after the widget code creates a 
+  JavaScript object that makes the text field interactive.</p>
+<p>Following is the HTML code for a Validation Text Field widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Text Field JavaScript library --&gt; 
+&lt;script src=&quot;SpryAssets/SpryValidationTextField.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href=&quot;SpryAssets/SpryValidationTextField.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id=&quot;form1&quot; name=&quot;form1&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+		&lt;!-- Create the text field widget and assign a unique id--&gt;
+		&lt;span id=&quot;sprytextfield1&quot;&gt;
+			&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot; /&gt;
+			&lt;!--Display an error message&gt;
+			&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;A value is required.&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;!-- Initialize the Validation Text Field widget object--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var sprytextfield1 = new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the new JavaScript operator 
+  initializes the Text Field widget object, and transforms the span content with the ID of sprytextfield1 from static HTML code into an interactive 
+  page element.</p>
+<p>The span tag for the error message in the widget 
+  has a CSS class applied to it. This class (which is set to display:none; by default), controls the style and visibility 
+  of the error message, and exists in the accompanying CSS file 
+  SpryValidationTextField.css. When the widget enters different states as a result 
+  of user interaction, Spry places different classes on the container for the 
+  widget, which in turn affects the error-message class.</p>
+<p>To add other error messages to a Validation Text Field widget, create a span tag (or any other type of tag) to hold the text of the 
+  error message. Then, by applying a CSS class to it, you can hide or show the 
+  message, depending on the widget state.</p>
+<p>You can add other error messages to a Validation Text Field widget by 
+  creating the corresponding CSS rule in the SpryValidationTextField.css file. For 
+  example, to change the background color for a state, edit the corresponding rule 
+  or add a new rule (if it&rsquo;s not already present) in the style sheet.</p>
+<h4>Variation on tags used for Text Field widget 
+  structure</h4>
+<p>In the preceding example, we used span tags to 
+  create the structure for the widget:</p>
+<pre>Container SPAN
+	INPUT type=&quot;text&quot;
+	Error message SPAN</pre>
+<p>You can, however, use almost any container tag to create the widget:</p>
+<pre>Container DIV
+	INPUT type=&quot;text&quot;
+	Error Message P</pre>
+<p>Spry uses the tag ID (not the tag itself) to create the widget. Spry also 
+  displays error messages using CSS code that is indifferent to the actual tag 
+  used to contain the error message.</p>
+<p>The ID passed into the widget constructor identifies a specific HTML element. 
+  The constructor finds this element and searches the identified container for a 
+  corresponding input tag. If the ID passed to the 
+  constructor is the ID of the input tag (rather than a 
+  container tag), the constructor attaches validation triggers directly to the input tag. If no container tag is present, however, 
+  the widget cannot display error messages, and different validation states alter 
+  only the appearance of the input tag element (for 
+  example, its background color).</p>
+	<p><span class="notetitle">Note: </span>Multiple INPUT tags do not 
+          work inside the same HTML widget container. Each text field should be its own 
+					widget.</p>
+<!-- -->
+<h3>CSS code for the Validation Text Field widget</h3>
+<p>The SpryValidationTextField.css file contains the rules that style the 
+  Validation Text Field widget and its error messages. You can edit these rules to 
+  style the look and feel of the widget and error messages. The names of the rules 
+  in the CSS file correspond to the names of the classes specified in the widget&rsquo;s 
+  HTML code.</p>
+<p>The following is the CSS code for the SpryValidationTextField.css file:</p>
+<pre>/*Text Field styling classes*/
+.textfieldRequiredMsg,
+.textfieldInvalidFormatMsg,
+.textfieldMinValueMsg,
+.textfieldMaxValueMsg,
+.textfieldMinCharsMsg,
+.textfieldMaxCharsMsg,
+.textfieldValidMsg {
+	display: none;
+}
+.textfieldRequiredState .textfieldRequiredMsg,
+.textfieldInvalidFormatState .textfieldInvalidFormatMsg,
+.textfieldMinValueState .textfieldMinValueMsg,
+.textfieldMaxValueState .textfieldMaxValueMsg,
+.textfieldMinCharsState .textfieldMinCharsMsg,
+.textfieldMaxCharsState .textfieldMaxCharsMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}
+.textfieldValidState input, input.textfieldValidState {
+	background-color: #B8F5B1;
+}
+input.textfieldRequiredState, .textfieldRequiredState input,
+input.textfieldInvalidFormatState, .textfieldInvalidFormatState input,
+input.textfieldMinValueState, .textfieldMinValueState input,
+input.textfieldMaxValueState, .textfieldMaxValueState input,
+input.textfieldMinCharsState, .textfieldMinCharsState input,
+input.textfieldMaxCharsState, .textfieldMaxCharsState input {
+	background-color: #FF9F9F;
+}
+.textfieldFocusState input, input.textfieldFocusState {
+	background-color: #FFFFCC;
+}
+.textfieldFlashText input, input.textfieldFlashText {
+	color: red !important;
+}
+.textfieldHintState input, input.textfieldHintState {
+}</pre>
+<p>The SpryValidationTextField.css file also contains extensive comments, 
+  explaining the code and the purpose for certain rules. For further information, 
+  see the comments in the file.</p>
+<!-- -->
+<h3>Insert the Validation Text Field widget</h3>
+<ol>
+  <li><span>Locate the SpryValidationTextField.js file and add 
+    it to your web site. You can find the SpryValidationTextField.js file in the 
+    widgets/textfieldvalidation directory, located in the Spry directory that you 
+    downloaded from Adobe Labs. </span>
+    <p>For example, create a folder called <dfn>SpryAssets</dfn> in the 
+      root folder of your web site, and move the SpryValidationTextField.js file to 
+      it. The SpryValidationTextField.js file contains all of the information 
+      necessary for making the Text Field widget interactive.</p>
+  </li>
+  <li><span>Locate the SpryValidationTextField.css file and add 
+    it to your web site. You might choose to add it to the main directory, a 
+    SpryAssets directory, or to a CSS directory if you have one.</span> </li>
+  <li><span>Open the web page to add the Text Field widget to 
+    and link the SpryValidationTextField.js file to the page by inserting the 
+    following script tag in the page&rsquo;s head tag:</span>
+    <pre>&lt;script src=&quot;SpryAssets/SpryValidationTextField.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </pre>
+    <p>Make sure that the file path to the SpryValidationTextField.js file is 
+      correct. This path varies depending on where you&rsquo;ve placed the file in your 
+      web site.</p>
+  </li>
+  <li><span>Link the SpryValidationTextField.css file to your 
+    web page by inserting the following link tag in the 
+    page&rsquo;s head tag:</span>
+    <pre>&lt;link href=&quot;SpryAssets/SpryValidationTextField.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; </pre>
+    <p>Make sure that the file path to the SpryValidationTextField.css file is 
+      correct. This path varies depending on where you&rsquo;ve placed the file in your 
+      web site.</p>
+  </li>
+  <li><span>Add a text field the page and give it a name and a 
+    unique ID:</span>
+    <pre>&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot;/&gt;</pre>
+  </li>
+  <li><span>To add a container around the text field, insert span tags around the input tags, and assign a unique ID to the widget, as follows:</span>
+    <pre>&lt;span id=&quot;sprytextfield1&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot;/&gt;
+&lt;/span&gt; </pre>
+  </li>
+  <li><span>Initialize the text field object by inserting the 
+    following script block after the HTML code for the 
+    widget:</span>
+    <pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1 = new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;);
+&lt;/script&gt; </pre>
+    <p>The new JavaScript operator initializes the Text 
+      Field widget object, and transforms the span tag 
+      content with the ID of sprytextfield1 from static 
+      HTML code into an interactive text field object. The Spry.Widget.ValidationTextField method is a constructor in 
+      the Spry framework that creates text field objects. The information necessary 
+      to initialize the object is contained in the SpryValidationTextField.js 
+      JavaScript library that you linked to at the beginning of this procedure.</p>
+    <p>Make sure that the ID of the text field&rsquo;s container span tag matches the ID parameter you specified in the Spry.Widgets.ValidationTextField method. Make sure 
+      that the JavaScript call comes after the HTML code for the widget.</p>
+  </li>
+  <li><span>Save the page.</span>
+    <p>The complete code looks as follows:</p>
+    <pre>&lt;head&gt; 
+... 
+&lt;script src=&quot;SpryAssets/SpryValidationTextField.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
+&lt;link href=&quot;SpryAssets/SpryValidationTextField.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;span id=&quot;sprytextfield1&quot;&gt;
+		&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot; /&gt;
+	&lt;/span&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1 = new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;);
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+  </li>
+</ol>
+<!-- -->
+<h3>Display error messages</h3>
+<p>&nbsp;Create a span tag (or any other type of tag) to display the error 
+        message, and assign the appropriate class to it, as follows:</p>
+<pre>&lt;span id=&quot;sprytextfield1&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot; /&gt;
+	&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;Please enter a description&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>The textfieldRequiredMsg rule is located in the 
+  SpryValidationTextField.css file, and is set to display:none by default. When the widget enters a different 
+  state through user interaction, Spry applies the appropriate class&mdash;the state 
+  class&mdash;to the container of the widget. This action affects the error message 
+  class, and by extension, the appearance of the error message.</p>
+<p>For example, the following shows a portion of the CSS rule from the 
+  SpryValidationTextField.css file:</p>
+<pre>.textfieldRequiredMsg,
+.textfieldInvalidFormatMsg,
+.textfieldMinValueMsg,
+.textfieldMaxValueMsg,
+.textfieldMinCharsMsg,
+.textfieldMaxCharsMsg,
+.textfieldValidMsg {
+	display: none;
+}
+.textfieldRequiredState .textfieldRequiredMsg,
+.textfieldInvalidFormatState .textfieldInvalidFormatMsg,
+.textfieldMinValueState .textfieldMinValueMsg,
+.textfieldMaxValueState .textfieldMaxValueMsg,
+.textfieldMinCharsState .textfieldMinCharsMsg,
+.textfieldMaxCharsState .textfieldMaxCharsMsg{
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}</pre>
+<p>By default, no state class is applied to the widget container, so that when 
+  the page loads in a browser, the error message text in the preceding HTML code 
+  example only has the textfieldRequiredMsg class applied to it. (The property and 
+  value pair for this rule is display:none, so the 
+  message remains hidden.) If the user fails to enter text in a required text 
+  field, however, Spry applies the appropriate class to the widget container, as 
+  follows:</p>
+<pre>&lt;span id=&quot;sprytextfield1&quot; class=&quot;textfieldRequiredState&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;mytextfield&quot; id=&quot;mytextfield&quot; /&gt;
+	&lt;span class=&quot;textfieldRequiredMsg&quot;&gt;Please enter a description&lt;/span&gt;
+&lt;/span&gt;</pre>
+<p>In the preceding CSS code, the state rule with the contextual selector .textfieldRequiredState .textfieldRequiredMsg overrides the 
+  default error-message rule responsible for hiding the error-message text. Thus, 
+  when Spry applies the state class to the widget container, the state rule 
+  determines the appearance of the widget, and displays the error message inline 
+  in red with a 1-pixel solid border.</p>
+<p>Following is a list of default error-message classes and their descriptions. 
+  You can change these classes and rename them. If you do so, don&rsquo;t forget to 
+  change them in the contextual selector also.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Error message class</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>.textfieldRequiredMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the required 
+          state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldInvalidFormatMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the invalid 
+          state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldMinValueMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the minimum 
+          value state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldMaxValueMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the maximum 
+          value state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldMinCharsMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the minimum 
+          number of characters state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldMaxCharsMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the maximum 
+          number of characters state</p></td>
+    </tr>
+    <tr>
+      <td><p>.textfieldValidMsg</p></td>
+      <td><p>Causes error message to display when the widget enters the valid 
+          state</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><span class="notetitle">Note: </span>You cannot rename 
+          state-related class names because they are hard-coded as part of the Spry 
+					framework.</p>
+<!-- -->
+<h3>Specify a validation type and format</h3>
+<p>You can specify many different validation types, formats, and other options 
+  for the Validation Text Field widget. For example, you can specify a credit card 
+  validation type if the text field will receive credit card numbers.</p>
+<p>You specify validation types, formats, and other options as parameters in the 
+  widget constructor. The first parameter in the constructor is the widget 
+  container ID, followed by a second parameter (the validation-type parameter), 
+  and optionally, a third parameter. The third parameter is a JavaScript array of 
+  options that depends on the validation type set in the second parameter. Thus, 
+  you cannot set the third parameter without setting the second.</p>
+	<p><span class="notetitle">Note: </span>In cases where you want to 
+          set the third parameter, but no validation type is required, you can set the 
+					validation type to &quot;none&quot;.</p>
+<p>The following code shows the generic syntax for a Text Field widget 
+  constructor with various parameters:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;<em>WidgetContainerID</em>&quot;, &quot;<em>ValidationType</em>&quot;, {<em>option1</em>:&quot;<em>value1</em>&quot;, <em>option2</em>:&quot;<em>value2</em>&quot;, ..});
+&lt;/script&gt;</pre>
+<!-- -->
+<h4>Validation type options</h4>
+<p>Most validation types cause the text field to expect a standard format. For 
+  example, if you apply the integer validation type to a text field, the widget 
+  won&rsquo;t validate unless the user enters numbers in the text field. Some validation 
+  types, however, let you choose the kind of format your text field will 
+  accept.</p>
+	<p>The following table lists the available validation types and their formats.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Validation type</p></th>
+      <th> <p>Format</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>none</p></td>
+      <td><p>No particular format required.</p></td>
+    </tr>
+    <tr>
+      <td><p>integer</p></td>
+      <td><p>Text field accepts numbers only.</p></td>
+    </tr>
+    <tr>
+      <td><p>email</p></td>
+      <td><p>Text field accepts e-mail addresses that contain the @ sign and a 
+          period (.) that is both preceded and followed by at least one 
+          letter.</p></td>
+    </tr>
+    <tr>
+      <td><p>date</p></td>
+      <td><p>Formats vary.</p></td>
+    </tr>
+    <tr>
+      <td><p>time</p></td>
+      <td><p>Formats vary. </p></td>
+    </tr>
+    <tr>
+      <td><p>credit_card</p></td>
+      <td><p>Formats vary. </p></td>
+    </tr>
+    <tr>
+      <td><p>zip_code</p></td>
+      <td><p>Formats vary. </p></td>
+    </tr>
+    <tr>
+      <td><p>phone_number</p></td>
+      <td><p>Text field accepts phone numbers formatted for U.S. and Canada (000) 
+          000-0000 as well as custom formats. </p></td>
+    </tr>
+    <tr>
+      <td><p>social_security_number</p></td>
+      <td><p>Text field accepts social security numbers formatted as 000-00-0000 by 
+          default. </p></td>
+    </tr>
+    <tr>
+      <td><p>currency</p></td>
+      <td><p>Text field accepts currency formatted as 1,000,000.00 or 
+          1.000.000,00.</p></td>
+    </tr>
+    <tr>
+      <td><p>real</p></td>
+      <td><p>Validates various kinds of numbers and scientific notation: integers 
+          (for example, 1); float values (for example, 12.123); and float values in 
+          scientific notation (for example, 1.212e+12, 1.221e-12 where e is used as 
+          a power of 10).</p></td>
+    </tr>
+    <tr>
+      <td><p>ip</p></td>
+      <td><p>Validates IPv4, IPv6, or both kinds of IP addresses. </p></td>
+    </tr>
+    <tr>
+      <td><p>url</p></td>
+      <td><p>Text field accepts URLs formatted as http://xxx.xxx.xxx, 
+          https://xxx.xxx.xxx, or ftp://xxx.xxx.xxx.</p></td>
+    </tr>
+    <tr>
+      <td><p>custom</p></td>
+      <td><p>Lets you specify a custom validation type and 
+          format.</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate an integer</h4>
+<p>&nbsp;To set the text field to 
+          accept only integer values, add &quot;integer&quot; as the value 
+          for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;integer&quot;);
+&lt;/script&gt;</pre>
+<p>The integer validation type accepts both negative and positive values. To 
+  accept only positive values, add the allowNegative option to the third parameter, and set the value to false. </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;integer&quot;, {allowNegative:false});
+&lt;/script&gt;</pre>
+<p>The following table shows other common options and values for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Integer value</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate an email</h4>
+<p>&nbsp;To set the text field to 
+          accept only standard e-mail formats, add &quot;email&quot; as 
+          the value for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;email&quot;);
+&lt;/script&gt;</pre>
+<p>You can also set options for the third parameter by using the following 
+  syntax: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;email&quot;, {<em>option</em>:<em>value</em>});
+&lt;/script&gt;</pre>
+<p>The following table shows some common options and values for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Positive integer value</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a date</h4>
+<p>&nbsp;To set the text field to 
+          accept a date format, add &quot;date&quot; as the value for the 
+          second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;date&quot;);
+&lt;/script&gt;</pre>
+<p>The default date format is &quot;mm/dd/yy&quot; (U.S. date format). You can, however, 
+  set a number of other date formats in the third parameter by using the format option, as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;date&quot;, {format:&quot;yyyy-mm-dd&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of formatting options, as well as some 
+  other common options and values, for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;mm/dd/yy&quot; (default); &quot;mm/dd/yyyy&quot;; &quot;dd/mm/yyyy&quot;; &quot;dd/mm/yy&quot;; 
+          &quot;yy/mm/dd&quot;; &quot;yyyy/mm/dd&quot;; &quot;mm-dd-yy&quot;; &quot;dd-mm-yy&quot;; &quot;yyyy-mm-dd&quot;; 
+          &quot;mm.dd.yyyy&quot;; &quot;dd.mm.yyyy&quot;;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Date value in the specified format</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a time</h4>
+<p>&nbsp;To set the text field to 
+          accept a time format, add &quot;time&quot; as the value for the 
+          second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;time&quot;);
+&lt;/script&gt;</pre>
+<p>The default date format is &quot;HH:mm&quot; (hours and minutes). You can, however, set 
+  a number of other time formats in the third parameter by using the format option, as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;time&quot;, {format:&quot;HH:mm:ss&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of formatting options, as well as some 
+  other common options and values, for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;HH:mm&quot; (the default); &quot;HH:mm:ss&quot;; &quot;hh:mm tt&quot;; &quot;hh:mm:ss tt&quot;; &quot;hh:mm 
+          t&quot;; &quot;hh:mm;ss t&quot;; (where &quot;tt&quot; stands for am/pm format, and &quot;t&quot; stands for 
+          a/p format.)</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Time value in the specified format</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a credit card</h4>
+<p>&nbsp;To set the text field to 
+          accept a credit card format, add &quot;credit_card&quot; as the 
+          value for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;credit_card&quot;);
+&lt;/script&gt;</pre>
+<p>The default is to validate all types of credit cards, but you can specify 
+  particular credit card formats to accept in the third parameter by using the format option, as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;credit_card&quot;, {format:&quot;visa&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of formatting options, as well as some 
+  other common options and values, for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>No format (the default); &quot;visa&quot;; &quot;mastercard&quot;; &quot;amex&quot;; &quot;discover&quot;; 
+          &quot;dinersclub&quot;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a zip code</h4>
+<p>&nbsp;To set the text field to 
+          accept a zip code format, add &quot;zip_code&quot; as the value 
+          for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;zip_code&quot;);
+&lt;/script&gt;</pre>
+<p>The default format is the U.S. 5-digit zip code format, but you can specify a 
+  number of other formats in the third parameter by using the format option, as in the following example: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_uk&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of formatting options, as well as some 
+  other common options and values, for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;zip_us5&quot; (the default); &quot;zip_us9&quot;; &quot;zip_uk&quot;; &quot;zip_canada&quot;; 
+          &quot;zip_custom&quot;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Custom zip code pattern. Used when 
+          format=&quot;zip_custom&quot;</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The &quot;zip_custom&quot; format lets you specify your own 
+  customized pattern for zip-code format. After specifying &quot;zip_custom&quot; as your format, add the pattern option to the 
+  third parameter to define the format. For example, you might want to validate a 
+  zip code that has three numbers, followed by another set of numbers and 
+  case-sensitive alphabetic characters. After the format option, add the pattern option in the third parameter 
+  of the constructor to specify the custom pattern, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_custom&quot;, pattern:&quot;000 00AA&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The &quot;A&quot;, &quot;a&quot;, &quot;X&quot;, and &quot;x&quot; custom pattern characters are case sensitive. In 
+  situations that use these characters, Spry converts the characters to the 
+  correct case, even if the user enters the wrong case.</p>
+<!-- -->
+<h4>Validate a phone number</h4>
+<p>&nbsp;To set the text field to 
+          accept a phone number format, add &quot;phone_number&quot; as 
+          the value for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;phone_number&quot;);
+&lt;/script&gt;</pre>
+<p>The default format is U.S. area code and phone number format: (000) 000-0000, 
+  but you can specify a custom format in the third parameter by using the &quot;phone_custom&quot; and &quot;pattern&quot; options, as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;phone_custom&quot; , pattern:&quot;00 0000 A&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The &quot;A&quot;, &quot;a&quot;, &quot;X&quot;, and &quot;x&quot; custom pattern characters are case sensitive. In 
+  situations that use these characters, Spry converts the characters to the 
+  correct case, even if the user enters the wrong case.</p>
+<p>The following table shows some other common options and values for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;phone_number&quot; (the default); &quot;phone_custom&quot;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Custom phone pattern. Used when 
+          format=&quot;phone_custom&quot;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a social security number</h4>
+<p>&nbsp;To set the text field to 
+          accept a social security number format, add &quot;social_security_number&quot; as the value for the second 
+          parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;social_security number&quot;);
+&lt;/script&gt;</pre>
+<p>The default format is U.S. social security number format with dashes: 
+  000-00-0000, but you can specify a custom format in the third parameter by using 
+  the pattern option, as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;social_security_number&quot;, {format:&quot;custom&quot; pattern:&quot;00 0000 A&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alphanumeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The &quot;A&quot;, &quot;a&quot;, &quot;X&quot;, and &quot;x&quot; custom pattern characters are case sensitive. In 
+  situations that use these characters, Spry converts the characters to the 
+  correct case, even if the user enters the wrong case.</p>
+<p>The following table shows some other common options for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Custom social security 
+          pattern</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate currency</h4>
+<p>&nbsp;To set the text field to 
+          accept a currency number format, add &quot;currency&quot; as the 
+          value for the second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;currency&quot;);
+&lt;/script&gt;</pre>
+<p>The default format is U.S. currency format: 1,000.00, but you can also 
+  specify the &quot;dot_comma&quot; format (1.000,00) in the third 
+  parameter, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;currency&quot;, {format:&quot;dot_comma&quot;});
+&lt;/script&gt;</pre>
+<p>In both cases, the separators for the 3-digit groups can be optional and the 
+  decimal part (i.e. the .00 in 1,000.00) is not required.</p>
+<p>The following table shows some other common options for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;comma_dot&quot; (the default); &quot;dot_comma&quot;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Numeric value with two decimal numbers allowed</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate real numbers and scientific notation</h4>
+<p>&nbsp;To set the text field to 
+          accept real numbers and scientific notation, add &quot;real&quot; as the value for the second parameter in the 
+          constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;real&quot;);
+&lt;/script&gt;</pre>
+<p>The text field validates a real number in scientific notation, for example 
+  1.231e10.</p>
+<p>The following table shows some other common options for the third 
+  parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Numeric value with decimal numbers</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate an IP address</h4>
+<p>&nbsp;To set the text field to 
+          validate an IP address, add &quot;ip&quot; as the value for the 
+          second parameter in the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1= new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;ip&quot;);
+&lt;/script&gt;</pre>
+<p>The default accepted IP address format is IPv4, but you can set other IP 
+  address formats in the third parameter by using the format option, as in the 
+  following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;ip&quot;, {format:&quot;ipv6&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows the formatting options, as well as some other 
+  common options, for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>&quot;ipv4&quot; (the default); &quot;ipv6&quot;; &quot;ipv4_ipv6&quot;</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>false (the default); true</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a URL</h4>
+<p>&nbsp;To set the text field to 
+          accept only URL values, add &quot;url&quot; as the value for the 
+          second parameter in the constructor, as follows: </p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;url&quot;);
+&lt;/script&gt;</pre>
+<p>The URL validation type accepts HTTP, HTTPS, and FTP URL values. </p>
+<p>The following table shows other common options for the third parameter.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Value</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>format</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>validateOn</p></td>
+      <td><p>[&quot;blur&quot;]; [&quot;change&quot;]; or both together ([&quot;blur&quot;, &quot;change&quot;])</p></td>
+    </tr>
+    <tr>
+      <td><p>isRequired</p></td>
+      <td><p>true (the default); false</p></td>
+    </tr>
+    <tr>
+      <td><p>useCharacterMasking</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>minChars/maxChars</p></td>
+      <td><p>Positive integer value</p></td>
+    </tr>
+    <tr>
+      <td><p>minValue/maxValue</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+    <tr>
+      <td><p>pattern</p></td>
+      <td><p>Not applicable</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Validate a custom format</h4>
+<p>&nbsp;To set the text field to 
+          accept any kind of customized format, specify &quot;custom&quot; as the value for the second parameter, and adding the pattern option in the 
+          third parameter, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;custom&quot;, {pattern:&quot;00 0000 AX&quot;});
+&lt;/script&gt;</pre>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The &quot;A&quot;, &quot;a&quot;, &quot;X&quot;, and &quot;x&quot; custom pattern characters are case sensitive. In 
+  situations that use these characters, Spry converts the characters to the 
+  correct case, even if the user enters the wrong 
+  case.</p>
+<!-- -->
+<h3>Specify when validation occurs</h3>
+<p>By default, the Validation Text Field widget validates when the user clicks 
+  the submit button. You can, however, set two other options: blur or change. The validateOn:[&quot;blur&quot;] parameter causes the widget to validate 
+  whenever the user clicks outside the text field. The validateOn:[&quot;change&quot;] parameter causes the widget to 
+  validate as the user changes text inside the text field.</p>
+<p>&nbsp;To specify when 
+        validation occurs, add a validateOn parameter to the 
+        constructor as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1 = new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;none&quot;, {validateOn:[&quot;blur&quot;]});
+&lt;/script&gt;</pre>
+<p>As a convenience, you can discard the brackets if your validateOn parameter contains a single value (for example, validateOn: &quot;blur&quot;). If the parameter contains both 
+  values, however (validateOn:[&quot;blur&quot;, &quot;change&quot;]), 
+  include brackets in the syntax.</p>
+	<p><span class="notetitle">Note: </span>In the preceding example, the 
+          second parameter is set to &quot;none&quot;, but it could easily 
+          be set to any of the available validation types (for example, &quot;phone&quot; or &quot;credit_card&quot;). See <a 
+href="https://loc.adobe.com/output/Preview/preview.html/jvarese/XML/en-us/Products/Spry/1.4/spr_widgets_wd.xml/spr_widgets_wd.html__#WS1E0F313C-63AB-4cf4-A339-420E95F9C1B4">Specify a validation type and format</a>.</p>
+<!-- -->
+<h3>Specify a minimum and maximum number of characters</h3>
+<p>This option is only available for the &quot;none&quot;, &quot;integer&quot;, &quot;email&quot;, and &quot;url&quot; validation types.</p>
+<p>The minChars option does not enforce a minimum 
+  number of characters if the text field is not required.</p>
+	<p>To specify a minimum or 
+        maximum number of characters, add the minChars property or maxChars property (or both) and a value to 
+					the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;<em>validation_type</em>&quot;, {minChars:<em>value</em>, maxChars:<em>value</em>});
+&lt;/script&gt;</pre>
+					<p><span class="notetitle">Note: </span>If a validation type is not 
+					required, you can set the validation type to &quot;none&quot;.</p>
+<!-- -->
+<h3>Specify minimum and maximum values</h3>
+<p>This option is only available for the &quot;integer&quot;, &quot;date&quot;, &quot;time&quot;, &quot;currency&quot;, and &quot;real&quot; validation 
+  types.</p>
+<p>&nbsp;To specify minimum or 
+        maximum values in the text field, add the minValue property or maxValue property (or both) and a value to 
+        the constructor, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;<em>validation_type</em>&quot;, {minValue:<em>value</em>, maxValue:<em>value</em>});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Change required status of a text field</h3>
+<p>By default, Validation Text Field widgets require user input when published 
+  on a web page. You can, however, make the completion of text fields optional for 
+  the user.</p>
+<p>&nbsp;To change the required 
+        status of a text field, add the isRequired property to 
+        the constructor and set its value to false, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;none&quot;, {isRequired:false});
+&lt;/script&gt;</pre>
+				<p><span class="notetitle">Note: </span>In the preceding example, the 
+          second parameter is set to &quot;none&quot;, but it could easily 
+					be set to any of the available validation types (for example, &quot;phone&quot; or &quot;credit_card&quot;).</p>
+<!-- -->
+<h3>Create a hint for a text field</h3>
+<p>Because there are so many different kinds of formats for text fields, it is 
+  helpful to give your users a hint as to what format they need to enter. For 
+  example, a text field set with the Phone Number validation type accepts phone 
+  numbers in the form (000) 000-0000 by default. You can enter these sample 
+  numbers as a hint so that the text field displays the correct format when the 
+  user loads the page in a browser.</p>
+<p>This option doesn't depend on the validation type, so you can always specify 
+  it. (Specify &quot;none&quot; as your validation type, if no 
+  other validation type is required.) When the user clicks inside the text field, 
+  the hint disappears; when the user clicks outside the text field, Spry restores 
+  the hint to the textfield if the field contains no value.</p>
+	<p>You can change the look of the hint text to be different than any other text field
+	value through the CSS class &quot;textfieldHintState&quot;.</p>
+<p>&nbsp;To create a hint for a 
+        text field, add the hint property to the third 
+        parameter of the constructor and the text of your hint as the value, as 
+        follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;<em>validation_type</em>&quot;, {hint:&quot;some hint text here&quot;});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Block invalid characters</h3>
+<p>You can prevent users from entering invalid characters in a Validation Text 
+  Field widget. For example, if you set this option for a widget set with the 
+  Integer validation type, nothing appears in the text field if the user tries to 
+  type a letter.</p>
+<p>You must specify a validation type for this option because the specification 
+  of the third parameter depends on the second parameter. If no validation type is 
+  required, specify &quot;none&quot; as your validation type.</p>
+<p>This option does not work in older browsers.</p>
+<p>&nbsp;To block invalid 
+        characters, add the useCharacterMasking property to 
+        the constructor and set its value to true, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;<em>validation_type</em>&quot;, {useCharacterMasking:true});
+&lt;/script&gt;</pre>
+<!-- -->
+<h3>Customize the Validation Text Field widget</h3>
+<p>The SpryValidationTextField.css file provides the default styling for the 
+  Validation Text Field widget. You can, however, customize the widget by changing 
+  the appropriate CSS rule. The CSS rules in the SpryValidationTextField.css file 
+  use the same class names as the related elements in the widget&rsquo;s HTML code, so 
+  it&rsquo;s easy for you to know which CSS rules correspond to the widget and its error 
+  states.</p>
+<p>The SpryValidationTextField.css file should already be included in your 
+  website before you start customizing. </p>
+<!-- -->
+<h4>Style a Validation Text Field widget (general 
+  instructions)</h4>
+<ol>
+  <li><span>Open the SpryValidationTextField.css file.</span> </li>
+  <li><span>Locate the CSS rule for the part of the widget to change. For 
+    example, to change the background color of the Text Field widget&rsquo;s required 
+    state, edit the .textfieldRequiredState rule in the 
+    SpryValidationTextField.css file.</span> </li>
+  <li><span>Make your changes to the CSS and save the file.</span> </li>
+</ol>
+<p>The SpryValidationTextField.css file contains extensive comments, explaining 
+  the code and the purpose for certain rules. For further information, see the 
+  comments in the file.</p>
+<!-- -->
+<h4>Style Validation Text Field widget error message text</h4>
+<p>By default, error messages for the Validation Text Field widget appear in red 
+  with a 1-pixel solid border surrounding the text.</p>
+<p>&nbsp;To change the text 
+          styling of Validation Text Field widget error messages, use the following table 
+          to locate the appropriate CSS rule, and then change the default properties, or 
+          add your own text-styling properties and values.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Text to change</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Relevant properties to change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Error message text</p></td>
+      <td><p>.textfieldRequiredState .textfieldRequiredMsg, 
+          .textfieldInvalidFormatState .textfieldInvalidFormatMsg, 
+          .textfieldMinValueState .textfieldMinValueMsg, .textfieldMaxValueState 
+          .textfieldMaxValueMsg, .textfieldMinCharsState .textfieldMinCharsMsg, 
+          .textfieldMaxCharsState .textfieldMaxCharsMsg</p></td>
+      <td><p>color: #CC3333; border: 1px solid 
+          #CC3333;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Change Validation Text Field widget background colors</h4>
+<p>&nbsp;To change the background 
+          colors of the Validation Text Field widget in various states, use the following 
+          table to locate the appropriate CSS rule, and then change the default background 
+          color values.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Color to change</p></th>
+      <th> <p>Relevant CSS rule</p></th>
+      <th> <p>Relevant property to change</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>Background color of widget in valid state</p></td>
+      <td><p>.textfieldValidState input, input.textfieldValidState</p></td>
+      <td><p>background-color: #B8F5B1;</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of widget in invalid state</p></td>
+      <td><p>input.textfieldRequiredState, .textfieldRequiredState input, 
+          input.textfieldInvalidFormatState, .textfieldInvalidFormatState input, 
+          input.textfieldMinValueState, .textfieldMinValueState input, 
+          input.textfieldMaxValueState, .textfieldMaxValueState input, 
+          input.textfieldMinCharsState, .textfieldMinCharsState input, 
+          input.textfieldMaxCharsState, .textfieldMaxCharsState input</p></td>
+      <td><p>background-color: #FF9F9F;</p></td>
+    </tr>
+    <tr>
+      <td><p>Background color of widget in focus</p></td>
+      <td><p>.textfieldFocusState input, input.textfieldFocusState</p></td>
+      <td><p>background-color: 
+          #FFFFCC;</p></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+<h4>Specify custom patterns</h4>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>Use these values to create a custom pattern for any of the format types. For 
+  example, to specify a custom social security number that&rsquo;s a combination of 
+  numbers and capital letters, specify the following custom pattern in the 
+  constructor&rsquo;s third parameter:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;social_security_number&quot;, {format:&quot;custom&quot;, pattern:&quot;AA00AA&quot;});
+&lt;/script&gt;</pre>
+	<p>The preceding code results in a text field that accepts values such 
+            as UT99CW, AB87PP, GV44RE, and so on. <span class="notetitle">Note: </span>Dreamweaver users need only 
+              enter a custom pattern in the Pattern text box of the Property inspector, using 
+              the values provided in the preceding table. For example, AA00AA. <span class="notetitle">Note: </span>Spry&rsquo;s validation mechanism 
+							supports only ASCII characters.</p>
+<!-- -->
+<h4>Insert autocomplete characters </h4>
+<p>The following table shows a full list of values used for custom patterns.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Value</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>&quot;0&quot;</p></td>
+      <td><p>Whole numbers between 0 and 9</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;A&quot; </p></td>
+      <td><p>Uppercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;a&quot;</p></td>
+      <td><p>Lowercase alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;B&quot;; &quot;b&quot;</p></td>
+      <td><p>Case-insensitive alphabetic characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;X&quot;</p></td>
+      <td><p>Uppercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;x&quot;</p></td>
+      <td><p>Lowercase alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;Y&quot;; &quot;y&quot;</p></td>
+      <td><p>Case-insensitive alpha-numeric characters</p></td>
+    </tr>
+    <tr>
+      <td><p>&quot;?&quot;</p></td>
+      <td><p>Any character</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>Any characters (letters, punctuation, and so on) other than the backslash (\) 
+  and those listed in the preceding table are considered autocomplete characters, 
+  and Spry can insert these kinds of characters at the appropriate time. For 
+  example, if you have a zip code like UT.99CW, you might want to have Spry insert 
+  the period automatically after the user types the first two capital 
+  letters.</p>
+<p>&nbsp;To use an autocomplete 
+          character, insert the character in the format pattern, as follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_custom&quot;, pattern:&quot;AA.00AA&quot;});
+&lt;/script&gt;</pre>
+<p>The preceding code results in a text field that accepts values such as 
+  UT.99CW, AB.87PP, GV.44RE, and so on, with the period appearing as an 
+  autocomplete character after the user types the first two capital letters.</p>
+<p>You can also have Spry autocomplete letters (other than those in the 
+  preceding table), as in the following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_custom&quot;, pattern:&quot;AA.00AAF3&quot;});
+&lt;/script&gt;</pre>
+<p>The preceding code results in a text field that accepts values such as 
+  UT.99CWF3, AB.87PPF3, GV.44REF3, and so on, with the period appearing as an 
+  autocomplete character after the user types the first two capital letters, and 
+  the F3 appearing after the user types the last two capital letters.</p>
+<p>To use any of the special characters listed in the preceding table as an 
+  autocomplete character, escape them with a double backslash (\\), as in the 
+  following example:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_custom&quot;, pattern:&quot;AA.00AA\\B3&quot;});
+&lt;/script&gt;</pre>
+<p>The preceding code results in a text field that accepts values such as 
+  UT.99CWB3, AB.87PPB3, GV.44REB3, and so on, with the period appearing as an 
+  autocomplete character after the user types the first two capital letters, and 
+  the B3 appearing after the user types the last two capital letters.</p>
+<p>To use a backslash (\) as part of an autocomplete sequence, double it, and 
+  escape it using a double backslash&mdash;a total of four backslashes (\\\\)&mdash;as 
+  follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var textfieldwidget1 = new Spry.Widget.ValidationTextField(&quot;textfieldwidget1&quot;, &quot;zip_code&quot;, {format:&quot;zip_custom&quot;, pattern:&quot;AA\\\\00AA&quot;});
+&lt;/script&gt;</pre>
+<p>The preceding code results in a text field that accepts values such as 
+  UT\99CW, AB\87PP, GV\44RE, and so on, with the backslash appearing as an 
+  autocomplete character after the user types the first two capital 
+  letters.</p>
+<!-- -->
+<h4>Customize state-related class names</h4>
+<p>While you can replace error-message-related class names with class names of 
+  your own by changing the rules in the CSS code and the class names in the HTML 
+  code, you cannot change or replace state-related class names, because the 
+  behaviors are hard-coded as part of the Spry framework. You can, however, 
+  override the default state-related class name with your own class name by 
+  specifying a new value in the third parameter of the widget 
+  constructor.</p>
+<p>&nbsp;To change widget 
+          state-related class names, add one of the overriding options to the third 
+          parameter of the widget constructor, and specify your custom class name, as 
+          follows:</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+	var sprytextfield1 = new Spry.Widget.ValidationTextField(&quot;sprytextfield1&quot;, &quot;none&quot;, {requiredClass:&quot;required&quot;});
+&lt;/script&gt;</pre>
+<p>The following table provides a list of options you can use to override 
+  built-in state-related class names.</p>
+<table>
+  <thead align="left">
+    <tr>
+      <th> <p>Option</p></th>
+      <th> <p>Description</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>requiredClass</p></td>
+      <td><p>Overrides the &quot;textfieldRequiredState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidFormatClass</p></td>
+      <td><p>Overrides the &quot;textfieldInvalidFormatState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>validClass</p></td>
+      <td><p>Overrides the &quot;textfieldValidState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>focusClass</p></td>
+      <td><p>Overrides the &quot;textfieldFocusState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidFormatClass</p></td>
+      <td><p>Overrides the &quot;textfieldInvalidFormatState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidRangeMinClass</p></td>
+      <td><p>Overrides the &quot;textfieldMinValueState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidRangeMaxClass</p></td>
+      <td><p>Overrides the &quot;textfieldMaxValueState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidCharsMinClass</p></td>
+      <td><p>Overrides the &quot;textfieldMinCharsState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>invalidCharsMaxClass</p></td>
+      <td><p>Overrides the &quot;textfieldMaxCharsState&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>textfieldFlashTextClass</p></td>
+      <td><p>Overrides the &quot;textfieldFlashText&quot; built-in value</p></td>
+    </tr>
+    <tr>
+      <td><p>hintClass</p></td>
+      <td><p>Overrides the &quot;textfieldHintState&quot; built-in value</p></td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<p>Copyright &copy; 2006. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

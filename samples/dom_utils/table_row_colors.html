@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Table Row Colors</title>
+<script src="../../includes/xpath.js" type="text/javascript"></script>
+<script src="../../includes/SpryData.js" type="text/javascript"></script>
+<script src="../../includes/SpryDOMUtils.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var ds1 = new Spry.Data.XMLDataSet("../../data/adobe_products.xml", "products/product");
+
+function InitPage()
+{
+	Spry.$$("table tr:nth-child(4n+2)").addClassName("c1");
+	Spry.$$("table tr:nth-child(4n+3)").addClassName("c2");
+	Spry.$$("table tr:nth-child(4n+4)").addClassName("c3");
+	Spry.$$("table tr:nth-child(4n+5)").addClassName("c4");
+}
+var observer = { onPostUpdate: function(notifier, data) {InitPage(); } };
+Spry.Data.Region.addObserver("spryTable", observer);
+//-->
+</script>
+<style type="text/css">
+.c1{
+background-color:#99F}
+.c2{
+background-color:#9C9}
+.c3{
+background-color:#FFC}
+.c4{
+background-color:#CC6}
+</style>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>Repeating Table Row Colors</h3>
+<p>This sample shows to how assign multiple rows colors to a table, regardless of the number of rows in the table.</p>
+<p>It is done by first creating the classes that set different background colors. </p>
+<p>Then use the Spry Element Selector to assign the classes to the correct row numbers. Read more about nth-child at <a href="http://www.w3.org/TR/2001/CR-css3-selectors-20011113/#nth-child-pseudo">http://www.w3.org/TR/2001/CR-css3-selectors-20011113/#nth-child-pseudo</a></p>
+<p>This <a href="altColorRows.html">sample</a> has more examples of setting up alternating row colors.</p>
+<p>The formula for 'x' number of row colors is:</p>
+<pre>Spry.$$(&quot;table tr:nth-child(xn+(x+1)&quot;).addClassName(&quot;className&quot;);</pre>
+<h4>Static Table</h4>
+<table width="200">
+  <tr>
+    <th>Number</th>
+    <th>Number</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>one</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>two</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>three</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>four</td>
+  </tr>
+</table>
+<h4>Sortable Spry Table<br/></h4>
+<div spry:region="ds1" id="spryTable">
+  <table>
+    <tr>
+      <th spry:sort="name">Name</th>
+      <th spry:sort="category">Category</th>
+    </tr>
+    <tr spry:repeat="ds1">
+      <td>{name}</td>
+      <td>{category}</td>
+    </tr>
+  </table>
+  <script type="text/javascript">
+  Spry.Utils.addLoadListener(InitPage);
+  </script>
+</div>
+</body>
+</html>

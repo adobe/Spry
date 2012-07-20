@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<bad>
+	<item value="Value with an & that is not an entitiy.">Item 1</item>
+	<item value="Unterminated item tag!">
+</bad>

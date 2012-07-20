@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSV Data Set Example</title>
+<script src="../../includes/SpryData.js" language="javascript" type="text/javascript"></script>
+<script src="../../includes/SpryCSVDataSet.js" language="javascript" type="text/javascript"></script>
+<script>
+var ds1 = new Spry.Data.CSVDataSet("../../data/photos.csv");
+</script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style>
+#thumbs {
+	width:300px;
+	float:left;
+	padding-right:20px;
+}
+</style>
+</head>
+<body>
+<h3>CSV Data Set sample</h3>
+<p>This sample is a simple demonstration of the CSV (Comma Separated Values) data set in action. We made a <a href="../../data/photos.csv">.csv</a> file from the <a href="../../demos/gallery/galleries/paris/photos.xml">Paris gallery XML file</a>. This .csv file is then used as the data source for the CSV data set. Note that we don't need xpath.js in the head since that is only relevant for XML data sets.</p>
+<p>The CSV data set has 2 constructor options, similar to the HTML data set.</p>
+<ul>
+  <li>firstRowAsHeaders - Default is true. The data set assumes that the first record is a set of headers, or column names. If the first row of data is really data, set this to false. Column names will then be {column0}, {column1}, etc.</li>
+  <li>columnNames - An optional array with column names can be passed in order to specify your own column names to be used. Use columNames:[&quot;FirstCol&quot;, &quot;SecondCol&quot;] </li>
+</ul>
+<pre>var ds1 = new Spry.Data.CSVDataset(&quot;path to .csv&quot;,{firstRowAsHeaders: false, columnNames:[&quot;firstname&quot;,&quot;lastname&quot;]});</pre>
+<div spry:region="ds1" spry:repeat="ds1" id="thumbs"> <img spry:setrow="ds1" src="../../demos/gallery/galleries/paris/thumbnails/{imgsrc}" height="75" width="75" style="float:left;" /> </div>
+<div spry:detailregion="ds1"> <img src="../../demos/gallery/galleries/paris/images/{imgsrc}" /></div>
+<br clear="all" />
+</body>
+</html>

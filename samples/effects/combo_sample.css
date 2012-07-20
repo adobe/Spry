@@ -1,0 +1,111 @@
+#container {
+	position: relative;
+	width: 890px;
+	margin: 0 0 0 0;
+	text-align: left;
+}
+.Accordion {
+	overflow: hidden;
+}
+.AccordionPanelLabel {
+	border-top: 4px;
+	padding: 2px;
+	cursor: pointer;
+	border-top-style: solid;
+	line-height: 14px;
+	font-weight: bold;
+	width: 150px;
+	border-top-color: #CCCCCC;
+}
+.AccordionPanelContent {
+	overflow: hidden;
+	height: 100px;
+	padding-left: 6px;
+	list-style-type: none;
+	margin: 4px;
+}
+.style1 {
+	color: #FF0000
+}
+#Acc1 {
+	width: 200px;
+	float: left;
+	margin: 20px;
+	z-index: 50;
+}
+#Acc1 .AccordionPanelContent {
+	height: 0px;
+}
+#Acc1 .AccordionPanelLabel {
+	width:190px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+#Acc2 {
+	width: 170px;
+	float: left;
+	margin: 20px;
+}
+#Acc2 .AccordionPanelLabel {
+	font-weight: bold;
+	cursor: pointer;
+	width: 160px;
+}
+#Acc2 .AccordionPanelContent {
+	height: 1px;
+	list-style-type: none;
+	overflow: hidden;
+}
+#panel1Content, #panel2Content, #panel3Content, #panel4Content {
+	border: none;
+}
+#panel1Content.AccordionPanelContent{
+	height:100px;
+}
+#panel1Content ul{
+	list-style-type:none;
+}
+#apDiv1 {
+	width: 380px;
+	height: 600px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	float: left;
+	margin-top: 20px;
+	padding-top: 20px;
+}
+#img12hours{
+	width: 92px;
+	height: 68px;
+	float: left; 
+	position: relative;
+	top: 0px;
+	left: 0px;
+	border: 1px;
+}
+#img12hours2{ 
+	width: 56px; 
+	height: 38px;
+	float: right; 
+	position: relative;
+}
+#div12hours3{
+	height: 0px; 
+	overflow: hidden;
+}
+#img12hours3{
+	width: 395px;
+	height: 200px;
+	clear: both; 
+	opacity: 0.0; 
+	filter: alpha(opacity=0);
+}
+img {
+	margin: 8px;
+	cursor: pointer;
+}
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+
+}

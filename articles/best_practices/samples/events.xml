@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<events>
+		<event>
+			<photo path="i/photo_events_aquothon.jpg" desc="Aquo-Thon" />
+			<name>Aquo-Thon</name>
+			<location>Whistler, British Columbia</location>
+			<date>May 26th</date>
+			<description>Join us in Whistler as Extreme Mountain bikers take on the hills and curves of British Columbia.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/photo_events_swingsacramento.jpg" desc="Aquo Swing" />
+			<name>Aquo Swing</name>
+			<location>Sacramento, CA</location>
+			<date>June 10th</date>
+			<description>Watch these uber talented couples swing the night away at Sacramento's most famous dance hall.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/photo_events_ultramarathon.jpg" desc="Aquo Ultra Marathon" />
+			<name>Aquo Ultra Marathon</name>
+			<location>Whistler, British Columbia</location>
+			<date>June 22nd</date>
+			<description>Get ready to admire the amateur runners pace themselves for the annual Aquo Ultra Marathon.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/photo_events_extremeski.jpg" desc="Aquo Extreme Ski" />
+			<name>Aquo Extreme Ski</name>
+			<location>Jackson Hole, WY</location>
+			<date>December 17th</date>
+			<description>Extreme skiing has never been so intense. Join thousands of spectators and watch the industry's most daring extreme skiers take on the mountain.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/motocross.jpg" alt="Aquo Baja 400" />
+			<name>Aquo Baja 400</name>
+			<location>San Filipe, Baja California</location>
+			<date>October 3rd</date>
+			<description>Come south of the border and watch the dirt fly. This Baja 400 promises to be the best yet, with all the top seeds being there.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/surf.jpg" alt="Big Wave Challenge" />
+			<name>Big Wave Challenge</name>
+			<location>Mavericks, CA</location>
+			<date>November 8th</date>
+			<description>Watch the worlds best big wave surfers take on the legendary break at Mavericks.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+
+		<event>
+			<photo path="i/golf.jpg" alt="Aquo Classic" />
+			<name>Aquo Classic</name>
+			<location>Carlsbad, CA</location>
+			<date>August 15th</date>
+			<description>Join us for the 10th annual Aquo Classic at Alvaro Pines in sunny Carlsbad California.</description>
+			<directions url="#"><![CDATA[<a href="#">directions...</a>]]></directions>
+		</event>
+</events>

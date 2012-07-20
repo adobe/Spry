@@ -1,0 +1,198 @@
+/* events */
+
+body {
+background-color: #fdb913;
+}
+
+/* font sizing */
+
+h1#events_selectanevent {
+    /*padding: 19px 0 0 0;*/
+    /*overflow: hidden;*/
+    /*background: url("../i/hdr_events_selectanevent.gif") no-repeat;*/
+    /*height: 0px !important;*/ /* for most browsers */
+    /*height*/ /**//*:19px;*/ /* for IE5.5's bad box model */
+}
+
+/* header elements */
+
+div#header_left {
+background: url("../i/logo_events.gif") no-repeat;
+}
+
+/* layout elements */
+
+div#title {
+	overflow: hidden;
+	background: url("../i/title_events.gif") no-repeat;
+	height: 100px !important; /* for most browsers */
+	height /**/:100px; /* for IE5.5's bad box model */
+}
+
+div#full-column {
+float: left;
+width: 760px;
+margin: 20px 0 0 20px;
+display: inline;
+}
+
+div.product_row {
+float: left;
+width: 760px;
+height: auto;
+margin: 20px 0 0 0px;
+display: inline;
+}
+
+img.border {
+border: 2px solid #00a0af;
+margin-bottom: 10px;
+}
+
+div#border_bottom {
+	float: left;
+	width: 800px;
+    padding: 20px 0 0px 0;
+    overflow: hidden;
+    background: url("../i/border_events_bottom.gif") no-repeat;
+    height: 0px !important; /* for most browsers */
+    height /**/:20px; /* for IE5.5's bad box model */
+}
+
+/* header elements */
+
+div#menu {
+background: url(../i/nav_bg_events.gif) top left no-repeat;
+}
+
+/* Table Rules
+----------------------------------------------- */
+#events {
+	border-collapse:collapse;
+	width:340px;
+	margin: 0;
+	color: #00a0af;
+}
+
+#events th {
+	background-color: #ffffff;
+	padding: 6px 0.25em;
+	font-weight: bold;
+	font-size: 90% ;
+	color: #000000;
+	text-transform: uppercase;
+	margin: 0;
+	border-bottom: solid 1px #c2e8ee;
+	cursor: pointer;
+}
+
+#events td, #events th { 
+	margin: 0; 
+	padding: .75em 0.375em .75em 0.375em;
+	text-align: left;
+}
+
+#events tr.headerrow {
+	background: none;
+}
+
+#events tr td {
+    background-color: #f0f9fb;
+	border-bottom: solid 1px #c2e8ee;
+}
+
+#events tr.rowSelected td {
+	background-color: #d0eef4;
+	border-bottom: solid 1px #c2e8ee;
+}
+
+#apDiv1 {
+	position:absolute;
+	left:572px;
+	top:299px;
+	width:360px;
+	height:160px;
+	z-index:1;
+}
+
+#imgwrapper { height: 175px; }
+
+.eventname {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.date {
+	color: #000;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.location {
+	color: #000;
+	font-size: 10px;
+}
+
+.rowHover {
+	color: #000;
+	cursor: pointer;
+}
+
+#content1, #sidebar {
+	float: left;
+	text-align: left;
+}
+
+#content1 {	
+	width: 340px;	
+	margin: 0px;
+}
+#sidebar {
+	width:400px;
+	margin-top: 0;
+	margin-left: 20px;
+	background: url('../i/bg_events_detail.gif') no-repeat;
+}
+
+#sidebar_brace {
+	float: left;
+	width:360px;
+	height:340px;
+	margin: 20px 10px 20px 20px;
+	display: inline;
+}
+
+.SpryHiddenRegion {
+   visibility: hidden;
+}
+
+/* Utility IDs, classes, and HTML selectors
+----------------------------------------------- */
+.clear {
+	visibility: hidden;
+	display: block;
+	clear: both;
+	height: 0px;
+	margin: 0;
+	padding: 0;
+	}
+.ClearAll {
+	clear: both;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+code { color: #000; }
+pre { font-size: small; color: #000; }
+
+.highlightedcode {background-color: #ff9;}
+
+.sample {
+	background: #eee;
+	padding: 20px;
+	border: 2px solid #666;
+	margin-top: 20px;
+	overflow: scroll;
+}
+

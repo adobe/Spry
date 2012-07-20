@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Samples</title>
+<link href="../css/articles.css" rel="stylesheet" type="text/css" />
+<link href="../widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<script src="../widgets/tabbedpanels/SpryTabbedPanels.js" type="text/javascript" language="javascript"></script>
+<script src="../includes/SpryDOMUtils.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+function InitPage(){
+Spry.$$("ul.TabbedPanelsTabGroup > li").addClassName("TabbedPanelsTab");
+Spry.$$("#contentGroup").addClassName("TabbedPanelsContentGroup");
+Spry.$$(".TabbedPanelsTab").setAttribute("tabindex", "0");
+Spry.$$(".TabbedPanels").forEach(function(n) { new Spry.Widget.TabbedPanels(n);});
+}
+Spry.Utils.addLoadListener(InitPage);
+</script>
+<style type="text/css">
+.TabbedPanelsContentGroup {
+	background-color:#FFFFFF;
+}
+#TabbedPanels1 {
+	width:auto;
+}
+.TabbedPanelsTab {
+	font: bold 1.2em sans-serif;
+}
+.TabbedPanelsTabSelected {
+	background-color: #F0F7FE;
+}
+.TabbedPanelsTabGroup a {
+	outline: 0;
+}
+</style>
+</head>
+<body>
+
+<h3><a onclick="hashes();">Spry 1.6.1 Samples</a></h3>
+<p>In this section, we  provide  samples that feature small examples of a specific behavior in the Spry Framework. These are designed to provide insight into building Spry applications. Feel free to use these code examples in your own work.  Check the source code to see what's happening. <a href="#"><strong>Bold</strong></a> denotes a sample that is new for this release.</p>
+<div id="TabbedPanels1" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li><a href="#dataset">Spry Data and Dynamic Region</a></li>
+    <li><a href="#datautility">Utilities</a></li>
+    <li><a href="#elementselector">Element Selector</a></li>
+    <li><a href="#serverside">Server Side Utilities</a></li>
+    <li><a href="#widgets">Widgets</a></li>
+    <li><a href="#effects">Effects</a></li>
+  </ul>
+  <div id="contentGroup">
+    <div class="TabbedPanelsContent" id="dataset">
+      <h2><strong>Spry Data Set and Dynamic Region Samples</strong></h2>
+      <table cellpadding="4">
+        <tr>
+          <th scope="col">File</th>
+          <th scope="col">Description</th>
+          <th scope="col">Spry used:</th>
+        </tr>
+        <tr>
+          <td><a href="data_region/SuggestSample.html">Auto Suggest </a></td>
+          <td>An example of using a Spry region and non-destructive filter to create an auto suggest widget. There is also a formal <a href="autosuggest/SuggestSample.html">Spry Autosuggest widget</a>.</td>
+          <td>AutoSuggest Widget, :hover, :suggestion</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataReferences.html">Built-in Data References</a></td>
+          <td>A visualization of all the built-in data references for data sets. Useful for learning the distinction between them.</td>
+          <td>:sort, filter</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/AttributeComboSample.html">Combining Spry Attributes</a></td>
+          <td>This sample shows you how you can combine some of the processing instruction attributes to eliminate the need for using extra wrapper elements. </td>
+          <td>:if, :test,:choose, :when</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/CSV_sample.html"><strong>CSV Data Set sample</strong></a></td>
+          <td>Shows how to use the CSV data set.</td>
+          <td>:region, :repeat, :detailregion, :setrow</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/Function_colon.html"><strong>Custom Data References and Functions</strong></a></td>
+          <td>Using the {Function::} method for custom data references and externalizing Spry logic.</td>
+          <td>{function::}, spry:if=&quot;function::&quot;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/CustomColumnsSample.html">Custom Data Set Columns</a></td>
+          <td>This sample shows you how to pre-process and add custom data set columns to a data set, after its data is loaded. </td>
+          <td>:even</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataSetExplorer.html">Data Set Explorer</a></td>
+          <td>A great file. This sample accepts a path to your source XML file. It shows the schema as a tree. Clicking the tree node will show the resulting data set and provides the full code to create the data set. A nice way to visualize your data set. It also allows for testing the new POST support in Spry. </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataSetMasterDetailSample.html">Data Set Master/Detail</a></td>
+          <td>This is an example of how to set up a master/detail relationship between 2 data sets. Dependent dropdown menus</td>
+          <td>:if, :repeatchildren</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataSetObserver.html">Data Set Observer</a> </td>
+          <td>This sample shows you the two ways you can register observers on a data set. </td>
+          <td>observer, :if, setCurrentRowNumber, filter</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/AttributeComboSample.html">Debugging Generated Region Markup</a> </td>
+          <td>This sample shows you how to turn on region debugging to see what template code is being processed and what markup is being generated. </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DetailRegionEffectsSample.html">Detail Region With Effects </a></td>
+          <td>This is an example of how to use transition effects for a detail region. </td>
+          <td>effect, :selected, :hover</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/EvenOddRowSample.html">Even/Odd Row </a></td>
+          <td>This sample shows you how to use the built-in {ds_EvenOddRow} data reference to color even and odd rows of a table. </td>
+          <td>:even, :odd, {ds_EvenOddRow}</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/XPathFilteringSample.html">Filtering with XPath</a> </td>
+          <td>Data set constructors can take XPath expressions to filter or otherwise restrict the data in the dataset. Check the source to see what's happening. </td>
+          <td>filter</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/HideDataReferencesSample.html">Hiding Data References</a></td>
+          <td>This is an example of how to hide the data references used inside of spry:region and spry:detailregions as the page loads. </td>
+          <td>.SpryHiddenRegion, :content</td>
+        </tr>
+        <tr>
+          <td><a href="htmldataset/index.html">HTML Data Sets</a></td>
+          <td>Use tables or other repeating markup structures as data sets!</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/HTMLFragsInXMLSample.html">HTML Fragments in XML</a></td>
+          <td>This sample shows you how to embed HTML fragments within your XML for use with data sets and Spry regions. </td>
+          <td>setColumnType()</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/MultipleFiltersSample.html">Multiple Non-Destructive Filters</a></td>
+          <td>This sample shows you how to apply more than one non-destructive filter to a single data set.</td>
+          <td>addFilter, removeFilter, applyFilters, removeAllFilters</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/MultipleFiltersModeSample.html">Multiple Non-Destructive Filters Mode</a></td>
+          <td>This sample shows you how to switch between &quot;and&quot; and &quot;or&quot; filtering modes when dealing with multiple filters.</td>
+          <td>addFilter, setFilterMode</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/JSONDataSetSample.html">JSON</a> </td>
+          <td>This sample shows you how to use the JSON data set and JSON nested data set.</td>
+          <td>:sort</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/JSONParserSample.html">JSON Parser</a></td>
+          <td>This sample shows you how to turn on the JSON.org parsing function and use the preparseFunc constructor option to help prevent unauthorized script from executing.</td>
+          <td>preParseFunc</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/NestedXMLDataSample.html">Nested XML Data</a> </td>
+          <td>This sample shows you a couple of ways to get access to your nested XML data.</td>
+          <td>nested data, :if</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/NestedDataSample.html">Nested XML Data (simple)</a></td>
+          <td>A more straightforward sample using the NestedXMLDataSet</td>
+          <td>NestedXMLDataSet</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/NonDestructiveFilterSample.html">Non-destructive Filter</a></td>
+          <td>This file shows off the new non-destructive filtering capabilities. Typing a state name will filter the data. Backing out the text field will return the data. </td>
+          <td>filter</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataSetSample.html">Non-XML Based Data Set</a></td>
+          <td>This is an example of how to manually insert data into a non-XML data set so that it can be used with Spry regions.</td>
+          <td>sort, :if, setDataFromArray</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/PagingSample.html">Paging </a></td>
+          <td>This is an example of how to page through a dataset, 10 records at a time. Handy for large datasets, or when design constrains the data area. </td>
+          <td>filter, setXPath, loadData, :test</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SpryPagedViewSample.html">Paged View Sample</a></td>
+          <td>A dedicated pager, more advanced and easier to implement than the above sample, this has functions for common paging patterns.</td>
+          <td>setCurrentRowNumber, filter, pagedView, :selectgroup, :hover, :setrow, :choose, :if, </td>
+        </tr>
+        <tr>
+          <td><a href="../demos/products_pe/index.html">Progressive Enhanced Version of the Products Demo</a> </td>
+          <td>In working towards progressive enhancement and javascript disabled environments, spry:content allows for Inner HTML replacement and static content at the same time. This makes designing for non scripting environments much easier. <a href="products-hijax/index.html">Original Version of the progressively enhanced Products Demo.</a></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/RegionObserverSample.html">Region Observer </a></td>
+          <td>This is an example of how to register a Spry region observer function to perform an action whenever a region is finished updating. </td>
+          <td>addObserver, onPostUpdate</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/RegionStatesSample.html">Regions States </a></td>
+          <td>This sample shows you how to use region states to specify when markup in dynamic regions should be shown. </td>
+          <td>:state, :test, :if</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/StateMappingSample.html">Region State Mapping</a></td>
+          <td>This sample shows you how to map the built-in regions states to your own custom states. </td>
+          <td>:state</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SetCurrentRowSample.html">Setting the Current Row</a></td>
+          <td>This file shows how the current row can be set by the user. Remember that Spry has a zero based counting system! </td>
+          <td>:if, addObserver, setCurrentRowNumber</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SetCurrentRowByValueSample.html">Setting the Current Row Based on Specific Column Values</a> </td>
+          <td>This sample shows how to look for a specific row that matches a couple of column values, and make it the current row for the data set. </td>
+          <td>:if, addObserver, setCurrentRowNumber, findRowsWithColumnValues</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SetURL.html">setURL and setXPath</a></td>
+          <td>Demonstrates how to programmatically change the URL and XPath of a data set. </td>
+          <td>setURL, setXPath, loadData. :if</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SharingDataBetweenDataSets.html">Sharing Data Between Data Sets</a></td>
+          <td>Demonstrates how to leverage observers to share data between data sets to reduce trips to the server when useCache:false is used.</td>
+          <td>addObserver, useCache</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SortSample.html">Sorting</a></td>
+          <td>We have improved sorting support. We now sort ascending, descending and toggle. We also support multiple column sorts. This example shows these capabilities. </td>
+          <td>:sort, {ds_SortOrder}, {ds_SortColumn}</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SprySelectSample.html">spry:select and spry:selectgroup</a></td>
+          <td> Spry:select and selectgroup allows users to highlight a data record on a click or other event. Different than hover, the select persists until the next event. Spry:select allows for one selection at one time. Selectgroup allows for multiple selects. </td>
+          <td>:select, :selectgroup</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/SprySetRowSample.html">spry:setrow and spry:setrownumber</a> </td>
+          <td>This sample shows you how to use the spry:setrow and spry:setrownumber attributes to add non-destructive onclick handlers that change the current row in a data set. </td>
+          <td>:setrow, :setrownumber, :hover, :select</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/unobtrusive_spry_data.html"><strong>Unobtrusive Spry Data</strong></a></td>
+          <td>A basic demonstration of how to use the Element Selector to make unobtrusive Spry Data pages.</td>
+          <td>:region, :repeat, SpryDOMUtils.js</td>
+        </tr>
+        <tr>
+          <td><a href="accordion/AccordionSample2.html">Widgets from Spry Data</a></td>
+          <td>Using Spry Data to generate an accordion widget. </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/XMLDataSetStringHandlingSample.html">XML Data Set String Handling</a></td>
+          <td>Describes how string values within XML are handled by the XMLDataSet.</td>
+          <td>setColumnType()</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/XMLStringSample.html">XML String</a></td>
+          <td>This is an example of how to create an XML data set from an XML string. </td>
+          <td>stringToXMLDoc, setDataFromDoc, sort, :if</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/FilterXPath_with_params.html">XPath filtering with URL Params</a></td>
+          <td>Shows how to construct a XPath filter with Spry URL Utils.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/ZuggestSample.html">Zuggest Sample</a> </td>
+          <td>Very similar to the Auto Suggest Sample above, but the content is styled so that it appears as a set of results like <a href="http://www.francisshanahan.com/zuggest.aspx">Zuggest</a>. </td>
+          <td>AutoSuggest, filter</td>
+        </tr>
+      </table>
+    </div>
+    <div class="TabbedPanelsContent" id="datautility">
+      <h2><strong>Utilities Samples</strong></h2>
+      <table>
+        <tr>
+          <th scope="col">Sample</th>
+          <th scope="col">Description</th>
+          <th scope="col">Spry Used</th>
+        </tr>
+        <tr>
+          <td><a href="utils/setclass.html">add/removeClassName</a></td>
+          <td>This is a utility function that allows classes to be applied and removed from page elements. </td>
+          <td>Spry.Utils.addClassName<br />
+            Spry.Utils.removeClassName </td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/add_event_listener.html">add/removeEventListener</a></td>
+          <td>These utility functions allow you to add or remove an event listener for a given DOM element without having to worry about cross browser differences.</td>
+          <td>Spry.Utils.addEventListener<br />
+            Spry.Utils.removeEventListener</td>
+        </tr>
+        <tr>
+          <td><a href="utils/debugger_demo.html">Debugging Spry</a></td>
+          <td>A sample and explanation of using the Spry Debugger utility file. Gives insight into all page elements.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Form Submission via Ajax</td>
+          <td><a href="form_submission/SubmitFormWithXHRSample.cfm.html">Coldfusion</a> | <a href="form_submission/SubmitFormWithXHRSample.asp.html">ASP</a> | <a href="form_submission/SubmitFormWithXHRSample.php.html">PHP</a> - Demonstrates how to send form data via XHR. </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="form_submission/Submit_and_Validate_Form.php.html">XHR Submit and Form validation</a></td>
+          <td>Shows how to submit the page via AJAX only if the validation passed.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="utils/loadURL.html">loadURL</a></td>
+          <td>This function allows you to make sync/async &quot;GET&quot;, &quot;POST&quot;, or &quot;HEAD&quot; requests to the server.</td>
+          <td>loadURL</td>
+        </tr>
+        <tr>
+          <td><a href="utils/update_content.html">updateContent</a> </td>
+          <td>This function allows users to insert a HTML fragment onto the page from another file. </td>
+          <td>Spry.Utils.updateContent<br />
+            Fade Effect</td>
+        </tr>
+        <tr>
+          <td><a href="utils/updateContent_TabbedPanels.html">updateContent with Tabbed Panels</a></td>
+          <td>This sample shows how to use the updateContent function to dynamically load Tabbed Panels content.</td>
+          <td>Spry.Utils.updateContent<br />
+            Tabbed Panels widget</td>
+        </tr>
+        <tr>
+          <td><a href="utils/URLUtilsSample.html">URL Utilities</a> </td>
+          <td>These utility functions make it easier to access the search/hash data in a URL.</td>
+          <td>Spry.Utils.getLocationParamsAsObject</td>
+        </tr>
+        <tr>
+          <td><a href="data_region/DataWithURLParams.html">URL Utils with Spry Data</a></td>
+          <td> Shows how to use URL parameters with Spry Data.</td>
+          <td>Spry.Utils.getLocationParamsAsObject</td>
+        </tr>
+        <tr>
+          <td><a href="utils/XMLDocToObject.html">XMLDocToObject</a></td>
+          <td>This utility function allows you to convert an XML Document/SubTree into an object so you can easily access its data.</td>
+          <td>Spry.Utils.stringToXMLDoc<br />
+            loadURL</td>
+        </tr>
+      </table>
+    </div>
+    <div class="TabbedPanelsContent" id="elementselector">
+      <h2>Element Selector Samples</h2>
+      <table width="863">
+        <tr>
+          <th width="322">Sample</th>
+          <th width="529">Description</th>
+        </tr>
+        <tr>
+          <td><a href="accordion/Accordion_unobtrusive.html"> Accordion, Unobtrusive</a></td>
+          <td>Use the Element Selector to activate the widget constructor.</td>
+        </tr>
+        <tr>
+          <td><a href="collapsiblepanel/collapsible_panel_unobtrusive.htm">Collapsible Panel, Unobtrusive</a></td>
+          <td>A version that uses the Element Selector to construct the widget and handle the onClick behaviors.</td>
+        </tr>
+        <tr>
+          <td><a href="htmlpanel/product-0.html">HTML Panel with Element Selector</a></td>
+          <td>A sample of the HTML Panel widget that degraded gracefully.</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/table_row_colors.html">Multiple Alternating Row Colors</a></td>
+          <td>Using Element Selector with Spry Data to set up alternating row colors.</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/altColorRows.html">Alt Row Colors with Spry Data</a></td>
+          <td>This sample shows how to have any number of background colors for a table.</td>
+        </tr>
+        <tr>
+          <td><a href="slidingpanels/SlidingPanels_unobtrusive.html">Sliding Panels, Unobtrusive</a></td>
+          <td>Using the Element Selector to unobtrusive create and control the Sliding Panels widget.</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/unobtrusive_spry_data.html">Spry Data, Unobtrusive</a></td>
+          <td>A basic demonstration of how to use the Element Selector to make unobtrusive Spry Data pages.</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/unobtrusive_spry_data2.html">Spry Data, Unobtrusive 2</a></td>
+          <td>This sample has more attributes than the above sample and includes an accordion</td>
+        </tr>
+        <tr>
+          <td><a href="tabbedpanels/tabbed_panel_unobtrusive.htm">Tabbed Panels, Unobtrusive</a></td>
+          <td>Using the Element Selector to unobtrusive create and control the Tabbed Panels widget.</td>
+        </tr>
+        <tr>
+          <td><a href="dom_utils/hide_columns.html">Table Manipulation with Element Selector</a></td>
+          <td>Using the Element Selector to hide rows and columns.</td>
+        </tr>
+      </table>
+    </div>
+    <div class="TabbedPanelsContent" id="serverside">
+      <h2>Server Side Utilities</h2>
+      <p><a href="utils/query2xml.html">queryToXML</a> - These are samples of how to convert database info into XML files. Samples are for Coldfusion, PHP and ASP. </p>
+    </div>
+    <div class="TabbedPanelsContent" id="widgets">
+      <h2>Spry Widget Samples</h2>
+      <table>
+        <tr>
+          <th width="197" scope="col">Sample</th>
+          <th width="468" scope="col">Description</th>
+          <th width="154" scope="col">Reference Widget</th>
+        </tr>
+        <tr>
+          <td><a href="accordion/AccordionSample.html">Accordion Sample</a></td>
+          <td>Accordion sample with examples of behaviors.</td>
+          <td><a href="../widgets/accordion/SpryAccordion.html">Accordion </a></td>
+        </tr>
+        <tr>
+          <td><p><a href="accordion/AccordionSample2.html">Accordion from Spry data</a></p></td>
+          <td>Two versions of building an Accordion widget with Spry data.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="accordion/Accordion_unobtrusive.html">Accordion, Unobtrusive</a></td>
+          <td>A version that uses the Element Selector to run the constructor script.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="autosuggest/SuggestSample.html">AutoSuggest Sample</a></td>
+          <td>Hinting results of a form text fields.</td>
+          <td><a href="../widgets/autosuggest/SpryAutoSuggest.html">AutoSuggest</a></td>
+        </tr>
+        <tr>
+          <td><a href="autosuggest/Styling_SuggestSample.html">AutoSuggest Styling</a></td>
+          <td>Shows how to take the suggest list out of the page flow, preserving page layout.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="collapsiblepanel/collapsible_panel_sample.htm">Collapsible Panel</a></td>
+          <td>A single panel disclosure widget.</td>
+          <td><a href="../widgets/collapsiblepanel/SpryCollapsiblePanel.html">Collapsible Panel</a></td>
+        </tr>
+        <tr>
+          <td><a href="collapsiblepanel/CollapsiblePanelGroupSample.html">Collapsible Panel Group</a></td>
+          <td>A set of Collapsible Panels that can be controlled together.</td>
+          <td><a href="../widgets/collapsiblepanel/SpryCollapsiblePanelGroup.html">Collapsible Panel Group</a></td>
+        </tr>
+        <tr>
+          <td><a href="collapsiblepanel/collapsible_panel_unobtrusive.htm">Collapsible Panel, Unobtrusive</a></td>
+          <td>A version that uses the Element Selector to construct the widget and handle the onClick behaviors.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/CheckboxValidationSample.html">Form Checkbox</a></td>
+          <td>Validation widget for checkbox groups.</td>
+          <td><a href="../widgets/checkboxvalidation/SpryValidationCheckbox.html">Checkbox</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/ConfirmValidationSample.html">Form Confirm Password</a></td>
+          <td>Checks to see that 2 fields are identical</td>
+          <td><a href="../widgets/confirmvalidation/SpryValidationConfirm.html">Confirm</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/PasswordValidationSample.html">Form Password Validation</a></td>
+          <td>Validates the existence and strength of a password field.</td>
+          <td><a href="../widgets/passwordvalidation/SpryValidationPassword.html">Password</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/RadioValidationSample.html">Form Radio Buttons</a></td>
+          <td>Validation widget for radio buttons or groups.</td>
+          <td><a href="../widgets/radiovalidation/SpryValidationRadio.html">Radio Buttons</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/SelectValidationSample.html">Form Select</a></td>
+          <td>Validation widget for Select drop down menus.</td>
+          <td><a href="../widgets/selectvalidation/SpryValidationSelect.html">Select</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/SelectWithData.html">Form Select with Data</a></td>
+          <td>Using Spry Data to populate the Validation Select widget.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/TextfieldValidationSample.html">Form Text Field </a></td>
+          <td>Validation widget for text fields, including error messages and pattern matching.</td>
+          <td><a href="../widgets/textfieldvalidation/SpryValidationTextfield.html">Text Field</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/TextareaValidationSample.html">Form Text Area</a></td>
+          <td>Validation widget for text area, including a counter and max characters.</td>
+          <td><a href="../widgets/textareavalidation/SpryValidationTextarea.html">Text Area</a></td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/with_spry_region/widgets_region.html">Form Validation with Data</a></td>
+          <td>Combining Form Widgets and Spry Data and a dynamic Accordion.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="htmlpanel/html_panel_sample.html">HTML Panel</a></td>
+          <td>Loading HTML fragments into a Spry page container.</td>
+          <td><a href="../widgets/htmlpanel/SpryHTMLPanel.html">HTML Panel</a></td>
+        </tr>
+        <tr>
+          <td><a href="htmlpanel/html_panel_two.html">HTML Panel options</a></td>
+          <td>This sample covers the evalScripts options, observers and combining with Spry Effects.</td>
+          <td>&nbsp;</a></td>
+        </tr>
+        <tr>
+          <td><a href="menubar/MenuBarSample.html">Menu Bar</a></td>
+          <td>A list based menu system.</td>
+          <td><a href="../widgets/menubar/SpryMenuBar.html">Menu Bar</a></td>
+        </tr>
+        <tr>
+          <td><a href="menubar/MenuFromNestedData.html">Menu Bar from Spry Data</a></td>
+          <td>A Menu Bar created from a Nested Data Set</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="menubar/MenuBar_unobtrusive.html">Menu Bar, Unobtrusive</a></td>
+          <td>Using the Element Selector to activate the Menu Bars.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><p>Menu Bar Styling Samples</p></td>
+          <td><p>Shows how to style the menu bar for certain situations:</p>
+            <ul>
+              <li><a href="menubar/AutoWidthHorizontalMenuBarSample.html">Auto Width Horizontal Menu Bar</a></li>
+              <li><a href="menubar/AutoWidthVerticalMenuBarSample.html">Auto Width Vertical Menu Bar</a></li>
+              <li><a href="menubar/CenteringHorizontalMenuBarSample.html">Centering a Horizontal Menu Bar</a></li>
+            </ul></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="rating/RatingSample.html"><strong>Rating Widget Sample</strong></a></td>
+          <td>Shows basic functionality of the Rating Widget.</td>
+          <td><a href="../widgets/rating/SpryRating.html">Rating</a></td>
+        </tr>
+        <tr>
+          <td><a href="rating/RatingSample_FormSubmission.html"><strong>Rating with Form Submission</strong></a></td>
+          <td>Shows how to submit a new rating.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="rating/RatingSample_GracefulDegradation.html"><strong>Rating with Graceful Degradation</strong></a></td>
+          <td>Make sure the widget works when Javascript is off.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="rating/RatingSample_with_Observers.html"><strong>Rating with Observers</strong></a></td>
+          <td>Using observers to update the Rating widget.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="validationwidgets/Single_error_message_onSubmit.html">Single Error for multiple form widgets</a></td>
+          <td>Using a single error message to warn with multiple form validation widgets.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="slidingpanels/SlidingPanelsSample.html">Sliding Panels</a></td>
+          <td>A disclosure widget that slides content behind a visible window.</td>
+          <td><a href="../widgets/slidingpanels/SprySlidingPanels.html">Sliding Panels</a></td>
+        </tr>
+        <tr>
+          <td><a href="slidingpanels/SlidingPanelsSample2.html">Sliding Panels 2 Pane Layout</a></td>
+          <td>Shows how to use the Sliding Panels widget 2 windows at a time.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><p><a href="slidingpanels/SlidingPanelsFromData.html">Sliding Panels from Data</a></p></td>
+          <td>How to build a Sliding Panels widget using Spry Data</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="slidingpanels/SlidingPanels_unobtrusive.html">Sliding Panels, Unobtrusive</a></td>
+          <td>Using the Element Selector to unobtrusive create and control the Sliding Panels widget.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="tabbedpanels/tabbed_panel_sample.htm">Tabbed Panels</a></td>
+          <td>A disclosure widget with a tabbed interface.</td>
+          <td><a href="../widgets/tabbedpanels/SpryTabbedPanels.html">Tabbed Panels</a></td>
+        </tr>
+        <tr>
+          <td><a href="tabbedpanels/tabbed_panel_sample2.html">Tabbed Panels from Spry Data</a></td>
+          <td>Using Spry Data to build and populate the Tabbed Panels widget.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="tabbedpanels/tabbed_panel_unobtrusive.htm">Tabbed Panels, Unobtrusive</a></td>
+          <td>Using the Element Selector to unobtrusive create and control the Tabbed Panels widget.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="utils/updateContent_TabbedPanels.html">updateContent with Tabbed Panels</a></td>
+          <td>This sample shows how to use the updateContent function to dynamically load Tabbed Panels content.</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="tooltip/SpryTooltipSample.html">Tooltip</a></td>
+          <td>A basic sample of using the Tooltip widget</td>
+          <td><a href="../widgets/tooltip/SpryTooltip.html">Tooltip</a></td>
+        </tr>
+        <tr>
+          <td><a href="data_region/TooltipwithData.html">Tooltip from Data</a></td>
+          <td>Using the Tooltip widget with Spry Data</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="tooltip/Tootlip_with_HTML_Panel.html"><strong>Tooltip with HTML Panel</strong></a></td>
+          <td>Using the Tooltip widget with Spry Data</td>
+          <td>&nbsp;</td>
+        </tr>
+
+      </table>
+    </div>
+    <div class="TabbedPanelsContent" id="effects">
+      <h2><strong>Effects Samples</strong></h2>
+      <table>
+        <tr>
+          <th scope="col">Sample</th>
+          <th scope="col">Description</th>
+        </tr>
+        <tr>
+          <td><a href="effects/fade_sample.html">Fade</a> </td>
+          <td>This is a sample for Fade Effect describing its behaviors in different situations.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/blind_sample.html">Blind </a></td>
+          <td>Demonstrates the Blind Effect capabilities with different options used.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/grow_sample.html">Grow</a></td>
+          <td>This is a sample of the options that can be used for the Grow Effect.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/highlight_sample.html">Highlight</a></td>
+          <td>This file shows the Highlight Effect capabilities.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/shake_sample.html">Shake</a></td>
+          <td>Demonstrates how the Shake Effect can be used.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/slide_sample.html">Slide</a> </td>
+          <td>This is a sample about the Slide Effect and the possible values for different options.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/multiple_slides_sample.html">Multiple Slides</a></td>
+          <td>This is  sample that will slide in the page an element  after sliding out the element that was previously displayed.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/squish_sample.html">Squish</a></td>
+          <td>A set of samples for the Squish Effect.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/observers_sample.html">Observers</a></td>
+          <td>This sample shows you the two ways you can register observers to effects and why are they useful.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/cluster_sample.html">Clustering</a></td>
+          <td>This is an example of how to create your own Cluster of effects to run combined on an element.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/fade_grow_sample.html"><strong>Fade & Grow</strong></a> </td>
+          <td>Samples using a cluster with fade & grow effects in parallel, including one using data provided by a DataSet.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/combo_sample.html">Combo Sample</a> </td>
+          <td>A collections of samples used on different elements in the same page.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/growThumbnails.html">Combo Sample 2</a></td>
+          <td>A more advanced sample of the Grow Effect to display thumbnails.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/menu_sample.html">Simple Menu</a> </td>
+          <td>A simple animated menu to demonstrate how you can combine different effects.</td>
+        </tr>
+        <tr>
+          <td><a href="effects/transition_sample.html">Transitions Sample</a></td>
+          <td>Shows the different transitions available to the Effects and widgets.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

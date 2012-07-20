@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Debugger</title>
+<link href="../../css/SpryDebug.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/SpryDebug.js" type="text/javascript"></script>
+<script src="../../widgets/accordion/SpryAccordion.js" type="text/javascript"></script>
+<link href="../../widgets/accordion/SpryAccordion.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../css/samples.css" />
+</head>
+
+<body>
+<h3>Spry Debugger Sample</h3>
+<p>The Spry Debugger feature allows users to debug   Spry code in all browsers. Because of varying support for debuggers on different browsers, we have worked on our own JavaScript debugger that is independent of the browser. The Spry Debugger is under development  and we know that are some bugs and the interface can be  improved, but as it stands, it may be a helpful tool for getting insight into your page.</p>
+<p>To use the debugger on your page, you  need to get  two files: 'SpryDebug.js' and 'SpryDebug.css' and  include them in the head of the page. Once  these files have been added to the page, and you load the page in browser, the Spry Debugger  window will be displayed. The Spry Debugger window will appear over all elements from your page. If you want to change the window position,  drag and drop it anywhere on the page using the blue bar at the top. </p>
+<p><strong>Using the Debugger</strong></p>
+<p>The Spry Debugger allows you to inspect the HTML elements from page, giving a snapshot of all  current element properties. <br />
+  A way to inspect the  HTML elements  is to use the mouse to simply cllck on them. This behavior is enabled by:</p>
+<ol>
+  <li> Click the  left-most button on the Spry Debugger window header. Then, when  mouse moves over html elements,  a red border will highlight the current element. </li>
+  <li> Click on the  element to get  the list of properties and their  values into Spry Debugger  window. </li>
+</ol>
+<p>After the element is selected, the mouse introspection stops. To make a new introspection,  repeat these steps again. </p>
+<p>The Spry Debugger window will list all the properties for the HTML element. All the variables names are listed in the left column in the Spry Debugger window . In the right column are listed their corresponding values. The last row from the bottom contains all the available javascript functions for the given html element.<br />
+  The label in red color displays the list of css properties with their values at runtime. The blue  link like values represents Java Script objects. Their details can be shown/hidden by clicking on the link.</p>
+<p><strong>Real Time Debugging</strong></p>
+<p>The Spry Debugger window also provides a line console for real time debugging. For example, the debugger line console from the Spry Debugger window can be used to inspect current values of JavaScript variables. You can type the variable name and then hit enter to get all the information about it. There is also  basic code completion for the  javascript variables on the page. For example, if you type: &quot;document.&quot; into the debugger line console, and then press &quot;Tab&quot; key, all related variables and functions are suggested.<br />
+  You can debug the code in real time by  calling  the 'debug.log' JavaScript function directly in the page. This function accepts as parameters, one to many comma separated strings or variables . Each argument will be listed on the Spry Debugger window in detail.</p>
+<p>The debug.log() call can be used to trace the code execution using simple strings as parameter.</p>
+<p>When page loads, the Spry Debugger window is displayed. No variable/property are listed by default.</p>
+<p>You can also use the debugger console line to introspect your page. Type the variable name into the debugger console line and  hit enter to get  the information about the element.</p>
+<p>The Spry Debugger window will list all the properties for the html element.</p>
+<ul>
+
+<li> On the left column in the Spry Debugger window are listed all the variables names</li>
+<li>On the right column are listed their corresponding values</li>
+<li>The last row from the bottom contains all the available  javascript functions for the current html element</li>
+<li>The label in red color displays the list of css properties with their values at runtime. </li>
+<li>The blue  link like values represents Java Script objects.<br />
+Their details can be visualized/hidden by clicking on the link.</li>
+</ul>
+<div id="Accordion1" class="Accordion" tabindex="0" style="width:350px;">
+  <div class="AccordionPanel " style="width:350px;">
+    <div class="AccordionPanelTab"  style="width:350px;">Click me to get my properties</div>
+    <div class="AccordionPanelContent"  style="width:350px;">
+      <p>Click the image to get its properties.</p>
+      <p><img src="../../demos/products/images/acrobat_std.gif" width="238" height="130" alt="Sample Image of Product box." /></p>
+    </div>
+  </div>
+  <div class="AccordionPanel">
+    <div class="AccordionPanelTab">Click me to get my properties</div>
+    <div class="AccordionPanelContent">My image:<br />
+      <img src="../../demos/products/images/dreamweaver.gif" width="238" height="130" alt="Sample Image of Product box." /><br />
+    </div>
+  </div>
+</div>
+<blockquote>&nbsp;</blockquote>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved. </p>
+<script type="text/javascript">
+<!--
+var Accordion1 = new Spry.Widget.Accordion("Accordion1");
+//-->
+  </script>
+</body>
+</html>

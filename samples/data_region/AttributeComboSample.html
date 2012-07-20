@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Attribute Combinations Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.even {
+	background-color: #66CCFF;
+}
+.odd {
+	background-color: #FFFFCC;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+Spry.Data.Region.debug = true;
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state");
+-->
+</script>
+</head>
+
+<body>
+<h3>Attribute Combinations and Region Debugging Sample</h3>
+<p>This page demonstrates the effect of combining certain processing instruction attributes.</p>
+<p>Here is the current set of processing instruction attributes, listed in the order they are evaluated:</p>
+<ul>
+	<li>spry:if</li>
+	<li>spry:repeat</li>
+	<li>spry:repeatchildren</li>
+	<li>spry:choose</li>
+	<li>spry:when</li>
+	<li>spry:default</li>
+</ul>
+<p>This page also demonstrates the use of Spry.Data.Region.debug which allows users to see what the final template being used to generate a region looks like, as well as seeing what the markup beeing generated looks like. All the user needs to do, is set Spry.Data.Region.debug equal to true, and all of this info will be output to the Spry trace/debug window in the lower right hand corner of the page. </p>
+<hr />
+<p>In this example we are combining spry:if, spry:repeat with a spry:test, and spry:choose attributes on the region container to extract out the names of states that begin with the letter 'a', 'm', or 'n', and then color them based on the letter they start with.</p>
+<p>The attributes are processed in the order mentioned in the list above, but because they are on the region container, they only act on the children *inside* the container, *not* on the container itself. It's important to note that the processing order of the attributes is built-into Spry, so the order of the attributes on the element does not matter.</p>
+<p>Here's what the code for the list below looks like:</p>
+<pre>&lt;ul spry:region=&quot;dsStates&quot; spry:if=&quot;{ds_RowCount} != 0&quot; spry:repeat=&quot;dsStates&quot; spry:test=&quot;'{name}'.match(/^[amn]/i);&quot; spry:choose=&quot;choose&quot;&gt;
+	&lt;li spry:when=&quot;'{name}'.match(/^n/i);&quot; style=&quot;color: red;&quot;&gt;{name}&lt;/li&gt;
+	&lt;li spry:when=&quot;'{name}'.match(/^m/i);&quot; style=&quot;color: blue;&quot;&gt;{name}&lt;/li&gt;
+	&lt;li spry:when=&quot;'{name}'.match(/^a/i);&quot; style=&quot;color: green;&quot;&gt;{name}&lt;/li&gt;
+&lt;/ul&gt;</pre>
+<p>And here is the actual list:</p>
+<ul spry:region="dsStates" spry:if="{ds_RowCount} != 0" spry:repeat="dsStates" spry:test="'{name}'.match(/^[amn]/i);" spry:choose="choose">
+	<li spry:when="'{name}'.match(/^n/i);" style="color: red;">{name}</li>
+	<li spry:when="'{name}'.match(/^m/i);" style="color: blue;">{name}</li>
+	<li spry:when="'{name}'.match(/^a/i);" style="color: green;">{name}</li>
+</ul>
+<hr />
+<p>Here's a similar example, except the attributes are combined on table content *inside* a region container.</p>
+<pre>&lt;div spry:region=&quot;dsStates&quot; spry:if=&quot;{ds_RowCount} != 0&quot;&gt;
+&lt;table border=&quot;1&quot; spry:repeatchildren=&quot;dsStates&quot; spry:test=&quot;'{name}'.match(/^[amn]/i);&quot; spry:choose=&quot;choose&quot;&gt;
+	&lt;tr spry:when=&quot;'{name}'.match(/^n/i);&quot; style=&quot;background-color: red;&quot;&gt;&lt;td&gt;{name}&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr spry:when=&quot;'{name}'.match(/^m/i);&quot; style=&quot;background-color: blue;&quot;&gt;&lt;td&gt;{name}&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr spry:when=&quot;'{name}'.match(/^a/i);&quot; style=&quot;background-color: green;&quot;&gt;&lt;td&gt;{name}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;</pre>
+<p>And here is the actual table:</p>
+<div spry:region="dsStates" spry:if="{ds_RowCount} != 0">
+<table border="1" spry:repeatchildren="dsStates" spry:test="'{name}'.match(/^[amn]/i);" spry:choose="choose">
+	<tr spry:when="'{name}'.match(/^n/i);" style="background-color: red;"><td>{name}</td></tr>
+	<tr spry:when="'{name}'.match(/^m/i);" style="background-color: blue;"><td>{name}</td></tr>
+	<tr spry:when="'{name}'.match(/^a/i);" style="background-color: green;"><td>{name}</td></tr>
+</table>
+</div>
+</body>
+</html>

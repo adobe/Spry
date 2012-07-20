@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>URL Utils Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<link href="../../widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<script src="../../widgets/tabbedpanels/SpryTabbedPanels.js" type="text/javascript"></script>
+<script src="../../includes/SpryURLUtils.js" type="text/javascript"></script>
+<script type="text/javascript">
+// Grabs the values of the URL parameters for the current URL.
+var params = Spry.Utils.getLocationParamsAsObject();
+</script>
+</head>
+
+<body>
+<h3>URL Utils Sample</h3>
+<p>This page demonstrates the use of the following URL utilities:</p>
+<ul>
+	<li><strong>Spry.Utils.getLocationParamsAsObject</strong> - Gets parameters from the current URL.</li>
+	<li><strong>Spry.Utils.getLocationHashParamsAsObject</strong> - Gets hash values from the current URL</li>
+	<li><strong>Spry.Utils.getURLParamsAsObject</strong> - Gets parameters from a url variable.</li>
+	<li><strong>Spry.Utils.getURLHashParamsAsObject</strong> - Gets hash values from a url variable.</li>
+	<li><strong>Spry.Utils.urlComponentToObject</strong> - Gets values from a partial string.</li>
+	<li><strong>Example</strong> - These objects in action.</li>
+</ul>
+<p>These methods make it easier to extract values from the search params:</p>
+<pre>http://www.foo.com/documents.cfm<span class="highlited">?genre=fiction&amp;offset=0&amp;limit=100</span>#curdoc=35&amp;curpanel=3</pre>
+<p>or hash params:</p>
+<pre class="codeSample">http://www.foo.com/documents.cfm?genre=fiction&amp;offset=0&amp;limit=100<span class="highlited">#curdoc=35&amp;curpanel=3</span></pre>
+<p>of a URL. All of the functions mentioned above return an object with properties that have the same names as the names used in the name/value pairs in the URL component. It should be noted that the property names and values stored in the object are URL decoded. It should also be noted that the default type for the value of each property is a string. That said, these functions will attempt to convert any value that is &quot;0&quot; or a string of digits that begins with a non-zero number, into an integer value. In all other cases, it is the responsibility of the developer to convert any values to the appropriate type before using them. </p>
+<p>To use one of the functions mentioned above, you must first include SpryURLUtils.js in your page:</p>
+<pre>
+&lt;head&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryURLUtils.js&quot;&gt;&lt;/script&gt;<br />
+&lt;/head&gt;
+</pre>
+<hr />
+<h4>Spry.Utils.getLocationParamsAsObject</h4>
+<p>This function gets the URL parameters from the current URL.</p>
+<p>Spry.Utils.getLocationParamsAsObject is a convenience function, and is roughly the equivalent of calling:</p>
+<pre>var params = Spry.Utils.getURLParamsAsObject(window.location);
+</pre>
+<p>window.location is the URL that displays in the browser's URL bar. You call it like this:</p>
+<pre>var params = Spry.Utils.getLocationParamsAsObject();
+</pre>
+<hr />
+<h4>Spry.Utils.getLocationHashParamsAsObject</h4>
+<p>This function gets the URL hash values from the current URL.</p>
+<p>Spry.Utils.getLocationHashParamsAsObject is a convenience function, and is roughly the equivalent of calling:</p>
+<pre>var params = Spry.Utils.getURLHashParamsAsObject(window.location.hash);
+</pre>
+<p>window.location is the URL that displays in the browser's URL bar. You call it like this:</p>
+<pre>var params = Spry.Utils.getLocationHashParamsAsObject();
+</pre>
+<p>Spry.Utils.getLocationHashParamsAsObject also takes the optional paramSeparator and nameValueSeparator:</p>
+<pre>var params = Spry.Utils.getLocationHashParamsAsObject(&quot;,&quot;, &quot;:&quot;);
+</pre>
+<hr />
+<h4>Spry.Utils.getURLParamsAsObject</h4>
+<p>Use Spry.Utils.getURLParamsAsObject to retrieve the search params from a URL:</p>
+<pre>
+var url = &quot;http://www.foo.com/documents.cfm?genre=fiction&amp;offset=0&amp;limit=100#curdoc=35&amp;curpanel=3&quot;;
+
+var params = Spry.Utils.getURLParamsAsObject(url);
+
+alert(params.genre);  // Alert shows &quot;fiction&quot;
+alert(params.limit);  // Alert shows 100
+alert(params.curdoc); // Alert shows undefined since curdoc is not defined in the search component of the URL.
+</pre>
+<hr />
+<h4>Spry.Utils.getURLHashParamsAsObject</h4>
+<p>Use Spry.Utils.getURLHashParamsAsObject to retrieve the hash params from a URL:</p>
+<pre>var url = &quot;http://www.foo.com/documents.cfm?genre=fiction&amp;offset=0&amp;limit=100#curdoc=35&amp;curpanel=3&quot;;
+
+var params = Spry.Utils.getURLHashParamsAsObject(url);
+
+alert(params.genre);    // Alert shows undefined since genre is not defined in the hash component of the URL.
+alert(params.curdoc);   // Alert shows 35
+alert(params.curpanel); // Alert shows 3
+</pre>
+<p>Since the format of the hash component is up to the developer, Spry.Utils.getURLHashParamsAsObject takes 2 optional arguments after the URL. The 2nd argument (paramSeparator) can be a string or regular expression that defines what the separator is between each name/value pair. The 3rd argument (nameValueSeparator) can be a string or regular expression that defines what separator is between each name and value. By default, the paramSeparator is '&amp;' and the nameValueSeparator is '='.</p>
+<p>Here's an example of a URL that uses ':' and ',' within the hash component:</p>
+<pre>var url = &quot;http://www.foo.com/documents.cfm?genre=fiction&amp;offset=0&amp;limit=100#curdoc:35,curpanel:3&quot;;
+
+var params = Spry.Utils.getURLHashParamsAsObject(url, &quot;,&quot;, &quot;:&quot;);
+
+alert(params.genre);    // Alert shows undefined since genre is not defined in the hash component of the URL.
+alert(params.curdoc);   // Alert shows 35
+alert(params.curpanel); // Alert shows 3
+</pre>
+<hr />
+<h4>Spry.Utils.urlComponentToObject</h4>
+<p>If you have a string containing name/value pairs, which is not a complete URL, you can convert it into an object with Spry.Utils.urlComponentToObject, which is the same function used internally by Spry.Utils.getURLParamsAsObject and Spry.Utils.getURLHashParamsAsObject.</p>
+<pre>var str = &quot;genre=fiction&amp;offset=0&amp;limit=100&quot;;
+
+var params = Spry.Utils.urlComponentToObject(str);
+
+alert(params.genre);  // Alert shows &quot;fiction&quot;
+alert(params.limit);  // Alert shows 100
+</pre>
+<p>Like Spry.Utils.getURLHashParamsAsObject, Spry.Utils.urlComponentToObject has optional paramSeparator and nameValueSeparator args.</p>
+<pre>var str = &quot;genre:fiction,offset:0,limit:100&quot;;
+
+var params = Spry.Utils.urlComponentToObject(str, &quot;,&quot;, &quot;:&quot;);
+
+alert(params.genre);  // Alert shows &quot;fiction&quot;
+alert(params.limit);  // Alert shows 100
+</pre>
+<hr />
+<h4>Example</h4>
+<p>Setting a default panel on a Tabbed Panels widget can be done by sending the panel number as a URL parameter. We will grab this param and use the value in the constructor.</p>
+<a name="examples"></a>
+<div id="TabbedPanels1" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab" tabindex="0">Tab 1</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 2</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 3</li>
+    <li class="TabbedPanelsTab" tabindex="0">Tab 4</li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">Content 1</div>
+    <div class="TabbedPanelsContent">Content 2</div>
+    <div class="TabbedPanelsContent">Content 3</div>
+    <div class="TabbedPanelsContent">Content 4</div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+ 
+<p><a href="URLUtilsSample.html?panel=0#examples">Tab 1</a> | <a href="URLUtilsSample.html?panel=1#examples">Tab 2</a> | <a href="URLUtilsSample.html?panel=2#examples">Tab 3</a> | <a href="URLUtilsSample.html?panel=3#examples">Tab 4</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<script type="text/javascript">
+<!--
+//The defaultTab value checks to see if the url param is defined. If it is not, it sets it to 0.
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1", {defaultTab:(params.panel ? params.panel : 0)});
+//-->
+  </script>
+</body>
+</html>

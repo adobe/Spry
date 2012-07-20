@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Region State Mapping Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.odd {
+	background-color: #FFFFCC;
+}
+.even {
+	background-color: #6699FF;
+}
+.regionSample {
+	padding: 10px;
+	margin: 10px;
+	border: solid 1px black;
+	background-color: #FFFFCC;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+var dsArticles1 = new Spry.Data.XMLDataSet("../../data/html-01.xml", "/news/article");
+
+var dsArticles2 = new Spry.Data.XMLDataSet("../../data/html-01.xml", "/news/article");
+dsArticles2.setColumnType("description", "html");
+
+var dsArticles3 = new Spry.Data.XMLDataSet("../../data/html-02.xml", "/news/article");
+
+var dsArticles4 = new Spry.Data.XMLDataSet("../../data/html-02.xml", "/news/article");
+dsArticles4.setColumnType("description", "html");
+</script>
+
+</head>
+
+<body>
+<h3>Using HTML Fragments In XML Sample </h3>
+<p>This sample shows you two possible techniques for embedding HTML fragments in your XML so that you can use them in a spry:region or spry:detailregion.</p>
+<p>If you simply want to know how to load an HTML fragment from a server and have it show up in an element on the page, without using XML, data sets, and spry:regions, take a look at the <a href="../utils/update_content.html">Update Content sample.</a>  </p>
+<p style="color: red;">Developers that have used the XMLDataSet from Spry Pre-Release 1.5 and earlier should pay special attention to the changes in how CDATA strings are handled. A detailed description of how string values embedded in XML are now handled by the XMLDataSet, and the different modes that are available, can be found <a href="XMLDataSetStringHandlingSample.html">here</a>.</p>
+<hr />
+<p>In this example, the HTML is entity encoded so that it can be treated as plain text within an XML tag:</p>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br />&lt;news&gt;<br />	&lt;article id=&quot;23ASD38993&quot;&gt;<br />		&lt;title&gt;Article 1&lt;/title&gt;<br />		&lt;date&gt;01/01/2006&lt;/date&gt;<br />		&lt;description&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Article 1 - &amp;lt;/strong&amp;gt;&amp;lt;em&amp;gt;01/01/2006&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;<br />&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&amp;lt;/p&amp;gt;<br />&lt;/description&gt;<br />	&lt;/article&gt;<br />	&lt;article id=&quot;23ASD38999&quot;&gt;<br />		&lt;title&gt;Article 2&lt;/title&gt;<br />		&lt;date&gt;01/02/2006&lt;/date&gt;<br />		&lt;description&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Article 2 - &amp;lt;/strong&amp;gt;&amp;lt;em&amp;gt;01/01/2006&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;<br />&amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&amp;lt;/p&amp;gt;<br />&lt;/description&gt;<br />	&lt;/article&gt;<br />&lt;/news&gt; </pre>
+<p>This method is used a lot in some syndication XML formats like RSS. Spry preserves the entity encoding of an XML node's text value, so if we used something like this:</p>
+<pre>&nbsp;var dsArticles1 = new Spry.Data.XMLDataSet(&quot;html-01.xml&quot;, &quot;/news/articles&quot;);
+
+...
+
+&lt;div spry:region=&quot;dsArticles1&quot;&gt;{description}&lt;/div&gt; </pre>
+<p>we end up seeing the actual HTML markup in the Browser content area, instead of the rendered version we expect:</p>
+<div spry:region="dsArticles1" class="regionSample">{description}</div>
+<p>To fix this, we have to entity decode the &quot;description&quot; column value of each row so that when Spry re-generates the spry:region, it inserts the entity decoded version of the HTML markup. The result of this pre-processing allows the HTML markup to appear properly:</p>
+<div spry:region="dsArticles2" class="regionSample">{description}</div>
+<p>If you view the source for this page, you will see that the data set (dsArticles2) used for the 2nd region above, has its &quot;description&quot; column specified as the type &quot;html&quot;. This tells Spry, that the text loaded from the XML file for that column is entity encoded HTML markup and that it should be entity decoded before it is actually stored in the column. </p>
+<pre>
+...
+
+var dsArticles2 = new Spry.Data.XMLDataSet(&quot;../../data/html-01.xml&quot;, &quot;/news/article&quot;);
+dsArticles2.setColumnType(&quot;description&quot;, &quot;html&quot;);
+
+...
+</pre>
+<hr />
+<p>In this next example, the HTML is placed within CDATA, so no entity encoding is required for embedding the HTML fragment into the XML:</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;news&gt;
+	&lt;article id=&quot;23ASD38646&quot;&gt;
+		&lt;title&gt;Article 12&lt;/title&gt;
+		&lt;date&gt;01/07/2006&lt;/date&gt;
+		&lt;description&gt;&lt;![CDATA[&lt;p&gt;&lt;strong&gt;Article 12 - &lt;/strong&gt;&lt;em&gt;01/07/2006&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+]]&gt;&lt;/description&gt;
+	&lt;/article&gt;
+	&lt;article id=&quot;23ASD33472&quot;&gt;
+		&lt;title&gt;Article 15&lt;/title&gt;
+		&lt;date&gt;01/08/2006&lt;/date&gt;
+		&lt;description&gt;&lt;![CDATA[&lt;p&gt;&lt;strong&gt;Article 15 - &lt;/strong&gt;&lt;em&gt;01/08/2006&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;]&gt;&lt;/description&gt;
+	&lt;/article&gt;
+&lt;/news&gt;
+</pre>
+<p>The one limitation of this approach is that your HTML fragment itself can't contain  CDATA or a processing instruction that ends with ']]&gt;'. If we simply load this XML data into an XMLDataSet and render it with a spry:region:</p>
+<pre>&nbsp;var dsArticles3 = new Spry.Data.XMLDataSet(&quot;html-02.xml&quot;, &quot;/news/articles&quot;);
+
+...
+
+&lt;div spry:region=&quot;dsArticles3&quot;&gt;{description}&lt;/div&gt; </pre>
+<p>we  end up seeing the actual HTML markup in the Browser content area, instead of the rendered version you expect:</p>
+<div spry:region="dsArticles3" class="regionSample">{description}</div>
+<p>Like the previous example, you must tell the XMLDataSet to treat the CDATA as HTML markup:</p>
+<pre>
+...
+
+var dsArticles4 = new Spry.Data.XMLDataSet(&quot;html-02.xml&quot;, &quot;/news/articles&quot;);
+dsArticles4.setColumnType(&quot;description&quot;, &quot;html&quot;);
+
+...
+</pre>
+<p>so that the XMLDataSet knows to entity decode the string before storing it. This gives us the results we expect:</p>
+<div spry:region="dsArticles4" class="regionSample">{description}</div>
+<p>&nbsp; </p>
+</body>
+</html>

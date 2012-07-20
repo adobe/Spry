@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Periodic Table Case Study</title>
+
+<style type="text/css">
+<!--
+li {
+	padding-top: 3px;
+}
+-->
+</style>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>Spry Periodic Case study</h3>
+<p>The <a href="../../demos/periodic_table/periodic_table.htm">Spry Periodic Table</a> takes advantage of many Spry techniques that the Spry community might be interested in. This document will go through the code section by section and explain the thinking and methods behind the code. Since this demo gets away from our common use patterns, it may serve to expand the ways in which Spry can be used on pages.</p>
+<h4>Basic functionality</h4>
+<p>The Spry Periodic Table uses an HTML data set to populate the periodic table. The actual data source table is on the same page. This allows the page to load faster, allows the page to degrade gracefully and gives search engines content to index.  HTML tables are easier to create and edit than XML and you can use visual editors to modify them.</p>
+<p>We then use Spry:repeats and regions, plus a good use of CSS classes to position things to they look like a periodic table. These class are also used to highlight the different sections of the table via the links.</p>
+<p>The tooltip widget is used with a detailregion to provide additional information when mousing over an element.</p>
+<h4>The Data Table</h4>
+<p>The data table, located at the bottom of the page, is a straight HTML table:</p>
+<table cellpadding="5" cellspacing="0" id="atoms">
+  <tr class="header">
+    <th>No</th>
+    <th>Atomicweight</th>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>MP</th>
+    <th> BP</th>
+    <th>Density</th>
+    <th>Earthcrust</th>
+    <th>DiscoveryYear</th>
+    <th>Group</th>
+    <th>Period</th>
+    <th>Electron_configuration</th>
+    <th>Element_Type</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1.0079</td>
+    <td>Hydrogen</td>
+    <td>H</td>
+    <td>-259</td>
+    <td>-253</td>
+    <td>0.09</td>
+    <td>0.14</td>
+    <td>1776</td>
+    <td>1</td>
+    <td>one</td>
+    <td>1s1</td>
+    <td>NonMetal</td>
+  </tr>
+  <tr class="nobel">
+    <td>2</td>
+    <td>4.0026</td>
+    <td>Helium</td>
+    <td>He</td>
+    <td>-272</td>
+    <td>-269</td>
+    <td></td>
+    <td></td>
+    <td>1895</td>
+    <td>18</td>
+    <td>one</td>
+    <td>1s2</td>
+    <td>Inert</td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+	// Spry.$("atoms").style.display= 'none';
+</script>
+
+<p>The header row is used as the data reference names used throughout the page. We use 'No' (atomic number) frequently as a unique ID. We also use 'Group', 'Period' and 'Element_Type' for additional functionality, explained later. </p>
+<p>Using a HTML table made it easy to add columns for additional data points and to find elements quickly.</p>
+<h4>Setting up the page</h4>
+<p>As with all Spry pages, we need to attach files so we can get started.</p>
+<pre>
+&lt;link href=&quot;SpryAssets/atom.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;SpryAssets//SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;SpryAssets//SpryHTMLDataSet.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;SpryAssets//SpryTooltip.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;SpryAssets/atom_functions.js&quot;&gt;&lt;/script&gt;</pre>
+<ul><li>'atom.css' contains the bulk of the CSS used in the page functionality.</li>
+  <li>'SpryData.js' is the main Spry functionality file.</li>
+  <li>'SpryHTMLDataSet.js' provides the functionality for using HTML tables as data sets.</li>
+  <li>'SpryTooltip.js' provides the code for the Tooltip widget.</li>
+  <li>'atom_functions.js' contains the 3 extra functions used for filtering the data.</li>
+</ul>
+<h4>The CSS</h4>
+<p>A big part of the functionality depends on class names. Open the '<a href="SpryAssets/atom.css">atom.css</a>' file.</p>
+<p>We have a set of class names that are named after the different 'Element_Types'. This will allow us to color the different element types using a data reference, since the value of the data reference and the class name are identical. Other classes are used for positioning things correctly within the element Div. (The 'element DIV' is the Div tag that contains  the data for a single element. )</p>
+<h4>Data Sets</h4>
+<p>The Periodic Table uses 4 data sets. </p>
+<pre>&lt;script type=&quot;text/javascript&quot;  language=&quot;javascript&quot;&gt;
+   <span class="hilite">var ds1 = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;);
+   var types = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Element_Type']});
+   var periods = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Period']});
+   var groups = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Group'],sortOnLoad:&quot;Group&quot;,sortOrderOnLoad:&quot;ascending&quot;});</span>
+   groups.setColumnType(&quot;Group&quot;,&quot;number&quot;);
+ ...
+
+ 
+&lt;/script&gt;</pre>
+<ul>
+  <li><span class="hilite">var ds1 = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;);</span> <br />
+  This is the main data set. It defines a standard HTML data set. We use 'null' in the URL parameter because the table is on the same page. 'atoms' is the ID of the data table.</li>
+  <li><span class="hilite">var types = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Element_Type']});</span> <br />
+  This is only used for the 'Element Types' filter at the top of the page. 'distinctOnLoad' allows us to only get an Element type once. 'distinctFieldsOnLoad' tells Spry to get every distinct value in the 'Element_Type' column.</li>
+  <li><span class="hilite">var periods = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Period']});</span><br />
+  Same as above, this is only used to give us the distinct values for the Period filter at the top of the page.</li>
+  <li><span class="hilite">var groups = new Spry.Data.HTMLDataSet(null,&quot;atoms&quot;,{distinctOnLoad:true, distinctFieldsOnLoad:['Group'],sortOnLoad:&quot;Group&quot;,sortOrderOnLoad:&quot;ascending&quot;});<br />
+  </span>Again, only used for getting the values for the Group filters at the top. Because these are numbers, we have another line <span class="hilite">groups.setColumnType(&quot;Group&quot;,&quot;number&quot;);</span>, which tells Spry that these are numbers. If we did not, Spry would treat them as text and may not order them correctly. The sortOnLoad and sortOrderOnLoad ensures that they display in the numeric order. If we didn't set the sort, they would display in the order they appear in the document.</li>
+</ul>
+<p>There is one more function in the &lt;script&gt;</p>
+<pre>ds1.addObserver({onPostLoad: function(ds, data) {
+ Spry.Utils.removeClassName(&quot;wholeContainer&quot;, &quot;SpryHiddenClass&quot;);
+ }});</pre>
+<p>The CSS class 'SpryHiddenClass' only sets 'display:none;' This will hide and remove the element from the flow of the page. </p>
+<p>The 'wholeContainer' DIV wraps the entire periodic table (but not the data table) within it. It has the 'SpryHiddenClass' class applied to it. <br />
+  This is used for  2 reasons:</p>
+<ol>
+  <li>When the page is loading, the periodic table will not be visible. This hides the Spry code before it is ready to go. When the data is loaded and ready to go, the observer gets the 'onPostLoad' notification and then runs the Spry.Utils.removeClassName. This removes 'SpryHiddenClass' from 'wholeContainer. This will cause the periodic table to show, all ready to go.</li>
+  <li>When javascript it turned off, the Spry code will not display. This is because it has the 'SpryHiddenClass' applied to it and Spry will not remove it, since javascript is turned off. This allows the data table to be displayed instead. Because the HTML data set is using a table on the same page, Spry will hide the data table automatically.</li>
+</ol>
+<h3>The HTML markup</h3>
+<p>The HTML markup for the table is short, but contains a lot of logic for both layout and filtering. We will start with the main block of the periodic table and then explain the filters.</p>
+<h4>The element DIV</h4>
+<p>The bulk of the periodic table is a single DIV, which we refer to as the 'element DIV' since it contains the actual chemical information. <br />
+Using Spry, this one DIV is repeated for every element in the data table. The rest of the work is simply positioning those element DIVs correctly, so it looks like a real periodic table. </p>
+<p>This element DIV has many classes applied to it. This allows us to identify each element and allows us to wrap lines correctly and allows us to filter easily. </p>
+<pre>&lt;div tabindex=&quot;{No}&quot; id=&quot;div_{No}&quot; class=&quot;elementBlock {Element_Type} {Period} {Name} {Group}&quot;  <br />   spry:if=&quot;({No} &amp;lt; 58 || ({No} &amp;gt; 71 &amp;amp;&amp;amp; {No} &amp;lt; 90) || {No} &amp;gt; 103)&quot; onmouseover=&quot;ds1.setCurrentRow('{ds_RowID}');&quot; spry:hover=&quot;hover&quot;&gt; 
+ &lt;span class=&quot;number&quot;&gt;{No}&lt;/span&gt; &lt;span class=&quot;group&quot;&gt; {Group} &lt;/span&gt;
+ &lt;p align=&quot;center&quot;&gt;{Symbol}&lt;/p&gt;
+ &lt;span class=&quot;weight&quot;&gt;{Atomicweight}&lt;/span&gt; &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<ul>
+  <li>The bulk of the code above is the actual content: The &lt;span&gt;s and the &lt;p&gt; contain the Spry data references for Atomic Number {No}, Group Number {Group}, the element symbol {Symbol}, and the atomic weight {Atomicweight}. The CSS classes 'number','group' and 'weight' are defined in 'atom.css' to position these data references within the element DIV.</li>
+</ul>
+<p>The logic for the element DIV is in the attributes of the DIV tag.</p>
+<ul>
+  <li>tabIndex=&quot;{No}&quot; - used to allow tabbing between elements for accessibility reasons. This gives the tabindex a unique number {No} to allow tabbing in atomic order.</li>
+  <li>id=&quot;div_{no}&quot; - provides a unique ID for each of the element DIVs. These are used in our filter functions to gray out the other elements.</li>
+  <li>class=&quot;elementBlock {Element_Type} {Period} {Name} {Group}&quot;
+    <ul>
+      <li>elementBlock - Defined in 'atom.css'. Sets the size of the element DIV, the border, padding and font size. Key here is the 'float:left' that lines up the divs horizontally.</li>
+      <li>{Element_Type} - All defined in 'atoms.css' The data reference that adds the class name that sets the background colors you see on the table.</li>
+      <li>{Period} and {Group} are added so we can filter on them. They are not defined in 'atoms.css'. They are only used for logic in filtering the periods and groups.</li>
+      <li>{Name} are used so we can define classes for specific elements. For instance, we use specific classes like '.Hydrogen' to great the gap between it and Helium correctly.</li>
+      <li>onmouseover=&quot;ds1.setCurrentRow('{ds_RowID}');&quot; - Used for the tooltip to update the tooltip spry:detailregion. This ensures that the tooltip always shows details for the current element.</li>
+      <li>spry:hover=&quot;hover&quot; - Sets the 'hover' class for changing the text color when mousing over an element.</li>
+    </ul>
+  </li>
+</ul>
+<p>The 'spry:if' takes some explanation. The two blue rows at the bottom are special. They are the &quot;Lanthanide&quot; and &quot;Actinide&quot; series. They are always displayed in separate columns below the main table, but numerically, they are out of order. Notice that they have a Number (upper left corner) of 58-71 and 90-103. Notice that on Periods six and seven (Click the &quot;Periods&quot; filter to highlight them), the number jumps from 57 straight to 72, and from 89 to 104. <br />
+So we have to logically NOT display those in our main table, and ensure they only show up below. (This separation is the only reason we have to duplicate code in this demo!)</p>
+<p>The spry:if says:</p>
+<blockquote>
+  <p>spry:if=&quot;({No} &lt; 58 || <span class="hilite">({No} &gt; 71 &amp;&amp; {No} &lt; 90)</span> || {No} &gt; 103)&quot;</p>
+</blockquote>
+<p>This is the logic that says: if the Number is less than 58 or greater than 71 AND less than 90 but greater than 103, print it here. Notice the () that surround the highlighted code. This separates the logic  so everything works correctly. We will see in the other element DIV block that we have an inverse condition to display the other 2 rows.</p>
+<p>For the &quot;Lanthanide' block, the 2 blue rows at the bottom, we need to display the elements we didn't display above.</p>
+<p>We simply repeat the markup from above, with a new spry:region and spry:repeatchildren. The only difference in this block is that 'spry:if' is the reverse of the one above:</p>
+<pre>spry:if=&quot;({No} &amp;gt;= 58 &amp;amp;&amp;amp; {No} &amp;lt;= 71) || ({No} &amp;gt;= 90 &amp;amp;&amp;amp; {No} &amp;lt;= 103)&quot;</pre>
+<p>Other than that, the two spry:regions that output the elements are the same. The &quot;Lanthanide&quot; div has CSS that positions it left so it lines up vertically correctly. The &lt;br  style=&quot;clear:both;&quot; /&gt; between the two element blocks puts the Lanthanide block on a new line.</p>
+<h3>The wholeContainer</h3>
+<p>The 'wholeContainer' DIV wraps the entire periodic table. It use used as the main spry:region and is used for CSS purposes. The &lt;br&gt; is  a critical component of the layout.</p>
+<pre>&lt;div spry:region=&quot;ds1&quot; spry:repeatchildren=&quot;ds1&quot;  class=&quot;SpryHiddenRegion&quot; id=&quot;mainRegion&quot;&gt; 
+&lt;br spry:if=&quot;({No} == 3) || ({No} == 11) || ({No} == 19) || ({No} == 37) || ({No} == 55) || ({No} == 87)&quot; style=&quot;clear:both;&quot;  /&gt;</pre>
+<p>This DIV is the  spry:region for &quot;ds1&quot;, our main data set. We also set a spry:repeatchildren on the data set. This is the attribute that causes all the element DIVs and the &lt;br&gt;s to repeat. The 'SpryHiddenRegion' class is used to hide the DIV while the page loads. The ID is needed because we use it on the observer described in the Data Sets section above.</p>
+<p>So this code repeats the element DIV, which since it is 'float:left:', will line up all the elements in a long horizontal line. In order to make the table look correct, we need to start a new line at precise times, Helium, Neon, etc. Every time we hit a green element, we need to start a new line. We know the element Numbers where this needs to happen. </p>
+<p>The &lt;br&gt; has a 'spry:if' that has a &quot;clear:both;&quot;. This will clear the float and cause the remaining content to wrap to the next line. <br />
+We use the 'spry:if' to determine WHEN to add a &lt;br&gt; that will cause this break. So we write a statement that says &quot;Break when the number {No} equals 3 or 19 or 37 or 55 or 87&quot;. Notice we actually use the number that is the first element of the new row.</p>
+<p>This break, along with the float on the .elementBlock class, are the key components of getting the layout correct. But if we just had that, it would have the correct rows, but we still need to create that gap in the first 3 rows (Periods, hence the name &quot;periodic table&quot;), so the elements line up correctly vertically. To do this, we take advantage of having the {Name} class on every element DIV.</p>
+<h4>Creating the Horizontal spacing</h4>
+<p>In any periodic table, the first three rows (Periods) have a gap between elements because they need to line up vertically in the correct column (Group). To do this , we create classes that use a specific element name and contain simple CSS.</p>
+<p>To position these 3 rows correctly, we simply add a large margin to the correct elements. This pushes the elements to the right so they line up right. The float ensures it stays in line horizontally.</p>
+<p>In 'atoms.css', there are classes called '.Hydrogen', '.Beryllium' and '.Magnesium' (Notice they are uppercase because CSS and javascript are case sensitive.). The code is:</p>
+<pre>.Hydrogen {
+ margin-right:928px;
+ }
+ .Beryllium, .Magnesium {
+ margin-right:580px;
+ }</pre>
+<p>And this pushes those rows over correctly! This, and a couple other details, are why we pass the Element name as a class name.</p>
+<h3>The Tooltip</h3>
+<p>We use a Spry Tooltip widget to show additional information about the element. Our table has much more information in it than we can fit in the element DIV. </p>
+<p>The Tooltip widget works by having a tooltip element, which contains the tooltip content, and a trigger, which activates the tooltip. Since we want the data to update for each element, we use a spry:detailregion for this. This is tied to the <span class="hilite">onmouseover=&quot;ds1.setCurrentRow('{ds_RowID}');&quot;</span> attribute on the element DIVs. This causes the detailregion to update onmouseover.</p>
+<p>Because the tooltip widget is a detailregion, we need to take steps to make sure it functions properly. Generally, with widgets and Spry data, we have to reactivate widgets that get wiped out when the data refreshes. In our case, we use observers to trigger the widget constructor after the detail region updates.</p>
+<pre>&lt;div spry:detailregion=&quot;ds1&quot; id=&quot;tooltip&quot; class=&quot;SpryHiddenRegion&quot;&gt; Name:&lt;strong&gt;{Name}&lt;/strong&gt;&lt;br /&gt;
+ Type:&lt;strong&gt;{Element_Type}&lt;/strong&gt;&lt;br /&gt;
+ Group:&lt;strong&gt;{Group}&lt;/strong&gt;&lt;br /&gt;
+ Symbol:&lt;strong&gt;{Symbol}&lt;/strong&gt;&lt;br /&gt;
+ Period:&lt;strong&gt;{Period}&lt;/strong&gt;&lt;br /&gt;
+ Boiling Point:&lt;strong&gt;{BP}&lt;/strong&gt;&lt;br /&gt;
+ Melting Point:&lt;strong&gt;{MP}&lt;/strong&gt;&lt;br /&gt;
+ Density:&lt;strong&gt;{Density}&lt;/strong&gt;&lt;br /&gt;
+ Atomic Weight:&lt;strong&gt;{Atomicweight}&lt;/strong&gt;&lt;br /&gt;
+ Electron Config:&lt;strong&gt;{Electron_configuration}&lt;/strong&gt;&lt;br /&gt;
+ Year Discovered:&lt;strong&gt;{DiscoveryYear}&lt;/strong&gt; &lt;/div&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+<span class="hilite"> Spry.Data.Region.addObserver('mainRegion',{onPostUpdate:function(){var tt1 = new Spry.Widget.Tooltip('tooltip','.elementBlock',{showDelay:750, hideDelay:500});}});
+ Spry.Data.Region.addObserver('Lanthanide',{onPostUpdate:function(){var tt2 = new Spry.Widget.Tooltip('tooltip','.elementBlock',{showDelay:750, hideDelay:500});}});</span>
+ &lt;/script&gt;
+ &lt;/div&gt;</pre>
+<p>The DIV is a detailregion tied to 'ds1', our main data set. <br />
+The id=&quot;tooltip&quot; is used to identify the tooltip content for the widget. <br />
+The SpryHiddenRegion class is used to automatically hide the markup as the page loads. It is removed when Spry is done loading the page.</p>
+<p>The &lt;script&gt; tags are within the detailregion. Spry has code that finds script tags within regions and executes them after the data is finished loading.</p>
+<p>This highlighted regions are observers that recreate the tooltip every time the detail region updates. We add an observer to  elements by their ID. In this case, we attach observers to our two spry:regions: &quot;mainRegion&quot; and &quot;Lanthanide&quot;. The 'onPostUpdate' notification runs the function() after the data is finished updating in the region. <br />
+The function is the actual Tooltip constructor. 'tooltip' is the ID of the tooltip content: our detailregion.<br />
+'.elementBlock' is the class name that defines the trigger. Every time someone mouses over an element with a class of 'elementBlock', the tooltip appears. In our case, the 'elementBlock' class is attached to every element Div. Recall that is the class that sets the size and border? So now our tooltip will trigger every time we mouse over the element DIV. The onmouseover attribute causes the data to update to the current element information and the observer instantly creates the new tooltip.<br />
+</p>
+<h3>Highlighting functions</h3>
+<p>At the top of the page, we have the  links that highlight the particular part of the table. We can select Element Types, Groups or Periods. They are highlighted them by graying out the elements that don't belong to the selection. </p>
+<p>We use Spry to output the text and simple custom functions to enable this 'inverse' highlighting. These 2 functions are in '<a href="SpryAssets/atom_functions.js">atom_functions.js</a>'. One function does the highlighting. The other clears any current highlighting. The 'hasClassName' is a utility function that will be included in the next version of Spry.</p>
+<pre>function GrayOutTable(activeClass)
+{
+	var rows = ds1.getData(true);
+	var numRows = rows.length;
+	Spry.$$('.elementBlock', 'wholeContainer').forEach(
+			function(ele){
+				if (!Spry.Utils.hasClassName(ele, activeClass))
+					Spry.Utils.addClassName(ele,"grayOut");
+				else
+					Spry.Utils.removeClassName(ele,"grayOut");
+			}		
+	);
+};
+</pre>
+<p>There is a class defined in 'atom.css' called 'grayIt' that changes the opacity of an element to 30%. </p>
+<p>We pass in the name of the class name that we want to highlight. We loop through the data set and apply the 'grayIt' class to all those element Divs that do NOT have the class name that is passed in. We use the class=&quot;elementBlock&quot; that we set up on the element Divs to identify the DIVs that need this new class.</p>
+<p>This function gets the data in 'ds1' and from that we get the number of rows (numRows). </p>
+<p>We then loop through all the element DIVs. We use Spry.Utils to find out if the element does not have the class name we are looking to highlight. If it does not have it, we add the 'grayIt' class. If it does have the class name we are looking for, we leave it alone. That's the inverse highlighting. If it already has the 'grayIt' class applied, we assume it is from a previous highlight and remove it.</p>
+<p>The other function clears any highlighting by looping through the element DIVs and removes any instance of the 'grayIt' class.</p>
+<p>To use these functions, we use our other data sets. All three work the same way. For example:</p>
+<pre>&lt;div&gt;<br />&lt;span class=&quot;redText&quot;&gt;Element Types: &lt;/span&gt; &lt;span spry:region=&quot;types&quot; spry:repeat=&quot;types&quot; class=&quot;SpryHiddenRegion&quot;&gt; &lt;a href=&quot;#&quot; onclick=&quot;GrayOutTable('{Element_Type}');&quot;&gt;{Element_Type}&lt;/a&gt;&amp;nbsp; &lt;/span&gt;&lt;/div&gt;</pre>
+<ul>
+  <li>The Div is so we can align this group correctly. </li>
+  <li>The first &lt;span&gt; is simply to add the 'redText' class to the initial text.</li>
+  <li>The second span defines the spry:region for, in this case, the 'types' data set. The spry:repeat is tied to the same data set. The 'SpryHiddenRegion' hides the markup until the page is ready.</li>
+  <li>The &lt;a&gt; has a null href so we get the hand cursor. The onclick attribute is the actual function. The parameter in the function is the 'Element_Type' data reference and it is the value we are sending to the function. We want to highlight that Element Type. The actual text of the link is also the Element Type. The space (&amp;nbsp;) is used to separate the links when we repeat through the data set.</li>
+</ul>
+<p>So this will loop through the data set, which has the distinct Element Types and attaches the function to each type. This easily creates the list of highlight types.</p>
+<p>We use the same code for the &quot;groups' data set and the &quot;periods&quot; data set. They all go to the same function, since we are attaching those values on the element Div as class names. So we can use these values to pick the right elements to highlight.</p>
+<h4>Conclusion</h4>
+<p>This is a nice example of how to use Spry for more complicated web layouts. With a small amount of markup, some CSS and a couple custom functions, you have a functional, interactive learning tool.</p>
+<p>Hopefully, you have found an interesting technique here or expanded your ideas of how to use Spry.</p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p>
+</body>
+</html>

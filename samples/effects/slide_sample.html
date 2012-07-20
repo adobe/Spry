@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2006-2007. Adobe Systems Incorporated. All rights reserved. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spry Slide Effects Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script src="../../includes/SpryEffects.js" type="text/javascript"></script>
+<style type="text/css">
+	
+.animationContainer{
+	height: 220px;
+}
+
+.demoDiv{
+	background-color: #CCC; 
+	height: 200px; 
+	overflow: hidden;
+}
+
+.hideInitially{
+	visibility: hidden;
+}
+
+</style>
+</head>
+<body>
+<h3>Spry Slide Effect Samples</h3>
+<hr />
+<!--
+
+		Example 1: This is the Slide default behaviour
+
+-->
+<p>
+		The Slide effect default behavior will be to Slide Out the target element
+		from the initial size until the element disappear in 1 second.
+		The Slide effect require the content of the animated element to be wrapped 
+		into a single block element.</p>
+<p>Think of it as a picture sliding out of a frame. <br />
+The picture is the animated element and picture frame is the wrapper DIV. 
+This effect requires the animating element is within a single container tag, such as a DIV. </p>
+<form method="get" action="slide_sample.html">
+	<input type="button" onclick="slide_default.start();" value="Slide Example 1" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideItUp1">
+		<div>
+			<h4>Example 1</h4>
+			<p class="sampleText">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var slide_default = new Spry.Effect.Slide('slideItUp1');
+</script>
+<hr />
+
+<!--
+
+		Example 2: Slide behaviour with toggle and multiple starting elements
+
+-->
+<p><strong>Toggle</strong></p>
+<p>
+	The slide effect after instantiation can be called in different
+	situations by different elements in the page at different times.
+	In this example we  animate the same element when you  click either 
+	a button or a link. The animation can be also	started when the 
+	mouse is over an element, the page is loaded or on any other page 
+	events.</p>
+<p>
+	In this example each time the effect is started will toggle the direction
+	because we added  "toggle:true" to the constructor.</p>
+<pre>&lt;script type="text/javascript"&gt;
+	var slide_toggle = new Spry.Effect.Slide('slideItUp2', {toggle:true});
+&lt;/script&gt;</pre>
+
+<form method="get" action="slide_sample.html">
+	<input type="button" onclick="slide_toggle.start();" value="Slide Example 2" />
+	<a href="#" onclick="slide_toggle.start(); return false;">Slide Example 2</a>
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideItUp2">
+		<div>
+			<h4>Example 2</h4>
+			<p class="sampleText">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var slide_toggle = new Spry.Effect.Slide('slideItUp2', {toggle:true});
+</script>
+
+<hr />
+
+<!--
+
+		Example 3: The Slide has two directions to run: vertical or horizontal 
+
+-->
+<p><strong>Slide Horizontal</strong></p>
+<p>
+	The Slide was designed to animate the element vertically or horizontally. 
+	By enabling the horizontal option the element will dissapear to its left.
+</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var slide_horiz = new Spry.Effect.Slide('slideItHorizontal', {horizontal: true, toggle: true});
+&lt;/script&gt;
+</pre>
+<form method="get" action="slide_sample.html">
+	<input type="button" onclick="slide_horiz.start();" value="Slide Example 3" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideItHorizontal">
+		<div>
+			<h4>Example 3</h4>
+			<p class="sampleText">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var slide_horiz = new Spry.Effect.Slide('slideItHorizontal', {horizontal: true, toggle: true});
+</script>
+
+<hr />
+<!--
+
+		Example 4: Slide effects with duration, from and to options
+
+-->
+
+<p><strong>Duration and Sizing</strong></p>
+<p>The duration and the initial/final size of the region to be
+	animated can  be controlled with specific options passed to
+	the Slide Effect constructor. The "from" and "to" options represent
+	the percentage size of the initial element size or the absolute value
+	in pixels. </p>
+<p>Duration is set in milliseconds.</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+ var slide4 = new Spry.Effect.Slide('slideItDown1', {duration: 2000, from: '0px', to: '200px', toggle: true});
+&lt;/script&gt;</pre>
+<form method="get" action="slides_sample.html">
+	<input type="button" onclick="slide4.start();" value="Slide Example 4" />
+	<input type="button" onclick="slide5.start();" value="Slide Example 5" style="margin-left: 300px;"/>
+</form>
+
+<br style="clear:both"/>
+<div class="animationContainer">
+
+	<div style="width: 400px; float: left; height: 200px;">
+		<div class="demoDiv" id="slideItDown1" style="height: 0px;">
+			<div class="sampleText">
+				<h4><a onclick="slide4.start();">Example 4 - Slide from 0px to 200px in 2 seconds</a></h4>
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. At vero eos et accusam et
+					justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+					sea takimata sanctus est Lorem ipsum dolor sit amet.
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var slide4 = new Spry.Effect.Slide('slideItDown1', {duration: 2000, from: '0px', to: '200px', toggle: true});
+	</script>
+
+	<div class="demoDiv" style="float: left; margin-left: 20px;" id="slideItDown2">
+		<div>
+			<h4><a onclick="slide5.start();">Example 5 - Slide from 100% to 20% in 3 seconds</a></h4>
+			<div class="sampleText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var slide5 = new Spry.Effect.Slide('slideItDown2', {duration: 3000, from: '100%', to: '20%', toggle: true, scaleContent:true});
+	</script>
+
+	<br style="clear:both" />
+</div>
+<hr />
+<!--
+
+		Example 5: How you can make an initially hidden element to Slide In.
+
+-->
+<p><strong>
+ Initially hidden element</strong></p>
+<p>The target animated element can initially be hidden. To hide 
+an element ou can use one of two CSS properties: display and visibility.
+The difference between these two properties is the way the element 
+while hidden will alter the flow of the page. While using the display: none; 
+the element is completelly removed from page and the other elements 
+will take its place the visibility: hidden will leave the element in the page
+flow with all the sizes and other behaviours unaltered but the element 
+is simply not seen.
+</p>
+<p>In the following sample we will use the visibility: none; to initially 
+hide the element and using the Slide effect the element will appear in page.</p>
+
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+.hideInitially{
+	visibility: hidden;
+}
+&lt;/style&gt;
+...
+&lt;form method=&quot;get&quot; action=&quot;slide_sample.html&quot;&gt;
+	&lt;input type=&quot;button&quot; onclick=&quot;slide_hidden.start();&quot; value=&quot;Slide Example&quot; /&gt;
+&lt;/form&gt;
+
+&lt;div class=&quot;animationContainer&quot;&gt;
+	&lt;div class=&quot;demoDiv hideInitially&quot; id=&quot;example5&quot;&gt;
+	...
+	&lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var slide_hidden = new Spry.Effect.Slide('example5', {duration: 2000, from: '0%', to: '100%', toggle: true});
+&lt;/script&gt;</pre>
+<form method="get" action="grow_sample.html">
+	<input type="button" onclick="slide_hidden.start();" value="Slide Example" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv hideInitially" id="example5">
+		  <p><strong>Example - Slide from 0% to 100% in 2 seconds</strong>
+			<br />
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+			diam nonumy eirmod tempor invidunt ut labore et dolore magna
+			aliquyam erat, sed diam voluptua. At vero eos et accusam et
+			justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+</div>
+
+<script type="text/javascript">
+	var slide_hidden = new Spry.Effect.Slide('example5', {duration: 2000, from: '0%', to: '100%', toggle:true});
+</script>
+	
+<hr />
+<!--
+
+		Example 6: Using the "finish" and "setup" javascript callbacks
+-->
+
+<p><strong>Setup and Finish functions</strong></p>
+<p>Sometimes, when using the effects, you need to run some other JavaScript functions before or after the animation. In the constructor you have the possibility to pass two options: "setup" and "finish" with the callback functions which Slide will call automatically. </p>
+<p>
+	This example will disable the button while the animation run. The background color of the button will be white during this time.
+</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+	var animation_start = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+
+	var slide_func = new Spry.Effect.Slide('slideIt', {toggle:true, setup: animation_start, finish: animation_stop});
+&lt;/script&gt;
+</pre>
+<form method="get" action="slide_sample.html">
+	<input type="button" id="animation_button" onclick="slide_func.start();" value="Slide Example 6" />
+</form>
+
+<br />
+
+<div class="animationContainer">
+	<div class="demoDiv" id="slideIt">
+		<div>
+			<h4>Example 6</h4>
+			<p class="sampleText">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+				sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var animation_start = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = true;
+			button.style.backgroundColor = '#FFF';
+		}
+	}
+
+	var animation_stop = function(){
+		var button = document.getElementById('animation_button');
+		if (button){
+			button.disabled = false;
+			button.style.backgroundColor = '';
+		}
+	}
+
+	var slide_func = new Spry.Effect.Slide('slideIt', {toggle:true, setup: animation_start, finish: animation_stop});
+</script>
+</body>
+</html>

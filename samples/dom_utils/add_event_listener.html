@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Adding and Removing Event Listeners</title>
+<script src="../../includes/SpryDOMUtils.js" type="text/javascript" language="javascript"></script>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#statusMsg {
+	color: red;
+	font-weight: bold;
+}
+</style>
+<script type="text/javascript">
+
+function LinkListHandler(evt)
+{
+	alert("A click occured within the list!");
+}
+
+function Handler1(evt)
+{
+	alert(this.id + " was clicked!");
+}
+
+function Handler2(evt)
+{
+	alert(this.id + " was clicked!");
+	return false;
+}
+
+function Handler3(evt)
+{
+	alert(this.id + " was clicked!");
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+
+function Handler4(evt)
+{
+	alert(this.id + " was clicked!");
+	evt.stopPropagation();
+}
+
+function Handler5(evt)
+{
+	alert(this.id + " was clicked!");
+	evt.preventDefault();
+}
+
+function AddEventHandlers()
+{
+	Spry.Utils.addEventListener("linkList", "click", LinkListHandler, false);
+	Spry.Utils.addEventListener("link1", "click", Handler1, false);
+	Spry.Utils.addEventListener("link2", "click", Handler2, false);
+	Spry.Utils.addEventListener("link3", "click", Handler3, false);
+	Spry.Utils.addEventListener("link4", "click", Handler4, false);
+	Spry.Utils.addEventListener("link5", "click", Handler5, false);
+	Spry.$("statusMsg").innerHTML = "Event handlers *ARE* active!";
+}
+
+function RemoveEventHandlers()
+{
+	Spry.Utils.removeEventListener("linkList", "click", LinkListHandler, false);
+	Spry.Utils.removeEventListener("link1", "click", Handler1, false);
+	Spry.Utils.removeEventListener("link2", "click", Handler2, false);
+	Spry.Utils.removeEventListener("link3", "click", Handler3, false);
+	Spry.Utils.removeEventListener("link4", "click", Handler4, false);
+	Spry.Utils.removeEventListener("link5", "click", Handler5, false);
+	Spry.$("statusMsg").innerHTML = "Event handlers are *NOT* active!";
+}
+
+</script>
+</head>
+<body onload="AddEventHandlers();">
+<h3>Adding and Removing Event Listeners</h3>
+<p>This sample gives a few examples of how to add and remove event listeners with the Spry.Utils.addEventListener() and Spry.Utils.removeEventListener() functions.</p>
+<p>First the basics. To add an event listener to an element on your page, define a listener function (aka handler function), and then call Spry.Utils.addEventListener() to attach it:</p>
+<pre>
+&lt;script src=&quot;../../includes/SpryDOMUtils.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
+
+...
+
+&lt;div id=&quot;myDiv&quot;&gt;Click me!&lt;/div&gt;
+
+...
+
+&lt;script type=&quot;text/javascript&gt;
+
+function myClickHandler(event)
+{
+	alert(&quot;myClickHandler was called!&quot;);
+}
+
+Spry.Utils.addEventListener(&quot;myDiv&quot;, &quot;click&quot;, myClickHandler, false);
+
+&lt;/script&gt;</pre>
+<p>A couple of important things to note about you handler function is that when it is invoked, the 'this' reference within your function will be the actual DOM element the handler was attached to with the addEventListener call. Also, for IE, the event object passed into your handler has the W3C standard stopPropagation() and preventDefault() methods defined on it, so you no longer have to set the proprietary IE equivalents. Some examples of how the value you return from your handler and calls to stopPropagation() and/or preventDefault() effect processing, can be seen below.</p>
+<p>Another thing to note, is that if you call addEventListener() to attach the same listener function to the same element, for the same event type, repeatedly, the handler will still only be invoked once.</p>
+<p>To remove an event listener from an element, simply call Spry.Utils.removeEventListener() with the exact same arguments you used when you called Spry.Utils.addEventListener():</p>
+<pre>
+&lt;script type=&quot;text/javascript&gt;
+
+Spry.Utils.removeEventListener(&quot;myDiv&quot;, &quot;click&quot;, myClickHandler, false);
+
+&lt;/script&gt;</pre>
+<hr />
+<p>In the following example, different event listeners are attached to each link in the list. Click on the links to see how the different types of handlers effect the processing of the link. To remove the event handlers on the links, press the &quot;Remove Event Handlers&quot; button. To add them back, press the &quot;Add Event Handlers&quot; button.</p>
+<div class="liveSample">
+	<input name="addHandlers" type="button" value="Add Event Handlers" onclick="AddEventHandlers();" />
+	<input name="removeHandlers" type="button" value="Remove Event Handlers" onclick="RemoveEventHandlers();" />
+	<p id="statusMsg">Event handlers are *NOT* active!</p>
+	<ul id="linkList">
+		<li><a id="link1" href="#link1">Link #1</a>
+			<ul>
+				<li><p>The handler on this link looks like this:</p>
+					<pre>
+function Handler1(evt)
+{
+	alert(this.id + &quot; was clicked!&quot;);
+}
+					</pre>
+					<p>Since this handler does *NOT* return a false value, or call stopPropagation() on the event, clicking on &quot;Link #1&quot; above should cause 2 alerts to pop up, one from Handler1() and the other from the listener that is on the &lt;list&gt;. Also, since Handler1() does  not call preventDefault() on the event object, the browser should execute the default action for the link, which in this case causes the browser to load the URL &quot;add_event_listener.html#link1&quot;. The URL displayed by the browser should then reflect this new URL.</p>
+				</li>
+			</ul>
+		</li>
+		<li><a id="link2" href="#link2">Link #2</a>
+			<ul>
+				<li><p>The handler on this link looks like this:</p>
+					<pre>
+function Handler2(evt)
+{
+	alert(this.id + &quot; was clicked!&quot;);
+	return false;
+}
+					</pre>
+					<p>Since this handler returns a value of false, propagation of this event is stopped and the default action for the event is prevented. This means that when you click on &quot;Link #2&quot; above, you should only see a single alert pop up from Handler2(). The URL displayed by the browser should be exactly the same as it was prior to you clicking on &quot;Link #2&quot;.</p>
+				</li>
+			</ul>
+		</li>
+		<li><a id="link3" href="#link3">Link #3</a>
+			<ul>
+				<li><p>The handler on this link looks like this:</p>
+					<pre>
+function Handler3(evt)
+{
+	alert(this.id + &quot; was clicked!&quot;);
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+					</pre>
+					<p>Since this handler manually calls stopPropagation() and preventDefault() on the event and returns *NO* value at all, propagation of this event is stopped and the default action for the event is prevented. This means that when you click on &quot;Link #3&quot; above, you should only see a single alert pop up from Handler3(). The URL displayed by the browser should be exactly the same as it was prior to you clicking on &quot;Link #3&quot;. Handler3() is functionally equivalent to Handler2().</p>
+				</li>
+			</ul>
+		</li>
+		<li><a id="link4" href="#link4">Link #4</a>
+			<ul>
+				<li><p>The handler on this link looks like this:</p>
+					<pre>
+function Handler4(evt)
+{
+	alert(this.id + &quot; was clicked!&quot;);
+	evt.stopPropagation();
+}
+					</pre>
+					<p>Since this handler manually calls stopPropagation() on the event and returns *NO* value at all, propagation of this event is stopped. This means that when you click on &quot;Link #4&quot; above, you should only see a single alert pop up from Handler4(). Also, since Handler4() does  not call preventDefault() on the event object, the browser should execute the default action for the link, which in this case causes the browser to load the URL &quot;add_event_listener.html#link4&quot;. The URL displayed by the browser should then reflect this new URL.</p>
+				</li>
+			</ul>
+		</li>
+		<li><a id="link5" href="#link5">Link #5</a>
+			<ul>
+				<li><p>The handler on this link looks like this:</p>
+					<pre>
+function Handler5(evt)
+{
+	alert(this.id + &quot; was clicked!&quot;);
+	evt.preventDefault();
+}
+					</pre>
+					<p>Since this handler manually calls preventDefault() on the event and returns *NO* value at all, the default action for the link is prevented. This means that when you click on &quot;Link #5&quot; above, 2 alerts will pop up, one from Handler1() and the other from the listener that is on the &lt;list&gt;. Since the default action for the link is prevented, the URL displayed by the browser should be exactly the same as it was prior to you clicking on &quot;Link #5&quot;.</p>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

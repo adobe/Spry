@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML Panel Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="../../widgets/htmlpanel/SpryHTMLPanel.js"></script>
+<script language="javascript" type="text/javascript" src="../../includes/SpryEffects.js"></script>
+</head>
+<body>
+<h3>HTML Panel Advanced Sample</h3>
+<p>The HTML Panel widget is used to dynamically load a page element with content from other files.</p>
+<p> This sample shows how to use some of the HTML Panel widget options, and demonstrates advanced scenarios such as observers and integrating Spry Effects.</p>
+<h4>Eval Scripts</h4>
+<p>For security reasons &lt;script&gt; tags within the external content will not be executed when loaded into the HTML Panel. By setting the 'evalScripts' option in the constructor, scripts will be executed after being loaded into the HTML Panel.</p>
+<div class="liveSample"><p><a href="script_frag.html" onclick="hp1.loadContent(this.href); return false;">Load Panel 'evalScripts:false'</a></p>
+<div id="evalOff">This will not show the alert.</div></div>
+<pre>var hp1 = new Spry.Widget.HTMLPanel(&quot;evalOff&quot;);</pre>
+<div class="liveSample"><p><a href="script_frag.html" onclick="hp2.loadContent(this.href); return false;">Load Panel 'evalScripts:true'</a></p>
+<div id="evalOn">This will show the alert.</div></div>
+<pre>var hp2 = new Spry.Widget.HTMLPanel(&quot;evalOn&quot;,{evalScripts:true});</pre>
+<p>The ability to execute scripts can also be handled globally with the 'Spry.Widget.HTMLPanel.evalScripts' global var. Read about it the <a href="../../articles/html_panel/index.html">HTML Panel Overview</a>.</p>
+<script language="javascript" type="text/javascript">
+var hp1 = new Spry.Widget.HTMLPanel("evalOff");
+var hp2 = new Spry.Widget.HTMLPanel("evalOn",{evalScripts:true});
+</script>
+<h4>Using Observers</h4>
+<p>The HTML Panel has an observer mechanism that allows you to control events based on events. This sample shows how to use the observer methods.</p>
+<div class="liveSample">
+<p><a href="frag-0.html" onclick="hp3.loadContent(this.href); return false;">Load Photoshop Info</a></p>
+<div id="observers">This is default content for the HTML Panel.</div></div>
+<script type="text/javascript">
+//panel with observer
+var hp3 = new Spry.Widget.HTMLPanel("observers");
+//observer functions
+var observer =  {onPreLoad: function(){alert("This is onPreLoad");}};
+var observer2 = {onPostUpdate: function(){alert("This is onPostLoad");}};
+//registers observers on the hp3 panel.
+hp3.addObserver(observer);
+hp3.addObserver(observer2);
+</script>
+<pre>   //panel with observer
+   var hp3 = new Spry.Widget.HTMLPanel(&quot;observers&quot;);
+   //observer functions
+   var observer =  {onPreLoad: function(){alert(&quot;This is onPreLoad&quot;);}};
+   var observer2 = {onPostUpdate: function(){alert(&quot;This is onPostLoad&quot;);}};
+   //registers observers on the hp3 panel.
+   hp3.addObserver(observer);
+   hp3.addObserver(observer2);</pre>
+<h4>Combining with Spry Effects</h4>
+<p>Using the observer system you can enhance the content update by using Spry Effects to smoothly change content.</p>
+<div class="liveSample">
+<p><a href="frag-0.html" onclick="closeIt.start(); return false;">Load Photoshop Details.</a> | <a href="frag-1.html" onclick="tryIt(this.href); return false;">Load Illustrator Details.</a></p>
+<div id="effects">
+  <div id="lipsum">
+    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque  auctor diam et risus. Nullam velit. Nullam in magna. Sed tincidunt nunc  non velit. Proin non enim at velit porta dictum. Sed congue. Morbi  imperdiet, ipsum eget feugiat laoreet, justo pede mollis sem, in  euismod sapien mauris vitae mauris. Praesent non leo vitae ipsum  pharetra eleifend. Praesent pharetra varius dui. Cras volutpat turpis  sit amet tellus. Maecenas dictum velit vulputate elit. Nunc faucibus.  Morbi blandit, tellus sed sagittis luctus, arcu orci egestas pede, nec  luctus nulla nisi non elit. Donec a tortor vel tortor tristique  vehicula. Donec dignissim, odio pellentesque lacinia commodo, neque  lectus facilisis dolor, sit amet pellentesque elit lorem non ante.  Proin sed ligula. </p>
+    <p>Morbi accumsan, augue a aliquet convallis, urna libero pulvinar  turpis, vel euismod nisi dui eu est. Donec pharetra. Nullam interdum  nulla at arcu tincidunt pellentesque. Nulla facilisi. Sed sollicitudin  lorem vel pede. Etiam non diam. Sed nonummy lacus eu urna. Duis metus.  Suspendisse dignissim vehicula tortor. Proin ultrices, lacus quis  rutrum lacinia, nisi odio ultrices dui, dictum vehicula risus nisi eu  nibh. Suspendisse convallis libero pulvinar tortor. Curabitur dictum  fringilla metus. Sed mi tellus, hendrerit a, feugiat scelerisque,  mollis non, massa. Aenean consectetuer odio in nisl. Praesent mi  mauris, vehicula ullamcorper, lobortis id, tristique id, tortor. Lorem  ipsum dolor sit amet, consectetuer adipiscing elit. Nam libero. Mauris  gravida, nisi sit amet aliquet pulvinar, sem mi porttitor orci, ac  luctus arcu purus ut nisi. Pellentesque ipsum. </p>
+  </div>
+</div></div>
+<pre>var hp4 = new Spry.Widget.HTMLPanel(&quot;effects&quot;);
+ //The Photoshop link runs this function. It is a simple version of an observer, but the content link is hardcoded.
+ function runIt(){
+   var obs = {onPostUpdate: function(){openIt.start();}};
+   hp4.addObserver(obs);
+   hp4.loadContent(&quot;frag-0.html&quot;);
+   }
+ //The Illustrator link runs this function. The new content URL is passed into the function. This is more flexible.
+ function tryIt(theURL){
+   var effectObs = {onPostEffect:function(){hp4.loadContent(theURL);}};
+   var obs = {onPostUpdate:function(){openIt.start();}};
+   closeIt2.start();
+   closeIt2.addObserver(effectObs);
+   hp4.addObserver(obs);
+   }
+ var closeIt = new Spry.Effect.Blind(&quot;effects&quot;,{from:'100%',to:'0%',duration:500,finish:runIt});
+ var closeIt2 = new Spry.Effect.Blind(&quot;effects&quot;,{from:'100%',to:'0%',duration:500});
+ var openIt  = new Spry.Effect.Blind(&quot;effects&quot;,{from:'0%',to:'100%',duration:500}); </pre>
+<hr />
+<p>Copyright Adobe Systems, Inc. 2007</p>
+<script language="javascript" type="text/javascript">
+var hp4 = new Spry.Widget.HTMLPanel("effects");
+//The Photoshop link runs this function. It is a simple version of an observer, but the content link is hardcoded.
+function runIt(){
+	var obs = {onPostUpdate: function(){openIt.start();}};
+	hp4.addObserver(obs);
+	hp4.loadContent("frag-0.html");
+	}
+//The Illustrator link runs this function. The new content URL is passed into the function. This is more flexible.
+function tryIt(theURL){
+	
+	var effectObs = {onPostEffect:function(){hp4.loadContent(theURL);}};
+	var obs = {onPostUpdate:function(){openIt.start();}};
+	closeIt2.start();
+	closeIt2.addObserver(effectObs);
+	hp4.addObserver(obs);
+}
+var closeIt = new Spry.Effect.Fade("effects",{from:'100%',to:'0%',duration:500,finish:runIt});
+var closeIt2 = new Spry.Effect.Fade("effects",{from:'100%',to:'0%',duration:500});
+var openIt  = new Spry.Effect.Fade("effects",{from:'0%',to:'100%',duration:500});
+</script>
+</body>
+</html>

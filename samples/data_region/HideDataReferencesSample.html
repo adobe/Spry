@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Hide Data References Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.SpryHiddenRegion {
+	visibility: hidden;
+}
+</style>
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+// Register an onload event handler  that will fire before
+// Spry's region processing code so that we can throw an alert
+// that can halt the browser and show folks that the data references
+// aren't rendered.
+
+Spry.Utils.addLoadListener(function() { alert("Look at the table. Can you see the data references?"); });
+
+var dsStates = new Spry.Data.XMLDataSet("../../data/states/states.xml", "/states/state");
+
+</script>
+
+</head>
+
+<body>
+<h3>Hiding Data References During Page Load </h3>
+<p>This sample shows you a couple of ways to hide data references as the page loads.</p>
+<p>Since the Spry dynamic region code automatically removed spry:region and spry:detailregion attributes off of elements after initially processing them, the original idea we had was that folks could use CSS to define a rule that hid any content that had a spry:region or spry:detail region attribute on it. Unfortunately most CSS implementations in browsers today don't support XML namespaces. If they did, the following CSS would work today: </p>
+<pre>&lt;style&gt;
+@namespace spry url(http://ns.adobe.com/spry);
+ 	
+*[spry|region], *[spry|detailregion]{
+	visibility: hidden;
+}
+&lt;/style&gt;</pre>
+<p>So, on to &quot;Plan B&quot;!</p>
+<p>The dynamic region processing code was modified so that it automatically removes the class name &quot;SpryHiddenRegion&quot; on any spry:region or spry:detailregion. So now all you have to do is provide a CSS rule for the SpryHiddenRegion class:</p>
+<pre>&lt;style&gt;
+.SpryHiddenRegion {
+	visibility: hidden;
+}
+&lt;/style&gt;</pre>
+<p>An alternate way to hide just the data references, is to leverage the spry:content attribute. You can actually use a spry:content attribute as a substitute for a data reference. Since the actual data reference is an attribute on the element that has the spry:content attribute, it is not visible when the page loads. </p>
+<hr />
+<p>Here's an example of how to hide the data references using the SpryHiddenRegion CSS class name and spry:content attribute.</p>
+<table border="1" cellpadding="4">
+	<tr>
+		<th scope="col">No Hiding</th>
+		<th scope="col">Using SpryHiddenRegion</th>
+		<th scope="col">Using spry:content</th>
+	</tr>
+	<tr>
+		<td>
+			<div spry:region="dsStates">
+				<ul>
+					<li spry:repeat="dsStates">{name}</li>
+				</ul>
+			</div>
+		</td>
+		<td>
+			<div spry:region="dsStates" class="SpryHiddenRegion">
+				<ul>
+					<li spry:repeat="dsStates">{name}</li>
+				</ul>
+			</div>
+		</td>
+		<td>
+			<div spry:region="dsStates">
+				<ul>
+					<li spry:repeat="dsStates"><span spry:content="{name}"></span></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>

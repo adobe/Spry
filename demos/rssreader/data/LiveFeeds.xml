@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<feeds>
+
+	<feed id="1" url="http://weblogs.macromedia.com/sfegette/index.xml">
+		<category>Creative</category>
+		<title>Scott Fegette</title>
+	</feed>
+
+	<feed id="2" url="http://weblogs.macromedia.com/dehaan/index.xml">
+		<category>Creative</category>
+		<title>Jen deHaan</title>
+	</feed>
+
+	<feed id="3" url="http://blogs.adobe.com/mikepotter/index.xml">
+		<category>Enterprise</category>
+		<title>Mike Potter</title>
+	</feed>
+	<feed id="4" url="http://blogs.adobe.com/hartshafer/index.xml">
+		<category>Creative</category>
+		<title>Hart Shafer</title>
+	</feed>
+	
+	<feed id="5" url="http://blogs.adobe.com/jnack/index.xml">
+		<category>Creative</category>
+		<title>John Nack</title>
+	</feed>
+	
+	<feed id="6" url="http://blogs.adobe.com/loridefurio/index.xml">
+		<category>Enterprise</category>
+		<title>Lori DeFurio</title>
+	</feed>
+	
+	<feed id="7" url="http://blogs.adobe.com/billmccoy/index.xml">
+		<category>Creative</category>
+		<title>Bill McCoy</title>
+	</feed>
+	
+	<feed id="8" url="http://blogs.adobe.com/tobias.hoellrich/index.xml">
+		<category>Creative</category>
+		<title>Tobias Hoellrich</title>
+	</feed>
+	
+	<feed id="9" url="http://blogs.adobe.com/scottbyer/index.xml">
+		<category>Creative</category>
+		<title>Scott Byer</title>
+	</feed>
+	
+	<feed id="10" url="http://blogs.adobe.com/mattm/index.xml">
+		<category>Enterprise</category>
+		<title>Matt MacKenzie</title>
+	</feed>
+	
+	<feed id="11" url="http://blogs.adobe.com/matthiaszeller/index.xml">
+		<category>Enterprise</category>
+		<title>Matthias Zeller </title>
+	</feed>
+	
+	<feed id="12" url="http://blogs.adobe.com/crawlspace/index.xml">
+		<category>Creative</category>
+		<title>Jeff Tranberry</title>
+	</feed>
+	
+	<feed id="13" url="http://blogs.adobe.com/typblography/index.xml">
+		<category>Creative</category>
+		<title>Thomas Phinney</title>
+	</feed>
+	
+	<feed id="14" url="http://blogs.adobe.com/acrolaw/index.xml">
+		<category>Enterprise</category>
+		<title>Rick Borstein</title>
+	</feed>
+	
+	<feed id="15" url="http://blogs.adobe.com/skilisky/index.xml">
+		<category>Creative</category>
+		<title>Steve Kilisky</title>
+	</feed>
+	
+	<feed id="16" url="http://blogs.adobe.com/bobddv/index.xml">
+		<category>Creative</category>
+		<title>Bob Donlon</title>
+	</feed>
+	
+	<feed id="17" url="http://weblogs.macromedia.com/jd/index.xml">
+		<category>Creative</category>
+		<title>John Dowdell</title>
+	</feed>
+	<feed id="18" url="http://weblogs.macromedia.com/sho/index.xml">
+		<category>Enterprise</category>
+		<title>Sho Kuwamoto</title>
+	</feed>
+	
+	<feed id="19" url="http://weblogs.macromedia.com/mesh/index.xml">
+		<category>Enterprise</category>
+		<title>Mike Chambers</title>
+	</feed>
+	
+	<feed id="20" url="http://weblogs.macromedia.com/labs/index.xml">
+		<category>Adobe Blogs</category>
+		<title>Adobe Labs</title>
+	</feed>
+
+</feeds>

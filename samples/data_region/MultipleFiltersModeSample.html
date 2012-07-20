@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Multiple Filters Mode Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryDataExtensions.js"></script>
+<script type="text/javascript">
+<!--
+var dsDonuts = new Spry.Data.XMLDataSet("../../data/donuts.xml", "/items/item", { subPaths: "topping" });
+
+function ffNone(ds, row, index){ return (row.topping == "None") ? row : null; };
+function ffGlazed(ds, row, index){ return (row.topping == "Glazed") ? row : null; };
+function ffSugar(ds, row, index){ return (row.topping == "Sugar") ? row : null; };
+function ffPowdered(ds, row, index){ return (row.topping == "Powdered Sugar") ? row : null; };
+function ffSprinkles(ds, row, index){ return (row.topping == "Chocolate with Sprinkles") ? row : null; };
+function ffChocolate(ds, row, index){ return (row.topping == "Chocolate") ? row : null; };
+function ffMaple(ds, row, index){ return (row.topping == "Maple") ? row : null; };
+
+function ToggleFilter(enable, f)
+{
+	if (enable)
+		dsDonuts.addFilter(f, true);
+	else
+		dsDonuts.removeFilter(f, true);
+}
+
+function RemoveAllFilters()
+{
+	document.forms[0]["noneCB"].checked = false;
+	document.forms[0]["glazedCB"].checked = false;
+	document.forms[0]["sugarCB"].checked = false;
+	document.forms[0]["powderedCB"].checked = false;
+	document.forms[0]["sprinklesCB"].checked = false;
+	document.forms[0]["chocolateCB"].checked = false;
+	document.forms[0]["mapleCB"].checked = false;
+
+	dsDonuts.removeAllFilters(true);
+}
+-->
+</script>
+<style type="text/css">
+<!--
+.badge {
+	float: left; 
+	margin: 4px;
+	padding: 4px;
+	text-align: center;
+	background-color: #FFCC99;
+	border-top: solid 1px #999999;
+	border-left: solid 1px #999999;
+	border-bottom: solid 1px #CCCCCC;
+	border-right: solid 1px #CCCCCC;
+}
+
+label {
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<h3>Multiple Filters Mode Sample</h3>
+<p>The multiple filter support within Spry can be switched between &quot;and&quot; and &quot;or&quot; mode. In &quot;and&quot; mode, the default, a row will only be added to the data set if all active filters return the row. If one filter returns a null, then the row will be filtered out. In &quot;or&quot; mode, if one of the active filters returns a row, that row will be added to the data set. If none of the filters return a row, then the row is filtered out.</p>
+<p>In both modes, if there are no active filters, all rows will be added to the data set.</p>
+<p>Here is a working example that allows you to switch between filter modes:</p>
+<div class="liveSample" style="float: left; margin-bottom: 4px;">
+	<form action="">
+	<p>Show only donuts with the following toppings:</p>
+	<label><input name="noneCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffNone);" /> None</label>
+	<label><input name="glazedCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffGlazed);" /> Glazed</label>
+	<label><input name="sugarCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffSugar);" /> Sugar</label>
+	<label><input name="powderedCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffPowdered);" />Powdered Sugar</label>
+	<label><input name="sprinklesCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffSprinkles);" /> Chocolate with Sprinkles</label>
+	<label><input name="chocolateCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffChocolate);" /> Chocolate</label>
+	<label><input name="mapleCB" type="checkbox" value="" onclick="ToggleFilter(this.checked, ffMaple);" /> Maple</label>
+	<p><label>Filter Mode: <select onchange="dsDonuts.setFilterMode(this.value, true);"><option value="and" selected="selected">-- AND --</option><option value="or">-- OR --</option></select></label>
+	<input type="button" value="Remove All Filters" onclick="RemoveAllFilters();" /></p>
+	</form>
+	<div spry:region="dsDonuts">
+		<table>
+			<tr><th>Type</th><th>Batter</th><th>Topping</th></tr>
+			<tr spry:repeat="dsDonuts"><td>{name}</td><td>{batters/batter}</td><td>{topping}</td></tr>
+		</table>
+	</div>
+</div>
+<p><br style="clear: both;" />
+</p>
+<p>When running the example above in &quot;and&quot; mode, notice how any time you click more than one checkbox, no data shows up. That is because each row of the data set only contains a single type of topping, which means that at least one of the filters installed will return a null object instead of a row. If you switch the example into &quot;or&quot; mode, notice how it shows only entries that have toppings that are checked. This is because in &quot;or&quot; mode only it is only necessary for one of the active filters to return a row for it to be added to the data set.</p>
+<p>The filter functions used in the example above look like this:</p>
+<pre>
+function ffNone(ds, row, index){ return (row.topping == &quot;None&quot;) ? row : null; };
+function ffGlazed(ds, row, index){ return (row.topping == &quot;Glazed&quot;) ? row : null; };
+function ffSugar(ds, row, index){ return (row.topping == &quot;Sugar&quot;) ? row : null; };
+function ffPowdered(ds, row, index){ return (row.topping == &quot;Powdered Sugar&quot;) ? row : null; };
+function ffSprinkles(ds, row, index){ return (row.topping == &quot;Chocolate with Sprinkles&quot;) ? row : null; };
+function ffChocolate(ds, row, index){ return (row.topping == &quot;Chocolate&quot;) ? row : null; };
+function ffMaple(ds, row, index){ return (row.topping == &quot;Maple&quot;) ? row : null; };
+</pre>
+<p>Checking a checkbox in the example above causes one of the functions listed above to be passed into a call to dsDonuts.addFilter(). For more info on adding/removing filters, check out the <a href="MultipleFiltersSample.html">Multiple Filters Sample</a>.</p>
+<p>To switch filter modes, simply call the setFilterMode() function with a value of &quot;and&quot; or &quot;or&quot;:</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+var dsDonuts = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;, { subPaths: &quot;topping&quot; });
+
+...
+
+// Switch into &quot;or&quot; filtering mode.
+
+dsDonuts.setFilterMode("or");
+
+...
+
+// Switch back into &quot;and&quot; filtering mode.
+
+dsDonuts.setFilterMode("and");
+
+...
+--&gt;
+&lt;/script&gt;</pre>
+<p>The call to setFilterMode() in the code </p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+var dsDonuts = new Spry.Data.XMLDataSet(&quot;../../data/donuts.xml&quot;, &quot;/items/item&quot;, { subPaths: &quot;topping&quot; });
+
+...
+
+// Switch into &quot;or&quot; filtering mode and force the data set
+// to re-apply all active filters.
+
+dsDonuts.setFilterMode(&quot;or&quot;, true);
+
+...
+
+// Switch back into &quot;and&quot; filtering mode and force the
+// data set to re-apply all active filters.
+
+dsDonuts.setFilterMode(&quot;and&quot;, true);
+
+...
+--&gt;
+&lt;/script&gt;</pre>
+<p> above, places the multi-filter support within dsDonuts in &quot;or&quot; mode. The next time a filter is added to the data set, the &quot;or&quot; mode will be used while running each filter to figure whether or not the row should be added to the data set, or filtered out.</p>
+<p>If you would like to change the filter mode and immediately re-filter the data, simply pass a true value as the 2nd argument:</p>
+<p>&nbsp;</p>
+</body>
+</html>

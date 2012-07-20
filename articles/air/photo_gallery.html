@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Case Study: Modifying the Spry Photo Gallery to work in the AIR Application Sandbox</title>
+<link href="../../css/bparticles.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.liveSample {
+	margin: 10px;
+	padding: 10px;
+	border: solid 1px black;
+	background-color: #FFFFCC;
+}
+
+</style>
+
+</head>
+<body>
+<h1>Case Study: Modifying the Spry Photo Gallery to work in the AIR Application Sandbox</h1>
+<p>The <a href="../../demos/gallery/index.html">Spry Photo Gallery</a> has been by far the most popular demo within the Spry framework, so it is not a surprise that folks have been wanting to create AIR applications based on a version of the Spry Photo Gallery that was modified to suit their needs. This was easy to do with early beta versions of the AIR Runtime, but once AIR Beta 3 introduced the concept of an Application Sandbox, things got a bit more complicated. The complications stem from the fact that Spry's region processing code relies on innerHTML to insert re-generated content, and its use of the JavaScript built-in eval() function to evaluate the JavaScript expressions within spry:if, spry:when, and spry:test attributes, and to execute code within &lt;script&gt; tags that were inside regions. Use of innerHTML and eval() is normally fine within a normal browser context, but when running in the AIR Application Sandbox, a stricter security policy is enforced to prevent unauthorized script from executing. In the Application Sandbox, after the onload event fires, all on* attributes and &lt;script&gt; tags within markup, that is inserted with innerHTML, are ignored, and calls to eval() are ignored except those that request the evaluation of a strict JSON string.</p>
+<p>This article will walk you through the modifications that were necessary to make the Spry Photo Gallery run within the Application Sandbox of the Adobe AIR 1.0 Runtime. You can view the final version of the Spry Photo Gallery that runs in the AIR Application Sandbox <a href="../../demos/gallery/index-air.html">here</a>.</p>
+<h2 id="originalsource">The Original Source</h2>
+<p>Before jumping right into the changes that need to be made, lets first take a look at the original Spry Photo Gallery source, and discuss why it won't work in the AIR Application Sandbox.</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. --&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot; /&gt;
+&lt;title&gt;Gallery&lt;/title&gt;
+&lt;link href=&quot;../../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsGalleries = new Spry.Data.XMLDataSet(&quot;galleries/galleries.xml&quot;, &quot;galleries/gallery&quot;);
+var dsGallery = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery&quot;);
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery/photos/photo&quot;);
+&lt;/script&gt;
+&lt;script src=&quot;gallery.js&quot;  type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body id=&quot;gallery&quot;&gt;
+&lt;noscript&gt;
+&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;
+&lt;/noscript&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;h1 id=&quot;albumName&quot; spry:region=&quot;dsGallery&quot;&gt;{sitename} &lt;span class=&quot;return&quot;&gt;&lt;a href=&quot;../index.html&quot;&gt;Back to Demos&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;source&quot;&gt;&lt;a href=&quot;source.html&quot;&gt;View Source &lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;
+  &lt;div id=&quot;previews&quot;&gt;
+<span class="hilite">    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot; onchange=&quot;dsGalleries.setCurrentRowNumber(this.selectedIndex);&quot;&gt;
+        &lt;option spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot; selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+</span>    &lt;div id=&quot;controls&quot;&gt;
+      &lt;ul id=&quot;transport&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;StopSlideShow(); AdvanceToNextImage(true);&quot; title=&quot;Previous&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li class=&quot;pausebtn&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;if (gSlideShowOn) StopSlideShow(); else StartSlideShow();&quot; title=&quot;Play/Pause&quot; id=&quot;playLabel&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;StopSlideShow(); AdvanceToNextImage();&quot; title=&quot;Next&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+<span class="hilite">    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; onclick=&quot;HandleThumbnailClick('{ds_RowID}');&quot; onmouseover=&quot;GrowThumbnail(this.getElementsByTagName('img')[0], '{@thumbwidth}', '{@thumbheight}');&quot; onmouseout=&quot;ShrinkThumbnail(this.getElementsByTagName('img')[0]);&quot;&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+</span>  &lt;/div&gt;
+  &lt;div id=&quot;picture&quot;&gt;
+    &lt;div id=&quot;mainImageOutline&quot; style=&quot;width: 0px; height: 0px;&quot;&gt;&lt;img id=&quot;mainImage&quot; alt=&quot;main image&quot; src=&quot;&quot;/&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;clear&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The hilighted sections of markup in the source above are the problematic areas of the file. Taking a look at the first hilighted section, known as the &quot;galleries&quot; region:</p>
+<pre>    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot; <span class="hilite">onchange=&quot;dsGalleries.setCurrentRowNumber(this.selectedIndex);&quot;</span>&gt;
+        &lt;option <span class="hilite">spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot;</span> selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+</pre>
+<p>We see that it contains an onchange attribute that triggers some JavaScript and a spry:when conditional attribute that contains a JavaScript expression. Because this &lt;select&gt; is in a spry:region, we know that it will get dynamically inserted into the document via innerHTML. This means that the onchange attribute on the select will be ignored when running in the AIR Application Sandbox. The result is that nothing will get executed when the user changes the value of the select widget. The spry:when attribute is part of a spry:choose constructor, otherwise known as a case statement. What is basically happening there is that the developer wants to write out the &lt;option&gt; tag with the spry:when attribute if the row number for the row currently being processed, matches the data set's notion of the current row. If it does not match, then the &lt;option&gt; with the spry:default attribute is written out. The problem here is that Spry uses the eval() function to evaluate the JavaScript expression described in the spry:when attribute. This evaluation typically does not happen until after the document's onload event fires, so we know that this will not work in the AIR Application Sandbox because eval() gets disabled after the onload event fires.</p>
+<p>The second hilighted section, known as the &quot;thumbnails&quot; region:</p>
+<pre>    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; <span class="hilite">onclick=&quot;HandleThumbnailClick('{ds_RowID}');&quot;</span> <span class="hilite">onmouseover=&quot;GrowThumbnail(this.getElementsByTagName('img')[0], '{@thumbwidth}', '{@thumbheight}');&quot;</span> <span class="hilite">onmouseout=&quot;ShrinkThumbnail(this.getElementsByTagName('img')[0]);&quot;</span>&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+</pre>
+<p>makes use of more on* attributes. In this section, a &lt;div&gt; containing an &lt;img&gt; is generated for each row in the dsPhotos data set. For each &lt;div&gt; that is generated, an onclick attribute is used to trigger code to select the image to show in the main image area, and onmouseover and onmouseout attributes are used to trigger the growing and shrinking of the actual thumbnails. Once again, since all of this markup is within a spry:region, these on* attributes will be ignored when running in the AIR Application Sandbox.</p>
+<p>If you looked closely at the full source of the original Spry Photo Gallery, you may have noticed that there is markup with on* attributes on them that we did not hilight. For example, in the &quot;controls&quot; section:</p>
+<pre>    &lt;div id=&quot;controls&quot;&gt;
+      &lt;ul id=&quot;transport&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; <span class="hilite">onclick=&quot;StopSlideShow(); AdvanceToNextImage(true);&quot;</span> title=&quot;Previous&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li class=&quot;pausebtn&quot;&gt;&lt;a href=&quot;#&quot; <span class="hilite">onclick=&quot;if (gSlideShowOn) StopSlideShow(); else StartSlideShow();&quot;</span> title=&quot;Play/Pause&quot; id=&quot;playLabel&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; <span class="hilite">onclick=&quot;StopSlideShow(); AdvanceToNextImage();&quot;</span> title=&quot;Next&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+</pre>
+<p>The reason this code is not problematic, is because this markup is not dynamically generated and inserted into the document. Since it exists at the time the document is loaded, prior to the onload event firing, any on* attributes the markup contains will function as expected, without any problems, even when running in the AIR Application Sandbox.</p>
+<h2 id="fixinggalleries">Fixing the &quot;galleries&quot; Region</h2>
+<p>To get the &quot;galleries&quot; region working under the AIR Application Sandbox, we need to take care of the onchange and spry:when attributes.</p>
+<pre>    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot; <span class="hilite">onchange=&quot;dsGalleries.setCurrentRowNumber(this.selectedIndex);&quot;</span>&gt;
+        &lt;option <span class="hilite">spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot;</span> selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+</pre>
+<p>The solution for the onchange attribute is to unobtrusively attach an onchange event handler to the &lt;select&gt; element after the markup for the region is re-generated and inserted into the document. Regions have an observer mechanism that allows the developer to register a function or an object as an observer of a region. This allows the developer's code to listen for specific events of interest. The one we are interested in is the &quot;onPostUpdate&quot; event, which fires after a region's markup is re-generated and inserted into the document. We will remove the onchange attribute off of the &lt;select&gt; element, and move its code into an observer that is triggered whenever the &quot;galleries&quot; region re-generates:</p>
+<pre>
+
+...
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;
+</span>&lt;script type=&quot;text/javascript&quot;&gt;
+var dsGalleries = new Spry.Data.XMLDataSet(&quot;galleries/galleries.xml&quot;, &quot;galleries/gallery&quot;);
+var dsGallery = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery&quot;);
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery/photos/photo&quot;);
+
+...
+
+<span class="hilite">Spry.Data.Region.addObserver(&quot;galleries&quot;, { onPostUpdate: function()
+{
+	Spry.$$(&quot;#gallerySelect&quot;).addEventListener(&quot;change&quot;, function(){ dsGalleries.setCurrentRowNumber(this.selectedIndex); }, false);
+}});
+
+
+</span>...
+
+&lt;/script&gt;
+
+...
+
+    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot;&gt;
+        &lt;option spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot; selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+...</pre>
+<p>In the code above, the onchange attribute was removed from the &lt;select&gt; element. You will notice that we have added a &lt;script&gt; include for SpryDOMUtils.js because we are going to use the<a href="../element_selector/index.html"> Element Selector Utility (aka Spry.$$)</a> to aid us with unobtrusively attaching behaviors, and that is where the Element Selector is defined. The interesting part in the code above is the definition of the onPostUpdate observer. In it, we are using Spry.$$() to find the element with the id &quot;gallerySelect&quot;, which is our &lt;select&gt; element. If it is found, a function, that contains the code that was previously in our onchange attribute, is added as a &quot;change&quot; listener on the &lt;select&gt;. So now anytime the user changes the value of the select, this function will get triggered, even when running in the AIR Application Sandbox.</p>
+<p>To fix the problem with the spry:when attribute, we are going to take advantage of a new feature that was added for the Spry 1.6.1 release, nicknamed &quot;function::&quot;. The idea is that you can replace the value of any spry:if, spry:when, or spry:test attribute with a value that starts with &quot;function::&quot; and ends with the name of a function to call, and the Spry region processing code will call that function whenever that spry:if, spry:when, or spry:test attribute is to be evaluated.</p>
+<pre>
+
+...
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsGalleries = new Spry.Data.XMLDataSet(&quot;galleries/galleries.xml&quot;, &quot;galleries/gallery&quot;);
+var dsGallery = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery&quot;);
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery/photos/photo&quot;);
+
+...
+
+<span class="hilite">function IsCurrentGalleryRow(rgn, lookupFunc)
+{
+	return lookupFunc(&quot;{dsGalleries::ds_RowNumber}&quot;) == lookupFunc(&quot;{dsGalleries::ds_CurrentRowNumber}&quot;);
+}
+
+</span>Spry.Data.Region.addObserver(&quot;galleries&quot;, { onPostUpdate: function()
+{
+	Spry.$$(&quot;#gallerySelect&quot;).addEventListener(&quot;change&quot;, function(){ dsGalleries.setCurrentRowNumber(this.selectedIndex); }, false);
+}});
+
+
+...
+
+&lt;/script&gt;
+
+...
+
+    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot;&gt;
+        &lt;option <span class="hilite">spry:when=&quot;function::IsCurrentGalleryRow&quot;</span> selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+...</pre>
+<p>So in the code above, we have replaced the value of the spry:when attribute, which previously contained a JavaScript expression with some data references, with &quot;function::IsCurrentGalleryRow&quot;. This means that each time the spry:when attribute is evaluated, the function IsCurrentGalleryRow() will get called, and the region processing code is going to expect that function to return a true, false, zero, or non-zero result, just as the evaluation of a JavaScript expression would.</p>
+<p>Taking a look at the implementation of IsCurrentGalleryRow():</p>
+<pre>function IsCurrentGalleryRow(<span class="hilite">rgn</span>, <span class="hilite">lookupFunc</span>)
+{
+	return lookupFunc(&quot;{dsGalleries::ds_RowNumber}&quot;) == lookupFunc(&quot;{dsGalleries::ds_CurrentRowNumber}&quot;);
+}
+
+ </pre>
+<p>We see that it is expecting to be passed 2 arguments. The first argument is the name of the region that is currently being processed/re-generated. The second argument is a reference to a function that can be used to lookup the value of a data reference in the current processing context of the region. </p>
+<p>This is what the function signature for any function you use with &quot;function::&quot; should look like.</p>
+<p>Keep in mind that the names of these two arguments can be whatever you wish. The second argument will have to match whatever is used in the expression. So in the above sample, 'rgn' can be named anything, and whatever is used for 'lookupFunc' is the same name that is used in <em>lookupFunc(&quot;{dsGalleries::ds_RowNumber}&quot;)</em>.</p>
+<p>The actual contents of the function is up to you to implement, and in this specific case, it is simply the same JavaScript expression we previously had in our spry:when attribute:</p>
+<pre>spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot;</pre>
+<p>except that it is now preceded by the keyword &quot;return&quot;, and each data reference is surrounded by a call to lookupFunc to retrieve the same values that would've been used if we were using a JavaScript expression directly in the spry:when attribute:</p>
+<pre>	<span class="hilite">return</span> <span class="hilite">lookupFunc(&quot;</span>{dsGalleries::ds_RowNumber}<span class="hilite">&quot;)</span> == <span class="hilite">lookupFunc(&quot;</span>{dsGalleries::ds_CurrentRowNumber}<span class="hilite">&quot;)</span>;
+</pre>
+<p>That is all of the changes that were necessary to get the &quot;galleries&quot; section working under the AIR Application Sandbox. You can view the changes in context <a href="#incontext">here</a>.</p>
+<h2 id="fixingthumbnails">Fixing the &quot;thumbnails&quot; Region</h2>
+<p>The only thing keeping the &quot;thumbnails&quot; region from working in the AIR Application Sandbox is the presence of onclick, onmouseover and onmouseout attributes.</p>
+<pre>    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; <span class="hilite">onclick=&quot;HandleThumbnailClick('{ds_RowID}');&quot;</span> <span class="hilite">onmouseover=&quot;GrowThumbnail(this.getElementsByTagName('img')[0], '{@thumbwidth}', '{@thumbheight}');&quot;</span> <span class="hilite">onmouseout=&quot;ShrinkThumbnail(this.getElementsByTagName('img')[0]);&quot;</span>&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+</pre>
+<p> From our experience with the &quot;galleries&quot; region above, we know that we can fix this by unobtrusively attaching these behaviors using an onPostUpdate region observer, but there is a wrinkle in this specific case. If you look closely at the JavaScript within the onclick, onmouseover and onmouseout attributes, you will notice that they are using data references like {ds_RowID}, {@thumbwidth} and {@thumbheight}. If we simply translate this code, by placing the JavaScript in the on* attribute directly into a function handler, as we did for the &quot;galleries&quot; region:</p>
+<pre>
+Spry.Data.Region.addObserver(&quot;thumbnails&quot;, { onPostUpdate: function()
+{
+	var results = Spry.$$(&quot;#thumbnails &gt; div&quot;);
+	results.addEventListener(&quot;click&quot;, function(){ <span class="hilite">HandleThumbnailClick('{ds_RowID}');</span> }, false);
+	results.addEventListener(&quot;mouseover&quot;, function(){ <span class="hilite">GrowThumbnail(this.getElementsByTagName('img')[0], '{@thumbwidth}', '{@thumbheight}');</span> }, false);
+	results.addEventListener(&quot;mouseout&quot;, function(){ <span class="hilite">ShrinkThumbnail(this.getElementsByTagName('img')[0]);</span> }, false);
+}});
+</pre>
+<p>The functions that would be triggered on those events would be passing the actual data reference strings, instead of the values we need. So, we need some way of tying the specific values of ds_RowID, @thumbwidth and @thumbheight to each &lt;div&gt; that contains a thumbnail image.</p>
+<p>One easy solution, is to place custom attributes on the &lt;div&gt; and set their values to the data references we are interested in and access them from the event handlers using getAttribute():</p>
+<pre>
+
+Spry.Data.Region.addObserver(&quot;thumbnails&quot;, { onPostUpdate: function()
+{
+	var results = Spry.$$(&quot;#thumbnails &gt; div&quot;);
+	results.addEventListener(&quot;click&quot;, function(){ HandleThumbnailClick(<span class="hilite">this.getAttribute(&quot;rowid&quot;))</span>; }, false);
+	results.addEventListener(&quot;mouseover&quot;, function(){ GrowThumbnail(this.getElementsByTagName('img')[0], <span class="hilite">this.getAttribute(&quot;thumbwidth&quot;)</span>, <span class="hilite">this.getAttribute(&quot;thumbheight&quot;)</span>); }, false);
+	results.addEventListener(&quot;mouseout&quot;, function(){ ShrinkThumbnail(this.getElementsByTagName('img')[0]); }, false);
+}});
+
+...
+
+    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; <span class="hilite">rowid=&quot;{ds_RowID}&quot;</span> <span class="hilite">thumbwidth=&quot;{@thumbwidth}&quot;</span> <span class="hilite">thumbheight=&quot;{@thumbheight}&quot;</span><span class="hilite"></span>&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+</pre>
+<p>The idea here is that when Spry re-generates the region, as part of normal processing, the data references in the custom attributes will be turned into real values from the row in the data set that was used to generate that &lt;div&gt;. So when the event handler functions are triggered, and they use getAttribute() to fetch a specific custom attribute, they will get real values back that they can pass to the functions they trigger.</p>
+<p>The problem with this approach is that it does not scale too well. If you need access to 'N' number of data references, you will need to add 'N' number of custom attributes.</p>
+<p>For the Spry Photo Gallery, we chose to use another approach. Instead of adding custom attributes, we added an id attribute to the &lt;div&gt; in question and placed a {ds_RowID} data reference inside it:</p>
+<pre>    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; <span class="hilite">id=&quot;tnd{ds_RowID}&quot;</span>&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;
+</pre>
+<p>The idea here is that after the Spry region code re-generates the markup, it ends up looking something like this:</p>
+<pre>
+    &lt;div id=&quot;thumbnails&quot;&gt;
+      &lt;div id=&quot;<span class="hilite">tnd0</span>&quot;&gt; &lt;img ...
+      &lt;div id=&quot;<span class="hilite">tnd1</span>&quot;&gt; &lt;img ...
+      &lt;div id=&quot;<span class="hilite">tnd2</span>&quot;&gt; &lt;img ...
+      &lt;div id=&quot;<span class="hilite">tnd3</span>&quot;&gt; &lt;img ...
+      &lt;div id=&quot;<span class="hilite">tnd4</span>&quot;&gt; &lt;img ...
+
+      ...
+
+      &lt;div id=&quot;<span class="hilite">tnd23</span>&quot;&gt; &lt;img ...
+
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+</pre>
+<p>Since the ds_RowID of the row that was used to generate the each &lt;div&gt; is part of the id for that &lt;div&gt;, we can do some string manipulation to extract the ds_RowID from the id value, and use it to get the data set row we need to get values for &quot;@thumbwidth&quot;, &quot;@thumbheight&quot;, etc.</p>
+<p>The &quot;thumbnails&quot; region observer code ends up looking like this:</p>
+<pre>
+...
+
+Spry.Data.Region.addObserver(&quot;thumbnails&quot;, { onPostUpdate: function()
+{
+	var results = Spry.$$(&quot;#thumbnails &gt; div&quot;);
+
+	results.addEventListener(&quot;click&quot;, function()
+	{
+		HandleThumbnailClick(<span class="hilite">this.id.replace(/^tnd/, &quot;&quot;)</span>);
+	}, false);
+
+	results.addEventListener(&quot;mouseover&quot;, function()
+	{
+		var row = dsPhotos.getRowByID(<span class="hilite">this.id.replace(/^tnd/, &quot;&quot;)</span>);
+		GrowThumbnail(this.getElementsByTagName('img')[0], row[&quot;@thumbwidth&quot;], row[&quot;@thumbheight&quot;]);
+	}, false);
+
+	results.addEventListener(&quot;mouseout&quot;, function(){ ShrinkThumbnail(this.getElementsByTagName('img')[0]); }, false);
+}});
+
+...
+
+    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; id=&quot;tnd{ds_RowID}&quot;&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+
+    &lt;/div&gt;</pre>
+<p>The hilighted code within the event handler functions show where the ds_RowID is getting extracted from the id attribute of the &lt;div&gt;.</p>
+<h2 id="incontext">Seeing All the Changes In Context</h2>
+<p>Below is the complete source for the new version of the Spry Photo Gallery that works in the AIR Application Sandbox. All of the additions/changes we have made are hilighted. To see the new version of the Photo Gallery in action, go <a href="../../demos/gallery/index-air.html">here</a>. To view instructions on how to package the new version of the gallery into an AIR package, go <a href="../../demos/gallery/readme-air.html">here</a>.</p>
+<pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;!-- Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. --&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:spry=&quot;http://ns.adobe.com/spry&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot; /&gt;
+&lt;title&gt;Gallery&lt;/title&gt;
+&lt;link href=&quot;../../css/screen.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/xpath.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryData.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryEffects.js&quot;&gt;&lt;/script&gt;
+<span class="hilite">&lt;script type=&quot;text/javascript&quot; src=&quot;../../includes/SpryDOMUtils.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script type=&quot;text/javascript&quot;&gt;
+var dsGalleries = new Spry.Data.XMLDataSet(&quot;galleries/galleries.xml&quot;, &quot;galleries/gallery&quot;);
+var dsGallery = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery&quot;);
+var dsPhotos = new Spry.Data.XMLDataSet(&quot;galleries/{dsGalleries::@base}{dsGalleries::@file}&quot;, &quot;gallery/photos/photo&quot;);
+
+// IsCurrentGalleryRow() gets invoked by the following markup:
+//
+//      &lt;option spry:when=&quot;function::IsCurrentGalleryRow&quot; selected=&quot;selected&quot;&gt;
+//
+// It is a replacement for the following JS expression:
+//
+//     &lt;option spry:when=&quot;{ds_RowNumber} == {ds_CurrentRowNumber}&quot; selected=&quot;selected&quot;&gt;
+//
+// which was used in the original gallery, but cannot be used in the AIR application
+// sandbox because eval() is disabled.
+
+<span class="hilite">function IsCurrentGalleryRow(rgn, lookupFunc)
+{
+	return lookupFunc(&quot;{ds_RowNumber}&quot;) == lookupFunc(&quot;{ds_CurrentRowNumber}&quot;);
+}
+</span>
+// This is an observer on the &quot;galleries&quot; region. Any time the region is re-generated,
+// we need to re-add the onchange event listener so we can load the gallery the user selected.
+
+<span class="hilite">Spry.Data.Region.addObserver(&quot;galleries&quot;, { onPostUpdate: function()
+{
+	Spry.$$(&quot;#gallerySelect&quot;).addEventListener(&quot;change&quot;, function(){ dsGalleries.setCurrentRowNumber(this.selectedIndex); }, false);
+}});
+</span>
+// This is an observer on the &quot;thumbnails&quot; region. Any time the region is re-generated,
+// we need to re-add the thumbnail zooming and click to show image behaviors.
+
+<span class="hilite">Spry.Data.Region.addObserver(&quot;thumbnails&quot;, { onPostUpdate: function()
+{
+	// Get all of the divs that are directly underneath the
+	// div with the id &quot;thumbnails&quot;.
+
+	var results = Spry.$$(&quot;#thumbnails &gt; div&quot;);
+
+	// Add the onclick handler that will set the main image
+	// when the user clicks on the thumbnail.
+
+	results.addEventListener(&quot;click&quot;, function()
+	{
+		// The id attribute of the div contains the id of the row in the dsPhotos data set
+		// that was used to generate it. Extract out the rowID and pass it to HandleThumbnailClick().
+
+		HandleThumbnailClick(this.id.replace(/^tnd/, &quot;&quot;));
+	}, false);
+
+	// Add the onmouseover handler that will cause the thumbnails
+	// to grow.
+
+	results.addEventListener(&quot;mouseover&quot;, function()
+	{
+		// The id attribute of the div contains the id of the row in the dsPhotos data set
+		// that was used to generate it. Extract out the rowID and use it to get the row from
+		// the dsPhotos data set.
+		
+		var row = dsPhotos.getRowByID(this.id.replace(/^tnd/, &quot;&quot;));
+
+		// Now call GrowThumbnail() and pass it the values in the @thumbwidth and @thumbheight columns.
+
+		GrowThumbnail(this.getElementsByTagName('img')[0], row[&quot;@thumbwidth&quot;], row[&quot;@thumbheight&quot;]);
+	}, false);
+
+	// Add the onmouseout handler that will cause the thumbnails
+	// to shrink.
+
+	results.addEventListener(&quot;mouseout&quot;, function(){ ShrinkThumbnail(this.getElementsByTagName('img')[0]); }, false);
+}});</span>
+
+&lt;/script&gt;
+&lt;script src=&quot;gallery.js&quot;  type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body id=&quot;gallery&quot;&gt;
+&lt;noscript&gt;
+&lt;h1&gt;This page requires JavaScript. Please enable JavaScript in your browser and reload this page.&lt;/h1&gt;
+&lt;/noscript&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;h1 id=&quot;albumName&quot; spry:region=&quot;dsGallery&quot;&gt;{sitename}&lt;/h1&gt;
+  &lt;div id=&quot;previews&quot;&gt;
+    &lt;div id=&quot;galleries&quot; spry:region=&quot;dsGalleries&quot;&gt;
+      &lt;label for=&quot;gallerySelect&quot;&gt;View:&lt;/label&gt;
+      &lt;select spry:repeatchildren=&quot;dsGalleries&quot; spry:choose=&quot;choose&quot; id=&quot;gallerySelect&quot;&gt;
+        &lt;option <span class="hilite">spry:when=&quot;function::IsCurrentGalleryRow&quot;</span> selected=&quot;selected&quot;&gt;{sitename}&lt;/option&gt;
+        &lt;option spry:default=&quot;default&quot;&gt;{sitename}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;controls&quot;&gt;
+      &lt;ul id=&quot;transport&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;StopSlideShow(); AdvanceToNextImage(true);&quot; title=&quot;Previous&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;pausebtn&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;if (gSlideShowOn) StopSlideShow(); else StartSlideShow();&quot; title=&quot;Play/Pause&quot; id=&quot;playLabel&quot;&gt;Play&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;StopSlideShow(); AdvanceToNextImage();&quot; title=&quot;Next&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;thumbnails&quot; spry:region=&quot;dsPhotos dsGalleries dsGallery&quot;&gt;
+      &lt;div spry:repeat=&quot;dsPhotos&quot; <span class="hilite">id=&quot;tnd{ds_RowID}&quot;</span>&gt; &lt;img id=&quot;tn{ds_RowID}&quot; alt=&quot;thumbnail for {@thumbpath}&quot; src=&quot;galleries/{dsGalleries::@base}{dsGallery::thumbnail/@base}{@thumbpath}&quot; width=&quot;24&quot; height=&quot;24&quot; style=&quot;left: 0px; right: 0px;&quot; /&gt; &lt;/div&gt;
+      &lt;p class=&quot;ClearAll&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;picture&quot;&gt;
+    &lt;div id=&quot;mainImageOutline&quot; style=&quot;width: 0px; height: 0px;&quot;&gt;&lt;img id=&quot;mainImage&quot; alt=&quot;main image&quot; src=&quot;&quot;/&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;clear&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<hr />
+<p>Copyright &copy; 2008. Adobe Systems Incorporated. All rights reserved.</p>
+</body>
+</html>

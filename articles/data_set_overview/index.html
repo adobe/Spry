@@ -1,0 +1,2362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML lang="en-us">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta http-equiv="Content-Language" content="en-us" >
+<TITLE>Working with Spry XML Data Sets</TITLE>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY>
+<H1>Working with Spry XML Data Sets</H1>
+<P>A Spry XML Data Set is a JavaScript object that you can use to display data 
+  from an XML data source file on a web page. You can then use this data to create 
+  master and detail regions on the page that update as site visitors make 
+  different selections. A version of this file is available on <a href="http://livedocs.adobe.com/en_US/Spry/SDG/index.html" target="_blank">Adobe LiveDocs</a>. Please check it for comments and updates. </P>
+<H3><a name="overview"></a>Spry XML Data Set basic overview</H3>
+<P>A Spry data set is fundamentally a JavaScript object. With a few snippets of 
+  code in your web page, you can create this object and load data from an XML 
+  source into the object when the user opens the page in a browser. The data set 
+  results in a flattened array of XML data that can be represented as a standard 
+  table containing rows and columns.</P>
+<P>For example, suppose you have an XML source file, cafetownsend.xml, that 
+  contains the following information:</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;specials&gt;
+	&lt;menu_item id="1"&gt;
+		&lt;item&gt;Summer Salad&lt;/item&gt;
+		&lt;description&gt;organic butter lettuce with apples, blood oranges, gorgonzola, and raspberry vinaigrette.&lt;/description&gt;
+		&lt;price&gt;7&lt;/price&gt;
+	&lt;/menu_item&gt;	
+	&lt;menu_item id="2"&gt;	
+		&lt;item&gt;Thai Noodle Salad&lt;/item&gt;
+		&lt;description&gt;lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, and scallions.&lt;/description&gt;
+		&lt;price&gt;8&lt;/price&gt;
+	&lt;/menu_item&gt;	
+	&lt;menu_item id="3"&gt;
+		&lt;item&gt;Grilled Pacific Salmon&lt;/item&gt;
+		&lt;description&gt;served with new potatoes, diced beets, Italian parlsey, and lemon zest.&lt;/description&gt;
+		&lt;price&gt;16&lt;/price&gt;
+	&lt;/menu_item&gt;
+&lt;/specials&gt;</PRE>
+<P>Using XPath in your web page to indicate the data you're interested in (in 
+  this example, the specials/menu_item node of the XML file), the data set 
+  flattens the XML data into an array of objects (rows) and properties (columns), 
+  represented by the following table.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>@id</P></TH>
+      <TH > <P>item</P></TH>
+      <TH > <P>description</P></TH>
+      <TH > <P>price</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>1</P></TD>
+      <TD ><P>Summer salad</P></TD>
+      <TD ><P>organic butter lettuce with apples, blood oranges, gorgonzola, and 
+          raspberry vinaigrette.</P></TD>
+      <TD ><P>7</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>2</P></TD>
+      <TD ><P>Thai Noodle Salad</P></TD>
+      <TD ><P>lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, 
+          and scallions.</P></TD>
+      <TD ><P>8</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>3</P></TD>
+      <TD ><P>Grilled Pacific Salmon</P></TD>
+      <TD ><P>served with new potatoes, diced beets, Italian parlsey, and lemon 
+          zest.</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>The data set contains a row for each menu item and the following columns: 
+  @id, item, description, and price. The columns represent the child nodes of the specials/menu_item node in the XML, plus any 
+  attributes contained in the menu_item tag, or in any 
+  of the child tags of the menu_item tag.</P>
+<P>The data set also contains a built-in data reference called ds_RowID (not shown) that can be useful later when you display 
+  your data. Additionally the data set includes other built-in data references, 
+  for example, <EM>ds_RecordCount</EM>, <EM>ds_CurrentRow</EM>, and others that 
+  you can use to manipulate the data display.</P>
+<P>You create a Spry data set object by using XPath in the Spry.Data.XMLDataSet constructor. The XPath defines the 
+  default structure of the data set. For example, if you use XPath to select a 
+  repeating XML node that includes three child nodes, the data set will have a row 
+  for each repeating node, and a column for each of the three child nodes. (If any 
+  of the repeating nodes or child nodes contain attributes, the data set also 
+  creates a column for each attribute.)</P>
+<P>If you do not specify an XPath, all of the data in the XML source will be 
+  included in the data set.</P>
+<P>After the data set is created, the data set object lets you easily display 
+  and manage the data. For example, you can create a simple table that displays 
+  the XML data, and then use simple methods and properties to reload, sort and 
+  filter, or page through data.</P>
+<P>The following example creates a Spry data set called dsSpecials, and loads data from an XML file called cafetownsend.xml:</P>
+<PRE>&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+	&lt;title&gt;Spry Example&lt;/title&gt;
+	&lt;!--Link the Spry libraries--&gt;
+	&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+	&lt;!--Create a data set object--&gt;
+	&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+	&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;/body&gt;</PRE>
+<SPAN class=notetitle>Note: </SPAN>The examples in this document 
+are for reading purposes only and not intended for execution. For working 
+samples, see the demos folder in the Spry folder on Adobe Labs.
+<P>In the example, the first script tag links an 
+  open-source XPath library to the page where you'll eventually display XML data. 
+  The XPath library allows for the specification of a more complex XPath when you 
+  create a data set:</P>
+<PRE>&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;</PRE>
+<P>The second script block links the SpryData.js Spry 
+  data library, which is stored in a folder called includes on the server:</P>
+<PRE>&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;</PRE>
+<P>The Spry data library depends on the XPath library, so it's important that 
+  you always link the XPath library first.</P>
+<P>The third script block contains the statement that 
+  creates the dsSpecials data set. The cafetownsend.xml 
+  XML source file is stored in a folder called data on the 
+  server:</P>
+<PRE>var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");</PRE>
+<SPAN class=notetitle>Note: </SPAN>Remember that JavaScript and 
+XML are case-sensitive languages, so it's important that you make sure that the 
+scripts and column names you specify are capitalized (or not capitalized) 
+appropriately.
+<P>In JavaScript the new operator is used to create objects. The Spry.Data.XMLDataSet method is a constructor in the Spry 
+  data library that creates new Spry data set objects. The constructor takes two 
+  parameters: the source of the data ("data/cafetownsend.xml", in this case, a relative URL) and 
+  an XPath expression that specifies the node or nodes in the XML to supply the 
+  data ("specials/menu_item"). </P>
+<P>You can also specify an absolute URL as the source of the XML data, as 
+  follows:</P>
+<PRE>var dsSpecials = new Spry.Data.XMLDataSet("http://www.somesite.com/somefolder/cafetownsend.xml", "specials/menu_item");</PRE>
+<SPAN class=notetitle>Note: </SPAN>The URL you decide to use 
+(whether absolute or relative) is subject to the browser's security model, which 
+means that you can only load data from an XML source that is on the same server 
+domain as the HTML page you're linking from. You can avoid this limitation by 
+providing a cross-domain service script. For more information, consult your 
+server administrator.
+<P>In the preceding example, the constructor creates a new dsSpecials Spry data set object. The data set obtains data 
+  from the specials/menu_item node (specified by XPath) 
+  in the cafetownsend.xml XML file and converts the data to a flattened array of 
+  objects and properties, similar to the rows and columns of a table. (For an 
+  example of the table, see the beginning of this section.)</P>
+<P>Each data set maintains the notion of a current row. By 
+  default, the current row is set to the first row in the data set. Later, you can 
+  change the current row programmatically by calling the setCurrentRow() method on the data set object. </P>
+<SPAN class=notetitle>Note: </SPAN>The data set contains no data 
+after you've created it with the new JavaScript 
+operator. To load data into the dataset, first call the data set's loadData() method, which executes a request to load the XML 
+data. Spry regions and detail regions do this automatically for the data sets 
+they depend on, but if you are not using one of these regions, call the loadData() method manually in your page code. This loading 
+is asynchronous, so the data might still be unavailable if you try to access it 
+immediately after calling loadData().
+<H3><a name="advanced"></a>Spry XML Data Set advanced examples</H3>
+<P>Spry XML data sets use the XMLHTTPRequest object to 
+  asynchronously load the specified URL. When the XML data arrives, it is actually 
+  in two formats: a text format, and a document object model (DOM) tree format. </P>
+<P>For example, say that you've specified “/photos.php?galleryid=2000&quot; as your data source. (This is a 
+  path to a web service that retrieves XML data).</P>
+<PRE>&lt;script type="text/javascript"&gt;
+	var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;</PRE>
+<P>The following code represents the data as it arrives in text format:</P>
+<PRE>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt;
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt;
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The following example represents the data as it arrives in DOM-tree 
+  format.</P>
+<IMG class=smallImage id=fig02 alt="" 
+src="fig02.gif"> <BR>
+<P>The data set then uses the XPath specified in the constructor to navigate the 
+  XML DOM tree to find the particular nodes that represent the data you are 
+  interested in.</P>
+<P>The following code shows data selected with the /gallery/photos/photo XPath, in bold:</P>
+<PRE>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;<STRONG>photo path="sun.jpg" width="16" height="16"</STRONG>/&gt;
+		&lt;<STRONG>photo path="tree.jpg" width="16" height="16"</STRONG>/&gt;
+		&lt;<STRONG>photo path="surf.jpg" width="16" height="16"</STRONG>/&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The following example is the DOM-tree representation of the selected 
+  nodes.</P>
+<IMG class="smallImage" alt="" 
+src="fig03.gif"> <BR>
+<P>The data set then flattens the set of nodes into a tabular format, which the 
+  following table represents.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>@path</P></TH>
+      <TH > <P>@width</P></TH>
+      <TH > <P>@height</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>sun.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>tree.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>surf.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>In this instance, Spry derives the column names of the flattened table from 
+  the selected nodes and their attributes. The way Spry determines column names, 
+  however, can vary, depending on the XPath you specify.</P>
+<P>Spry uses the following guidelines when flattening data and creating 
+  columns:</P>
+<UL>
+  <LI>
+    <P>If the selected node has attributes, Spry creates a column for each 
+      attribute and places the value of the attribute in that column. The names for 
+      these columns are the names of the attributes preceded by an @ sign. For 
+      example, if a node has an id attribute, the column 
+      name is @id.</P>
+  <LI>
+    <P>If the selected node has no element children, and has text or CDATA 
+      underneath it, then Spry creates a column and places that text or CDATA in 
+      that column. The name of this column is the tag name of the node for normal 
+      XML elements.</P>
+  <LI>
+    <P>If the selected node has element children, Spry creates a column for the 
+      value of each element and its attributes, but only for each element child <EM>that has no element children of its own</EM>. The names of the columns are 
+      the tag names of the children elements, or in the case of an attribute on a 
+      child element, the format "childTagName/@attrName".</P>
+  <LI>
+    <P>If the selected node is an attribute, Spry creates a column for the 
+      attribute, and the column name is the name of the attribute preceded by an @ 
+      sign.</P>
+  <LI>
+    <P>Spry ignores element children that have their own element 
+      children.</P>
+  </LI>
+</UL>
+<P>The examples that follow provide more details on the flattening process and 
+  how Spry generates column names for data sets.</P>
+<H4>Example of selecting and flattening an element with 
+  attributes and a text value</H4>
+<P>The following code shows data selected with the /gallery/photographer XPath, in bold:</P>
+<PRE>&lt;gallery id="12345"&gt;
+	&lt;<STRONG>photographer id="4532"&gt;John Doe&lt;/photographer</STRONG>&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt;
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt;
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The following is the DOM-tree representation of the selected node.</P>
+<IMG class=smallImage id=fig04 alt="" 
+src="fig04.gif"> <BR>
+<P>The data set then flattens the selected data into the following table.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>photographer</P></TH>
+      <TH > <P>@id</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>John Doe</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>In this particular case, only one node is selected, so we only get one row in 
+  our data set. The value of the photographer node is 
+  the text "John Doe", so a column named photographer is created to store that value. The id attribute is an attribute of the photographer node, so its value is placed in the @id column. 
+  All attribute names are preceded by an @ sign.</P>
+<H4>Example of selecting and flattening an element with 
+  attributes and element children</H4>
+<P>The following code shows data selected with the /gallery XPath:</P>
+<PRE>&lt;gallery id="12345"&gt; 
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt; 
+	&lt;email&gt;john@doe.com&lt;/email&gt; 
+	&lt;photos id="2000"&gt; 
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt; 
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt; 
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The following is the DOM-tree representation of the selected node:</P>
+<IMG class=smallImage id=fig05 alt="" 
+src="fig05.gif"> <BR>
+<P>The data set then flattens the selected data into the following table.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>@id</P></TH>
+      <TH > <P>photographer</P></TH>
+      <TH > <P>photographer/@id</P></TH>
+      <TH > <P>email</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>12345</P></TD>
+      <TD ><P>John Doe</P></TD>
+      <TD ><P>4532</P></TD>
+      <TD ><P>john@doe.com</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>Notice that the column names for attributes of children elements are prefixed 
+  with the tag name of the child element. In this particular case, photographer is a child element of the selected gallery node, so its id attribute 
+  is prefixed with photographer/@. Also notice that 
+  nothing was added to the table for the photos element, 
+  even though it is a child of the gallery node. That is 
+  because Spry does not flatten any child elements that contain other 
+  elements.</P>
+<H4>Example of selecting an attribute of a single element and 
+  flattening it</H4>
+<P>With XPath you can also select attributes of nodes. The following code shows 
+  data selected with the gallery/photos/photo/@path XPath, in bold:</P>
+<PRE>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo <STRONG>path="sun.jpg"</STRONG> width="16" height="16" /&gt;
+		&lt;photo <STRONG>path="tree.jpg"</STRONG> width="16" height="16" /&gt;
+		&lt;photo <STRONG>path="surf.jpg"</STRONG> width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The following is the DOM-tree representation of the selected nodes.</P>
+<IMG class=smallImage id=fig03 alt="" 
+src="fig03.gif"> <BR>
+<P>The data set then flattens the selected data into the following table.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>@path</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>sun.jpg</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>tree.jpg</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>surf.jpg</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><a name="region"></a>Spry dynamic region overview and structure</H3>
+<P>After you've created a Spry data set, you can display the data in a Spry 
+  dynamic region. A Spry dynamic region is an area on a web page that's bound to a 
+  data set. The region displays the XML data from the data set and automatically 
+  updates the data display whenever the data set is modified.</P>
+<P>Dynamic regions regenerate because they register themselves as observers or 
+  listeners of the data sets to which they are bound. Whenever data in any of 
+  these data sets is modified (loaded, updated, sorted, filtered, and so on), the 
+  data sets send notifications to all of their observers, triggering an automatic 
+  regeneration by the listening dynamic regions.</P>
+<IMG class=smallImage id=fig08 alt="" 
+src="fig08.gif"> <BR>
+<P>To declare a Spry dynamic region in a container tag, use the spry:region attribute. Most HTML elements can act as 
+  dynamic-region containers, however, the following tags cannot be used:</P>
+<UL>
+  <LI>
+    <P>col</P>
+  <LI>
+    <P>colgroup</P>
+  <LI>
+    <P>frameset</P>
+  <LI>
+    <P>html</P>
+  <LI>
+    <P>iframe</P>
+  <LI>
+    <P>select</P>
+  <LI>
+    <P>style</P>
+  <LI>
+    <P>table</P>
+  <LI>
+    <P>tbody</P>
+  <LI>
+    <P>tfoot</P>
+  <LI>
+    <P>thead</P>
+  <LI>
+    <P>title</P>
+  <LI>
+    <P>tr</P>
+  </LI>
+</UL>
+<P>While you cannot use any of the preceding HTML elements as Spry dynamic 
+  region containers, you can use them inside Spry dynamic-region containers.</P>
+<SPAN class=notetitle>Note: </SPAN>Dynamic regions are limited 
+to regions within the body tag. You can't add the spry:region attribute to any tag that is outside the body 
+tag.
+<P>In the following example, a container for a dynamic region called Specials_DIV is created using a div tag that includes a standard HTML table. Tables are 
+  typical HTML elements used for dynamic regions because the first row of the 
+  table can contain headings, and the second row can contain repeated XML 
+  data.</P>
+<PRE>&lt;!--Create the Spry dynamic region--&gt;
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;!--Display the data in a table--&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+<P>In the example, the div tag that creates the 
+  container for the dynamic region needs only two attributes: a spry:region attribute that declares the dynamic region and 
+  specifies the data set to use in it, and an id attribute that names the region:</P>
+<PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;</PRE>
+<P>The new region is an observer of the dsSpecials data set. Any time the dsSpecials data set changes, 
+  the new dynamic region regenerates itself with the updated data.</P>
+<P>An HTML table displays the data:</P>
+<PRE>&lt;table id="Specials_Table"&gt;
+	&lt;tr&gt;			
+		&lt;th&gt;Item&lt;/th&gt;
+		&lt;th&gt;Description&lt;/th&gt;	
+		&lt;th&gt;Price&lt;/th&gt;		
+	&lt;/tr&gt;		
+	&lt;tr spry:repeat="dsSpecials"&gt;	
+		&lt;td&gt;{item}&lt;/td&gt;			
+		&lt;td&gt;{description}&lt;/td&gt;			
+		&lt;td&gt;{price}&lt;/td&gt;	
+	&lt;/tr&gt;	
+&lt;/table&gt;</PRE>
+<P>The values in curly braces in the second row of the table—the data 
+  references—specify the columns in the data set. The data references bind the 
+  table cells to the data in specific columns of the data set. Because XML data 
+  often includes repeating nodes, the example also declares a spry:repeat attribute in the second table row tag. This 
+  causes all of the rows in the data set to appear when the user loads the page 
+  (instead of just the data set's current row).</P>
+<H3>Spry basic master and detail region overview and 
+  structure</H3>
+<P>When working with Spry data sets, you can create master and detail dynamic 
+  regions to display more detail about your data. One region on the page (the 
+  master), drives the display of the data in another region on the page (the 
+  detail).</P>
+<IMG class=smallImage id=fig10 alt="" 
+src="fig10.gif"> <BR>
+<DL>
+  <DT class=dlterm>A.
+  <DD>Master Region
+  <DT class=dlterm>B.
+  <DD>Detail Region </DD>
+</DL>
+<P>Typically, the master region displays an abbreviated form of a set of records 
+  from the data set, and the detail region displays more information about a 
+  selected record. Because the detail region depends on the master region, any 
+  time the data in the master region changes, the data in the detail region 
+  changes as well.</P>
+<P>This section covers basic master and detail relationships where both regions 
+  are dependent on the same data set. </P>
+<P>In the following example, a master dynamic region displays data from the 
+  dsSpecials data set, and a detail dynamic region displays more detail about the 
+  row of data that's been selected in the master region:</P>
+<PRE>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;!--Create a master dynamic region--&gt;	
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;	
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;!--User clicks to reset the current row in the data set--&gt;
+		&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;				
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;	
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;!--Create the detail dynamic region--&gt;
+&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;th&gt;Calories&lt;/th&gt;
+		&lt;/tr&gt;	
+		&lt;tr&gt;	
+			&lt;td&gt;{ingredients}&lt;/td&gt;
+			&lt;td&gt;{calories}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+. . .
+&lt;/body&gt;</PRE>
+<P>In the example, the first div tag contains the id and spry:region attributes that create a container for the master dynamic region:</P>
+<PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;</PRE>
+<P>The first table-row tag of the master region contains a spry:setrow attribute that sets the value of the current row 
+  in the data set.</P>
+<PRE>&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;</PRE>
+<P>The second div tag contains the attributes that 
+  create a container for the detail dynamic region:</P>
+<PRE>&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;</PRE>
+<P>Every Spry data set maintains the notion of a current 
+  row. By default, the current row is set to the first row in the data set. 
+  A spry:detailregion works in exactly the same way as a spry:region except that when the data set's current 
+  row changes, the detail region updates automatically.</P>
+<P>The binding expressions in the detail region ({ingredients} and {calories}) 
+  display data from the data set's current row when the page loads in a browser. 
+  When a user clicks a row in the master region table, however, the spry:setrow attribute changes the current row in the data 
+  set to the row the user selected. </P>
+<P>The {ds_RowID} data reference is a built-in part of 
+  the Spry framework that points to an automatically generated unique ID for each 
+  row in the data set.  When the user selects a row in the master region table, 
+  the spry:setrow attribute supplies the unique ID to 
+  the setCurrentRow method, which sets the current row 
+  in the data set.</P>
+<P>Whenever the data set is modified, all dynamic regions bound to that data set 
+  regenerate themselves and display the updated data. Because the detail region, 
+  like the master region, is an observer of the dsSpecials data set, it also changes as a result of the 
+  modification, and displays data related to the row the user selected (the new 
+  current row).</P>
+<IMG class=smallImage id=fig12 alt="" 
+src="fig12.gif"> <BR>
+<P>The difference between a spry:region and a spry:detailregion is that the spry:detailregion specifically listens for CurrentRowChange notifications (in addition to DataChanged notifications) from the data set, and updates 
+  itself when it receives one. Normal spry:regions, on 
+  the other hand, ignore the CurrentRowChange notification, and only update when they receive a DataChanged notification from the data set.</P>
+<IMG class=smallImage id=fig11 alt="" 
+src="fig11.gif"> <BR>
+<H3><a name="advancedregion"></a>Spry advanced master and detail region overview and 
+  structure</H3>
+<P>In some cases, you might want to create master and detail relationships that 
+  involve more than one data set. For example, you might have a list of menu items 
+  that has a great deal of detail information associated with it. (This section 
+  uses a list of ingredients to illustrate the point.) Fetching all of the 
+  information associated with every menu item in a single query might be an 
+  inefficient use of bandwidth not to mention unnecessary, given that many users 
+  might not even be interested in the details of everything on the menu. Instead, 
+  it is more efficient to download only the detail data that the user is 
+  interested in when the user requests it, thus improving performance and reducing 
+  bandwidth. Limiting the amount of data exchange in this way is a common 
+  technique used to improve performance in AJAX applications.</P>
+<P>Following is the XML source code for a sample file called cafetownsend.xml:</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;specials&gt;
+	&lt;menu_item id="1"&gt;
+		&lt;item&gt;Summer Salad&lt;/item&gt;
+		&lt;description&gt;organic butter lettuce with apples, blood oranges, gorgonzola, and raspberry vinaigrette.&lt;/description&gt;
+		&lt;price&gt;7&lt;/price&gt;
+		&lt;url&gt;summersalad.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="2"&gt;
+		&lt;item&gt;Thai Noodle Salad&lt;/item&gt;
+		&lt;description&gt;lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, and scallions.&lt;/description&gt;
+		&lt;price&gt;8&lt;/price&gt;
+		&lt;url&gt;thainoodles.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="3"&gt;
+		&lt;item&gt;Grilled Pacific Salmon&lt;/item&gt;
+		&lt;description&gt;served with new potatoes, diced beets, Italian parlsey, and lemon zest.&lt;/description&gt;
+		&lt;price&gt;16&lt;/price&gt;
+		&lt;url&gt;salmon.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+&lt;/specials&gt;</PRE>
+<P>The cafetownsend.xml file supplies the data for the master data set. The url node of the cafetownsend.xml file points to a unique XML 
+  file (or URL) for each menu item. These unique XML files contain a list of 
+  ingredients for the corresponding menu items. The summersalad.xml file, for 
+  example, might look as follows:</P>
+<PRE>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;item&gt;
+	&lt;item_name&gt;Summer salad&lt;/item_name&gt;
+	&lt;ingredients&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;butter lettuce&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Macintosh apples&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Blood oranges&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Gorgonzola cheese&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;raspberries&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Extra virgin olive oil&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;balsamic vinegar&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;sugar&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;salt&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;pepper&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;parsley&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;basil&lt;/name&gt;
+		&lt;/ingredient&gt;
+	&lt;/ingredients&gt;
+&lt;/item&gt;</PRE>
+<P>When you are familiar with the structure of your XML code, you can create two 
+  data sets to use to display data in master and detail dynamic regions. In the 
+  following example, a master dynamic region displays data from the dsSpecials data set, and a detail dynamic region displays 
+  data from the dsIngredients data set:</P>
+<PRE>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--Create two separate data sets--&gt;	
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");		
+	var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;!--Create a master dynamic region--&gt;
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;	
+		&lt;!--User clicks to reset the current row in the data set--&gt;
+		&lt;tr spry:repeat="dsSpecials" spry:setrow=&quot;dsSpecials&quot;&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;!--Create the detail dynamic region--&gt;
+&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;		
+			&lt;th&gt;Ingredients&lt;/th&gt;
+		&lt;/tr&gt;		
+		&lt;tr spry:repeat=&quot;dsIngredients&quot;&gt;
+			&lt;td&gt;{name}&lt;/td&gt;	
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+. . .
+&lt;/body&gt;</PRE>
+<P>In the example, the third script block contains the 
+  statement that creates two data sets, one called dsSpecials and one called dsIngredients:</P>
+<PRE>var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");</PRE>
+<P>The URL for the second data set, dsIngredients, 
+  contains a data reference ({dsSpecials::url}) to the 
+  first data set, dsSpecials. More specifically, it 
+  contains a data reference to the url column in the dsSpecials data set. When the URL or XPath argument in the 
+  constructor that creates a data set contains a reference to another data set, 
+  the data set being created automatically becomes an observer of the data set 
+  it's referencing. The new data set depends on the original data set, and reloads 
+  its data or reapplies its XPath whenever the data or current row changes in the 
+  original data set.</P>
+<P>The following example shows the observer relationships established between 
+  data sets and master and detail dynamic regions. In the preceding example, the dsIngredients data set (data set B) is an observer of 
+  the dsSpecials data set (data set A).</P>
+<IMG class=smallImage id=fig13 alt="" 
+src="fig13.gif"> <BR>
+<P>In the example, changing the current row in the dsSpecials data set sends a notification to the dsIngredients data set that it also needs to change. Because 
+  each row of the dsSpecials data set contains a 
+  distinct URL in the url column, the dsIngredients data 
+  set must update to include the correct URL for the selected row.</P>
+<P>By default, the dsIngredients data set (whose data 
+  is displayed in the detail region) is created using the data it obtains from the 
+  URL specified in the constructor—in this case a reference to the data in the url 
+  column of the dsSpecials data set. The default current 
+  row in the dsSpecials data set (the first row) contains a unique path to the 
+  summersalad.xml file, and thus the detail region displays the information from 
+  that file when the page loads in a browser. When the current row of the dsSpecials data set changes, however, the URL also 
+  changes—to salmon.xml for example—and the dsIngredients data set (and by association, the detail 
+  dynamic region) updates accordingly.</P>
+<IMG class=smallImage id=fig14 alt="" 
+src="fig14.gif"> <BR>
+<P>This process is functionally equivalent to the one illustrated in Spry 
+  basic master/detail region overview and structure, the technical difference 
+  being that in the advanced case, the second (or detail) <EM>data set</EM> is 
+  listening for data and row changes in the master data set, whereas in the basic 
+  example, the <EM>detail region</EM> is listening for data and row changes in the 
+  master data set.</P>
+<P>In the example code, spry:region is used for the 
+  detail region instead of spry:detailregion. The 
+  difference between a spry:region and a spry:detailregion is that the spry:detailregion specifically listens for CurrentRowChange notifications (in addition to DataChanged notifications) from the data set, and updates 
+  itself when it receives one. Because the current row of the dsIngredients data set never changes (it's the current row 
+  of the dsSpecials data set that changes), a spry:detailregion attribute is not needed. In this case, the spry:region attribute, which defines a region that 
+  only listens for DataChanged notifications, suffices.</P>
+<H3><a name="progressive"></a>About progressive enhancement and data set 
+  accessibility</H3>
+<P></P>
+<P>Progressive enhancement writes code for a document for the lowest common 
+  denominator of browser functionality and then enhances the presentation and 
+  behavior of the page, using CSS, JavaScript, Flash, Java, and SVG code, and so 
+  on. Pages created with this approach provide an enhanced experience in modern 
+  browsers, but the data is still accessible and the page still functional in the 
+  absence of these technologies.</P>
+<P>All of the Spry examples in this document up to this point have dealt with 
+  using JavaScript to dynamically load XML data and generate regions of the 
+  document. You can also use Spry in a progressive enhancement manner using the 
+  Hijax methodology (see http://domscripting.com/blog/display/41). This progressive 
+  enhancement methodology uses JavaScript to unobtrusively attach event handlers 
+  to items on the page, such as links to catch user events (for example, clicks). 
+  Progressive enhancement also lets you replace parts of your document with code 
+  fragments that are delivered asynchronously from the server to avoid having to 
+  load an entire page.</P>
+<P>As a trivial example of using Spry with this methodology, you could start 
+  with an HTML page filled with static data and links:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Hijax Demo - Notes 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href="notes1.html"&gt;Note 1&lt;/a&gt;
+&lt;a href="notes2.html"&gt;Note 2&lt;/a&gt;
+&lt;a href="notes3.html"&gt;Note 3&lt;/a&gt;
+&lt;div&gt;
+	&lt;p&gt;This is some &lt;b&gt;static content&lt;/b&gt; for note 1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>To progressively enhance this page with Spry, so that you don't have to load 
+  an entirely new page when you click the links, you first use XML to make sure 
+  that the page fragments of each page that the links refer to are accessible. The 
+  following example is one way to externalize the static data:</P>
+<PRE>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;notes&gt;
+	&lt;note&gt;&lt;![CDATA[&lt;p&gt;This is some &lt;b&gt;dynamic content&lt;/b&gt; for note 1.&lt;/p&gt;]]&gt;&lt;/note&gt;
+	&lt;note&gt;&lt;![CDATA[&lt;p&gt;This is some &lt;b&gt;dynamic content&lt;/b&gt; for note 2.&lt;/p&gt;]]&gt;&lt;/note&gt;
+	&lt;note&gt;&lt;![CDATA[&lt;p&gt;This is some &lt;b&gt;dynamic content&lt;/b&gt; for note 3.&lt;/p&gt;]]&gt;&lt;/note&gt;
+&lt;/notes&gt;</PRE>
+<P>You can then apply Spry to the HTML page in the following manner:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Hijax Demo - Notes 1&lt;/title&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+&lt;!--
+var dsNotes = new Spry.Data.XMLDataSet('data/notes.xml', "/notes/note");
+--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href="note1.html" onclick="dsNotes.setCurrentRowNumber(0); return false;"&gt;Note 1&lt;/a&gt;
+&lt;a href="note2.html" onclick="dsNotes.setCurrentRowNumber(1); return false;"&gt;Note 2&lt;/a&gt;
+&lt;a href="note3.html" onclick="dsNotes.setCurrentRowNumber(2); return false;"&gt;Note 3&lt;/a&gt;
+&lt;div spry:detailregion="dsNotes" spry:content="{note}"&gt;
+	&lt;p&gt;This is some &lt;b&gt;static content&lt;/b&gt; for note 1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>The Spy code added in the preceding code looks familiar, but you'll notice 
+  that the div block that includes the spry:detailregion attribute also includes a spry:content attribute. This spry:content attribute tells the Spry dynamic-region 
+  processing code to replace the static data, currently contained in the region, 
+  with the data represented by the data reference in its attribute value, if any 
+  data is in the data set that the region is bound to.</P>
+<P>If this page is loaded in a browser with JavaScript disabled, it degrades and 
+  you get the same functionality as for the original page with static content and 
+  traditional link navigation. If JavaScript is enabled, the data set loads the 
+  XML data and replaces the static content in the region. Clicking the links 
+  updates the region with code from the data set.</P>
+<P>In the preceding example, Hijax promotes the use of unobtrusively attaching 
+  event handlers to links. The preceding example intentionally uses onclick attributes to quickly illustrate the point of 
+  attaching a JavaScript event handler.</P>
+<H2>Building dynamic pages with Spry</H2>
+<H3><a name="prepare"></a>Prepare your files</H3>
+<P>Before you begin creating Spry data sets, obtain the necessary files 
+  (xpath.js and SpryData.js). The xpath.js file allows you to specify complex 
+  XPath expressions when creating your data set; the SpryData.js file contains the 
+  Spry data library.</P>
+<P>Link both files to whatever HTML page you're creating.</P>
+<OL>
+  <LI class=stepexpand><SPAN>Locate the Spry ZIP file on the Adobe Labs 
+    website.</SPAN>
+  <LI class=stepexpand><SPAN>Download and unzip the Spry ZIP file to your hard 
+    drive.</SPAN>
+  <LI class=stepexpand><SPAN>Open the unzipped Spry folder and locate the 
+    includes folder. This folder contains the xpath.js and SpryData.js files 
+    necessary for running the Spry framework.</SPAN>
+  <LI class=stepexpand><SPAN>Copy the includes folder and either paste or drag a 
+    copy of it to the root directory of your web site.</SPAN> <SPAN class=notetitle>Note: </SPAN>If you drag the original 
+    includes folder out of the unzipped Spry folder, the demos in the Spry folder 
+    won't work properly.
+  <LI class=stepexpand><SPAN>In Code view (View &gt; Code), link the Spry data 
+    library files to your web page by inserting the following script tags within the page's head tag:</SPAN>
+    <PRE>&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;</PRE>
+    <P>The SpryData.js file depends on the xpath.js file, so it's important that 
+      the xpath.js file comes first in the code.</P>
+    <P>When you've linked the Spry data library, you can create a Spry data 
+      set.</P>
+  <LI class=stepexpand><SPAN>Add the Spry name-space declaration to the HTML tag 
+    so that the HTML tag looks as follows:</SPAN>
+    <PRE>&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry/"&gt;</PRE>
+    <P>The Spry name space declaration is necessary to validate the code.</P>
+    <SPAN class=notetitle>Note: </SPAN>Spry features work locally 
+    as long as the Spry data library files are linked to your HTML page. To 
+    publish the HTML page to a live server, upload the xpath.js and SpryData.js 
+    files as dependent files.</LI>
+</OL>
+<H3><a name="create"></a>Create a Spry XML data set</H3>
+<OL>
+  <LI class=stepexpand><SPAN>Open a new or existing HTML page.</SPAN>
+  <LI class=stepexpand><SPAN>Make sure that you've linked the Spry data library 
+    files to the page and declared the Spry namespace. </SPAN>
+  <LI class=stepexpand><SPAN>Locate the XML source for the data set.</SPAN>
+    <P>For example, you might want to use an XML file called cafetownsend.xml located in a folder called data in the site's root folder:</P>
+    <P>data/cafetownsend.xml</P>
+    <P>You could also specify a URL to an XML file, as follows:</P>
+    <P>http://www.somesite.com/somefolder/cafetownsend.xml</P>
+    <SPAN class=notetitle>Note: </SPAN>The URL you decide to use 
+    (whether absolute or relative) is subject to the browser's security model, 
+    which means that you can only load data from an XML source that is on the same 
+    server domain as the HTML page you're linking from. You can avoid this 
+    limitation by providing a cross-domain service script. For more information, 
+    consult your server administrator.
+  <LI class=stepexpand><SPAN>Because you'll need to specify the repeating XML 
+    node that supplies data to the data set, make sure you understand the 
+    structure of the XML before you create the data set.</SPAN>
+    <P>In the following example, the cafetownsend.xml file consists of a parent 
+      node called specials that contains a repeating child 
+      node called menu_item.</P>
+    <PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;specials&gt;	
+	&lt;menu_item id="1"&gt;
+		&lt;item&gt;Summer Salad&lt;/item&gt;
+		&lt;description&gt;organic butter lettuce with apples, blood oranges, gorgonzola, and raspberry vinaigrette.&lt;/description&gt;
+		&lt;price&gt;7&lt;/price&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="2"&gt;
+		&lt;item&gt;Thai Noodle Salad&lt;/item&gt;
+		&lt;description&gt;lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, and scallions.&lt;/description&gt;
+		&lt;price&gt;8&lt;/price&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="3"&gt;
+		&lt;item&gt;Grilled Pacific Salmon&lt;/item&gt;
+		&lt;description&gt;served with new potatoes, diced beets, Italian parlsey, and lemon zest.&lt;/description&gt;
+		&lt;price&gt;16&lt;/price&gt;
+	&lt;/menu_item&gt;
+&lt;/specials&gt;</PRE>
+  <LI class=stepexpand><SPAN>To create the data set, insert the following script block after the script tags importing the library:</SPAN>
+    <PRE>&lt;script type="text/javascript"&gt;
+	var datasetName = new Spry.Data.XMLDataSet("<EM>XMLsource</EM>", "<EM>XPathToRepeatingChildNode</EM>");
+&lt;/script&gt;</PRE>
+    <P>In the Cafe Townsend example, you create a data set with the following 
+      statement:</P>
+    <PRE>var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");</PRE>
+    <P>The statement creates a new data set called dsSpecials that retrieves data from the specials/menu_item node in the specified XML file. The data 
+      set has a row for each menu item and the following columns: @id, item, 
+      description, and price that the following table represents. </P>
+    <TABLE >
+      <THEAD align=left>
+        <TR>
+          <TH > <P>@id</P></TH>
+          <TH > <P>item</P></TH>
+          <TH > <P>description</P></TH>
+          <TH > <P>price</P></TH>
+        </TR>
+      </THEAD>
+      <TBODY>
+        <TR>
+          <TD ><P>1</P></TD>
+          <TD ><P>Summer salad</P></TD>
+          <TD ><P>organic butter lettuce with apples, blood oranges, gorgonzola, and 
+              raspberry vinaigrette.</P></TD>
+          <TD ><P>7</P></TD>
+        </TR>
+        <TR>
+          <TD ><P>2</P></TD>
+          <TD ><P>Thai Noodle Salad</P></TD>
+          <TD ><P>lightly sauteed in sesame oil with baby bok choi, portobello 
+              mushrooms, and scallions.</P></TD>
+          <TD ><P>8</P></TD>
+        </TR>
+        <TR>
+          <TD ><P>3</P></TD>
+          <TD ><P>Grilled Pacific Salmon</P></TD>
+          <TD ><P>served with new potatoes, diced beets, Italian parlsey, and lemon 
+              zest.</P></TD>
+          <TD ><P>16</P></TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+    <P>You can also specify a URL as the source of the XML data, as follows:</P>
+    <PRE>var dsSpecials = new Spry.Data.XMLDataSet("http://www.somesite.com/somefolder/cafetownsend.xml", "specials/menu_item");</PRE>
+    <SPAN class=notetitle>Note: </SPAN>The URL you decide to use 
+    (whether absolute or relative) is subject to the browser's security model, 
+    which means that you can only load data from an XML source that is on the same 
+    server domain as the HTML page you're linking from. You can avoid this by 
+    providing a cross-domain service script. For more information, consult your 
+    server administrator.
+    <P>The completed example code might look as follows:</P>
+    <PRE>&lt;head&gt;
+...
+&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+&lt;/script&gt;
+...
+&lt;/head&gt;</PRE>
+  <LI class=stepexpand><SPAN>(Optional) If the values in your data set include 
+    numbers (as in this example), reset the column types for the columns that 
+    contain those numerical values. This becomes important later if you want to 
+    sort data.</SPAN>
+    <P>To set column types, add the setColumnType data set method to the head tag of your document, after you've created 
+      the data set, as follows (in bold):</P>
+    <PRE>&lt;script type="text/javascript"&gt;	
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item"); 	
+	<STRONG>dsSpecials.setColumnType("price", "number")</STRONG>;
+&lt;/script&gt;</PRE>
+    <P>In the example, the expression calls the setColumnType method on the dsSpecials data set object, 
+      which you've already defined. The setColumnType method takes two parameters: the name of the data set column to retype ("price") and the desired data type ("number").</P>
+  </LI>
+</OL>
+<P>After you've created the data set, create a dynamic region so that you can 
+  display the data.</P>
+<H3><a name="createregion"></a>Create a Spry dynamic region and display data</H3>
+<P>After you create a Spry data set, you bind a Spry dynamic region to the data 
+  set. A Spry dynamic region is an area on the page that displays the data and 
+  automatically updates the data display whenever the data set is 
+  modified.</P>
+<OL>
+  <LI class=stepexpand><SPAN>Make sure that you've linked the Spry data library 
+    files to the page, declared the Spry namespace, and created a data set. </SPAN>
+  <LI class=stepexpand><SPAN>In Code view, create a Spry dynamic region by 
+    adding the spry:region attribute to the tag that 
+    will contain the region. The attribute uses the syntax spry:region="<EM>datasetName</EM>".</SPAN> <SPAN class=notetitle>Note: </SPAN>Most, but not all, HTML 
+    elements can act as containers for dynamic regions.
+    <P>For example, to use a div tag as the container 
+      for the dynamic region displaying data from the dsSpecials data set, add the spry:region attribute to the tag as follows:</P>
+    <PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;&lt;/div&gt;</PRE>
+    <SPAN class=notetitle>Note: </SPAN>Dynamic regions can depend 
+    on more than one data set. To add more data sets to the region, list them as 
+    additional values of the spry:region attribute, 
+    separated by a space. For example, you can create a dynamic region by using spry:region="dsSpecials dsSpecials2 
+    dsSpecials3".
+  <LI class=stepexpand><SPAN>Within the tag containing the dynamic region (this 
+    example uses a div tag), insert an HTML element to 
+    display the first row of the data set. You can use any HTML element to display 
+    data. One of the most typical elements used for this purpose, however, is a 
+    two-row HTML table, where the first row contains static column headings and 
+    the second row contains the data:</SPAN>
+    <PRE>&lt;table id="Specials_Table"&gt;	
+	&lt;tr&gt;		
+		&lt;th&gt;Item&lt;/th&gt;	
+		&lt;th&gt;Description&lt;/th&gt;	
+		&lt;th&gt;Price&lt;/th&gt;	
+	&lt;/tr&gt;		
+	&lt;tr spry:repeat="dsSpecials"&gt;	
+		&lt;td&gt;{item}&lt;/td&gt;
+		&lt;td&gt;{description}&lt;/td&gt;
+		&lt;td&gt;{price}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</PRE>
+    <P>The values in curly braces in the second row—the data references—specify 
+      columns in the data set. The data references bind the table cells to data in 
+      specific columns of the data set.</P>
+    <SPAN class=notetitle>Note: </SPAN>If the Spry region depends 
+    on more than one data set, specify the data set to which you're binding the 
+    dynamic region. The full syntax of the data reference takes the form of {datasetName::columnName}. For example, to bind the 
+    dynamic region to two or three different data sets, enter the data in the 
+    preceding example as follows: {dsSpecials::item}, {dsSpecials::description}, and so forth. Spry 
+    regions also support multiple data sets which you can specify by adding the 
+    data set names to the value of the attribute, separated by a space (i.e. 
+    &lt;div spry:region=&quot;ds1 ds2 ds3&quot;&gt;.
+  <LI class=stepexpand><SPAN>Make the HTML element repeat automatically to 
+    display all the rows of the data set by adding the spry:repeat attribute and value to the HTML element tag 
+    using the following syntax:</SPAN>
+    <PRE>spry:repeat="<EM>datasetName</EM>"</PRE>
+    <P>In the example, you add the spry:repeat attribute 
+      to the table row tag as follows (in bold):</P>
+    <PRE>&lt;tr <STRONG>spry:repeat="dsSpecials"</STRONG>&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;	
+	&lt;td&gt;{price}&lt;/td&gt;
+&lt;/tr&gt;</PRE>
+    <P>In the example, the completed code binding the dynamic region to the data 
+      set would look as follows:</P>
+    <PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;	
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;		&lt;/tr&gt;
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;	
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+  <LI class=stepexpand><SPAN>You can make the dynamic region more interactive by 
+    defining click events that allow users to sort data. </SPAN> </LI>
+</OL>
+<H3>Sample code: Spry data set and dynamic region</H3>
+<P>The following sample code creates a Spry data set and dynamic region to 
+  display a list of menu specials in an HTML table.</P>
+<PRE>&lt;head&gt;
+...
+&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+&lt;/script&gt;
+...
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+...
+&lt;/body&gt;</PRE>
+<H3><a name="sort"></a>Sorting data</H3>
+<P>You can spry:sort attributes to your dynamic region that allow users to 
+  interact with the data. </P>
+<OL>
+  <LI class=stepexpand><SPAN>Locate the place in the code where you want to add 
+    the spry:sort attribute or attributes. In this example, the attributes are 
+    added to two column headers in a table that displays the XML data.</SPAN>
+  <LI class=stepexpand><SPAN>Add a spry:sort attribute to the appropriate column 
+    header tags, using the following form:</SPAN>
+    <PRE>spry:sort="<EM>columnName</EM>"</PRE>
+    <P>The value defined in the spry:sort attribute tells the data set which 
+      column to use when sorting the data</P>
+    <P>For example, adding the following spry:sort attributes (in bold) to column 
+      header tags sorts the dynamic region data according to the specified value 
+      whenever the user clicks a column header on the page.</P>
+    <PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table" class="main"&gt;
+		&lt;tr&gt;	
+			&lt;th <STRONG>spry:sort="item"</STRONG>&gt;Item&lt;/th&gt;
+			&lt;th <STRONG>spry:sort="description"</STRONG>&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;	
+		&lt;/tr&gt;	
+		&lt;tr spry:repeat="dsSpecials"&gt;	
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;	
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+    <P>Clicking Item on the page sorts the data alphabetically according to the 
+      menu item name, and clicking Description on the page sorts the data 
+      alphabetically according to the menu item's description.</P>
+  </LI>
+</OL>
+<H4>Numerical sorting</H4>
+<P>By default, all data in the data set (including numbers) is considered text, 
+  and sorts alphabetically. To sort numerically (for example, to sort by price of 
+  menu item), you can use the setColumnType data set 
+  method to change the data type of the price column from text to numbers. The 
+  method takes the following form:</P>
+<PRE><EM>datasetName</EM>.setColumnType("<EM>columnName</EM>", "number");</PRE>
+<P>Using the preceding example, you would add the setColumnType method to the head tag of your document, after 
+  you create the data set (in bold):</P>
+<PRE>&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item"); 	
+	<STRONG>dsSpecials.setColumnType("price", "number")</STRONG>;
+&lt;/script&gt;</PRE>
+<P>The expression calls the setColumnType method on 
+  the dsSpecials data set object, which you've already 
+  defined. The setColumnType method takes two 
+  parameters: the name of the data set column to retype ("price") and the desired data type ("number").</P>
+<P>You can now add the spry:sort attribute to the price column so that all three 
+  columns in the HTML table are sortable when the user clicks any of the table 
+  headers:</P>
+<PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table" class="main"&gt;
+		&lt;tr&gt;		
+			&lt;th <STRONG>spry:sort="item"</STRONG>&gt;Item&lt;/th&gt;			
+			&lt;th <STRONG>spry:sort="description"</STRONG>&gt;Description&lt;/th&gt;			
+			&lt;th <STRONG>spry:sort="price"</STRONG>&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;		
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;			
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+<H3>Create a basic master and detail page</H3>
+<P>When working with Spry data sets, you can create master and detail dynamic 
+  regions to display more detail about your data. One region on the page (the 
+  master), drives the display of the data in another region on the page (the 
+  detail).</P>
+<P>&nbsp;</P>
+<OL>
+  <LI class=stepexpand><SPAN>Create a data set. </SPAN>
+  <LI class=stepexpand><SPAN>Create the master region by adding the spry:region attribute to the HTML element that will act as 
+    the container tag for the region. </SPAN>
+    <P>In the following example, a master dynamic region displays repeated data 
+      from the dsSpecials data set: </P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+	&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+		&lt;table id="Specials_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Price&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat="dsSpecials"&gt;
+				&lt;td&gt;{item}&lt;/td&gt;
+				&lt;td&gt;{description}&lt;/td&gt;
+				&lt;td&gt;{price}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/body&gt;</PRE>
+  <LI class=stepexpand><SPAN>Add an attribute that will allow users to change 
+    the current row in the data set. In the following example, a spry:setrow 
+    attribute (in bold) changes the current row in the data set whenever a user 
+    clicks a row in the master region table:</SPAN>
+    <PRE>&lt;tr spry:repeat="dsSpecials" <STRONG>spry:setrow="ds_Specials"</STRONG>&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;
+&lt;/tr&gt;</PRE>
+  <LI class=stepexpand><SPAN>Create the detail dynamic region on the page by 
+    adding the spry:detailregion attribute to the tag 
+    that will contain the region. The attribute uses the following syntax: spry:detailregion="<EM>datasetName</EM>".</SPAN>
+    <P>In the following example, a div tag contains the 
+      detail dynamic region:</P>
+    <PRE>&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;
+&lt;/div&gt;</PRE>
+  <LI class=stepexpand><SPAN>Within the tag containing the detail dynamic 
+    region, insert an HTML element to display the detail data from the current row 
+    of the data set.</SPAN>
+    <P>In the example, an HTML table displays detail data from the {ingredients} column and {calories} column in the dsSpecials data set.</P>
+    <PRE>&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;th&gt;Calories&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;{ingredients}&lt;/td&gt;
+			&lt;td&gt;{calories}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+    <P>The completed example code binding both the master and detail dynamic 
+      regions to the dsSpecials data set would look as follows:</P>
+    <PRE>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;th&gt;Calories&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;{ingredients}&lt;/td&gt;
+			&lt;td&gt;{calories}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+  </LI>
+</OL>
+<H3>Create an advanced master and detail page</H3>
+<P>You can create master and detail relationships that involve more than one 
+  data set. </P>
+<OL>
+  <LI class=stepexpand><SPAN>Familiarize yourself with the structure of the XML 
+    files used in creating the data set. You'll need to understand the structure 
+    to make one data set depend on another.</SPAN>
+  <LI class=stepexpand><SPAN>Create a data set by adding the appropriate code to 
+    the head of your document. This is the master data set.</SPAN>
+  <LI class=stepexpand><SPAN>Create a second data set (the detail data set) 
+    immediately following the master data set you just created. The URL or XPath 
+    in the constructor of the detail data set contains a data reference to one or 
+    more of the columns in the master data set. The data reference uses the 
+    following syntax: {<EM>MasterDatasetName</EM>::<EM>columnName</EM>}.</SPAN>
+    <P>In the following example, the third script block 
+      contains the statement that creates two data sets, one called dsSpecials (the master) and one called dsIngredients (the detail):</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+		var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;</PRE>
+    <P>The path to the XML file for the dsIngredients detail data set contains a 
+      data reference ({dsSpecials::url}) to the dsSpecials master data set. More specifically, it contains 
+      a data reference to the url column in the dsSpecials data set. When the url or XPath argument in the constructor that creates a 
+      data set contains a reference to another data set, the data set being created 
+      automatically becomes an observer of the data set it's referencing.</P>
+  <LI class=stepexpand><SPAN>Create the master region by adding the spry:region attribute to the HTML element that will act as 
+    the container tag for the region. </SPAN>
+    <P>In the following example, a master dynamic region displays repeated data 
+      from the dsSpecials data set:</P>
+    <PRE>&lt;body&gt;
+	&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+		&lt;table id="Specials_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Price&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat="dsSpecials"&gt;
+				&lt;td&gt;{item}&lt;/td&gt;
+				&lt;td&gt;{description}&lt;/td&gt;
+				&lt;td&gt;{price}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/body&gt;</PRE>
+  <LI class=stepexpand><SPAN>Add an attribute that will allow users to change 
+    the current row in the master data set. In the following example, a 
+    spry:setrow attribute (in bold) changes the current row in the dsSpecials data set whenever a user clicks a row in the 
+    master region table:</SPAN>
+    <PRE>&lt;tr spry:repeat="dsSpecials" <STRONG>spry:setrow="dsSpecials"</STRONG>&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;
+&lt;/tr&gt;</PRE>
+  <LI class=stepexpand><SPAN>Create the detail dynamic region on the page by 
+    adding the spry:region attribute to the tag that 
+    will contain the region. The attribute uses the syntax spry:region="<EM>datasetName</EM>".</SPAN> <SPAN class=notetitle>Note: </SPAN>When creating master and 
+    detail relationships using two or more data sets, it is not necessary to use 
+    the spry:detailregion attribute. Because the current row of the detail data set 
+    never changes (it's the current row of the master data set that changes), the spry:region attribute suffices.
+    <P>In the following example, a div tag contains the 
+      detail dynamic region:</P>
+    <PRE>&lt;div id="Specials_Detail_DIV" spry:region="dsSpecials"&gt;
+&lt;/div&gt;</PRE>
+  <LI class=stepexpand><SPAN>Within the tag containing the detail dynamic 
+    region, insert an HTML element to display the detail data from the current row 
+    of the master data set.</SPAN>
+    <P>In the example, an HTML table displays detail data from the {name} column in the dsIngredients data set. The dsIngredients data set creates the {name} column based on the information it receives from 
+      the dsSpecials data set.</P>
+    <PRE>&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Ingredients&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=&quot;dsIngredients&quot;&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</PRE>
+    <P>The completed example code binding the master region to the dsSpecials data set, and detail region to the dsIngredients data set, would look as follows:</P>
+    <PRE>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+		var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+	&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+		&lt;table id="Specials_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Price&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;
+				&lt;td&gt;{item}&lt;/td&gt;
+				&lt;td&gt;{description}&lt;/td&gt;
+				&lt;td&gt;{price}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+	&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+		&lt;table id="Specials_Detail_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat=&quot;dsIngredients&quot;&gt;
+				&lt;td&gt;{name}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+. . .
+&lt;/body&gt;</PRE>
+  </LI>
+</OL>
+<H2>Getting and manipulating data</H2>
+<H3>Data Set retrieval options</H3>
+<P>By default, Spry data sets use the HTTP GET method to retrieve XML data. The 
+  data set can also retrieve data using the HTTP POST method, by specifying 
+  additional constructor options, as follows:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsPhotos = new Spry.Data.XMLDataSet("/photos.php", "/gallery/photos/photo", { method: "POST", postData: "galleryid=2000&amp;offset=20&amp;limit=10", headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" } });
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>If you use the POST method, but don't specify a content type, the default 
+  content type is set to "application/x-www-form-urlencoded; 
+  charset=UTF-8".</P>
+<P>The following table shows the HTTP-related constructor options that you can 
+  specify.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>Option</P></TH>
+      <TH > <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>method</P></TD>
+      <TD ><P>The HTTP method to use when fetching the XML data. Must be the string 
+          "GET" or "POST". </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>postData</P></TD>
+      <TD ><P>Can be a string containing url encode form arguments or any value 
+          supported by the XMLHttpRequest object. If a "Content-Type" header is not 
+          specified in conjunction with the postData option, the "application/x-www-form-urlencoded; charset=UTF-8" 
+          content type is used. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>username</P></TD>
+      <TD ><P>The server username to use when accessing the XML data. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>password</P></TD>
+      <TD ><P>The password to use in conjunction with username when accessing the XML 
+          data. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>headers</P></TD>
+      <TD ><P>An object or associative array that uses the HTTP request field name as 
+          its property and key to store values. </P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>Turn off data caching</H3>
+<P>By default, Spry caches any XML datathat a data set loaded on the client. If 
+  a data set attempts to load the XML data for a given URL that is already in the 
+  cache, Spry returns a reference to the cached data to the data set. If multiple 
+  data sets attempt to load the same URL at the same time, all load requests are 
+  combined into a single HTTP request to save bandwidth.</P>
+<P>Use of data caching and of combining requests can greatly improve 
+  performance, especially when multiple data sets refer to the same XML data; at 
+  times you might need to load the data directly from the server (for example, if 
+  you have a URL that might return different data each time someone accesses it). </P>
+<SPAN>&nbsp;To force a data 
+set to load XML data directly from the server, set the useCache XMLDataSet constructor option to false, as 
+follows:</SPAN>
+<PRE>var dsPhotos = new  Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo", {useCache: false })</PRE>
+<H3>Get data</H3>
+<P>After the XML data is loaded, it is flattened into a tabular format. Inside 
+  the data set, the data is actually stored as an array of objects (rows) with 
+  properties (columns) and values.</P>
+<P>The following example shows data selected with the /gallery/photos/photo XPath, in bold:</P>
+<PRE>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;<STRONG>photo path="sun.jpg" width="16" height="16"</STRONG>/&gt;
+		&lt;<STRONG>photo path="tree.jpg" width="16" height="16"</STRONG>/&gt;
+		&lt;<STRONG>photo path="surf.jpg" width="16" height="16"</STRONG>/&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</PRE>
+<P>The data set then flattens the set of nodes into a tabular format, that the 
+  following table represents.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>@path</P></TH>
+      <TH > <P>@width</P></TH>
+      <TH > <P>@height</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>sun.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>tree.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>surf.jpg</P></TD>
+      <TD ><P>16</P></TD>
+      <TD ><P>16</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>You can get all of the rows in the data set by calling getData(). The data is loaded asynchronously, so you can 
+  only access the data after it is loaded. You might need to register an observer 
+  to be notified when the data is ready. </P>
+<SPAN>&nbsp;Use the getData() method to fetch all the rows in the data set. To 
+get the value of a specific column, index into the row with the column 
+name.</SPAN>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var rows = dsPhotos.getData(); // Get all rows.
+var path = rows[0]["@path"];   // Get the data in the "@path" column of the first row.</PRE>
+<H3>Sort data</H3>
+<SPAN>&nbsp;To sort the rows 
+of a data set using the values in a given column, call the sort() method on the data set:</SPAN>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.sort("@path"); // Sort the rows of the data set using the "@path" column.</PRE>
+<P>Calling the sort() method of a data set sorts the 
+  rows in ascending order, using data in the specified column.</P>
+<P>The sort() method takes two arguments. The first 
+  argument can be the name of the column, or an array of column names to use when 
+  sorting. If the first argument is an array, the first element of the array 
+  serves as the primary sort column; each column after that is used for secondary 
+  and tertiary sorting, and so on. The second argument is the sort order to use, 
+  and must be one of the following strings: "ascending", 
+  "descending", or "toggle". 
+  If the second argument is not specified, the sort order defaults to "ascending". 
+  Specifying "toggle" as the sort order causes the data 
+  sorted in "ascending" order to be sorted in "descending" order, and the reverse. If the column was never 
+  sorted before, and the sort order used is "toggle", 
+  the data is initially sorted in "ascending" order.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.sort("@path", "toggle"); // Toggle the Sort order of the rows of the data set using the "@path" column.</PRE>
+<P>To have the data in the data set sorted automatically whenever data is 
+  loaded, specify the column to sort by and the sort order to use as an option to 
+  the data set constructor. Use the "sortOnLoad" option 
+  to the data set constructor to specify a column to sort by. In the following 
+  example, the data set automatically sorts in descending order by using the data 
+  in the @path column.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo", { sortOnLoad: "@path", sortOrderOnLoad: "descending" });</PRE>
+<P>By default, all values in the data set are treated as text. This can be 
+  problematic when sorting numeric or date values. You can specify the data type 
+  for a given column by calling the setColumnType() method.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+dsPhotos.setColumnType("@width", "number");
+dsPhotos.setColumnType("@height", "number");
+...
+dsPhotos.sort("@width"); // Sort the rows of the data set using the "@width" column.</PRE>
+<P>Current supported data types are "number", "date", and "string".</P>
+<H3>Set or change current row</H3>
+<P>Each data set maintains the notion of a current row. By 
+  default, the current row is set to the first row in the data set. To change the 
+  current row programmatically, call the setCurrentRowNumber() method and pass the row number of the 
+  row you want to make the current row. The index of the first row is always zero, 
+  so if a data set contains 10 rows, the index of the last row is 9.</P>
+<SPAN>&nbsp;Use setCurrentRowByNumber() or setCurrentRow() to change the current row:</SPAN>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.setCurrentRowNumber(2); // Make the 3rd row in the data set the current row.</PRE>
+<P>Each row in the data set is also assigned a unique ID that allows you to 
+  refer to a specific row in the data set even after the order of the rows in the 
+  data set change. You can get the ID of a row by accessing its "ds_RowID" property. You can also change the current row by 
+  calling setCurrentRow() and passing the row ID of the 
+  row to make the current row.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var id = dsPhotos.getData()[2]["ds_RowID"]; // Get the ID of the 3rd row.
+...
+dsPhotos.setCurrentRow(id); // Make the 3rd row the current row by using its ID.</PRE>
+<H3>Remove duplicate rows</H3>
+<SPAN>&nbsp;Use the distinct() method to remove duplicate rows in a data 
+set:</SPAN>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.distinct(); // Remove all duplicate rows.</PRE>
+<P>In this context, the term <EM>duplicate row</EM> applies to a situation in 
+  which every column in the data set contains identical information in 2 or more 
+  rows.</P>
+<P>To run the distinct() method automatically whenever 
+  data is loaded into a data set, use the "distinctOnLoad" option to the constructor.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo", { distinctOnLoad: true });</PRE>
+<P>The distinct() method is destructive, so it 
+  discards any nondistinct rows. The only way to get the data back is to reload 
+  the XML data.</P>
+<H3>Filter data</H3>
+<P>Data sets support both destructive and non-destructive filtering.</P>
+<P>Before using either method of filtering, supply a filter function that takes 
+  a data set, row object and rowNumber. This function is invoked by the data sets 
+  filtering methods for each row in the data set. The function must return either 
+  the row object passed to the function, or a new row object, meant to replace the 
+  row passed into the function. For the function to filter out the row, it should 
+  return a null value.</P>
+<P>The data set's destructive filter method is filterData(). This method actually replaces or discards the 
+  rows of the data set. The only way to get the original data back is to reload 
+  the XML data of the data set.</P>
+<SPAN>&nbsp;Use the 
+destructive filterData() method to permanently discard 
+rows in a data set:</SPAN>
+<PRE>...
+// Filter out all rows that don't have a path that begins
+// with the letter 's'.
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row["@path"].search(/^s/) != -1)
+		return row; // Return the row to keep it in the data set.
+	return null; // Return null to remove the row from the data set.
+}<STRONG>dsPhotos.filterData(myFilterFunc); // Filter the rows in the
+data set</STRONG>.</PRE>
+<P>The filter function remains active, even when loading XML data from another 
+  URL, until you call filterData() with a null argument. Call filterData() with a null argument to uninstall your filter 
+  function. </P>
+<PRE>dsPhotos.filterData(null); // Turn off destructive filtering.</PRE>
+<P>The data set's nondestructive filter method is filter(). Unlike filterData(), filter() creates a new array of rows that reference 
+  the original data. As long as the filter function does not modify the row object 
+  passed into it, you can get the original data back by calling filter() and passing a null argument. Use the nondestructive filter() method to 
+  filter the rows in a data set.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+// Filter out all rows that don't have a path that begins
+// with the letter 's'.
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row["@path"].search(/^s/) != -1)
+		return row; // Return the row to keep it in the data set.
+	return null; // Return null to remove the row from the data set.
+}<STRONG>dsPhotos.filter(myFilterFunc); // Filter the rows in the data
+set</STRONG>.</PRE>
+<P>To get the original data back, call filter() and 
+  pass a null argument</P>
+<PRE>dsPhotos.filter(null); // Turn off non-destructive filtering.</PRE>
+<H3>Refresh data</H3>
+<P>Data sets can reload their data at a specified interval expressed in 
+  milliseconds. This can be handy when the data at a given URL changes 
+  periodically.</P>
+<SPAN>&nbsp;To tell a data set 
+to load at a given interval, pass the optional loadInterval option when calling the XMLDataSet constructor:</SPAN>
+<PRE>// Load the data every 10 seconds. Turn off the cache to  make sure we get it directly from the server.
+var dsPhotos = new  Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo", { useCache:  false, <STRONG>loadInterval:
+10000</STRONG> });</PRE>
+<P>You can also turn on this interval loading programatically with the startLoadInterval() method, and stop it with the stopLoadInterval() method.</P>
+<PRE>dsPhotos.startLoadInterval(10000); // Start loading data every 10 seconds.
+...
+dsPhotos.stopLoadInterval(); // Turn off interval loading.</PRE>
+<H3><a name="observers"></a>Work with observer notifications</H3>
+<H4>Observer notifications overview</H4>
+<P></P>
+<P>The XML data set supports an observer mechanism that allows an object or 
+  callback function to receive event notifications.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>Notification</P></TH>
+      <TH > <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>onPreLoad</P></TD>
+      <TD ><P>The data set is about to send a request for data. If the data set 
+          depends on other data sets, this event notification will not send until 
+          they are all loaded successfully. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPostLoad</P></TD>
+      <TD ><P>The request for data was successful. The data is accessible. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onLoadError</P></TD>
+      <TD ><P>An error occurred while requesting the data. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onDataChanged</P></TD>
+      <TD ><P>The data in the data set has been modified. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPreSort</P></TD>
+      <TD ><P>The data in the data set is about to be sorted. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPostSort</P></TD>
+      <TD ><P>The data in the data set has been sorted. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onCurrentRowChanged</P></TD>
+      <TD ><P>The data set's notion of the current row has changed. </P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4>Objects as observers</H4>
+<P></P>
+<P>To receive notifications, an object must define a method for each 
+  notification it is interested in receiving, and then register itself as an 
+  observer on the data set. For example, an object interested in onDataChanged notifications must define an onDataChanged() method and then call addObserver().</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var myObserver = new Object;
+myObserver.onDataChanged = function(dataSet, data)
+{
+	alert("onDataChanged called!");
+};
+dsPhotos.addObserver(myObserver);</PRE>
+<P>The first argument for each notification method is the object that is sending 
+  the notification. For data set observers, this is always the dataSet object. The second argument is either undefined, or 
+  an object that depends on the type of notification.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>Notification</P></TH>
+      <TH > <P>Data passed into notification</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>onPreLoad</P></TD>
+      <TD ><P>undefined </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPostLoad</P></TD>
+      <TD ><P>undefined </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onLoadError</P></TD>
+      <TD ><P>The Spry.Utils.loadURL.Request object that was used when making the 
+          request </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onDataChanged</P></TD>
+      <TD ><P>undefined </P></TD>
+    </TR>
+    <TR>
+      <TD  rowSpan=5><P>onPreSort</P>
+        <P></P>
+        <P></P>
+        <P></P>
+        <P></P></TD>
+      <TD ><P>Object with the following properties:</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>oldSortColumns: An array of columns used during the last 
+          sort.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>oldSortOrder: The sort order used during the last sort.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>newSortColumns: The array of columns about to be used for the 
+          sort.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>newSortOrder: The sort order about to be used for the sort.</P></TD>
+    </TR>
+    <TR>
+      <TD  rowSpan=5><P>onPostSort</P>
+        <P></P>
+        <P></P>
+        <P></P>
+        <P></P></TD>
+      <TD ><P>Object with the following properties: </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>oldSortColumns: An array of the columns used in the previous 
+          sort.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>oldSortOrder: The sort order used during the previous sort.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>newSortColumns: The array of columns used for the sort. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>newSortOrder: The sort order used for the sort.</P></TD>
+    </TR>
+    <TR>
+      <TD  rowSpan=3><P>onCurrentRowChanged</P>
+        <P></P>
+        <P></P></TD>
+      <TD ><P>Object with the following properties: </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>oldRowID: The ds_RowID of the last current row. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>newRowID: The ds_RowID of the current 
+          row.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>To stop an object from receiving notifications, the object must be removed 
+  from the list of observers with a call to removeObserver().</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.removeObserver(myObserver);</PRE>
+<H4>Functions as observers</H4>
+<P></P>
+<P>Functions can also be registered as observers. The main difference between 
+  object and function observers is that an object is only notified for the 
+  notification methods it defines, whereas a function observer is called for every 
+  type of event notification.</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+function myObserverFunc(notificationType, dataSet, data)
+{
+	if (notificationType == "onDataChanged")
+		alert("onDataChanged called!");
+	else if (notificationType == "onPostSort")
+		alert("onPostSort called!");
+};
+dsPhotos.addObserver(myObserverFunc);</PRE>
+<P>A function observer is registered with the same call to addObserver.</P>
+<P>When the function is called, the first argument to be passed into it is the 
+  notification type. This is a string that is the name of the notification. The 
+  second argument is the notifier, which in this case is the data set, and the 
+  third argument is the data for the notification.</P>
+<P>To stop a function observer from receiving notifications, it must be removed 
+  from the list of observers with a call to removeObserver().</P>
+<PRE>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.removeObserver(myObserverFunc);</PRE>
+<H2>Working with dynamic regions</H2>
+<H3>Looping constructs</H3>
+<P></P>
+<P>Dynamic regions currently support two looping constructs. One allows you to 
+  repeat an element and all of its content for each row in a given data set (spry:repeat), and another allows you to repeat all of the 
+  children of a given element for each row in a given data set (spry:repeatchildren).</P>
+<P>To designate an element as something that repeats, add a spry:repeat attribute to the element with a value that is 
+  the name of the data set to repeat. The following example shows an li block that repeats for every row in the dsPhotos data set</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div spry:region="dsPhotos"&gt;
+		&lt;ul&gt;
+			&lt;li <STRONG>spry:repeat="dsPhotos"</STRONG>&gt;{@path}&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>To repeat just the children of an element, use the spry:repeatchildren attribute instead. In the following 
+  example, the children of the ul tag repeats for every 
+  row in the dsPhotos data set:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div spry:region="dsPhotos"&gt;
+		&lt;ul <STRONG>spry:repeatchildren="dsPhotos"</STRONG>&gt;
+			&lt;li&gt;{@path}&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>The preceding "spry:repeat" and "spry:repeatchildren" examples are functionally equivalent, 
+  but "spry:repeatchildren" becomes more useful when 
+  used in conjunction with conditional constructs. Both examples result in the 
+  following output: </P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;
+		&lt;ul&gt;
+			&lt;li&gt;<STRONG>sun.jpg</STRONG>&lt;/li&gt;
+			&lt;li&gt;<STRONG>tree.jpg</STRONG>&lt;/li&gt;
+			&lt;li&gt;<STRONG>surf.jpg</STRONG>&lt;/li&gt;
+		&lt;/ul&gt;	
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>If you do not want to output the content in a repeat region for every row in 
+  the data set, limit what gets written out during the loop processing by adding a spry:test attribute to the element that has the spry:repeat or spry:repeatchildren attribute on it.</P>
+<P>The following example shows an li block that is 
+  only output if the first letter of the value of {@path} starts with the letter s:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div spry:region="dsPhotos"&gt;
+		&lt;ul&gt;
+			&lt;li spry:repeat="dsPhotos" <STRONG>spry:test="'{@path}'.search(/^s/)
+!= -1;"</STRONG>&gt;{@path}&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>The value of this spry:test attribute can be any 
+  JavaScript expression that evaluates to zero or false or some nonzero value. If the expression returns a nonzero value, the content is 
+  output. Because you are using XHTML, any special characters like &amp;, &lt;, or &gt; that might be used in a JavaScript expression need to be 
+  converted to HTML entities. You can also use data references inside this 
+  JavaScript expression and the dynamic region processing engine provides the 
+  actual values from a data set just before evaluating the spry:test expression.</P>
+<P>The following code shows the final output of the preceding example:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;
+		&lt;ul&gt;
+			&lt;li&gt;<STRONG>sun.jpg</STRONG>&lt;/li&gt;
+			&lt;li&gt;<STRONG>surf.jpg</STRONG>&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<H3>Conditional constructs</H3>
+<P></P>
+<P>Dynamic regions currently support two conditional constructs. The first is 
+  "spry:if". In the following example, the li tag is only written out if the value of {@path} begins with the letter s:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div spry:region="dsPhotos"&gt;
+		&lt;ul class="spry:repeat"&gt;
+			&lt;li <STRONG>spry:if="'{@path}'.search(/^s/) != -1;"</STRONG>&gt;{@path}&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>To make an element conditional, add an spry:if attribute to the element with a value that is a JavaScript expression that 
+  returns zero or nonzero values. A nonzero value that the JavaScript expression 
+  returns results in the element being written to the final output.</P>
+<P>If you need an if-else construct, use the "spry:choose" construct. The following example uses the spry:choose construct to color every other div:</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div spry:region="dsPhotos"&gt;
+		&lt;div <STRONG>spry:choose="spry:choose"</STRONG>&gt;
+			&lt;div <STRONG>spry:when="'{@path}' == 'surf.gif'"</STRONG>&gt;{@path}&lt;/div&gt;
+			&lt;div <STRONG>spry:when="'{@path}' == 'undefined'"</STRONG>&gt;Path was not defined.&lt;/div&gt;
+			&lt;div <STRONG>spry:default="spry:default"</STRONG>&gt;Unexpected value for path!&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>The spry:choose construct provides functionality 
+  equivalent to a case statement, or an if-else if-else construct. To create a spry:choose structure add a spry:choose attribute to an element. Next, add one or more 
+  child elements with spry:when attributes on them. The 
+  value of a spry:when attribute should be a JavaScript 
+  expression that returns a zero or nonzero value. To have a default case, in case 
+  all of the JavaScript expressions for each spry:when attribute return zero or false, add an element with a spry:default attribute. The spry:default attribute doesn't require a value, but XHTML 
+  states that all attributes must have a value, therefore, set the value of the 
+  attribute equal to its name.</P>
+<P>The region processing engine evaluates the spry:when attribute of each node in the order they are 
+  listed under their parent element. The spry:default element is always evaluated last, and only if no spry:when expression returns a nonzero value. </P>
+<H3>Region states</H3>
+<P></P>
+<P>Spry supports the notion of region states. That is, at any given time, a 
+  region is either loading data, ready to display the data, or in an error state 
+  because one or more of the data sets it is bound to failed to load its data. You 
+  can place a spry:state attribute, with a value of 
+  "loading", "error", or "ready" on elements <EM>inside</EM> a region container to 
+  associate it with a specific region state. Doing so can be quite useful for 
+  displaying a loading message as the data for a region loads, or notifying the 
+  user that the region failed to get its data. As the region changes states, it 
+  automatically regenerates its code and displays any elements with a spry:state attribute that matches the current state.</P>
+<P>The following example uses the spry:state attribute 
+  to display loading and error messages:</P>
+<PRE>&lt;div spry:region="dsEmployees"&gt;
+	&lt;div <STRONG>spry:state="loading"</STRONG>&gt;Loading employee data ...&lt;/div&gt;
+	&lt;div <STRONG>spry:state="error"</STRONG>&gt;Failed to load employee data!&lt;/div&gt;
+	&lt;ul <STRONG>spry:state="ready"</STRONG>&gt;
+		&lt;li spry:repeat="dsEmployees"&gt;{firstname} {lastname}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</PRE>
+<P>Any content that does not have a spry:state attribute on it, or is not a child or descendent of an element that has a spry:state attribute on it, is always included in the output 
+  when the code is regenerated. Also, children or descendents of an element with a spry:state attribute cannot have spry:state attributes. That is, nesting elements with spry:state attributes is not supported.</P>
+<H3>Region observer notifications</H3>
+<P></P>
+<P>Spry supports an observer mechanism that allows a developer to register an 
+  object or function to receive a notification whenever the state of a region 
+  changes. This mechanism is almost identical to what is used for data sets with 
+  the following exceptions:</P>
+<UL>
+  <LI>
+    <P>Adding and removing region observers is done through the Spry.Data.Region.addObserver() and Spry.Data.Region.removeObserver global namespaced 
+      functions. This practice is different from data sets because data set 
+      observers call addObserver() and removeObserver() methods that are on the data set object. 
+      The use of global namespaced functions allows a 
+      developer to register an observer before the document's onload event starts, and before Spry creates the 
+      JavaScript object that represents the region. Regions use addObserver and removeObserver functions because the developer might want to register observers before the 
+      JavaScript region object actually exists.</P>
+  <LI>
+    <P>Both addObserver() and removeObserver() require an ID to identify which region 
+      the developer wants to observe. For this reason, regions that developers want 
+      to observe must have an id attribute defined on 
+      their region container node. </P>
+  </LI>
+</UL>
+<H4>Objects as region observers</H4>
+<P></P>
+<P>To receive notifications, an object must define a method for each 
+  notification it is interested in receiving, and then register itself as an 
+  observer on the region.</P>
+<P>The following example shows an object being registered as an observer on a 
+  dynamic region:</P>
+<PRE>&lt;script&gt;
+...
+// Create an observer object and define the methods to receive the notifications
+// it wants.
+myObserver = new Object;
+myObserver.onPostUpdate = function(notifier, data)
+{
+	alert("onPostUpdate called for " + data.regionID);
+};
+...
+// Call addObserver() to register the object as an observer.
+Spry.Data.Region.addObserver("employeeListRegion", myObserver);
+...
+// You can unregister your object so it stops recieving notifications
+// with a call to removeObserver().
+Spry.Data.Region.removeObserver("employeeListRegion", myObserver);
+...
+&lt;/script&gt;
+...
+&lt;ul id="employeeListRegion" spry:region="dsEmployees"&gt;
+...
+&lt;/ul&gt;</PRE>
+<P>The first argument for each notification method is the object that is sending 
+  the notification. For region observers, this is not the region object. The 
+  second argument is an object that contains a regionID property that identifies the region that triggered the notification.</P>
+<P>To stop an object from receiving notifications, the object must be removed 
+  from the list of observers with a call to removeObserver().</P>
+<H4>Functions as region observers</H4>
+<P></P>
+<P>Functions can also be registered as observers. The main difference between 
+  object and function observers is that an object is only notified for the 
+  notification methods it defines, whereas a function observer is called for every 
+  type of event notification.</P>
+<P>The following example shows a function being registered as an observer on a 
+  dynamic region:</P>
+<PRE>&lt;script&gt;
+...
+function myRegionCallback(notificationState, notifier, data)
+{
+	if (notificationType == "onPreUpdate")
+		alert(regionID + " is starting an update!");
+	else if (notificationType == "onPostUpdate")
+		alert(regionID + " is done updating!");
+}
+...
+// Call addObserver() to register your function as an observer.
+Spry.Data.Region.addObserver("employeeListRegion", MyRegionCallback);
+...
+// You can unregister your callback function so it stops recieving notifications
+// with a call to removeObserver().
+Spry.Data.Region.removeObserver("employeeListRegion", MyRegionCallback);
+...
+&lt;/script&gt;
+...
+&lt;ul id="employeeListRegion" spry:region="dsEmployees"&gt;
+...
+&lt;/ul&gt;</PRE>
+<P>A function observer is registered with the same call to addObserver().</P>
+<P>When the function is called, the first argument passed into it is the 
+  notification type. This is a string that is the name of the notification. The 
+  second argument is the notifier, which in this case is not the region object. 
+  The third argument is a data object that has a regionID property that tells us what region triggered the 
+  notification.</P>
+<P>To stop a function observer from receiving notifications, it must be removed 
+  from the list of observers with a call to removeObserver().</P>
+<P>The following table describes the current set of supported notifications.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>Region notification type</P></TH>
+      <TH > <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>onLoadingData</P></TD>
+      <TD ><P>One or more of the region's bound data sets is loading its 
+          data.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPreUpdate</P></TD>
+      <TD ><P>All of the region's bound data sets have loaded successfully. The 
+          region is about to regenerate its code. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onPostUpdate</P></TD>
+      <TD ><P>The region has regenerated its code and inserted it into the document. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>onError</P></TD>
+      <TD ><P>An error occurred while loading 
+          data.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>Data reference options</H3>
+<P></P>
+<P>Each data set has a set of built-in data references that can be useful during 
+  the dynamic region regeneration process. Like data set column names, these 
+  built-in data references must be prefixed with the name of the data set if the 
+  dynamic region is bound to more than one data set.</P>
+<P>For example, to display the row number of the current row of the data set 
+  when the region regenerates, add the ds_RowNumber data 
+  reference to the dynamic region, as follows:</P>
+<PRE>&lt;tr spry:repeat="dsSpecials"&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;
+	&lt;td&gt;{ds_RowNumber}&lt;/td&gt;
+&lt;/tr&gt;</PRE>
+<P>These options are also useful to pass a value in a JavaScript method, as 
+  follows:</P>
+<PRE>&lt;tr spry:repeat="dsSpecials" onclick="dsSpecials.setCurrentRow('{ds_RowID}')"&gt;
+	&lt;td&gt;{item}&lt;/td&gt;				
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;	
+&lt;/tr&gt;</PRE>
+<P>The following table provides a full list of built-in Spry data 
+  references.</P>
+<TABLE >
+  <THEAD align=left>
+    <TR>
+      <TH > <P>Data reference</P></TH>
+      <TH > <P>Description</P></TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    <TR>
+      <TD ><P>ds_RowID</P></TD>
+      <TD ><P>The ID of a row in the data set. This ID can be used to refer to a 
+          specific record in the data set. It does not change, even when the data is 
+          sorted. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_RowNumber</P></TD>
+      <TD ><P>The row number of the current row of the data set. Within a loop 
+          construct, this number reflects the position of the row currently being 
+          evaluated. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_RowNumberPlus1</P></TD>
+      <TD ><P>The same as ds_RowNumber, except that the 
+          first row starts at index 1 instead of index 0.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_RowCount</P></TD>
+      <TD ><P>The number of rows in the data set. If a nondestructive filter is set 
+          on the data set, this is the total number of rows after the filter is 
+          applied. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_UnfilteredRowCount</P></TD>
+      <TD ><P>The number of rows in the data set before any nondestructive filter is 
+          applied. </P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_CurrentRowID</P></TD>
+      <TD ><P>The ID of the current row of the data set. This value does not change, 
+          even when used within a looping construct.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_CurrentRowNumber</P></TD>
+      <TD ><P>The row number of the current row of the data set. This value does not 
+          change, even when used within a looping construct.</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_SortColumn</P></TD>
+      <TD ><P>The name of the column last used for sorting. If the data in the data 
+          set was never sorted, this outputs nothing (an empty string).</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_SortOrder</P></TD>
+      <TD ><P>The current sort order of the data in the data set. This data reference 
+          outputs the words ascending, descending, or nothing (an empty string).</P></TD>
+    </TR>
+    <TR>
+      <TD ><P>ds_EvenOddRow</P></TD>
+      <TD ><P>Looks at the current value of ds_RowNumber and returns the string "even" or "odd". Useful for rendering alternate row 
+          colors.</P></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>Hiding data references</H3>
+<P></P>
+In some browsers, loading pages over a slow connection can result 
+in the user briefly seeing the unprocessed regions and data references on the 
+page before the document's onload notification is 
+sent. To hide unprocessed regions and data references, you can provide a CSS 
+rule for the SpryHiddenRegion class:
+<PRE>&lt;style&gt;<KBD class=userinput>.SpryHiddenRegion
+{</KBD><KBD class=userinput>visibility:hidden;</KBD>}
+&lt;/style&gt;
+...
+&lt;div spry:region="dsEmployees" <KBD class=userinput>class="SpryHiddenRegion"</KBD>&gt;
+...
+&lt;/div&gt;</PRE>
+<P>Using this technique, the CSS rule hides the Spry regions marked with this 
+  class when the page loads. When the Spry data is finished processing, Spry 
+  strips off the SpryHiddenRegion class and the finished 
+  Spry content appears. </P>
+<P>An alternative way to hide just the data references, as opposed to the whole 
+  tag, is to use the spry:content attribute as a 
+  substitute for a data reference. Because the data reference is the value of the spry:content attribute, it is not visible when the 
+  page loads.</P>
+<P>The following example hides a data reference with a spry:content attribute on an element:</P>
+<PRE>&lt;!--Example of a normal region.--&gt;
+&lt;div spry:region="dsEmployees"&gt;
+Hello my name is {firstname}.
+&lt;/div&gt;
+&lt;!--Example of a region using spry:content.--&gt;
+Hello my name is <KBD class=userinput>&lt;span spry:content="{firstname}"&gt;&lt;/span&gt;</KBD>.
+&lt;/div&gt;</PRE>
+<P>The spry:content attribute replaces the entire 
+  contents of the div tag with the value of the 
+  attribute. In this case, the the value of {firstname} is inserted into the empty span tag. The result is the 
+  same, only in this case there is no visible data reference.</P>
+<H3>Behavior attributes</H3>
+<P></P>
+<P>You can place behavior attributes on elements within a dynamic region to 
+  automatically enable common behaviors that would ordinarily require some manual 
+  programming. </P>
+<H4>spry:hover</H4>
+<P>The spry:hover attribute places a class name on an 
+  element whenever the mouse cursor enters the element, and removes that class 
+  name as the cursor exits the element.</P>
+<P>The value for the spry:hover attribute is the name 
+  of the class to put on the element whenever the mouse enters or exits the 
+  element.</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style&gt;
+.<STRONG>myHoverClass {	 background-color: yellow; }</STRONG> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" <STRONG>spry:hover="myHoverClass"</STRONG>&gt;{username}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>In the preceding example, whenever the mouse enters an li element, the "myHoverClass" 
+  class name is added to the element's class attribute. It is automatically 
+  removed when the mouse exits the element. </P>
+<H4>spry:select</H4>
+<P>The spry:select attribute places a class name on an 
+  element when the mouse clicks the element.</P>
+<P>The value for the spry:select attribute is the name 
+  of the class to put on the element whenever the mouse clicks the element.</P>
+<PRE>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style&gt;
+.myHoverClass {
+	background-color: yellow;
+}
+.<STRONG>mySelectClass {	color: white;	background-color: black;}</STRONG> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <STRONG>spry:select="mySelectClass"</STRONG>&gt;{username}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</PRE>
+<P>In the preceding example, whenever the mouse clicks an li element, the mySelectClass class name is added to the elements class attribute. </P>
+<P>If an element on the page with a spry:select attribute was previously selected, the class name used as the value for its spry:select attribute is automatically removed, in 
+  effect unselecting that element.</P>
+<P>You can use a spry:selectgroup attribute in 
+  conjunction with a spry:select attribute to allow you 
+  to have more than one set of selections on a page. For a working example of 
+  this, see the RSS Reader example in the demos folder of the Spry folder from 
+  Adobe Labs.</P>
+<PRE>&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style&gt;
+.myHoverClass {
+	background-color: yellow;
+}
+.<STRONG>mySelectClass {	color: white;	background-color: black;}</STRONG> 
+.<STRONG>myOtherSelectClass {	color: white;	background-color: black;}</STRONG> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <STRONG>spry:select="mySelectClass"
+spry:selectgroup="username"</STRONG>&gt;{username}&lt;/li&gt;	&lt;/ul&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <STRONG>spry:select="myOtherSelectClass"
+spry:selectgroup="firstname"</STRONG>&gt;{firstname}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;</PRE>
+<P>The value of a spry:selectgroup attribute is an 
+  arbitrary name. Any element that uses the same name for its spry:selectgroup attribute is automatically unselected when 
+  another element with the same select group name is clicked. Other elements with 
+  differing spry:selectgroup values are 
+  unaffected.</P>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+  All rights reserved</p>
+</BODY>
+</HTML>

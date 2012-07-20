@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<employees xmlns="http://www.foo.com/employees">
+	<employee id="123543">
+		<lastname>Davis</lastname>
+		<firstname>Kirk</firstname>
+		<phone>(415) 333-4334 </phone>
+		<username>kdavis</username>
+	</employee>
+	<employee id="127944">
+		<lastname>Miller</lastname>
+		<firstname>James</firstname>
+		<phone>(415) 333-7566 </phone>
+		<username>jmiller</username>
+	</employee>
+	<employee id="127373">
+		<lastname>Wilson</lastname>
+		<firstname>Alex</firstname>
+		<phone>(415) 333-9843 </phone>
+		<username>awilson</username>
+	</employee>
+	<employee id="125744">
+		<lastname>Moore</lastname>
+		<firstname>Albert</firstname>
+		<phone>(415) 333-7584 </phone>
+		<username>amoore</username>
+	</employee>
+	<employee id="120459">
+		<lastname>Taylor</lastname>
+		<firstname>Eric</firstname>
+		<phone>(415) 333-8343 </phone>
+		<username>etaylor</username>
+	</employee>
+	<employee id="124847">
+		<lastname>Anderson</lastname>
+		<firstname>Vincent</firstname>
+		<phone>(415) 333-9584 </phone>
+		<username>vanderson</username>
+	</employee>
+	<employee id="129283">
+		<lastname>Thomas</lastname>
+		<firstname>Anthony</firstname>
+		<phone>(415) 333-8483 </phone>
+		<username>athomas</username>
+	</employee>
+	<employee id="125765">
+		<lastname>Lee</lastname>
+		<firstname>John</firstname>
+		<phone>(415) 333-5757</phone>
+		<username>jlee</username>
+	</employee>
+</employees>

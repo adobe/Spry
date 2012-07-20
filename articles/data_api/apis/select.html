@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Radio Validation API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="accordion">
+  <h3>Select Validation Widget</h3>
+  <h4>Description</h4>
+  <p>The Spry Select Validation Widget is used to validate a Select list or group of Select lists before submitting the form. </p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/selectvalidation/SpryValidationSelect.js">SpryValidationSelect.js</a></p>
+    <p><a href="../../../widgets/selectvalidation/SpryValidationSelect.css">SpryValidationSelect.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/selectvalidation/SpryValidationSelect.html">SpryValidationSelect.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/validationwidgets/SelectValidationSample.html">SelectValidationSample.html</a></p>
+    <p><a href="../../../samples/validationwidgets/SelectWithData.html">SelectWithData.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+   &lt;widget container&gt;
+      &lt;Select list&gt;<br />      &lt;message container(s)&gt;<br />   &lt;/widget container&gt;<br /></pre>
+  <p>Using the provided files, the default mark up is:</p>
+      <pre>&lt;span id=&quot;spryselect1&quot;&gt;<br />&lt;select name=&quot;select1&quot; id=&quot;select1&quot;&gt;<br />&lt;option&gt;Option 1&lt;/option&gt;<br />&lt;/select&gt;<br />&lt;span class=&quot;selectRequiredMsg&quot;&gt;Please select an item.&lt;/span&gt;<br />&lt;/span&gt;</pre>
+</div>
+
+<div id="constructor"><h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br /> var ValidSelect1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;);<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.ValidationSelect(&quot;<span class="hilite">id of widget container</span>&quot;);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.ValidationSelect(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+  </pre>
+  <table width="954" id="options">
+    <tr>
+      <th width="171">Option</th>
+      <th width="124">Values</th>
+      <th width="87">Default</th>
+      <th width="552">Description</th>
+    </tr>
+    <tr>
+      <td>isRequired</td>
+      <td>true or false</td>
+      <td>true</td>
+      <td>Determines whether any Select list need to be changed. Set to 'false' to bypass validation.</td>
+    </tr>
+    <tr>
+      <td>invalidValue</td>
+      <td>a value of a Select list</td>
+      <td>null</td>
+      <td>Determines a value that will not pass validation.</td>
+    </tr>
+    <tr>
+      <td>validateOn</td>
+      <td>&quot;blur&quot;, &quot;change&quot;</td>
+      <td>submit</td>
+      <td>The widget always validates onSubmit. onBlur and onChange can be added with this option. Both can be applied with an array ['blur', 'change']</td>
+    </tr>
+    <tr>
+      <td><p>requiredClass</p></td>
+      <td><p>any class name</p></td>
+      <td>selectRequiredState</td>
+      <td>Overrides the &quot;selectRequiredState&quot; built-in value</td>
+    </tr>
+    <tr>
+      <td><p>validClass</p></td>
+      <td><p>any class name</p></td>
+      <td>selectValidState</td>
+      <td>Overrides the &quot;selectValidState&quot; built-in value </td>
+    </tr>
+    <tr>
+      <td><p>focusClass</p></td>
+      <td><p>any class name</p></td>
+      <td>selectFocusState</td>
+      <td>Overrides the &quot;selectFocusState&quot; built-in value </td>
+    </tr>
+    <tr>
+      <td><p>invalidClass</p></td>
+      <td><p>any class name</p></td>
+      <td>selectInvalidState</td>
+      <td>Overrides the &quot;selectInvalidState&quot; built-in value </td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.ValidationSelect(&quot;spryselect1&quot;,{isRequired:false, validateOn:['blur','change'],invalidValue:&quot;chooseone&quot;});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<div id="methods">
+  <h2>Select Validation Widget Methods</h2>
+  <div id="reset">
+    <h3><strong>reset</strong></h3>
+    <p>Reset the widget to its original state.</p>
+    <h4>Format</h4>
+    <p>widgetName.reset();</p>
+    <h4>Example</h4>
+    <pre> &lt;a href=&quot;#&quot; onclick=&quot;spryselect1.reset(); return false;&quot;&gt;Reset Select&lt;/a&gt; </pre>
+  </div>
+  <div id="validate">
+    <h3><strong>validate</strong></h3>
+    <p>Validates the current state of the widget.</p>
+    <h4>Format</h4>
+    <p>widgetName.validate();</p>
+    <h4>Example</h4>
+    <pre>&lt;a href=&quot;#&quot; onclick=&quot;spryselect1.validate(); return false;&quot;&gt;Validate Select&lt;/a&gt;</pre>
+  </div>
+</div>
+<hr />
+<p>Copyright © 2008. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>

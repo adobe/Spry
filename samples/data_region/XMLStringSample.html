@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>XML String Sample</title>
+<link href="../../css/samples.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+//
+// Step 1: Define an XML string.
+//
+
+var xmlStr = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?> \
+<employees xmlns=\"http://www.foo.com/employees\"> \
+	<employee id=\"123456\"> \
+		<lastname>Smith</lastname> \
+		<firstname>Edward</firstname> \
+		<phone>(415) 333-0235 </phone> \
+		<username>esmith</username> \
+	</employee> \
+	<employee id=\"127937\"> \
+		<lastname>Johnson</lastname> \
+		<firstname>Neil</firstname> \
+		<phone>(415) 333-9475 </phone> \
+		<username>njohnson</username> \
+	</employee> \
+	<employee id=\"126474\"> \
+		<lastname>Williams</lastname> \
+		<firstname>Steve</firstname> \
+		<phone>(415) 333-4573 </phone> \
+		<username>swilliams</username> \
+	</employee> \
+	<employee id=\"120585\"> \
+		<lastname>Jones</lastname> \
+		<firstname>John</firstname> \
+		<phone>(415) 333-9345 </phone> \
+		<username>jjones</username> \
+	</employee> \
+	<employee id=\"127493\"> \
+		<lastname>Brown</lastname> \
+		<firstname>Joe</firstname> \
+		<phone>(415) 333-5938 </phone> \
+		<username>jbrown</username> \
+	</employee> \
+</employees>";
+
+//
+// Step 2: Create an XMLDataSet. Use a null URL so that nothing gets loaded
+//         if something like a Spry region calls loadData() on it.
+//
+
+var dsEmployees = new Spry.Data.XMLDataSet(null, "/employees/employee");
+
+//
+// Step 3: Convert the XML string to an XML DOM Document.
+//
+
+var xmlDOMDocument = Spry.Utils.stringToXMLDoc(xmlStr);
+
+//
+// Step 4: Tell the XMLDataSet to load its data from the DOM document.
+//
+
+dsEmployees.setDataFromDoc(xmlDOMDocument);
+
+-->
+</script>
+</head>
+
+<body>
+<h3>XML String Sample</h3>
+<p>This page is an example of how to manually parse an XML string and feed it to an XMLDataSet so that it can be used with a spry:region or spry:detail region. </p>
+<hr />
+<p>
+	<input type="button" value="Sort By Last Name" onclick="dsEmployees.sort(['lastname', 'firstname'], 'toggle');" />
+	<input type="button" value="Sort By First Name" onclick="dsEmployees.sort(['firstname', 'lastname'], 'toggle');" />
+</p>
+<div spry:region="dsEmployees">
+<p spry:repeatchildren="dsEmployees"><span spry:if="{ds_RowNumber} == 0">{firstname} {lastname}</span><span spry:if="{ds_RowNumber} != 0">, {firstname} {lastname}</span></p>
+<table>
+	<tr><th>ds_RowID</th><th>Last Name</th><th>First Name</th></tr>
+	<tr spry:repeat="dsEmployees"><td>{ds_RowID}</td><td>{lastname}</td><td>{firstname}</td></tr>
+</table>
+</div>
+</body>
+</html>

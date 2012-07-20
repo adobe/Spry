@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Element Selector Utility</title>
+<link href="../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h3> Spry Element Selector Utility</h3>
+<ul>
+  <li><a href="#pageelements">Selecting Page Elements</a></li>
+  <li><a href="#supportedselectors">Supported Selectors</a></li>
+  <li><a href="#selectorfunctions">Selector Functions</a></li>
+</ul>
+<p>The Spry Element Selector  is a utility that allow developers to use CSS Selectors to select elements on the page and apply functionality to them. This allows  Spry pages to be built and run with unobtrusive javascript.</p>
+<p>We have some samples of it in action here:</p>
+<ul>
+  <li><a href="../../samples/dom_utils/add_event_listener.html">Adding Event Listeners</a></li>
+  <li><a href="../../samples/dom_utils/altColorRows.html">Alternating Row Colors</a></li>
+  <li><a href="../../samples/dom_utils/table_row_colors.html">Advanced Row Colors</a></li>
+  <li><a href="../../samples/dom_utils/unobtrusive_spry_data.html">Unobtrusive Spry pages</a></li>
+  <li>A more <a href="../../samples/dom_utils/unobtrusive_spry_data2.html">advanced unobtrusive Spry</a> page.</li>
+</ul>
+<p>This document describes how to use the Selector utility. An overview of CSS Selectors can be found at <a href="http://www.w3.org/TR/REC-CSS2/selector.html">http://www.w3.org/TR/REC-CSS2/selector.html</a> and <a href="http://css.maxdesign.com.au/selectutorial/">http://css.maxdesign.com.au/selectutorial/</a></p>
+<h4><a name="pageelements" id="pageelements"></a>Selecting Page Elements</h4>
+<p>The Spry Element Selector allows you to pick one or more page elements using a CSS selector. This can be used to select a single element or multiple elements. The utility supports most CSS 3 selectors.</p>
+<p>Using the sample below, we can build sample selectors. See some examples in the <a href="selector_examples.html">Selector Examples</a>.</p>
+<pre>&lt;div id='container' class='mainBlock'&gt;<br />&lt;p class='bodyText'&gt;This is body text.&lt;/p&gt;<br />&lt;span class='highlight'&gt;This is the first span.&lt;/span&gt;<br />&lt;span class='highlight'&gt;This is the second span.&lt;/span&gt;<br />&lt;p id='closer'&gt;This is closer text.&lt;/p&gt;<br />&lt;/div&gt;</pre>
+<p> Spry uses '$$' to denote the selector. The format is:</p>
+<pre>Spry.$$(&quot;the CSS selector&quot;).utilfunction;</pre>
+<p>Using this notation, we can set a class 'newClass' on all  tags that have a 'bodyText' class by using:</p>
+<pre>Spry.$$(&quot;.bodyText&quot;).addClassName(&quot;newClass&quot;);</pre>
+<p>or, we can set the 'newClass' on all the &lt;span&gt; tags with:</p>
+<pre>Spry.$$(&quot;span&quot;).addClassName(&quot;newClass&quot;);</pre>
+<h4><a name="supportedselectors" id="supportedselectors"></a>Supported Selectors</h4>
+<p>The list of selectors that Spry supports is:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td>E</td>
+      <td>an element of type E</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E.className</td>
+      <td>an E element with a specified classname</td>
+    </tr>
+    <tr>
+      <td>E#id</td>
+      <td>an E element with ID equal to &quot;id&quot;.</td>
+    </tr>
+    <tr>
+      <td>E F</td>
+      <td>an F element descendant of an E element</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>any element</td>
+    </tr>
+    <tr>
+      <td>E:first-child</td>
+      <td>an E element, first child of its parent</td>
+    </tr>
+    <tr>
+      <td>E[foo]</td>
+      <td>an E element with a &quot;foo&quot; attribute. <strong>Note:</strong> When using E[class], this will fail on Internet Explorer, since it adds a class attribute to every element, even those with out a class in the markup. This is a browser issue and not a Spry issue.</td>
+    </tr>
+    <tr>
+      <td>E &gt; F</td>
+      <td>an F element child of an E element</td>
+    </tr>
+    <tr>
+      <td>E[foo~=&quot;bar&quot;]</td>
+      <td>an E element whose &quot;foo&quot; attribute value is a list of        space-separated values, one of which is exactly equal to &quot;bar&quot;</td>
+    </tr>
+    <tr>
+      <td>E[hreflang|=&quot;en&quot;]</td>
+      <td>an E element whose &quot;hreflang&quot; attribute has a hyphen-separated        list of values beginning (from the left) with &quot;en&quot;</td>
+    </tr>
+    <tr>
+      <td>E[foo=&quot;bar&quot;]</td>
+      <td>an E element whose &quot;foo&quot; attribute value is exactly        equal to &quot;bar&quot;</td>
+    </tr>
+    <tr>
+      <td>E + F</td>
+      <td>an F element immediately preceded by an E element</td>
+    </tr>
+    <tr>
+      <td>E[foo$=&quot;bar&quot;]</td>
+      <td>an E element whose &quot;foo&quot; attribute value ends exactly        with the string &quot;bar&quot;</td>
+    </tr>
+    <tr>
+      <td>E:last-child</td>
+      <td>an E element, last child of its parent</td>
+    </tr>
+    <tr>
+      <td>E:nth-last-of-type(n)</td>
+      <td>an E element, the n-th sibling of its type, counting        from the last one</td>
+    </tr>
+    <tr>
+      <td>E:nth-of-type(n)</td>
+      <td>an E element, the n-th sibling of its type</td>
+    </tr>
+    <tr>
+      <td>E[foo^=&quot;bar&quot;]</td>
+      <td>an E element whose &quot;foo&quot; attribute value begins exactly        with the string &quot;bar&quot;</td>
+    </tr>
+    <tr>
+      <td>E:nth-last-child(n)</td>
+      <td>an E element, the n-th child of its parent, counting        from the last one</td>
+    </tr>
+    <tr>
+      <td>E:empty</td>
+      <td>an E element that has no children (including text      nodes)</td>
+    </tr>
+    <tr>
+      <td>E:nth-child(n)</td>
+      <td>an E element, the n-th child of its parent</td>
+    </tr>
+    <tr>
+      <td>E:only-of-type</td>
+      <td>an E element, only sibling of its type</td>
+    </tr>
+    <tr>
+      <td>E:not(s)</td>
+      <td>an E element that does not match simple selector s</td>
+    </tr>
+    <tr>
+      <td>E:only-child</td>
+      <td>an E element, only child of its parent</td>
+    </tr>
+    <tr>
+      <td>E:last-of-type</td>
+      <td>an E element, last sibling of its type</td>
+    </tr>
+    <tr>
+      <td>E:first-of-type</td>
+      <td>an E element, first sibling of its type</td>
+    </tr>
+    <tr>
+      <td>E[foo*=&quot;bar&quot;]</td>
+      <td>an E element whose &quot;foo&quot; attribute value contains the        substring &quot;bar&quot;</td>
+    </tr>
+    <tr>
+      <td>E ~ F</td>
+      <td>an F element preceded by an E element</td>
+    </tr>
+    <tr>
+      <td>E:checked</td>
+      <td>an E element that is checked (radio buttons or checkboxes)</td>
+    </tr>
+    <tr>
+      <td>E:disabled</td>
+      <td>an E element that is set at disabled (form elements)</td>
+    </tr>
+    <tr>
+      <td>E:enabled</td>
+      <td>an E element that is enabled (form elements that are not explicitly disabled.)</td>
+    </tr>
+  </tbody>
+</table>
+<p>This selectors are not supported:</p>
+E:lang(fr)
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E:link<br />
+        E:visited</td>
+      <td>an E element being the source anchor of a hyperlink <br />
+      of        which the target is not yet visited (:link) or already visited      (:visited)</td>
+    </tr>
+    <tr>
+      <td>E:active<br />
+        E:hover<br />
+        E:focus</td>
+      <td>an E element during certain user actions</td>
+    </tr>
+    <tr>
+      <td>E::first-line</td>
+      <td>the first formatted line of an E element</td>
+    </tr>
+    <tr>
+      <td>E::first-letter</td>
+      <td>the first formatted letter of an E element</td>
+    </tr>
+    <tr>
+      <td>E::before</td>
+      <td>generated content before an E element</td>
+    </tr>
+    <tr>
+      <td>E::after</td>
+      <td>generated content after an E element</td>
+    </tr>
+    <tr>
+      <td>E:target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>E:lang(fr)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>E::selection</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<p>These selectors can be combined to achieve a more flexible or specific selection. </p>
+<p><strong>Note:</strong> According to the spec, spaces are generally not allowed within the selector except where part of the actual selector, so:</p>
+<pre>Spry.$$(&quot;DIV<span class="hilite"> </span>P&quot;).addClassName(&quot;redText&quot;); <strong>Correct</strong>
+Spry.$$(&quot;p[class~=dev&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;); <strong>Correct.</strong>
+
+Spry.$$(&quot;p[class<span class="hilite"> </span>~=<span class="hilite"> </span>dev&quot;).setAttribute(&quot;align&quot;, &quot;left&quot;); <strong>Not correct.</strong></pre>
+<pre>Spry.$$(&quot;div input.theform:disabled).addClassName(&quot;red&quot;);</pre>
+<h4><a name="selectorfunctions" id="selectorfunctions"></a>Selector Functions</h4>
+<p>There is a set of common methods that can be used with the Element Selector util, plus an option for a custom function. </p>
+<p><strong>addClassName</strong></p>
+<p>This will append the specified class name to all the matching elements.</p>
+<pre>Spry.$$(&quot;element selector&quot;).addClassName(&quot;className&quot;);</pre>
+<p><strong>addEventListener</strong></p>
+<p>This will add a listener for each matching element for the specified event.</p>
+<pre>Spry.$$(&quot;element selector&quot;).addEventListener(eventType, handler, capture);</pre>
+<p><strong>forEach</strong></p>
+<p>This will run the specified function for each matching element. The 'forEach' function allows for any javascript to be run within it.</p>
+<pre>Spry.$$(&quot;element selector&quot;).forEach(myFunction);</pre>
+<p><strong>removeAttribute</strong></p>
+<p>This will remove the specified attribute from all matching elements.</p>
+<pre>Spry.$$(&quot;element selector&quot;).removeAttribute(&quot;attribute&quot;);</pre>
+<p><strong>removeEventListener</strong></p>
+<p>This will remove the listener on each matching element.</p>
+<pre>Spry.$$(&quot;element selector&quot;).removeEventListener(eventType, handler, capture);</pre>
+<p><strong>removeClassName</strong></p>
+<p>This will remove the specified class name from all the matching elements.</p>
+<pre>Spry.$$(&quot;element selector&quot;).removeClassName(&quot;className&quot;);</pre>
+<p><strong>setAttribute</strong></p>
+<p>This will add the specified attribute with the specified value to all matching elements.</p>
+<pre>Spry.$$(&quot;element selector&quot;).setAttribute(&quot;attribute&quot;,&quot;value&quot;);</pre>
+<p><strong>setProperty</strong></p>
+<p>This will set a property on an object.</p>
+<pre>Spry.$$(&quot;element selector&quot;).setProperty(&quot;property&quot;,&quot;value&quot;);</pre>
+<p><strong>setStyle</strong></p>
+<p>This will set the specified styles to the element.</p>
+<pre>Spry.$$(&quot;element selector&quot;).setStyle(&quot;width:30px;color:#FF00FF;&quot;);</pre>
+<p><strong>Note:</strong> This function uses Spry.Utils.setAttribute to set namespaced attributes (spry:region, etc). This will fail on Safari 2.0 and earlier. This is a bug in Safari, but appears to have been fixed in version 3.0. <br />
+This function should work fine for regular, non-namespaced attributes.</p>
+<p><strong>toggleClassName</strong></p>
+<p>This will look for the specified class name. If it does not exist on the element, it will add it. If it is already there, it will remove it.</p>
+<p></p>
+<h3>Using the Element Selector</h3>
+<p>The real power of the Element Selector is when you want to manipulate multiple parts of the page at a time. Use the Element Selector to find all the elements and then use the built in functions to update the elements.</p>
+<h4>In a custom function</h4>
+<ol>
+  <li> Link the Element Selector to your page.<pre>&lt;script src=&quot;includes/SpryDOMUtils.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;</pre></li>
+  <li>Write a function block.
+    <pre>
+&lt;script src=&quot;includes/SpryDOMUtils.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+<span class="hilite">&lt;script lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+function myFunction(){
+
+}
+&lt;/script&gt;</span></pre>
+  </li>
+  <li>Add the Element Selection function. In this case, we will add a class to all &lt;p&gt;s that are within a &lt;table&gt;.<br />
+    <pre>
+&lt;script src=&quot;includes/SpryDOMUtils.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;script lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+function myFunction(){
+   <span class="hilite">Spry.$$(&quot;table p&quot;).addClassName(&quot;myClass&quot;);</span>
+}
+&lt;/script&gt;</pre>
+  </li>
+  <li>Then you just need something to kick off the function.
+    <pre>
+&lt;a href=&quot;#&quot; onclick=&quot;myFunction();&quot;&gt;Click Me&lt;/a&gt;</pre>
+  </li>
+</ol>
+
+<h4>Running the Element Selector on page load</h4>
+<p>Many time, you will want to run some functions when the page loads. We can use the Element Selector to run functions when the page loads. In this example, we will activate the constructor scripts for 2 Accordions on the page. We will move the functions to an external javascript file, so that our script is unobtrusive.</p>
+<ol>
+  <li> Link the Element Selector to your page.
+      <pre>&lt;script src=&quot;includes/SpryDOMUtils.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+...
+&lt;body&gt;
+
+&lt;div id=&quot;Accordion1&quot; class=&quot;Accordion&quot;&gt;
+...
+&lt;/div&gt;
+&lt;div id=&quot;Accordion2&quot; class=&quot;Accordion&quot;&gt;
+...
+&lt;/div&gt;
+...</pre>
+  </li>
+  <li>Create a new blank page and save it as .myFunctions.js'.</li>
+  <li>In this new page, write a function block.
+    <pre>
+function myFunction(){
+
+}
+</pre>
+  </li>
+  <li>Add the Element Selection function. In this case, will activate the widget constructors.<br />
+      <pre>
+function myFunction(){
+  Spry.$$(&quot;.Accordion&quot;).forEach(function(n) { window[n.id] = new Spry.Widget.Accordion(n); });<span class="hilite"></span>
+}
+</pre>
+      To explain, this function looks for all the tags with the &quot;Accordion&quot; class, which if using basic Accordion code, should be on the widget container tag for all the accordions. We use the 'forEach' function to apply the specified function to all the instances of the selector. 'window[n.id]' grabs the ID of the selected element ('Accordion1 and Accordion2') and uses that value as the widget name.<br />
+  If you want to use a behavior for that widget, to open or close the panel, just use the ID of the widget for the name: onclick=&quot;Accordion2.open();&quot;<br />
+  <br />
+  </li>
+  <li>Next we need to set up a listener that will fire off the script after the page is loaded. This is important because  the markup needs to exist before we run the constructor scripts. This is why they generally come after the markup in a normal Spry 
+    page.
+    <pre>
+function myFunction(){
+  Spry.$$(&quot;.Accordion&quot;).forEach(function(n) { window[n.id] = new Spry.Widget.Accordion(n); });
+}
+<span class="hilite">Spry.Utils.addLoadListener(myFunction);</span></pre>
+  </li>
+  <li>Lastly, link the 'myFunctions.js' file to your Spry page.
+    <pre>
+&lt;script src=&quot;includes/SpryDOMUtils.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;script src=&quot;myFunctions.js&quot; lang=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;</pre>
+  </li>
+</ol>
+<h4>More Reading</h4>
+<p>The Element Selector is a powerful tool for easily manipulating pieces of the page with a minimum amount of code.</p>
+<p>Check out the <a href="selector_examples.html">Selector Examples</a>.</p>
+<hr />
+<p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p>
+</body>
+</html>

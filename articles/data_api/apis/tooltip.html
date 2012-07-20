@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spry Tooltip API</title>
+<link href="../../../css/articles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="intro">
+  <h3>Tooltip</h3>
+  <h4>Description</h4>
+  <p>The Spry Tooltip widget consists of a tooltip containter, and one or many triggers. When the user mouses over the trigger, the tooltip container is shown. The tooltip is hidden when the user mouses out.</p>
+  <h4>Required Files</h4>
+  <blockquote>
+    <p><a href="../../../widgets/tooltip/SpryTooltip.js">SpryTooltip.js</a></p>
+    <p><a href="../../../widgets/tooltip/SpryTooltip.css">SpryTooltip.css</a></p>
+  </blockquote>
+  <h4>Reference File</h4>
+  <blockquote>
+    <p><a href="../../../widgets/tooltip/SpryTooltip.html">SpryTooltip.html</a></p>
+  </blockquote>
+  <h4>Sample Files</h4>
+  <blockquote>
+    <p><a href="../../../samples/tooltip/SpryTooltipSample.html">SpryTooltipSample.html</a></p>
+  </blockquote>
+  <h4>&nbsp;</h4>
+</div>
+
+<div id="structure"><h3> Structure</h3>
+  <p>The widget structure is as follows:</p>
+  <pre>
+&lt;tooltip trigger(s)&gt;
+&lt;tooltip content&gt;<br /></pre>
+  <p>The markup used in this structure can be most any HTML, as long as it follows the rules for nesting, etc. </p>
+      <p>Using the provided files, the default mark up is:</p>
+<pre>&lt;div id=&quot;trigger&quot;&gt;This is the trigger element.&lt;/div&gt;<br />&lt;div id=&quot;tooltip&quot;&gt;This is the tooltip element.&lt;/div&gt;<br />&lt;script type=&quot;text/javascript&quot;&gt;<br />   var tt1 = new Spry.Widget.Tooltip(&quot;tooltip&quot;,&quot;#trigger&quot;);<br />&lt;/script&gt;</pre>
+</div>
+
+<div id="constructor">
+  <h3>Constructor</h3>
+  <p>Widget Constructors are small pieces of javascript that activate the markup into the working widget. These scripts must come AFTER the markup on the page, since the markup needs to exist before the constructor fires.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />   var tt1 = new Spry.Widget.Tooltip(&quot;tooltip&quot;,&quot;#trigger&quot;);<br />&lt;/script&gt;</pre>
+  <h4>Basic Constructor</h4>
+  <p>A basic constructor specifies the name of the widget and identifies the ID of the main markup container. The name of the widget is used to identify the widget for functions and methods.</p>
+  <pre>&lt;script type=&quot;text/javascript&quot;&gt; 
+   var <span class="hilite">widgetname</span> = new Spry.Widget.Tooltip(&quot;<span class="hilite">id of tooltip container</span>&quot;,<span class="hilite">&quot;CSS Selector for triggers&quot;</span>);   
+&lt;/script&gt;
+</pre>
+  <h4>Constructor Options</h4>
+  <p>Constructor options allow users to specify certain attributes of the widget.</p>
+  <p>Constructor options follow the ID parameter, wrapped in curly braces {}. Options are name:value pairs, separated by a colon (:). </p>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var widgetname = new Spry.Widget.Tooltip(&quot;id of widget container&quot;<span class="hilite">,{option1:value, option2:value, option3:&quot;value&quot;}</span>);   
+ &lt;/script&gt;
+</pre>
+  <table width="868" id="options">
+    <tr>
+      <th width="135">Option Name</th>
+      <th width="536">Description</th>
+      <th width="65">Default</th>
+      <th width="112">Values</th>
+    </tr>
+    <tr>
+      <td>closeOnTooltipLeave</td>
+      <td> The   content within the &quot;tooltip&quot; element may contain links or other  interactive elements. Using this option  will keep the  &quot;tooltip&quot; element open even if the mouse leave the &quot;trigger&quot; element.  The &quot;tooltip&quot; element will close when the mouse exits from the tooltip  area. </td>
+      <td>false</td>
+      <td>Boolean: true or false</td>
+    </tr>
+    <tr>
+      <td>followMouse</td>
+      <td>When  set to &quot;true&quot;,  the tooltip element position  will move with the mouse  inside the &quot;trigger&quot; element, using the  specified offset values. </td>
+      <td>false</td>
+      <td>Boolean: true or false</td>
+    </tr>
+    <tr>
+      <td>hideDelay</td>
+      <td>The delay in milliseconds for the tooltip element to hide after the  mouseout event is received. </td>
+      <td>0</td>
+      <td>number in milliseconds</td>
+    </tr>
+    <tr>
+      <td>hoverClass</td>
+      <td>The specified class name will be  appended to the 'class' attribute for the &quot;trigger&quot; element on mouse  over. This value is removed when the &quot;tooltip&quot; element is hidden. </td>
+      <td>null</td>
+      <td>&quot;class name&quot;</td>
+    </tr>
+    <tr>
+      <td>offsetX</td>
+      <td>The  offset value given as an integer or in pixels for the x-axis.  Using this value and the mouse entering position the widget compute the  &quot;tooltip&quot; element horizontal position. </td>
+      <td>20px</td>
+      <td>&quot;20px&quot; or 20</td>
+    </tr>
+    <tr>
+      <td>offsetY</td>
+      <td>The  offset value given as an integer or in pixels for the y-axis.  Using this value and the mouse entering position the widget compute the  &quot;tooltip&quot; element vertical position. </td>
+      <td>20px</td>
+      <td>&quot;20px&quot; or 20</td>
+    </tr>
+    <tr>
+      <td>showDelay</td>
+      <td>The delay in milliseconds for the tooltip element  display after the mouseover event is received. </td>
+      <td>0</td>
+      <td>number in milliseconds</td>
+    </tr>
+    <tr>
+      <td>useEffect</td>
+      <td>could receive two parameters: 'blind' and 'fade'. Default value is none: useEffect:&quot;&quot;</td>
+      <td>null</td>
+      <td>&quot;blind&quot; or &quot;fade&quot;</td>
+    </tr>
+  </table>
+  <pre> &lt;script type=&quot;text/javascript&quot;&gt; 
+   var ac1 = new Spry.Widget.Tooltip(&quot;myTooltip&quot;,{followMouse:true, hideDelay:200});   
+ &lt;/script&gt;
+</pre>
+  <p>Recall that javascript is case sensitive. </p>
+</div>
+<p><strong>There are no methods for the tooltip widget.</strong></p>
+<hr /><p>Copyright © 2007. Adobe Systems Incorporated. <br />
+All rights reserved.</p></body>
+</html>
