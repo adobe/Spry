@@ -1,7 +1,14 @@
-Spry
-====
+# Spry
 
-The Spry framework for Ajax is a JavaScript library for  web designers that provides functionality that allows designers to  build pages that provide a richer experience for their users. It is  designed to bring Ajax to the web design community who can benefit from  Ajax, but are not well served by other frameworks. The first release of  the Spry framework was a preview of the data capabilities that enable  designers to incorporate XML data into their HTML documents using HTML,  CSS, and a minimal amount of JavaScript, without the need for  refreshing the entire page. The Spry framework is HTML-centric, and  easy to implement for users with basic knowledge of HTML, CSS and  JavaScript. The framework was designed such that the markup is simple  and the JavaScript is minimal. The Spry framework can be used by anyone  who is authoring for the web in their tool of choice.
+
+The Spry framework for Ajax is a JavaScript library for  web designers that provides functionality that allows designers to  build pages that provide a richer experience for their users. It is  designed to bring Ajax to the web design community who can benefit from  Ajax, but are not well served by other frameworks. 
+
+## Current Status
+The Spry framework has reached end-of-life and no further updates will be made. However, we do encourage you to fork and maintain your own version of this framework. 
+
+
+## History
+The first release of  the Spry framework was a preview of the data capabilities that enable  designers to incorporate XML data into their HTML documents using HTML,  CSS, and a minimal amount of JavaScript, without the need for  refreshing the entire page. The Spry framework is HTML-centric, and  easy to implement for users with basic knowledge of HTML, CSS and  JavaScript. The framework was designed such that the markup is simple  and the JavaScript is minimal. The Spry framework can be used by anyone  who is authoring for the web in their tool of choice.
 
 Spry 1.6.1 is a small update that ensures Spry is compatible with Adobe AIR.
 
