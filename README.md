@@ -42,7 +42,7 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 
 ### What is included in 1.6.1
 
-<p><strong><a href="Spry/blob/master/articles/">Articles</a></strong> - <a href="docs.html">Documentation</a> that describe the Spry framework. <strong>Bold</strong> means new to this release.</p>
+<p><strong><a href="Spry/blob/master/articles/">Articles</a></strong> - <a href="docs.html">Documentation</a> that describe the Spry framework.</p>
 <p><strong><a href="Spry/blob/master/data/">Data</a></strong> - The XML data files used in all our sample files. </p>
 <p><strong><a href="Spry/blob/master/demos/">Demos</a></strong> - More <a href="demos/index.html">complex samples</a> that show the Spry framework in action.</p>
 <ul>
