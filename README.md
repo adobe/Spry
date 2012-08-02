@@ -43,7 +43,6 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 ### What is included in 1.6.1
 
 <p><strong><a href="Spry/blob/master/articles/">Articles</a></strong> - <a href="docs.html">Documentation</a> that describe the Spry framework. <strong>Bold</strong> means new to this release.</p>
-<p>Some PDFs are also available in the <a href="http://labs.adobe.com/technologies/spry/samples/">online samples</a> directory. </p>
 <p><strong><a href="Spry/blob/master/data/">Data</a></strong> - The XML data files used in all our sample files. </p>
 <p><strong><a href="Spry/blob/master/demos/">Demos</a></strong> - More <a href="demos/index.html">complex samples</a> that show the Spry framework in action.</p>
 <ul>
@@ -54,9 +53,6 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 <li><a href="Spry/blob/master/demos/rssreader/index.html" target="_blank">RSS Reader</a>&#8212;An RSS reader showing how multiple XML files can be used to build a rich interface.</li>
 <li><a href="Spry/blob/master/demos/periodic_table/periodic_table.htm">Periodic Table</a> - A demo of the HTML data set and advanced CSS techniques.</li>
 </ul>
-<blockquote>
-<p>Please note: These demos are a proof of concept for  the data capabilities of the Spry framework. They are not keyboard or  screen reader accessible. Please review the <a href="http://www.adobe.com/go/labs_spry_pr1_faq">FAQ</a> for more information.</p>
-</blockquote>
 <p><strong><a href="Spry/blob/master/includes/">Includes</a></strong> - Core JavaScript files that implement the data framework. </p>
 <ul>
 <li><a href="Spry/blob/master/includes/SpryCSVDataSet.js">SpryCSVDataSet.js</a> - Enables CSV files as a data source.</li>
