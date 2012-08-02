@@ -1,24 +1,46 @@
 # Spry
 
 
-The Spry framework for Ajax is a JavaScript library for  web designers that provides functionality that allows designers to  build pages that provide a richer experience for their users. It is  designed to bring Ajax to the web design community who can benefit from  Ajax, but are not well served by other frameworks. 
+Spry is a JavaScript-based framework that enables the rapid development of Ajax-powered web pages. 
+
+Spry was designed to feel like an extension of HTML and CSS, so anyone with basic web-production skills can create next-generation web experiences by adding the power of Ajax to their pages.
+
+Spry can be used with any server-side technology (ColdFusion, PHP, ASP.Net etc.). By building the front-end of your web application with Spry you enable a more efficient designer-developer workflow by keeping UI separated from back-end application logic.
+
+
+## Using Spry
+<ul>
+<li>Spry is implemented as a set of JavaScript libraries. To use Spry on a page, simply include the JavaScript library that contains the Spry features you need, use those features on your page, and then deploy that JavaScript file to your site along with your page.</li>
+<li>Spry has three parts: Spry Data, Spry Widgets and Spry Effects. They can be used together or independently of one another.</li>
+<li>No browser plug-ins or server-side modules are required for Spry to work.</li>
+<li>Any code editor can be used to develop Spry pages.</li>
+</ul>
+
+## Spry Data
+<ul>
+<li>The Spry Data set transforms complex data sources into a familiar row/column format that can be placed anywhere within your page.</li>
+<li>Supported data sources include XML, JSON and HTML</li>
+<li>Easily add Dynamic Regions to your page that control retrieval and placement of data without writing any JavaScript.</li>
+</ul>
+
+## Spry Widgets
+<ul>
+<li>Spry widgets are advanced web components expressed in basic HTML markup, CSS and a little JavaScript.</li>
+<li>Customization and styling is easily done using your existing HTML & CSS skills.</li>
+<li>Spry widgets are accessible. They respond to keyboard navigation and degrade gracefully when JavaScript its turned off.</li>
+</ul>
+
+## Spry Effects
+<ul>
+<li>Spry effects allow you to add smooth and graceful transitions to almost any element on your page</li>
+<li>A single line of JavaScript is used to add an effect to your page.</li>
+<li>Effects can highlight information, create animated transitions, or visually alter a page element for a certain period of time</li>
+</ul>
 
 ## Current Status
 The Spry framework has reached end-of-life and no further updates will be made. However, we do encourage you to fork and maintain your own version of this framework. 
 
-
-## History
-The first release of  the Spry framework was a preview of the data capabilities that enable  designers to incorporate XML data into their HTML documents using HTML,  CSS, and a minimal amount of JavaScript, without the need for  refreshing the entire page. The Spry framework is HTML-centric, and  easy to implement for users with basic knowledge of HTML, CSS and  JavaScript. The framework was designed such that the markup is simple  and the JavaScript is minimal. The Spry framework can be used by anyone  who is authoring for the web in their tool of choice.
-
-Spry 1.6.1 is a small update that ensures Spry is compatible with Adobe AIR.
-
-Before you get started, please take a moment to review the following important information.
-
-#### Disclaimer
-
-We want to remind you that this is PRE-RELEASE code. We are making it available to get your feedback and help us figure out where to take it. We expect to make changes to the framework as we go forward. We want you to build on this and let us know what you think, but please understand that we will make changes. We can't guarantee that something you build today will work in the next release.
-
-### What is included in Prerelease 1.6.1
+### What is included in 1.6.1
 
 <p><strong><a href="Spry/blob/master/articles/">Articles</a></strong> - <a href="docs.html">Documentation</a> that describe the Spry framework. <strong>Bold</strong> means new to this release.</p>
 <p>Some PDFs are also available in the <a href="http://labs.adobe.com/technologies/spry/samples/">online samples</a> directory. </p>
@@ -62,24 +84,3 @@ We want to remind you that this is PRE-RELEASE code. We are making it available 
 <p><strong><a href="Spry/blob/master/widgets/">Widgets</a></strong> - Contains our released widget js, css and reference  files. <a href="widgets/widgets.html">Widget Map</a>.</p>
 <p><a href="Spry/blob/master/License.html">License</a>&#8212;Spry is licensed under a BSD license. <br />
 <a href="Spry/blob/master/ChangeLog.html">Spry change log</a>&#8212;Log of what changed between Prerelease 1 and Prerelease 1.6.1.</p>
-<h3>Where can I get more information? </h3>
-<blockquote>
-<p><a href="http://www.adobe.com/go/labs_spry_pr1_faq">FAQ</a> - Frequently asked questions (and answers!) about the Spry framework.</p>
-<p><a href="http://www.adobe.com/devnet/spry/">Spry Dev Center</a> - Articles and tutorials about Spry.</p>
-<p><a href="http://www.adobe.com/devnet/dreamweaver/articles/spry_photo_album.html">Creating a  Web Photo Album with Spry</a> -Walk through the steps to create a dynamic and flexible page using the Spry framework with remarkably few lines of code.</p>
-<p><a href="http://www.adobe.com/cfusion/webforums/forum/categories.cfm?forumid=72&amp;catid=602" target="_blank">Adobe Labs Spry Forum</a> - Post any questions or feedback on the Spry framework to the forums available on the Adobe Labs site.</p>
-<p><a href="http://www.adobe.com/go/labs_spry_pr1_wiki">Adobe Labs Wiki</a> - The Adobe Labs wiki allows editing of pages and content  by the community, but only within specific sections of the site. For  resources that provide group edit access, you will be required to log  in with your Adobe Labs/Adobe.com username. </p>
-<p><a href="http://blogs.adobe.com/spryteam/">Spry Blog</a>- The Spry Team posts to the blog periodically, with Spry news and information.</p>
-<p>We  do ask that you only contribute to a page or resource if you feel you  can improve it. Please do not add comments or feedback to the author to  the pages directly; there is a 'Discussion' tab available for most all  areas of the site that you can use to submit your feedback within, if you so  desire. Use this tab to comment on or discuss a particular page or  resource, so we can keep the content focused and on-topic.</p>
-<p><a href="http://www.adobe.com/go/labs_spry_pr1_rss">Adobe Labs RSS Feeds</a> - Please subscribe to the <a href="http://www.adobe.com/go/labs_rss">RSS feeds</a> on Adobe Labs to be   notified when new releases of Spry become available.</p>
-<h4>How You Can Help Us</h4>
-<p>While we want to hear about bugs that you find in this prerelease, we are especially interested in what you think about our approach. We are making this available so that we have a better opportunity to address your feedback. Please let us know:</p>
-<blockquote>
-  <p>Are there things that miss the mark?<br />
-    Are there things that make you think &quot;This would be great if they just changed/added...&quot;?<br />
-    Are there things that don't work the way you think they should?</p>
-</blockquote>
-<h4>Feedback</h4>
-<p>Post any questions or feedback on the Spry framework to the <a href="http://www.adobe.com/go/labs_spry_pr1_forum" target="_blank">forums</a> available on the Adobe site.</p>
-</blockquote>
-<p>We look forward to seeing what you think!</p>
