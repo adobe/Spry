@@ -44,7 +44,7 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 
 <p><strong><a href="http://adobe.github.com/Spry/docs.html">Articles</a></strong> - <a href="http://adobe.github.com/Spry/docs.html">Documentation</a> that describe the Spry framework.</p>
 <p><strong><a href="http://github.com/adobe/Spry/data/">Data</a></strong> - The XML data files used in all our sample files. </p>
-<p><strong><a href="http://adobe.github.com/Spry/demos/">Demos</a></strong> - More <a href="demos/index.html">complex samples</a> that show the Spry framework in action.</p>
+<p><strong><a href="http://adobe.github.com/Spry/demos/">Demos</a></strong> - More <a href="http://adobe.github.com/Spry/demos/index.html">complex samples</a> that show the Spry framework in action.</p>
 <ul>
 <li><a href="http://adobe.github.com/Spry/demos/effects/index.html">Effects</a> - A demo of all our Spry Effects. Rewritten in 1.5.</li>
 <li><a href="http://adobe.github.com/Spry/demos/formsvalidation/index.html">Form Validation</a> - A demo of the Form Validation widgets. </li>
