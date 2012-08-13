@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create Paged View data set navigation
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS0A9ABD9D-EB29-4115-862C-CC1C906585C8.html" title="Paged View data set data references"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS9C10D841-99FF-421d-A917-9E4BA49B1E81.html" title="Working with nested data sets"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS7FC5BCEA-CD66-4d81-B060-DAC1A685A4DE.html"><b>Working with Paged View data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create Paged View data set navigation
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           When you create a Paged View data
+set and display the data on a Spry page, you might also want to
+add navigation to the page so that users can page through the data.
+The following examples show two common ways of navigation and their
+corresponding code:</p>
+
+                        <div class="fignone"><img alt="" id="pvnav1" src="images/pvnav1.png" /><div class="figdesc"></div><br />
+                           
+                        </div>
+                        <pre>&lt;p spry:region="pvInfo" spry:repeatchildren="pvInfo"&gt;
+	&lt;a spry:if="{ds_CurrentRowNumber} != {ds_RowNumber}" href="#" onclick="pvCities.goToPage('{ds_pageNumber}'); return false;"&gt;{ds_pageNumber}&lt;/a&gt;
+	&lt;span spry:if="{ds_CurrentRowNumber} == {ds_RowNumber}" class="currentPage"&gt;{ds_pageNumber}&lt;/span&gt;
+&lt;/p&gt;</pre>
+
+                        <div class="fignone"><img alt="" id="pvnav2" src="images/pvnav2.png" /><div class="figdesc"></div><br />
+                           
+                        </div>
+                        <pre>&lt;p spry:region="pvInfo" spry:repeatchildren="pvInfo"&gt;
+ &lt;a spry:if="{ds_CurrentRowNumber} != {ds_RowNumber}" href="#" onclick="pvCities.goToPage('{ds_pageNumber}'); return false;"&gt;{ds_pageFirstItemNumber}-{ds_pageLastItemNumber}&lt;/a&gt;
+ &lt;span spry:if="{ds_CurrentRowNumber} == {ds_RowNumber}" class="currentPage"&gt;{ds_pageFirstItemNumber}-{ds_pageLastItemNumber}&lt;/span&gt;&lt;/p&gt; </pre>
+
+                        <p>You
+create a Paged View data-set navigation by creating a special Paged
+View Info data set that’s linked to the original Paged View data
+set. The Paged View Info data set contains a number of special data
+references that you use to create navigation.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To create the Paged View Info data set, add another
+variable to the constructor <samp class="codeph">script</samp> tag, as follows:</span> 
+                              <div class="p">
+                                 <pre>&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryPagedView.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+    var ds1 = new Spry.Data.XMLDataSet("myXML.xml","xpath");
+    var pv1 = new Spry.Data.PagedView(ds1 ,{pageSize: 20});
+    <strong>var pvInfo = pv1.getPagingInfo()</strong>;
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                              <p>In the preceding example, the
+name of the new data set is <samp class="codeph">pvInfo</samp>, and it is based on
+the first Paged View data set, <samp class="codeph">pv1</samp>.</p>
+
+                              <div class="p">After
+you’ve created the Paged View Info data set, you can use any of
+the special data references to create a navigation as in the preceding
+examples. Following is a list of available data references.
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e22197">
+                                                <p>Data reference</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e22202">
+                                                <p>Description</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageNumber}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The number of the page on which the data
+appears.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageSize}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The number of rows of data per page.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageCount}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The total number of pages in the data set.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageFirstItemNumber}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The item number that is the first row of
+data for that page. If pages have 10 rows per page, item 11 is the
+first item number on page 2 and 21 is the first item number on page
+3.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageLastItemNumber}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The item number that is the last row of
+data for that page. If pages have 10 rows per page, item 20 is the
+last item number on page 2 and 30 is the last item number on page
+3.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageItemCount}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The actual number of rows of data on the
+current page. This number is generally the same as <samp class="codeph">{ds_pageSize}</samp> except
+for instances when the last page of the data has less than a full
+page of data.</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22197 ">
+                                                <p>{ds_pageTotalItemCount}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e22202 ">
+                                                <p>The sum of all the rows on all pages.</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                              </div>
+
+                              <div class="note"><span class="notetitle">Note:  </span>Because the Paged View Info data
+set is a real data set, it still contains all of the normal built-in
+data references, like <samp class="codeph">{ds_RowID}</samp> and <samp class="codeph">{ds_currentRowNumber}</samp>,
+in addition to the data references listed.</div>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

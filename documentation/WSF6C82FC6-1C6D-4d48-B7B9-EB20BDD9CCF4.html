@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Validation Confirm widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS6670EAE6-5875-499d-BB5B-BB3F01035766.html" title="Working with the Validation Confirm widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSDF003017-00A2-4c04-8F35-D2E0B885F4A2.html" title="CSS code for the Validation Confirm widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS6670EAE6-5875-499d-BB5B-BB3F01035766.html"><b>Working with the Validation Confirm widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Validation Confirm widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        The Validation Confirm Widget
+is a text field or a password form field that displays valid or
+invalid states when a user enters a value that does not match the
+value of a similar field in the same form. For example, you can
+add a Validation Confirm widget to a form that requires a user to
+re-type the password they've specified in a previous field. If the
+user fails to type the password exactly as they've specified it
+previously, the widget returns an error message stating that the
+values do not match.</p>
+<div class="note"><span class="notetitle">Note:  </span>You should be familiar with Spry validation widgets before
+you work with the Confirm widget. If you’re not familiar with them,
+see <a href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html">Working with the Validation Text Field widget</a>, or any of the other
+validation widget overviews before proceeding. This overview does
+not present all basic validation widget concepts.</div>
+<p>The following illustration shows a typical setup for a Confirm
+widget:</p>
+<div class="fignone"><img alt="" id="confirm" src="images/confirm.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>The Validation Confirm widget includes a number of states (for
+example, valid, invalid, required, and so on). You can alter the
+properties of these states by editing the corresponding CSS file
+(SpryValidationConfirm.css), depending on the desired validation
+results. A Validation Confirm widget can validate at various points—for
+example, when the site visitor clicks outside the widget, when they type,
+or when they try to submit the form.</p>
+<dl><dt class="dlterm">Initial state</dt>
+<dd>
+                              When the page loads in the browser, or when the user resets
+the form.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Focus state</dt>
+<dd>
+                              When the user places the insertion point in the widget.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Valid state</dt>
+<dd>
+                              When the user enters information correctly, and the form
+can be submitted.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Invalid state</dt>
+<dd>
+                              When the user enters text that does not match the text entered
+in a previous text field.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Required state</dt>
+<dd>
+                              When the user fails to enter required text in the text field.
+                           </dd><p class="dlseparator"></p></dl>
+<p>You create a Validation Confirm widget by adding a few elements
+to a standard password text field. First you add an HTML tag container
+(for example, a <samp class="codeph">&lt;span&gt;</samp> tag) around the text
+field. The container tag must have a unique ID, and any error messages
+for the widget must reside within this container. You also add a
+small constructor script after the HTML code for the widget.</p>
+<p>Following is the HTML code for a Validation Confirm widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Confirm JavaScript library --&gt; 
+&lt;script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+Password:&lt;input type="password" name="password1" id="password1"/&gt;
+&lt;span id="spryconfirm1"&gt;
+	Confirm:&lt;input type="password" name="confirm1" id="confirm1" /&gt;
+	&lt;span class="confirmRequiredMsg"&gt;A value is required.&lt;/span&gt;
+	&lt;span class="confirmInvalidMsg"&gt;The values do not match&lt;/span&gt;
+&lt;/span&gt;
+...
+&lt;script type="text/javascript"&gt;
+	var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm("spryconfirm1", "password1", {validateOn: ['blur']});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the <samp class="codeph">new</samp> JavaScript operator initializes
+the Confirm widget object, and transforms the <samp class="codeph">span</samp> content
+with the ID of <samp class="codeph">spryconfirm1</samp> from static HTML code
+into an interactive page element.</p>
+<p>For a more comprehensive explanation of how validation widgets
+work, as well as additional information about widget structure,
+see <a href="WS2244C510-3276-421b-90DE-C98FDB757987.html">Validation Text Field widget overview and structure</a>.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/validationwidgets/ConfirmValidationSample.html" title="https://github.com/adobe/Spry/tree/master/samples/validationwidgets/ConfirmValidationSample.html" target="_blank">Validation Confirm widget samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

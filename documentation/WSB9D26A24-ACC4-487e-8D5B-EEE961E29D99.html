@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Tabbed Panels widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSF106E72F-F622-4dd8-8CCD-63A6388D68A6.html" title="CSS code for the Tabbed Panels widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS062DEA18-155A-4060-ACF7-C3F135B01A2B.html" title="Add a panel to a Tabbed Panels widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS203A3CE3-6517-4a06-9323-3158EAB3CD8E.html"><b>Working with the Tabbed Panels widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Tabbed Panels widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the SpryTabbedPanels.js file and add it to your web site. You can
+find the SpryTabbedPanels.js file in the widgets/tabbedpanels directory,
+located in the Spry directory that you downloaded from Adobe Labs.
+For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryTabbedPanels.js
+file to it. The SpryTabbedPanels.js file contains all of the information
+necessary for making the Tabbed Panels widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryTabbedPanels.css file and add it to your
+web site. You might choose to add it to the main directory, a SpryAssets
+directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Tabbed Panels widget to
+and link the SpryTabbedPanels.js file to the page by inserting the
+following <samp class="codeph">script</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryTabbedPanels.js file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryTabbedPanels.css file to your web page by
+inserting the following <samp class="codeph">link</samp> tag in the page’s
+head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryTabbedPanels.css file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>To add the tabbed panels widget to your web page, insert
+the following <samp class="codeph">div</samp> tag where you want the tabbed
+panel to appear on the page:</span> 
+                              <pre>&lt;div id="TabbedPanels1" class="TabbedPanels"&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>To add tabs to the tabbed panel, insert a <samp class="codeph">ul
+class="TabbedPanelsTabGroup"</samp> tag inside the <samp class="codeph">div
+id="TabbedPanels1"...</samp> tag, and an <samp class="codeph">li class="TabbedPanelsTab"</samp> tag
+for each tab to add, as follows:</span> 
+                              <pre>&lt;div class="TabbedPanels" id="TabbedPanels1"&gt;
+	&lt;ul class="TabbedPanelsTabGroup"&gt;
+		&lt;li class="TabbedPanelsTab"&gt;Tab 1&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 2&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 3&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 4&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</pre>
+
+                              <p>The preceding code adds four tabs to
+the widget. You can add unlimited tabs.</p>
+
+                           </li>
+<li class="stepexpand"><span>To add a content area (or panel) for each of the tabs,
+insert a <samp class="codeph">div class="TabbedPanelsContentGroup"</samp> container
+tag after the <samp class="codeph">ul</samp> tag, and a <samp class="codeph">div class="TabbedPanelsContent"</samp> tag
+for each content panel, as follows:</span> 
+                              <pre>&lt;div class="TabbedPanels" id="TabbedPanels1"&gt;
+	&lt;ul class="TabbedPanelsTabGroup"&gt;
+		&lt;li class="TabbedPanelsTab"&gt;Tab 1&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 2&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 3&lt;/li&gt; 
+		&lt;li class="TabbedPanelsTab"&gt;Tab 4&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;div class="TabbedPanelsContentGroup"&gt;
+		&lt;div class="TabbedPanelsContent"&gt;Tab 1 Content&lt;/div&gt;
+		&lt;div class="TabbedPanelsContent"&gt;Tab 2 Content&lt;/div&gt;
+		&lt;div class="TabbedPanelsContent"&gt;Tab 3 Content&lt;/div&gt; 
+		&lt;div class="TabbedPanelsContent"&gt;Tab 4 Content&lt;/div&gt; 
+	&lt;/div&gt; 
+&lt;/div&gt; </pre>
+
+                              <p>Insert the content between the opening
+and closing <samp class="codeph">TabbedPanelsContent</samp> tags (for example, <samp class="codeph">Tab
+1 Content</samp>, as in the preceding example). The content can
+be any valid HTML code, including HTML form elements</p>
+
+                           </li>
+<li class="stepexpand"><span>To initialize the Spry tabbed panels object, insert the
+following <samp class="codeph">script</samp> block after the HTML code for
+the Tabbed Panels widget:</span> 
+                              <pre>&lt;div id="TabbedPanels1" class="TabbedPanels"&gt;
+. . .
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var TP1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the Tabbed Panels widget object, and transforms
+the <samp class="codeph">div</samp> content with the ID of <samp class="codeph">TabbedPanels1</samp> from
+static HTML code into an interactive tabbed panels object. The <samp class="codeph">Spry.Widget.TabbedPanels</samp> method
+is a constructor in the Spry framework that creates tabbed panels
+objects. The information necessary to initialize the object is contained
+in the SpryTabbedPanels.js JavaScript library that you linked to
+at the beginning of this procedure.</p>
+
+                              <p>Make sure that the ID
+of the tabbed panels’ <samp class="codeph">div</samp> tag matches the ID parameter
+you specified in the <samp class="codeph">Spry.Widgets.TabbedPanels</samp> method.
+Make sure that the JavaScript call comes after the HTML code for
+the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+	&lt;link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" /&gt;
+	&lt;script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body&gt;
+	&lt;div class="TabbedPanels" id="TabbedPanels1"&gt;
+		&lt;ul class="TabbedPanelsTabGroup"&gt;
+			&lt;li class="TabbedPanelsTab"&gt;Tab 1&lt;/li&gt; 
+			&lt;li class="TabbedPanelsTab"&gt;Tab 2&lt;/li&gt; 
+			&lt;li class="TabbedPanelsTab"&gt;Tab 3&lt;/li&gt; 
+			&lt;li class="TabbedPanelsTab"&gt;Tab 4&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div class="TabbedPanelsContentGroup"&gt;
+			&lt;div class="TabbedPanelsContent"&gt;Tab 1 Content&lt;/div&gt;
+			&lt;div class="TabbedPanelsContent"&gt;Tab 2 Content&lt;/div&gt;
+			&lt;div class="TabbedPanelsContent"&gt;Tab 3 Content&lt;/div&gt; 
+			&lt;div class="TabbedPanelsContent"&gt;Tab 4 Content&lt;/div&gt; 
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var TP1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+&lt;/script&gt; 
+&lt;/body&gt;&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

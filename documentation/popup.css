@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+@import url("content-fonts.css");
+@import url("localeSpecific.css");
+@import url("content-hyperlinks.css");
+/* all hyperlink rules are in content-hyperlinks.css
+   rules that vary by locale are in localeSpecific.css
+	pa.dding, margin, list  ... are in content.css
+	font treatment are in content-fonts.css
+*/
+/* ************************************** */
+/* *****           spacing           ***** */
+/* ************************************** */
+body {
+  font-size: 67%;
+  font-color: #666;
+	padding: 15px;
+	margin: 15px;
+	background-color: white;
+}
+
+img {	border: none;}
+
+.dl .dl	{ margin: 5px 10px; }
+
+.dl br	{	margin: 5px;}
+
+.dd 	{	pa.dding: 0 6px 0 0;}
+
+.dl {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+img 	{	margin: 10px 0 5px 0;}
+
+.dd{ margin-right: 3px; }
+
+/* ************************************** */
+/* *****  display characteristics   ***** */
+/* ************************************** */
+img,
+.dl br,
+.dl {	display: block;}
+
+
+/* INLINE CLASSES */
+.dt,
+.dd,
+.dd p { display: inline; }
+
+.dt {
+  font-weight: bold;
+}

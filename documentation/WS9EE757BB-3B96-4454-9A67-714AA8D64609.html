@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Specify paths and subpaths
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS35BB092F-B448-473f-8221-95B73B379317.html" title="Create a Spry JSON data set"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS861732D8-1E3D-4937-AD56-28AA940AC153.html" title="Using data set functionality"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSFFA47BF4-775B-4418-ABB3-F3B7D220DF49.html"><b>Working with JSON data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Specify paths and subpaths
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You can specify paths to the
+data in the data source, or for more specific acquisition of data,
+you can specify a subpath.</p>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WSF5ACB090-E76A-47ef-BF47-722D14C94F86" onclick="javascript:toggleLayer('WSF5ACB090-E76A-47ef-BF47-722D14C94F86');return false;" title="Specify a path"><img src="images/off.gif" />Specify a path</a></h3><div id="WSF5ACB090-E76A-47ef-BF47-722D14C94F86" class="mini"><a name="WSF5ACB090-E76A-47ef-BF47-722D14C94F86"><!-- --></a><div>
+                        <div class="section">
+                           <p>When you create a JSON data set, you can specify a common
+path in the constructor by using the following syntax:</p>
+
+                           <pre>{path: "property.sub property"}</pre>
+
+                           <div class="note"><span class="notetitle">Note:  </span>JSON
+uses a dot (.) notation to specify the path to a specific point
+in the JSON source code. This method of specification works similar
+to XML and XPath, which uses a slash (/) to denote the node path.</div>
+
+                           <p>For
+example, to obtain the <samp class="codeph">“city”</samp> value from the following
+JSON source: </p>
+
+                           <pre>{
+    "firstName": "Jason",
+    "lastName": "Jones",
+    "address": {
+        "city": "San Francisco, CA",
+        "zip": 94121,
+        "address": "444 Columbus Ave"
+    },
+    "email": [
+        "jason@sf.com",
+        "sjones@adobe.com"
+       ]
+}</pre>
+
+                           <p>set the value in the constructor as follows:</p>
+
+                           <pre>var ds1 = new Spry.Data.JSONDataSet("myfile.js", {path: "address.city"});</pre>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS21128C27-98A0-4cd3-88A6-BF2CBFFEC6EC" onclick="javascript:toggleLayer('WS21128C27-98A0-4cd3-88A6-BF2CBFFEC6EC');return false;" title="Specify a subpath"><img src="images/off.gif" />Specify a subpath</a></h3><div id="WS21128C27-98A0-4cd3-88A6-BF2CBFFEC6EC" class="mini"><a name="WS21128C27-98A0-4cd3-88A6-BF2CBFFEC6EC"><!-- --></a><div>
+                        <div class="section">
+                           <p>JSON formats often use nested structures to group data
+together. In the following example, the <samp class="codeph">“images”</samp> and <samp class="codeph">“thumbnail”</samp> properties
+are grouping together other pieces of subdata:</p>
+
+                           <pre>{
+	"id": "0001",
+	"type": "donut",
+	"name": "Cake",
+	"image":
+		{
+			"url": "images/0001.jpg",
+			"width": 200,
+			"height": 200
+		},
+	"thumbnail":
+		{
+			"url": "images/thumbnails/0001.jpg",
+			"width": 32,
+			"height": 32
+		}
+}</pre>
+
+                           <p>Sometimes you’ll want to flatten these pieces of
+subdata so that they are also available as columns in the data set.
+You can use the <samp class="codeph">subPaths</samp> option in the constructor
+to tell the JSON data set to include these nested structures when
+it flattens the top-level JSON elements.</p>
+
+                           <p>In the following
+example, no path is specified, so the JSON data set attempts to flatten
+only the top-level elements of the data source (<samp class="codeph">“id”,</samp>
+                              <samp class="codeph">“type”</samp>, <samp class="codeph">“name”</samp>, <samp class="codeph">“image”</samp>, and <samp class="codeph">“thumbnail”</samp>).
+Because you also want to include the pieces of subdata from the nested <samp class="codeph">“image”</samp> structure,
+specify the path to the data, which is simply <samp class="codeph">“image”</samp>:</p>
+
+                           <pre>var dsExample6 = new Spry.Data.JSONDataSet("data/object-03.js", {subPaths: "image"});</pre>
+
+                           <p>Spry
+then recognizes the information within the <samp class="codeph">“image”</samp> property,
+and pulls it to the top level of the structure, thus including the
+subproperty information in the data set. You can now use the subproperties
+as data references by prepending <samp class="codeph">image.</samp> to the
+subproperty name, as follows:</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="top" width="NaN%">
+                                          <p>{id}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{type}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{name}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.width}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.height}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.url}</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>Spry also supports multiple subpaths. In
+the preceding example, it is likely that you will want the subproperties
+from the <samp class="codeph">“thumbnail”</samp> property as well. To add this information
+to the data set, specify <samp class="codeph">“thumbnail”</samp> as another
+subpath, as follows:</p>
+
+                           <pre>var dsExample7 = new Spry.Data.JSONDataSet("../../data/json/object-03.js", { subPaths: [ "image", "thumbnail" ] });</pre>
+
+                           <p>The
+multiple subpaths are specified as an array of strings, delimited
+in square brackets ([]). The available data references are now as
+follows:</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="top" width="NaN%">
+                                          <p>{id}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{type}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{name}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.width}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.height}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{image.url}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{thumbnail.width}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{thumbnail.height}</p>
+
+                                       </td>
+<td valign="top" width="NaN%">
+                                          <p>{thumbnail.url}</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

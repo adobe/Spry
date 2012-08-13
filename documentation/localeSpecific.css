@@ -1,0 +1,81 @@
+@charset 'UTF-8';
+
+/* Roman languages */
+*, body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.fig,
+.fig .desc, 
+div.figdesc,
+div.fignone dl dt,
+.fig .dlentry,
+.keyword,
+.note, .important, .tip,
+.related-links:before, div.fignone,
+div.fignone dd	{ font-style: italic; }
+
+/* ja_JP 
+*, body {
+	font-family: MS P Gothic, Verdana, Arial, Helvetica, sans-serif;
+}
+
+.fig,
+.fig .desc,
+.fig .dlentry,
+.keyword,
+.note, .important, .tip,
+.related-links:before, div.fignone,
+div.fignone dd	{ font-weight: bold; }
+
+div#homepage_content div a,
+div#breadcrumb div.hierarchy a { letter-spacing: 0.5px; }
+*/
+
+/* ko_KR 
+*, body {
+	font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+}
+
+.fig,
+.fig .desc,
+.fig .dlentry,
+.keyword,
+.note, .important, .tip,
+.related-links:before, div.fignone,
+div.fignone dd	{ font-weight: bold; }
+*/
+
+/* zh_CN
+*, body {
+	font-family: Verdana, Arial, Helvetica, SimSun-18030, STSong, Song, sans-serif;
+}
+
+.fig,
+.fig .desc,
+.fig .dlentry,
+.keyword,
+.note, .important, .tip,
+.related-links:before, div.fignone,
+div.fignone dd	{ font-weight: bold;}
+
+div#homepage_content div a,
+div#breadcrumb div.hierarchy a { letter-spacing: 0.5px; }
+*/
+
+/* zh_TW 
+*, body {
+	font-family: Verdana, Arial, Helvetica, MingLiu, "Apple Li Sung", sans-serif;
+}
+
+.fig,
+.fig .desc,
+.fig .dlentry,
+.keyword,
+.note, .important, .tip,
+.related-links:before, div.fignone,
+div.fignone dd	{ font-weight: bold; }
+
+div#homepage_content div a,
+div#breadcrumb div.hierarchy a { letter-spacing: 0.5px; }
+*/

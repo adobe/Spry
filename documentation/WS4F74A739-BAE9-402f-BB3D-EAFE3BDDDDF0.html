@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Use a Tooltip widget with Spry data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS264AD934-9EBC-4f94-8DBA-26D0BCECE858.html" title="Tooltip widget options"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS4F22F18A-2F10-4cc3-BC18-54BDDE7C11A8.html" title="Working with the Auto-suggest widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBF6F290C-3C48-479e-8E71-8B0C1E8C0165.html"><b>Working with the Tooltip widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Use a Tooltip widget with Spry data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        As
+with other Spry widgets, you might want to either generate the code
+with Spry Data or populate the content with Spry Data. A common
+tooltip scenario is a variation of the master/detail pattern. For
+example, say you have a table that is the master region, and another
+table (the detail region) that updates in response to users clicking
+rows of the master. With the tooltip, you can make the detail region
+the tooltip, and make the row click the trigger. For a working sample,
+see the <a href="http://dreamweaver.macromedia.com/spry/labs/samples/data_region/TooltipwithData.html" target="_blank">Using Spry Data with the Tooltip Widget</a> page
+on Adobe Labs.</p>
+<p>The key to working with Spry Data and the Tooltip widget, much
+like other widgets, is that due to the asynchronous nature of Spry
+Data, you have to control the regeneration of the widget when the
+data updates. The simplest way to do this is with observers. Observers
+regenerate the Tooltip widget every time the main region is updated.
+You use the onPostUpdate notification for this. The basic code is
+as follows:</p>
+<pre>&lt;div spry:region="ds1" id="<strong>mainRegion</strong>"&gt;
+ &lt;!-- Set the onMouseOver event to trigger the detail region update. The class name 'trigger' is used in the constructor. --&gt;
+ &lt;div spry:repeat="ds1" <strong>onmouseover="ds1.setCurrentRow('{ds_RowID}');" class="trigger"</strong>&gt;{firstname} {lastname}&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- The tooltip container. The id is used in the constructor. --&gt;
+&lt;p spry:detailregion="ds1" <strong>id="tooltip"</strong>&gt;Phone:{phone}&lt;br /&gt;
+ UserName:{username}&lt;br /&gt;
+ ID:{@id}&lt;/p&gt;
+ &lt;!-- The Observer script. Add an observer to run the tooltip constructor after the detail region is loaded. 
+'mainRegion' is the ID of the main region. onPostUpdate tells the function() to run after the new data is loaded. 
+The actual widget constructor is the function in the observer. --&gt;
+&lt;script type="text/javascript"&gt;
+ Spry.Data.Region.addObserver('<strong>mainRegion</strong>',{onPostUpdate:function(){var tt1 = new Spry.Widget.Tooltip('<strong>tooltip</strong>','<strong>.trigger</strong>');}});
+&lt;/script&gt;</pre>
+<p>Following is a breakdown of the code:</p>
+<ul><li>
+                           <p>
+                              <samp class="codeph">mainRegion</samp> is the ID of the Spry region
+we are listening to for data updates.</p>
+
+                        </li>
+<li>
+                           <p>The <samp class="codeph">trigger</samp> class is used to attach one
+tooltip to multiple elements.</p>
+
+                        </li>
+<li>
+                           <p>The ID <samp class="codeph">tooltip</samp> is the detail region.</p>
+
+                        </li>
+<li>
+                           <p>The onmouseover event sets the current row in the data set,
+which updates the tooltip, depending on the selection.</p>
+
+                        </li>
+</ul>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WSE805B007-F44D-4a7e-8A9A-8E6484B6B909.html">Work with observer notifications</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

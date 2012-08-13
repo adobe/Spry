@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * HTML Panel widget overview
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS541105AF-D178-4893-93BC-BDD4E399EBDE.html" title="Working with the HTML Panel widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSA037707D-0B9C-44fb-88E3-92D6F4A9F1E8.html" title="Insert an HTML panel widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS541105AF-D178-4893-93BC-BDD4E399EBDE.html"><b>Working with the HTML Panel widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				HTML Panel widget overview
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        An
+HTML Panel widget is a page element that lets you display HTML from
+an external source (such as a separate HTML file). The external
+source can be in the form of an HTML fragment (no meta data necessary)
+or an HTML element with a unique ID in a complete HTML page.</p>
+<p>You can load any amount of content into the HTML Panel widget,
+one piece at a time. If you use progressive enhancement, the page
+will be able to degrade gracefully in a non-Javascript environment.</p>
+<div class="note"><span class="notetitle">Note:  </span>You should be familiar with Spry widgets before you work with
+the HTML Panel widget. If you’re not familiar with them, see <a href="WSAF41582F-4EA5-445b-87F5-DBBB3BFA9D9F.html">Accordion widget overview and structure</a>, or any of the other widget
+overviews before proceeding. This overview does not present basic
+widget concepts.</div>
+<p>The following example shows code for an HTML Panel widget:</p>
+<pre>&lt;div id="mainContent"&gt;
+This is static content that will remain in place until the user clicks on the link below!
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var panelWidget = new Spry.Widget.HTMLPanel("mainContent");
+&lt;/script&gt;
+...
+&lt;a href="#" onclick="panelWidget.loadContent(products.html);"&gt;Products&lt;/a&gt;</pre>
+<p>In the example, the HTML Panel is the <samp class="codeph">div</samp> tag
+with the ID mainContent, and the widget constructor that follows
+creates the HTML Panel widget object (panelWidget) on the element
+with that ID. The link on the page has an onclick behavior that
+loads the content of the products.html page into the panelWidget
+object when a user clicks the link.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS5A44A1B7-6D94-43a8-8CC4-22806438B31C.html">Progressive enhancement with Spry</a></li></ul>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/articles/html_panel/index.html" title="https://github.com/adobe/Spry/tree/master/articles/html_panel/index.html" target="_blank">Advanced HTML Panel widget concepts</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+</body>

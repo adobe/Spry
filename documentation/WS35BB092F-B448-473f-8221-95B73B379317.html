@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create a Spry JSON data set
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS1666C8E2-E947-4299-BEE4-216FD44C727F.html" title="Prepare your files"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS9EE757BB-3B96-4454-9A67-714AA8D64609.html" title="Specify paths and subpaths"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSFFA47BF4-775B-4418-ABB3-F3B7D220DF49.html"><b>Working with JSON data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create a Spry JSON data set
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Open
+a new or existing HTML page.</span></li>
+<li class="stepexpand"><span>Make sure that you’ve linked the Spry data library files
+to the page. For more information, see Prepare
+your files.</span></li>
+<li class="stepexpand"><span>Locate the JSON source for the data set.</span> 
+                              <p>For example, you might want to use the JSON code in a file
+called <em>object-02.js</em>. The file might be located in a folder
+called <dfn class="term">data</dfn> in the site’s root folder:</p>
+
+                              <p>data/object-02.js</p>
+
+                              <p>You
+could also specify a URL to the HTML file, as follows:</p>
+
+                              <p>http://www.somesite.com/somefolder/object-02.js</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The
+URL you decide to use (whether absolute or relative) is subject
+to the browser’s security model, which means that you can only load
+data from an HTML source that is on the same server domain as the
+HTML page you’re linking from. You can avoid this limitation by
+providing a cross-domain service script. For more information, consult
+your server administrator.</div>
+
+                           </li>
+<li class="stepexpand"><span>To create the data set, insert the following <samp class="codeph">script</samp> block
+after the <samp class="codeph">script</samp> tags that import the library:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var datasetName = new Spry.Data.JSONDataSet("<em>sourcefile</em>", {path:"<em>datapath</em>"});
+&lt;/script&gt;</pre>
+
+                              <p>A completed statement might look as
+follows:</p>
+
+                              <pre>var ds1 = new Spry.Data.HTMLDataSet("data/object-02.js", {path:"batters.batter"});</pre>
+
+                              <p>The
+statement creates a new data set called <samp class="codeph">ds1</samp> that
+retrieves data from the <samp class="codeph">batters.batter</samp> property
+in the specified JavaScript file.</p>
+
+                              <p>You can also specify a URL
+as the source of the data, as follows:</p>
+
+                              <pre>var dsSpecials = new Spry.Data.JSONDataSet("http://www.somesite.com/somefolder/object-02.js", {path:"batters.batter"});</pre>
+
+                              <p>The
+completed example code might look as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;script type="text/javascript" src="includes/SpryJSONDataSet.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var ds1 = new Spry.Data.JSONDataSet("data/object-02.js", {path:"batters.batter"});
+&lt;/script&gt;
+...
+&lt;/head&gt;</pre>
+
+                           </li>
+</ol>
+<div class="section">
+                        <p>After you’ve created the data set, create a dynamic region
+so that you can display the data.</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS9591785F-81A6-4234-AF61-2BD0B32597A0.html">Create a Spry dynamic region and display data</a></li><li class="icon Spry" alt="Spry"><a href="WSBEF66361-CD7A-4448-BF4D-B22B640E606B.html">Sort data</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

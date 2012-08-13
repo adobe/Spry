@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry advanced master and detail region overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS4CB7A8B8-8433-4d07-BD6F-19F8B3A5B9B8.html" title="Spry basic master and detail region overview and structure"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS8D6F431A-AB24-43d1-A74A-B1EDDFB1A01A.html" title="Spry Community"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS742CEB12-1DB0-42e7-950C-288F67C7CC3B.html"><b>About Spry pages and dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry advanced master and detail region overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        In some
+cases, you might want to create master and detail relationships
+that involve more than one data set. For example, you might have
+a list of menu items that has a great deal of detail information
+associated with it. (This section uses a list of ingredients to
+illustrate the point.) Fetching all of the information associated
+with every menu item in a single query might be an inefficient use
+of bandwidth not to mention unnecessary, given that many users might
+not even be interested in the details of everything on the menu.
+Instead, it is more efficient to download only the detail data that
+the user is interested in when the user requests it, thus improving
+performance and reducing bandwidth. Limiting the amount of data
+exchange in this way is a common technique used to improve performance
+in AJAX applications.</p>
+<p>Following is the XML source code for a sample file called <dfn class="term">cafetownsend.xml</dfn>:</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;specials&gt;
+	&lt;menu_item id="1"&gt;
+		&lt;item&gt;Summer Salad&lt;/item&gt;
+		&lt;description&gt;organic butter lettuce with apples, blood oranges, gorgonzola, and raspberry vinaigrette.&lt;/description&gt;
+		&lt;price&gt;7&lt;/price&gt;
+		&lt;url&gt;summersalad.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="2"&gt;
+		&lt;item&gt;Thai Noodle Salad&lt;/item&gt;
+		&lt;description&gt;lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, and scallions.&lt;/description&gt;
+		&lt;price&gt;8&lt;/price&gt;
+		&lt;url&gt;thainoodles.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+	&lt;menu_item id="3"&gt;
+		&lt;item&gt;Grilled Pacific Salmon&lt;/item&gt;
+		&lt;description&gt;served with new potatoes, diced beets, Italian parlsey, and lemon zest.&lt;/description&gt;
+		&lt;price&gt;16&lt;/price&gt;
+		&lt;url&gt;salmon.xml&lt;/url&gt;
+	&lt;/menu_item&gt;
+&lt;/specials&gt;</pre>
+<div class="note"><span class="notetitle">Note:  </span>This XML sample code is different from the code used in Spry
+XML Data Set basic overview.</div>
+<p>The cafetownsend.xml file supplies the data for the master data
+set. The <dfn class="term">url</dfn> node of the cafetownsend.xml file points
+to a unique XML file (or URL) for each menu item. These unique XML
+files contain a list of ingredients for the corresponding menu items.
+The summersalad.xml file, for example, might look as follows:</p>
+<pre>&lt;?xml version="1.0" encoding="iso-8859-1" ?&gt;
+&lt;item&gt;
+	&lt;item_name&gt;Summer salad&lt;/item_name&gt;
+	&lt;ingredients&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;butter lettuce&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Macintosh apples&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Blood oranges&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Gorgonzola cheese&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;raspberries&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;Extra virgin olive oil&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;balsamic vinegar&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;sugar&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;salt&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;pepper&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;parsley&lt;/name&gt;
+		&lt;/ingredient&gt;
+		&lt;ingredient&gt;
+			&lt;name&gt;basil&lt;/name&gt;
+		&lt;/ingredient&gt;
+	&lt;/ingredients&gt;
+&lt;/item&gt;</pre>
+<p>When you are familiar with the structure of your XML code, you
+can create two data sets to use to display data in master and detail
+dynamic regions. In the following example, a master dynamic region
+displays data from the <samp class="codeph">dsSpecials</samp> data set, and
+a detail dynamic region displays data from the <samp class="codeph">dsIngredients</samp> data
+set:</p>
+<pre>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--Create two separate data sets--&gt;	
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");		
+	var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;!--Create a master dynamic region--&gt;
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;	
+		&lt;!--User clicks to reset the current row in the data set--&gt;
+		&lt;tr spry:repeat="dsSpecials" spry:setrow=”dsSpecials”&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;!--Create the detail dynamic region--&gt;
+&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;		
+			&lt;th&gt;Ingredients&lt;/th&gt;
+		&lt;/tr&gt;		
+		&lt;tr spry:repeat=”dsIngredients”&gt;
+			&lt;td&gt;{name}&lt;/td&gt;	
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+. . .
+&lt;/body&gt;</pre>
+<p>In the example, the third <samp class="codeph">script</samp> block contains
+the statement that creates two data sets, one called <samp class="codeph">dsSpecials</samp> and
+one called <samp class="codeph">dsIngredients</samp>:</p>
+<pre>var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");</pre>
+<p>The URL for the second data set, <samp class="codeph">dsIngredients</samp>,
+contains a data reference (<samp class="codeph">{dsSpecials::url}</samp>) to
+the first data set, <samp class="codeph">dsSpecials</samp>. More specifically,
+it contains a data reference to the url column in the <samp class="codeph">dsSpecials</samp> data
+set. When the URL or XPath argument in the constructor that creates
+a data set contains a reference to another data set, the data set
+being created automatically becomes an observer of the data set
+it’s referencing. The new data set depends on the original data
+set, and reloads its data or reapplies its XPath whenever the data
+or current row changes in the original data set.</p>
+<p>The following example shows the observer relationships established
+between data sets and master and detail dynamic regions. In the
+preceding example, the <samp class="codeph">dsIngredients</samp> data set (data
+set B) is an observer of the <samp class="codeph">dsSpecials</samp> data set
+(data set A).</p>
+<div class="fignone"><img alt="" id="fig13" src="images/fig13.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>In the example, changing the current row in the <samp class="codeph">dsSpecials</samp> data
+set sends a notification to the <samp class="codeph">dsIngredients</samp> data
+set that it also needs to change. Because each row of the <samp class="codeph">dsSpecials</samp> data
+set contains a distinct URL in the url column, the <samp class="codeph">dsIngredients</samp> data
+set must update to include the correct URL for the selected row.</p>
+<p>By default, the <samp class="codeph">dsIngredients</samp> data set (whose
+data is displayed in the detail region) is created using the data
+it obtains from the URL specified in the constructor—in this case
+a reference to the data in the url column of the <samp class="codeph">dsSpecials</samp> data
+set. The default current row in the <samp class="codeph">dsSpecials</samp> data
+set (the first row) contains a unique path to the summersalad.xml
+file, and thus the detail region displays the information from that
+file when the page loads in a browser. When the current row of the <samp class="codeph">dsSpecials</samp> data
+set changes, however, the URL also changes—to salmon.xml for example—and
+the <samp class="codeph">dsIngredients</samp> data set (and by association,
+the detail dynamic region) updates accordingly.</p>
+<div class="fignone"><img alt="" id="fig14" src="images/fig14.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>This process is functionally equivalent to the one illustrated
+in Spry
+basic master/detail region overview and structure, the technical
+difference being that in the advanced case, the second (or detail) <em>data
+set</em> is listening for data and row changes in the master data
+set, whereas in the basic example, the <em>detail region</em> is listening
+for data and row changes in the master data set.</p>
+<p>In the example code, <samp class="codeph">spry:region</samp> is used for
+the detail region instead of <samp class="codeph">spry:detailregion</samp>.
+The difference between a <samp class="codeph">spry:region</samp> and a <samp class="codeph">spry:detailregion</samp> is that
+the <samp class="codeph">spry:detailregion</samp> specifically listens for <samp class="codeph">CurrentRowChange</samp> notifications
+(in addition to <samp class="codeph">DataChanged</samp> notifications) from
+the data set, and updates itself when it receives one. Because the
+current row of the <samp class="codeph">dsIngredients</samp> data set never
+changes (it’s the current row of the <samp class="codeph">dsSpecials</samp> data
+set that changes), a <samp class="codeph">spry:detailregion</samp> attribute
+is not needed. In this case, the <samp class="codeph">spry:region</samp> attribute,
+which defines a region that only listens for DataChanged notifications,
+suffices.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

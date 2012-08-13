@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Tooltip widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSBF6F290C-3C48-479e-8E71-8B0C1E8C0165.html" title="Working with the Tooltip widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS2A28C087-6D08-49ad-937F-4E91FD231B19.html" title="Insert the Tooltip widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBF6F290C-3C48-479e-8E71-8B0C1E8C0165.html"><b>Working with the Tooltip widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Tooltip widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        The Spry tooltip widget exposes additional
+information when a user hovers over a particular element on the
+page. The additional content disappears when the user stops hovering.
+You can also set tooltips to stay open for longer periods of time
+so that users can interact with content inside the tooltip.</p>
+<div class="note"><span class="notetitle">Note:  </span>You should be familiar with Spry widgets before you work with
+the Tooltip widget. If you’re not familiar with them, see <a href="WSAF41582F-4EA5-445b-87F5-DBBB3BFA9D9F.html">Accordion widget overview and structure</a>, or any of the other widget
+overviews before proceeding. This overview does not present basic
+widget concepts.</div>
+<p>A Tooltip widget consists of the following three elements:</p>
+<ul><li>
+                           <p>The tooltip container. This is the element that contains
+the message or content that you want to display when the user activates
+the tooltip.</p>
+
+                        </li>
+<li>
+                           <p>The page element(s) that activates the tooltip.</p>
+
+                        </li>
+<li>
+                           <p>The constructor script. This is JavaScript that tells Spry
+to create the tooltip functionality.</p>
+
+                        </li>
+</ul>
+<p>The following is example code for a Tooltip widget:</p>
+<pre>&lt;p&gt;In this sentence&lt;a href="#" id="trigger"&gt;these three words&lt;/a&gt; are the trigger element... &lt;/p&gt;
+&lt;div id="firstFixed"&gt;This is the tooltip&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var static_tooltip = new Spry.Widget.Tooltip('firstFixed', '#trigger', {closeOnTooltipLeave: true, hideDelay: 1000});
+&lt;/script&gt;</pre>
+<p>In the above example, the <samp class="codeph">a</samp> tag with the id
+"trigger" is the element that triggers the tooltip display. When
+a user hovers over this tag, the tooltip appears in the browser.</p>
+<p>The <samp class="codeph">div</samp> tag with the id "firstFixed" surrounds
+the tooltip content, but the content only appears when the user
+hovers over the trigger content.</p>
+<p>In the tooltip constructor, the <samp class="codeph">var</samp> defines
+the widget name (in this case “static_tooltip”). The required values
+in the Spry.Widget.Tooltip method are the ID of the tooltip content
+(“firstFixed”) and the CSS selector of the trigger element. The
+CSS selector can be a class, an HTML tag, an ID, or a combination
+of these. In this example, our selector is “#trigger”.</p>
+<p>You can also add other options to the constructor, for example
+options that define how long to display the tooltip, and where to
+place it.</p>
+<p>In our example, we used an <samp class="codeph">a</samp> tag for our trigger
+element, and a <samp class="codeph">div</samp> tag to contain the content of
+our tooltip. The actual HTML code, however, can be anything. What
+matters is the tooltip’s ID, the trigger element’s CSS selector,
+and the correspondence of those values to the values you place in
+the widget constructor.</p>
+<p>You should keep the following points in mind when working with
+the Tooltip widget:</p>
+<ul><li>
+                           <p>Any open tooltip will close before the next one opens.</p>
+
+                        </li>
+<li>
+                           <p>Tooltips persist while users hover over the trigger area.</p>
+
+                        </li>
+<li>
+                           <p>There are no limitations as to what kinds of tags you can
+use for triggers and for tooltip content. (Block level elements
+are always advisable, however, to avoid possible cross-browser rendering
+problems.)</p>
+
+                        </li>
+<li>
+                           <p>By default, the tooltip appears 20 pixels down and to the
+right of the cursor. You can use the offsetX and offsetY options
+to set a custom appearance point.</p>
+
+                        </li>
+<li>
+                           <p>You must place both trigger and tooltip HTML code <em>before</em> the
+constructor script.</p>
+
+                        </li>
+<li>
+                           <p>Currently there is no way to have a tooltip open when a page
+loads in a browser.</p>
+
+                        </li>
+</ul>
+<p>The tooltip widget requires very little CSS. Spry uses JavaScript
+to show, hide, and position the tooltip. You can achieve any other
+styling for the tooltip with standard CSS techniques, as your page
+requires. The only rule contained in the default CSS file is a workaround
+for Internet Explorer 6 problems so that the tooltip appears above
+form elements or Flash objects.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Data set retrieval options
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html" title="Getting and manipulating data"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS7A2F2890-7361-44b1-9C3E-D4A1209E037B.html" title="Turn off data caching"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Data set retrieval options
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        By default,
+Spry data sets use the HTTP GET method to retrieve XML data. The data
+set can also retrieve data using the HTTP POST method, by specifying additional
+constructor options, as follows:</p>
+<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+&lt;title&gt;Dynamic Region Example&lt;/title&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsPhotos = new Spry.Data.XMLDataSet("/photos.php", "/gallery/photos/photo", { method: "POST", postData: "galleryid=2000&amp;offset=20&amp;limit=10", headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" } });
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>If you use the POST method, but don’t specify a content type,
+the default content type is set to <samp class="codeph">"application/x-www-form-urlencoded;
+charset=UTF-8"</samp>.</p>
+<p>The following table shows the HTTP-related constructor options
+that you can specify.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e22531">
+                                    <p>Option</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e22536">
+                                    <p>Description</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e22531 ">
+                                    <p>method</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e22536 ">
+                                    <p>The HTTP method to use when fetching the
+XML data. Must be the string "GET" or "POST". </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22531 ">
+                                    <p>postData</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e22536 ">
+                                    <p>Can be a string containing URL encode form
+arguments or any value supported by the XMLHttpRequest object. If
+a "Content-Type" header is not specified in conjunction with the postData
+option, the <samp class="codeph">"application/x-www-form-urlencoded; charset=UTF-8"</samp> content
+type is used. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22531 ">
+                                    <p>username</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e22536 ">
+                                    <p>The server username to use when accessing
+the XML data. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22531 ">
+                                    <p>password</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e22536 ">
+                                    <p>The password to use in conjunction with
+username when accessing the XML data. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22531 ">
+                                    <p>headers</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e22536 ">
+                                    <p>An object or associative array that uses
+the HTTP request field name as its property and key to store values. </p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

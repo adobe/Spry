@@ -1,0 +1,32 @@
+.page dt,
+.page dd
+{
+	float: left;
+	margin-right: 1px;	
+}
+
+body#content_body { 
+	padding: 0 0 25px 30px; 
+	margin: 25px 0 0 0; 
+}
+
+
+div#page_content_wrapper { 
+	padding-right: 15px;	
+}
+
+div#related {
+	width: 100%;
+	padding-right: 0 0 0 15px;
+	margin: 0;	
+}
+
+div#related h3 {
+	font-size: 100%;	
+}
+
+div#pneumonic h1 { 
+width: 105%;
+padding-right: 2.5%;
+height: 24px !important;
+}

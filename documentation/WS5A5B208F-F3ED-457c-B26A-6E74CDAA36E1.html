@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Sliding Panels widget behaviors
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS5F39D2B9-A298-472a-8E50-AC4B10984EFC.html" title="Insert the Sliding Panels widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSB2C9F980-54B7-44e9-8FDC-427507F7F576.html" title="Sliding Panels widget options"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSFB5D524D-27F7-4e69-A207-25126187E9EA.html"><b>Working with the Sliding Panels widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Sliding Panels widget behaviors
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        The
+Sliding Panels widget includes built-in behaviors that let you easily
+navigate between panels.</p>
+<div class="p">
+                        
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e6810">
+                                       <p>Behavior</p>
+
+                                    </th>
+<th valign="top" width="NaN%" id="d16e6815">
+                                       <p>Description</p>
+
+                                    </th>
+<th valign="top" width="NaN%" id="d16e6820">
+                                       <p>Example</p>
+
+                                    </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e6810 ">
+                                       <p>showPanel</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6815 ">
+                                       <p>Advances the content to display the specified
+panel. The value of the behavior is the number of the panel (using
+a zero-based counting system, which follows the order of the panel
+code), or the ID of the panel you want to show. Use the variable
+name from the widget’s constructor script tag to identify the widget
+in the behavior. The syntax is: <samp class="codeph">variablename.showPanel(ID
+or panel#)</samp>.</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6820 ">
+                                       <p>&lt;a href="#" onClick="sp1.showPanel(4); return
+false;"&gt;Panel 4 &lt;/a&gt;</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6810 ">
+                                       <p>showFirstPanel</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6815 ">
+                                       <p>Shows the first panel in the content panel group.
+Use the variable name from the widget’s constructor script tag to
+identify the widget in the behavior.</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6820 ">
+                                       <p>&lt;a href="#" onclick="sp1.showFirstPanel(); return
+false;"&gt;First&lt;/a&gt;</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6810 ">
+                                       <p>showPreviousPanel</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6815 ">
+                                       <p>Shows the panel previous to the panel currently
+in view.</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6820 ">
+                                       <p>&lt;a href="#" onclick="sp1.showPreviousPanel();
+return false;"&gt;Previous&lt;/a&gt;</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6810 ">
+                                       <p>showNextPanel</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6815 ">
+                                       <p>Shows the panel that follows the panel currently
+in view.</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6820 ">
+                                       <p>&lt;a href="#" onclick="sp1.showNextPanel(); return
+false;"&gt;Next&lt;/a&gt;</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6810 ">
+                                       <p>showLastPanel</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6815 ">
+                                       <p>Shows the last panel in the content panel group.</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e6820 ">
+                                       <p>&lt;a href="#" onclick="sp1.showLastPanel(); return
+false;"&gt;Last&lt;/a&gt;</p>
+
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" title="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" target="_blank">Sliding Panels samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

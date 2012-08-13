@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert an HTML panel widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS00CCDB82-69F7-4aec-BA8B-6D536A90EC8E.html" title="HTML Panel widget overview"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html" title="Working with Spry data sets"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS541105AF-D178-4893-93BC-BDD4E399EBDE.html"><b>Working with the HTML Panel widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert an HTML panel widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              
+                              Locate the SpryHTMLPanel.js
+file and add it to your web site. You can find the SpryHTMLPanel.js
+file in the widgets/htmlpanel directory, located in the Spry directory
+that you downloaded from Adobe Labs. For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryHTMLPanel.js
+file to it. The SpryHTMLPanel.js file contains all of the information
+necessary for making the HTML Panel widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryHTMLPanel.css file and add it to your
+web site. You might choose to add it to the main directory, a SpryAssets
+directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the HTML Panel widget to and
+link the SpryHTMLPanel.js file to the page by inserting the following <samp class="codeph">script</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryHTMLPanel.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryHTMLPanel.js file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryHTMLPanel.css file to your web page by inserting
+the following <samp class="codeph">link</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryHTMLPanel.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryHTMLPanel.css file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add the HTML Panel widget to your web page by inserting
+a widget container tag, such as a <samp class="codeph">div</samp> tag, where
+you want the widget to appear on the page. You must assign the widget
+tag a unique ID, as follows:</span> 
+                              <pre>&lt;div id="myPanel"&gt;This is default text.&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Next, you need an HTML fragment to pull into the widget,
+so create a separate file called frag.html, and save the new file
+in the same directory as your Spry page. Add the following code
+to the frag.html file:</span> 
+                              <pre>&lt;table width="200" border="1"&gt;
+	&lt;tr&gt;
+		&lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;2&lt;/td&gt;
+        &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;4&lt;/td&gt;
+        &lt;td&gt;5&lt;/td&gt;
+        &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;8&lt;/td&gt;
+        &lt;td&gt;9&lt;/td&gt;
+      &lt;/tr&gt;
+&lt;/table&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Return to the Spry page and add a constructor script
+below the HTML code for the widget, as follows:</span> 
+                              <pre>&lt;div id="myPanel"&gt;This is default text.&lt;/div&gt;
+&lt;script&gt;
+	var panelWidget = new Spry.Widget.HTMLPanel("myPanel");
+&lt;/script&gt; </pre>
+
+                              <p>This code gives the panel a name
+(panelWidget) and creates an HTML Panel on the myPanel element.
+Remember that JavaScript is case sensitive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Finally add a link that loads the panel when a user clicks
+on it:</span> 
+                              <pre>&lt;div id="myPanel"&gt;This is default text.&lt;/div&gt;
+&lt;<strong>a href="#" onclick="panelWidget.loadContent("frag.html");&gt;Load
+Frag&lt;/a</strong>&gt;
+&lt;script&gt;
+	var panelWidget = new Spry.Widget.HTMLPanel("myPanel");
+&lt;/script&gt; </pre>
+
+                              <p>This link has an onclick event that
+causes the content of the frag.html to load into the panel widget.
+The format of the method is <samp class="codeph">widgetname.loadContent("<em>pathToFragment</em>");</samp>.</p>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/articles/html_panel/index.html" title="https://github.com/adobe/Spry/tree/master/articles/html_panel/index.html" target="_blank">Advanced HTML Panel widget concepts</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

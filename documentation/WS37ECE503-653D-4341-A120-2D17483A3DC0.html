@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry XML data set basic overview
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS1442F916-F04D-4de2-9F6A-D1363A8EA992.html" title="Dynamically generating XML"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSF1DAE8D8-3874-4ed1-A327-F92D74D2CD70.html" title="Spry XML data set advanced examples"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS9DA7216F-166F-4ab3-87E0-1E558798EC95.html"><b>Working with XML data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry XML data set basic overview
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        A
+Spry <dfn class="term">XML data set</dfn> is fundamentally a JavaScript object.
+With a few snippets of code in your web page, you can create this
+object and load data from an XML source into the object when the
+user opens the page in a browser. The data set results in a flattened
+array of XML data that creates a standard table containing rows
+and columns.</p>
+<p>For example, suppose you have an XML source file, cafetownsend.xml,
+that contains the following information:</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;specials&gt;
+	&lt;menu_item id="1"&gt;
+		&lt;item&gt;Summer Salad&lt;/item&gt;
+		&lt;description&gt;organic butter lettuce with apples, blood oranges, gorgonzola, and raspberry vinaigrette.&lt;/description&gt;
+		&lt;price&gt;7&lt;/price&gt;
+	&lt;/menu_item&gt;	
+	&lt;menu_item id="2"&gt;	
+		&lt;item&gt;Thai Noodle Salad&lt;/item&gt;
+		&lt;description&gt;lightly sauteed in sesame oil with baby bok choi, portobello mushrooms, and scallions.&lt;/description&gt;
+		&lt;price&gt;8&lt;/price&gt;
+	&lt;/menu_item&gt;	
+	&lt;menu_item id="3"&gt;
+		&lt;item&gt;Grilled Pacific Salmon&lt;/item&gt;
+		&lt;description&gt;served with new potatoes, diced beets, Italian parlsey, and lemon zest.&lt;/description&gt;
+		&lt;price&gt;16&lt;/price&gt;
+	&lt;/menu_item&gt;
+&lt;/specials&gt;</pre>
+<p>Using XPath in your web page to indicate the data you’re interested
+in (in this example, the <samp class="codeph">specials/menu_item</samp> node
+of the XML file), the data set flattens the XML data into an array
+of objects (rows) and properties (columns), represented by the following
+table.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e18271">
+                                    <p>@id</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e18276">
+                                    <p>item</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e18281">
+                                    <p>description</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e18286">
+                                    <p>price</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e18271 ">
+                                    <p>1</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18276 ">
+                                    <p>Summer salad</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18281 ">
+                                    <p>organic butter lettuce with apples, blood
+oranges, gorgonzola, and raspberry vinaigrette.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18286 ">
+                                    <p>7</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18271 ">
+                                    <p>2</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18276 ">
+                                    <p>Thai Noodle Salad</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18281 ">
+                                    <p>lightly sauteed in sesame oil with baby bok
+choi, portobello mushrooms, and scallions.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18286 ">
+                                    <p>8</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18271 ">
+                                    <p>3</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18276 ">
+                                    <p>Grilled Pacific Salmon</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18281 ">
+                                    <p>served with new potatoes, diced beets, Italian
+parsley, and lemon zest.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e18286 ">
+                                    <p>16</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The data set contains a row for each menu item and the following
+columns: @id, item, description, and price. The columns represent
+the child nodes of the <samp class="codeph">specials/menu_item</samp> node
+in the XML, plus any attributes contained in the <samp class="codeph">menu_item</samp> tag,
+or in any of the child tags of the <samp class="codeph">menu_item</samp> tag.</p>
+<p>You create a Spry XML data set object by using XPath in the <samp class="codeph">Spry.Data.XMLDataSet</samp> constructor.
+The XPath defines the default structure of the data set. For example, if
+you use XPath to select a repeating XML node that includes three
+child nodes, the data set will have a row for each repeating node,
+and a column for each of the three child nodes. (If any of the repeating
+nodes or child nodes contain attributes, the data set also creates
+a column for each attribute.)</p>
+<p>If you do not specify an XPath, the XML data set will not load
+any data.</p>
+<p>The following example creates a Spry data set called <samp class="codeph">dsSpecials</samp>,
+and loads data from an XML file called <dfn class="term">cafetownsend.xml</dfn>:</p>
+<pre>&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+	&lt;title&gt;Spry Example&lt;/title&gt;
+	&lt;!--Link the Spry libraries--&gt;
+	&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+	&lt;!--Create a data set object--&gt;
+	&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+	&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;/body&gt;</pre>
+<div class="note"><span class="notetitle">Note:  </span>The examples in this document are for reading purposes only
+and not intended for execution. For working samples, see the demos
+folder in the Spry folder on Adobe Labs.</div>
+<p>In the example, the first <samp class="codeph">script</samp> tag links an
+open-source XPath library to the page where you’ll eventually display
+XML data. The XPath library allows for the specification of a more
+complex XPath when you create a data set:</p>
+<pre>&lt;script type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;</pre>
+<p>The second <samp class="codeph">script</samp> block links the Spry data
+library file, SpryData.js, which is stored in a folder called <dfn class="term">includes</dfn> on
+the server:</p>
+<pre>&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;</pre>
+<p>The Spry data library depends on the XPath library, so it’s important
+that you always link the XPath library first.</p>
+<p>The third <samp class="codeph">script</samp> block contains the statement
+that creates the <samp class="codeph">dsSpecials</samp> data set. The cafetownsend.xml
+XML source file is stored in a folder called <dfn class="term">data</dfn> on
+the server:</p>
+<pre>var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");</pre>
+<div class="note"><span class="notetitle">Note:  </span>Remember that JavaScript and XML are case-sensitive languages,
+so it's important that you make sure that the scripts and column
+names you specify are capitalized (or not capitalized) appropriately.</div>
+<p>In JavaScript the <samp class="codeph">new</samp> operator is used to create
+objects. The <samp class="codeph">Spry.Data.XMLDataSet</samp> method is a constructor
+in the Spry data library that creates new Spry data set objects.
+The constructor takes two parameters: the source of the data (<samp class="codeph">"data/cafetownsend.xml"</samp>,
+in this case, a URL relative to the HTML page) and an XPath expression
+that specifies the node or nodes in the XML to supply the data (<samp class="codeph">"specials/menu_item"</samp>). </p>
+<p>You can also specify an absolute URL as the source of the XML
+data, as follows:</p>
+<pre>var dsSpecials = new Spry.Data.XMLDataSet("http://www.somesite.com/somefolder/cafetownsend.xml", "specials/menu_item");</pre>
+<div class="note"><span class="notetitle">Note:  </span>The URL you decide to use (whether absolute or relative) is
+subject to the browser’s security model, which means that you can
+only load data from an XML source that is on the same server domain
+as the HTML page you’re linking from. You can avoid this limitation
+by providing a cross-domain service script. For more information,
+consult your server administrator.</div>
+<p>In the preceding example, the constructor creates a new <samp class="codeph">dsSpecials</samp> Spry
+data set object. The data set obtains data from the <samp class="codeph">specials/menu_item</samp> node
+(specified by XPath) in the cafetownsend.xml XML file and converts
+the data to a flattened array of objects and properties, similar
+to the rows and columns of a table. (For an example of the table,
+see the beginning of this section.)</p>
+<p>Each data set maintains the notion of a <dfn class="term">current row</dfn>.
+By default, the current row is set to the first row in the data
+set. Later, you can change the current row programmatically by calling
+the <samp class="codeph">setCurrentRow()</samp> method on the data set object. </p>
+<div class="note"><span class="notetitle">Note:  </span>The data set contains no data after you've created it with
+the <samp class="codeph">new</samp> JavaScript operator. To load data into
+the dataset immediately, call the data set's<samp class="codeph"> loadData()</samp> method,
+which executes a request to load the XML data. Spry regions and
+detail regions do this automatically for the data sets they depend
+on, but if you are not using one of these regions, call the<samp class="codeph"> loadData()</samp> method
+manually in your page code. This loading is asynchronous, so the
+data might still be unavailable if you try to access it immediately
+after calling <samp class="codeph">loadData()</samp>.</div>
+<div class="section"><h4 class="sectiontitle">Example</h4>
+                        
+                        <pre>&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet (....);
+	dsSpecials.loadData();
+&lt;/script&gt;</pre>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WSC8C6B6FC-3031-4ea2-8144-9152A7A155EA.html">Set or change current row</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

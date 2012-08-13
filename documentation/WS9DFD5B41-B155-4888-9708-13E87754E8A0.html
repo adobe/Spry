@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Validation Confirm widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSDF003017-00A2-4c04-8F35-D2E0B885F4A2.html" title="CSS code for the Validation Confirm widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS676F531E-E7B2-417a-B067-FA81C470F533.html" title="Display error messages"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS6670EAE6-5875-499d-BB5B-BB3F01035766.html"><b>Working with the Validation Confirm widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Validation Confirm widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              
+                              Locate the SpryValidationConfirm.js
+file and add it to your web site. You can find the SpryValidationConfirm.js
+file in the widgets/confirmvalidation directory, located in the
+Spry directory that you downloaded from Adobe Labs. For more information,
+see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryValidationConfirm.js
+file to it. The SpryValidationConfirm.js file contains all of the
+information necessary for making the Confirm widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryValidationConfirm.css file and add it
+to your web site. You might choose to add it to the main directory,
+a SpryAssets directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Confirm widget to and link
+the SpryValidationConfirm.js file to the page by inserting the following <samp class="codeph">script</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationConfirm.js file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryValidationConfirm.css file to your web page
+by inserting the following <samp class="codeph">link</samp> tag in the page’s
+head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationConfirm.css file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add a password text field to the page and give it a name.
+This is the password that you will eventually want to confirm.</span> 
+                              <pre>&lt;input type="password" id="password1" name="password1" /&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Insert another password text field where the user will
+confirm the text of the first text field.</span> 
+                              <div class="p">
+                                 <pre>&lt;input type="password" id="password1" name="password1" /&gt;
+&lt;input type="password" name="fieldName" value="" /&gt;</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>To add a container around the Confirm widget, insert <samp class="codeph">span</samp> tags
+around the second <samp class="codeph">input</samp> tag, and assign a unique
+ID to the widget, as follows:</span> 
+                              <pre>&lt;input type="password" id="password1" name="password1"/&gt;
+&lt;span id="ConfirmWidget"&gt;
+	&lt;input type="password" name="fieldName" value=""/&gt;
+&lt;/span&gt;&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Initialize the Confirm widget object by inserting the
+following <samp class="codeph">script</samp> block after the HTML code for
+the widget:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm("spryconfirm1", "password1");
+&lt;/script&gt; </pre>
+
+                              <p>The first required value in the constructor
+is the ID of the widget container. The second required value is
+the ID of the password field that is being confirmed.</p>
+
+                              <p>Make
+sure that the ID of the Confirm widget’s container <samp class="codeph">span</samp> tag
+matches the ID parameter you specified in the <samp class="codeph">Spry.Widgets.ValidationConfirm</samp> method.
+Make sure that the JavaScript call comes after the HTML code for
+the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;script src="includes/SpryValidationConfirm.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="includes/SpryValidationConfirm.css" rel="stylesheet" type="text/css" /&gt;
+...
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;input type="password" id="password1" name="password1" /&gt;
+&lt;span id="ConfirmWidget"&gt;
+	&lt;input type="password" name="fieldName" value=""/&gt;
+&lt;/span&gt;
+&lt;script type="text/javascript"&gt;
+	var ConfirmWidgetObject &#160;= new Spry.Widget.ValidationConfirm("ConfirmWidget","password1");
+&lt;/script&gt;
+...
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

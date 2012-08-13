@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry JSON data set basic overview
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS908C5B07-9EF1-4e9a-A858-1C8CA7BFA67E.html" title="About JSON"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS1666C8E2-E947-4299-BEE4-216FD44C727F.html" title="Prepare your files"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSFFA47BF4-775B-4418-ABB3-F3B7D220DF49.html"><b>Working with JSON data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry JSON data set basic overview
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        The Spry JSON data set lets you use JSON
+as a data source. JSON data sets work the same way as XML data sets,
+which create a kind of holding container, or table, when you create
+the data set. The advantages of using JSON as a data source include
+generating smaller file sizes, ease of use, and the ability to work
+with complex, nested structures.</p>
+<p>Optional sorting, caching, distinct, and load interval parameters
+used with XML data sets also work in a similar way with JSON data
+sets. </p>
+<p>The following example shows a page (object-02.js from the Spry
+zip file data folder), that contains the JSON code that this discussion
+uses as a sample data source:</p>
+<pre>{
+	"id": "0001",
+	"type": "donut",
+	"name": "Cake",
+	"ppu": 0.55,
+	"batters":
+		{
+			"batter":
+				[
+					{"id": "1001", "type": "Regular"},
+					{"id": "1002", "type": "Chocolate"},
+					{"id": "1003", "type": "Blueberry"},
+					{"id": "1004", "type": "Devil's Food"}
+				]
+		},
+	"topping":
+		[
+			{"id": "5001", "type": "None"},
+			{"id": "5002", "type": "Glazed"},
+			{"id": "5005", "type": "Sugar"},
+			{"id": "5007", "type": "Powdered Sugar"},
+			{"id": "5006", "type": "Chocolate with Sprinkles"},
+			{"id": "5003", "type": "Chocolate"},
+			{"id": "5004", "type": "Maple"}
+		]
+}</pre>
+<p>On the page that displays the data, a few snippets of code creates
+the JSON data set. The following example shows a JSON data set called <samp class="codeph">ds1</samp>.</p>
+<pre>&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+	&lt;title&gt;Spry Example&lt;/title&gt;
+	&lt;!--Link the Spry libraries--&gt;
+	&lt;script src="SpryData.js" language="javascript" type="text/javascript"&gt;&lt;/script&gt;
+	&lt;script src="SpryJSONDataSet.js" language="javascript" type="text/javascript"&gt;&lt;/script&gt;
+	&lt;!--Create a data set object--&gt;
+	&lt;script type="text/javascript"&gt;
+		var ds1 = new Spry.Data.JSONDataSet("data/object-02.js", {path: "batters.batter"});
+	&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;/body&gt;</pre>
+<p>The data set loads data from the file that contains the JSON
+code (object-02.js), and specifies the property in the data structure
+that defines the starting point of the data set.</p>
+<div class="note"><span class="notetitle">Note:  </span>The examples in this document are for reading purposes only
+and not intended for execution. For working samples, see the demos
+folder in the Spry folder on Adobe Labs.</div>
+<p>In the example, the first <samp class="codeph">script</samp> block links
+the SpryData.js Spry data library, which is stored in a folder called <dfn class="term">includes</dfn> on
+the server:</p>
+<pre>&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;</pre>
+<p>The second <samp class="codeph">script</samp> tag links to the SpryJSONDataSet.js
+file, which is also stored in a folder called <em>includes</em> on
+the server. This file lets you specify JSON code as your data source:</p>
+<pre>&lt;script type="text/javascript" src="includes/SpryJSONDataSet.js"&gt;&lt;/script&gt;</pre>
+<div class="note"><span class="notetitle">Note:  </span>You do not need to attach the XPath.js file; it is used only
+for XML data sets.</div>
+<p>The third <samp class="codeph">script</samp> block contains the statement
+that creates the <samp class="codeph">ds1</samp> data set:</p>
+<pre>var ds1 = new Spry.Data.JSONDataSet("data/object-02.js", {path: "batters.batter"});</pre>
+<div class="note"><span class="notetitle">Note:  </span>Remember that JSON data sets are case sensitive, so it's important
+that you make sure that the scripts, files names, and paths you
+specify are capitalized (or not capitalized) appropriately.</div>
+<p>In JavaScript the <samp class="codeph">new</samp> operator is used to create
+objects. The <samp class="codeph">Spry.Data.JSONDataSet</samp>() method is
+a constructor in the Spry data library that creates new JSON data
+set objects. The constructor requires a single argument: a path
+to the JSON data source (in this case, <samp class="codeph">"data/object-02.js"</samp>,
+a URL relative to the HTML file). The second argument can be used
+to specify any optional constructor parameters, for example the
+path parameter. In the above example, we’ve specified a path to
+a particular section of data in the data source (<samp class="codeph">"batters.batter"</samp>).</p>
+<p>Each data set maintains the notion of a <dfn class="term">current row</dfn>.
+By default, the current row is set to the first row in the data
+set. Later, you can change the current row programmatically by calling
+the <samp class="codeph">setCurrentRow()</samp> method on the data set object.</p>
+<div class="note"><span class="notetitle">Note:  </span>The data set contains no data after you've created it with
+the <samp class="codeph">new</samp> JavaScript operator. To load data into
+the dataset immediately, call the data set's<samp class="codeph"> loadData()</samp> method,
+which executes a request to load the JSON data. Spry regions and
+detail regions do this automatically for the data sets they depend
+on, but if you are not using one of these regions, call the<samp class="codeph"> loadData()</samp> method
+manually in your page code. This loading is asynchronous, so the
+data might still be unavailable if you try to access it immediately
+after calling <samp class="codeph">loadData()</samp>. </div>
+<div class="section"><h4 class="sectiontitle">Example</h4>
+                        
+                        <pre>&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.JSONDataSet (....);
+	dsSpecials.loadData();
+&lt;/script&gt;</pre>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WSC8C6B6FC-3031-4ea2-8144-9152A7A155EA.html">Set or change current row</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

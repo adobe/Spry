@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Data reference options
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS57937FB2-D8C1-424d-B3E4-655FD7A7899B.html" title="Region observer notifications"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS59A21B0A-435D-4969-8799-4B0F180378A2.html" title="Hiding data references"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html"><b>Working with dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Data reference options
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>Each data set has a set of built-in data references that can
+be useful during the dynamic region regeneration process. Like data
+set column names, these built-in data references must be prefixed
+with the name of the data set if the dynamic region is bound to
+more than one data set.</p>
+<p>For example, to display the row number of the current row of
+the data set when the region regenerates, add the <samp class="codeph">ds_RowNumber</samp> data
+reference to the dynamic region, as follows:</p>
+<pre>&lt;tr spry:repeat="dsSpecials"&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;
+	&lt;td&gt;{ds_RowNumber}&lt;/td&gt;
+&lt;/tr&gt;</pre>
+<p>These options are also useful to pass a value in a JavaScript
+method, as follows:</p>
+<pre>&lt;tr spry:repeat="dsSpecials" onclick="dsSpecials.setCurrentRow('{ds_RowID}')"&gt;
+	&lt;td&gt;{item}&lt;/td&gt;				
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;	
+&lt;/tr&gt;</pre>
+<p>The following table provides a full list of built-in Spry data
+references.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e25452">
+                                    <p>Data reference</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e25457">
+                                    <p>Description</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_RowID</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The ID of a row in the data set. This ID
+can be used to refer to a specific record in the data set. It does
+not change, even when the data is sorted. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_RowNumber</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The row number of the current row of the
+data set. Within a loop construct, this number reflects the position
+of the row currently being evaluated. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_RowNumberPlus1</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The same as<samp class="codeph"> ds_RowNumber</samp>,
+except that the first row starts at index 1 instead of index 0.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_RowCount</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The number of rows in the data set. If a
+nondestructive filter is set on the data set, this is the total
+number of rows after the filter is applied. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_UnfilteredRowCount</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The number of rows in the data set before
+any nondestructive filter is applied. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_CurrentRowID</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The ID of the current row of the data set.
+This value does not change, even when used within a looping construct.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_CurrentRowNumber</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The row number of the current row of the
+data set. This value does not change, even when used within a looping
+construct.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_SortColumn</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The name of the column last used for sorting.
+If the data in the data set was never sorted, this outputs nothing
+(an empty string).</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_SortOrder</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p>The current sort order of the data in the
+data set. This data reference outputs the words <dfn class="term">ascending</dfn>, <dfn class="term">descending</dfn>,
+or nothing (an empty string).</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25452 ">
+                                    <p>ds_EvenOddRow</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e25457 ">
+                                    <p> Looks at the current value of <samp class="codeph">ds_RowNumber</samp> and
+returns the string <samp class="codeph">"even"</samp> or <samp class="codeph">"odd"</samp>.
+Useful for rendering alternate row colors.</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

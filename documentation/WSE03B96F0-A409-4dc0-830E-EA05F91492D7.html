@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Open panels programmatically
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS7DCB2B4E-3F88-4b65-A6B2-CD9F16BD5CF9.html" title="Set the default open panel"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSDBFCA944-4E99-421a-9328-8533440AA7F3.html" title="Customize the Accordion widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS8C37C05B-05FA-4b22-A987-3D6BFC193A76.html"><b>Working with the Accordion widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Open panels programmatically
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>You can programmatically open different panels
+by using JavaScript functions. For example, you might have a button
+on your page that opens a particular accordion panel when the user
+clicks the button.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Use the following JavaScript functions to open
+accordion panels:</span> 
+                              <pre>&lt;input type="button" onclick="acc10.openFirstPanel()" &gt;open first panel&lt;/input&gt;
+&lt;input type="button" onclick="acc10.openNextPanel()" &gt;open next panel&lt;/input&gt;
+&lt;input type="button" onclick="acc10.openPreviousPanel()" &gt;open previous panel&lt;/input&gt;
+&lt;input type="button" onclick="acc10.openLastPanel()" &gt;open last panel&lt;/input&gt;
+&lt;script type="text/javascript"&gt;
+	var acc1 = new Spry.Widget.Accordion("Accordion1");
+&lt;/script&gt;</pre>
+
+                              <div class="tip">
+                                 <img src="images/tip_help.png" />You can also use <samp class="codeph">acc10.openPanel(panelNumber)</samp> to
+open any panel. The accordian panels use a zero-based counting system,
+so setting the value to 2 opens the third panel.</div>
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

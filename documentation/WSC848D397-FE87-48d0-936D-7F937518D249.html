@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Display error messages
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSB810FB46-118B-43a2-A8DB-05A72459BAF4.html" title="Insert the Validation Select widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS35BE01C6-E49D-4e28-8E83-EEC51E5C2ECB.html" title="Specify when validation occurs"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS532700A2-7310-4d52-A988-C0AC4FCC02D9.html"><b>Working with the Validation Select widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Display error messages
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Create a <samp class="codeph">span</samp> tag (or
+any other type of tag) to display the error message, and assign
+the appropriate class to it, as follows:</span> 
+                              <div class="p">
+                                 <pre>&lt;span id="spryselect1"&gt;
+	&lt;select name="select1" id="select1"&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value="item1"&gt;Item 1&lt;/option&gt;
+		. . .
+	&lt;/select&gt;
+	&lt;span class="selectRequiredMsg"&gt;Please select an item.&lt;/span&gt;
+&lt;/span&gt;</pre>
+
+                              </div>
+
+                              <p>The <samp class="codeph">selectRequiredMsg</samp> rule
+is located in the SpryValidationSelect.css file, and is set to <samp class="codeph">display:none</samp> by
+default. When the widget enters a different state through user interaction,
+Spry applies the appropriate class—the state class—to the container of
+the widget. This action affects the error-message class, and by
+extension, the appearance of the error message.</p>
+
+                              <p>For example,
+the following shows a portion of the CSS rule from the SpryValidationSelect.css
+file:</p>
+
+                              <pre>.selectRequiredMsg, .selectInvalidMsg {
+	display: none;
+}
+.selectRequiredState .selectRequiredMsg,
+.selectInvalidState .selectInvalidMsg {
+	display: inline;
+	color: #CC3333;
+	border: 1px solid #CC3333;
+}</pre>
+
+                              <p>By default, no state class is applied to the widget
+container, so that when the page loads in a browser, the error message
+text in the preceding HTML code example only has the <samp class="codeph">.selectRequiredMsg</samp> class
+applied to it. (The property and value pair for this rule is <samp class="codeph">display:none</samp>,
+so the message remains hidden.) If the user fails to make a selection,
+however, Spry applies the appropriate class to the widget container,
+as follows:</p>
+
+                              <pre>&lt;span id="spryselect1" class="selectRequiredState"&gt;
+	&lt;select name="select1" id="select1"&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value="item1"&gt;Item 1&lt;/option&gt;
+		. . .
+	&lt;/select&gt;
+	&lt;span class="selectRequiredMsg"&gt;Please select an item.&lt;/span&gt;
+&lt;/span&gt;</pre>
+
+                              <p>In the preceding CSS code, the state
+rule with the contextual selector <samp class="codeph">.selectRequiredState .
+selectRequiredMsg</samp> overrides the default error-message rule responsible
+for hiding the error-message text. Thus, when Spry applies the state class
+to the widget container, the state rule determines the appearance
+of the widget, and displays the error message inline in red with
+a 1-pixel solid border.</p>
+
+                              <p>Following is a list of default error-message
+classes and their descriptions. You can change these classes and
+rename them. If you do so, don’t forget to change them in the contextual
+selector also.</p>
+
+                              <div class="p">
+                                 
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e13867">
+                                                <p>Error message class</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e13872">
+                                                <p>Description</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e13867 ">
+                                                <p>.selectRequiredMsg</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e13872 ">
+                                                <p>Causes error message to display when the
+widget enters the required state</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e13867 ">
+                                                <p>.selectInvalidMsg</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e13872 ">
+                                                <p>Causes error message to display when the
+widget enters the invalid state</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                              </div>
+
+                              <div class="note"><span class="notetitle">Note:  </span>You cannot rename state-related
+class names because they are hard-coded as part of the Spry framework.</div>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

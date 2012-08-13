@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Attach an Opacity effect
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS064488A5-9686-496f-8578-8AB67F5EC4CE.html" title="Attach a Move effect"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS6973607F-10A8-4d4c-8042-9881CAB146FE.html" title="Attach a Size effect"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WS46AFF8D0-F4F2-478a-8D7C-D26D426EFC81.html"><b>Working with effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Attach an Opacity effect
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+Opacity effect makes the target element disappear or appear by changing the
+CSS opacity property. The Fade effect uses the Opacity effect.</p>
+
+                        <p>You
+can attach the Fade effect to any HTML element except <samp class="codeph">applet</samp>, <samp class="codeph">body</samp>, <samp class="codeph">iframe</samp>, <samp class="codeph">object</samp>, <samp class="codeph">tr</samp>, <samp class="codeph">tbody</samp>,
+or <samp class="codeph">th</samp>.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>To link the SpryEffects.js file on your web page,
+add the following code to the head of your document:</span> 
+                              <pre>&lt;head&gt;
+. . .
+&lt;script  src="../includes/SpryEffects.js" type="text/javascript" &gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The exact file path differs, depending
+on where you store the SpryEffects.js file.</div>
+
+                              <p>The SpryEffects.js
+file is in the includes folder of the Spry folder that you downloaded
+from Adobe Labs. See Prepare
+your files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Make sure your target element has a unique ID. The target
+element is the element that changes when the user interacts with
+the page to cause the effect.</span> 
+                              <pre>&lt;div <strong>id="opacity1"</strong>&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>To create the effect, add a JavaScript event to trigger
+the effect, and a <samp class="codeph">script</samp> tag that creates the effect
+object. For example, if you want the user to click on a sentence
+that causes another paragraph to disappear by changing opacity,
+you might add the following event and <samp class="codeph">script</samp> tag:</span> 
+                              <pre>&lt;p&gt;&lt;a onclick="opacity_effect.start(); return false;" href="#"&gt;Click here to hide the paragraph.&lt;/a&gt;&lt;/p&gt;
+. . .
+&lt;script type="text/javascript"&gt;
+var opacity_effect = new Spry.Effect.Opacity("opacity1", 1, 0.1, {duration: 2000});
+&lt;/script&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>It’s important that you add the <samp class="codeph">script</samp> tag <em>after</em> the
+code for the target element. Otherwise the page will return a JavaScript
+error when you try to trigger the effect.</div>
+
+                              <p>The first argument
+of the <samp class="codeph">Spry.Effect.Opacity</samp> method is always the
+target element’s ID (<samp class="codeph">"opacity1"</samp> in the preceding
+example). </p>
+
+                              <p>The second and the third arguments are the starting
+and ending opacity values. These values should be numbers between
+0 and 1, where 0 makes the element invisible and 1 makes the element
+completely visible.</p>
+
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script src="../includes/SpryEffects.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick="opacity_effect.start(); return false;" href="#"&gt;Click here to hide the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;div id="opacity1"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var opacity_effect = new Spry.Effect.Opacity("opacity1", 1, 0.1, {duration: 2000});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+<h3 class="topictitle3"><a href="#WSE7DD633E-FCAB-45c7-9986-778BEF963E9A" onclick="javascript:toggleLayer('WSE7DD633E-FCAB-45c7-9986-778BEF963E9A');return false;" title="Opacity effect options"><img src="images/off.gif" />Opacity effect options</a></h3><div id="WSE7DD633E-FCAB-45c7-9986-778BEF963E9A" class="mini"><a name="WSE7DD633E-FCAB-45c7-9986-778BEF963E9A"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table lists available options for the
+Opacity effect.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e29473">
+                                          <p>Option</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e29478">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>duration</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Duration of the effect in milliseconds.
+The default value is 1000.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>toggle</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Lets you create a toggle effect. The default
+value is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>transition</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Determines the type of transition. The default
+is <samp class="codeph">Spry.sinusoidalTransition</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>fps</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Determines the number of frames per second
+(fps) of the animation. The default is 60.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>setup</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Lets you define a function that is called
+before the effect begins, e.g.,<samp class="codeph"> setup:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29473 ">
+                                          <p>finish</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29478 ">
+                                          <p>Lets you define a function that is called
+after the effect finishes, e.g., <samp class="codeph">finish:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>Sample code:</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="top" width="NaN%">
+                                          <p>var effect = new Spry.Effect.Opacity("targetID",
+1, 0.5, {duration: 2000, toggle: true});</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%">
+                                          <p>effect.start();</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Region states
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS557937C8-85AC-4560-BE84-7A5B9EF0DAB0.html" title="Conditional constructs"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS57937FB2-D8C1-424d-B3E4-655FD7A7899B.html" title="Region observer notifications"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html"><b>Working with dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Region states
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        Spry
+supports the notion of region states. That is, at any given time,
+a region is either loading data, ready to display the data, or in
+an error state because one or more of the data sets it is bound
+to failed to load its data. You can place a <samp class="codeph">spry:state</samp> attribute,
+with a value of <samp class="codeph">"loading"</samp>, <samp class="codeph">"error",</samp> or <samp class="codeph">"ready"</samp> on
+elements <em>inside</em> a region container to associate it with a
+specific region state. Doing so can be quite useful for displaying
+a loading message as the data for a region loads, or notifying the
+user that the region failed to get its data. As the region changes states,
+it automatically regenerates its code and displays any elements
+with a <samp class="codeph">spry:state</samp> attribute that matches the current
+state.</p>
+<p>The following example uses the <samp class="codeph">spry:state</samp> attribute
+to display loading and error messages:</p>
+<pre>&lt;div spry:region="dsEmployees"&gt;
+	&lt;div <strong>spry:state="loading"</strong>&gt;Loading employee data ...&lt;/div&gt;
+	&lt;div <strong>spry:state="error"</strong>&gt;Failed to load employee data!&lt;/div&gt;
+	&lt;ul <strong>spry:state="ready"</strong>&gt;
+		&lt;li spry:repeat="dsEmployees"&gt;{firstname} {lastname}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</pre>
+<p>Any content that does not have a <samp class="codeph">spry:state</samp> attribute
+on it, or is not a child or descendent of an element that has a <samp class="codeph">spry:state</samp> attribute
+on it, is always included in the output when the code is regenerated.
+Also, children or descendents of an element with a <samp class="codeph">spry:state</samp> attribute
+cannot have <samp class="codeph">spry:state</samp> attributes. That is, nesting
+elements with <samp class="codeph">spry:state</samp> attributes is not supported.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

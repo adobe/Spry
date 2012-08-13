@@ -1,0 +1,143 @@
+@charset 'UTF-8';
+/* all hyperlink rules are in content-hyperlinks.css
+   rules that vary by locale are in localeSpecific.css
+	padding, margin, list  ... are in content.css
+	font treatment are in content-fonts.css
+	as far as a sizing unit used; percentage is the optimal
+	unit of measurement.
+*/
+/* ************************************** */
+/* *****           Font Family      ***** */
+/* ************************************** */
+.codeph, 
+pre { font-family: "Courier New", Courier, monospace; }
+
+/* ************************************** */
+/* *****           Font sizing      ***** */
+/* ************************************** */
+/* approx 10px sizing*/
+div#nav_content table tbody tr td,
+ul#tabsRow li,
+div.letterList  	     { font-size: 63%; color: #666666; font-weight: bold;}
+div#breadcrumb,
+p.sharedproducts	     { font-size: 95%; color: #666666; font-weight: bold;}
+h4 { font-size: 100% }
+
+/* approx 11px sizing*/
+form,	
+#searching_message,
+.loadSearch,
+#results,
+#content_body { font-size: 67%; }
+#content_body > p {
+text-align: left !important;
+}
+
+input.submit { font-size: 100%; font-weight: bold; }
+
+div#homepage_content div a,
+h4		{	font-size: 75%;}
+
+h1.contentHead	{	font-size: 79%;}
+
+/* assumes parent element font sizing */
+div#content_wrapper div dl,
+div#content_wrapper div div,
+div#content_wrapper div li li,
+div#content_wrapper div li p,
+div#content_wrapper div div div,
+div#content_wrapper div div div p,
+div#content_wrapper div div div dd,
+div#content_wrapper div div .dlterm,
+div#content_wrapper div div h4,
+div#content_wrapper div div li,
+div#content_wrapper div div span,
+div#content_wrapper div#bottomPageLinks ul,
+div#content_wrapper div#bottomPageLinks li,
+div#content_wrapper div table,
+div#content_wrapper h3 { font-size: 100%; }
+
+div#content_wrapper div div,
+div#content_wrapper div li,
+div#content_wrapper div p { line-height: 150%; }
+
+.sup 		{
+	font-size: smaller;
+	font-weight: lighter;
+	vertical-align: super;
+}
+
+/* HEADING H1 */
+h1,h2		{ font-size: 200%; font-weight: normal; }
+
+/* ************************************** */
+/* *****           Font weight      ***** */
+/* ************************************** */
+
+/* BOLD CLASSES */
+.tiptitle,
+.notetitle,
+.importanttitle,
+em, 
+th,
+div#nav_content table tbody tr td,
+h4,
+.highlight,
+h1.contentHead,
+div.fignone dt,
+dfn.term,
+div#breadcrumb div.hierarchy,
+dt,
+label { font-style: normal; font-weight: bold; }
+
+div#breadcrumb div.hierarchy a {
+	font-weight: normal;
+}
+/* ************************************** */
+/* *****       Font style           ***** */
+/* ************************************** */
+div.fignone,
+dfn.term,
+dt, dd  	{	font-style: normal;}
+
+/* ************************************** */
+/* *****       Font color           ***** */
+/* ************************************** */
+dfn.term,pre,
+div#content_wrapper div table.choicetableborder tr th { color:#333;}
+div#content_wrapper div table.choicetableborder tr td strong { color:#666; }
+div#breadcrumb div.nav,
+div#breadcrumb div.hierarchy,
+ul#tabsRow  {	color:#999;}
+form label,
+ul#tabsRow  li span.highlight { color:#000;}
+
+/* ************************************** */
+/* *****       Line Height           ***** */
+/* ************************************** */
+div#content_wrapper div table.choicetableborder tr td strong,
+div#content_wrapper div table.choicetableborder tr td p,
+div#breadcrumb div.hierarchy { line-height: 200%; }
+
+
+div#related_in h3 {
+	background-color: #777;
+	font-size: 1em;
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #fff;
+	padding: 0px 5px 3px 8px;
+       margin-bottom: 4px;
+}
+
+
+div#related h4 {
+	font-family: Arial, Helvetica, sans-serif; 
+	margin-left: 1px;
+	margin-right: 1px;
+	padding: 5px;
+	padding-left: 10px;
+	color: #666666;
+	height: 1em; 
+       margin-bottom: 1px;
+       padding-bottom: 1px;
+}

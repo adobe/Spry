@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Customize the Menu Bar widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSC885CF6F-4617-4d91-8779-39681ADA7C2E.html" title="Change the orientation of a Menu Bar widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSFB5D524D-27F7-4e69-A207-25126187E9EA.html" title="Working with the Sliding Panels widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html"><b>Working with the Menu Bar widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Customize the Menu Bar widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files provide
+the default styling for the Menu Bar widget. You can, however, customize
+the widget by changing the appropriate CSS rule. The CSS rules in
+the SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files
+use the same class names as the related elements in the menu bar’s
+HTML code, so it’s easy for you to know which CSS rules correspond
+to the different sections of the Menu Bar widget. Additionally,
+the SpryMenuBarHorizontal.css and SpryMenuBarVertical.css files contain
+class names for widget behaviors (for example, hovering and clicking behaviors).</p>
+
+                        <p>The
+horizontal or vertical styling sheet for the widget should already
+be a included in your website before you start customizing. For
+more information, see Prepare
+your files.</p>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS9C95AD4D-F06F-406a-9C7D-AD42646168F1" onclick="javascript:toggleLayer('WS9C95AD4D-F06F-406a-9C7D-AD42646168F1');return false;" title="Style a Menu Bar widget (general instructions)"><img src="images/off.gif" />Style a Menu Bar widget (general instructions)</a></h3><div id="WS9C95AD4D-F06F-406a-9C7D-AD42646168F1" class="mini"><a name="WS9C95AD4D-F06F-406a-9C7D-AD42646168F1"><!-- --></a><div>
+                        <div class="section">
+                           <p>You can style an Menu Bar widget by setting properties
+for the entire Menu Bar widget container, or by setting properties
+for the components of the widget individually.</p>
+
+                        </div>
+
+                        <ol><li><span>Open the SpryMenuBarHorizontal.css or SpryMenuBarVertical.css
+file.</span></li>
+<li><span>Locate the CSS rule for the part of the menu bar to change.
+For example, to change the background color of the top-level menu
+items, edit the <samp class="codeph">ul.MenuBarHorizontal a</samp> or <samp class="codeph">ul.MenuBarVertical
+a</samp> rule in the SpryMenuBarVertical.css or SpryMenuBarHorizontal.css
+file.</span></li>
+<li><span>Make your changes to the CSS and save the file.</span></li>
+</ol>
+
+                        <div class="section">
+                           <p>You can replace style-related class names in the CSS
+files and HTML code with class names of your own. Doing so does
+not affect the functionality of the widget.</p>
+
+                           <p>The SpryMenuBarHorizontal.css
+and SpryMenuBarVertical.css files have extensive comments, explaining
+the code and the purpose for certain rules. For further information,
+see the comments in the file.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS9F6650BC-771D-4f9c-83C2-2A356150AB59" onclick="javascript:toggleLayer('WS9F6650BC-771D-4f9c-83C2-2A356150AB59');return false;" title="Change text styling of a menu item"><img src="images/off.gif" />Change text styling of a menu item</a></h3><div id="WS9F6650BC-771D-4f9c-83C2-2A356150AB59" class="mini"><a name="WS9F6650BC-771D-4f9c-83C2-2A356150AB59"><!-- --></a><div>
+                        <div class="section">
+                           <p>The CSS code attached to the <samp class="codeph">a</samp> tag
+contains the information for text styling. Several relevant text-styling
+class values that pertain to different menu states are attached
+to the <samp class="codeph">a</samp> tag.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the text styling of a menu item, use
+the following table to locate the appropriate CSS rule, and then
+change the default value.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e5907">
+                                                   <p>Style to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e5912">
+                                                   <p>CSS rule for vertical or horizontal menu
+bar</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e5917">
+                                                   <p>Relevant properties and default values</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e5907 ">
+                                                   <p>Default text</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5912 ">
+                                                   <p>ul.MenuBarVertical a, ul.MenuBarHorizontal
+a</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5917 ">
+                                                   <p>color: #333; text-decoration: none;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e5907 ">
+                                                   <p>Text color when mouse pointer moves over
+it</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5912 ">
+                                                   <p>ul.MenuBarVertical a:hover, ul.MenuBarHorizontal
+a:hover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5917 ">
+                                                   <p>color: #FFF;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e5907 ">
+                                                   <p>Text color when in focus</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5912 ">
+                                                   <p>ul.MenuBarVertical a:focus, ul.MenuBarHorizontal
+a:focus</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5917 ">
+                                                   <p>color: #FFF;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e5907 ">
+                                                   <p>Menu Bar item color when mouse pointer moves
+over it</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5912 ">
+                                                   <p>ul.MenuBarVertical a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemHover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5917 ">
+                                                   <p>color: #FFF;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e5907 ">
+                                                   <p>Submenu item color when mouse pointer moves
+over it</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5912 ">
+                                                   <p>ul.MenuBarVertical a.MenuBarItemSubmenuHover,
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e5917 ">
+                                                   <p>color: #FFF;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSB531ABE3-C53F-4299-8095-F1524F8718AA" onclick="javascript:toggleLayer('WSB531ABE3-C53F-4299-8095-F1524F8718AA');return false;" title="Change the background color of a menu item"><img src="images/off.gif" />Change the background color of a menu item</a></h3><div id="WSB531ABE3-C53F-4299-8095-F1524F8718AA" class="mini"><a name="WSB531ABE3-C53F-4299-8095-F1524F8718AA"><!-- --></a><div>
+                        <div class="section">
+                           <p>The CSS rule attached to the <samp class="codeph">a</samp> tag
+contains the information for a menu item’s background color. Several
+relevant background color class values are attached to the <samp class="codeph">a</samp> tag
+that pertain to different menu states.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the background color of a menu item,
+use the following table to locate the appropriate CSS rule, and
+then change the default value.</span> 
+                                 
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e6046">
+                                                <p>Color to change</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e6051">
+                                                <p>CSS rule for vertical or horizontal menu
+bar</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e6056">
+                                                <p>Relevant properties and default values</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e6046 ">
+                                                <p>Default background</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6051 ">
+                                                <p>ul.MenuBarVertical a, ul.MenuBarHorizontal
+a</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6056 ">
+                                                <p>background-color: #EEE;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6046 ">
+                                                <p>Background color when mouse pointer moves
+over it</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6051 ">
+                                                <p>ul.MenuBarVertical a:hover, ul.MenuBarHorizontal
+a:hover</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6056 ">
+                                                <p>background-color: #33C;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6046 ">
+                                                <p>Background color when in focus</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6051 ">
+                                                <p>ul.MenuBarVertical a:focus, ul.MenuBarHorizontal
+a:focus</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6056 ">
+                                                <p>background-color: #33C;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6046 ">
+                                                <p>Menu Bar item color when mouse pointer moves
+over it</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6051 ">
+                                                <p>ul.MenuBarVertical a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemHover</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6056 ">
+                                                <p>background-color: #33C;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e6046 ">
+                                                <p>Submenu item color when mouse pointer moves
+over it</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6051 ">
+                                                <p>ul.MenuBarVertical a.MenuBarItemSubmenuHover,
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e6056 ">
+                                                <p>background-color: #33C;</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSE3E51CDF-E491-4c22-A0D9-71F35E20D850" onclick="javascript:toggleLayer('WSE3E51CDF-E491-4c22-A0D9-71F35E20D850');return false;" title="Change the dimension of menu items"><img src="images/off.gif" />Change the dimension of menu items</a></h3><div id="WSE3E51CDF-E491-4c22-A0D9-71F35E20D850" class="mini"><a name="WSE3E51CDF-E491-4c22-A0D9-71F35E20D850"><!-- --></a><div>
+                        <div class="section">
+                           <p>To change the dimension of menu items by changing the
+width properties of the menu item’s <samp class="codeph">li</samp> and <samp class="codeph">ul</samp> tags.</p>
+
+                        </div>
+
+                        <ol><li><span>Locate the <samp class="codeph">ul.MenuBarVertical li</samp> or <samp class="codeph">ul.MenuBarHorizontal
+li</samp> rule.</span></li>
+<li><span>Change the width property to a desired width, or change
+the property to <samp class="codeph">auto</samp> to remove a fixed width, and
+add the property and value <samp class="codeph">white-space: nowrap; </samp>to the
+rule.</span></li>
+<li><span>Locate the <samp class="codeph">ul.MenuBarVertical ul</samp> or <samp class="codeph">ul.MenuBarHorizontal
+ul</samp> rule.</span></li>
+<li><span>Change the width property to a desired width (or change
+the property to <samp class="codeph">auto</samp> to remove a fixed width).</span></li>
+<li><span>Locate the <samp class="codeph">ul.MenuBarVertical ul li</samp> or <samp class="codeph">ul.MenuBarHorizontal
+ul li</samp> rule.</span></li>
+<li><span>Add the following properties to the rule: <samp class="codeph">float:
+none;</samp> and <samp class="codeph">background-color: transparent;</samp>.</span></li>
+<li><span>Delete the <samp class="codeph">width: 8.2em;</samp> property and
+value.</span></li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS15498B9F-6AA9-4188-AA77-E90E781F7C43" onclick="javascript:toggleLayer('WS15498B9F-6AA9-4188-AA77-E90E781F7C43');return false;" title="Position submenus"><img src="images/off.gif" />Position submenus</a></h3><div id="WS15498B9F-6AA9-4188-AA77-E90E781F7C43" class="mini"><a name="WS15498B9F-6AA9-4188-AA77-E90E781F7C43"><!-- --></a><div>
+                        <div class="section">
+                           <p>The position of Spry Menu Bar submenus is controlled
+by the margin property on submenu <samp class="codeph">ul</samp> tags.</p>
+
+                        </div>
+
+                        <ol><li><span>Locate the <samp class="codeph">ul.MenuBarVertical ul</samp> or <samp class="codeph">ul.MenuBarHorizontal
+ul</samp> rule.</span></li>
+<li><span>Change the <samp class="codeph">margin: -5% 0 0 95%;</samp> default
+values to the desired values.</span></li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS6F3F28EE-5729-4d80-B2F4-FAF439E1094B" onclick="javascript:toggleLayer('WS6F3F28EE-5729-4d80-B2F4-FAF439E1094B');return false;" title="Center a Menu Bar widget"><img src="images/off.gif" />Center a Menu Bar widget</a></h3><div id="WS6F3F28EE-5729-4d80-B2F4-FAF439E1094B" class="mini"><a name="WS6F3F28EE-5729-4d80-B2F4-FAF439E1094B"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, the Menu Bar widget, as well as its menu
+and submenu items, are all aligned left on the page. You can center
+the Menu Bar widget itself by adding some code to the page on which
+the Menu Bar widget appears. </p>
+
+                           <p>The example demonstrates centering
+a horizontal Menu Bar widget, but you can center a vertical Menu
+Bar widget within its container if you are using one.</p>
+
+                           <div class="note"><span class="notetitle">Note:  </span>If
+you want to center Menu Bar widgets on more than one page, you might want
+to integrate your changes into the CSS style sheet. Keep in mind,
+however, that all pages linked to that style sheet will reflect
+your changes.</div>
+
+                        </div>
+
+                        <ol><li class="stepexpand"><span>Add a style block to your page after the link
+to the Menu Bar widget’s CSS style sheet.</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>The rule you add to this style block
+will override some of the default rules in the style sheet.</p>
+
+                              </li>
+<li class="stepexpand"><span>Specify a new <samp class="codeph">ul.MenuBarHorizontal</samp> rule
+in the style tag, specify a width, and add the <samp class="codeph">margin:auto</samp> property
+and value, as follows:</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+/* Give the menu bar a width and set the margins to "auto"
+ * so that the browser does the centering.
+ */
+ul.MenuBarHorizontal {
+	width: 32.2em;
+	margin: auto;
+}
+--&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>For a working example, see the <a href="https://github.com/adobe/Spry/tree/master/samples/menubar/CenteringHorizontalMenuBarSample.html" target="_blank">Menu Bar widget centering page</a> on
+Adobe Labs.</p>
+
+                              </li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS20260204-7C1E-48ff-B71E-0B102618EECC" onclick="javascript:toggleLayer('WS20260204-7C1E-48ff-B71E-0B102618EECC');return false;" title="Center menu items"><img src="images/off.gif" />Center menu items</a></h3><div id="WS20260204-7C1E-48ff-B71E-0B102618EECC" class="mini"><a name="WS20260204-7C1E-48ff-B71E-0B102618EECC"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, the Menu Bar widget, as well as its menu
+and submenu items, are all aligned left on the page. You can center
+the menu items inside the menu bar by adding some code to the page
+on which the Menu Bar widget appears. This task does not center
+the submenu items.</p>
+
+                           <p>The example demonstrates centering a horizontal
+menu bar’s menu items, but you can also apply this to a vertical
+Menu Bar widget if you are using one.</p>
+
+                           <div class="note"><span class="notetitle">Note:  </span>If you want to change
+the styling of Menu Bar widgets on more than one page, you might
+want to integrate your changes into the CSS style sheet. Keep in
+mind, however, that all pages linked to that style sheet will reflect
+your changes.</div>
+
+                        </div>
+
+                        <ol><li class="stepexpand"><span>Add a style block to your page after the link
+to the Menu Bar widget’s CSS style sheet.</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>The rule you add to this style block
+will override some of the default rules in the style sheet.</p>
+
+                              </li>
+<li class="stepexpand"><span>Specify new <samp class="codeph">ul.MenuBarHorizontal a</samp> and <samp class="codeph">ul.MenuBarHorizontal
+ul a</samp> rules, and add properties to align the text, as follows:</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+/* Center the text within all menu item links.
+ */
+ul.MenuBarHorizontal a {
+	text-align: center;
+}
+/* Set the the alignment back to left for any
+ * menu item links that are in a sub menu.
+ */
+ul.MenuBarHorizontal ul a {
+	text-align: left;
+}
+--&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>For a working example, see the <a href="https://github.com/adobe/Spry/tree/master/samples/menubar/CenteringHorizontalMenuBarSample.html" target="_blank">Menu Bar widget centering page</a> on
+Adobe Labs.</p>
+
+                              </li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS621CBD62-A6FE-4b44-8622-0CEBBF91D626" onclick="javascript:toggleLayer('WS621CBD62-A6FE-4b44-8622-0CEBBF91D626');return false;" title="Center all menu items"><img src="images/off.gif" />Center all menu items</a></h3><div id="WS621CBD62-A6FE-4b44-8622-0CEBBF91D626" class="mini"><a name="WS621CBD62-A6FE-4b44-8622-0CEBBF91D626"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, the horizontal Menu Bar widget, as well
+as its menu and submenu items, are all aligned left on the page.
+You can center all of the menu items inside the menu bar by adding
+some code to the page on which the Menu Bar widget appears. This
+task centers all menu items <em>and</em> submenu items.</p>
+
+                           <p>The
+example demonstrates centering all menu items in a horizontal menu
+bar, but you can also center all items in a vertical Menu Bar widget
+if you are using one</p>
+
+                           <div class="note"><span class="notetitle">Note:  </span>If you want to change the styling
+of Menu Bar widgets on more than one page, you might want to integrate
+your changes into the CSS style sheet. Keep in mind, however, that
+all pages linked to that style sheet will reflect your changes.</div>
+
+                        </div>
+
+                        <ol><li class="stepexpand"><span>Add a style block to your page after the link
+to the Menu Bar widget’s CSS style sheet.</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>The rule you add to this style block
+will override some of the default rules in the style sheet.</p>
+
+                              </li>
+<li class="stepexpand"><span>Specify a new <samp class="codeph">ul.MenuBarHorizontal a</samp> rule
+that centers all links, as follows:</span> 
+                                 <pre>&lt;link href="../../widgets/menubar/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+/* Center the text within all menu item links. This
+ * causes the text in menu items for both the menu bar and
+ * sub menus to center.
+ */
+ul.MenuBarHorizontal a {
+	text-align: center;
+}
+--&gt;
+&lt;/style&gt;</pre>
+
+                                 <p>For a working example, see the <a href="https://github.com/adobe/Spry/tree/master/samples/menubar/CenteringHorizontalMenuBarSample.html" target="_blank">Menu Bar widget centering page</a> on
+Adobe Labs.</p>
+
+                              </li>
+</ol>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Specify when validation occurs
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS2082255F-DF38-465d-A693-633D95A0507D.html" title="Display error messages"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS50930856-9A16-4c2a-A2D4-F0636EC8814B.html" title="Specify a minimum and maximum number of characters"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSE3EA32E0-D694-4136-908F-6F3F52AAA8BF.html"><b>Working with the Validation Text Area widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Specify when validation occurs
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           By default, the Validation
+Text Area widget validates when the user clicks the submit button.
+You can, however, set two other options: blur or change. The <samp class="codeph">validateOn:["blur"]</samp> parameter
+causes the widget to validate whenever the user clicks outside the
+text area. The <samp class="codeph">validateOn:["change"]</samp> parameter
+causes the widget to validate as the user changes text inside the
+text area.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To specify when validation occurs, add a <samp class="codeph">validateOn</samp> parameter
+to the constructor as follows:</span> 
+                              <div class="p">
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var ta1 = new Spry.Widget.ValidationTextarea("sprytextarea1", {validateOn:["blur"]});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                              <p>As a convenience, you can discard
+the brackets if your <samp class="codeph">validateOn</samp> parameter contains
+a single value (for example, <samp class="codeph">validateOn: "blur"</samp>).
+If the parameter contains both values, however (<samp class="codeph">validateOn:["blur",
+"change"]</samp>), include brackets in the syntax.</p>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

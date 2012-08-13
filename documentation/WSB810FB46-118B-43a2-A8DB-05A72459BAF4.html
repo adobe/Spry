@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Validation Select widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS292EE423-0037-4798-9452-6DF9D71EE3EB.html" title="CSS code for the Validation Select widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSC848D397-FE87-48d0-936D-7F937518D249.html" title="Display error messages"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS532700A2-7310-4d52-A988-C0AC4FCC02D9.html"><b>Working with the Validation Select widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Validation Select widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the SpryValidationSelect.js file and add it to your web site. You
+can find the SpryValidationSelect.js file in the widgets/selectvalidation
+directory, located in the Spry directory that you downloaded from
+Adobe Labs. For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and upload the SpryValidationSelect.js
+file to it. The SpryValidationSelect.js file contains all of the
+information necessary for making the Select widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryValidationSelect.css file and add it to
+your web site. You might choose to add it to the main directory,
+a SpryAssets directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Select widget to and link
+the SpryValidationSelect.js file to the page by inserting the following <samp class="codeph">script</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryValidationSelect.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationSelect.js file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryValidationSelect.css file to your web page
+by inserting the following <samp class="codeph">link</samp> tag in the page’s
+head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationSelect.css file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add a select list to the page and give it a name and
+a unique ID:</span> 
+                              <pre>&lt;select name="myselect" id="myselect"&gt;&lt;/select&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add options to the select list, as follows:</span> 
+                              <pre>&lt;select name="myselect" id="myselect"&gt;
+	&lt;option&gt;--Please select an item--&lt;/option&gt;
+	&lt;option value="item1"&gt;Item 1&lt;/option&gt;
+	&lt;option value="item2"&gt;Item 2&lt;/option&gt;
+	&lt;option value="-1"&gt;Invalid Item&lt;/option&gt;
+	&lt;option value="item3"&gt;Item 3&lt;/option&gt;
+	&lt;option&gt;Empty Item&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>To add a container around the select list, insert <samp class="codeph">span</samp> tags
+around the <samp class="codeph">select</samp> tags, and assign a unique ID
+to the widget, as follows:</span> 
+                              <pre>&lt;span id="spryselect1"&gt;
+	&lt;select name="myselect" id="myselect"&gt;
+		&lt;option&gt;--Please select an item--&lt;/option&gt;
+		&lt;option value="item1"&gt;Item 1&lt;/option&gt;
+		&lt;option value="item2"&gt;Item 2&lt;/option&gt;
+		&lt;option value="-1"&gt;Invalid Item&lt;/option&gt;
+		&lt;option value="item3"&gt;Item 3&lt;/option&gt;
+		&lt;option&gt;Empty Item&lt;/option&gt;
+	&lt;/select&gt;
+&lt;/span&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>To initialize the Spry validation select object, insert
+the following <samp class="codeph">script</samp> block after the HTML code
+for the widget:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var selectwidget1 = new Spry.Widget.ValidationSelect("spryselect1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the Select widget object, and transforms the <samp class="codeph">span</samp> tag
+content with the ID of <samp class="codeph">spryselect1</samp> from static
+HTML code into an interactive select object. The <samp class="codeph">Spry.Widget.ValidationSelect</samp> method
+is a constructor in the Spry framework that creates select objects.
+The information necessary to initialize the object is contained
+in the SpryValidationSelect.js JavaScript library that you linked
+to at the beginning of this procedure.</p>
+
+                              <p>Make sure that the
+ID of the select list’s container <samp class="codeph">span</samp> tag matches
+the ID parameter you specified in the Spry.Widgets.ValidationSelect
+method. Make sure that the JavaScript call comes after the HTML
+code for the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt; 
+... 
+&lt;script src="SpryAssets/SpryValidationSelect.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;span id="spryselect1"&gt;
+		&lt;select name="myselect" id="myselect"&gt;
+			&lt;option&gt;--Please select an item--&lt;/option&gt;
+			&lt;option value="item1"&gt;Item 1&lt;/option&gt;
+			&lt;option value="item2"&gt;Item 2&lt;/option&gt;
+			&lt;option value="-1"&gt;Invalid Item&lt;/option&gt;
+			&lt;option value="item3"&gt;Item 3&lt;/option&gt;
+			&lt;option&gt;Empty Item&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/span&gt;
+&lt;script type="text/javascript"&gt;
+	var selectwidget1 = new Spry.Widget.ValidationSelect("spryselect1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

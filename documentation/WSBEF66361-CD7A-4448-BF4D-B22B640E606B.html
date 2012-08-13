@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Sort data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS5D8E843D-25C0-4bfd-826A-8879D1E979D9.html" title="Get data"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSC8C6B6FC-3031-4ea2-8144-9152A7A155EA.html" title="Set or change current row"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Sort data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To
+sort the rows of a data set using the values in a given column,
+call the <samp class="codeph">sort()</samp> method on the data set:</span> 
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.sort("@path"); // Sort the rows of the data set using the "@path" column.</pre>
+
+                              <p>Calling
+the <samp class="codeph">sort()</samp> method of a data set sorts the rows
+in ascending order, using data in the specified column.</p>
+
+                              <p>The <samp class="codeph">sort()</samp> method
+takes two arguments. The first argument can be the name of the column,
+or an array of column names to use when sorting. If the first argument
+is an array, the first element of the array serves as the primary
+sort column; each column after that is used for secondary and tertiary
+sorting, and so on. The second argument is the sort order to use,
+and must be one of the following strings: <samp class="codeph">"ascending"</samp>, <samp class="codeph">"descending",</samp> or <samp class="codeph">"toggle"</samp>.
+If the second argument is not specified, the sort order defaults
+to "ascending". Specifying <samp class="codeph">"toggle"</samp> as the sort
+order causes the data sorted in <samp class="codeph">"ascending"</samp> order
+to be sorted in <samp class="codeph">"descending"</samp> order, and the reverse.
+If the column was never sorted before, and the sort order used is <samp class="codeph">"toggle"</samp>,
+the data is initially sorted in <samp class="codeph">"ascending"</samp> order.</p>
+
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.sort("@path", "toggle"); // Toggle the Sort order of the rows of the data set using the "@path" column.</pre>
+
+                              <p>To
+have the data in the data set sorted automatically whenever data
+is loaded, specify the column to sort by and the sort order to use
+as an option to the data set constructor. Use the <samp class="codeph">"sortOnLoad"</samp> option
+to the data set constructor to specify a column to sort by. In the
+following example, the data set automatically sorts in descending
+order by using the data in the @path column.</p>
+
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo", { sortOnLoad: "@path", sortOrderOnLoad: "descending" });</pre>
+
+                              <p>By
+default, all values in the data set are treated as text. This can
+be problematic when sorting numeric or date values. You can specify
+the data type for a given column by calling the <samp class="codeph">setColumnType()</samp> method.</p>
+
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+dsPhotos.setColumnType("@width", "number");
+dsPhotos.setColumnType("@height", "number");
+...
+dsPhotos.sort("@width"); // Sort the rows of the data set using the "@width" column.</pre>
+
+                              <p>Current
+supported data types are <samp class="codeph">"number"</samp>, <samp class="codeph">"date"</samp>, <samp class="codeph">"html"</samp>,
+and <samp class="codeph">"string"</samp>.</p>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

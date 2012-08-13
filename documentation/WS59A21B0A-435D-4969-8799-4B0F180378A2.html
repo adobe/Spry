@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Hiding data references
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSA51791D5-53E6-4155-A08F-8ED72946131D.html" title="Data reference options"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS0184B6C0-C480-402d-B5AC-C9A32B74CB38.html" title="Behavior attributes"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html"><b>Working with dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Hiding data references
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="p">
+                        In some
+browsers, loading pages over a slow connection can result in the
+user briefly seeing the unprocessed regions and data references
+on the page before the document's <samp class="codeph">onload</samp> notification
+is sent. To hide unprocessed regions and data references, you can
+provide a CSS rule for the <samp class="codeph">SpryHiddenRegion</samp> class:<pre>&lt;style type="text/css"&gt;<kbd class="userinput">.SpryHiddenRegion
+{</kbd><kbd class="userinput">visibility:hidden;</kbd>}
+&lt;/style&gt;
+...
+&lt;div spry:region="dsEmployees" <kbd class="userinput">class="SpryHiddenRegion"</kbd>&gt;
+...
+&lt;/div&gt;</pre>
+
+                     </div>
+<p>Using this technique, the CSS rule hides the Spry regions marked
+with this class when the page loads. When the Spry data is finished
+processing, Spry strips off the <samp class="codeph">SpryHiddenRegion</samp> class
+and the finished Spry content appears. </p>
+<p>An alternative way to hide just the data references, as opposed
+to the whole tag, is to use the <samp class="codeph">spry:content</samp> attribute
+as a substitute for a data reference. Because the data reference
+is the value of the <samp class="codeph">spry:content</samp> attribute, it
+is not visible when the page loads.</p>
+<p>The following example hides a data reference with a <samp class="codeph">spry:content</samp> attribute
+on an element:</p>
+<pre>&lt;!--Example of a normal region.--&gt;
+&lt;div spry:region="dsEmployees"&gt;
+Hello my name is {firstname}.
+&lt;/div&gt;
+&lt;!--Example of a region using spry:content.--&gt;
+Hello my name is <kbd class="userinput">&lt;span spry:content="{firstname}"&gt;&lt;/span&gt;</kbd>.
+&lt;/div&gt;</pre>
+<p>The <samp class="codeph">spry:content</samp> attribute replaces the entire
+contents of the <samp class="codeph">div</samp> tag with the value of the attribute.
+In this case, the the value of <samp class="codeph">{firstname}</samp> is inserted
+into the empty <samp class="codeph">span</samp> tag. The result is the same,
+only in this case there is no visible data reference.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

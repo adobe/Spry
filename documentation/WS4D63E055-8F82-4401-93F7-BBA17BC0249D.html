@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create an advanced master and detail page
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSE22804F0-07C8-46f0-B642-00C8EA84FAD5.html" title="Create a basic master and detail page"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html" title="Working with dynamic regions"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS16A5F36A-BEA9-4d3c-9E4D-622D8C28DA28.html"><b>Creating Spry pages</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create an advanced master and detail page
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You
+can create master and detail relationships that involve more than
+one data set. For an overview of how such relationships work, see Spry
+advanced master/detail region overview and structure.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Familiarize yourself with the structure of the
+data (for example, the structure of an XML file) used in creating
+the data set. You’ll need to understand the structure to make one
+data set depend on another.</span></li>
+<li class="stepexpand"><span>Create a data set by adding the appropriate code to the
+head of your document. (See <a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a>.) This is the master data set.</span></li>
+<li class="stepexpand"><span>Create a second data set (the detail data set) immediately
+following the master data set you just created. The URL or XPath
+in the constructor of the detail data set contains a data reference
+to one or more of the columns in the master data set. The data reference
+uses the following syntax: <samp class="codeph">{<em>MasterDatasetName</em>::<em>columnName</em>}</samp>.</span> 
+                              <p>In the following example, the third <samp class="codeph">script</samp> block
+contains the statement that creates two data sets, one called <dfn class="term">dsSpecials</dfn> (the
+master) and one called <dfn class="term">dsIngredients</dfn> (the detail):</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+		var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <p>The path to the data source (in this
+case, an XML file) for the <samp class="codeph">dsIngredients</samp> detail data
+set contains a data reference (<samp class="codeph">{dsSpecials::url}</samp>)
+to the <samp class="codeph">dsSpecials</samp> master data set. More specifically,
+it contains a data reference to the url column in the <samp class="codeph">dsSpecials</samp> data
+set. When the url or XPath argument in the constructor that creates
+a data set contains a reference to another data set, the data set
+being created automatically becomes an observer of the data set
+it’s referencing.</p>
+
+                           </li>
+<li class="stepexpand"><span>Create the master region by adding the <samp class="codeph">spry:region</samp> attribute
+to the HTML element that will act as the container tag for the region.
+See <a href="WS9591785F-81A6-4234-AF61-2BD0B32597A0.html">Create a Spry dynamic region and display data</a>.</span> 
+                              <p>In the following example, a master dynamic region displays
+repeated data from the <samp class="codeph">dsSpecials</samp> data set:</p>
+
+                              <pre>&lt;body&gt;
+	&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+		&lt;table id="Specials_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Price&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat="dsSpecials"&gt;
+				&lt;td&gt;{item}&lt;/td&gt;
+				&lt;td&gt;{description}&lt;/td&gt;
+				&lt;td&gt;{price}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add an attribute that will allow users to change the
+current row in the master data set. In the following example, a
+spry:setrow attribute (in bold) changes the current row in the <samp class="codeph">dsSpecials</samp> data
+set whenever a user clicks a row in the master region table:</span> 
+                              <pre>&lt;tr spry:repeat="dsSpecials" <strong>spry:setrow="dsSpecials"</strong>&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;
+	&lt;td&gt;{price}&lt;/td&gt;
+&lt;/tr&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Create the detail dynamic region on the page by adding
+the <samp class="codeph">spry:region</samp> attribute to the tag that will
+contain the region. The attribute uses the syntax <samp class="codeph">spry:region="<em>datasetName</em>"</samp>.</span> 
+                              <div class="note"><span class="notetitle">Note:  </span>When creating master and detail relationships using
+two or more data sets, it is not necessary to use the <samp class="codeph">spry:detailregion</samp> attribute
+as is outlined in <a href="WSE22804F0-07C8-46f0-B642-00C8EA84FAD5.html">Create a basic master and detail page</a>. Because the current row of the
+detail data set never changes (it’s the current row of the master
+data set that changes), the <samp class="codeph">spry:region</samp> attribute
+suffices. For more information, see Spry
+advanced master/detail region overview and structure.</div>
+
+                              <p>In
+the following example, a <samp class="codeph">div</samp> tag contains the detail
+dynamic region:</p>
+
+                              <pre>&lt;div id="Specials_Detail_DIV" spry:region="dsSpecials"&gt;
+&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Within the tag containing the detail dynamic region,
+insert an HTML element to display the detail data from the current
+row of the master data set.</span> 
+                              <p>In the example, an HTML table displays detail data from
+the <samp class="codeph">{name}</samp> column in the <samp class="codeph">dsIngredients</samp> data
+set. The <samp class="codeph">dsIngredients</samp> data set creates the <samp class="codeph">{name}</samp> column
+based on the information it receives from the <samp class="codeph">dsSpecials</samp> data
+set.</p>
+
+                              <pre>&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Ingredients&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr spry:repeat=”dsIngredients”&gt;
+			&lt;td&gt;{name}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</pre>
+
+                              <p>The completed example code binding the
+master region to the <samp class="codeph">dsSpecials</samp> data set, and detail
+region to the <samp class="codeph">dsIngredients</samp> data set, would look
+as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+		var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+		var dsIngredients = new Spry.Data.XMLDataSet("data/{dsSpecials::url}", "item/ingredients/ingredient");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+	&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+		&lt;table id="Specials_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Price&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;
+				&lt;td&gt;{item}&lt;/td&gt;
+				&lt;td&gt;{description}&lt;/td&gt;
+				&lt;td&gt;{price}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+	&lt;div id="Specials_Detail_DIV" spry:region="dsIngredients"&gt;
+		&lt;table id="Specials_Detail_Table"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;/tr&gt;
+			&lt;tr spry:repeat=”dsIngredients”&gt;
+				&lt;td&gt;{name}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+. . .
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

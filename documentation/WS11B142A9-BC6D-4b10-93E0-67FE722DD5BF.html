@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Set custom column names
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSE4308BF9-B3A3-48e3-B703-8BA08B4EAEE9.html" title="Specify a column as a header"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS5AA8B079-2344-45b7-B2C7-CEB73BE604CD.html" title="About colspan and rowspan"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSF81D2EA9-42A9-41f1-B9B8-5AC50FB318F9.html"><b>Working with HTML data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Set custom column names
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           Commonly, the first row of an HTML table is
+a header row that names the columns beneath it. By default, Spry
+uses the first row to set column names in the data set, and from
+these you can derive the data reference names that you use in the
+pages that display your data (<samp class="codeph">{email}</samp>, <samp class="codeph">{firstname}</samp>,
+and so on). In generic HTML structures, however, the first repeating
+element in the structure may or may not be an actual table column
+name, so you can set custom column names if you need to.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To set custom column names, set the <samp class="codeph">columnNames</samp> option
+in the constructor, as follows:</span> 
+                              <pre>var ds1 = new Spry.Data.HTMLDataSet(null, "myContainer", {columnNames:['firstcolumnname','secondcolumnname']});</pre>
+
+                              <p>When
+you use the <samp class="codeph">columnNames</samp> option, the number of custom
+column names in the array must equal the number of columns in the
+data set. After you’ve set custom column names, you can use them
+in Spry regions as your data references.</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>When you use custom
+column names in an HTML table, and <samp class="codeph">firstRowAsHeader</samp> is <samp class="codeph">true</samp> (the
+default), Spry does not use the first row’s (the header row’s) column
+names in the data set. When you set custom column names, Spry always
+uses them in the data set instead.</div>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Let users sort data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS966A63B7-D24B-4fd2-B4D0-1E533E4C2BFB.html" title="Sample code: Spry data set and dynamic region"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE22804F0-07C8-46f0-B642-00C8EA84FAD5.html" title="Create a basic master and detail page"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS16A5F36A-BEA9-4d3c-9E4D-622D8C28DA28.html"><b>Creating Spry pages</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Let users sort data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You can add <samp class="codeph">spry:sort</samp> attributes
+to your dynamic region that allow users to interact with the data.
+This section uses the table code from <a href="WS9591785F-81A6-4234-AF61-2BD0B32597A0.html">Create a Spry dynamic region and display data</a> as an example.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Locate the place in the code where you want to
+add the <samp class="codeph">spry:sort</samp> attribute or attributes. In this
+example, the attributes are added to two column headers in a table
+that displays the data.</span></li>
+<li class="stepexpand"><span>Add a <samp class="codeph">spry:sort</samp> attribute to the appropriate
+column header tags, using the following form:</span> 
+                              <pre>spry:sort="<em>columnName</em>"</pre>
+
+                              <p>The
+value defined in the <samp class="codeph">spry:sort </samp>attribute tells
+the data set which column to use when sorting the data</p>
+
+                              <p>For
+example, adding the following <samp class="codeph">spry:sort</samp> attributes
+(in bold) to column header tags sorts the dynamic region data according
+to the specified value whenever the user clicks a column header
+on the page.</p>
+
+                              <pre>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table" class="main"&gt;
+		&lt;tr&gt;	
+			&lt;th <strong><strong>spry:sort="item"</strong></strong>&gt;Item&lt;/th&gt;
+			&lt;th <strong><strong>spry:sort="description"</strong></strong>&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;	
+		&lt;/tr&gt;	
+		&lt;tr spry:repeat="dsSpecials"&gt;	
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;	
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;</pre>
+
+                              <p>Clicking Item on the page sorts the data
+alphabetically according to the menu item name, and clicking Description
+on the page sorts the data alphabetically according to the menu
+item’s description.</p>
+
+                           </li>
+</ol>
+</div>
+<h3 class="topictitle3"><a href="#WSBFC10F55-641B-43f9-A703-0BBC2269688C" onclick="javascript:toggleLayer('WSBFC10F55-641B-43f9-A703-0BBC2269688C');return false;" title="Numerical sorting"><img src="images/off.gif" />Numerical sorting</a></h3><div id="WSBFC10F55-641B-43f9-A703-0BBC2269688C" class="mini"><a name="WSBFC10F55-641B-43f9-A703-0BBC2269688C"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, all data in the data set (including numbers)
+is considered text, and sorts alphabetically. To sort numerically
+(for example, to sort by price of menu item), you can use the <samp class="codeph">setColumnType</samp> data
+set method to change the data type of the price column from text
+to numbers. The method takes the following form:</p>
+
+                           <pre><em>datasetName</em>.setColumnType("<em>columnName</em>", "number");</pre>
+
+                           <p>Using
+the preceding example, you would add the <samp class="codeph">setColumnType</samp> method
+to the head tag of your document, after you create the data set
+(in bold):</p>
+
+                           <pre>&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item"); 	
+	<strong>dsSpecials.setColumnType("price", "number")</strong>;
+&lt;/script&gt;</pre>
+
+                           <p>The expression calls the <samp class="codeph">setColumnType</samp> method
+on the <samp class="codeph">dsSpecials</samp> data set object, which you’ve
+already defined. The <samp class="codeph">setColumnType</samp> method takes
+two parameters: the name of the data set column to retype (<samp class="codeph">"price"</samp>)
+and the desired data type (<samp class="codeph">"number"</samp>).</p>
+
+                           <p>You
+can now add the <samp class="codeph">spry:sort</samp> attribute to the price
+column so that all three columns in the HTML table are sortable
+when the user clicks any of the table headers:</p>
+
+                           <pre>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table" class="main"&gt;
+		&lt;tr&gt;		
+			&lt;th <strong>spry:sort="item"</strong>&gt;Item&lt;/th&gt;			
+			&lt;th <strong>spry:sort="description"</strong>&gt;Description&lt;/th&gt;			
+			&lt;th <strong><strong>spry:sort="price"</strong></strong>&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;		
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;			
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;	
+	&lt;/table&gt;
+&lt;/div&gt;</pre>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Set or change current row
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSBEF66361-CD7A-4448-BF4D-B22B640E606B.html" title="Sort data"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSB8E77A14-BB3D-44a4-A254-CA998B7E2F5B.html" title="Remove duplicate rows"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Set or change current row
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           Each data set maintains
+the notion of a <dfn class="term">current row</dfn>. By default, the current
+row is set to the first row in the data set. To change the current
+row programmatically, call the <samp class="codeph">setCurrentRowNumber()</samp> method
+and pass the row number of the row you want to make the current
+row. The index of the first row is always zero, so if a data set
+contains 10 rows, the index of the last row is 9.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Use <samp class="codeph">setCurrentRowByNumber()</samp> or <samp class="codeph">setCurrentRow()</samp> to
+change the current row:</span> 
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.setCurrentRowNumber(2); // Make the 3rd row in the data set the current row.</pre>
+
+                              <p>Each
+row in the data set is also assigned a unique ID that allows you
+to refer to a specific row in the data set even after the order
+of the rows in the data set change. You can get the ID of a row
+by accessing its <samp class="codeph">"ds_RowID"</samp> property. You can also change
+the current row by calling <samp class="codeph">setCurrentRow()</samp> and
+passing the row ID of the row to make the current row.</p>
+
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var id = dsPhotos.getData()[2]["ds_RowID"]; // Get the ID of the 3rd row.
+...
+dsPhotos.setCurrentRow(id); // Make the 3rd row the current row by using its ID.</pre>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

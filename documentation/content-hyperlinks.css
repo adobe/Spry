@@ -1,0 +1,73 @@
+@charset 'UTF-8';
+/*HINT*/
+/* a:link unvisited links */
+/* a:visited visited links   */
+/* a:hover user hovers     */
+/* a:active activated links    */
+/* HOVER STYLES MUST BE LISTED LAST IN RULES*/
+
+
+a {text-decoration: none;}
+
+/* hyperlinks with NO underlines */
+h3.topictitle3 a,
+h3.topictitle3off a,
+#breadcrumb a,
+div#homepage_content div a {text-decoration: none;}
+
+/* hyperlinks BOLDED*/
+div#nav_content table tbody tr td a,
+div#homepage_content div a {font-weight: bold;}
+
+/*  navy blue colored links */
+div#nav_content table tbody tr td a:link,
+div#nav_content table tbody tr td a:hover,
+a:link, 
+h3.topictitle3 a:link, 
+#breadcrumb a.prev:link,
+#breadcrumb a.next:link,
+a.tabOff:link,
+a.tabOff:visited,	
+div.letterList a:link,
+div.letterList a:visited,
+#results a:link,
+div#related a:link,
+div#homepage_content div a:link    {color: #047;}
+
+/* medium grey colored links */
+#breadcrumb a:link, 
+#breadcrumb a:visited  {color: #999;}
+
+/* steel grey/blue colored links */
+#breadcrumb a.prev:visited,
+#breadcrumb a.next:visited,
+a:visited,
+div#nav_content table tbody tr td a:visited,
+#results a:visited,
+div#related a:visited,
+div#homepage_content div a:visited  {	color: #5a6f7f;}
+
+div#related a:active {color: #c00;}
+
+
+/* RED colored hover links */
+a:hover, 
+a.tabOff:hover, 
+#breadcrumb a.prev:hover,
+#breadcrumb a.next:hover, 
+#breadcrumb a:hover,
+div.letterList a:hover,
+#results a:hover,
+div#related a:hover,
+div#homepage_content div a:hover {color: #c00;}
+
+div.fignone a {
+	display: block;
+	padding: 5px 0 0 5px;
+}
+
+div#homepage_content div a  {padding: 10px 0;}
+h3.topictitle3off a,
+h3.topictitle3 a  {margin:5px;}
+div#nav_content table tbody tr td a:hover {background-color: #ddd;}
+

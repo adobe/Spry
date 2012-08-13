@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Work with observer notifications
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS2CCD6485-4443-4236-B9A6-5C319DA54719.html" title="Refresh data"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS7D685DE0-FD06-4481-AFC8-062EB57F015F.html" title="Work with nested data sets"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Work with observer notifications
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ul class="navlinklist"></ul>
+</div>
+<h3 class="topictitle3"><a href="#WSA4AFF174-49D5-4658-8A9D-520D3ED5878A" onclick="javascript:toggleLayer('WSA4AFF174-49D5-4658-8A9D-520D3ED5878A');return false;" title="Observer notifications overview"><img src="images/off.gif" />Observer notifications overview</a></h3><div id="WSA4AFF174-49D5-4658-8A9D-520D3ED5878A" class="mini"><a name="WSA4AFF174-49D5-4658-8A9D-520D3ED5878A"><!-- --></a><div>
+                        <div class="section">
+                           <p>
+                              The XML data set supports an observer
+mechanism that allows an object or callback function to receive
+event notifications.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e23124">
+                                          <p>Notification</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e23129">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onPreLoad</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The data set is about to send a request
+for data. If the data set depends on other data sets, this event
+notification will not send until they are all loaded successfully. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onPostLoad</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The request for data was successful. The
+data is accessible. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onLoadError</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>An error occurred while requesting the data. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onDataChanged</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The data in the data set has been modified. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onPreSort</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The data in the data set is about to be
+sorted. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onPostSort</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The data in the data set has been sorted. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23124 ">
+                                          <p>onCurrentRowChanged</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23129 ">
+                                          <p>The data set's notion of the current row
+has changed. </p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS75DF592F-3AF5-437f-B3DD-46F47239B670" onclick="javascript:toggleLayer('WS75DF592F-3AF5-437f-B3DD-46F47239B670');return false;" title="Objects as observers"><img src="images/off.gif" />Objects as observers</a></h3><div id="WS75DF592F-3AF5-437f-B3DD-46F47239B670" class="mini"><a name="WS75DF592F-3AF5-437f-B3DD-46F47239B670"><!-- --></a><div>
+                        <div class="section">
+                           <p>To
+receive notifications, an object must define a method for each notification
+it is interested in receiving, and then register itself as an observer
+on the data set. For example, an object interested in <samp class="codeph">onDataChanged</samp> notifications
+must define an <samp class="codeph">onDataChanged()</samp> method and then
+call <samp class="codeph">addObserver()</samp>.</p>
+
+                           <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var myObserver = new Object;
+myObserver.onDataChanged = function(dataSet, data)
+{
+	alert("onDataChanged called!");
+};
+dsPhotos.addObserver(myObserver);</pre>
+
+                           <p>The first argument
+for each notification method is the object that is sending the notification.
+For data set observers, this is always the data set object. The
+second argument is either undefined, or an object that depends on
+the type of notification.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e23253">
+                                          <p>Notification</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e23258">
+                                          <p>Data passed into notification</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onPreLoad</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>undefined </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onPostLoad</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>undefined </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onLoadError</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>The Spry.Utils.loadURL.Request object that
+was used when making the request </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onDataChanged</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>undefined </p>
+
+                                       </td>
+</tr>
+<tr><td rowspan="5" valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onPreSort</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>Object with the following properties:</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>oldSortColumns: An array of columns used
+during the last sort.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>oldSortOrder: The sort order used during
+the last sort.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>newSortColumns: The array of columns about
+to be used for the sort.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>newSortOrder: The sort order about to be
+used for the sort.</p>
+
+                                       </td>
+</tr>
+<tr><td rowspan="5" valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onPostSort</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>Object with the following properties: </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>oldSortColumns: An array of the columns
+used in the previous sort.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>oldSortOrder: The sort order used during
+the previous sort.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>newSortColumns: The array of columns used
+for the sort. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>newSortOrder: The sort order used for the
+sort.</p>
+
+                                       </td>
+</tr>
+<tr><td rowspan="3" valign="top" width="NaN%" headers="d16e23253 ">
+                                          <p>onCurrentRowChanged</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>Object with the following properties: </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>oldRowID: The ds_RowID of the last current
+row. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e23258 ">
+                                          <p>newRowID: The ds_RowID of the current row.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>To stop an object from receiving notifications,
+the object must be removed from the list of observers with a call
+to <samp class="codeph">removeObserver()</samp>.</p>
+
+                           <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.removeObserver(myObserver);</pre>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS9AED55D4-96A6-423b-BBDA-1D79AF458C23" onclick="javascript:toggleLayer('WS9AED55D4-96A6-423b-BBDA-1D79AF458C23');return false;" title="Functions as observers"><img src="images/off.gif" />Functions as observers</a></h3><div id="WS9AED55D4-96A6-423b-BBDA-1D79AF458C23" class="mini"><a name="WS9AED55D4-96A6-423b-BBDA-1D79AF458C23"><!-- --></a><div>
+                        <div class="section">
+                           <p>Functions
+can also be registered as observers. The main difference between object
+and function observers is that an object is only notified for the
+notification methods it defines, whereas a function observer is
+called for every type of event notification.</p>
+
+                           <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+function myObserverFunc(notificationType, dataSet, data)
+{
+	if (notificationType == "onDataChanged")
+		alert("onDataChanged called!";
+	else if (notificationType == "onPostSort")
+		alert("onPostSort called!";
+};
+dsPhotos.addObserver(myObserverFunc);</pre>
+
+                           <p>A function observer
+is registered with the same call to <samp class="codeph">addObserver</samp>.</p>
+
+                           <p>When
+the function is called, the first argument to be passed into it
+is the notification type. This is a string that is the name of the
+notification. The second argument is the notifier, which in this
+case is the data set, and the third argument is the data for the
+notification.</p>
+
+                           <p>To stop a function observer from receiving notifications,
+it must be removed from the list of observers with a call to <samp class="codeph">removeObserver()</samp>.</p>
+
+                           <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+dsPhotos.removeObserver(myObserverFunc);</pre>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

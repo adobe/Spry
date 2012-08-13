@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Change the orientation of a Menu Bar widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS961323A5-F8E4-462c-AE05-157BB42930F5.html" title="Preload images"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS895F3A6D-6D73-42ef-B568-3D04ABD2F171.html" title="Customize the Menu Bar widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html"><b>Working with the Menu Bar widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Change the orientation of a Menu Bar widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You can change the orientation of a Menu Bar
+widget from horizontal to vertical, and vice versa. To do so, alter
+the HTML code for the menu bar and make sure you have the correct
+CSS file in your website.</p>
+
+                        <p>The following procedure changes
+a horizontal Menu Bar widget to a vertical Menu Bar widget.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Make sure you have the SpryMenuBarVertical.css
+file in your website. (For example, you might store this file in
+a SpryAssets folder somewhere in the site.)</span></li>
+<li class="stepexpand"><span>Replace the link to the SpryMenuBarHorizontal.css file
+with a link to the SpryMenuBarVertical.css file in the head of your
+document, as follows:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" /&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Locate the MenuBarHorizontal class in the HTML code for
+the horizontal menu bar, and change it to MenuBarVertical. The MenuBarHorizontal
+class is defined in the container <samp class="codeph">ul</samp> tag for the
+menu bar (<samp class="codeph">&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;</samp>).</span></li>
+<li class="stepexpand"><span>After the code for the menu bar, locate the menu bar
+constructor:</span> 
+                              <div class="p">
+                                 <pre>var mb1 = new Spry.Widget.MenuBar("menubar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Remove the <samp class="codeph">imgDown</samp> preload option (and
+comma) from the constructor:</span> 
+                              <div class="p">
+                                 <pre>var mb1 = new Spry.Widget.MenuBar("menubar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});</pre>
+
+                                 <div class="note"><span class="notetitle">Note:  </span>If
+you are converting from a vertical menu bar to a horizontal menu
+bar, add the <samp class="codeph">imgDown</samp> preload option and comma instead.</div>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>(Optional) If your page no longer contains any other
+horizontal Menu Bar widgets, delete the link to the former MenuBarHorizontal.css
+file in the head of the document.</span></li>
+<li class="stepexpand"><span>Save the page.</span></li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

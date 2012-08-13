@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create a Spry dynamic region and display data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS16A5F36A-BEA9-4d3c-9E4D-622D8C28DA28.html" title="Creating Spry pages"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS966A63B7-D24B-4fd2-B4D0-1E533E4C2BFB.html" title="Sample code: Spry data set and dynamic region"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS16A5F36A-BEA9-4d3c-9E4D-622D8C28DA28.html"><b>Creating Spry pages</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create a Spry dynamic region and display data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           
+                           After you create a Spry
+data set, you bind a Spry dynamic region to the data set. A Spry
+dynamic region is an area on the page that displays the data and
+automatically updates the data display whenever the data set is
+modified.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Make sure that you’ve linked the Spry data library
+files to your web page and created a Spry data set. For more information,
+see <a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a>.</span></li>
+<li class="stepexpand"><span>In Code view, create a Spry dynamic region by adding
+the <samp class="codeph">spry:region</samp> attribute to the tag that will
+contain the region. The attribute uses the syntax: <samp class="codeph">spry:region="<em>datasetName</em>"</samp>.</span> 
+                              <div class="note"><span class="notetitle">Note:  </span>Most, but not all, HTML elements can act as containers
+for dynamic regions. For more information, see Spry
+dynamic region overview and structure.</div>
+
+                              <p>For example,
+to use a <samp class="codeph">div</samp> tag as the container for the dynamic
+region displaying data from the <samp class="codeph">dsSpecials</samp> data
+set, add the <samp class="codeph">spry:region</samp> attribute to the tag as
+follows:</p>
+
+                              <pre>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;&lt;/div&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>Dynamic
+regions can depend on more than one data set. To add more data sets
+to the region, list them as additional values of the <samp class="codeph">spry:region</samp> attribute,
+separated by a space. For example, you can create a dynamic region
+by using <samp class="codeph">spry:region="dsSpecials dsSpecials2 dsSpecials3"</samp>.</div>
+
+                           </li>
+<li class="stepexpand"><span>Within the tag containing the dynamic region (this example
+uses a <samp class="codeph">div</samp> tag), insert an HTML element to display
+the first row of the data set. You can use any HTML element to display
+data. One of the most typical elements used for this purpose, however,
+is a two-row HTML table, where the first row contains static column
+headings and the second row contains the data:</span> 
+                              <pre>&lt;table id="Specials_Table"&gt;	
+	&lt;tr&gt;		
+		&lt;th&gt;Item&lt;/th&gt;	
+		&lt;th&gt;Description&lt;/th&gt;	
+		&lt;th&gt;Price&lt;/th&gt;	
+	&lt;/tr&gt;		
+	&lt;tr spry:repeat="dsSpecials"&gt;	
+		&lt;td&gt;{item}&lt;/td&gt;
+		&lt;td&gt;{description}&lt;/td&gt;
+		&lt;td&gt;{price}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</pre>
+
+                              <p>The values in curly braces in the second
+row—the data references—specify columns in the data set. The data
+references bind the table cells to data in specific columns of the
+data set.</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>If the Spry region depends on more than one data
+set, specify the data set to which you’re binding the dynamic region.
+The full syntax of the data reference takes the form of <samp class="codeph">{datasetName::columnName}</samp>.
+For example, to bind the dynamic region to two or three different
+data sets, enter the data in the preceding example as follows: <samp class="codeph">{dsSpecials::item}</samp>, <samp class="codeph">{dsSpecials::description}</samp>,
+and so forth. Spry regions also support multiple data sets which
+you can specify by adding the data set names to the value of the
+attribute, separated by a space (i.e. &lt;div spry:region=”ds1 ds2
+ds3”&gt;.</div>
+
+                           </li>
+<li class="stepexpand"><span>Make the HTML element repeat automatically to display
+all the rows of the data set by adding the <samp class="codeph">spry:repeat</samp> attribute
+and value to the HTML element tag using the following syntax:</span> 
+                              <pre>spry:repeat="<em>datasetName</em>"</pre>
+
+                              <p>In
+the example, you add the <samp class="codeph">spry:repeat</samp> attribute
+to the table row tag as follows (in bold):</p>
+
+                              <pre>&lt;tr <strong>spry:repeat="dsSpecials"</strong>&gt;
+	&lt;td&gt;{item}&lt;/td&gt;
+	&lt;td&gt;{description}&lt;/td&gt;	
+	&lt;td&gt;{price}&lt;/td&gt;
+&lt;/tr&gt;</pre>
+
+                              <p>In the example, the completed code binding
+the dynamic region to the data set would look as follows:</p>
+
+                              <pre>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;	
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;		&lt;/tr&gt;
+		&lt;tr spry:repeat="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;
+			&lt;td&gt;{description}&lt;/td&gt;	
+			&lt;td&gt;{price}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>You can make the dynamic region more interactive by defining
+click events that allow users to sort data. For instructions, see <a href="WS1D07A616-54BE-4d57-9AB1-88914856F1F2.html">Let users sort data</a>.</span></li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

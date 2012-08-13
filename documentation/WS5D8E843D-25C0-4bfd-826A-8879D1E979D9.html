@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Get data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS7A2F2890-7361-44b1-9C3E-D4A1209E037B.html" title="Turn off data caching"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSBEF66361-CD7A-4448-BF4D-B22B640E606B.html" title="Sort data"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Get data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           After
+the XML data is loaded, it is flattened into a tabular format. Inside
+the data set, the data is actually stored as an array of objects
+(rows) with properties (columns) and values.</p>
+
+                        <p>The following
+example shows data selected with the <samp class="codeph">/gallery/photos/photo</samp> XPath, in
+bold:</p>
+
+                        <pre>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;<strong>photo path="sun.jpg" width="16" height="16"</strong>/&gt;
+		&lt;<strong>photo path="tree.jpg" width="16" height="16"</strong>/&gt;
+		&lt;<strong>photo path="surf.jpg" width="16" height="16"</strong>/&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+
+                        <p>The data set then flattens the set
+of nodes into a tabular format, that the following table represents.</p>
+
+                        <div class="p">
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e22677">
+                                          <p>@path</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e22682">
+                                          <p>@width</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e22687">
+                                          <p>@height</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e22677 ">
+                                          <p>sun.jpg</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22682 ">
+                                          <p>16</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22687 ">
+                                          <p>16</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22677 ">
+                                          <p>tree.jpg</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22682 ">
+                                          <p>16</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22687 ">
+                                          <p>16</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e22677 ">
+                                          <p>surf.jpg</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22682 ">
+                                          <p>16</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e22687 ">
+                                          <p>16</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                        <p>You can get all of the rows in the
+data set by calling <samp class="codeph">getData()</samp>. The data is loaded asynchronously,
+so you can only access the data after it is loaded. You might need to
+register an observer to be notified when the data is ready. For
+more information, see Work
+with observer notifications.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Use the <samp class="codeph">getData()</samp> method to fetch
+all the rows in the data set. To get the value of a specific column,
+index into the row with the column name.</span> 
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+var rows = dsPhotos.getData(); // Get all rows.
+var path = rows[0]["@path"];   // Get the data in the "@path" column of the first row.</pre>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

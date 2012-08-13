@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create a Spry nested data set
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSCF3041F1-1F1E-4def-9A33-2D7C25C35B9D.html" title="About Spry nested data sets"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html" title="Getting and manipulating data"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS9C10D841-99FF-421d-A917-9E4BA49B1E81.html"><b>Working with nested data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create a Spry nested data set
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Open
+a new or existing HTML page.</span></li>
+<li class="stepexpand"><span>Make sure that you’ve linked the Spry data library files
+to the page and created an XML data set.</span> 
+                              <p>For example, you might create an XML data set, <samp class="codeph">dsItems1</samp>,
+with the following code:</p>
+
+                              <pre>&lt;script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var dsItems1 = new Spry.Data.XMLDataSet("data/xmldata.xml", "/items/item");
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryNestedXMLDataSet.js file to the page by
+inserting the following <samp class="codeph">script</samp> tags after the other
+data set <samp class="codeph">script</samp> tags in the head, as follows:</span> 
+                              <pre>&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;<strong>script language="JavaScript" type="text/javascript" src="includes/SpryNestedXMLDataSet.js"&gt;&lt;/script</strong>&gt;</pre>
+
+                              <p>The
+SpryNestedXMLDataSet.js file is in the same Adobe Labs includes
+folder as all of the other Spry XML JavaScript files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Create the nested data set (or sets) by adding new constructor
+variables, after the constructor for the parent data set, as follows:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var dsItems1 = new Spry.Data.XMLDataSet("data/xmldata.xml", "/items/item");
+	var <strong>dsBatters = new Spry.Data.NestedXMLDataSet(dsItems1, "batters/batter")</strong>;
+	var <strong>dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, "topping")</strong>;
+&lt;/script&gt;</pre>
+
+                              <p>The completed example code might look
+as follows:</p>
+
+                              <pre>&lt;script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsItems1 = new Spry.Data.XMLDataSet("data/xmldata.xml", "/items/item");
+	var dsBatters = new Spry.Data.NestedXMLDataSet(dsItems1, "batters/batter");
+	var dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, "topping");
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>After the Nested data set is created, you can display
+the data on the web page. The following code produces a three-column
+table in which the first column includes data from the parent data
+set, and the second two columns include data from the nested data
+sets:</span> 
+                              <div class="p">
+                                 <pre>&lt;script language="JavaScript" type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="../../includes/SpryNestedXMLDataSet.js"&gt;&lt;/script&gt;
+...
+&lt;script type="text/javascript"&gt;
+	var dsItems1 = new Spry.Data.XMLDataSet("data/xmldata.xml", "/items/item");
+	var dsBatters = new Spry.Data.NestedXMLDataSet(dsItems1, "batters/batter");
+	var dsToppings = new Spry.Data.NestedXMLDataSet(dsItems1, "topping");
+&lt;/script&gt;
+...
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Region using dsItems1 (Parent)&lt;/th&gt;
+		&lt;th&gt;Region using dsBatters (Nested)&lt;/th&gt;
+		&lt;th&gt;Region using dsToppings (Nested)&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td spry:region="dsItems1"&gt;
+			&lt;ul spry:repeatchildren="dsItems1" spry:choose=""&gt;
+				&lt;li spry:when="{ds_CurrentRowNumber} == {ds_RowNumber}" spry:setrow="dsItems1" spry:select="select" spry:hover="hover" spry:selected=""&gt;{name}&lt;/li&gt;
+				&lt;li spry:default="" spry:setrow="dsItems1" spry:select="select" spry:hover="hover"&gt;{name}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+		&lt;td spry:region="dsBatters"&gt;
+			&lt;ul spry:repeatchildren="dsBatters"&gt;
+				&lt;li&gt;{batter}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+		&lt;td spry:region="dsToppings"&gt;
+			&lt;ul spry:repeatchildren="dsToppings"&gt;
+				&lt;li&gt;{topping}&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</pre>
+
+                              </div>
+
+                            
+                              <p>The output is as follows:</p>
+
+                              <div class="fignone"><img alt="" id="nested_graphic" src="images/nested_graphic.png" /><div class="figdesc"></div><br />
+                                 
+                              </div>
+                              <p>When
+you click an item in one of the parent rows, the current row of
+the parent data set updates. The two other lists that use nested
+data sets also change, because they depend on the data coming from
+the parent data set.</p>
+
+                              <p>To see more code samples and working
+examples of nested data sets, see the <a href="https://github.com/adobe/Spry/tree/master/samples/data_region/NestedXMLDataSample.html" target="_blank">Nested XML Data samples</a> page on Adobe
+Labs.</p>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WSE8C2ECEC-CD16-41d4-BBEC-7DF9DD2398A2.html">Prepare your files</a></li><li class="icon Spry" alt="Spry"><a href="WS3FFB2682-5695-482a-8D22-3280639CCF53.html">Create a Spry XML data set</a></li><li class="icon Spry" alt="Spry"><a href="WS9591785F-81A6-4234-AF61-2BD0B32597A0.html">Create a Spry dynamic region and display data</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

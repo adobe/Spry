@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Menu Bar widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS4E5B02D6-9A2B-4ecc-9FE5-8EE096749CDC.html" title="CSS code for the Menu Bar widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSC622986B-3A4D-4616-BE32-E615247BF19C.html" title="Add or delete menus and submenus"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html"><b>Working with the Menu Bar widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Menu Bar widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the SpryMenuBar.js file and add it to your web site. You can find
+the SpryMenuBar.js file in the widgets/menubar directory, located
+in the Spry directory that you downloaded from Adobe Labs. For more
+information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryMenuBar.js file
+to it. The SpryMenuBar.js file contains all of the information necessary
+for making the Menu Bar widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryMenuBarHorizontal.css or SpryMenuBarVertical.css
+file (depending on which kind of menu bar you want to create), and
+add it to your web site. You might choose to add it to the main
+directory, a SpryAssets directory, or to a CSS directory if you
+have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Menu Bar widget to and link
+the SpryMenuBar.js file to the page by inserting the following <samp class="codeph">script</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryMenuBar.js file is correct. This
+path varies depending on where you’ve placed the file in your web
+site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryMenuBarHorizontal.css or SpryMenuBarVertical.css
+file to your web page by inserting the following <samp class="codeph">link</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryMenuBarHorizontal.css or SpryMenuBarVertical.css
+file is correct. This path varies depending on where you’ve placed
+the file in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add the menu bar HTML code to your web page by inserting
+a <samp class="codeph">ul </samp>tag as a container tag, and then <samp class="codeph">li</samp> tags
+with some sample text for each top-level menu item in the menu bar,
+as follows:</span> 
+                              <pre>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Item 1&lt;/li&gt;
+		&lt;li&gt;Item 2&lt;/li&gt;
+		&lt;li&gt;Item 3&lt;/li&gt;
+		&lt;li&gt;Item 4&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Wrap the text of the <samp class="codeph">li</samp> tags with <samp class="codeph">a</samp> tags:</span> 
+                              <pre>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Nest another unordered list (including <samp class="codeph">a</samp> tags)
+in the third menu item (or any other menu item), as follows:</span> 
+                              <pre>&lt;body&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </pre>
+
+                              <p>This nested unordered list is the submenu
+for the third menu item. Make sure that the nested list is not within
+the <samp class="codeph">a</samp> tag of the top-level menu item.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add a unique ID that identifies the menu bar container
+(<samp class="codeph">ul</samp> tag), as follows:</span> 
+                              <pre>&lt;body&gt;
+	&lt;ul id="menubar1"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </pre>
+
+                              <p>Later, you’ll use this ID to identify
+the container in the widget constructor.</p>
+
+                           </li>
+<li class="stepexpand"><span>To add styling to the menu bar, add the appropriate classes,
+as follows:</span> 
+                              <pre>&lt;body&gt;
+	&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt; </pre>
+
+                              <p>Identify whether you’re creating a
+horizontal menu bar or a vertical menu bar. Assign the MenuBarItemSubmenu
+class to <samp class="codeph">a</samp> tags when top-level menu bar items have
+submenus. This class displays a down-arrow image that lets the user
+know submenu is present.</p>
+
+                           </li>
+<li class="stepexpand"><span>To initialize the Spry menu bar object, insert the following <samp class="codeph">script</samp> block
+after the HTML code for the Menu Bar widget:</span> 
+                              <pre>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+. . .
+&lt;/ul&gt;
+&lt;script type="text/javascript"&gt;
+	var mb1 = new Spry.Widget.MenuBar("menubar1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the Menu Bar widget object, and transforms
+the <samp class="codeph">ul</samp> content with the ID of <samp class="codeph">menubar1</samp> from
+static HTML code into an interactive menu bar object. The <samp class="codeph">Spry.Widget.MenuBar</samp> method
+is a constructor in the Spry framework that creates menu bar objects.
+The information necessary to initialize the object is contained
+in the SpryMenuBar.js JavaScript library that you linked to at the
+beginning of this procedure.</p>
+
+                              <p>Make sure that the ID of the
+menu bar’s <samp class="codeph">ul</samp> container tag matches the ID parameter
+you specified in the <samp class="codeph">Spry.Widgets.MenuBar</samp> method.
+Make sure that the JavaScript call comes after the HTML code for
+the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;script type="text/javascript"&gt;
+	var mb1 = new Spry.Widget.MenuBar("menubar1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+<div class="section">
+                        <div class="p">
+                           <div class="note"><span class="notetitle">Note:  </span>The Spry Menu Bar widget uses DHTML layers to display
+sections of HTML code on top of other sections. If your page contains
+Flash content, this might cause a problem because Flash movies are
+always displayed on top of all other DHTML layers, so the Flash
+content might be displayed on top of your submenus. The workaround for
+this situation is to change the parameters for the Flash content
+to use <samp class="codeph">wmode="transparent"</samp>. For more information,
+see <a href="http://www.adobe.com/go/15523" target="_blank">www.adobe.com/go/15523.</a>
+                           </div>
+
+                        </div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

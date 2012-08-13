@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Specify a header row as data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSA8D06420-9FA9-457f-8AC4-B882D673E180.html" title="Use an internal table"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE4308BF9-B3A3-48e3-B703-8BA08B4EAEE9.html" title="Specify a column as a header"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSF81D2EA9-42A9-41f1-B9B8-5AC50FB318F9.html"><b>Working with HTML data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Specify a header row as data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           A header row (or <samp class="codeph">th</samp> tag)
+is the first row of an HTML table. By default, Spry uses this row
+to define the column names when it creates an HTML data set. You
+can then use these column names as data references when you display
+data in a Spry region.</p>
+
+                        <p>If the first row in your table is actually
+data, you can specify it as such in the data set constructor.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To specify a header as data rather than a column
+name, add the<samp class="codeph"> firstRowAsHeader</samp> option with a value
+of <samp class="codeph">false</samp> to the constructor, as follows:</span> 
+                              <pre>var ds2 = new Spry.Data.HTMLDataSet("products.html", "productsTable", {firstRowAsHeaders:false});</pre>
+
+                              <p>To
+access the data after you’ve disabled column names, use <samp class="codeph">{column#}</samp> as
+the syntax in your data references. Spry uses a zero-based counting
+system, with column numbers starting at zero (0), so use <samp class="codeph">{column0}</samp> for
+the first column of data in the source table, <samp class="codeph">{column1}</samp> for
+the second column, and so on.</p>
+
+                              <div class="p">
+                                 
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e19736">
+                                                <p>Row #</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e19741">
+                                                <p>First column from source table</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e19746">
+                                                <p>Third column from source table</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e19736 ">
+                                                <p>{ds_RowNumberPlus1}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e19741 ">
+                                                <p>{column0}</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e19746 ">
+                                                <p>{column2}</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                              </div>
+
+                              <p>Do not use spaces or other tags in
+your data references for headers. Spry replaces spaces with underscores
+(_) and removes tags. For example, if the value of one of your headers
+is <samp class="codeph">&lt;strong&gt;product features&lt;/strong&gt;</samp>,
+enter your data reference for the <samp class="codeph">spry:region</samp> value
+as <samp class="codeph">{product_features}</samp>. Column names are case sensitive.</p>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

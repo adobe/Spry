@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Tooltip widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSE06BDE52-5809-4401-9793-D94E3CF16D86.html" title="Tooltip widget overview and structure"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS264AD934-9EBC-4f94-8DBA-26D0BCECE858.html" title="Tooltip widget options"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBF6F290C-3C48-479e-8E71-8B0C1E8C0165.html"><b>Working with the Tooltip widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Tooltip widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              
+                              Locate the SpryTooltip.js file
+and add it to your web site. You can find the SpryTooltip.js file
+in the widgets/tooltip directory, located in the Spry directory that
+you downloaded from Adobe Labs. For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryTooltip.js file
+to it. The SpryTooltip.js file contains all of the information necessary
+for making the Tooltip widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryTooltip.css file and add it to your web
+site. You might choose to add it to the main directory, a SpryAssets
+directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Tooltip widget to and link
+the SpryTooltip.js file to the page by inserting the following <samp class="codeph">script</samp> tag
+in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryTooltip.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryTooltip.js file is correct. This
+path varies depending on where you’ve placed the file in your web
+site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryTooltip.css file to your web page by inserting
+the following <samp class="codeph">link</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryTooltip.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryTooltip.css file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>In the body of the page, add some sample text and create
+a container tag for the trigger. Assign the tag that surrounds the
+trigger a unique ID. Our example uses <samp class="codeph">id="trigger"</samp>:</span> 
+                              <pre>&lt;p&gt;This will be the &lt;span id="trigger"&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Add tags for the tooltip container and populate the tags
+with tooltip content. You’ll also need to assign the container tag
+a unique ID, as follows:</span> 
+                              <pre>&lt;p&gt;This will be the &lt;span id="trigger"&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt;
+&lt;div id="container"&gt;This is the tooltip content&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Add the constructor script for the tooltip. Remember,
+the constructor script must come <em>after</em> the HTML code for
+the tooltip:</span> 
+                              <pre>&lt;p&gt;This will be the &lt;span id="trigger"&gt;tooltip trigger&lt;/span&gt;.&lt;/p&gt;
+&lt;div id="container"&gt;This is the tooltip content&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var tooltip_one = new Spry.Widget.Tooltip("container","#trigger");
+&lt;/script&gt; </pre>
+
+                              <p>The required arguments for the tooltip
+constructor are the ID of the tooltip container (“container” in
+our example), and the CSS selector for the tooltip trigger (“#trigger”).
+In the example, we’ve placed the # sign in front of the ID to transform the
+ID into a CSS selector. The selector can specify an element ID,
+a class name, an HTML tag name, or a more complex selector that’s
+a combination of these.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <div class="tip">
+                                 <img src="images/tip_help.png" />You might want to turn your triggers into
+links so that people recognize them as active areas. If you want
+to do this, you can change the <samp class="codeph">&lt;span id="trigger"&gt;</samp> tag
+to <samp class="codeph">&lt;a href="#" id="trigger"&gt;</samp>. (Don’t forget
+to change the closing tag as well.) Or if you don’t want to create
+a null link, you can define a CSS class (that sets a different background color
+for example), and apply it to the tooltip to differentiate it from
+surrounding text.</div>
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

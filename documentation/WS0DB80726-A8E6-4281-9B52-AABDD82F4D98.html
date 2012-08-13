@@ -1,0 +1,1991 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Specify a validation type and format
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS2BCEE973-1796-46b0-ADB6-BB7967042E05.html" title="Display error messages"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS4D72998D-C8F7-4e1b-959E-A0F522789D28.html" title="Specify when validation occurs"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html"><b>Working with the Validation Text Field widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Specify a validation type and format
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You can specify many
+different validation types, formats, and other options for the Validation
+Text Field widget. For example, you can specify a credit card validation
+type if the text field will receive credit card numbers.</p>
+
+                        <p>You
+specify validation types, formats, and other options as parameters
+in the widget constructor. The first parameter in the constructor
+is the widget container ID, followed by a second parameter (the
+validation-type parameter), and optionally, a third parameter. The
+third parameter is a JavaScript array of options that depends on
+the validation type set in the second parameter. Thus, you cannot
+set the third parameter without setting the second.</p>
+
+                        <div class="note"><span class="notetitle">Note:  </span>In
+cases where you want to set the third parameter, but no validation
+type is required, you can set the validation type to <samp class="codeph">"none"</samp>.</div>
+
+                        <p>The
+following code shows the generic syntax for a Text Field widget
+constructor with various parameters:</p>
+
+                        <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("<em>WidgetContainerID</em>", "<em>ValidationType</em>", {<em>option1</em>:"<em>value1</em>", <em>option2</em>:"<em>value2</em>", ..});
+&lt;/script&gt;</pre>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS04F4D331-6A6A-4266-B01F-FAB05836A49F" onclick="javascript:toggleLayer('WS04F4D331-6A6A-4266-B01F-FAB05836A49F');return false;" title="Validation type options"><img src="images/off.gif" />Validation type options</a></h3><div id="WS04F4D331-6A6A-4266-B01F-FAB05836A49F" class="mini"><a name="WS04F4D331-6A6A-4266-B01F-FAB05836A49F"><!-- --></a><div>
+                        <div class="section">
+                           <p>Most validation types cause the text field to expect
+a standard format. For example, if you apply the integer validation
+type to a text field, the widget won’t validate unless the user
+enters numbers in the text field. Some validation types, however,
+let you choose the kind of format your text field will accept.</p>
+
+                           <div class="p">The
+following table lists the available validation types and their formats.
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e8903">
+                                             <p>Validation type</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e8908">
+                                             <p>Format</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>none</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>No particular format required.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>integer</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts numbers only.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>email</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts e-mail addresses that
+contain the @ sign and a period (.) that is both preceded and followed by
+at least one letter.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>date</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Formats vary.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>time</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Formats vary. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>credit_card</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Formats vary. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>zip_code</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Formats vary. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>phone_number</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts phone numbers formatted
+for U.S. and Canada (000) 000-0000 as well as custom formats. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>social_security_number</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts social security numbers
+formatted as 000-00-0000 by default. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>currency</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts currency formatted as
+1,000,000.00 or 1.000.000,00.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>real</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Validates various kinds of numbers and scientific
+notation: integers (for example, 1); float values (for example, 12.123);
+and float values in scientific notation (for example, 1.212e+12,
+1.221e-12 where e is used as a power of 10).</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>ip</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Validates IPv4, IPv6, or both kinds of IP
+addresses. </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>url</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Text field accepts URLs formatted as http://xxx.xxx.xxx, https://xxx.xxx.xxx,
+or ftp://xxx.xxx.xxx.</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e8903 ">
+                                             <p>custom</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e8908 ">
+                                             <p>Lets you specify a custom validation type
+and format.</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSA40F637D-0707-4f67-933C-20283E3172D2" onclick="javascript:toggleLayer('WSA40F637D-0707-4f67-933C-20283E3172D2');return false;" title="Validate an integer"><img src="images/off.gif" />Validate an integer</a></h3><div id="WSA40F637D-0707-4f67-933C-20283E3172D2" class="mini"><a name="WSA40F637D-0707-4f67-933C-20283E3172D2"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept only integer values,
+add <samp class="codeph">"integer"</samp> as the value for the second parameter
+in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "integer");
+&lt;/script&gt;</pre>
+
+                                 <p>The integer validation type accepts
+both negative and positive values. To accept only positive values,
+add the <samp class="codeph">allowNegative</samp> option to the third parameter,
+and set the value to <samp class="codeph">false</samp>. </p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "integer", {allowNegative:false});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows other common options and values
+for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9125">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9130">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>Integer value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9125 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9130 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSDB67000A-06AC-4faf-A748-1B52B0369B58" onclick="javascript:toggleLayer('WSDB67000A-06AC-4faf-A748-1B52B0369B58');return false;" title="Validate an email"><img src="images/off.gif" />Validate an email</a></h3><div id="WSDB67000A-06AC-4faf-A748-1B52B0369B58" class="mini"><a name="WSDB67000A-06AC-4faf-A748-1B52B0369B58"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept only standard
+e-mail formats, add <samp class="codeph">"email"</samp> as the value for the
+second parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "email");
+&lt;/script&gt;</pre>
+
+                                 <p>You can also set options for the third
+parameter by using the following syntax: </p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "email", {<em>option</em>:<em>value</em>});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows some common options and values
+for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9269">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9274">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>[<samp class="codeph">"blur"</samp>]; [<samp class="codeph">"change"</samp>];
+or both together ([<samp class="codeph">"blur", "change"</samp>])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>
+                                                <samp class="codeph">true</samp> (the default); <samp class="codeph">false</samp>
+                                             </p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>Positive integer value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9269 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9274 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS6587E073-4EE1-4649-B911-272C37FB0D43" onclick="javascript:toggleLayer('WS6587E073-4EE1-4649-B911-272C37FB0D43');return false;" title="Validate a date"><img src="images/off.gif" />Validate a date</a></h3><div id="WS6587E073-4EE1-4649-B911-272C37FB0D43" class="mini"><a name="WS6587E073-4EE1-4649-B911-272C37FB0D43"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a date format,
+add <samp class="codeph">"date"</samp> as the value for the second parameter
+in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "date");
+&lt;/script&gt;</pre>
+
+                                 <p>The default date format is "mm/dd/yy"
+(U.S. date format). You can, however, set a number of other date
+formats in the third parameter by using the <samp class="codeph">format</samp> option, as
+in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "date", {format:"yyyy-mm-dd"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of formatting options,
+as well as some other common options and values, for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9425">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9430">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>"mm/dd/yy" (default); "mm/dd/yyyy"; "dd/mm/yyyy"; "dd/mm/yy";
+"yy/mm/dd"; "yyyy/mm/dd"; "mm-dd-yy"; "dd-mm-yy"; "yyyy-mm-dd";
+"mm.dd.yyyy"; "dd.mm.yyyy";</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>Date value in the specified format</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9425 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9430 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS45E45243-1071-4f55-93EE-8FB513247298" onclick="javascript:toggleLayer('WS45E45243-1071-4f55-93EE-8FB513247298');return false;" title="Validate a time"><img src="images/off.gif" />Validate a time</a></h3><div id="WS45E45243-1071-4f55-93EE-8FB513247298" class="mini"><a name="WS45E45243-1071-4f55-93EE-8FB513247298"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a time format,
+add <samp class="codeph">"time"</samp> as the value for the second parameter
+in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "time");
+&lt;/script&gt;</pre>
+
+                                 <p>The default date format is "HH:mm"
+(hours and minutes). You can, however, set a number of other time
+formats in the third parameter by using the <samp class="codeph">format</samp> option, as
+in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "time", {format:"HH:mm:ss"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of formatting options,
+as well as some other common options and values, for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9566">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9571">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>"HH:mm" (the default); "HH:mm:ss"; "hh:mm
+tt"; "hh:mm:ss tt"; "hh:mm t"; "hh:mm;ss t"; (where "tt" stands for
+am/pm format, and "t" stands for a/p format.)</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>Time value in the specified format</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9566 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9571 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSE9884641-2B9B-454e-963E-9B863D6D439E" onclick="javascript:toggleLayer('WSE9884641-2B9B-454e-963E-9B863D6D439E');return false;" title="Validate a credit card"><img src="images/off.gif" />Validate a credit card</a></h3><div id="WSE9884641-2B9B-454e-963E-9B863D6D439E" class="mini"><a name="WSE9884641-2B9B-454e-963E-9B863D6D439E"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a credit card
+format, add <samp class="codeph">"credit_card"</samp> as the value for the
+second parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "credit_card");
+&lt;/script&gt;</pre>
+
+                                 <p>The default is to validate all types
+of credit cards, but you can specify particular credit card formats
+to accept in the third parameter by using the <samp class="codeph">format</samp> option,
+as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "credit_card", {format:"visa"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of formatting options,
+as well as some other common options and values, for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9707">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9712">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>No format (the default); "visa"; "mastercard";
+"amex"; "discover"; "dinersclub"</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9707 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9712 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS43958221-400D-4c68-9A9C-B85BC580A701" onclick="javascript:toggleLayer('WS43958221-400D-4c68-9A9C-B85BC580A701');return false;" title="Validate a zip code"><img src="images/off.gif" />Validate a zip code</a></h3><div id="WS43958221-400D-4c68-9A9C-B85BC580A701" class="mini"><a name="WS43958221-400D-4c68-9A9C-B85BC580A701"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a zip code format,
+add <samp class="codeph">"zip_code"</samp> as the value for the second parameter
+in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "zip_code");
+&lt;/script&gt;</pre>
+
+                                 <p>The default format is the U.S. 5-digit
+zip code format, but you can specify a number of other formats in
+the third parameter by using the <samp class="codeph">format</samp> option,
+as in the following example: </p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_uk"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of formatting options,
+as well as some other common options and values, for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9848">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9853">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>"zip_us5" (the default); "zip_us9"; "zip_uk";
+"zip_canada"; "zip_custom"</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9848 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9853 ">
+                                             <p>Custom zip code pattern. Used when format="zip_custom"</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>The <samp class="codeph">"zip_custom"</samp> format
+lets you specify your own customized pattern for zip-code format.
+After specifying <samp class="codeph">"zip_custom"</samp> as your format, add
+the pattern option to the third parameter to define the format.
+For example, you might want to validate a zip code that has three
+numbers, followed by another set of numbers and case-sensitive alphabetic
+characters. After the <samp class="codeph">format</samp> option, add the <samp class="codeph">pattern</samp> option
+in the third parameter of the constructor to specify the custom
+pattern, as follows:</p>
+
+                           <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_custom", pattern:"000 00AA"});
+&lt;/script&gt;</pre>
+
+                           <p>The following table shows a full list
+of values used for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e9970">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e9975">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Uppercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Lowercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Case-insensitive alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e9970 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e9975 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>The "A", "a", "X", and "x" custom pattern
+characters are case sensitive. In situations that use these characters,
+Spry converts the characters to the correct case, even if the user
+enters the wrong case.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS5723A7DB-706F-49cf-A9A1-B217A769236D" onclick="javascript:toggleLayer('WS5723A7DB-706F-49cf-A9A1-B217A769236D');return false;" title="Validate a phone number"><img src="images/off.gif" />Validate a phone number</a></h3><div id="WS5723A7DB-706F-49cf-A9A1-B217A769236D" class="mini"><a name="WS5723A7DB-706F-49cf-A9A1-B217A769236D"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a phone number
+format, add <samp class="codeph">"phone_number"</samp> as the value for the
+second parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "phone_number");
+&lt;/script&gt;</pre>
+
+                                 <p>The default format is U.S. area code
+and phone number format: (000) 000-0000, but you can specify a custom
+format in the third parameter by using the <samp class="codeph">"phone_custom"</samp> and <samp class="codeph">"pattern"</samp> options,
+as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"phone_custom" , pattern:"00 0000 A"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of values used
+for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10128">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10133">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Uppercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Lowercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Case-insensitive alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10128 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10133 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>The "A", "a", "X", and "x" custom pattern
+characters are case sensitive. In situations that use these characters,
+Spry converts the characters to the correct case, even if the user
+enters the wrong case.</p>
+
+                           <p>The following table shows some other
+common options and values for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10245">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10250">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>"phone_number" (the default); "phone_custom"</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10245 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10250 ">
+                                             <p>Custom phone pattern. Used when format="phone_custom"</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS3C8B30D7-B6FA-4ef7-BE25-252A2FC7D723" onclick="javascript:toggleLayer('WS3C8B30D7-B6FA-4ef7-BE25-252A2FC7D723');return false;" title="Validate a social security number"><img src="images/off.gif" />Validate a social security number</a></h3><div id="WS3C8B30D7-B6FA-4ef7-BE25-252A2FC7D723" class="mini"><a name="WS3C8B30D7-B6FA-4ef7-BE25-252A2FC7D723"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a social security
+number format, add <samp class="codeph">"social_security_number"</samp> as
+the value for the second parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "social_security number");
+&lt;/script&gt;</pre>
+
+                                 <p>The default format is U.S. social
+security number format with dashes: 000-00-0000, but you can specify
+a custom format in the third parameter by using the pattern option,
+as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "social_security_number", {format:"custom" pattern:"00 0000 A"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of values used
+for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10384">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10389">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Uppercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Lowercase alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Case-insensitive alphanumeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10384 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10389 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>The "A", "a", "X", and "x" custom pattern
+characters are case sensitive. In situations that use these characters,
+Spry converts the characters to the correct case, even if the user
+enters the wrong case.</p>
+
+                           <p>The following table shows some other
+common options for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10501">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10506">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10501 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10506 ">
+                                             <p>Custom social security pattern</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSA07578F3-F5BC-46f9-B100-A445B4A43A98" onclick="javascript:toggleLayer('WSA07578F3-F5BC-46f9-B100-A445B4A43A98');return false;" title="Validate currency"><img src="images/off.gif" />Validate currency</a></h3><div id="WSA07578F3-F5BC-46f9-B100-A445B4A43A98" class="mini"><a name="WSA07578F3-F5BC-46f9-B100-A445B4A43A98"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept a currency number
+format, add <samp class="codeph">"currency"</samp> as the value for the second
+parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "currency");
+&lt;/script&gt;</pre>
+
+                                 <p>The default format is U.S. currency
+format: 1,000.00, but you can also specify the <samp class="codeph">"dot_comma"</samp> format
+(1.000,00) in the third parameter, as follows:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "currency", {format:"dot_comma"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>In both cases, the separators for the 3-digit groups
+can be optional and the decimal part (i.e. the .00 in 1,000.00)
+is not required.</p>
+
+                           <p>The following table shows some other common
+options for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10645">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10650">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>"comma_dot" (the default); "dot_comma"</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>Numeric value with two decimal numbers allowed</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10645 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10650 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSBD354697-6E90-412a-9058-C5F85209B7BF" onclick="javascript:toggleLayer('WSBD354697-6E90-412a-9058-C5F85209B7BF');return false;" title="Validate real numbers and scientific notation"><img src="images/off.gif" />Validate real numbers and scientific notation</a></h3><div id="WSBD354697-6E90-412a-9058-C5F85209B7BF" class="mini"><a name="WSBD354697-6E90-412a-9058-C5F85209B7BF"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept real numbers and
+scientific notation, add <samp class="codeph">"real"</samp> as the value for
+the second parameter in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "real");
+&lt;/script&gt;</pre>
+
+                                 <p>The text field validates a real number
+in scientific notation, for example 1.231e10.</p>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows some other common options for
+the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10780">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10785">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>Numeric value with decimal numbers</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10780 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10785 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSC1539542-58B0-45b9-BEAA-F6C7D87665CA" onclick="javascript:toggleLayer('WSC1539542-58B0-45b9-BEAA-F6C7D87665CA');return false;" title="Validate an IP address"><img src="images/off.gif" />Validate an IP address</a></h3><div id="WSC1539542-58B0-45b9-BEAA-F6C7D87665CA" class="mini"><a name="WSC1539542-58B0-45b9-BEAA-F6C7D87665CA"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to validate an IP address,
+add <samp class="codeph">"ip"</samp> as the value for the second parameter
+in the constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1= new Spry.Widget.ValidationTextField("sprytextfield1", "ip");
+&lt;/script&gt;</pre>
+
+                                 <p>The default accepted IP address format
+is IPv4, but you can set other IP address formats in the third parameter
+by using the format option, as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "ip", {format:"ipv6"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows the formatting options, as
+well as some other common options, for the third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e10918">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e10923">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>"ipv4" (the default); "ipv6"; "ipv4_ipv6"</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>false (the default); true</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e10918 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e10923 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSC5AF3306-5CB5-40b8-BD07-1F727B8AA503" onclick="javascript:toggleLayer('WSC5AF3306-5CB5-40b8-BD07-1F727B8AA503');return false;" title="Validate a URL"><img src="images/off.gif" />Validate a URL</a></h3><div id="WSC5AF3306-5CB5-40b8-BD07-1F727B8AA503" class="mini"><a name="WSC5AF3306-5CB5-40b8-BD07-1F727B8AA503"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept only URL values,
+add <samp class="codeph">"url"</samp> as the value for the second parameter
+in the constructor, as follows: </span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "url");
+&lt;/script&gt;</pre>
+
+                                 <p>The URL validation type accepts HTTP,
+HTTPS, and FTP URL values. </p>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows other common options for the
+third parameter.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11053">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e11058">
+                                             <p>Value</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>format</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>validateOn</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>["blur"]; ["change"]; or both together (["blur",
+"change"])</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>isRequired</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>true (the default); false</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>useCharacterMasking</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>minChars/maxChars</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>Positive integer value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>minValue/maxValue</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11053 ">
+                                             <p>pattern</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11058 ">
+                                             <p>Not applicable</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS9502824F-C561-4d6d-BEA6-4CF0389F715D" onclick="javascript:toggleLayer('WS9502824F-C561-4d6d-BEA6-4CF0389F715D');return false;" title="Validate a custom format"><img src="images/off.gif" />Validate a custom format</a></h3><div id="WS9502824F-C561-4d6d-BEA6-4CF0389F715D" class="mini"><a name="WS9502824F-C561-4d6d-BEA6-4CF0389F715D"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To set the text field to accept any kind of customized
+format, specify <samp class="codeph">"custom"</samp> as the value for the second
+parameter, and adding the pattern option in the third parameter,
+as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "custom", {pattern:"00 0000 AX"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table shows a full list of values used
+for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11185">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e11190">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Uppercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Lowercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Case-insensitive alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11185 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11190 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>The "A", "a", "X", and "x" custom pattern
+characters are case sensitive. In situations that use these characters,
+Spry converts the characters to the correct case, even if the user
+enters the wrong case.</p>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

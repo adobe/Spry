@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Auto-suggest widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS60AB9E00-4C0D-4e11-8C63-73608950305D.html" title="Auto-suggest widget overview and structure"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html" title="Working with the Validation Text Field widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS4F22F18A-2F10-4cc3-BC18-54BDDE7C11A8.html"><b>Working with the Auto-suggest widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Auto-suggest widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the following Spry files and add them to your web site.</span> 
+                              <ul><li>
+                                    <p>SpryAutoSuggest.js</p>
+
+                                 </li>
+<li>
+                                    <p>SpryAutoSuggest.css</p>
+
+                                 </li>
+<li>
+                                    <p>SpryData.js</p>
+
+                                 </li>
+<li>
+                                    <p>xpath.js</p>
+
+                                 </li>
+</ul>
+
+                              <p>You can find these files in the
+widgets/autosuggest and includes directories, located in the Spry
+directory that you downloaded from Adobe Labs. For more information,
+see Prepare
+your files</p>
+
+                           </li>
+<li class="stepexpand"><span>Open the web page to add the Auto-suggest widget to and
+link the Spry files to the page by inserting the following <samp class="codeph">script</samp> tags
+in the page’s head tag:</span> 
+                              <pre>&lt;head&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryAutoSuggest.js"&gt;&lt;/script&gt;
+&lt;link href="includes/SpryAutoSuggest.css" rel="stylesheet" type="text/css" /&gt;
+&lt;link
+&lt;/head&gt; </pre>
+
+                              <p>Make sure that the file path to the
+files is correct. This path varies depending on where you’ve placed
+the files in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add a container tag, such as a <samp class="codeph">div</samp> tag,
+to the page, and give it a unique ID, as follows:</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+&lt;/div&gt; </pre>
+
+                              <p>This is the main container tag for the
+widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add the input field (the search field) to the container <samp class="codeph">div</samp>,
+as follows:</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+	&lt;input type="text"/&gt;
+&lt;/div&gt;&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Add the suggestion results container, and give it a unique
+ID, as follows:</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+	&lt;input type="text"/&gt;
+	&lt;div id="resultsDIV"&gt;
+	&lt;/div&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Because this is a data-widget hybrid, you need a data
+set from which the widget can obtain suggestion data. Create a data
+set in the document head, as follows:</span> 
+                              <pre>&lt;head&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryAutoSuggest.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+	var ds1 = new Spry.Data.XMLDataSet("data/products.xml","products/product");
+&lt;/script&gt;
+&lt;/head&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Bind the new data set to the results container by referencing
+it in the container’s tag. You do this by adding the <samp class="codeph">spry:region</samp> attribute
+to the tag, and assigning the value of the data set name to the
+attribute.</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+	&lt;input type="text" /&gt;
+  	&lt;div id="resultsDIV" spry:region="ds1"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add the code to use to display the suggestion results.
+You can use any tags, but you must
+add the <samp class="codeph">spry:repeat</samp> attribute to the element that
+displays the results. Additionally, add the data reference (column
+name) from the data set that holds the data to display, as follows:</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+&lt;input type="text" /&gt;
+  &lt;div id="resultsDIV" spry:region="ds1"&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat="ds1"&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add the <samp class="codeph">spry:suggest</samp> attribute to the
+repeating element tag. This tag is responsible for populating the
+text field with the correct piece of data (in this case name) when
+the user makes a selection for the suggestion list:</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+&lt;input type="text" /&gt;
+  &lt;div id="resultsDIV" spry:region="ds1"&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat="ds1" spry:suggest="{name}"&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add the constructor script and its four required values
+to initialize the widget. Remember, the constructor script must
+come <em>after</em> all of the widget code.</span> 
+                              <pre>&lt;div id="mySuggest"&gt;
+&lt;input type="text" /&gt;
+  &lt;div id="resultsDIV" spry:region="ds1"&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat="ds1" spry:suggest="{name}"&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var as1 = new Spry.Widget.AutoSuggest("mySuggest","resultsDIV", "ds1","name"); &lt;/script&gt;</pre>
+
+                              <p>The
+syntax for the constructor script values is <samp class="codeph">Spry.Widget.AutoSuggest("containerID","resultsContainerID","dataSetName","resultsDataColumn")</samp>
+                              </p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code might look as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . . 
+&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryAutoSuggest.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt; 
+	var ds1 = new Spry.Data.XMLDataSet("data/products.xml","products/product");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+. . .
+&lt;div id="mySuggest"&gt;
+&lt;input type="text" /&gt;
+  &lt;div id="resultsDIV" spry:region="ds1"&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat="ds1" spry:suggest="{name}"&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var as1 = new Spry.Widget.AutoSuggest("mySuggest", "resultsDIV", "ds1", "name");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

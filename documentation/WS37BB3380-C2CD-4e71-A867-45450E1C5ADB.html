@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Attach a Slide effect
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS2B818424-61EF-4630-8508-545EF3ED285A.html" title="Attach a Blind effect"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSBEA05AB7-303E-4a98-AC0D-9F4F9099D268.html" title="Attach a Grow effect"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WS3D615606-04D5-424a-91B5-842999841418.html"><b>Attach effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Attach a Slide effect
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+Slide effect moves the target element up or down (or left to right).
+This effect is similar to the Blind effect, but the contents move
+up and down (or left to right) instead of staying in the same place.</p>
+
+                        <p>You
+can only attach this effect to the following HTML elements: <samp class="codeph">blockquote</samp>, <samp class="codeph">dd</samp>, <samp class="codeph">div</samp>, <samp class="codeph">form</samp>, <samp class="codeph">center</samp>, <samp class="codeph">table</samp>, <samp class="codeph">span</samp>, <samp class="codeph">input</samp>, <samp class="codeph">textarea</samp>, <samp class="codeph">select</samp>,
+or <samp class="codeph">image</samp>.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>To link the SpryEffects.js file on your web page,
+add the following code to the head of your document:</span> 
+                              <pre>&lt;head&gt;
+. . .
+&lt;script  src="../includes/SpryEffects.js" type="text/javascript" &gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The exact file path differs, depending
+on where you store the SpryEffects.js file.</div>
+
+                              <p>The SpryEffects.js
+file is in the includes folder of the Spry folder that you downloaded
+from Adobe Labs. See Prepare
+your files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Make sure your target element is wrapped in a container
+tag that has a unique ID. The target element and the container both
+change when the user interacts with the page to cause the effect.</span> 
+                              <pre>&lt;div <strong>id="slide1"</strong>&gt;
+	&lt;div&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The container tag with which you wrap
+the target element must be a <samp class="codeph">blockquote</samp>, <samp class="codeph">dd</samp>, <samp class="codeph">form</samp>, <samp class="codeph">div</samp>,
+or <samp class="codeph">center</samp> tag.</div>
+
+                           </li>
+<li class="stepexpand"><span>To create the effect, add a JavaScript event to trigger
+the effect, and a <samp class="codeph">script</samp> tag that creates the effect
+object. For example, if you want the user to click on a sentence
+that causes another paragraph to slide up, you might add the following event
+and <samp class="codeph">script</samp> tag:</span> 
+                              <pre>&lt;p&gt;&lt;a onclick="slide_effect.start(); return false;" href="#"&gt;Click here to slide the paragraph up from 100% to 20%&lt;/a&gt;&lt;/p&gt;
+. . . 
+&lt;script type="text/javascript"&gt;
+var slide_effect = new Spry.Effect.Slide("slide1", {duration:1000, from:'100%', to:'20%',toggle:true});
+&lt;/script&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>It’s important that you add the <samp class="codeph">script</samp> tag <em>after</em> the
+code for the target element. Otherwise the page will return a JavaScript
+error when you try to trigger the effect.</div>
+
+                              <p>The first argument
+of the <samp class="codeph">Spry.Effect.Slide</samp> method is always the target
+element’s ID (<samp class="codeph">"slide1"</samp> in the preceding example). </p>
+
+                              <p>The
+complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script src="../includes/SpryEffects.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick="slide_effect.start(); return false;" href="#"&gt;Click here to slide the paragraph up from 100% to 20%&lt;/a&gt;&lt;/p&gt;
+&lt;div id="slide1"&gt;
+	&lt;div&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    	diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    	aliquyam erat, sed diam voluptua.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var slide_effect = new Spry.Effect.Slide("slide1", {duration:1000, from:'100%', to:'20%',toggle:true});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+<h3 class="topictitle3"><a href="#WS16A0F01B-2EF0-46d4-A3EB-206F95B9B6D5" onclick="javascript:toggleLayer('WS16A0F01B-2EF0-46d4-A3EB-206F95B9B6D5');return false;" title="Slide effect options"><img src="images/off.gif" />Slide effect options</a></h3><div id="WS16A0F01B-2EF0-46d4-A3EB-206F95B9B6D5" class="mini"><a name="WS16A0F01B-2EF0-46d4-A3EB-206F95B9B6D5"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table lists available options for the
+Slide effect.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e27469">
+                                          <p>Option</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e27474">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>duration</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Duration of the effect in milliseconds.
+The default value is 2000.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>from</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Start size in % or pixels. The default value
+is 100% of the element’s original size.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>to</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>End size in % or pixels. The default value
+is 0 of the element’s original size. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>toggle</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Lets you create a toggle effect. The default
+value is false.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>transition</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Determines the type of transition. The default
+is <samp class="codeph">Spry.sinusoidalTransition</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>fps</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Determines the number of frames per second
+(fps) of the animation. The default is 60.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>horizontal</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>If set to <samp class="codeph">true</samp>, slides
+the content horizontally instead of vertically. The default value
+is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>setup</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Lets you define a function that is called
+before the effect begins, e.g.,<samp class="codeph"> setup:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e27469 ">
+                                          <p>finish</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e27474 ">
+                                          <p>Lets you define a function that is called
+after the effect finishes, e.g., <samp class="codeph">finish:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>Sample code:</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="top" width="NaN%">
+                                          <p>var effect = new Spry.Effect.Slide("targetID",
+{duration: 2000, from: '100%', to: '0%'});</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%">
+                                          <p>effect.start();</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS265686F6-E5CB-4168-8D7B-41262CEB9BD5.html">About transitions</a></li></ul>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/index.html#effects" title="https://github.com/adobe/Spry/tree/master/samples/index.html#effects" target="_blank">Spry effects samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

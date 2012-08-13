@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * About JSON
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSFFA47BF4-775B-4418-ABB3-F3B7D220DF49.html" title="Working with JSON data sets"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS5BD65DFC-F219-4a57-9A6D-035F9CCF6ADF.html" title="Spry JSON data set basic overview"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSFFA47BF4-775B-4418-ABB3-F3B7D220DF49.html"><b>Working with JSON data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				About JSON
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        <dfn class="term">JSON</dfn> stands
+for JavaScript Object Notation. It is a lightweight notation format that
+uses JavaScript syntax to provide a flexible, yet strict, method
+of storing and transmitting data. The language is flexible in that
+you can create and name the data structure in any way; it’s strict
+in that JSON follows a strict set of rules for its structure.</p>
+<p>Following is an example of some basic JSON code:</p>
+<pre>{
+    "firstName": "Jason",
+    "lastName": "Jones",
+    "address": {
+        "city": "San Francisco, CA",
+        "zip": 94121,
+        "address": "444 Columbus Ave"
+    },
+    "email": [
+        "jason@sf.com",
+        "sjones@adobe.com"
+       ]
+}</pre>
+<p>The preceding code creates a JavaScript object that contains
+the data. A JavaScript object is a series of name and value pairs,
+written in a structured way. The basic structure of the object is
+as follows:</p>
+<pre>{name:value,name:value,name:value}</pre>
+<div class="section"><h4 class="sectiontitle">JSON data types</h4>
+                        
+                        <p>JSON supports a number
+of common data types. Each data type has a set of structural rules
+that you need to follow.</p>
+
+                        <div class="p">
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e20661">
+                                          <p>Data type</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e20666">
+                                          <p>Description</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e20671">
+                                          <p>Example</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>Boolean</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>In JavaScript, <dfn class="term">true</dfn> and <dfn class="term">false</dfn> are
+predefined keywords. To send a <samp class="codeph">true</samp> value, send
+the word <dfn class="term">true</dfn>.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>
+                                             <samp class="codeph">{"active":true}</samp>
+                                          </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">&#160;</td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p> To send a <samp class="codeph">false</samp> value,
+send the word <dfn class="term">false</dfn>.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>{<samp class="codeph">"active":false</samp>}</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>String</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>In JSON, you must delimit strings by using double
+quotation marks. For a list of what characters are allowed and what
+characters must be delimited, consult the JSON web site.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>{<samp class="codeph">"address": "444 Columbus Ave"}</samp>
+                                          </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>Number</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Positive integers</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>{<samp class="codeph">"zip": 94121</samp>}</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">&#160;</td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Negative integers</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>
+                                             <samp class="codeph">{"total points": -123}</samp>
+                                          </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">&#160;</td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Floats</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>{<samp class="codeph">"length":122.2344</samp>}</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">&#160;</td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Scientific notation</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>
+                                             <samp class="codeph">{"atoms per mole":-6.023e+23</samp>}</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>Object</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Objects are delimited by braces ({ }), and
+contain zero (0) or more property and value pairs, separated by
+commas. The example shows an object with two properties on it: <samp class="codeph">"count"</samp> and <samp class="codeph">"results"</samp>.
+The <samp class="codeph">"count"</samp> property has an integer value of <samp class="codeph">2</samp>,
+and the <samp class="codeph">"results"</samp> value is an array.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>
+                                             <samp class="codeph">{"count": 2, "results": [2, 3]}</samp>
+                                          </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>Array</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>Arrays are delimited by square brackets
+([ ]). Each item within the array is separated by a comma. Arrays
+can contain all supported JSON constructs. The example shows an array
+of five elements that includes Number, Boolean, String, Array, and
+Object data types.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>{<samp class="codeph">"values":[1, false, "test", [2, 3],
+{"test": 1}]</samp>}</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e20661 ">
+                                          <p>Null</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20666 ">
+                                          <p>In JavaScript, <samp class="codeph">null</samp> is
+a predefined object. To send a <samp class="codeph">null</samp> value in JSON
+notation, use the word <dfn class="term">null</dfn>. The word null must be
+lower-case to be valid.</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e20671 ">
+                                          <p>
+                                             <samp class="codeph">{"email":null</samp>}</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="http://www.json.org/" title="http://www.json.org/" target="_blank">www.json.org/</a></li><li class="icon external"><a href="http://www.dustindiaz.com/json-for-the-masses/" title="http://www.dustindiaz.com/json-for-the-masses/" target="_blank">www.dustindiaz.com/json-for-the-masses/</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

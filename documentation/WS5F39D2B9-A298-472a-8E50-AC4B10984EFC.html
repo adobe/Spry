@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Sliding Panels widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSB6C99E57-EF09-4f82-A623-6E9141E94AB6.html" title="CSS code for the Sliding Panels widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS5A5B208F-F3ED-457c-B26A-6E74CDAA36E1.html" title="Sliding Panels widget behaviors"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSFB5D524D-27F7-4e69-A207-25126187E9EA.html"><b>Working with the Sliding Panels widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Sliding Panels widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the SprySlidingPanels.js file and add it to your web site. You can
+find the SprySlidingPanels.js file in the widgets/slidingpanels
+directory, located in the Spry directory that you downloaded from
+Adobe Labs. For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SprySlidingPanels.js
+file to it. The SprySlidingPanels.js file contains all of the information
+necessary for making the Sliding Panels widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SprySlidingPanels.css file and add it to your
+web site. You might choose to add it to the main directory, a SpryAssets
+directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Sliding Panels widget to
+and link the SprySlidingPanels.js file to the page by inserting
+the following <samp class="codeph">script</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SprySlidingPanels.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SprySlidingPanels.js file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SprySlidingPanels.css file to your web page
+by inserting the following <samp class="codeph">link</samp> tag in the page’s
+head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SprySlidingPanels.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SprySlidingPanels.css file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add the Sliding Panels widget to your web page by inserting
+a widget container tag, such as a <samp class="codeph">div</samp> tag, where
+you want the widget to appear on the page. You must assign the widget
+tag a unique ID and the SlidingPanels class, as follows:</span> 
+                              <pre>&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Add a content panel container tag to the widget by inserting
+a <samp class="codeph">&lt;div class="SlidingPanelsContentGroup"&gt;</samp> tag
+inside the <samp class="codeph">&lt;div id="SlidingPanels1"...&gt;</samp> tag,
+as follows:</span> 
+                              <pre>&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+	&lt;div class="SlidingPanelsContentGroup"&gt;
+	&lt;/div&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Add content panels to the content panel container by
+adding <samp class="codeph">&lt;div class="SlidingPanelsPanelTab"&gt;</samp> tags
+inside the container tag. Each content panel must have a unique
+ID, and be assigned the SlidingPanelsContent class, as follows:</span> 
+                              <pre>&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+	&lt;div class="SlidingPanelsContentGroup"&gt;
+		&lt;div id="p1" class="SlidingPanelsContent"&gt;
+		&lt;/div&gt;
+		&lt;div id="p2" class="SlidingPanelsContent"&gt;
+		&lt;/div&gt;
+		&lt;div id="p3" class="SlidingPanelsContent"&gt;
+		&lt;/div&gt;
+		&lt;div id="p4" class="SlidingPanelsContent"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt; </pre>
+
+                              <p>The preceding code adds four content
+panels to the widget. You can add unlimited panels.</p>
+
+                              <p>The unique
+ID for each content panel is important because later you’ll use
+the IDs to create navigation for the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>To initialize the Spry sliding panels object, insert
+the following <samp class="codeph">script</samp> block after the HTML code
+for the SlidingPanels widget:</span> 
+                              <pre>&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+. . .
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var sp1 = new Spry.Widget.SlidingPanels("SlidingPanels1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the SlidingPanels widget object, and transforms
+the <samp class="codeph">div</samp> content with the ID of <samp class="codeph">SlidingPanels1</samp> from
+static HTML code into an interactive sliding panels object. The <samp class="codeph">Spry.Widget.SlidingPanels</samp> method
+is a constructor in the Spry framework that creates accordion objects.
+The information necessary to initialize the object is contained
+in the SprySlidingPanels.js JavaScript library that you linked to
+at the beginning of this procedure.</p>
+
+                              <p>Make sure that the ID
+of the widgets’s container <samp class="codeph">div</samp> tag matches the
+ID parameter you specified in the <samp class="codeph">Spry.Widgets.SlidingPanels</samp> method.
+Make sure that the -JavaScript call comes after the HTML code for
+the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>After you’ve added all the code for the widget, add buttons
+or links for navigation. There are many ways that you can do this.
+In this example, we’ll add links for the first, previous, next,
+and last panels:</span> 
+                              <pre>&lt;a href="#" onclick="sp1.showFirstPanel(); return false;"&gt;First&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showPreviousPanel(); return false;"&gt;Previous&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showNextPanel(); return false;"&gt;Next&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showLastPanel(); return false;"&gt;Last&lt;/a&gt;
+&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+. . .
+&lt;/div&gt;</pre>
+
+                              <p>In the preceding example, the onclick
+behaviors are behaviors that are built into the Sliding Panels widget.
+For example, when you assign the showNextPanel behavior to a link,
+that link always takes you to the next panel in your group of content
+panels. The syntax of the behavior is <em>variableID.behavior</em>.
+You created the variable ID in the constructor <samp class="codeph">script</samp> tag
+that follows the HTML code for the widget. In the example, the variable
+is <samp class="codeph">sp1</samp>, but it can be anything.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>After you add some content to the content panels, the complete
+code might looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . . 
+&lt;script type="text/javascript" src="SprySlidingPanels.js"&gt;&lt;/script&gt;
+&lt;link href="SprySlidingPanels.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+. . .
+&lt;a href="#" onclick="sp1.showFirstPanel(); return false;"&gt;First&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showPreviousPanel(); return false;"&gt;Previous&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showNextPanel(); return false;"&gt;Next&lt;/a&gt; |
+&lt;a href="#" onclick="sp1.showLastPanel(); return false;"&gt;Last&lt;/a&gt;
+&lt;div id="SlidingPanels1" class="SlidingPanels"&gt;
+	&lt;div class="SlidingPanelsContentGroup"&gt;
+		&lt;div id="p1" class="SlidingPanelsContent"&gt;
+			&lt;p&gt;Panel 1&lt;/p&gt;
+			&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div id="p2" class="SlidingPanelsContent"&gt;
+			&lt;p&gt;Panel 2&lt;/p&gt;
+			&lt;p&gt;Panel 2&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div id="p3" class="SlidingPanelsContent"&gt;
+			&lt;p&gt;Panel 3&lt;/p&gt;
+			&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div id="p4" class="SlidingPanelsContent"&gt;
+			&lt;p&gt;Panel 4&lt;/p&gt;
+			&lt;p&gt;Panel 4&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var sp1 = new Spry.Widget.SlidingPanels("SlidingPanels1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" title="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" target="_blank">Sliding Panels samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry XML data set advanced examples
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS37ECE503-653D-4341-A120-2D17483A3DC0.html" title="Spry XML data set basic overview"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE8C2ECEC-CD16-41d4-BBEC-7DF9DD2398A2.html" title="Prepare your files"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS9DA7216F-166F-4ab3-87E0-1E558798EC95.html"><b>Working with XML data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry XML data set advanced examples
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        Spry
+XML data sets use the browser’s <samp class="codeph">XMLHTTPRequest</samp> object
+to asynchronously load the specified URL. When the XML data arrives,
+it is actually in two formats: a text format, and a document object
+model (DOM) tree format. </p>
+<p>For example, say that you’ve specified <samp class="codeph">“/photos.php?galleryid=2000”</samp> as
+your data source. (This is a path to a web service that retrieves
+XML data).</p>
+<pre>&lt;script type="text/javascript"&gt;
+	var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+&lt;/script&gt;</pre>
+<p>The following code represents the data as it arrives in text
+format:</p>
+<pre>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt;
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt;
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+<p>The following example represents the data as it arrives in DOM-tree
+format.</p>
+<div class="fignone"><img alt="" id="fig02" src="images/fig02.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>The data set then uses the XPath specified in the constructor
+to navigate the XML DOM tree to find the particular nodes that represent
+the data you are interested in.</p>
+<p>The following code shows data selected with the <samp class="codeph">/gallery/photos/photo</samp> XPath,
+in bold:</p>
+<pre>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;<strong>photo path="sun.jpg" width="16" height="16"</strong>/&gt;
+		&lt;<strong>photo path="tree.jpg" width="16" height="16"</strong>/&gt;
+		&lt;<strong>photo path="surf.jpg" width="16" height="16"</strong>/&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+<p>The following example is the DOM-tree representation of the selected
+nodes.</p>
+<div class="fignone"><img alt="" id="fig03" src="images/fig03.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>The data set then flattens the set of nodes into a tabular format,
+which the following table represents.</p>
+<div class="p">
+                        
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e18549">
+                                       <p>@path</p>
+
+                                    </th>
+<th valign="top" width="NaN%" id="d16e18554">
+                                       <p>@width</p>
+
+                                    </th>
+<th valign="top" width="NaN%" id="d16e18559">
+                                       <p>@height</p>
+
+                                    </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e18549 ">
+                                       <p>sun.jpg</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18554 ">
+                                       <p>16</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18559 ">
+                                       <p>16</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18549 ">
+                                       <p>tree.jpg</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18554 ">
+                                       <p>16</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18559 ">
+                                       <p>16</p>
+
+                                    </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18549 ">
+                                       <p>surf.jpg</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18554 ">
+                                       <p>16</p>
+
+                                    </td>
+<td valign="top" width="NaN%" headers="d16e18559 ">
+                                       <p>16</p>
+
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                     </div>
+<p>In this instance, Spry derives the column names of the flattened
+table from the selected nodes and their attributes. The way Spry
+determines column names, however, can vary, depending on the XPath
+you specify.</p>
+<p>Spry uses the following guidelines when flattening data and creating
+columns:</p>
+<ul><li>
+                           <p>If the selected node has attributes, Spry creates a column
+for each attribute and places the value of the attribute in that
+column. The names for these columns are the names of the attributes
+preceded by an @ sign. For example, if a node has an <samp class="codeph">id</samp> attribute,
+the column name is <samp class="codeph">@id</samp>.</p>
+
+                        </li>
+<li>
+                           <p>If the selected node has no element children, and has text
+or CDATA underneath it, then Spry creates a column and places that
+text or CDATA in that column. The name of this column is the tag
+name of the node for normal XML elements.</p>
+
+                        </li>
+<li>
+                           <p>If the selected node has element children, Spry creates a
+column for the value of each element and its attributes, but only
+for each element child <em>that has no element children of its own</em>.
+The names of the columns are the tag names of the children elements,
+or in the case of an attribute on a child element, the format <samp class="codeph">"childTagName/@attrName"</samp>.</p>
+
+                        </li>
+<li>
+                           <p>If the selected node is an attribute, Spry creates a column
+for the attribute, and the column name is the name of the attribute
+preceded by an @ sign.</p>
+
+                        </li>
+<li>
+                           <p>Spry ignores element children that have their own element
+children.</p>
+
+                        </li>
+</ul>
+<p>The examples that follow provide more details on the flattening
+process and how Spry generates column names for data sets.</p>
+<p>For more information on controlling the flattening process beyond
+what Spry does by default, see the <a href="https://github.com/adobe/Spry/tree/master/samples/data_region/NestedXMLDataSample.html" target="_blank">Nested XML Data samples</a> page on Adobe
+Labs.</p>
+<div class="section"><h4 class="sectiontitle">Example of selecting and flattening an element with attributes and a text value</h4>
+                        
+                        <p>The following code shows data
+selected with the <samp class="codeph">/gallery/photographer</samp> XPath,
+in bold:</p>
+
+                        <pre>&lt;gallery id="12345"&gt;
+	&lt;<strong>photographer id="4532"&gt;John Doe&lt;/photographer</strong>&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt;
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt;
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+
+                        <p>The following is the DOM-tree representation
+of the selected node.</p>
+
+                        <div class="fignone"><img alt="" id="fig04" src="images/fig04.gif" /><div class="figdesc"></div><br />
+                           
+                        </div>
+                        <p>The
+data set then flattens the selected data into the following table.</p>
+
+                        <div class="p">
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e18702">
+                                          <p>photographer</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e18707">
+                                          <p>@id</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e18702 ">
+                                          <p>John Doe</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e18707 ">
+                                          <p>4532</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                        <p>In this particular case, only one node
+is selected, so you get only one row in the data set. The value
+of the <samp class="codeph">photographer</samp> node is the text <samp class="codeph">"John
+Doe"</samp>, so a column named <dfn class="term">photographer</dfn> is created
+to store that value. The <samp class="codeph">id</samp> attribute is an attribute of
+the <samp class="codeph">photographer</samp> node, so its value is placed in
+the @id column. All attribute names are preceded by an @ sign.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Example of selecting and flattening an element with attributes and element children</h4>
+                        
+                        <p>The following code shows
+data selected with the <samp class="codeph">/gallery</samp> XPath:</p>
+
+                        <pre>&lt;gallery id="12345"&gt; 
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt; 
+	&lt;email&gt;john@doe.com&lt;/email&gt; 
+	&lt;photos id="2000"&gt; 
+		&lt;photo path="sun.jpg" width="16" height="16" /&gt; 
+		&lt;photo path="tree.jpg" width="16" height="16" /&gt; 
+		&lt;photo path="surf.jpg" width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+
+                        <p>The following is the DOM-tree representation
+of the selected node:</p>
+
+                        <div class="fignone"><img alt="" id="fig05" src="images/fig05.gif" /><div class="figdesc"></div><br />
+                           
+                        </div>
+                        <p>The
+data set then flattens the selected data into the following table.</p>
+
+                        <div class="p">
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e18782">
+                                          <p>@id</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e18787">
+                                          <p>photographer</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e18792">
+                                          <p>photographer/@id</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e18797">
+                                          <p>email</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e18782 ">
+                                          <p>12345</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e18787 ">
+                                          <p>John Doe</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e18792 ">
+                                          <p>4532</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e18797 ">
+                                          <p>john@doe.com</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                        <p>Notice that the column names for attributes
+of children elements are prefixed with the tag name of the child
+element. In this particular case, <samp class="codeph">photographer</samp> is
+a child element of the selected <samp class="codeph">gallery</samp> node, so
+its <samp class="codeph">id</samp> attribute is prefixed with <samp class="codeph">photographer/@</samp>.
+Also notice that nothing was added to the table for the <samp class="codeph">photos</samp> element,
+even though it is a child of the <samp class="codeph">gallery</samp> node.
+That is because Spry does not flatten any child elements that contain
+other elements.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Example of selecting and flattening an attribute of a single element</h4>
+                        
+                        <p>With XPath you can also select attributes
+of nodes. The following code shows data selected with the <samp class="codeph">gallery/photos/photo/@path</samp> XPath,
+in bold:</p>
+
+                        <pre>&lt;gallery id="12345"&gt;
+	&lt;photographer id="4532"&gt;John Doe&lt;/photographer&gt;
+	&lt;email&gt;john@doe.com&lt;/email&gt;
+	&lt;photos id="2000"&gt;
+		&lt;photo <strong>path="sun.jpg"</strong> width="16" height="16" /&gt;
+		&lt;photo <strong>path="tree.jpg"</strong> width="16" height="16" /&gt;
+		&lt;photo <strong>path="surf.jpg"</strong> width="16" height="16" /&gt;
+	&lt;/photos&gt;
+&lt;/gallery&gt;</pre>
+
+                        <p>The following is the DOM-tree representation
+of the selected nodes.</p>
+
+                        <div class="fignone"><img alt="" id="fig03" src="images/fig03.gif" /><div class="figdesc"></div><br />
+                           
+                        </div>
+                        <p>The
+data set then flattens the selected data into the following table.</p>
+
+                        <div class="p">
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e18892">
+                                          <p>@path</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e18892 ">
+                                          <p>sun.jpg</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18892 ">
+                                          <p>tree.jpg</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e18892 ">
+                                          <p>surf.jpg</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

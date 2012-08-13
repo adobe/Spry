@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Paged View data set data references
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS669A6FB3-4259-4e57-8EBE-82E681BE0AFA.html" title="Paged View data set behaviors"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSEA01E4AA-3691-4412-BB91-708C96733251.html" title="Create Paged View data set navigation"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS7FC5BCEA-CD66-4d81-B060-DAC1A685A4DE.html"><b>Working with Paged View data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Paged View data set data references
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        The
+Paged View data set uses standard data references just like any
+other data set (such as <samp class="codeph">{ds_RowID}</samp>). Because the
+Paged View data set is dependent on another primary data set, the <samp class="codeph">{ds_RowID}</samp> value
+for each row in the Paged View data set is identical to the <samp class="codeph">ds_RowID</samp> of
+the corresponding row in the primary data set.</p>
+<p>The following table shows a set of additional paging-specific
+data references that you can use when you create <samp class="codeph">spry:region</samp> attributes.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e21941">
+                                    <p>Data Reference</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e21946">
+                                    <p>Description</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The current page index. By default, this
+is a number between 1 and <samp class="codeph">ds_PageCount</samp>. If you
+use the <samp class="codeph">ZeroBasedIndexes</samp> constructor option and
+set it to <samp class="codeph">true</samp>, this is a number between 1 and <samp class="codeph">ds_PageCount</samp>, minus
+1.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageSize}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The maximum number of items that can appear
+on a page. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageCount}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The total number of pages required to display
+all of the data. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageItemRowNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The zero-based row number of the current
+row being processed. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageItemNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The zero-based row number of the current
+row being processed plus 1. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageFirstItemNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The item number for the first row displayed
+on the current page.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageLastItemNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The item number for the last row displayed
+in the current page.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageItemCount}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The total number of items on the current
+page.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_PageTotalItemCount}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The total number of items on all pages.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_UnfilteredRowCount}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The total number of rows in the data set. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_CurrentRowID}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>Always the ID of the first row in the current
+page.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_RowID}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The row ID for the row being processed. </p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_CurrentRowNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>Always zero (0), which is the index of the
+first row in the current page.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21941 ">
+                                    <p>{ds_RowNumber}</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21946 ">
+                                    <p>The row index of the row being processed
+on the current page. </p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section"><h4 class="sectiontitle">Example</h4>
+                        
+                        <pre>&lt;div spry:detailregion="pv1"&gt;
+This is Page {ds_PageNumber} of {ds_PageCount}.
+&lt;/div&gt;
+</pre>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

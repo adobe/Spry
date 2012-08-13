@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry and web standards
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS8634E7DC-16E5-44c5-9CC0-D33A6520E628.html" title="Using best practices with Spry"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS5A44A1B7-6D94-43a8-8CC4-22806438B31C.html" title="Progressive enhancement with Spry"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WS8634E7DC-16E5-44c5-9CC0-D33A6520E628.html"><b>Using best practices with Spry</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry and web standards
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        
+                        
+                        
+                        Changes brought about by Web 2.0 present
+a leap forward in web functionality and user experience. The bar
+has officially been raised, and the rapid adoption of Ajax is proof
+that "next-generation" web interfaces are in high demand. In many ways,
+this trend is an "of course" moment. Of course Google Maps is the
+way that mapping is supposed to work. When you first experience
+it, you wonder why it took so long to be. While the underlying technologies
+of Ajax have been around for a while now, the recent explosion of
+Ajax-powered pages and applications has brought to light some limitations
+of XHTML, browsers, assistive technologies, and standards.</p>
+<p>Ajax is a great example of the natural tension that exists between
+innovation (going "outside the box" to achieve better results) and
+standardization (the desire to keep things orderly) because, amidst
+all the excitement around Ajax, there is also a concern that things
+are moving too fast and too wrecklessly. Some say that, in the rush
+to adopt Ajax, developers are moving forward without regard for
+the basic guidelines and standards that have been established around
+web technolgies over the years. The worry is that, with Ajax, it's
+too easy to end up with a more engaging web page (good) that doesn't
+validate, is not accessible, and only works in modern browsers (bad).
+For many, this outcome represents a step backwards.</p>
+<p>This same concern was raised with regard to Spry when Adobe first
+released it, and the Adobe Spry team has taken that feedback seriously.
+One of our key objectives for Spry 1.6 was to develop and promote
+a set of best-practices that allow developers to use Spry without
+sacrificing adherence to standards. In some cases, we've actually
+extended or adapted Spry itself to accomodate this goal. In other
+cases, we're simply building awareness (through articles, demos
+and samples) about the pros and cons of employing certain techniques
+-- explaining trade-offs so that designers/developers can make well-informed
+decisions about which way to go. But we're also aiming to show that,
+with Spry, it doesn't have to be a trade-off. You can have your
+Web 2.0 cake and eat it too. This section discusses the state of
+"standards" on the web and explains how Spry can be used to produce
+"next-generation" web experiences while still honoring those standards.</p>
+<div class="section"><h4 class="sectiontitle">Complying with standards</h4>
+                        
+                        <p>The goal of web
+standards is admirable. If everyone writes web pages that strictly follow
+a known set of rules, then pages render consistently (because browsers and
+devices have a known set of markup to render) and are easy to understand, edit,
+and validate . Standards keep everyone on the same page. So what
+is the “standard”?</p>
+
+                        <p>In the strictest sense, the standard is
+a set of rules written by the W3C that define the scope and use
+of (X)HTML tags and attributes. Over a series of years, these rules
+are proposed, argued over, and ratified by this consortium. Because
+no one “owns” the internet, these standards are guidelines. No one
+has to follow them but, if we all did, developers would know how
+to write and browsers would know how to render.</p>
+
+                        <p>So, using
+this definition, a page is “standards compliant” only if all the
+tags and attributes in a page are used in a way that complies with
+the rules defined for that type of page. These rules are specified
+in what is known as a Document Type Definition (DTD). A DTD defines
+the tag, attributes and values allowed in a particular type of page.
+No custom attributes can be used and all the values used in attributes
+must be valid. DTDs are discussed in more detail below.</p>
+
+                        <p>There
+are, of course, broader interpretations of what it means to be standards compliant.
+For example, some would extend the standards umbrella to include the
+use of semantic, accessible, and well-formed mark-up. </p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">DTDs and page validation</h4>
+                        
+                        <p>A valid document
+is one that follows all the rules of the DTD. As mentioned above,
+a DTD is a document that outlines a set of rules for how tags and
+attributes can be used in a page. While no fun to read, you can
+see one here: <a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" target="_blank">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>
+                        </p>
+
+                        <p>By
+including a DTD reference (like the link above) at the top of your
+page you are declaring that the mark-up in your page is meant to
+follow all the rules defined in that DTD.</p>
+
+                        <p>To validate a page,
+you must run it through a validator, which is an application that
+reads and understands the DTD rules. This application reads your
+page and compares it to the DTD rules. It ensures that the page
+is coded correctly according to the DTD defined on the page. Validation
+errors are flagged in the validation report. While there is more
+than one way to validate a document, “passing validation” is generally
+accepted to mean that it passes the W3C validator. The W3C validator
+will check the page or code provided and validate it against the
+DTD.</p>
+
+                        <p>Most pages on the web reference the DTDs at the W3C,
+like the links above. The W3C validator will pass the page or provide
+a list of how the page fails and give rules on correct code.</p>
+
+                        <p>An
+important thing to know about validation is this: Validation ONLY
+says whether the page uses tags and attributes correctly as determined
+by the DTD on the page. It has nothing to do with how the page renders
+in the browser or functions as a web application.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">DTDs and the browser</h4>
+                        
+                        <p>Browsers do not actually
+read DTDs when rendering a page. Browsers only do one thing with
+a DTD: they use it to determine the rendering mode. All browsers have
+2 rendering modes: Standards and Quirks. “Standards mode” renders
+more strictly to the standard. “Quirks mode” emulates the rendering
+of older versions of browser so that older existing code will not
+break. If there is no DTD, the browser will render in Quirks mode.
+Having a DTD at the top of the page will enable Standards mode.
+To make the distinction: the browsers read the DTD url. They do
+not read the actual DTD file.</p>
+
+                        <p>It is possible to write custom
+DTDs. For example, the language of mathematics has many unique ideas
+and formulas. A set of math-specific tags and attributes have been
+developed to extend the functionality of math within browsers, called MathML.
+A DTD for these math rules has been created.</p>
+
+                        <p>Check the source
+code of <a href="http://www.w3.org/2002/12/09-rdf-docs/xhtml-math-svg-rdf-CC-flat.xhtml" target="_blank">http://www.w3.org/2002/12/09-rdf-docs/xhtml-math-svg-rdf-CC-flat.xhtml</a>.
+You will notice a series of these math tags. The DTD describes how
+these tags are used and the DTD is referenced at the top of the document.</p>
+
+                        <p>Using
+this custom DTD is “extending” the DTD. This extension is perfectly
+legal in XHTML. Recall that the 'X' in XHTML stands for “extensible,”
+meaning that XHTML is designed to be flexible so that people can
+extend the language as needed. This custom DTD referenced above
+is only used to ensure that the page validates correctly. This DTD
+and the validation doesn't have anything to with page functionality.</p>
+
+                        <p>The
+argument goes that since extending the DTD is legal, it is therefore
+within the bounds of XHTML. But the custom nature of extending DTDs
+breaks a fundamental idea of standards: using a common set of tags
+and attributes to ensure consistent functionality.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">DTDs and Spry</h4>
+                        
+                        <p>Spry uses namespaced attributes
+to specify how dynamic regions should be processed at run-time.
+The Spry team chose to promote the use of namespaced attributes
+for ease of use. Attributes enabled users to attach complicated
+Ajax functionality to HTML code using a familiar, declarative coding
+convention. Other declarative approaches were considered but discarded
+due to browser limitations.</p>
+
+                        <p>Using namespaced attributes, however,
+leads to problems with page validation. Spry attributes are not
+in the standard DTD used on web pages and therefore, the W3C validator
+will return warnings about these attributes. According to the rules of
+XHTML, these can be solved by writing and including a custom DTD.
+We note these custom attributes in the Spry DTD. But, there is some
+browser trouble with this technique. The validator validates, but
+the browser chokes on the DTD line and displays part of it in the
+window. The ins and outs are described in <a href="WS56A0E49C-7801-43bb-B0B1-1DDCE23322BA.html">Validating Spry pages</a>.</p>
+
+                        <p>A custom DTD, while technically correct, is
+not practical. If page validation is a must have for you (or your
+client), however, or you simply don't like the idea of having Spry
+attributes in your code, then the best solution is to use a technique we're
+calling "Unobtrusive Spry" (based directly on the concept of unobtrusive JavaScript).
+This is a methodology that calls for segregating all behavioral
+code (generally this means JavaScript, but for Spry it also means
+Spry attributes) into an external file. With this technique, no
+Spry attributes are needed in your code—instead they are attached
+programmatically by JavaScript when the page is loaded. To learn
+more about this technique, and about other ways that Spry can help
+with keeping behavior separated from structure/content, read <a href="WS03C47BEC-DDCA-42c8-B243-0BE6CE0F6CF5.html">Separating behavior from structure</a>.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Accessibility</h4>
+                        
+                        <p>Accessibility in the web
+world means that your page can be understood by those with a range
+of physical disabilities. For instance, screen readers can read
+your page; the colors chosen for the page are of a contrast so that
+those with limited vision can read them; alt text is provided for
+all contextual images; captions and labels are used correctly.</p>
+
+                        <p>Some
+web sites by law have to be accessible. Government web sites for
+instance, generally have to make their content accessible to all
+viewers. There is a strict set of laws and guidelines that must
+be followed. In the US, this is known as "Section 508" which is
+the part of the law that denotes the rules for accessibility. With
+such sites, it might be impossible to use Spry Data due to javascript
+degradation and accessibility issues, but the sites might well be
+able to use Spry Widgets. The appropriateness of different development
+techniques depends on the context.</p>
+
+                        <p>Spry supports accessibility
+by providing keyboard navigation for all of its widgets. For instance,
+we use tabindex on things like accordion tabs for tabbing between
+elements. While these kinds of attributes aren't allowed on non-form elements
+according to the W3C, they are supported in Mozilla and IE browsers. The
+Spry team felt that providing this functionality via tabindex was
+more important than the validation aspect, so we included them by
+default. But the attributes are not required for functionality and
+can be removed because we’ve also made it possible to use &lt;a&gt;
+tags for tabbing.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Semantic Markup</h4>
+                        
+                        <p>Semantic Markup is the
+idea of using tags and attributes correctly. If you are writing
+a header, don't style a SPAN to be bigger; use an H1-6 tag correctly.
+Use TH tags for table headers. Following such guidelines is beneficial
+for a number reasons: HTML is used in the manner in which is was
+designed; screen readers and other devices can understand how to
+interpret the code correctly; and developers can also read and understand
+more easily.</p>
+
+                        <p>The Spry Accordion widget is one example that
+illustrates semantic markup. By default we use a DIV for the tab
+and for the content. We do this for flexibility and to show general
+structure. A feature of Spry widgets is that nearly any code can be
+used for the structure. So if it would be more semantic to use a
+H1-6 tag for the tabs and a DIV for the content, you can do that.
+For an example, see this <a href="https://github.com/adobe/Spry/tree/master/samples/accordion/AccordionSample.html#UsingOtherBlockElements" target="_blank">accordion samples page</a>.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Progressive enhancement</h4>
+                        
+                        <p>Progressive enhancement
+is a technique for developing web pages that automatically adapt
+to the browsing environment to provide a better user experience
+when viewed in advanced browsers or other devices. The idea is that you
+start with a basic HTML-only page. Then the page is enhanced by
+adding CSS, JavaScript, Flash, and so forth, as desired, all the
+while, ensuring that the page is functional and readable with these
+other technologies turned off. Don't make the only navigagion bar
+in Flash because you can't assume that all your readers have Flash
+Player. For more information, see <a href="WS5A44A1B7-6D94-43a8-8CC4-22806438B31C.html">Progressive enhancement with Spry</a>.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Standards versus innovation</h4>
+                        
+                        <p>The rapid
+adoption of Ajax has made some of the limitations of current technologies
+more apparent. How do we keep innovation relevant yet still ensure
+that our pages will work as expected?</p>
+
+                        <p>There are as many techniques
+for web development as there are web developers and the needs and
+abilities of sites vary widely.</p>
+
+                        <p>The web standards movement
+in many ways developed from the browser wars and the lunacy of trying
+to code for multiple browsers, or even multiple versions of a single
+browser. If we stick to the rules of the road, everything should
+work and we would, as a community, exert pressure on browser makers
+to raise their bar. All web developers know how much easier their
+jobs would be if the code all rendered correctly on all browsers!</p>
+
+                        <p>As
+a member of the web community, you should adhere to standards as
+much as possible. Standards ensure that pages will work in a consistent
+manner. Avoiding things like browser hacks will give pages longevity
+as browsers progress. It will also help force the browser authors
+to conform to standards.</p>
+
+                        <p>But the web is a big place, and there
+are those who don't worry about standards; there are some who want
+to push the envelope, innovating and creating new things, new techniques
+and tomorrows.</p>
+
+                        <p>Ajax is popular because it works, and, when
+used smartly, clearly enhances the user experience. With Spry, we
+are hoping to provide a lower barrier to entry for Ajax and the
+creation of next-generation web experiences. Ajax and Web 2.0 might
+not be for everyone.</p>
+
+                        <p>The good news is that you don’t have
+to make an either/or decision between writing basic pages that follow
+standards or writing Web 2.0 pages that abandon standards. It's
+possible to have it both ways: you can use Spry, or other frameworks/widgets/techniques
+in a smart, semantic, unobtrusive, progressively enhanced manner
+and at the same time provide advanced functionality in a way that
+works for all users, browsers, and devices.</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="http://www.w3.org/" title="http://www.w3.org/" target="_blank">http://www.w3.org/</a></li><li class="icon external"><a href="http://www.webstandards.org/" title="http://www.webstandards.org/" target="_blank">http://www.webstandards.org/</a></li><li class="icon external"><a href="http://webstandardsgroup.org/" title="http://webstandardsgroup.org/" target="_blank">http://webstandardsgroup.org/</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

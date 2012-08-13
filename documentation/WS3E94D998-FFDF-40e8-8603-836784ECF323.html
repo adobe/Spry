@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Coding guidelines for developing Spry widgets
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSC9EDF0AB-5415-487a-88B2-7E65EBD5F7E0.html" title="About Spry widget accessibility and JavaScript degradation"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS7E0416A3-9BAD-4e44-A888-EBBEF3587BE5.html" title="Spry Community"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSA6D3A96F-78C2-43f4-8518-DB935B8FFDE5.html"><b>About Spry widgets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Coding guidelines for developing Spry widgets
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>One of the goals of Spry is to enable the user community
+to build and share widgets. Adobe has a set of guidelines to use
+when authoring widgets for public distribution. Adobe is providing
+these guidelines with the hope that all widgets will have a consistent
+base functionality.</p>
+<ul><li>
+                           <p>Use standard HTML code for structure</p>
+
+                        </li>
+<li>
+                           <p>Don’t require CSS code unless necessary</p>
+
+                        </li>
+<li>
+                           <p>If you require CSS code for functionality, clearly document
+the requirements</p>
+
+                        </li>
+<li>
+                           <p>Use a single line (if possible) of JavaScript to enable the
+widget functionality</p>
+
+                        </li>
+<li>
+                           <p>Write keyboard navigation options in a function by default</p>
+
+                        </li>
+<li>
+                           <p>When JavaScript is turned off, the content should still appear
+on the page</p>
+
+                        </li>
+<li>
+                           <p>Widgets should be self-contained. Everything needed for the
+widget is provided in the HTML, JavaScript, and CSS files.</p>
+
+                        </li>
+</ul>
+<p>Keeping to these guidelines will help ensure that widgets are
+easy to understand and use, plus consistency strengthens the framework
+for everyone.</p>
+<p>Using standard code is important because there is less to learn
+for the common user. It also makes it easy to use these widgets
+in WYSIWYG editors.</p>
+<p>CSS code is used in some widgets to show and hide content by
+switching the visibility rule in CSS code. This is an example of
+a required use of CSS. Such a use is acceptable because the CSS
+code is the obvious mechanism for showing and hiding content. CSS
+code that is pure styling, however, should not be required. The
+widget should always function without styling. Document required
+CSS rules with comments in the CSS file, and if you’re providing
+further documentation, mention it there as well.</p>
+<p>Most widgets are activated with a single line of JavaScript code
+just after the actual widget code. Try to keep the JavaScript arguments
+to a minimum. Widths and heights of widgets should be set in CSS
+code, not in JavaScript, unless there are no other options.</p>
+<p>Keyboard navigation and accessibility are important to users
+and to Spry. Write keyboard navigation so that users can use common
+workflow keys (arrow keys, space bar) to access all parts of your
+widget. Use things like tab order where appropriate.</p>
+<p>It’s vital that content not be hidden in non-scripting environments.
+Ensure that when JavaScript is turned off, your content is not hidden
+because of CSS visibility being turned off or content being positioned
+off screen.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

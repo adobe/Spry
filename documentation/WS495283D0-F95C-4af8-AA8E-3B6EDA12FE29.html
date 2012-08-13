@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Enable keyboard navigation
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS67FA755E-2785-4d33-BFD6-9089C1835CFA.html" title="Delete a panel from a Tabbed Panels widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS8DCB6244-F760-4634-B86F-7AFBFFA25E38.html" title="Change the orientation of tabbed panels"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS203A3CE3-6517-4a06-9323-3158EAB3CD8E.html"><b>Working with the Tabbed Panels widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Enable keyboard navigation
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>Making widgets accessible for keyboard navigation
+is an important part of every widget. Keyboard navigation lets the
+user control the widget with arrow keys or custom keys.</p>
+
+                        <p>The
+foundation of keyboard navigation is the <samp class="codeph">tabIndex</samp> attribute.
+This attribute tells the browser how to use the tabs to navigate
+through the document.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To enable keyboard navigation
+on the tabbed panels, add a <samp class="codeph">tabIndex</samp> attribute to
+each <samp class="codeph">li</samp> tag, as follows:</span> 
+                              <pre>&lt;ul class="TabbedPanelsTabGroup"&gt;
+	&lt;li class="TabbedPanelTab" tabIndex="0"&gt;Tab&lt;/li&gt;
+	&lt;li class="TabbedPanelTab" tabIndex="0"&gt;Tab&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+                              <p>If the <samp class="codeph">tabIndex</samp> attribute
+has a value of zero (0), the browser determines the order, and includes
+the widget in the tab flow of the page. If the <samp class="codeph">tabIndex</samp> attribute
+has a positive integer value, that widget will receive focus according
+to the specified place in the tab order.</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>Using <samp class="codeph">tabIndex</samp> on
+a <samp class="codeph">li</samp> tag is not XHTML 1.0 W3C compliant.</div>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

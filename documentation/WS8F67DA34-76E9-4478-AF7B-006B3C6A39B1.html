@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Migrate effects from Spry 1.4 to Spry 1.5
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS645D90BD-C1E1-48f6-B7A1-146F5C44752F.html" title="About the Spry effects library"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSAB192E40-E027-48d4-B8F8-4E01AE3669C5.html" title="Spry Community"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WSD567CF5C-865B-4d04-B64B-A277C3BEFA47.html"><b>About Spry effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Migrate effects from Spry 1.4 to Spry 1.5
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           With Spry 1.5, you can now add observers
+to effects much as you do for data sets and regions, and you can
+simultaneously combine multiple effects like Slide, Squish, and
+Highlight to create effects clusters.</p>
+
+                        <p>The new implementation
+provides a redesign of the current effects classes. Static animation
+functions are transformed into classes that inherit the notification mechanism
+and the existing cluster interface. As an added benefit, Spry 1.5 includes
+some known effects bug fixes, like reverting the order of running
+subeffects inside a cluster when toggling.</p>
+
+                        <p>If you are using
+effects created with Spry 1.4, and want to upgrade your effects
+to work with Spry 1.5, you need to make a few changes to your code.
+The most significant change from Spry 1.4 to Spry 1.5 is the change
+from static effects functions to classes, which requires you to
+change the way you call the effects. The code looks familiar if
+you’ve already used Spry widgets. </p>
+
+                        <p>In Spry 1.4 and earlier,
+you attached an effect to an element's <samp class="codeph">onclick</samp> event,
+as follows: </p>
+
+                        <pre>&lt;a href="#" onclick="Spry.Effect.Slide('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;</pre>
+
+                        <p>If
+you replace your 1.4 version of the SpryEffects.js file with the
+1.5 version, your page animation will not work when you click the
+element. For the effect to work properly, you must migrate your
+code by transforming the functions to classes (the preferred method
+for migrating effects), or by using wrapper functions. </p>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS6AD78DCF-ED69-4e86-9D48-C33C9A666FE3" onclick="javascript:toggleLayer('WS6AD78DCF-ED69-4e86-9D48-C33C9A666FE3');return false;" title="Transform functions to classes"><img src="images/off.gif" />Transform functions to classes</a></h3><div id="WS6AD78DCF-ED69-4e86-9D48-C33C9A666FE3" class="mini"><a name="WS6AD78DCF-ED69-4e86-9D48-C33C9A666FE3"><!-- --></a><div>
+                        <ol><li class="stepexpand"><span>Extract the effect’s code from its current HTML
+tag and place it inside a <samp class="codeph">script</samp> tag below the
+element that you want to animate.</span> 
+                                 <pre>&lt;a href="#" onclick=""&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+..
+&lt;script type="text/javascript"&gt;
+	<strong>Spry.Effect.Slide('element', {toggle:true})</strong>;
+&lt;/script&gt;</pre>
+
+                              </li>
+<li class="stepexpand"><span>Add the <samp class="codeph">new</samp> operator in front of the
+JavaScript line, and give the resulting object a variable name,
+as follows:</span> 
+                                 <pre>&lt;a href="#" onclick=""&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    <strong>var slide_effect = new Spry.Effect.Slide('element', {toggle:true})</strong>;
+&lt;/script&gt;</pre>
+
+                                 <p>The variable name can be anything,
+and is used to control the effect.</p>
+
+                              </li>
+<li class="stepexpand"><span>After you’ve created the effect object and saved it in
+a variable, integrate the effect back into the original trigger
+element, so that the user can interact with it. To do this, call
+the <samp class="codeph">start()</samp> method. The <samp class="codeph">start()</samp> method
+triggers the effect, and uses the variable name that you specified
+in the constructor <samp class="codeph">script</samp>.</span> 
+                                 <pre>&lt;a href="#" <strong>onclick="slide_effect.start();</strong>"&gt;Click to animate&lt;/a&gt;
+&lt;div id="element"&gt;I'm the animated div.&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    var <strong>slide_effect</strong> = new Spry.Effect.Slide('element', {toggle:true});
+&lt;/script&gt;</pre>
+
+                              </li>
+</ol>
+
+                        <div class="section">
+                           <div class="p">You might need to rename an effect. The following table
+shows name changes for three effects in Spry 1.5.
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e26124">
+                                             <p>Spry 1.4 effect name</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e26129">
+                                             <p>Spry 1.5 effect name</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e26124 ">
+                                             <p>AppearFade</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e26129 ">
+                                             <p>Fade</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26124 ">
+                                             <p>GrowShrink</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e26129 ">
+                                             <p>Grow</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26124 ">
+                                             <p>MoveSlide</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e26129 ">
+                                             <p>Slide</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>If you are using one of the preceding
+effects, change its name in the JavaScript. For example, <samp class="codeph">Spry.Effect.AppearFade</samp> changes
+to <samp class="codeph">Spry.Effect.Fade</samp>.</p>
+
+                           <div class="note"><span class="notetitle">Note:  </span>The MoveSlide effect
+was removed from the available effects list in Spry 1.5, and its
+code was subsumed into the Slide effect.</div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS26BB6A92-BC7D-4f9b-8854-1D8C5C051E72" onclick="javascript:toggleLayer('WS26BB6A92-BC7D-4f9b-8854-1D8C5C051E72');return false;" title="Use wrapper functions"><img src="images/off.gif" />Use wrapper functions</a></h3><div id="WS26BB6A92-BC7D-4f9b-8854-1D8C5C051E72" class="mini"><a name="WS26BB6A92-BC7D-4f9b-8854-1D8C5C051E72"><!-- --></a><div>
+                        <div class="section">
+                           <p>The Spry 1.5 effects library also includes a list of
+wrapper functions for easy migration. If you want to continue using
+an effect as a function as you did in Spry 1.4, you’ll need to rename
+the function.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;Enable these functions by amending the function
+name slightly with the word “Do.” For example, </span> 
+                                 <pre>&lt;a href="#" onclick="<strong>Spry.Effect.AppearFade</strong>('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;</pre>
+
+                                 <p>becomes</p>
+
+                                 <pre>&lt;a href="#" onclick="<strong>Spry.Effect.DoFade</strong>('element', {toggle:true});"&gt;Click to animate&lt;/a&gt;&lt;div id="element"&gt;I'm the animated div&lt;/div&gt;</pre>
+
+                                 <p>The
+following table provides a list of function name changes.</p>
+
+                                 
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e26231">
+                                                <p>Original function name</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e26236">
+                                                <p>New function name</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.AppearFade()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoFade()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.Highlight()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoHighlight()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.GrowShrink()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoGrow()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.Shake()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoShake()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.Squish()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoSquish()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.Blind()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoBlind()</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e26231 ">
+                                                <p>Spry.Effect.Slide()</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e26236 ">
+                                                <p>Spry.Effect.DoSlide()</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 <div class="note"><span class="notetitle">Note:  </span>The wrapper-function names are based
+on the new names in the Spry 1.5 effects library.</div>
+
+                              </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

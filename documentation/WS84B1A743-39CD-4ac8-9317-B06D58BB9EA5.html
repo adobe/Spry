@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Customize the Validation Confirm widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS5A176763-C16E-4ecf-AD31-7405CB36B863.html" title="Change required status of a Confirm widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS8BB972F5-1E04-4d5b-96B9-D4DB171E1D6B.html" title="Confirm widget methods"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS6670EAE6-5875-499d-BB5B-BB3F01035766.html"><b>Working with the Validation Confirm widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Customize the Validation Confirm widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           
+                           The SpryValidationConfirm.css
+file provides the default styling for the Validation Confirm widget.
+You can, however, customize the widget by changing the appropriate
+CSS rule. The CSS rules in the SpryValidationConfirm.css file use
+the same class names as the related elements in the widget’s HTML
+code, so it’s easy for you to know which CSS rules correspond to
+the widget and its error states.</p>
+
+                        <p>The SpryValidationConfirm.css
+file should already be included in your website before you start
+customizing. For more information, see Prepare
+your files.</p>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS98196954-AD5F-408c-BA11-88F58A731A97" onclick="javascript:toggleLayer('WS98196954-AD5F-408c-BA11-88F58A731A97');return false;" title="Style a Validation Confirm widget (general instructions)"><img src="images/off.gif" />Style a Validation Confirm widget (general instructions)</a></h3><div id="WS98196954-AD5F-408c-BA11-88F58A731A97" class="mini"><a name="WS98196954-AD5F-408c-BA11-88F58A731A97"><!-- --></a><div>
+                        <ol><li><span>Open the SpryValidationConfirm.css file.</span></li>
+<li><span>Locate the CSS rule for the part of the widget to change.
+For example, to change the background color of the Confirm widget’s
+required state, edit the <samp class="codeph">input.confirmRequiredState</samp> rule
+in the SpryValidationConfirm.css file.</span></li>
+<li><span>Make your changes to the CSS and save the file.</span></li>
+</ol>
+
+                        <div class="section">
+                           <p>The SpryValidationConfirm.css file contains extensive
+comments, explaining the code and the purpose for certain rules.
+For further information, see the comments in the file.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSA216C93A-4C6D-4618-8278-8C335DA27E6D" onclick="javascript:toggleLayer('WSA216C93A-4C6D-4618-8278-8C335DA27E6D');return false;" title="Style Validation Confirm widget error message text"><img src="images/off.gif" />Style Validation Confirm widget error message text</a></h3><div id="WSA216C93A-4C6D-4618-8278-8C335DA27E6D" class="mini"><a name="WSA216C93A-4C6D-4618-8278-8C335DA27E6D"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, error messages for the Validation Confirm
+widget appear in red with a 1-pixel solid border surrounding the
+text.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the text styling of Validation Confirm
+widget error messages, use the following table to locate the appropriate
+CSS rule, and then change the default properties, or add your own
+text-styling properties and values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e17434">
+                                                   <p>Text to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e17439">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e17444">
+                                                   <p>Relevant properties to change</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e17434 ">
+                                                   <p>Error message text</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17439 ">
+                                                   <p>.confirmRequiredState .confirmRequiredMsg,
+.confirmInvalidState .confirmInvalidMsg</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17444 ">
+                                                   <p>color: #CC3333; 	border: 1px solid #CC3333;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS460ECF75-A429-4e89-B57B-6DC1571152B8" onclick="javascript:toggleLayer('WS460ECF75-A429-4e89-B57B-6DC1571152B8');return false;" title="Change Validation Confirm widget background colors"><img src="images/off.gif" />Change Validation Confirm widget background colors</a></h3><div id="WS460ECF75-A429-4e89-B57B-6DC1571152B8" class="mini"><a name="WS460ECF75-A429-4e89-B57B-6DC1571152B8"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the background colors of the Validation
+Confirm widget in various states, use the following table to locate
+the appropriate CSS rule, and then change the default background
+color values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e17499">
+                                                   <p>Color to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e17504">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e17509">
+                                                   <p>Relevant property to change</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e17499 ">
+                                                   <p>Background color of widget in valid state</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17504 ">
+                                                   <p>.confirmValidState input, input.confirmValidState</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17509 ">
+                                                   <p>background-color: #B8F5B1;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17499 ">
+                                                   <p>Background color of widget in invalid state</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17504 ">
+                                                   <p>input.confirmRequiredState, .confirmRequiredState input,
+input.confirmInvalidState, .confirmInvalidState input</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17509 ">
+                                                   <p>background-color: #FF9F9F;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17499 ">
+                                                   <p>Background color of widget in focus</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17504 ">
+                                                   <p>.confirmFocusState input, input.confirmFocusState</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e17509 ">
+                                                   <p>	background-color: #FFFFCC;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS18836159-8106-4392-8C87-006B0B7690D9" onclick="javascript:toggleLayer('WS18836159-8106-4392-8C87-006B0B7690D9');return false;" title="Customize state-related class names"><img src="images/off.gif" />Customize state-related class names</a></h3><div id="WS18836159-8106-4392-8C87-006B0B7690D9" class="mini"><a name="WS18836159-8106-4392-8C87-006B0B7690D9"><!-- --></a><div>
+                        <div class="section">
+                           <p>While you can replace error-message-related class names
+with class names of your own by changing the rules in the CSS code
+and the class names in the HTML code, you cannot change or replace
+state-related class names, because the behaviors are hard-coded
+as part of the Spry framework. You can, however, override the default
+state-related class name with your own class name by specifying
+a new value in the third parameter of the widget constructor.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change widget state-related class names, add
+one of the overriding options to the third parameter of the widget
+constructor, and specify your custom class name, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var ConfirmWidgetObject = new Spry.Widget.ValidationConfirm("ConfirmWidget", "password1", {requiredClass: "required", invalidClass: "invalid" ,validClass: "valid"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table provides a list of options you can
+use to override built-in state-related class names.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e17610">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e17615">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e17610 ">
+                                             <p>requiredClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e17615 ">
+                                             <p>Overrides the .confirmRequiredState built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17610 ">
+                                             <p>invalidClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e17615 ">
+                                             <p>Overrides the .confirmInvalidState built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17610 ">
+                                             <p>validClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e17615 ">
+                                             <p>Overrides the .confirmValidState built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17610 ">
+                                             <p>focusClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e17615 ">
+                                             <p>Overrides the .confirmFocusState built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e17610 ">
+                                             <p>additionalError</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e17615 ">
+                                             <p>Lets you display error messages in a concentrated
+area on the page, inside an element whose ID is different from that
+of the widget container. When you use this option, all widget state
+classes that get applied to the main widget container are also applied
+to the additional element.</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

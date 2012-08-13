@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Customize the Accordion widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSE03B96F0-A409-4dc0-830E-EA05F91492D7.html" title="Open panels programmatically"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS5663902E-DBF5-428f-9C65-AC001A949AA8.html" title="Working with the Collapsible Panel widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS8C37C05B-05FA-4b22-A987-3D6BFC193A76.html"><b>Working with the Accordion widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Customize the Accordion widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+SpryAccordion.css file provides the default styling for the Accordion
+widget. You can, however, easily customize the widget by changing
+the appropriate CSS. The CSS rules in the SpryAccordion.css file
+use the same class names as the related elements in the accordion’s
+HTML code, so it’s easy for you to know which CSS rules correspond
+to the different sections of the Accordion widget. Additionally,
+the SpryAccordion.css file contains class names for widget behaviors
+(for example, hovering and clicking behaviors).</p>
+
+                        <p>The SpryAccordion.css
+file should already be included in your website before you start
+customizing. For more information, see Prepare
+your files.</p>
+
+                        <div class="note"><span class="notetitle">Note:  </span>Internet Explorer up to
+and including version 6 does not support sibling and child contextual
+selectors (for example, <samp class="codeph">.AccordionPanel + .AccordionPanel</samp> or <samp class="codeph">.Accordion &gt;
+.AccordionPanel</samp>).</div>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS443A5581-353E-4b20-B696-CC80CD67D032" onclick="javascript:toggleLayer('WS443A5581-353E-4b20-B696-CC80CD67D032');return false;" title="Style an Accordion widget (general instructions)"><img src="images/off.gif" />Style an Accordion widget (general instructions)</a></h3><div id="WS443A5581-353E-4b20-B696-CC80CD67D032" class="mini"><a name="WS443A5581-353E-4b20-B696-CC80CD67D032"><!-- --></a><div>
+                        <div class="section">
+                           <p>Set properties for the entire Accordion widget container,
+or set properties for the components of the widget individually.</p>
+
+                        </div>
+
+                        <ol><li><span>Open the SpryAccordion.css file.</span></li>
+<li><span>Locate the CSS rule for the part of the accordion to
+change. For example, to change the background color of the accordion’s
+tabs, edit the <samp class="codeph">AccordionPanelTab</samp> rule in the SpryAccordion.css
+file.</span></li>
+<li><span>Make your changes to the CSS and save the file.</span></li>
+</ol>
+
+                        <div class="section">
+                           <p>You can replace style-related class names in the SpryAccordion.css
+file and HTML code with class names of your own. Doing so does not
+affect the functionality of the widget.</p>
+
+                           <p>The SpryAccordion.css
+file contains extensive comments, explaining the code and the purpose
+for certain rules. For further information, see the comments in the
+file.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSF0CBE789-16D7-4cd7-ABCA-E71EA3CA006C" onclick="javascript:toggleLayer('WSF0CBE789-16D7-4cd7-ABCA-E71EA3CA006C');return false;" title="Style Accordion widget text"><img src="images/off.gif" />Style Accordion widget text</a></h3><div id="WSF0CBE789-16D7-4cd7-ABCA-E71EA3CA006C" class="mini"><a name="WSF0CBE789-16D7-4cd7-ABCA-E71EA3CA006C"><!-- --></a><div>
+                        <div class="section">
+                           <p>Set properties for the entire Accordion widget container,
+or set properties for the components of the widget individually.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the text styling of an Accordion widget,
+use the following table to locate the appropriate CSS rule in the
+SpryAccordion.css file, and then add your own text styling properties
+and values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e2711">
+                                                   <p>Text to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e2716">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e2721">
+                                                   <p>Example of properties and values to add</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e2711 ">
+                                                   <p>Text in the entire accordion (includes both
+tab and content panel)</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2716 ">
+                                                   <p>.Accordion or .AccordionPanel</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2721 ">
+                                                   <p>font: Arial; 	font-size:medium;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2711 ">
+                                                   <p>Text in accordion panel tabs only</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2716 ">
+                                                   <p>.AccordionPanelTab</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2721 ">
+                                                   <p>font: Arial; 	font-size:medium;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2711 ">
+                                                   <p>Text in accordion content panels only</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2716 ">
+                                                   <p>.AccordionPanelContent</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2721 ">
+                                                   <p>font: Arial; 	font-size:medium;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS63917CB5-6F18-4d0d-B1EE-5ECB80AD7748" onclick="javascript:toggleLayer('WS63917CB5-6F18-4d0d-B1EE-5ECB80AD7748');return false;" title="Change Accordion widget background colors"><img src="images/off.gif" />Change Accordion widget background colors</a></h3><div id="WS63917CB5-6F18-4d0d-B1EE-5ECB80AD7748" class="mini"><a name="WS63917CB5-6F18-4d0d-B1EE-5ECB80AD7748"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;Use the following table to locate the appropriate
+CSS rule in the SpryAccordion.css file, and then add or change background
+color properties and values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e2808">
+                                                   <p>Part of widget to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e2813">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e2818">
+                                                   <p>Example of property and value to add or
+change</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e2808 ">
+                                                   <p>Background color of accordion panel tabs</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2813 ">
+                                                   <p>.AccordionPanelTab</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2818 ">
+                                                   <p>background-color: #CCCCCC; (This is the
+default value.)</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2808 ">
+                                                   <p>Background color of accordion content panels</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2813 ">
+                                                   <p>.AccordionPanelContent</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2818 ">
+                                                   <p>background-color: #CCCCCC;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2808 ">
+                                                   <p>Background color of the open accordion panel</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2813 ">
+                                                   <p>.AccordionPanelOpen .AccordionPanelTab</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2818 ">
+                                                   <p>background-color: #EEEEEE; (This is the
+default value.)</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2808 ">
+                                                   <p>Background color of panel tabs on hover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2813 ">
+                                                   <p>.AccordionPanelTabHover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2818 ">
+                                                   <p>color: #555555; (This is the default value.)</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e2808 ">
+                                                   <p>Background color of open panel tab on hover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2813 ">
+                                                   <p>.AccordionPanelOpen .AccordionPanelTabHover	</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e2818 ">
+                                                   <p>color: #555555; (This is the default value.)</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSC203D24D-0758-464f-9FFA-19457487843B" onclick="javascript:toggleLayer('WSC203D24D-0758-464f-9FFA-19457487843B');return false;" title="Constrain the width of an accordion"><img src="images/off.gif" />Constrain the width of an accordion</a></h3><div id="WSC203D24D-0758-464f-9FFA-19457487843B" class="mini"><a name="WSC203D24D-0758-464f-9FFA-19457487843B"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, the Accordion widget expands to fill available
+space. To constrain the width of an Accordion widget, set a width
+property for the accordion container.</p>
+
+                        </div>
+
+                        <ol><li><span>Locate the <samp class="codeph">.Accordion</samp> CSS rule
+in the SpryAccordion.css file. This rule defines properties for
+the main container element of the Accordion widget.</span></li>
+<li><span>Add a width property and value to the rule, for example <samp class="codeph">width:
+300px;</samp>.</span></li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSAB063756-D443-4fcf-B8CB-151742DB993F" onclick="javascript:toggleLayer('WSAB063756-D443-4fcf-B8CB-151742DB993F');return false;" title="Change accordion panel height"><img src="images/off.gif" />Change accordion panel height</a></h3><div id="WSAB063756-D443-4fcf-B8CB-151742DB993F" class="mini"><a name="WSAB063756-D443-4fcf-B8CB-151742DB993F"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, the height of Accordion widget panels is
+set to 200 pixels. To change the height of panels, change the height
+property in the <samp class="codeph">.AccordionPanelContent</samp> rule.</p>
+
+                        </div>
+
+                        <ol><li class="stepexpand"><span>Locate the <samp class="codeph">.AccordionPanelContent</samp> CSS
+rule in the SpryAccordion.css file.</span></li>
+<li class="stepexpand"><span>Change the height property to a dimension of your choosing.</span> 
+                                 <div class="p">
+                                    <div class="note"><span class="notetitle">Note:  </span> Always set this value to ensure that accordion panel
+sizes are the same.</div>
+
+                                 </div>
+
+                              </li>
+</ol>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSF0F1FD9D-FFAC-4a95-B2CC-A1FFAC590763" onclick="javascript:toggleLayer('WSF0F1FD9D-FFAC-4a95-B2CC-A1FFAC590763');return false;" title="Change accordion panel behaviors"><img src="images/off.gif" />Change accordion panel behaviors</a></h3><div id="WSF0F1FD9D-FFAC-4a95-B2CC-A1FFAC590763" class="mini"><a name="WSF0F1FD9D-FFAC-4a95-B2CC-A1FFAC590763"><!-- --></a><div>
+                        <div class="section">
+                           <p>The Accordion widget includes some predefined behaviors.
+These behaviors consist of changing CSS classes when a particular
+event occurs. For example, when a mouse pointer hovers over an accordion
+panel tab, Spry applies the AccordionPanelTabHover class to the
+widget. (This behavior is similar to <samp class="codeph">a:hover</samp> for
+links.) The behaviors are blank by default; to change them, add
+properties and values to the rules.</p>
+
+                        </div>
+
+                        <ol><li class="stepexpand"><span>Open the SpryAccordion.css file and locate the
+CSS rule for the accordion behavior to change. The Accordion widget
+includes four built-in rules for behaviors.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e3013">
+                                                   <p>Behavior</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e3018">
+                                                   <p>Description</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e3013 ">
+                                                   <p>.AccordionPanelTabHover</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e3018 ">
+                                                   <p>Activates when hovering over the panel tab</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e3013 ">
+                                                   <p>.AccordionPanelOpen</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e3018 ">
+                                                   <p>Activates on the tab of the open panel</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e3013 ">
+                                                   <p>.AccordionPanelClosed</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e3018 ">
+                                                   <p>Activates on the closed panels</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e3013 ">
+                                                   <p>.AccordionFocused</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e3018 ">
+                                                   <p>Activates when the entire accordion gets
+focus.</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                               
+                                 <p>For examples, see the Accordion sample file located in
+the samples directory of the Spry directory that you downloaded
+from Adobe Labs. For more information, see Prepare
+your files.</p>
+
+                              </li>
+<li class="stepexpand"><span>Add CSS rules for any of the behaviors you want to enable.</span></li>
+</ol>
+
+                        <div class="section">
+                           <div class="note"><span class="notetitle">Note:  </span>You cannot replace behavior-related class names in
+the SpryAccordion.css file with class names of your own because
+the behaviors are hard coded as part of the Spry framework. To override
+the default class with your class names, send the new values as
+arguments to the accordion constructor, as the following example
+shows:</div>
+
+                           <pre>&lt;script type="text/javascript"&gt;
+	var acc2 = new Spry.Widget.Accordion("Accordion2", { hoverClass: "hover", openClass: "open", closedClass: "closed", focusedClass: "focused" });
+&lt;/script&gt;</pre>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSD70B5019-ADCF-42db-8699-A4D75C8EDE4C" onclick="javascript:toggleLayer('WSD70B5019-ADCF-42db-8699-A4D75C8EDE4C');return false;" title="Turn off panel animation"><img src="images/off.gif" />Turn off panel animation</a></h3><div id="WSD70B5019-ADCF-42db-8699-A4D75C8EDE4C" class="mini"><a name="WSD70B5019-ADCF-42db-8699-A4D75C8EDE4C"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, accordion panels use animation to smoothly
+open and close. You can turn this animation off so that the panels
+instantly open and close.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To turn off animation, send an argument in the
+accordion constructor, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var acc5 = new Spry.Widget.Accordion("Accordion5", { enableAnimation: false });
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSF55812D8-F9D6-4c68-ABF8-78C32A59DB0E" onclick="javascript:toggleLayer('WSF55812D8-F9D6-4c68-ABF8-78C32A59DB0E');return false;" title="Set panel animation timing"><img src="images/off.gif" />Set panel animation timing</a></h3><div id="WSF55812D8-F9D6-4c68-ABF8-78C32A59DB0E" class="mini"><a name="WSF55812D8-F9D6-4c68-ABF8-78C32A59DB0E"><!-- --></a><div>
+                        <div class="section">
+                           <p>You can change the time it takes for a panel to open.
+Set the time in milliseconds (1000 = 1 second). By default, Spry
+uses 500 milliseconds (0.5 seconds).</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;Add the duration option to the constructor:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var acc9 = new Spry.Widget.Accordion("Accordion9", { duration: 1000 });
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSE9057679-ABB0-4f40-96A1-C4643C5CCF29" onclick="javascript:toggleLayer('WSE9057679-ABB0-4f40-96A1-C4643C5CCF29');return false;" title="Set variable panel heights"><img src="images/off.gif" />Set variable panel heights</a></h3><div id="WSE9057679-ABB0-4f40-96A1-C4643C5CCF29" class="mini"><a name="WSE9057679-ABB0-4f40-96A1-C4643C5CCF29"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, when animation is enabled, Spry forces all
+accordion content panels to use the same height. Spry derives this
+height from the height of the default open panel of the accordion,
+which is determined by CSS or by the height of the content in the
+panel.</p>
+
+                           <p>The accordion also supports variable height panels.
+To turn this support on, pass a <samp class="codeph">useFixedPanelHeights: false</samp> option
+to the accordion's constructor.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;Pass a <samp class="codeph">useFixedPanelHeights:false</samp> option
+as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var acc7 = new Spry.Widget.Accordion("Accordion7", { useFixedPanelHeights: false });
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>For an example, see the Accordion sample file located
+in the samples directory of the Spry directory that you downloaded
+from Adobe Labs. For more information, see Prepare
+your files.</p>
+
+                           <p>You can also specify a panel height in the Accordion constructor, rather than in the CSS, by using the <samp class="codeph">fixedPanelHeight</samp> constructor option. The value for the <samp class="codeph">fixedPanelHeight</samp> constructor option should be an integer that specifies the height of the panel in pixels.</p>
+
+
+
+                           <pre>&lt;script type="text/javascript"&gt;
+	var acc7 = new Spry.Widget.Accordion("Accordion7", { fixedPanelHeight: "300" });
+&lt;/script&gt;</pre>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

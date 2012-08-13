@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Behavior attributes
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS59A21B0A-435D-4969-8799-4B0F180378A2.html" title="Hiding data references"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html" title="Working with Spry effects"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html"><b>Working with dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Behavior attributes
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        You
+can place behavior attributes on elements within a dynamic region
+to automatically enable common behaviors that would ordinarily require
+some manual programming. </p>
+</div>
+<h3 class="topictitle3"><a href="#WSFABFDCF7-8698-45fc-92B8-5BB56D5FDB09" onclick="javascript:toggleLayer('WSFABFDCF7-8698-45fc-92B8-5BB56D5FDB09');return false;" title="spry:hover"><img src="images/off.gif" />spry:hover</a></h3><div id="WSFABFDCF7-8698-45fc-92B8-5BB56D5FDB09" class="mini"><a name="WSFABFDCF7-8698-45fc-92B8-5BB56D5FDB09"><!-- --></a><div>
+                        <div class="section">
+                           <p>The <samp class="codeph">spry:hover</samp> attribute places a class
+name on an element whenever the mouse cursor enters the element,
+and removes that class name as the cursor exits the element.</p>
+
+                           <p>The
+value for the <samp class="codeph">spry:hover</samp> attribute is the name
+of the class to put on the element whenever the mouse enters or
+exits the element.</p>
+
+                           <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+.<strong>myHoverClass {	 background-color: yellow; }</strong> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" <strong>spry:hover="myHoverClass"</strong>&gt;{username}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+                           <p>In the preceding example, whenever the
+mouse enters an <samp class="codeph">li</samp> element, the <samp class="codeph">"myHoverClass"</samp> class
+name is added to the element’s class attribute. It is automatically
+removed when the mouse exits the element. </p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS28D235CA-E4D7-4995-8C41-FFE75D1D07E9" onclick="javascript:toggleLayer('WS28D235CA-E4D7-4995-8C41-FFE75D1D07E9');return false;" title="spry:select"><img src="images/off.gif" />spry:select</a></h3><div id="WS28D235CA-E4D7-4995-8C41-FFE75D1D07E9" class="mini"><a name="WS28D235CA-E4D7-4995-8C41-FFE75D1D07E9"><!-- --></a><div>
+                        <div class="section">
+                           <p>The <samp class="codeph">spry:select</samp> attribute places a
+class name on an element when the mouse clicks the element.</p>
+
+                           <p>The
+value for the <samp class="codeph">spry:select</samp> attribute is the name
+of the class to put on the element whenever the mouse clicks the
+element.</p>
+
+                           <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+.myHoverClass {
+	background-color: yellow;
+}
+.<strong>mySelectClass {	color: white;	background-color: black;}</strong> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <strong>spry:select="mySelectClass"</strong>&gt;{username}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+                           <p>In the preceding example, whenever the
+mouse clicks an <samp class="codeph">li</samp> element, the <samp class="codeph">mySelectClass</samp> class
+name is added to the elements class attribute. </p>
+
+                           <p>If an element
+on the page with a<samp class="codeph"> spry:select</samp> attribute was previously
+selected, the class name used as the value for its <samp class="codeph">spry:select</samp> attribute
+is automatically removed, in effect unselecting that element.</p>
+
+                           <p>You
+can use a <samp class="codeph">spry:selectgroup</samp> attribute in conjunction
+with a <samp class="codeph">spry:select</samp> attribute to allow you to have
+more than one set of selections on a page. For a working example
+of this, see the RSS Reader example in the demos folder of the Spry folder
+from Adobe Labs.</p>
+
+                           <pre>&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;Behavior Attributes Example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+.myHoverClass {
+	background-color: yellow;
+}
+.<strong>mySelectClass {	color: white;	background-color: black;}</strong> 
+.<strong>myOtherSelectClass {	color: white;	background-color: black;}</strong> 
+&lt;/style&gt;
+&lt;script type="text/javascript" src="../../includes/xpath.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="../../includes/SpryData.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+var dsEmployees = new Spry.Data.XMLDataSet("../../data/employees-01.xml", 
+"/employees/employee");
+&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;div spry:region="dsEmployees"&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <strong>spry:select="mySelectClass"
+spry:selectgroup="username"</strong>&gt;{username}&lt;/li&gt;	&lt;/ul&gt;
+	&lt;ul&gt;
+		&lt;li spry:repeat="dsEmployees" spry:hover="myHoverClass" <strong>spry:select="myOtherSelectClass"
+spry:selectgroup="firstname"</strong>&gt;{firstname}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;</pre>
+
+                           <p>The value of a <samp class="codeph">spry:selectgroup</samp> attribute
+is an arbitrary name. Any element that uses the same name for its <samp class="codeph">spry:selectgroup</samp> attribute
+is automatically unselected when another element with the same select
+group name is clicked. Other elements with differing <samp class="codeph">spry:selectgroup</samp> values
+are unaffected.</p>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+</body>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Overview
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html" title="Using the Spry Element Selector"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS86E0B386-D44E-45ef-A0AB-94A365E001E7.html" title="Supported selectors"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html"><b>Using the Spry Element Selector</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Overview
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        The
+Spry Element Selector is a utility that lets you use CSS selectors
+to select elements on a page and then apply functionality to those
+elements. The utility gives you the ability to build Spry pages
+with unobtrusive javascript. Using the utility, you can select a
+single element on the page or multiple elements. The utility supports
+most CSS 3 selectors.</p>
+<p>The utility is actually a JavaScript function called <samp class="codeph">Spry.$$()</samp>.
+When you call this function, you pass a string that is a CSS Selector
+as the first argument. The <samp class="codeph">$$</samp> function uses the
+selector string to find all elements in the document that match the
+selector, and then returns the matching elements in an array. If
+the function finds no matches, it returns an empty array. Whatever
+the case, the function always returns an array.</p>
+<p>The CSS selectors you use in the Spry Element Selector are the
+same selectors you use in normal CSS rules. For example, if you
+have a div that has a product class assigned to it, and you wanted
+to style all of the spans inside that div to have a background color
+of blue, you might write the following CSS:</p>
+<pre>&lt;style&gt;
+div.product span {
+background-color: blue;
+}
+&lt;/style&gt;</pre>
+<p>If you wanted to do this programatically with the Spry Element
+Selector, you would write something like this:</p>
+<pre>&lt;script type="text/javascript"&gt;
+// Find the matching elements:
+var matchesArray = Spry.$$("div.product span");
+// Apply a blue background to each element in the array.
+matchesArray.setStyle("background-color: blue");
+&lt;/script&gt;</pre>
+<p>For examples of the Element Selector utility in action, visit
+the <a href="https://github.com/adobe/Spry/tree/master/samples/" target="_blank">Samples</a> page on Adobe Labs.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="http://www.w3.org/TR/REC-CSS2/selector.html" title="http://www.w3.org/TR/REC-CSS2/selector.html" target="_blank">W3C CSS Selector overview</a></li><li class="icon external"><a href="http://css.maxdesign.com.au/selectutorial/" title="http://css.maxdesign.com.au/selectutorial/" target="_blank">Selectutorial CSS Selectors</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

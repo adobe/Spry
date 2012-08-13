@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Validation Text Area widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS6505137E-6D5E-42f1-8245-713837D21985.html" title="CSS code for the Validation Text Area widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS2082255F-DF38-465d-A693-633D95A0507D.html" title="Display error messages"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSE3EA32E0-D694-4136-908F-6F3F52AAA8BF.html"><b>Working with the Validation Text Area widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Validation Text Area widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate the SpryValidationTextarea.js
+file and add it to your web site. You can find the SpryValidationTextarea.js
+file in the widgets/textareavalidation directory, located in the
+Spry directory that you downloaded from Adobe Labs. For more information,
+see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and upload the SpryValidationTextarea.js
+file to it. The SpryValidationTextarea.js file contains all of the
+information necessary for making the Text Area widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryValidationTextarea.css file and add it
+to your web site. You might choose to add it to the main directory,
+a SpryAssets directory, or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Text Area widget to and
+link the SpryValidationTextarea.js file to the page by inserting
+the following <samp class="codeph">script</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationTextarea.js file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryValidationTextarea.css file to your web
+page by inserting the following <samp class="codeph">link</samp> tag in the
+page’s head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryValidationTextarea.css file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Add a text area to the page and give it a name and a
+unique ID:</span> 
+                              <pre>&lt;textarea name="mytextarea" id="textarea"&gt;&lt;/textarea&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Add a container around the text area by inserting <samp class="codeph">span</samp> tags
+around the <samp class="codeph">&lt;textarea&gt;</samp> tags, and assigning
+the widget a unique ID, as follows:</span> 
+                              <pre>&lt;span id="sprytextarea1"&gt;
+	&lt;textarea name="mytextarea"&gt;&lt;/textarea&gt;
+&lt;/span&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>Initialize the text area object by inserting the following
+script block after the HTML code for the widget:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var ta1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the Text Area widget object, and transforms the <samp class="codeph">span</samp> tag
+content with the ID of sprytextarea1 from static HTML code into
+an interactive text field object. The <samp class="codeph">Spry.Widget.ValidationTextarea</samp> method
+is a constructor in the Spry framework that creates text area objects.
+The information necessary to initialize the object is contained
+in the JavaScript library, SpryValidationTextarea.js, that you linked
+to at the beginning of this procedure.</p>
+
+                              <p>Make sure that the
+ID of the text area’s container <samp class="codeph">span</samp> tag matches
+the ID parameter you specified in the Spry.Widgets.ValidationTextarea
+method. Make sure that the JavaScript call comes after the HTML
+code for the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt; 
+... 
+&lt;script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id="form1" name="form1" method="post" action=""&gt;
+		&lt;span id="sprytextarea1"&gt;
+			&lt;textarea name="textarea1" id="textarea1" cols="45" rows="5"&gt;&lt;/textarea&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;script type="text/javascript"&gt;
+var ta1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

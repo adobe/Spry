@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Use the Spry Element Selector in a custom function
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSFBB15A05-77AD-44d7-AF26-B69FF4810AC2.html" title="Selector functions"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS8024A1A2-FC51-43f0-88F9-E26E0472B7FA.html" title="Run the Spry Element Selector on page load"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html"><b>Using the Spry Element Selector</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Use the Spry Element Selector in a custom function
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           You
+can use the Spry Element Selector to manipulate multiple parts of
+the page at the same time. Use the Element Selector to find all
+the elements you’re interested in and then use the built-in functions
+to update the elements.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Link the Element Selector to your Spry page.</span> 
+                              <div class="p">
+                                 <pre>&lt;script src="includes/SpryDOMUtils.js" lang="text/javascript" type="javascript"&gt;</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Add a function block after the link.</span> 
+                              <div class="p">
+                                 <pre>&lt;script src="includes/SpryDOMUtils.js" lang="text/javascript" type="javascript"&gt;
+&lt;script lang="text/javascript" type="javascript"&gt;
+function myFunction(){
+}
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Add the Element Selection function to the function block.
+In the following example, we’ve added a class to all <samp class="codeph">p</samp> tags
+that occur within a <samp class="codeph">table</samp> tag.</span> 
+                              <div class="p">
+                                 <pre>&lt;script src="includes/SpryDOMUtils.js" lang="text/javascript" type="javascript"&gt;
+&lt;script lang="text/javascript" type="javascript"&gt;
+function myFunction(){
+   <strong>Spry.$$("table p").addClassName("myClass")</strong>;
+}
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Add an event that will execute the function.</span> 
+                              <div class="p">
+                                 <pre>&lt;a href="#" onclick="myFunction();"&gt;Click Me&lt;/a&gt;</pre>
+
+                              </div>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

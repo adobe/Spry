@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Attach a Size effect
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS0ADBA411-F777-49ba-8201-5B8B667A8641.html" title="Attach an Opacity effect"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS0AFF2990-F614-4c8b-B338-85B1E559A82F.html" title="Legal notices"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WS46AFF8D0-F4F2-478a-8D7C-D26D426EFC81.html"><b>Working with effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Attach a Size effect
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+Size effect changes the target element’s width and height. Many
+of the clustered effects use the Size effect: Grow, Blind, Slide.</p>
+
+                        <p>You
+can only attach this effect to the following HTML elements: <samp class="codeph">address</samp>, <samp class="codeph">dd</samp>, <samp class="codeph">div</samp>, <samp class="codeph">dl</samp>, <samp class="codeph">dt</samp>, <samp class="codeph">form</samp>, <samp class="codeph">img</samp>, <samp class="codeph">ol</samp>, <samp class="codeph">ul</samp>, <samp class="codeph">applet</samp>, <samp class="codeph">center</samp>, <samp class="codeph">dir</samp>, <samp class="codeph">menu</samp>,
+or <samp class="codeph">pre</samp>.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>To link the SpryEffects.js file on your web page,
+add the following code to the head of your document:</span> 
+                              <pre>&lt;head&gt;
+. . .
+&lt;script  src="../includes/SpryEffects.js" type="text/javascript" &gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The exact file path differs, depending
+on where you store the SpryEffects.js file.</div>
+
+                              <p>The SpryEffects.js
+file is in the includes folder of the Spry folder that you downloaded
+from Adobe Labs. See Prepare
+your files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Make sure your target element has a unique ID. The target
+element is the element that changes when the user interacts with
+the page to cause the effect.</span> 
+                              <pre>&lt;div <strong>id="size1"</strong>&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>To create the effect, add a JavaScript event to trigger
+the effect, a <samp class="codeph">script</samp> tag that creates the effect
+object, and size variables. For example, if you want the user to click
+on a sentence that causes another paragraph to resize, you might
+add the following event and <samp class="codeph">script</samp> tag:</span> 
+                              <pre>&lt;p&gt;&lt;a onclick="size_effect.start(); return false;" href="#"&gt;Click here to resize the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;
+var fromRect = new Spry.Effect.Utils.Rectangle();
+fromRect.width = 100;
+fromRect.height = 300;
+var toRect = new Spry.Effect.Utils.Rectangle();
+toRect.width = 300;
+toRect.height = 900;
+Spry.Effect.makeClipping(document.getElementById("size1"));
+var size_effect = new Spry.Effect.Size("size1", fromRect, toRect, {duration: 2000, toggle: true});
+&lt;/script&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>It’s important that you add the <samp class="codeph">script</samp> tag <em>after</em> the
+code for the target element. Otherwise the page will return a JavaScript
+error when you try to trigger the effect.</div>
+
+                              <p>The first argument
+of the <samp class="codeph">Spry.Effect.Size</samp> method is always the target
+element’s ID (<samp class="codeph">"size1"</samp> in the preceding example). </p>
+
+                              <p>The
+second argument is a rectangle that represent the starting dimensions
+of the element. The default units of measure are pixels. To change
+this value, use the <samp class="codeph">units</samp> property of the rectangle: <samp class="codeph">fromRect.units
+= 'em'</samp>;</p>
+
+                              <p>The third argument is a rectangle that represents
+the ending dimensions of the element. The default units of measure
+are pixels. To change this value, use the <samp class="codeph">units</samp> property
+of the rectangle: <samp class="codeph">toRect.units = 'em';</samp>
+                              </p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>Make
+the units for both starting and ending rectangles be the same; otherwise the
+effect will not accept them as valid parameters</div>
+
+                              <p>Observe
+the following line of code in the preceding example:</p>
+
+                              <pre>Spry.Effect.makeClipping(document.getElementById("size1"));</pre>
+
+                              <p>The
+target element should have the CSS overflow property set to <samp class="codeph">hidden</samp> or <samp class="codeph">scroll</samp>. When
+shrinking the element dimensions, you do not want the content to
+be displayed outside the inner content area. The preceding code
+line ensures that the element overflow property is correct for the
+Size effect to work.</p>
+
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script src="../includes/SpryEffects.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick="size_effect.start(); return false;" href="#"&gt;Click here to resize the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;div id="size1"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var fromRect = new Spry.Effect.Utils.Rectangle();
+fromRect.width = 100;
+fromRect.height = 300;
+var toRect = new Spry.Effect.Utils.Rectangle();
+toRect.width = 300;
+toRect.height = 900;
+Spry.Effect.makeClipping(document.getElementById("size1"));
+var size_effect = new Spry.Effect.Size("size1", fromRect, toRect, {duration: 2000, toggle: true});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+<h3 class="topictitle3"><a href="#WSC315D320-D785-438a-B4D1-6DC477BB421B" onclick="javascript:toggleLayer('WSC315D320-D785-438a-B4D1-6DC477BB421B');return false;" title="Size effect options"><img src="images/off.gif" />Size effect options</a></h3><div id="WSC315D320-D785-438a-B4D1-6DC477BB421B" class="mini"><a name="WSC315D320-D785-438a-B4D1-6DC477BB421B"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table lists available options for the
+Size effect.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e29769">
+                                          <p>Option</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e29774">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>duration</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Duration of the effect in milliseconds.
+The default value is 1000.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>scaleContent</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Scales the content of the element proportionally
+with the dimensions of the animation. The default value is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>toggle</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Lets you create a toggle effect. The default
+value is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>useCSSBox</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Modifies the border, margin and padding
+proportionally to the element’s inner content box. The default value
+is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>transition</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Determines the type of transition. The default
+is <samp class="codeph">Spry.sinusoidalTransition</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>fps</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Determines the number of frames per second
+(fps) of the animation. The default is 60.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>setup</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Lets you define a function that is called
+before the effect begins, e.g.,<samp class="codeph"> setup:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29769 ">
+                                          <p>finish</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29774 ">
+                                          <p>Lets you define a function that is called
+after the effect finishes, e.g., <samp class="codeph">finish:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>Sample code:</p>
+
+                           <pre>var fromRect = new Spry.Effect.Utils.Rectangle();
+fromRect.width = 100;
+fromRect.height = 100;
+var toRect = new Spry.Effect.Utils.Rectangle();
+toRect.width = 300;
+toRect.height = 300;
+Spry.Effect.makeClipping(document.getElementById("targetID"));
+var size_effect = new Spry.Effect.Size("targetID", fromRect, toRect, {duration: 2000, toggle: true, scaleContent: true, transition: Spry.fifthTransition});</pre>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

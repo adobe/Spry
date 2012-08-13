@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Run the Spry Element Selector on page load
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS82A206B1-6631-41a3-8034-82E8CA529726.html" title="Use the Spry Element Selector in a custom function"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS00242C26-BB4A-491f-A68D-B359C22A64C7.html" title="Using the Spry Updater extension for Dreamweaver"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html"><b>Using the Spry Element Selector</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Run the Spry Element Selector on page load
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           Many times, you will want some functions
+to run automatically when the page loads. This example shows the
+activation of the constructor scripts for 2 Accordion widgets on
+the same page. We’ve also moved the JavaScript functions to an external
+file so that the script is unobtrusive.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>Link the Spry Element Selector to your Spry page.</span> 
+                              <div class="p">
+                                 <pre>&lt;script src="includes/SpryDOMUtils.js" lang="text/javascript" type="javascript"&gt;
+...
+&lt;body&gt;
+&lt;div id="Accordion1" class="Accordion"&gt;
+...
+&lt;/div&gt;
+&lt;div id="Accordion2" class="Accordion"&gt;
+...
+&lt;/div&gt;
+...</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Create a new blank JavaScript file and save it as <em>myFunctions.js</em>.</span></li>
+<li class="stepexpand"><span>In the new JavaScript file, add a function block.</span> 
+                              <div class="p">
+                                 <pre>function myFunction(){
+}</pre>
+
+                              </div>
+
+                           </li>
+<li class="stepexpand"><span>Add the Spry Element Selection function to the function
+block. The following example activates the Accordion widget constructors.</span> 
+                              <div class="p">
+                                 <pre>function myFunction(){
+  Spry.$$(".Accordion").forEach(function(n) { window[n.id] = new Spry.Widget.Accordion(n); });
+}</pre>
+
+                              </div>
+
+                              <p>The above function looks for all tags with the
+"Accordion" class, which, if you are using basic Spry Accordion
+code, should be on the widget container tag for all the accordions.
+We’ve used the <samp class="codeph">forEach</samp> function to apply the specified
+function to all the instances of the selector. The <samp class="codeph">window[n.id]</samp> code
+acquires the ID of the selected element (Accordion1 and Accordion2)
+and uses that value for the widget name. If you want to use a behavior
+for that widget, for example, to open or close a panel, you use
+the ID of the widget for the name: <samp class="codeph">onclick="Accordion2.open();"</samp>
+                              </p>
+
+                           </li>
+<li class="stepexpand"><span>Next set up a listener that will execute the script after
+the page is loaded. This is important because the markup needs to
+exist before the constructor scripts execute. (For this reason,
+constructor scripts generally come after the HTML markup in a regular
+Spry page.)</span> 
+                              <pre>// Declare a function to call when the onload event fires.
+function myFunction()
+{
+	// Find all elements in the page with a class of Accordion.
+	// For each matching element, create an Accordion object
+	// and store the object in a global variable that has the same
+	// name as the id of the element.
+	Spry.$$(".Accordion").forEach(function(n) { window[n.id] = new Spry.Widget.Accordion(n); });
+}
+// Register this function with Spry so that it gets called
+// when the onload event fires.<strong>Spry.Utils.addLoadListener(myFunction);</strong></pre>
+
+                           </li>
+<li class="stepexpand"><span>Lastly, link the myFunctions.js file to your Spry page.</span> 
+                              <div class="p">
+                                 <pre>&lt;script src="includes/SpryDOMUtils.js" lang="text/javascript" type="javascript"&gt;
+&lt;script src="myFunctions.js" lang="text/javascript" type="javascript"&gt;</pre>
+
+                              </div>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

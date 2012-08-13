@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry basic master and detail region overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS377E98B0-31E1-4c5b-A6CD-445530B505D7.html" title="Spry dynamic region overview and structure"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSFC985AA5-C5E9-4266-ACE0-62299A0E0B70.html" title="Spry advanced master and detail region overview and structure"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS742CEB12-1DB0-42e7-950C-288F67C7CC3B.html"><b>About Spry pages and dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry basic master and detail region overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        When working
+with Spry data sets, you can create master and detail dynamic regions
+to display more detail about your data. One region on the page (the master),
+drives the display of the data in another region on the page (the
+detail).</p>
+<div class="fignone"><img alt="" id="fig10" src="images/fig10.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>Typically, the master region displays an abbreviated form of
+a set of records from the data set, and the detail region displays
+more information about a selected record. Because the detail region
+depends on the master region, any time the data in the master region
+changes, the data in the detail region changes as well.</p>
+<div class="note"><span class="notetitle">Note:  </span>This section covers basic master and detail relationships
+where both regions are dependent on the same data set. For information
+on master and detail regions that use more than one data set, see Spry
+advanced master/detail region overview and structure.</div>
+<p>In the following example, a master dynamic region displays general
+data from the <samp class="codeph">dsSpecials</samp> data set, and a detail
+dynamic region displays more detail about the row of data that’s
+been selected in the master region:</p>
+<pre>&lt;head&gt;
+. . .
+&lt;script type="text/javascript" src="../includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var dsSpecials = new Spry.Data.XMLDataSet("data/cafetownsend.xml", "specials/menu_item");
+&lt;/script&gt;
+&lt;/head&gt;
+. . .
+&lt;body&gt;
+&lt;!--Create a master dynamic region--&gt;	
+&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;
+	&lt;table id="Specials_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Item&lt;/th&gt;	
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Price&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;!--User clicks to reset the current row in the data set--&gt;
+		&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;
+			&lt;td&gt;{item}&lt;/td&gt;				
+			&lt;td&gt;{description}&lt;/td&gt;
+			&lt;td&gt;{price}&lt;/td&gt;	
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;!--Create the detail dynamic region--&gt;
+&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;
+	&lt;table id="Specials_Detail_Table"&gt;
+		&lt;tr&gt;	
+			&lt;th&gt;Ingredients&lt;/th&gt;
+			&lt;th&gt;Calories&lt;/th&gt;
+		&lt;/tr&gt;	
+		&lt;tr&gt;	
+			&lt;td&gt;{ingredients}&lt;/td&gt;
+			&lt;td&gt;{calories}&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+. . .
+&lt;/body&gt;</pre>
+<div class="note"><span class="notetitle">Note:  </span>The source data for this example is similar to the XML file
+in Spry
+XML Data Set basic overview, but that example does not contain
+nodes for ingredients or calories. The ingredients and calories
+nodes have been added to the data set for this example.</div>
+<p>In the example, the first <samp class="codeph">div</samp> tag contains the <samp class="codeph">id</samp> and <samp class="codeph">spry:region</samp> attributes
+that create a container for the master dynamic region:</p>
+<pre>&lt;div id="Specials_DIV" spry:region="dsSpecials"&gt;</pre>
+<p>The first table-row tag of the master region contains a <samp class="codeph">spry:setrow</samp> attribute
+that sets the value of the current row in the data set when the
+user clicks the row.</p>
+<pre>&lt;tr spry:repeat="dsSpecials" spry:setrow="dsSpecials"&gt;</pre>
+<p>The second <samp class="codeph">div</samp> tag contains the attributes that
+create a container for the detail dynamic region:</p>
+<pre>&lt;div id="Specials_Detail_DIV" spry:detailregion="dsSpecials"&gt;</pre>
+<p>Every Spry data set maintains the notion of a <dfn class="term">current row</dfn>.
+By default, the current row is set to the first row in the data
+set. A <samp class="codeph">spry:detailregion</samp> works in exactly the same
+way as a <samp class="codeph">spry:region</samp> except that when the data
+set’s current row changes, the detail region updates automatically.</p>
+<p>The data references in the detail region (<samp class="codeph">{ingredients}</samp> and <samp class="codeph">{calories}</samp>)
+display data from the data set’s current row. When a user clicks
+a row in the master region table, the <samp class="codeph">spry:setrow</samp> attribute
+changes the current row in the data set to the row the user selected. </p>
+<p>The <samp class="codeph">{ds_RowID}</samp> data reference is a built-in
+part of the Spry framework that points to an automatically generated
+unique ID for each row in the data set. (See <a href="WSA51791D5-53E6-4155-A08F-8ED72946131D.html">Data reference options</a>.) When the user selects a row in the master region
+table, the <samp class="codeph">spry:setrow</samp> attribute supplies the unique
+ID to the <samp class="codeph">setCurrentRow</samp> method, which sets the
+current row in the data set.</p>
+<p>Whenever the data set is modified, all dynamic regions bound
+to that data set regenerate themselves and display the updated data.
+Because the detail region, like the master region, is an observer
+of the <samp class="codeph">dsSpecials</samp> data set, it also changes as a
+result of the modification, and displays data related to the row
+the user selected (the new current row).</p>
+<div class="fignone"><img alt="" id="fig12" src="images/fig12.gif" /><div class="figdesc"></div><br />
+                        
+                     </div><p>The difference between a <samp class="codeph">spry:region</samp> and a <samp class="codeph">spry:detailregion</samp> is
+that the <samp class="codeph">spry:detailregion</samp> specifically listens
+for <samp class="codeph">CurrentRowChange</samp> notifications (in addition
+to <samp class="codeph">DataChanged</samp> notifications) from the data set,
+and updates itself when it receives one. Normal <samp class="codeph">spry:regions</samp>,
+on the other hand, ignore the <samp class="codeph">CurrentRowChange</samp> notification,
+and only update when they receive a <samp class="codeph">DataChanged</samp> notification
+from the data set.</p>
+<div class="fignone"><img alt="" id="fig11" src="images/fig11.gif" /><div class="figdesc"></div><br />
+                        
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

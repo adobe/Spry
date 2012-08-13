@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Selector functions
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS86E0B386-D44E-45ef-A0AB-94A365E001E7.html" title="Supported selectors"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS82A206B1-6631-41a3-8034-82E8CA529726.html" title="Use the Spry Element Selector in a custom function"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html"><b>Using the Spry Element Selector</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Selector functions
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        You
+can use the following common functions with the Spry Element Selector. There
+is also an option for a custom function.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e1190">
+                                    <p>Function</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e1195">
+                                    <p>Description</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e1200">
+                                    <p>Syntax</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>addClassName</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Appends the specified class name to all
+the matching elements.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").addClassName("className");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>addEventListener</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Adds a listener for each matching element
+for the specified event.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").addEventListener(eventType,
+handler, capture);</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>forEach</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Runs the specified function for each matching
+element. The 'forEach' function allows for any javascript to be
+run within it.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").forEach(myFunction);</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>removeAttribute</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Removes the specified attribute from all
+matching elements.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").removeAttribute("attribute");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>removeEventListener</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Removes the listener on each matching element.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").removeEventListener(eventType,
+handler, capture);</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>removeClassName</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Removes the specified class name from all
+the matching elements.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").removeClassName("className");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>setAttribute</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Adds the specified attribute with the specified
+value to all matching elements.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").setAttribute("attribute","value");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>setProperty</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Sets a property on an object.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").setProperty("property","value");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>setStyle</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Sets the specified styles to the element.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").setStyle("width:30px;color:#FF00FF;");</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1190 ">
+                                    <p>toggleClassName</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1195 ">
+                                    <p>Looks for the specified class name. If it
+does not exist on the element, it will add it. If it is already
+there, it will remove it.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1200 ">
+                                    <p>Spry.$$("element selector").toggleClassName("className");</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note"><span class="notetitle">Note:  </span>Using setAttribute() to set a namespaced attribute (like spry:region)
+on elements, results in the namespace being dropped in Safari 2.0
+browsers. That is, setting an attribute of "spry:region" on an element
+results in an attribute of "region" being added to the element in
+Safari 2.0. This bug appears to have been fixed in Safari 3.0.</div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

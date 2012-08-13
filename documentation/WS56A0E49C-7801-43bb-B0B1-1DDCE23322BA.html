@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Validating Spry pages
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS03C47BEC-DDCA-42c8-B243-0BE6CE0F6CF5.html" title="Separating behavior from structure"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html" title="Using the Spry Element Selector"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WS8634E7DC-16E5-44c5-9CC0-D33A6520E628.html"><b>Using best practices with Spry</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Validating Spry pages
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        
+                        
+                        Adobe
+is committed to making sure that Spry pages pass W3C validation
+tests. The W3C recommends a couple of methods for extending XHTML
+to encapsulate custom attributes. One method is to add new attribute
+declarations to the actual page; another method is to use a custom
+Document Type Declaration (DTD).</p>
+<p>Spry provides a custom DTD that you can append to the doc type
+declaration at the top of a Spry page. When you append the custom
+DTD, the W3C validator retrieves it and uses it in conjunction with
+the original DTD. This process ensures the validation of your Spry
+pages.</p>
+<p>The custom Spry DTD also helps ensure that you are using your
+Spry attributes correctly. For example, you can use the <samp class="codeph">spry:repeat</samp> attribute
+on some tags where you can’t use the <samp class="codeph">spry:region</samp> attribute
+(such as <samp class="codeph">table</samp>). The validator shows whether or
+not you’re using Spry attributes correctly.</p>
+<p>The following is a typical doc type declaration. </p>
+<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+...
+&lt;/html&gt;</pre>
+<p>The doc type is usually the first line of the HTML page that’s
+delivered to the browser. When you validate a page, the validator
+looks at the URL of the DTD (http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd),
+and uses that DTD file as the basis for the validation. In the preceding
+example, the URL points to the XHTML transitional DTD on the W3C
+website. This DTD lists all of the rules that your page needs to
+follow. Different DTDs exist for different page types. For example,
+the strict DTD (http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd) doesn't
+allow for the use of some attributes that are deprecated in HTML
+4. </p>
+<p>In the preceding example, the Spry namespace is declared: <samp class="codeph">xmlns:spry="http://ns.adobe.com/spry"</samp>.
+Add this namespace to pages that use Spry attributes. The namespace
+tells the browser that the page contains attributes that begin with <samp class="codeph">spry</samp>.
+Providing this information helps prevent conflicts with standard
+XHTML attributes, or other custom attributes from other namespaces that
+might also be used in the same page. Adding the Spry namespace doesn't necessarily
+help with validation, but it is a best practice to include it.</p>
+<p>Pages that use Spry widgets or effects do not require the Spry
+namespace declaration. Additionally, no document is required at
+the namespace URL and, if there is a document, a human or a machine
+can read it (in contrast to the DTD, which must be written in a
+very specific, machine-readable way).</p>
+<div class="section"><h4 class="sectiontitle">Extending doc type</h4>
+                        
+                        <p>To extend the doc type
+so that a Spry page validates correctly, add code to the original
+doc type declaration, as follows:</p>
+
+                        <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+[
+     &lt;!ENTITY % SPRY SYSTEM "http://www.adobe.com/dtd/spry.dtd"&gt;
+     %SPRY;
+]&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:spry="http://ns.adobe.com/spry"&gt;
+...
+&lt;/html&gt;</pre>
+
+                        <p>The <samp class="codeph">&lt;!ENTITY&gt;</samp> line
+in the code contains the URL to the custom Spry DTD. It’s an absolute
+link to the Spry DTD on adobe.com. </p>
+
+                        <p>The <samp class="codeph">%SPRY;</samp> line
+in the code tells the validator to validate the page. If that piece
+of code is missing, the page will not validate. The square brackets
+([]) are also required. </p>
+
+                        <p>With the preceding items in place,
+the page fully validates when checked against the W3C validator
+at <a href="http://validator.w3.org/" target="_blank">http://validator.w3.org/</a>.</p>
+
+                        <p>After
+you validate the page and view it in a browser, you’ll notice a
+problem. You’ll see a piece of code at the top of the page that
+looks like this:</p>
+
+                        <pre>%SPRY; ]&gt;</pre>
+
+                        <p>The <samp class="codeph">ENTITY</samp> tag
+confuses many browsers, and causes them to read the doc type as closed
+at that point in the code. The result is a trailing snippet of code
+that renders in most browsers. Although Opera 9 handles this problem
+correctly, Internet Explorer, Firefox, and Safari all display the
+snippet. This problem is a browser bug and there is currently no
+fix for it. </p>
+
+                        <p>To ensure validation, add the entity extension
+to your code as outlined. Then, for the page to appear correctly,
+remove the entity extension before posting your page to the server.
+Remember, this custom DTD is only required if you need the page
+to validate and you are using Spry attributes. If you are not using
+Spry attributes, or you are only using Spry effects and Spry widgets,
+this custom DTD is not required.</p>
+
+                     </div>
+<div class="section"><h4 class="sectiontitle">Spry widgets and the tabIndex attribute</h4>
+                        
+                        <p>In
+the samples on Adobe Labs, and in the code that Dreamweaver CS3
+generates, Spry uses the <samp class="codeph">tabIndex</samp> attribute to
+enable keyboard navigation for some of the widgets like Tabbed panels
+and the Collapsible panel. This functionality is added to enhance
+accessibility in Spry widgets.</p>
+
+                        <p>Although using the <samp class="codeph">tabIndex</samp> property
+on nonform elements is technically invalid, Internet Explorer and
+Mozilla-based browsers support using <samp class="codeph">tabIndex</samp> on
+other page elements specifically for accessibility. If you want,
+you can use <samp class="codeph">a</samp> tags to enable tabbing instead. You
+can also remove <samp class="codeph">tabIndex</samp> from any widget without affecting
+its basic functionality.</p>
+
+                        <p>The next version of the XHTML spec
+includes the use of <samp class="codeph">tabIndex</samp> on other page elements.</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="http://en.wikipedia.org/wiki/XML_Namespaces" title="http://en.wikipedia.org/wiki/XML_Namespaces" target="_blank">http://en.wikipedia.org/wiki/XML_Namespaces</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

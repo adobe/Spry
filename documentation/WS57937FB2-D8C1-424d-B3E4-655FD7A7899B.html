@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Region observer notifications
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSFC2EB69F-9F15-4005-A993-B7667BA7EB75.html" title="Region states"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSA51791D5-53E6-4155-A08F-8ED72946131D.html" title="Data reference options"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a> /
+     <a href="WS39D7F788-5D6F-4f61-8B26-964503664B52.html"><b>Working with dynamic regions</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Region observer notifications
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        Spry
+supports an observer mechanism that allows a developer to register
+an object or function to receive a notification whenever the state
+of a region changes. This mechanism is almost identical to what
+is used for data sets with the following exceptions:</p>
+<ul><li>
+                           <p>Adding and removing region observers is done through
+the <samp class="codeph">Spry.Data.Region.addObserver()</samp> and <samp class="codeph">Spry.Data.Region.removeObserver</samp> global namespaced
+functions. This practice is different from data sets because data set
+observers call <samp class="codeph">addObserver()</samp> and <samp class="codeph">removeObserver()</samp> methods
+that are on the data set object. The use of global <samp class="codeph">namespaced</samp> functions
+allows a developer to register an observer before the document's <samp class="codeph">onload</samp> event
+starts, and before Spry creates the JavaScript object that represents
+the region. Regions use <samp class="codeph">addObserver</samp> and <samp class="codeph">removeObserver</samp> functions
+because the developer might want to register observers before the
+JavaScript region object actually exists.</p>
+
+                        </li>
+<li>
+                           <p>Both <samp class="codeph">addObserver()</samp> and <samp class="codeph">removeObserver()</samp> require
+an ID to identify which region the developer wants to observe. For
+this reason, regions that developers want to observe must have an <samp class="codeph">id</samp> attribute
+defined on their region container node. </p>
+
+                        </li>
+</ul>
+</div>
+<h3 class="topictitle3"><a href="#WS9F1E3D47-2B3D-4a1b-A57A-93B97F90962D" onclick="javascript:toggleLayer('WS9F1E3D47-2B3D-4a1b-A57A-93B97F90962D');return false;" title="Objects as region observers"><img src="images/off.gif" />Objects as region observers</a></h3><div id="WS9F1E3D47-2B3D-4a1b-A57A-93B97F90962D" class="mini"><a name="WS9F1E3D47-2B3D-4a1b-A57A-93B97F90962D"><!-- --></a><div>
+                        <div class="section">
+                           <p>To
+receive notifications, an object must define a method for each notification
+it is interested in receiving, and then register itself as an observer
+on the region.</p>
+
+                           <p>The following example shows an object being
+registered as an observer on a dynamic region:</p>
+
+                           <pre>&lt;script&gt;
+...
+// Create an observer object and define the methods to receive the notifications
+// it wants.
+myObserver = new Object;
+myObserver.onPostUpdate = function(notifier, data)
+{
+	alert("onPostUpdate called for " + data.regionID);
+};
+...
+// Call addObserver() to register the object as an observer.
+Spry.Data.Region.addObserver("employeeListRegion", myObserver);
+...
+// You can unregister your object so it stops recieving notifications
+// with a call to removeObserver().
+Spry.Data.Region.removeObserver("employeeListRegion", myObserver);
+...
+&lt;/script&gt;
+...
+&lt;ul id="employeeListRegion" spry:region="dsEmployees"&gt;
+...
+&lt;/ul&gt;</pre>
+
+                           <p>The first argument for each notification
+method is the object that is sending the notification. For region
+observers, this is not the region object. The second argument is
+an object that contains a <samp class="codeph">regionID</samp> property that
+identifies the region that triggered the notification.</p>
+
+                           <p>To
+stop an object from receiving notifications, the object must be
+removed from the list of observers with a call to <samp class="codeph">removeObserver()</samp>.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS72477BE1-2A2F-4c68-A579-C8535A094614" onclick="javascript:toggleLayer('WS72477BE1-2A2F-4c68-A579-C8535A094614');return false;" title="Functions as region observers"><img src="images/off.gif" />Functions as region observers</a></h3><div id="WS72477BE1-2A2F-4c68-A579-C8535A094614" class="mini"><a name="WS72477BE1-2A2F-4c68-A579-C8535A094614"><!-- --></a><div>
+                        <div class="section">
+                           <p>Functions
+can also be registered as observers. The main difference between object
+and function observers is that an object is only notified for the
+notification methods it defines, whereas a function observer is
+called for every type of event notification.</p>
+
+                           <p>The following
+example shows a function being registered as an observer on a dynamic
+region:</p>
+
+                           <pre>&lt;script&gt;
+...
+function myRegionCallback(notificationState, notifier, data)
+{
+	if (notificationType == "onPreUpdate")
+		alert(regionID + " is starting an update!");
+	else if (notificationType == "onPostUpdate")
+		alert(regionID + " is done updating!");
+}
+...
+// Call addObserver() to register your function as an observer.
+Spry.Data.Region.addObserver("employeeListRegion", MyRegionCallback);
+...
+// You can unregister your callback function so it stops recieving notifications
+// with a call to removeObserver().
+Spry.Data.Region.removeObserver("employeeListRegion", MyRegionCallback);
+...
+&lt;/script&gt;
+...
+&lt;ul id="employeeListRegion" spry:region="dsEmployees"&gt;
+...
+&lt;/ul&gt;</pre>
+
+                           <p>A function observer is registered with
+the same call to <samp class="codeph">addObserver()</samp>.</p>
+
+                           <p>When the
+function is called, the first argument passed into it is the notification type.
+This is a string that is the name of the notification. The second
+argument is the notifier, which in this case is not the region object.
+The third argument is a data object that has a <samp class="codeph">regionID</samp> property
+that tells us what region triggered the notification.</p>
+
+                           <p>To stop
+a function observer from receiving notifications, it must be removed
+from the list of observers with a call to <samp class="codeph">removeObserver()</samp>.</p>
+
+                           <p>The
+following table describes the current set of supported notifications.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e25367">
+                                          <p>Region notification type</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e25372">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e25367 ">
+                                          <p>onLoadingData</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e25372 ">
+                                          <p>One or more of the region's bound data sets
+is loading its data.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25367 ">
+                                          <p>onPreUpdate</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e25372 ">
+                                          <p>All of the region's bound data sets have
+loaded successfully. The region is about to regenerate its code. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25367 ">
+                                          <p>onPostUpdate</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e25372 ">
+                                          <p>The region has regenerated its code and
+inserted it into the document. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e25367 ">
+                                          <p>onError</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e25372 ">
+                                          <p>An error occurred while loading data.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

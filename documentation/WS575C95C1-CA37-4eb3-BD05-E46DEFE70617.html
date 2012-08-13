@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Customize the Validation Text Field widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSD52E3038-1967-4e2d-BA32-FA2F22C606A3.html" title="Block invalid characters"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE3EA32E0-D694-4136-908F-6F3F52AAA8BF.html" title="Working with the Validation Text Area widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html"><b>Working with the Validation Text Field widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Customize the Validation Text Field widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+SpryValidationTextField.css file provides the default styling for
+the Validation Text Field widget. You can, however, customize the
+widget by changing the appropriate CSS rule. The CSS rules in the
+SpryValidationTextField.css file use the same class names as the
+related elements in the widget’s HTML code, so it’s easy for you
+to know which CSS rules correspond to the widget and its error states.</p>
+
+                        <p>The
+SpryValidationTextField.css file should already be included in your
+website before you start customizing. For more information, see Prepare
+your files.</p>
+
+                     </div>
+</div>
+<h3 class="topictitle3"><a href="#WS7D6C6136-3887-474a-8707-CFF03EFB8E69" onclick="javascript:toggleLayer('WS7D6C6136-3887-474a-8707-CFF03EFB8E69');return false;" title="Style a Validation Text Field widget (general instructions)"><img src="images/off.gif" />Style a Validation Text Field widget (general instructions)</a></h3><div id="WS7D6C6136-3887-474a-8707-CFF03EFB8E69" class="mini"><a name="WS7D6C6136-3887-474a-8707-CFF03EFB8E69"><!-- --></a><div>
+                        <ol><li><span>Open the SpryValidationTextField.css file.</span></li>
+<li><span>Locate the CSS rule for the part of the widget to change.
+For example, to change the background color of the Text Field widget’s
+required state, edit the <samp class="codeph">.textfieldRequiredState</samp> rule
+in the SpryValidationTextField.css file.</span></li>
+<li><span>Make your changes to the CSS and save the file.</span></li>
+</ol>
+
+                        <div class="section">
+                           <p>The SpryValidationTextField.css file contains extensive
+comments, explaining the code and the purpose for certain rules.
+For further information, see the comments in the file.</p>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSA0AC0AC8-7B0E-4e14-B661-983696D2DF9F" onclick="javascript:toggleLayer('WSA0AC0AC8-7B0E-4e14-B661-983696D2DF9F');return false;" title="Style Validation Text Field widget error message text"><img src="images/off.gif" />Style Validation Text Field widget error message text</a></h3><div id="WSA0AC0AC8-7B0E-4e14-B661-983696D2DF9F" class="mini"><a name="WSA0AC0AC8-7B0E-4e14-B661-983696D2DF9F"><!-- --></a><div>
+                        <div class="section">
+                           <p>By default, error messages for the Validation Text Field
+widget appear in red with a 1-pixel solid border surrounding the
+text.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the text styling of Validation Text
+Field widget error messages, use the following table to locate the
+appropriate CSS rule, and then change the default properties, or
+add your own text-styling properties and values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11678">
+                                                   <p>Text to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e11683">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e11688">
+                                                   <p>Relevant properties to change</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11678 ">
+                                                   <p>Error message text</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11683 ">
+                                                   <p>.textfieldRequiredState .textfieldRequiredMsg,
+ .textfieldInvalidFormatState .textfieldInvalidFormatMsg,  .textfieldMinValueState
+.textfieldMinValueMsg,  .textfieldMaxValueState .textfieldMaxValueMsg,
+ .textfieldMinCharsState .textfieldMinCharsMsg, .textfieldMaxCharsState
+.textfieldMaxCharsMsg</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11688 ">
+                                                   <p>color: #CC3333; 	border: 1px solid #CC3333;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS232081A5-C0E5-4e63-9657-561157796128" onclick="javascript:toggleLayer('WS232081A5-C0E5-4e63-9657-561157796128');return false;" title="Change Validation Text Field widget background colors"><img src="images/off.gif" />Change Validation Text Field widget background colors</a></h3><div id="WS232081A5-C0E5-4e63-9657-561157796128" class="mini"><a name="WS232081A5-C0E5-4e63-9657-561157796128"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change the background colors of the Validation
+Text Field widget in various states, use the following table to
+locate the appropriate CSS rule, and then change the default background
+color values.</span> 
+                                 <div class="p">
+                                    
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11743">
+                                                   <p>Color to change</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e11748">
+                                                   <p>Relevant CSS rule</p>
+
+                                                </th>
+<th valign="top" width="NaN%" id="d16e11753">
+                                                   <p>Relevant property to change</p>
+
+                                                </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11743 ">
+                                                   <p>Background color of widget in valid state</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11748 ">
+                                                   <p>.textfieldValidState input, input.textfieldValidState</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11753 ">
+                                                   <p>background-color: #B8F5B1;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11743 ">
+                                                   <p>Background color of widget in invalid state</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11748 ">
+                                                   <p>input.textfieldRequiredState, .textfieldRequiredState input,
+input.textfieldInvalidFormatState, .textfieldInvalidFormatState
+input, input.textfieldMinValueState, .textfieldMinValueState input,
+input.textfieldMaxValueState, .textfieldMaxValueState input, input.textfieldMinCharsState,
+.textfieldMinCharsState input, input.textfieldMaxCharsState, .textfieldMaxCharsState
+input</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11753 ">
+                                                   <p>background-color: #FF9F9F;</p>
+
+                                                </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11743 ">
+                                                   <p>Background color of widget in focus</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11748 ">
+                                                   <p>.textfieldFocusState input, input.textfieldFocusState</p>
+
+                                                </td>
+<td valign="top" width="NaN%" headers="d16e11753 ">
+                                                   <p>	background-color: #FFFFCC;</p>
+
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSD107F869-9BA1-4c9a-89CB-0866EA9DFC1D" onclick="javascript:toggleLayer('WSD107F869-9BA1-4c9a-89CB-0866EA9DFC1D');return false;" title="Specify custom patterns"><img src="images/off.gif" />Specify custom patterns</a></h3><div id="WSD107F869-9BA1-4c9a-89CB-0866EA9DFC1D" class="mini"><a name="WSD107F869-9BA1-4c9a-89CB-0866EA9DFC1D"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table shows a full list of values used
+for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11836">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e11841">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Uppercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Lowercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Case-insensitive alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11836 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11841 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>Use these values to create a custom
+pattern for any of the format types. For example, to specify a custom
+social security number that’s a combination of numbers and capital
+letters, specify the following custom pattern in the constructor’s
+third parameter:</p>
+
+                           <div class="p">
+                              <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "social_security_number", {format:"custom", pattern:"AA00AA"});
+&lt;/script&gt;</pre>
+
+                           </div>
+
+                           <div class="p">The preceding code results in
+a text field that accepts values such as UT99CW, AB87PP, GV44RE,
+and so on.<div class="note"><span class="notetitle">Note:  </span>Dreamweaver users need only enter a custom pattern
+in the Pattern text box of the Property inspector, using the values
+provided in the preceding table. For example, AA00AA.</div>
+
+                           </div>
+
+                           <div class="p">
+                              <div class="note"><span class="notetitle">Note:  </span>Spry’s
+validation mechanism supports only ASCII characters.</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS030CD7F3-402D-4f4a-B2B6-E23B0ECB6C55" onclick="javascript:toggleLayer('WS030CD7F3-402D-4f4a-B2B6-E23B0ECB6C55');return false;" title="Insert autocomplete characters"><img src="images/off.gif" />Insert autocomplete characters</a></h3><div id="WS030CD7F3-402D-4f4a-B2B6-E23B0ECB6C55" class="mini"><a name="WS030CD7F3-402D-4f4a-B2B6-E23B0ECB6C55"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table shows a full list of values used
+for custom patterns.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e11986">
+                                             <p>Value</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e11991">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"0"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Whole numbers between 0 and 9</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"A" </p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Uppercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"a"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Lowercase alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"B"; "b"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Case-insensitive alphabetic characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"X"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Uppercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"x"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Lowercase alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"Y"; "y"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Case-insensitive alpha-numeric characters</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e11986 ">
+                                             <p>"?"</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e11991 ">
+                                             <p>Any character</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                           <p>Any characters (letters, punctuation,
+and so on) other than the backslash (\) and those listed in the
+preceding table are considered autocomplete characters, and Spry
+can insert these kinds of characters at the appropriate time. For
+example, if you have a zip code like UT.99CW, you might want to
+have Spry insert the period automatically after the user types the
+first two capital letters.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To use an autocomplete character, insert the character
+in the format pattern, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_custom", pattern:"AA.00AA"});
+&lt;/script&gt;</pre>
+
+                                 <p>The preceding code results in a text
+field that accepts values such as UT.99CW, AB.87PP, GV.44RE, and
+so on, with the period appearing as an autocomplete character after
+the user types the first two capital letters.</p>
+
+                               
+                                 <p>You can also have Spry autocomplete letters (other than
+those in the preceding table), as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_custom", pattern:"AA.00AAF3"});
+&lt;/script&gt;</pre>
+
+                                 <p>The preceding code results in a text
+field that accepts values such as UT.99CWF3, AB.87PPF3, GV.44REF3,
+and so on, with the period appearing as an autocomplete character
+after the user types the first two capital letters, and the F3 appearing after
+the user types the last two capital letters.</p>
+
+                                 <p>To use any of
+the special characters listed in the preceding table as an autocomplete
+character, escape them with a double backslash (\\), as in the following example:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_custom", pattern:"AA.00AA\\B3"});
+&lt;/script&gt;</pre>
+
+                                 <p>The preceding code results in a text
+field that accepts values such as UT.99CWB3, AB.87PPB3, GV.44REB3,
+and so on, with the period appearing as an autocomplete character
+after the user types the first two capital letters, and the B3 appearing after
+the user types the last two capital letters.</p>
+
+                                 <p>To use a backslash
+(\) as part of an autocomplete sequence, double it, and escape it
+using a double backslash—a total of four backslashes (\\\\)—as follows:</p>
+
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("textfieldwidget1", "zip_code", {format:"zip_custom", pattern:"AA\\\\00AA"});
+&lt;/script&gt;</pre>
+
+                                 <p>The preceding code results in a text
+field that accepts values such as UT\99CW, AB\87PP, GV\44RE, and
+so on, with the backslash appearing as an autocomplete character
+after the user types the first two capital letters.</p>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSF657C20B-9833-4f21-9D7F-C92EC02C9E57" onclick="javascript:toggleLayer('WSF657C20B-9833-4f21-9D7F-C92EC02C9E57');return false;" title="Customize state-related class names"><img src="images/off.gif" />Customize state-related class names</a></h3><div id="WSF657C20B-9833-4f21-9D7F-C92EC02C9E57" class="mini"><a name="WSF657C20B-9833-4f21-9D7F-C92EC02C9E57"><!-- --></a><div>
+                        <div class="section">
+                           <p>While you can replace error-message-related class names
+with class names of your own by changing the rules in the CSS code
+and the class names in the HTML code, you cannot change or replace
+state-related class names, because the behaviors are hard-coded
+as part of the Spry framework. You can, however, override the default
+state-related class name with your own class name by specifying
+a new value in the third parameter of the widget constructor.</p>
+
+                        </div>
+
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To change widget state-related class names, add
+one of the overriding options to the third parameter of the widget
+constructor, and specify your custom class name, as follows:</span> 
+                                 <pre>&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {requiredClass:"required"});
+&lt;/script&gt;</pre>
+
+                              </div>
+
+                        <div class="section">
+                           <p>The following table provides a list of options you can
+use to override built-in state-related class names.</p>
+
+                           <div class="p">
+                              
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e12180">
+                                             <p>Option</p>
+
+                                          </th>
+<th valign="top" width="NaN%" id="d16e12185">
+                                             <p>Description</p>
+
+                                          </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>requiredClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldRequiredState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidFormatClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldInvalidFormatState"
+built-in value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>validClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldValidState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>focusClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldFocusState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidFormatClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldInvalidFormatState"
+built-in value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidRangeMinClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldMinValueState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidRangeMaxClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldMaxValueState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidCharsMinClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldMinCharsState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>invalidCharsMaxClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldMaxCharsState" built-in
+value</p>
+
+                                          </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e12180 ">
+                                             <p>textfieldFlashTextClass</p>
+
+                                          </td>
+<td valign="top" width="NaN%" headers="d16e12185 ">
+                                             <p>Overrides the "textfieldFlashText" built-in
+value</p>
+
+                                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           </div>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

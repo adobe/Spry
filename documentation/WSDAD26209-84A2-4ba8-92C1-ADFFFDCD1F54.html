@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create a Spry Paged View data set
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS36E0C203-2A52-4555-AF23-D62B980327DE.html" title="About Spry Paged View data sets"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE2369C0F-FD58-4621-B5E1-78E66E2F6A9D.html" title="Paged View data set options"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS7FC5BCEA-CD66-4d81-B060-DAC1A685A4DE.html"><b>Working with Paged View data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create a Spry Paged View data set
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Open a new or existing HTML page.</span></li>
+<li class="stepexpand"><span>Make sure that you’ve linked the Spry data library files
+to the page and created a data set. (You can use any of the data
+set types that Spry supports.)</span> 
+                              <p>For example, you might create an XML data set, <samp class="codeph">ds1</samp>,
+with the following code:</p>
+
+                              <pre>&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+    var ds1 = new Spry.Data.XMLDataSet("myXML.xml","xpath");
+&lt;/script&gt;</pre>
+
+                              <p>For more information, see the individual
+sections on creating data sets.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryPagedView.js file to the page by inserting
+the following <samp class="codeph">script</samp> tag after the other data set <samp class="codeph">script</samp> tags
+in the head, as follows:</span> 
+                              <pre>&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;<strong>script language="JavaScript" type="text/javascript" src="includes/SpryPagedView.js"&gt;&lt;/script</strong>&gt;</pre>
+
+                              <p>The
+SpryPagedView.js file is in the same includes folder as all of the
+other Spry JavaScript files. For more information, see the Preparing
+your files sections in the individual sections on data sets. </p>
+
+                           </li>
+<li class="stepexpand"><span>Create the Paged View data set by adding a new constructor
+variable, after the primary data set constructor variable, as follows:</span> 
+                              <pre>&lt;script language="JavaScript" type="text/javascript"&gt;
+    var ds1 = new Spry.Data.XMLDataSet("myXML.xml","xpath");
+    <strong>var pv1 = new Spry.Data.PagedView( ds1 ,{pageSize: 20})</strong>;
+&lt;/script&gt;</pre>
+
+                              <p>The value of the constructor’s first
+parameter is the name of the primary data set, in this case, ds1.
+The second parameter in the constructor is optional, and in this example
+specifies how many rows to display per page. In the example, the
+Paged View data set displays 20 rows of data per page.</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>Spry
+uses 10 rows as the default if you don’t set the <samp class="codeph">pageSize</samp> option.</div>
+
+                              <p>The
+completed example code might look as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;script language="JavaScript" type="text/javascript" src="includes/xpath.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript" src="includes/SpryPagedView.js"&gt;&lt;/script&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+    var ds1 = new Spry.Data.XMLDataSet("myXML.xml","xpath");
+    var pv1 = new Spry.Data.PagedView(ds1 ,{pageSize: 20});
+&lt;/script&gt;
+...
+&lt;/head&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>After the Paged View data set is created, you can use
+a Spry region to display the data from the data set on the web page.
+The following Spry construct displays 20 rows of data, in this case,
+from the primary XML data set:</span> 
+                              <div class="p">
+                                 <pre>&lt;div spry:region="pv1" spry:repeatchildren="pv1"&gt;
+{data}
+&lt;/div&gt;</pre>
+
+                              </div>
+
+                              <p>The Paged View data set uses the
+same data reference names (<samp class="codeph">{data}</samp> in the example
+above) as the primary data set.</p>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS92D8205E-7F41-4ab3-9F25-C1FEE2EEC0BB.html">Building dynamic pages with Spry</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

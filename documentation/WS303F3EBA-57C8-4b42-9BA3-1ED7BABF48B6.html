@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * XML overview
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS9E57FDCA-FF98-45a4-A959-5F7546006FB9.html" title="About XML"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSFDD03200-79A7-4e41-BD1A-C5A7B8D7F0EF.html" title="Adding data"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS9DA7216F-166F-4ab3-87E0-1E558798EC95.html">Working with XML data sets</a> /
+     <a href="WS9E57FDCA-FF98-45a4-A959-5F7546006FB9.html"><b>About XML</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				XML overview
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                           <dfn class="term">XML</dfn> stands for eXtensible Markup Language,
+and provides a flexible yet strict method for storing and transmitting
+data. The language is flexible in that you can create format and
+node names in any way; it’s strict in that XML follows a strict
+set of rules for its structure, requiring closing tags for all elements,
+and observing rules for case sensitivity.</p>
+<p>XML is essentially a tree-like structure of nodes and nested
+nodes that contain information. As the author of the XML, you can
+define the names of the nodes.</p>
+<p>A basic XML file looks something like this:</p>
+<pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+   &lt;employees xmlns="http://www.foo.com/employees"&gt;
+     &lt;employee id="120585"&gt;
+       &lt;lastname&gt;Jones&lt;/lastname&gt;
+       &lt;firstname&gt;John&lt;/firstname&gt;
+       &lt;phone&gt;(415) 333-9345 &lt;/phone&gt;
+       &lt;username&gt;jjones&lt;/username&gt;
+    &lt;/employee&gt;
+    &lt;employee id="127493"&gt;
+       &lt;lastname&gt;Brown&lt;/lastname&gt;
+       &lt;firstname&gt;Joe&lt;/firstname&gt;
+       &lt;phone&gt;(415) 333-5938 &lt;/phone&gt;
+       &lt;username&gt;jbrown&lt;/username&gt;
+    &lt;/employee&gt;
+  &lt;/employees&gt;</pre>
+<p>The first line is the XML declaration. It specifies the version
+of the XML and the encoding of the document. The encoding tells
+the browser what character set the XML is using.</p>
+<p>In the example, <samp class="codeph">employees</samp> is the top-level node
+of the XML. This node defines the start of the specified content.
+All node tags must have a closing tag. In the example, the last
+line of the XML file has a closing <samp class="codeph">employees</samp> tag
+that corresponds to the opening tag of the top-level <samp class="codeph">employees</samp> node.</p>
+<p>Within the <samp class="codeph">employees</samp> node is a repeating <samp class="codeph">employee</samp> node
+that also contains opening and closing tags. This is where the file
+stores the bulk of the actual data. You can assign any names to
+these node, but remember that node names are case sensitive. When
+you use a Spry data reference to display the data in a Spry region, if
+the node in your XML file is <samp class="codeph">employee</samp>, the data
+reference on the HTML page must be <samp class="codeph">{employee}</samp>.
+If the node is <samp class="codeph">Employee</samp>, the data reference on
+the HTML page needs to be <samp class="codeph">{Employee}</samp>, and so on.
+When the case of a node in the XML file does not match the case
+of the corresponding data reference on the HTML page, the XML file
+cannot deliver the data, and Spry will return an error message.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,824 @@
+@charset 'UTF-8';
+@import url("content-fonts.css");
+@import url("localeSpecific.css");
+@import url("content-hyperlinks.css");
+/* all hyperlink rules are in content-hyperlinks.css
+   rules that vary by locale are in localeSpecific.css
+	padding, margin, list  ... are in content.css
+	font treatment are in content-fonts.css
+*/
+/* ************************************** */
+/* *****           COLOR           ***** */
+/* ************************************** */
+h5,
+div.breadcrumb,
+body#nav_body,
+div#breadcrumb span.links,
+div#content_wrapper h3.topictitle3,
+div#content_wrapper div table tr th {	background-color: #fff;}
+/* ****** Used by Flash Panel Help to highlight search hits */
+.searchhilite { background-color: #DFDF00; }
+pre	{ 	background-color: #f0f7fe;}
+div#content_wrapper h3.topictitle3off { 	background-color: #fff;}
+
+/* ************************************** */
+/* *****           spacing           ***** */
+/* ************************************** */
+html,body,form,dt,dd,img,table,div,h1,h2,h3,h4,a,
+#selectBox,
+ul#tabsRow,
+div#nav_content table,
+div.fignone div.figdesc,
+div.fignone dl,
+div.relinfo,
+.mainTable,
+p.Level1IX,
+p.Level2IX,
+.listImage,
+div#content_wrapper div,
+div#content_wrapper div div,
+div#content_wrapper div div.section,
+div#content_wrapper li,
+div#content_wrapper li p,
+div#content_wrapper ol,
+div#content_wrapper ul,
+div#content_wrapper ul ul,
+div#content_wrapper li li p,
+div#content_wrapper ul ul ul,
+div#content_wrapper li li li p,
+div#content_wrapper ul ul ul ul,
+div#content_wrapper li li li li p,
+div#content_wrapper ul.navlinklist,
+div#homepage_wrapper,
+div.bottom-breadcrumb {
+	padding: 0;
+	margin: 0;
+}
+
+img {	border: none;}
+
+img.image	{
+	padding-left: 2pt;
+	padding-right: 2pt;
+}
+
+img.topicView {
+	padding-right: 4px;
+	margin-bottom: -2px;
+}
+
+dl {  
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+dl dl	{ margin: 5px 20px; }
+
+div#content_wrapper dl p.dlseparator { 
+display: block;
+margin-bottom: 3px;
+margin-top: 0px;
+padding-bottom: 3px;
+padding-top: 0px;
+}
+
+div#content_wrapper dl dd p { 
+display: block;
+margin-top: 2px;
+padding-top: 2px;
+}
+
+div#content_wrapper div.fignone dl p.dlseparator { 
+display: inline;
+}
+
+div.fignone dl dd 	{ 
+margin-left: 0px;
+margin-right: 4px;
+padding-right: 4px;
+}
+
+div.nav dl.page dd { padding: 0 6px 0 0;}
+
+/* HEADING  */
+h2		{ padding: 1em 0 0.5em; }
+table  { border-collapse: collapse; }
+#content_wrapper table  { border-width: 1px; border-style: solid;  border-collapse: collapse; }
+td, th { padding: 0; }
+body#homepage_body {   
+  margin: 0px;
+  padding: 0px;
+  background-color: white; 
+  height: 100%;
+ }
+div#homepage_wrapper {
+	height: 100px;
+	background: url(images/homepage.png) no-repeat top left #fff;
+  background-color: white; 
+}
+div#homepage_content {	
+padding: 130px 0 0 21px;
+}
+div#homepage_content div a 		{ display: block }
+
+div#content_wrapper h3.topictitle3off,
+
+/* body tag for content body */
+/* Add bottom padding to work around a Safari bug and codeblock scrollbars */
+body#content_body 	{ padding: 5px 20px 25px 30px; margin: 5px 10px 25px 0px; background-color: white; }
+/* content frame page title */
+div#page_content_wrapper h1 {margin:14px 0 25px 0; }
+
+/* pneumonic at total top of the page */
+div#pneumonic	 { 
+	position:absolute; 
+	display: block;
+	top:0px; 
+	left:0px; 
+	height:24px; 
+	width: 100%;
+}
+div#pneumonic h1 { 
+	position: absolute; 
+	display: block;
+	top: 0;
+	right: 0;
+	left: 0;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: normal;
+	padding: 5px 30px 0 0;
+	text-align: right;
+	vertical-align: bottom;
+	color: white;
+	height: 19px;
+}
+
+div#pneumonic h1.Acrobat, 
+div#pneumonic h1.Spry { 
+	color: #999;
+}
+
+/* contains all content below the h1 */
+div#content_wrapper { margin:0 0 20px 0; }
+div#content_wrapper div { margin:0 0 20px 0px;}
+div#content_wrapper h3.topictitle3,
+div#content_wrapper h3.topictitle3off { padding: 5px 0 5px 10px; }
+div#content_wrapper div table tr th,
+div#content_wrapper div table tr td,
+div#content_wrapper h3.topictitle3 { border: 1px solid #ccc; }
+div#content_wrapper h3.topictitle3off { border-top: 1px solid #ccc; }
+div#content_wrapper h3.topictitle3 a img,
+div#content_wrapper h3.topictitle3off a img  {
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+div#content_wrapper div div.relinfo {
+	margin: 20px 0 0 0;
+	padding:0;
+}
+div#content_wrapper div.fignone div.figdesc {margin-top:5px; }
+div#content_wrapper div.fignone dl {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+div#content_wrapper div table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+div#content_wrapper div.mini { padding-left: 20px; }
+div#content_wrapper div table tr th { padding: 5px 10px 5px 10px; }
+div#content_wrapper div table tr td { padding:5px 10px 5px 10px;}
+div#breadcrumb { padding-bottom: 10px; padding-top: 16px; }
+div#content_wrapper div.mini ol,
+div#content_wrapper div.mini div	 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+div#content_wrapper div.note { 
+display: block;
+padding-top: 3px;
+margin-top: 3px;
+margin-bottom: 5px;
+padding-bottom: 5px;
+}
+
+div#content_wrapper div.important { 
+display: block;
+padding-top: 3px;
+margin-top: 3px;
+margin-bottom: 5px;
+padding-bottom: 5px;
+}
+
+div#content_wrapper div div.section div.note,
+div#content_wrapper div div.numbered ul,
+div#content_wrapper div div.numbered div.note,
+div#content_wrapper div div.numbered div.fignone { margin-bottom: 15px; }
+
+div#breadcrumb div.bottom-breadcrumb { border-top: 1px solid #999; }
+div#breadcrumb div.bottom-breadcrumb { padding-top: 5px; }
+div#breadcrumb div.bottom-breadcrumb div.nav	 { border-bottom: none; }
+div#breadcrumb div.hierarchy	 {	 padding:0 0 0 0px;}
+div#breadcrumb span.links {	 
+	padding:5px 15px 9px 15px;
+	white-space: nowrap; 
+}
+div#tocrule {
+	border-top:1px solid #999; 
+	margin: 10px 0 10px 0;
+}
+body#nav_body {
+	padding: 20px 10px 50px 25px;
+	background: #fff url(images/bkg-line.gif) repeat-y 100%;
+}
+
+ul#tabsRow  {margin-bottom:10px; }
+
+div.fignone {
+	padding-left: 20px;
+}
+
+div.fignone img 	{	margin: 10px 0 5px 0;}
+div.p div.tip	{
+	padding: 200px 0;
+	margin: 200px 0;
+}
+/* ************************************** */
+/* *****           TABLES           ***** */
+/* ************************************** */
+table  	{	margin: 12px 15px;}
+
+#content_body td, 
+#content_body th {
+	padding-left:2px;
+	margin-left:2px;	
+	vertical-align: top;
+}
+
+#nav_body td, 
+#nav_body th {
+	padding-left:2px;
+	margin-left:2px;	
+	vertical-align: middle;
+}
+
+form		{	
+	padding: 10px 5px 5px 0;
+}
+
+form label {	padding-bottom:5px;}
+
+/* first alpha list on index pages */
+div#nav_content div.letterList	{
+	border-bottom: 1px solid #999;
+	border-top: 1px solid #999;
+	padding: 10px 0 10px 0;
+}
+
+div.important 	{ padding: 10px 0 20px;}
+
+.loadSearch 	{
+	margin: 20px;
+	padding: 10px;
+	border: 1px  solid;
+}
+
+h4 { margin-top: 10px; }
+
+
+p.Level1IX {
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+p.Level2IX {
+	padding-left: 15px;
+	padding-top: 1px;
+}
+
+div#content_wrapper ul li {  list-style-type: square; }
+
+div#content_wrapper li li,
+div#content_wrapper li li li,
+div#content_wrapper li li li li {
+	padding: 0px 0;
+	margin: .25em 6px;
+}
+
+div#content_wrapper ol { margin: 0 23px; }
+
+div#content_wrapper ol ul { margin: 0 8px; }
+
+div#content_wrapper ul { margin: 0 15px; }
+
+div#content_wrapper li { margin: 2px 0px; }
+
+div#content_wrapper ul.navlinklist li {
+	margin: 0 0 5px 0;
+	list-style-image: none;
+	list-style-type: none;
+}
+
+.topic {
+	padding: 4px;
+	border-right: 1px  solid;
+	border-bottom: 1px  solid;
+}
+
+.listImage {
+	margin-bottom: -3px;
+	padding-right: 4px;
+}
+
+#indexLettersTop 		{
+	border-bottom: 1px  solid;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+#indexLettersBottom 	{
+	border-top: 1px  solid;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+
+.optgroup { text-align: center; }
+
+.optgroup option 	{ text-align: left; }
+
+h1.contentHead	{ padding: 0 10px 5px 0; }
+
+div.choption{ margin-right: 3px; }
+
+div.dt{ margin-right: 3px; }
+
+/* nested definition lists */
+.dlentry	{ padding-left: 16px; }
+
+.dlentry .dlentry	{
+	margin-left: 36px;
+	list-style-type: disc;
+	display: list-item;
+}
+ 
+/* choption */
+.chdesc		{ padding-left: 16px; }
+
+/*See Also indents */
+.related-links 		{ padding-left: 16px; }
+
+/* ****** Adds scrollbars to code samples */
+pre	{ 
+	overflow: auto; 
+	padding: 15px 10px 25px 10px;
+	margin: 0 20px 10px 0;
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+/* ************************************** */
+/* *****  display characteristics   ***** */
+/* ************************************** */
+div.fignone img,
+dl br,
+dl,
+.show,
+.showIt,
+.toggleImageLink ,
+form label,
+.fig img	{	display: block;}
+
+
+/* INLINE CLASSES */
+dt,
+dd,
+dd p,
+div.fignone dt,
+div.fignone dd,
+.keyword,
+.dt, 
+.fig .dd, 
+.fig .dlentry, 
+.fig .dt, 
+.keyword,
+.ph, 
+.ph, 
+.sup, 
+.term, 
+.tm,
+#tabsRow li 	{ display: inline; }
+
+/* ****** This hides content when CSS is available */
+.hide,
+.hideIt,
+.mini,
+div.fignone br { display: none; }
+
+/* ************************************** */
+/* *****  content addition   ***** */
+/* ************************************** */
+
+/* NON-BREAKING SPACE CLASSES */
+.choption:after,
+.fig .dlentry:after,
+.fig .dt:after { content: "&nbsp;"; }
+
+.sharedproducts {
+	padding-top: 16px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+	text-align: right;
+}
+
+.sharedproductindicators { 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  text-align: right;
+  margin: 5px 0px 0px 5px;
+}
+
+.sharedproductindicators img {
+  margin: 0 0 0 0;
+  margin-left: 2px;
+}
+
+dl.side-menu dt {
+display: list-item;
+list-style-type: none;
+list-style-position: outside;
+}
+
+dl.side-menu.dd {
+display: list-item;
+list-style-type: none;
+list-style-position: outside;
+}
+
+
+/*---Page Menu---*/
+.page
+{
+	float: right;
+	text-align: right;
+	margin: 0 0 0 0;
+	padding: 0;
+}
+
+.page ul { 
+	list-style-type: none;
+	margin: 0 0 0 0;
+	padding: 0;
+}
+
+.page ul li a
+{
+	padding: .1em 0.7ex;
+}
+
+.page dt,
+.page dd
+{
+	float: left;
+	margin-right: -6px;	
+}
+
+.page dd.next
+{
+	background-image: url("images/next_null.gif");
+	margin-left: -2px;
+}
+.page dd.prev
+{
+	margin-left: 0px;
+	background-image: url("images/prev_null.gif");
+}
+.page dd.next a
+{
+  font-size: 1px;
+	background-image: url("images/next.gif");
+	display: block;
+	word-break: keep-all;
+}
+.page dd.prev a
+{
+  font-size: 1px;
+	background-image: url("images/prev.gif");
+	display: block;
+	word-break: keep-all;
+}
+
+.page .prev a,
+.page .prev,
+.page .next a,
+.page .next
+{
+	width: 17px;
+	height: 17px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	overflow: hidden;
+}
+.page dd.prev a,
+.page dd.next a
+{
+	display: block;
+	text-indent: 9999px;
+	/*\*/
+	overflow: hidden;
+	/**/
+}
+.page dd.prev a:hover,
+.page dd.prev a:focus
+{
+	background-color: transparent;
+	background-image: url("images/prev_hover.gif");
+}
+.page dd.next a:hover,
+.page dd.next a:focus
+{
+	background-color: transparent;
+	background-image: url("images/next_hover.gif");
+}
+
+
+div#related {
+	display: block;
+	position: relative;
+	float: left;
+	min-width: 300px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-family: Arial, Helvetica, sans-serif; 
+	background-color: #fff;
+}
+
+#related ul li {  
+	list-style-type: none; 
+	padding: 0;
+	margin: 0;
+	line-height: 2.2em;
+}
+
+#related ul .link-list {
+	text-align: left;
+	list-style: none;
+}
+
+#related ul .link-list>li {
+	padding: 0;
+	margin: 0;
+}
+
+#related .icon,
+#related .icon a,
+#related .icon a:hover {
+	padding-left: 25px;
+	padding-right: 12px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: 0 0.4em;
+	text-decoration: none;
+	margin-left: -25px;
+}
+
+#related .icon a:hover {
+	background-position: -20px 0;
+}
+
+#related_in {
+	padding: 5px 2px 0px 2px;
+        margin-bottom: 0px;
+}
+
+/* Sets the border around the related items */
+.t  {
+	background: url(images/p1headern.gif) 0 0 repeat-x;
+	width: 100%;
+}
+
+.b  {
+	background: url(images/s.gif) 0 100% repeat-x; 
+}
+
+.l  {
+	background: url(images/w.gif) 0 0 repeat-y; 
+}
+
+.r  {
+	background: url(images/e.gif) 100% 0 repeat-y; 
+}
+
+.bl {
+	background: url(images/sw.gif) 0 100% no-repeat; 
+}
+
+.br {
+	background: url(images/se.gif) 100% 100% no-repeat; 
+}
+
+.tl {
+	background: url(images/p1headernw.gif) 0 0 no-repeat; 
+}
+
+.tr {
+	background: url(images/p1headerne.gif) 100% 0 no-repeat;
+} 
+
+img.adobeLogoSplashScreen {
+  position: absolute;
+  float: left;
+  bottom: 17px;
+  left: 21px;
+  z-index: -1000;
+}
+
+/* for each product add the style here */
+div#pneumonic h1.Acrobat {
+	background: url(images/AcrobatLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.ActionScript {
+	background: url(images/ActionScriptLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.AfterEffects {
+	background: url(images/AfterEffectsLinkIndicatorTopBar.png) no-repeat top left #669999;
+}
+div#pneumonic h1.Audition {
+	background: url(images/AuditionLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Breeze {
+	background: url(images/BreezeLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Bridge {
+	background: url(images/BridgeLinkIndicatorTopBar.png) no-repeat top left #DC5516;
+}
+div#pneumonic h1.Contribute {
+	background: url(images/ContributeLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.DeviceCentral {
+	background: url(images/DeviceCentralLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Dreamweaver {
+	background: url(images/DreamweaverLinkIndicatorTopBar.png) no-repeat top left #A5BF24;
+}
+div#pneumonic h1.EncoreDVD {
+	background: url(images/EncoreDVDLinkIndicatorTopBar.png) no-repeat top left #8CA9D1;
+}
+div#pneumonic h1.ExtensionManager {
+	background: url(images/ExtensionManagerLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.FLIP {
+	background: url(images/FLIPLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Flash {
+	background: url(images/FlashLinkIndicatorTopBar.png) no-repeat top left #AF2E22;
+}
+div#pneumonic h1.Fireworks {
+	background: url(images/FireworksLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.GaijiSING {
+	background: url(images/GaijiSINGLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.GoLive {
+	background: url(images/GoLiveLinkIndicatorTopBar.png) no-repeat top left #8077AD;
+}
+div#pneumonic h1.Illustrator {
+	background: url(images/IllustratorLinkIndicatorTopBar.png) no-repeat top left #F6A80E;
+}
+div#pneumonic h1.InCopy {
+	background: url(images/InCopyLinkIndicatorTopBar.png) no-repeat top left #7A5897;
+}
+div#pneumonic h1.InDesign {
+	background: url(images/InDesignLinkIndicatorTopBar.png) no-repeat top left #99217C;
+}
+div#pneumonic h1.Lightroom {
+	background: url(images/LightroomLinkIndicatorTopBar.png) no-repeat top left #547990;
+}
+div#pneumonic h1.PhotoshopElements {
+	background: url(images/PhotoshopElementsLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Photoshop {
+	background: url(images/PhotoshopLinkIndicatorTopBar.png) no-repeat top left #0373B2;
+}
+div#pneumonic h1.PremiereElements {
+	background: url(images/PremiereElementsLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.PremierePro {
+	background: url(images/PremiereProLinkIndicatorTopBar.png) no-repeat top left #9B87B7;
+}
+div#pneumonic h1.Reader {
+	background: url(images/ReaderLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Soundbooth {
+	background: url(images/SoundboothLinkIndicatorTopBar.png) no-repeat top left #D9D297;
+}
+div#pneumonic h1.Spry {
+	background: url(images/SpryLinkIndicatorTopBar.png) no-repeat top left #D9D297;
+}
+div#pneumonic h1.StockPhoto {
+	background: url(images/StockphotoLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.Validator {
+	background: url(images/ValidatorLinkIndicatorTopBar.png) no-repeat top left #ccc;
+}
+div#pneumonic h1.VersionCue {
+	background: url(images/VersionCueLinkIndicatorTopBar.png) no-repeat top left #5CBCB4;
+}
+.pdf-file {
+	background-image: url("images/pdf_fileicon.png") 
+}
+.swf-file {
+	background-image: url("images/swf_fileicon.png") 
+}
+.external {
+	background-image: url("images/externalLinkIndicator.png") 
+}
+.Acrobat {
+	background-image: url("images/AcrobatLinkIndicator.png") 
+}
+.ActionScript {
+	background-image: url("images/ActionScriptLinkIndicator.png") 
+}
+.AfterEffects {
+	background-image: url("images/AfterEffectsLinkIndicator.png") 
+}
+.Audition {
+	background-image: url("images/AuditionLinkIndicator.png") 
+}
+.Breeze {
+	background-image: url("images/BreezeLinkIndicator.png") 
+}
+.Bridge {
+	background-image: url("images/BridgeLinkIndicator.png") 
+}
+.Contribute {
+	background-image: url("images/ContributeLinkIndicator.png") 
+}
+.DeviceCentral {
+	background-image: url("images/DeviceCentralLinkIndicator.png") 
+}
+.Dreamweaver {
+	background-image: url("images/DreamweaverLinkIndicator.png") 
+}
+.EncoreDVD {
+	background-image: url("images/EncoreDVDLinkIndicator.png") 
+}
+.ExtensionManager {
+	background-image: url("images/ExtensionManagerLinkIndicator.png") 
+}
+.Flash {
+	background-image: url("images/FlashLinkIndicator.png") 
+}
+.FLIP {
+	background-image: url("images/FLIPLinkIndicator.png") 
+}
+.GaijiSING {
+	background-image: url("images/GaijiSINGLinkIndicator.png") 
+}
+.GoLive {
+	background-image: url("images/GoLiveLinkIndicator.png") 
+}
+.Illustrator {
+	background-image: url("images/IllustratorLinkIndicator.png") 
+}
+.InCopy {
+	background-image: url("images/InCopyLinkIndicator.png") 
+}
+.InDesign {
+	background-image: url("images/InDesignLinkIndicator.png") 
+}
+.Lightroom {
+	background-image: url("images/LightroomLinkIndicator.png") 
+}
+.Photoshop {
+	background-image: url("images/PhotoshopLinkIndicator.png") 
+}
+.PhotoshopElements {
+	background-image: url("images/PhotoshopElementsLinkIndicator.png") 
+}
+.PremiereElements {
+	background-image: url("images/PremiereElementsLinkIndicator.png") 
+}
+.PremierePro {
+	background-image: url("images/PremiereProLinkIndicator.png") 
+}
+.Reader {
+	background-image: url("images/ReaderLinkIndicator.png") 
+}
+.Soundbooth {
+	background-image: url("images/SoundboothLinkIndicator.png") 
+}
+.Spry {
+	background-image: url("images/SpryLinkIndicator.png") 
+}
+.StockPhoto {
+	background-image: url("images/StockphotoLinkIndicator.png") 
+}
+.Validator {
+	background-image: url("images/ValidatorLinkIndicator.png") 
+}
+.VersionCue {
+	background-image: url("images/VersionCueLinkIndicator.png") 
+}

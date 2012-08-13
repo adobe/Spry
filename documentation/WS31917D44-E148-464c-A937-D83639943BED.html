@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create a Spry HTML data set
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSDB183DEF-1338-4994-92AC-64C1A2B9689D.html" title="Prepare your files"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSA8D06420-9FA9-457f-8AC4-B882D673E180.html" title="Use an internal table"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WSF81D2EA9-42A9-41f1-B9B8-5AC50FB318F9.html"><b>Working with HTML data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create a Spry HTML data set
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Open
+a new or existing HTML page.</span></li>
+<li class="stepexpand"><span>Make sure that you’ve linked the Spry data library files
+to the page. For more information, see Prepare
+your files.</span></li>
+<li class="stepexpand"><span>Locate the HTML source for the data set.</span> 
+                              <p>For example, you might want to use the <samp class="codeph">“datatable1”</samp> table
+from a file called <dfn class="term">datatable.html</dfn>. The file might be
+located in a folder called <dfn class="term">data</dfn> in the site’s root folder:</p>
+
+                              <p>data/datatable.html</p>
+
+                              <p>You
+could also specify a URL to the HTML file, as follows:</p>
+
+                              <p>http://www.somesite.com/somefolder/datatable.html</p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The
+URL you decide to use (whether absolute or relative) is subject
+to the browser’s security model, which means that you can only load
+data from an HTML source that is on the same server domain as the
+HTML page you’re linking from. You can avoid this limitation by
+providing a cross-domain service script. For more information, consult
+your server administrator.</div>
+
+                           </li>
+<li class="stepexpand"><span>To create the data set, insert the following <samp class="codeph">script</samp> block
+after the <samp class="codeph">script</samp> tags that import the library:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var datasetName = new Spry.Data.HTMLDataSet("<em>sourcefile</em>", "<em>tableID</em>");
+&lt;/script&gt;</pre>
+
+                              <p>A completed statement might look as
+follows:</p>
+
+                              <pre>&lt;script type="text/javascript"&gt;
+	var ds1 = new Spry.Data.HTMLDataSet("data/datatable.html", "datatable1");
+&lt;/script&gt;</pre>
+
+                              <p>The statement creates a new data set
+called <samp class="codeph">ds1</samp> that retrieves data from the <samp class="codeph">“datatable1”</samp> table
+in the specified HTML file. The data set has a row for each <samp class="codeph">tr</samp> tag in
+the table, and columns to hold the items in each <samp class="codeph">td</samp> tag. </p>
+
+                              <p>You
+can also specify a URL as the source of the data, as follows:</p>
+
+                              <pre>var dsSpecials = new Spry.Data.HTMLDataSet("http://www.somesite.com/somefolder/datatable.html", "datatable1");</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The
+URL you decide to use (whether absolute or relative) is subject
+to the browser’s security model, which means that you can only load
+data from an HTML source that is on the same server domain as the
+HTML page you’re linking from. You can avoid this limitation by
+providing a cross-domain service script. For more information, consult
+your server administrator.</div>
+
+                              <p>The completed example code might
+look as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;script type="text/javascript" src="includes/SpryData.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="includes/SpryHTMLDataSet.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var ds1 = new Spry.Data.HTMLDataSet("data/datatable.html", "datatable1");
+&lt;/script&gt;
+...
+&lt;/head&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>(Optional) If the values in your data set include numbers,
+reset the column types for the columns that contain those numerical
+values. This becomes important later if you want to sort data.</span> 
+                              <p>To set column types, add the <samp class="codeph">setColumnType()</samp> data
+set method to the head tag of your document, after
+you’ve created the data set, as follows (in bold):</p>
+
+                              <pre>&lt;script type="text/javascript"&gt;	
+	var ds1 = new Spry.Data.HTMLDataSet("data/datatable.html", "datatable1"); 	
+	<strong>ds1.setColumnType("price", "number")</strong>;
+&lt;/script&gt;</pre>
+
+                              <p>In the example, the expression calls
+the <samp class="codeph">setColumnType</samp> method on the ds1 data set object,
+which you’ve already defined. The <samp class="codeph">setColumnType</samp> method
+takes two parameters: the name of the data set column to retype
+(in this example, <samp class="codeph">"price"</samp>) and the desired data
+type (<samp class="codeph">"number"</samp>).</p>
+
+                           </li>
+</ol>
+<div class="section">
+                        <p>After you’ve created the data set, create a dynamic region
+so that you can display the data.</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS9591785F-81A6-4234-AF61-2BD0B32597A0.html">Create a Spry dynamic region and display data</a></li><li class="icon Spry" alt="Spry"><a href="WSBEF66361-CD7A-4448-BF4D-B22B640E606B.html">Sort data</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

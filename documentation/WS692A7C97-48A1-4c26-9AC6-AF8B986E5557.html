@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Menu Bar widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html" title="Working with the Menu Bar widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS4E5B02D6-9A2B-4ecc-9FE5-8EE096749CDC.html" title="CSS code for the Menu Bar widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html"><b>Working with the Menu Bar widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Menu Bar widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        A
+Menu Bar widget is a set of navigational menu buttons that display
+submenus when a mouse pointer hovers over one of the buttons. Menu
+Bars let you display a large amount of navigational information
+in a compact space, and also give visitors to the site a sense of
+what is available on the site without having to browse it extensively.</p>
+<p>The following example shows a horizontal Menu Bar widget, with
+the third menu item expanded.</p>
+<div class="p">
+                        <div class="fignone"><a href="#" onclick="javascript:window.open('popup1_popup.html', 'imagewin', 'resizable=1, scrollbars=1, toolbar=0, location=0, directories=0, menubar=0, width=618,  height=306');">View full size graphic</a><img alt="" id="popup1" src="images/popup1.png" /><div class="figdesc">Menu Bar widget (consists of &lt;ul&gt;, &lt;li&gt;, and &lt;a&gt;
+tags)</div><br />
+                           
+                           
+                           
+                           <dl>
+                              
+                                 <dt class="dlterm">A.</dt>
+
+                                 <dd>Menu item has submenu</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">B.</dt>
+
+                                 <dd>Submenu
+item has submenu</dd><p class="dlseparator"></p>
+                              
+                           </dl>
+
+                        </div>
+                     </div>
+<p>The HTML code for the Menu Bar widget consists of an outer <samp class="codeph">ul</samp> tag
+that contains an <samp class="codeph">li</samp> tag and <samp class="codeph">a</samp> tag
+for each of the top-level menu items. The <samp class="codeph">li</samp> tags
+act as container tags for the menu items, and the <samp class="codeph">a</samp> tags
+themselves are the actual menu items. Thus, when you want to style
+a particular menu item, you will usually want to style the CSS rule
+that corresponds to the <samp class="codeph">a</samp> tag (not the CSS rules
+that correspond to the <samp class="codeph">ul</samp> and <samp class="codeph">li</samp> tags,
+which style the <em>containers</em> of the actual menu items). These
+rules exist in the accompanying CSS file, SpryMenuBarHorizontal.css
+or SpryMenuBarVertical.css, depending on your selection</p>
+<p>The top-level menu items can in turn contain other <samp class="codeph">ul</samp>, <samp class="codeph">li</samp>,
+and <samp class="codeph">a</samp> tags that define submenus for each of the
+items, and submenus can likewise contain submenus. Any menu item
+container (i.e. <samp class="codeph">li</samp> tag) at any level can contain
+an unlimited number of submenu items. </p>
+<div class="p">
+                        <div class="note"><span class="notetitle">Note:  </span>As a best practice, try not to list every page on your
+site in the various levels of a menu bar. If a user has JavaScript
+turned off in their browser (and many do), the user can see only
+the top-level menu items of the menu bar.</div>
+
+                     </div>
+<p>The HTML code for the Menu Bar widget also includes <samp class="codeph">script</samp> tags
+in the head of the document and after the Menu Bar’s HTML code.
+These tags create a JavaScript object, which makes the Menu Bar
+interactive. You define whether the Menu Bar widget will be vertical
+or horizontal in the main container <samp class="codeph">ul</samp> tag for
+the Menu Bar.</p>
+<p>Following is the HTML code for a horizontal Menu Bar widget:</p>
+<pre>&lt;head&gt;
+...
+&lt;!--Link the Spry Manu Bar JavaScript library--&gt;
+&lt;script src="SpryAssets/SpryMenuBar.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;!--Link the CSS style sheet that styles the menu bar. You can select between horizontal and vertical--&gt;
+&lt;link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--Create a Menu bar widget and assign classes to each element--&gt;
+&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 1&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.2&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 1.3&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a class="MenuBarItemSubmenu" href="#"&gt;Item 3.1&lt;/a&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 3.1.2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 3.2&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Item 3.3&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--Initialize the Menu Bar widget object--&gt;
+&lt;script type="text/javascript"&gt;
+	var mb1 = new Spry.Widget.MenuBar("menubar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the <samp class="codeph">new</samp> JavaScript operator initializes
+the Menu Bar object, and transforms the <samp class="codeph">ul</samp> content
+with the ID of <samp class="codeph">menubar1</samp> from static HTML code into
+an interactive page element. The <samp class="codeph">Spry.Widget.MenuBar</samp> method
+is a constructor in the Spry framework that creates Menu Bar objects,
+and the information necessary to initialize the object is contained
+in the MenuBar.js JavaScript library that you linked to in the head
+of the document. </p>
+<p>You can change the appearance of any given part of the Menu Bar
+widget by editing the CSS rule that corresponds to the class names
+assigned to it in the HTML code. For example, to change the background
+color of the Menu Bar’s top-level menu items, edit the corresponding
+CSS rule in the SpryMenuBarHorizontal.css file. Keep in mind that
+changing the CSS code in the SpryManuBarHorizontal.css file will
+affect all menu bars that are linked to that file.</p>
+<p>In addition to the classes shown in the HTML code, the Menu Bar
+widget includes certain default behaviors that are attached to the
+widget. These behaviors are a built‑in part of the Spry framework,
+and are in the SpryMenuBar.js JavaScript library file. The library
+file includes behaviors related to hovering.</p>
+<p>You can change the look of the Menu Bar as it relates to these
+behaviors by editing the appropriate classes in one of the CSS files.
+If for some reason you want to remove a given behavior, you can
+delete the CSS rules that correspond to that behavior.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

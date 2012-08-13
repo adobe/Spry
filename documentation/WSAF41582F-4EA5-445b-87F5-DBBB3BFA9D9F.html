@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Accordion widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS8C37C05B-05FA-4b22-A987-3D6BFC193A76.html" title="Working with the Accordion widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS0E14C2D0-7E62-4806-A9CF-29420FE21DD8.html" title="CSS code for the Accordion widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS8C37C05B-05FA-4b22-A987-3D6BFC193A76.html"><b>Working with the Accordion widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Accordion widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        An
+Accordion widget is a set of collapsible panels that can store a
+large amount of content in a compact space. Site visitors hide or
+reveal the content stored in the accordion by clicking the tab of
+the panel. The panels of the accordion expand or contract accordingly
+as the visitor clicks different tabs. In an accordion, only one
+content panel is open and visible at a given time. The following
+example shows an Accordion widget, with the first panel expanded:</p>
+<div class="p">
+                        <div class="fignone"><a href="#" onclick="javascript:window.open('accordian_anatomy_02_popup.html', 'imagewin', 'resizable=1, scrollbars=1, toolbar=0, location=0, directories=0, menubar=0, width=620,  height=438');">View full size graphic</a><img alt="" id="accordian_anatomy_02" src="images/accordian_anatomy_02.png" /><div class="figdesc"></div><br />
+                           
+                           
+                           <dl>
+                              
+                                 <dt class="dlterm">A.</dt>
+
+                                 <dd>Accordion panel tab</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">B.</dt>
+
+                                 <dd>Accordion
+panel content</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">C.</dt>
+
+                                 <dd>Accordion panel (open)</dd><p class="dlseparator"></p>
+                              
+                           </dl>
+
+                        </div>
+                     </div>
+<p>The default HTML code for the Accordion widget comprises an outer <samp class="codeph">div</samp> tag
+that contains all of the panels, a <samp class="codeph">div</samp> tag for
+each panel, and a header <samp class="codeph">div</samp> and content <samp class="codeph">div</samp> within
+the tag for each panel. An Accordion widget can contain any number of
+individual panels. The HTML code for the Accordion widget also includes <samp class="codeph">script</samp> tags
+in the head of the document and after the accordion’s HTML code.</p>
+<p>The <samp class="codeph">script</samp> tag in the head of the document defines
+all of the JavaScript functions related to the Accordion widget.
+The <samp class="codeph">script</samp> tag after the Accordion widget code creates
+a JavaScript object that makes the accordion interactive. Following
+is the HTML code for an Accordion widget: </p>
+<pre>&lt;head&gt;
+...
+	&lt;!--Link the CSS style  sheet that styles the accordion--&gt;
+	&lt;link href="SpryAssets/SpryAccordion.css" rel="stylesheet" type="text/css" /&gt;
+	&lt;!--Link the Spry Accordion JavaScript library--&gt;
+	&lt;script src="SpryAssets/SpryAccordion.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!--Create the Accordion widget and assign classes to each element--&gt;
+	&lt;div id="Accordion1" class="Accordion"&gt;
+		&lt;div class="AccordionPanel"&gt;
+			&lt;div class="AccordionPanelTab"&gt;Panel 1&lt;/div&gt;
+			&lt;div class="AccordionPanelContent"&gt;
+				Panel 1 Content&lt;br/&gt;
+				Panel 1 Content&lt;br/&gt;
+				Panel 1 Content&lt;br/&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="AccordionPanel"&gt;
+			&lt;div class="AccordionPanelTab"&gt;Panel 2&lt;/div&gt;
+			&lt;div class="AccordionPanelContent"&gt;
+				Panel 2 Content&lt;br/&gt;
+				Panel 2 Content&lt;br/&gt;
+				Panel 2 Content&lt;br/&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="AccordionPanel"&gt;
+			&lt;div class="AccordionPanelTab"&gt;Panel 3&lt;/div&gt;
+			&lt;div class="AccordionPanelContent"&gt;
+				Panel 3 Content&lt;br/&gt;
+				Panel 3 Content&lt;br/&gt;
+				Panel 3 Content&lt;br/&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="AccordionPanel"&gt;
+			&lt;div class="AccordionPanelTab"&gt;Panel 4&lt;/div&gt;
+			&lt;div class="AccordionPanelContent"&gt;
+				Panel 4 Content&lt;br/&gt;
+				Panel 4 Content&lt;br/&gt;
+				Panel 4 Content&lt;br/&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;!--Initialize the Accordion widget object--&gt;
+&lt;script type="text/javascript"&gt;
+	var Acc1 = new Spry.Widget.Accordion("Accordion1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the <samp class="codeph">new</samp> JavaScript operator initializes
+the Accordion widget object, and transforms the <samp class="codeph">div</samp> content
+with the ID of <samp class="codeph">Accordion1</samp> from static HTML code into
+an interactive page element. The <samp class="codeph">Spry.Widget.Accordion</samp> method
+is a constructor in the Spry framework that creates accordion objects,
+and the information necessary to initialize the object is contained
+in the SpryAccordion.js JavaScript library that you linked to in
+the head of the document.</p>
+<p>Each of the <samp class="codeph">div </samp>tags in the Accordion widget
+contains a CSS class. These classes control the style of the Accordion
+widget, and exist in the accompanying SpryAccordion.css file. </p>
+<p>You can change the appearance of any given part of the Accordion
+widget by editing the CSS code that corresponds to the class names
+assigned to it in the HTML code. For example, to change the background
+color of the accordion’s tabs, edit the <samp class="codeph">AccordionPanelTab</samp> rule
+in the SpryAccordion.css file. Keep in mind that changing the CSS
+code in the SpryAccordion.css file will affect all accordions that are
+linked to that file.</p>
+<p>In addition to the classes shown in the HTML code, the Accordion
+widget includes certain default behaviors that are attached to the
+widget. These behaviors are a built‑in part of the Spry framework,
+and are in the SpryAccordion.js JavaScript library file. The Accordion
+library includes behaviors related to hovering, tab clicking (to
+open panels), panel focus, and keyboard navigation.</p>
+<p>You can change the look of the accordion as it relates to these
+behaviors by editing the appropriate classes in the SpryAccordion.css
+file. If for some reason you want to remove a given behavior, you
+can delete the CSS rules that correspond to that behavior.</p>
+<div class="note"><span class="notetitle">Note:  </span>While you can change the look of the accordion as it relates
+to a certain behavior, you cannot alter the built‑in behaviors themselves.
+For example, Spry still places an AccordionFocused class on an accordion
+in focus, even if no properties are set for the AccordionFocused
+class in the SpryAccordion.css file. </div>
+<div class="section"><h4 class="sectiontitle">Variation on tags used for Accordion widget structure</h4>
+                        
+                        <p>In
+the preceding example, <samp class="codeph">div</samp> tags create a nested
+tag structure for the widget:</p>
+
+                        <pre>Container div
+	Panel div
+		Tab div
+		Content div</pre>
+
+                        <p>This 3-level, 4-container structure
+is essential for the Accordion widget to work properly; the structure,
+however, is more important than the actual tags you decide to use.
+Spry reads the structure (not <samp class="codeph">div</samp> tags necessarily)
+and builds the widget accordingly. As long as the 3-level, 4-container
+structure is in place, you can use any block-level element to create
+the widget:</p>
+
+                        <pre>Container div 
+	Panel div 
+		H3 tag 
+		P tag</pre>
+
+                        <p>The <samp class="codeph">div</samp> tags in the example
+are flexible and can contain other block-level elements. A <samp class="codeph">p</samp> tag
+(or any other inline tag), however, cannot contain other block-level
+elements, so you cannot use it as a container or panel tag for the
+accordion.</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

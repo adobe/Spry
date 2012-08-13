@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Insert the Collapsible Panel widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS1B955478-3EB9-4edc-AD1B-329FD00B41BB.html" title="CSS code for the Collapsible Panel widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS37254726-78F6-4045-A763-E88834BCA3CC.html" title="Enable keyboard navigation"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS5663902E-DBF5-428f-9C65-AC001A949AA8.html"><b>Working with the Collapsible Panel widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Insert the Collapsible Panel widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ol><li class="stepexpand"><span>
+                              Locate
+the SpryCollapsiblePanel.js file and add it to your web site. You
+can find the SpryCollapsiblePanel.js file in the widgets/collapsiblepanel
+directory, located in the Spry directory that you downloaded from
+Adobe Labs. For more information, see Prepare
+your files.</span> 
+                              <p>For example, create a folder called <dfn class="term">SpryAssets</dfn> in
+the root folder of your web site, and move the SpryCollapsiblePanel.js
+file to it. The SpryCollapsiblePanel.js file contains all of the
+information necessary for making the Collapsible Panel widget interactive.</p>
+
+                           </li>
+<li class="stepexpand"><span>Locate the SpryCollapsiblePanel.css file and add it to
+your web site. You might choose to add it to the main directory,
+or to a CSS directory if you have one.</span></li>
+<li class="stepexpand"><span>Open the web page to add the Collapsible Panel widget
+to and link the SpryCollapsiblePanel.js file to the page by inserting
+the following <samp class="codeph">script</samp> tag in the page’s head tag:</span> 
+                              <pre>&lt;script src="SpryAssets/SpryCollapsiblePanel.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryCollapsiblePanel.js file is correct.
+This path varies depending on where you’ve placed the file in your
+web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>Link the SpryCollapsiblePanel.css file to your web page
+by inserting the following <samp class="codeph">link</samp> tag in the page’s
+head tag:</span> 
+                              <pre>&lt;link href="SpryAssets/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" /&gt; </pre>
+
+                              <p>Make
+sure that the file path to the SpryCollapsiblePanel.css file is
+correct. This path varies depending on where you’ve placed the file
+in your web site.</p>
+
+                           </li>
+<li class="stepexpand"><span>To add the collapsible panel to your web page, insert
+the following <samp class="codeph">div</samp> tag where you want the collapsible
+panel to appear on the page:</span> 
+                              <pre>&lt;div id="CollapsiblePanel1" class="CollapsiblePanel"&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>To add a tab to the collapsible panel, insert a <samp class="codeph">div
+class="CollapsiblePanelTab"</samp> tag inside the <samp class="codeph">div
+class="CollapsiblePanel"</samp> tag, as follows:</span> 
+                              <pre>&lt;div id="CollapsiblePanel1" class="CollapsiblePanel"&gt;
+	&lt;div class="CollapsiblePanelTab"&gt;Tab&lt;/div&gt;
+&lt;/div&gt; </pre>
+
+                           </li>
+<li class="stepexpand"><span>To add a content area to the panel, insert a <samp class="codeph">div
+class="CollapsiblePanelContent"</samp> tag inside the <samp class="codeph">div
+class="CollapsiblePanel"</samp> tag, as follows:</span> 
+                              <pre>&lt;div class="AccordionPanel"&gt;
+	&lt;div class="CollapsiblePanelTab"&gt;Tab&lt;/div&gt;
+	&lt;div class="CollapsiblePanelContent"&gt;Content&lt;/div&gt;
+&lt;/div&gt; </pre>
+
+                              <p>Insert the content between the opening
+and closing <samp class="codeph">CollapsiblePanelContent</samp> tags (For example, <samp class="codeph">Content</samp>,
+as in the preceding example). The content can be any valid HTML
+code, including HTML form elements.</p>
+
+                           </li>
+<li class="stepexpand"><span>To initialize the Spry collapsible panel object, insert
+the following script block after the HTML code for the Collapsible
+Panel widget:</span> 
+                              <pre>&lt;div id="CollapsiblePanel1" class="CollapsiblePanel"&gt;
+. . .
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var cp1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
+&lt;/script&gt; </pre>
+
+                              <p>The <samp class="codeph">new</samp> JavaScript
+operator initializes the Collapsible Panel widget object, and transforms
+the <samp class="codeph">div</samp> content with the ID of CollapsiblePanel1
+from static HTML code into an interactive collapsible panel object.
+The <samp class="codeph">Spry.Widget.CollapsiblePanel</samp> method is a constructor
+in the Spry framework that creates collapsible panel objects. The
+information necessary to initialize the object is contained in the SpryCollapsiblePanel.js
+JavaScript library that you linked to at the beginning of this procedure.</p>
+
+                              <p>Make
+sure that the ID of the collapsible panel’s <samp class="codeph">div</samp> tag
+matches the ID parameter you specified in the <samp class="codeph">Spry.Widgets.CollapsiblePanel</samp> method.
+Make sure that the JavaScript call comes after the HTML code for
+the widget.</p>
+
+                           </li>
+<li class="stepexpand"><span>Save the page.</span> 
+                              <p>The complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+...
+&lt;link href="SpryAssets/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" /&gt;
+&lt;script src="SpryAssets/SpryCollapsiblePanel.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="CollapsiblePanel1" class="CollapsiblePanel"&gt;
+		&lt;div class="CollapsiblePanelTab"&gt;Tab&lt;/div&gt;
+		&lt;div class="CollapsiblePanelContent"&gt;Content&lt;/div&gt;
+	&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var cp1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

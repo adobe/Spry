@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Spry effects structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSF5A3CC7A-BEEA-4f70-A5D6-5F35D7B65DC3.html" title="About Spry effects"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS645D90BD-C1E1-48f6-B7A1-146F5C44752F.html" title="About the Spry effects library"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WSD567CF5C-865B-4d04-B64B-A277C3BEFA47.html"><b>About Spry effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Spry effects structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        A
+Spry effect has three components:</p>
+<ul><li>
+                           <p>The effect JavaScript object itself (not visible)</p>
+
+                        </li>
+<li>
+                           <p>An element on the page that triggers the effect</p>
+
+                        </li>
+<li>
+                           <p>An element on the page that the effect manipulates</p>
+
+                        </li>
+</ul>
+<p>Following is the HTML code for a basic Fade effect:</p>
+<pre>&lt;form method="get" action="fade_sample.html"&gt;
+&lt;input type="button" onclick="myFadeEffect.start();" value="Fade Example" /&gt;
+&lt;/form&gt;
+&lt;div class="demoDiv" id="fadeblock"&gt;
+	&lt;h4&gt;Fade example&lt;/h4&gt;
+	&lt;p&gt; Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+    diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+    aliquyam erat, sed diam voluptua.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	var myFadeEffect = new Spry.Effect.Fade('fadeblock', {toggle:true});
+&lt;/script&gt;</pre>
+<p>In the preceding example, the <samp class="codeph">script</samp> block at
+the end of the HTML code creates the Fade effect object. The <samp class="codeph">start()</samp> method
+triggers the effect when a user clicks the button, and once the
+effect is triggered, the <samp class="codeph">div</samp> content with the <samp class="codeph">“fadeblock”</samp> ID
+fades away. Additionally, the toggle option is added to this effects
+constructor, so that if a user clicks the button again, the paragraph
+fades back into view.</p>
+<p>In the example, the first value in the constructor (<samp class="codeph">fadeblock</samp>)
+is the ID of the <samp class="codeph">div</samp> container that holds the text
+that you want to fade. These two values must match.</p>
+<p>The name of the variable (<samp class="codeph">myFadeEffect</samp>) can
+be anything; you must also match it when you use it in the code
+that triggers the effect. You trigger the effect by attaching a
+behavior (such as an on-click behavior) to a page element (like
+a button). The behavior uses the <samp class="codeph">start()</samp> method
+to trigger the effect, and the syntax of the method is <em>
+                           <samp class="codeph">variableName.start()</samp>
+                        </em>.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/index.html#effects" title="https://github.com/adobe/Spry/tree/master/samples/index.html#effects" target="_blank">Spry effects samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

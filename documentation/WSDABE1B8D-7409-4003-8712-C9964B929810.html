@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Create an effect cluster
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS46AFF8D0-F4F2-478a-8D7C-D26D426EFC81.html" title="Working with effects"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS265686F6-E5CB-4168-8D7B-41262CEB9BD5.html" title="About transitions"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WS46AFF8D0-F4F2-478a-8D7C-D26D426EFC81.html"><b>Working with effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Create an effect cluster
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>A
+Spry Effects cluster lets you combine multiple effects to create
+a single new effect. Depending on the method the effects are added
+to, the effects can either run in parallel (at the same time) or
+in queue (where one effect begins only after the previous effect
+ends).</p>
+
+                        <p>When you define a cluster, you can combine simple effects
+like Move, Size, Opacity, or Color, or a previously defined cluster
+effect. For examples, see the <a href="https://github.com/adobe/Spry/tree/master/demos/effects/index.html" target="_blank">Spry effects demonstration page</a>.</p>
+
+                        <p>A
+cluster can contain an unlimited number of animated effects. You
+can also use a cluster to animate two or more different elements,
+either in parallel or in queue.</p>
+
+                        <p>All the Spry effects—Fade,
+Grow, Highlight, Slide, Shake, Squish, and Blind—are predefined
+clustered effects that use the basic effects Move, Size, Opacity,
+and Color.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>To begin creating an effects cluster, link the
+SpryEffects.js file on your web page by adding the following code
+to the head of your document:</span> 
+                              <pre>&lt;head&gt;
+. . .
+&lt;script  src="../includes/SpryEffects.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The exact file path differs, depending
+on where you store the SpryEffects.js file.</div>
+
+                              <p>The SpryEffects.js
+file is in the includes folder of the Spry folder that you downloaded
+from Adobe Labs. See Prepare
+your files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Extend the Spry Cluster JavaScript class.</span> 
+                              <p>The Spry effects library includes a class called Spry.Effect.Cluster.
+Any new effect that extends this class becomes a cluster.</p>
+
+                              <p>This
+example creates a new effect that fades an element in or out at
+the same time as it slides the element.</p>
+
+                              <p>Create the class to
+extend the Spry.Effect.Cluster. The constructor should receive two
+parameters: the element to apply the effect to, and the animation
+options.</p>
+
+                            
+                              <pre>&lt;script type="text/javascript"&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Define default values for the effect’s options when no
+custom options are used:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	var toggle = false;
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Define options that override the default options when
+someone adds custom options to the constructor:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	var toggle = false;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+		if (options.toggle != null) toggle = options.toggle;
+	}
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Define the effects that animate the element:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+	}
+	var fadeEffect = new Spry.Effect.Fade(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	var slideEffect = new Spry.Effect.Slide(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>In this situation, the options
+sent to the individual effect are the same. In some situations (for
+example, if you wanted to set different durations for different
+effects), the values for the defined effects need a more complex
+computation for each effect participating in the cluster.</div>
+
+                           </li>
+<li class="stepexpand"><span>Register the effects with the cluster by using one of
+the two methods made available by the original cluster class from
+the Spry effects library: <samp class="codeph">addParallelEffect()</samp> and <samp class="codeph">addNextEffect()</samp>.
+Using <samp class="codeph">addParallelEffect()</samp> causes all of the registered
+effects to run in parallel.</span> 
+                              <p>The following is the complete code for a <samp class="codeph">FadeSlide</samp> effect
+with the two animations registered in parallel:</p>
+
+                              <pre>&lt;script type="text/javascript"&gt;
+FadeSlide = function(element, options)
+{
+	Spry.Effect.Cluster.call(this, options);
+	var duration = 1000;
+	var from = 0;
+	var to = 100;
+	var transition = Spry.fifthTransition;
+	if (options)
+	{
+		if (options.duration != null) duration = options.duration;
+		if (options.from != null) from = options.from;
+		if (options.to != null) to = options.to;
+		if (options.transition != null) transition = options.transition;
+	}
+	var fadeEffect = new Spry.Effect.Fade(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	var slideEffect = new Spry.Effect.Slide(element, {duration: duration, from: from, to: to, transition: transition, toggle: toggle});
+	this.addParallelEffect(fadeEffect);
+	this.addParallelEffect(slideEffect);
+};
+FadeSlide.prototype = new Spry.Effect.Cluster();
+FadeSlide.prototype.constructor = FadeSlide;
+&lt;/script&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>Attach the new effect by adding an event and a <samp class="codeph">script</samp> tag
+to your code:</span> 
+                              <pre>&lt;p&gt;&lt;a onclick="myFadeSlide.start(); return false;" href="#"&gt;Click here to Fade and Slide the below paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;div id="content"&gt;
+	&lt;div&gt; Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
+ut labore et dolore magna aliqit amet.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var myFadeSlide = new FadeSlide("content", {from: "100%", to: "0%", duration: 1500, toogle: true}
+&lt;/script&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Supported selectors
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS2E0719F6-9048-4b60-AB6C-6FA9B527FC9B.html" title="Overview"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSFBB15A05-77AD-44d7-AF26-B69FF4810AC2.html" title="Selector functions"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS005D6656-AD23-43a4-B752-68E3CA83910F.html">Working with Spry 1.6</a> /
+     <a href="WSD3CF43FB-B87E-4af3-8E04-6E3E8F4DFDF5.html"><b>Using the Spry Element Selector</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Supported selectors
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        The
+Spry Element Selector supports the following selectors:</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e667">
+                                    <p>Selector pattern</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e672">
+                                    <p>Description</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an element of type E (for example div, p,
+etc.)</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E.className</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element with a specified classname</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E#id</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element with ID equal to "id".</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E F</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an F element descendant of an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>*</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>any element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:first-child</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, first child of its parent</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element with a "foo" attribute. Note:
+When using E[class], this will fail on Internet Explorer, since
+it adds a class attribute to every element, even those with out
+a class in the markup. This is a browser issue and not a Spry issue.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E &gt; F</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an F element child of an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo~="bar"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "foo" attribute value
+is a list of space-separated values, one of which is exactly equal
+to "bar"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[hreflang|="en"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "hreflang" attribute
+has a hyphen-separated list of values beginning (from the left)
+with "en"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo="bar"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "foo" attribute value
+is exactly equal to "bar"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E + F</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an F element immediately preceded by an
+E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo$="bar"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "foo" attribute value
+ends exactly with the string "bar"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:last-child</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, last child of its parent</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:nth-last-of-type(n)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, the n-th sibling of its type,
+counting from the last one</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:nth-of-type(n)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, the n-th sibling of its type</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo^="bar"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "foo" attribute value
+begins exactly with the string "bar"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:nth-last-child(n)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, the n-th child of its parent,
+counting from the last one</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:empty</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element that has no children (including
+text nodes)</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:nth-child(n)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, the n-th child of its parent</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:only-of-type</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, only sibling of its type</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:not(s)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element that does not match simple
+selector s</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:only-child</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, only child of its parent</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:last-of-type</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, last sibling of its type</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:first-of-type</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element, first sibling of its type</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E[foo*="bar"]</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element whose "foo" attribute value
+contains the substring "bar"</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E ~ F</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an F element preceded by an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:checked</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element that is checked (radio buttons
+or checkboxes)</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:disabled</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element that is set at disabled (form
+elements)</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e667 ">
+                                    <p>E:enabled</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e672 ">
+                                    <p>an E element that is enabled (form elements
+that are not explicitly disabled.)</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These selectors can be combined to achieve a more flexible or
+specific selection. For example, the following selector combines
+several selectors to ultimately select the div that’s assigned a
+“product” class, and has a title attribute that is equal to the
+string "Dreamweaver", but only if it is the first child element
+of its parent:</p>
+<pre>Spry.$$("div.product[title=Dreamweaver]:first-child");</pre>
+<p>Likewise, you can combine multiple selectors into a sequence
+with a comma, just as you can in a CSS rule. The following example
+selects all the divs the previous example selects, and also selects
+any span tags with a class of "name":</p>
+<pre>Spry.$$("div.product[title=Dreamweaver]:first-child, span.name");</pre>
+<p>The Spry Element selector <em>does not </em>support the following
+selectors:</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e1031">
+                                    <p>Selector pattern</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e1036">
+                                    <p>Description</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E:link</p>
+
+                                    <p>E:visited</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>an E element being the source anchor of
+a hyperlink of which the target is not yet visited (:link) or already
+visited (:visited)</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E:active</p>
+
+                                    <p>E:hover</p>
+
+                                    <p>E:focus</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>an E element during certain user actions</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E::first-line</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>the first formatted line of an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E::first-letter</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>the first formatted letter of an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E::before</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>generated content before an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E::after</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>generated content after an E element</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E:target</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>an E element being the target of the referring
+URI</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E:lang(fr)</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>an element of type E in language "fr". The
+document language specifies how language is determined.</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e1031 ">
+                                    <p>E::selection</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e1036 ">
+                                    <p>the portion of an E element that is currently
+selected/highlighted by the user</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>According to the W3C spec, spaces are generally not allowed within
+the selector except when they are part of the actual selector. For
+example:</p>
+<pre>Spry.$$("<strong>DIV P</strong>").addClassName("redText"); <strong>Correct</strong>.
+Spry.$$("<strong>p[class~=dev]</strong>").setAttribute("align", "left"); <strong>Correct</strong>.
+Spry.$$("<strong>p[class ~= dev]</strong>").setAttribute("align", "left"); <strong>Not
+correct</strong>.</pre>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

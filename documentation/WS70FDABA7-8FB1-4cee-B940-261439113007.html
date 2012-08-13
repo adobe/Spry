@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Style the Sliding Panels widget
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS545605BC-35C1-4f16-956E-F22535FC3AD5.html" title="Enable keyboard navigation"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSBF6F290C-3C48-479e-8E71-8B0C1E8C0165.html" title="Working with the Tooltip widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSFB5D524D-27F7-4e69-A207-25126187E9EA.html"><b>Working with the Sliding Panels widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Style the Sliding Panels widget
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+SprySlidingPanels.css file provides the default styling for the
+Sliding Panels widget. You can, however, easily customize the widget
+by changing the appropriate CSS. The CSS rules in the SprySlidingPanels.css
+file use the same class names as the related elements in the widget’s
+HTML code, so it’s easy for you to know which CSS rules correspond
+to the different sections of the Sliding Panels widget. Additionally,
+the SprySlidingPanels.css file contains class names for widget behaviors.</p>
+
+                        <p>The
+SprySlidingPanels.css file should already be included in your website
+before you start customizing.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;To change the widget’s styling, use the following
+table to locate the appropriate CSS rule in the SprySlidingPanels.css
+file, and then alter the rule according to your liking.</span> 
+                              <div class="p">
+                                 
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e7198">
+                                                <p>Rule</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e7203">
+                                                <p>Description</p>
+
+                                             </th>
+<th valign="top" width="NaN%" id="d16e7208">
+                                                <p>Example of properties and values to change</p>
+
+                                             </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e7198 ">
+                                                <p>.SlidingPanels</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7203 ">
+                                                <p>Added to the outer container of the widget,
+and determines the size of the opening through which you view content.
+Generally, the size of the opening should match the size of your
+content panels.</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7208 ">
+                                                <p>width: 100%; 	height: 400px;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7198 ">
+                                                <p>.SlidingPanelsContentGroup</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7203 ">
+                                                <p>Added to the first inner tag that contains
+all the content panels, and defines the size of the content panel container.
+Setting the width, height and float of this panel determines how
+the panel moves: horizontally, vertically or diagonally, as Spry always
+determines the shortest path to the selected panel.</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7208 ">
+                                                <p>position: relative; width: 100%;</p>
+
+                                             </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7198 ">
+                                                <p>.SlidingPanelsContent</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7203 ">
+                                                <p>Added to the individual content panels of
+the widget, and determines their size. Generally, the size of the content
+panels should match the size of main widget container.</p>
+
+                                             </td>
+<td valign="top" width="NaN%" headers="d16e7208 ">
+                                                <p>width: 100%; height: 400px;</p>
+
+                                             </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                              </div>
+
+                           </div>
+<div class="section">
+                        <div class="note"><span class="notetitle">Note:  </span>Because of differences in browser implementation,
+the Sliding Panels widget cannot process margin and padding properties
+when they’re on the widget’s structural elements. To use margin
+and padding properties in the content panel, apply the properties
+to a tag within the content panel, not on content panel tags.</div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WSDF65A114-A400-495a-9312-DDCE035D6C19.html">Prepare your files</a></li></ul>
+</div><ul class="link-list"><li class="icon external"><a href="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" title="https://github.com/adobe/Spry/tree/master/samples/slidingpanels/SlidingPanelsSample.html" target="_blank">Sliding Panels samples</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

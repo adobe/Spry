@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Validation Checkbox widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS540864DC-4742-47dd-B934-544CE5D5F70B.html" title="Working with the Validation Checkbox widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS8771A949-D0F4-4e03-A6B5-690F1E1F89C2.html" title="CSS code for the Validation Checkbox widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS540864DC-4742-47dd-B934-544CE5D5F70B.html"><b>Working with the Validation Checkbox widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Validation Checkbox widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        A
+Spry Validation Checkbox widget is a checkbox or group of checkboxes
+in an HTML code form that display valid or invalid states when the
+user selects or fails to select a checkbox. For example, you can
+add a Validation Checkbox widget to a form in which a user might
+be required to make three selections. If the user fails to make
+all three selections, the widget returns a message stating that
+the minimum number of selections was not met.</p>
+<p>The following example shows a Validation Checkbox widget in various
+states.</p>
+<div class="p">
+                        <div class="fignone"><img alt="" id="CheckboxValidation" src="images/CheckboxValidation.png" /><div class="figdesc"></div><br />
+                           
+                           <dl>
+                              
+                                 <dt class="dlterm">A.</dt>
+
+                                 <dd>Validation checkbox widget group, minimum number of
+selections state</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">B.</dt>
+
+                                 <dd>Validation Checkbox
+widget, required state</dd><p class="dlseparator"></p>
+                              
+                           </dl>
+
+                        </div>
+                     </div>
+<p>The Validation Checkbox widget includes a number of states (for
+example, valid, invalid, required value, and so on). You can alter
+the properties of these states by editing the corresponding CSS
+file (SpryValidationCheckbox.css), depending on the desired validation
+results. A Validation Checkbox widget can validate at various points
+(for example, when the user clicks outside the widget, as the user makes
+selections, or when the user tries to submit the form). </p>
+<dl><dt class="dlterm">Initial state</dt>
+<dd>
+                              When the page loads in the browser, or when the user resets
+the form.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Valid state</dt>
+<dd>
+                              When the user makes a selection, or the correct number of
+selections, and the form can be submitted.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Required state</dt>
+<dd>
+                              When the user fails to make a required selection.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Minimum Number Of Selections state</dt>
+<dd>
+                              When the user selects fewer than the minimum number of checkboxes
+required.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Maximum Number Of Selections state</dt>
+<dd>
+                              When the user selects greater than the maximum number of
+checkboxes allowed.
+                           </dd><p class="dlseparator"></p></dl>
+<p>Whenever a Validation Checkbox widget enters one of these states
+through user interaction, the Spry framework logic applies a specific
+CSS class to the HTML container for the widget at run time. For
+example, if a user tries to submit a form, but makes no selections,
+Spry applies a class to the widget that causes it to display the
+error message, “Please make a selection.” The rules that control
+the style and display states of error messages reside in the SpryValidationCheckbox.css
+file that accompanies the widget.</p>
+<p>The default HTML code for the Validation Checkbox widget, usually
+inside a form, is made up of a container <samp class="codeph">span</samp> tag
+that surrounds the <samp class="codeph">input type="checkbox"</samp> tag of the
+checkbox. The HTML code for the Validation Checkbox widget also
+includes <samp class="codeph">script</samp> tags in the head of the document
+and after the widget’s HTML code. The <samp class="codeph">script</samp> tag
+in the head of the document defines all of the JavaScript functions related
+to the Checkbox widget. The <samp class="codeph">script</samp> tag after the
+widget code creates a JavaScript object that makes the checkbox
+interactive.</p>
+<p>Following is the HTML code for a Validation Checkbox widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Checkbox JavaScript library --&gt; 
+&lt;script src="SpryAssets/SpryValidationCheckbox.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href="SpryAssets/SpryValidationCheckbox.css" rel="stylesheet" type="text/css" /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id="form1" name="form1" method="post" action=""&gt;
+		&lt;!-- Create the checkbox widget and assign a unique id--&gt;
+		&lt;span id="sprycheckbox1"&gt;
+			&lt;input type="checkbox" name="checkbox1" value="1"/&gt;
+			&lt;input type="checkbox" name="checkbox2" value="2"/&gt;
+			&lt;!--Add an error message--&gt;
+			&lt;span class="checkboxRequiredMsg"&gt;Please make a selection.&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;!-- Initialize the Validation Checkbox widget object--&gt;
+&lt;script type="text/javascript"&gt;
+	var cb1 = new Spry.Widget.ValidationCheckbox("sprycheckbox1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the <samp class="codeph">new</samp> JavaScript operator initializes
+the Checkbox widget object, and transforms the <samp class="codeph">span</samp> content
+with the ID of <samp class="codeph">sprycheckbox1</samp> from static HTML code into
+an interactive page element.</p>
+<p>The <samp class="codeph">span</samp> tag for the error message in the widget
+has a CSS class applied to it. This class (which is set to <samp class="codeph">display:none;</samp> by
+default), controls the style and visibility of the error message,
+and exists in the accompanying SpryValidationCheckbox.css file. When
+the widget enters different states as a result of user interaction,
+Spry places different classes on the container for the widget, which
+in turn affects the error-message class.</p>
+<p>You can add other error messages to a Validation Checkbox widget
+by creating a <samp class="codeph">span</samp> tag (or any other type of tag)
+to hold the text of the error message. Then, by applying a CSS class
+to it, you can hide or show the message, depending on the widget
+state.</p>
+<p>You can change the default appearance of the Validation Checkbox
+widget's states by editing the corresponding CSS rule in the SpryValidationCheckbox.css file.
+For example, to change the background color for a state, edit the
+corresponding rule or add a new rule (if it’s not already present)
+in the style sheet.</p>
+<div class="section"><h4 class="sectiontitle">Variation on tags used for Checkbox widget structure</h4>
+                        
+                        <p>In
+the preceding example, <samp class="codeph">span</samp> tags create the structure
+for the widget:</p>
+
+                        <pre>Container SPAN
+	INPUT type="checkbox"
+	Error message SPAN</pre>
+
+                        <p>You can, however, use almost any
+container tag to create the widget.</p>
+
+                        <pre>Container DIV
+	INPUT type="checkbox"
+	Error Message P</pre>
+
+                        <p>Spry uses the tag ID (not the tag
+itself) to create the widget. Spry also displays error messages
+using CSS code that is indifferent to the actual tag used to contain the
+error message.</p>
+
+                        <p>The ID passed into the widget constructor identifies
+a specific HTML element. The constructor finds this element and
+looks inside the identified container for a corresponding <samp class="codeph">input</samp> tag.
+If the ID passed to the constructor is the ID of the <samp class="codeph">input</samp> tag
+(rather than a container tag), the constructor attaches validation
+triggers directly to the <samp class="codeph">input</samp> tag. If no container
+tag is present, however, the widget cannot display error messages,
+and different validation states alter only the appearance of the <samp class="codeph">input</samp> tag
+element (for example, its background color).</p>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

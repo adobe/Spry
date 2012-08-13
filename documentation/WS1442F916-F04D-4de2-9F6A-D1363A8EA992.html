@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Dynamically generating XML
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSFDD03200-79A7-4e41-BD1A-C5A7B8D7F0EF.html" title="Adding data"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS37ECE503-653D-4341-A120-2D17483A3DC0.html" title="Spry XML data set basic overview"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS9DA7216F-166F-4ab3-87E0-1E558798EC95.html">Working with XML data sets</a> /
+     <a href="WS9E57FDCA-FF98-45a4-A959-5F7546006FB9.html"><b>About XML</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Dynamically generating XML
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>Frequently, users want to generate XML using information
+from a database, a method that’s useful for obtaining data when
+the data changes frequently. Spry can accept data from an XML page
+or any page that can generate valid XML. You can do this, for instance,
+using ASP, PHP, or ColdFusion pages and application servers. Adobe
+provides many code samples that show you how to convert database
+queries into valid XML. For more information, see <a href="https://github.com/adobe/Spry/tree/master/samples/utils/query2xml.html" target="_blank">https://github.com/adobe/Spry/tree/master/samples/utils/query2xml.html</a>.</p>
+<p>To dynamically generate XML using server-side functionality,
+you should be familiar with the concept of content types. A content
+type tells the browser what kind of content is on the page. By default,
+the content type for web pages is set to <samp class="codeph">text/html</samp>.
+This content type tells the browser that it can expect HTML code
+from the server, and that the page requires no additional processing.
+This is the most common content type that’s set for HTML pages.</p>
+<p>If you are dynamically generating XML content and sending it
+to a browser using a server-side technology, however, you must tell
+the browser that the content you are serving is actually XML. To
+do this, you need to specify a content type in your dynamic page.</p>
+<div class="p">Following are some examples of content type headers for PHP,
+ASP, and ColdFusion pages:<dl><dt class="dlterm">PHP</dt>
+<dd>
+                                    
+                                       <samp class="codeph">header('Content-type: text/xml')</samp>
+                                    
+                                 </dd><p class="dlseparator"></p><dt class="dlterm">ASP</dt>
+<dd>
+                                    
+                                       <samp class="codeph">Response.ContentType = "text/xml"</samp>
+                                    
+                                 </dd><p class="dlseparator"></p><dt class="dlterm">ColdFusion</dt>
+<dd>
+                                    
+                                       <samp class="codeph">&lt;cfcontent type="text/xml" reset="Yes"&gt;</samp>
+                                    
+                                 </dd><p class="dlseparator"></p></dl>
+
+                        </div>
+<div class="note"><span class="notetitle">Note:  </span>Some server-side languages require that you set any header
+data at the very top of the script.</div>
+<p>For examples of the full code, see <a href="https://github.com/adobe/Spry/tree/master/samples/utils/query2xml.html" target="_blank">https://github.com/adobe/Spry/tree/master/samples/utils/query2xml.html</a>.</p>
+<div class="p">Specifying a content type ensures the browser’s recognition of
+the data as XML. If you don’t specify a content type, or if the
+content type is incorrect (for example, <samp class="codeph">text/html</samp>),
+the browser recognizes the text as plain text and might not display
+the data properly. When you create a dynamic source for a Spry page,
+you can test to see whether or not your XML is valid by viewing
+the XML or dynamic page in a browser. If the page displays an XML
+tree in the browser, the XML works for Spry. If the XML displays
+as a mass of text, the content type is probably incorrect.<div class="note"><span class="notetitle">Note:  </span>In
+certain situations Internet Explorer 7 will not display the XML
+tree correctly, even if the XML will work for Spry.</div>
+
+                        </div>
+<p>One other concern with dynamically generated XML is making sure
+that the browser (or server) does not cache the data. Browser or
+server caching can prevent your most recent data from reaching Spry.
+To prevent this, specify HTTP headers for the following items:</p>
+<ul><li>
+                              <p>Cache-Control</p>
+
+                           </li>
+<li>
+                              <p>Expires</p>
+
+                           </li>
+<li>
+                              <p>Pragma </p>
+
+                           </li>
+</ul>
+<p>Consult the preceding link for examples of the full code.</p>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div>
+</div><ul class="link-list"><li class="icon external"><a href="http://www.xmlfiles.com/xml/" title="http://www.xmlfiles.com/xml/" target="_blank">http://www.xmlfiles.com/xml/</a></li><li class="icon external"><a href="http://juicystudio.com/article/content-negotiation.php" title="http://juicystudio.com/article/content-negotiation.php" target="_blank">http://juicystudio.com/article/content-negotiation.php</a></li></ul></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

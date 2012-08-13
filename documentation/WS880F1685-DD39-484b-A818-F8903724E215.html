@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Filter data
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSB8E77A14-BB3D-44a4-A254-CA998B7E2F5B.html" title="Remove duplicate rows"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS2CCD6485-4443-4236-B9A6-5C319DA54719.html" title="Refresh data"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS42EBE38F-819B-4922-AFB8-4253F8A38C02.html"><b>Getting and manipulating data</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Filter data
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           Data
+sets support both destructive and non-destructive filtering.</p>
+
+                        <p>Before
+using either method of filtering, supply a filter function that
+takes a data set, row object and rowNumber. This function is invoked
+by the data sets filtering methods for each row in the data set.
+The function must return either the row object passed to the function,
+or a new row object, meant to replace the row passed into the function.
+For the function to filter out the row, it should return a null
+value.</p>
+
+                        <p>The data set's destructive filter method is <samp class="codeph">filterData()</samp>.
+This method actually replaces or discards the rows of the data set.
+The only way to get the original data back is to reload the XML
+data of the data set.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Use the destructive <samp class="codeph">filterData()</samp> method
+to permanently discard rows in a data set:</span> 
+                              <pre>...
+// Filter out all rows that don't have a path that begins
+// with the letter 's'.
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row["@path"].search(/^s/) != -1)
+		return row; // Return the row to keep it in the data set.
+	return null; // Return null to remove the row from the data set.
+}
+dsPhotos.<strong>filterData(myFilterFunc)</strong>; // Filter the rows in the data set.</pre>
+
+                              <p>The
+filter function remains active, even when loading XML data from
+another URL, until you call <samp class="codeph">filterData()</samp> with a <samp class="codeph">null</samp> argument.
+Call <samp class="codeph">filterData()</samp> with a <samp class="codeph">null</samp> argument
+to uninstall your filter function. </p>
+
+                              <pre>dsPhotos.filterData(null); // Turn off destructive filtering.</pre>
+
+                              <p>The
+data set's nondestructive filter method is <samp class="codeph">filter()</samp>.
+Unlike <samp class="codeph">filterData()</samp>, <samp class="codeph">filter()</samp> creates
+a new array of rows that reference the original data. As long as
+the filter function does not modify the row object passed into it,
+you can get the original data back by calling <samp class="codeph">filter()</samp> and
+passing a <samp class="codeph">null</samp> argument. Use the nondestructive <samp class="codeph">filter()</samp> method
+to filter the rows in a data set.</p>
+
+                              <pre>var dsPhotos = new Spry.Data.XMLDataSet("/photos.php?galleryid=2000", "/gallery/photos/photo");
+...
+// Filter out all rows that don't have a path that begins
+// with the letter 's'.
+var myFilterFunc = function(dataSet, row, rowNumber)
+{
+	if (row["@path"].search(/^s/) != -1)
+		return row; // Return the row to keep it in the data set.
+	return null; // Return null to remove the row from the data set.
+}
+dsPhotos.<strong>filter(myFilterFunc)</strong>; // Filter the rows in the data set.</pre>
+
+                              <p>To
+get the original data back, call <samp class="codeph">filter()</samp> and pass
+a <samp class="codeph">null</samp> argument</p>
+
+                              <pre>dsPhotos.filter(null); // Turn off non-destructive filtering.</pre>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

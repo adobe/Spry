@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Add or delete menus and submenus
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS1F570959-72C9-4f67-9D0C-2852B89C14F2.html" title="Insert the Menu Bar widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS23DE0915-11E8-4e5d-A656-BCA7CD149E12.html" title="Create a tool tip for a menu item"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS1D362749-60B5-40e1-84DB-E6C5A5B2D259.html"><b>Working with the Menu Bar widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Add or delete menus and submenus
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><ul class="navlinklist"></ul>
+</div>
+<h3 class="topictitle3"><a href="#WS6C77715A-F0F0-48c8-AD85-500706A631B3" onclick="javascript:toggleLayer('WS6C77715A-F0F0-48c8-AD85-500706A631B3');return false;" title="Add a main menu item"><img src="images/off.gif" />Add a main menu item</a></h3><div id="WS6C77715A-F0F0-48c8-AD85-500706A631B3" class="mini"><a name="WS6C77715A-F0F0-48c8-AD85-500706A631B3"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To add a main menu item, add a new list item (<samp class="codeph">li</samp> tag)
+to the container <samp class="codeph">ul</samp> tag. For example:</span> 
+                                 <div class="p">
+                                    <pre>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+			&lt;<strong>li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li</strong>&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 5--NEW MENU ITEM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WS03A03A0A-7820-4848-92D8-06C948FD7E4E" onclick="javascript:toggleLayer('WS03A03A0A-7820-4848-92D8-06C948FD7E4E');return false;" title="Add a submenu item"><img src="images/off.gif" />Add a submenu item</a></h3><div id="WS03A03A0A-7820-4848-92D8-06C948FD7E4E" class="mini"><a name="WS03A03A0A-7820-4848-92D8-06C948FD7E4E"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;To add a submenu item, add a new list item (<samp class="codeph">li</samp> tag)
+to a submenu <samp class="codeph">ul</samp> tag. For example:</span> 
+                                 <div class="p">
+                                    <pre>&lt;ul id="menubar1" class="MenuBarHorizontal"&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#" class="MenuBarItemSubmenu"&gt;Item 3&lt;/a&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Submenu Item 2&lt;/a&gt;&lt;/li&gt;
+			&lt;<strong>li&gt;&lt;a href="#"&gt;Submenu Item 3--NEW SUBMENU ITEM&lt;/a&gt;&lt;/li</strong>&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+                                 </div>
+
+                              </div>
+
+                     </div></div>
+<h3 class="topictitle3"><a href="#WSABF9AFC1-16EA-4586-B801-3A4FFCBF9FB3" onclick="javascript:toggleLayer('WSABF9AFC1-16EA-4586-B801-3A4FFCBF9FB3');return false;" title="Delete a main menu or submenu item"><img src="images/off.gif" />Delete a main menu or submenu item</a></h3><div id="WSABF9AFC1-16EA-4586-B801-3A4FFCBF9FB3" class="mini"><a name="WSABF9AFC1-16EA-4586-B801-3A4FFCBF9FB3"><!-- --></a><div>
+                        <div class="p"><span>
+                                 <img src="images/dingbat.png" />&#160;Delete the <samp class="codeph">li</samp> tag for the menu
+item or submenu item to delete.</span> 
+                                 <div class="note"><span class="notetitle">Note:  </span> If the <samp class="codeph">ul</samp> container tag of the submenu
+does not contain any other <samp class="codeph">li</samp> elements after you’ve
+removed a submenu, you'll also need to delete the <samp class="codeph">ul</samp> container
+tags for the submenu and the associated class contained in the upper-level
+menu item tag.</div>
+
+                              </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

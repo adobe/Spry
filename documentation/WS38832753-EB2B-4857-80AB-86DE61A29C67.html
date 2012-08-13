@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Set the default state of the panel
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS37254726-78F6-4045-A763-E88834BCA3CC.html" title="Enable keyboard navigation"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSA90BD21E-1D84-4a2e-ABDD-E2F1EF835890.html" title="Open the panel programmatically"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS5663902E-DBF5-428f-9C65-AC001A949AA8.html"><b>Working with the Collapsible Panel widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Set the default state of the panel
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>By default the Collapsible Panel widget is
+open when the web page loads in a browser. You can, however, change
+the status of the panel if you want the panel to be closed when
+the page loads.</p>
+
+                     </div>
+<div class="p"><span>
+                              <img src="images/dingbat.png" />&#160;Set the contentIsOpen option
+in the constructor as follows:</span> 
+                              <pre>&lt;script type="text/javascript"&gt;
+	var cp1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1", { contentIsOpen: false });
+&lt;/script&gt;</pre>
+
+                            
+                              <p>You can also check the status of the panel with the isOpen
+function. The following code returns <samp class="codeph">true</samp> if the
+panel is open and <samp class="codeph">false</samp> if it is not:</p>
+
+                              <pre>&lt;script type="text/javascript"&gt;
+function  getStatus(){
+var xx = CollapsiblePanel1.isOpen();
+document.form1.textfield.value = xx
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="CollapsiblePanel1" class="CollapsiblePanel"&gt;
+  &lt;div class="CollapsiblePanelTab" tabIndex="0" onclick="getStatus();"&gt;Tab&lt;/div&gt;
+  &lt;div class="CollapsiblePanelContent"&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+&lt;form id="form1" name="form1" method="post" action=""&gt;
+  &lt;input name="textfield" type="text" id="textfield" value="a" size="50" /&gt;
+&lt;/form&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+var cp1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
+//--&gt;
+&lt;/script&gt;</pre>
+
+                           </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

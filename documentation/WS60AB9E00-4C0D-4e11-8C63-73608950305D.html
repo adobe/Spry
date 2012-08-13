@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Auto-suggest widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS4F22F18A-2F10-4cc3-BC18-54BDDE7C11A8.html" title="Working with the Auto-suggest widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSC3C2FB9C-28EA-4a27-BBF4-96840DBDF941.html" title="Insert the Auto-suggest widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WS4F22F18A-2F10-4cc3-BC18-54BDDE7C11A8.html"><b>Working with the Auto-suggest widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Auto-suggest widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        The <dfn class="term">Auto-suggest
+widget</dfn> is a form text field that’s used as a search field.
+As the user types in the field, a list of matching hints appears
+beneath the text field. Users can then select options from the items
+in the hinted list. The Auto-suggest widget is different than other
+Spry widgets because it is a data-widget hybrid. This means that
+it has the code structure of a widget, including an instantiation script
+below the widget code, but it depends on a data set for the suggestion data.</p>
+<div class="note"><span class="notetitle">Note:  </span>You should be familiar with both Spry widgets and Spry data
+sets before you work with the Auto-suggest widget. If you’re not
+familiar with them, see any of the widget overviews before proceeding,
+as well as <a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a>. This overview does not present basic
+widget and data set concepts.</div>
+<p>In the following example, the Auto-suggest widget has a container <samp class="codeph">div</samp>,
+an input field, and another inner <samp class="codeph">div</samp> that displays
+the suggestion results. You can format the suggestion results in
+any way. The widget has a constructor script that follows the widget
+code. This constructor has four required values and a set of optional values.</p>
+<pre>&lt;div id="productSampleDiv" class="container"&gt;
+   &lt;input type="text" id="productFilterDiv" /&gt; 
+   &lt;div id="productMenuDiv" spry:region="dsProducts3"&gt;
+   &lt;span spry:repeat="dsProducts3" spry:suggest="{name}"&gt;{name}&lt;br/&gt;&lt;/span&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+   var as1 = new Spry.Widget.AutoSuggest("productSampleDiv", "productMenuDiv", "dsProducts3", "name", {hoverSuggestClass: 'hover', minCharsType: 0, containsString: true, maxListItems: 0});
+&lt;/script&gt;</pre>
+<p>The following is a breakdown of the widget code:</p>
+<ul><li>
+                           <p>The outer <samp class="codeph">div</samp> (with the id of <samp class="codeph">productSampleDiv</samp>)
+is the main container for the widget. The <samp class="codeph">id</samp> attribute
+is required because you need to reference it in the constructor.</p>
+
+                        </li>
+<li>
+                           <p>The widget requires one text input field for the search term.</p>
+
+                        </li>
+<li>
+                           <p>The inner <samp class="codeph">div</samp> (with the id of <samp class="codeph">productMenuDiv</samp>)
+is the container that displays the results. Again, the <samp class="codeph">id</samp> attribute
+is required because you need to reference it in the constructor.
+You must also make this container a <samp class="codeph">spry:region</samp> so
+that Spry can display the results.</p>
+
+                        </li>
+<li>
+                           <p>The code inside the results container can be whatever you
+want, but the tag needs to have two attributes: <samp class="codeph">spry:repeat</samp> and <samp class="codeph">spry:suggest</samp>.
+The <samp class="codeph">spry:repeat</samp> attribute is responsible for repeating
+the suggestion data from the data set in a list, and the <samp class="codeph">spry:suggest</samp> attribute
+is responsible for populating the text field with whatever values
+the user selects from the list. The value of the <samp class="codeph">spry:suggest</samp> attribute
+is the data reference (column name) that you want to use to display results.</p>
+
+                        </li>
+</ul>
+<p>As with all widgets, the actual tags you use don’t matter, as
+long as they follow standard HTML rules (for example, <samp class="codeph">p</samp> tags
+cannot contain other block elements).</p>
+<p>The <samp class="codeph">Spry.Widget.AutoSuggest</samp> constructor has
+four required attributes. You must enter them in the following order:</p>
+<ul><li>
+                           <p>ID of the main widget container</p>
+
+                        </li>
+<li>
+                           <p>ID of the results container</p>
+
+                        </li>
+<li>
+                           <p>The data set that contains the search column</p>
+
+                        </li>
+<li>
+                           <p>The names of the search columns</p>
+
+                        </li>
+</ul>
+<p>The Auto-suggest widget works by filtering the data set you specify.
+Initially, the data set filters out all of the data. As you type,
+the filter relaxes to allow the expected results to display. This
+means that if you have other Spry regions connected to the same
+data set that the Auto-suggest widget uses, those regions do not
+display content when the page loads in the browser. Additionally,
+when the widget filters data, all regions depending on the same
+data set will be affected. For this reason, you should dedicate
+a data set specifically for the Auto-suggest widget.</p>
+<p>The following table provides additional options that you can
+use in the widget constructor.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e7940">
+                                    <p>Option</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e7945">
+                                    <p>Description</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e7950">
+                                    <p>Values</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e7955">
+                                    <p>Default value</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>containsString</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>By default, the widget returns results that start
+with the typed string. Setting <samp class="codeph">containString</samp> to <samp class="codeph">true</samp> returns
+results where the typed string appears anywhere within the result,
+not just at the beginning.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">
+                                    <p>true or false</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7955 ">
+                                    <p>false</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>minCharsType</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>Determines how many characters the user must
+type before the widget displays results. This option is useful for
+improving performance, especially if you are retrieving results directly
+from the server.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">
+                                    <p>number</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7955 ">&#160;</td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>maxListItems</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>Determines the maximum number of items in
+the results list.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">
+                                    <p>number</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7955 ">&#160;</td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>hoverSuggestClass</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>Takes a CSS class that Spry applies to the results
+list while hovering over the list.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">
+                                    <p>CSS class name</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7955 ">&#160;</td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>loadFromServer</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>Retrieves results from the server directly, rather
+than from the cached data set. This option always overrides the
+default data set caching setting and retrieves the results directly
+from the server.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">
+                                    <p>true or false</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7955 ">
+                                    <p>false</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e7940 ">
+                                    <p>urlParam</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7945 ">
+                                    <p>The URL parameter name to which the search
+field value is attached. For example, <samp class="codeph">www.adobe.com?urlParam=searchValue.</samp>
+                                    </p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e7950 ">&#160;</td>
+<td valign="top" width="NaN%" headers="d16e7955 ">
+                                    <p>Required if loadFromServer is true.</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section"><h4 class="sectiontitle">Constructor option examples</h4>
+                        
+                        <p>The options
+in the following example force the auto-suggestion to start after
+the third character is typed in the text field. The <samp class="codeph">containsString:true</samp> option
+causes the widget to make suggestions when the user types a character
+that exists <em>anywhere</em> in the suggestion result, and not just
+at the beginning.</p>
+
+                        <p>and also changes the search parameter from <samp class="codeph">"starts
+with"</samp> to <samp class="codeph">"contains"</samp>. Options are enclosed
+within braces ({}).</p>
+
+                        <pre>&lt;div id="mySuggest"&gt;
+	&lt;input type="text" /&gt;
+  	&lt;div id="resultsDIV" spry:region="ds1"&gt;
+    &lt;ul&gt;
+      &lt;li spry:repeat="ds1" spry:suggest="{name}"&gt;{name}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var as1 = new Spry.Widget.AutoSuggest("mySuggest","resultsDIV", "ds1","name",{containsString:true,minCharsType:3});
+&lt;/script&gt;</pre>
+
+                        <p>Here’s an example with more options
+set:</p>
+
+                        <pre>&lt;script type="text/javascript"&gt;
+var theSuggest = new Spry.Widget.AutoSuggest("mySuggest","resultsDIV", "ds1", "name",{containsString:true, minCharsType:3,maxListItems:10, hoverSuggestClass:mySuggest});
+&lt;/script&gt;</pre>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" /><div id="related"><div class="t"><div class="b"><div class="l"><div class="r"><div class="bl"><div class="br"><div class="tl"><div class="tr"><div id="related_in"><h3><script type="text/javascript">document.write(terms_Related_Information);</script></h3><div><ul class="link-list"><li class="icon Spry" alt="Spry"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a></li><li class="icon Spry" alt="Spry"><a href="WS742CEB12-1DB0-42e7-950C-288F67C7CC3B.html">About Spry pages and dynamic regions</a></li></ul>
+</div></div><br clear="both" /></div></div></div></div></div></div></div></div></div><br clear="both" /><br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

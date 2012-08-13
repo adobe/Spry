@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Paged View data set options
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSDAD26209-84A2-4ba8-92C1-ADFFFDCD1F54.html" title="Create a Spry Paged View data set"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS669A6FB3-4259-4e57-8EBE-82E681BE0AFA.html" title="Paged View data set behaviors"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WS0E8F8394-CA82-4453-85F9-A1AC266DCBA4.html">Working with Spry data sets</a> /
+     <a href="WS7FC5BCEA-CD66-4d81-B060-DAC1A685A4DE.html"><b>Working with Paged View data sets</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Paged View data set options
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        You
+can refine the behavior of the Paged View data set by using the
+following options in the constructor.</p>
+
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e21597">
+                                    <p>Option</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e21602">
+                                    <p>Description</p>
+
+                                 </th>
+<th valign="top" width="NaN%" id="d16e21607">
+                                    <p>Default value</p>
+
+                                 </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e21597 ">
+                                    <p>pageSize</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21602 ">
+                                    <p>The maximum number of items displayed on
+a page.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21607 ">
+                                    <p>10</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21597 ">
+                                    <p>forceFullPages</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21602 ">
+                                    <p>If more than one page of data is present,
+this option forces the last page of data to contain a full set of
+data. This can cause some items to appear on both the last and next-to-last
+pages.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21607 ">
+                                    <p>false</p>
+
+                                 </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e21597 ">
+                                    <p>useZeroBasedIndexes</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21602 ">
+                                    <p>If true, the caller passes page indexes
+to the various paging functions that are between zero (0) and n-1,
+where n is the total number of pages. The default is <samp class="codeph">false</samp>,
+so page numbers are between 1 and n. This is a departure from the
+Spry zero-based counting system.</p>
+
+                                 </td>
+<td valign="top" width="NaN%" headers="d16e21607 ">
+                                    <p>false</p>
+
+                                 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If no option is specified in the constructor, Spry uses the default
+values.</p>
+<p>You use <samp class="codeph">forceFullPage</samp> when your layout is more
+important than the data. For example, if you don’t set this option,
+and the data set has 36 rows and a page size of 10, the last page
+shows only rows 30 to 36 (leading to a shorter output). If the <samp class="codeph">forceFullPage</samp> option
+is set to <samp class="codeph">true</samp>, however, the page displays 10 rows
+of data (27 to 36), which might duplicate rows 27 to 29 from the
+previous page.</p>
+<p>Spry generally uses a zero-based counting system, but "Page 0"
+does not exist, so the Paged View data set uses a 1-based counting
+system instead. This simplifies using data references for paging.
+To use the standard zero-based counting system, set the <samp class="codeph">useZeroBasedIndexes</samp> option
+to <samp class="codeph">true</samp>. Remember that JavaScript is case sensitive.</p>
+<div class="section"><h4 class="sectiontitle">Example</h4>
+                        
+                        <pre>var pv1 = new Spry.Data.PagedView(ds1,{pageSize:20, forceFullPages:true, useZeroBasedIndexes:true});</pre>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

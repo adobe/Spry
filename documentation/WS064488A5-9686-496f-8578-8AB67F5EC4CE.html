@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Attach a Move effect
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WS27B391B8-0FA7-4ca3-8E4D-0A7FACE5F38B.html" title="Attach a Color effect"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WS0ADBA411-F777-49ba-8201-5B8B667A8641.html" title="Attach an Opacity effect"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSF75530BC-A198-444c-8DA4-D583A2114CAE.html">Working with Spry effects</a> /
+     <a href="WS46AFF8D0-F4F2-478a-8D7C-D26D426EFC81.html"><b>Working with effects</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Attach a Move effect
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><div class="section">
+                        <p>
+                           The
+Move effect changes the target element position within the page.
+Many of the predefined effects use the Move effect: Grow, Slide,
+Shake, and Squish.</p>
+
+                        <p>You can only attach this effect to the
+following HTML elements: <samp class="codeph">address</samp>, <samp class="codeph">dd</samp>, <samp class="codeph">div</samp>, <samp class="codeph">dl</samp>, <samp class="codeph">dt</samp>, <samp class="codeph">form</samp>, <samp class="codeph">img</samp>, <samp class="codeph">ol</samp>, <samp class="codeph">ul</samp>, <samp class="codeph">applet</samp>, <samp class="codeph">center</samp>, <samp class="codeph">dir</samp>, <samp class="codeph">menu</samp>,
+or <samp class="codeph">pre</samp>.</p>
+
+                     </div>
+<ol><li class="stepexpand"><span>To link the SpryEffects.js file on your web page,
+add the following code to the head of your document:</span> 
+                              <pre>&lt;head&gt;
+. . .
+&lt;script  src="../includes/SpryEffects.js" type="text/javascript" &gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The exact file path differs, depending
+on where you store the SpryEffects.js file.</div>
+
+                              <p>The SpryEffects.js
+file is in the includes folder of the Spry folder that you downloaded
+from Adobe Labs. See Prepare
+your files.</p>
+
+                           </li>
+<li class="stepexpand"><span>Make sure your target element has a unique ID. The target
+element is the element that changes when the user interacts with
+the page to cause the effect.</span> 
+                              <pre>&lt;div <strong>id="move1"</strong>&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;</pre>
+
+                           </li>
+<li class="stepexpand"><span>To create the effect, add a JavaScript event to trigger
+the effect, a <samp class="codeph">script</samp> tag that creates the effect
+object, and positioning variables. For example, if you want the user
+to click on a sentence that causes another paragraph to change position, you
+might add the following code:</span> 
+                              <pre>&lt;p&gt;&lt;a onclick="move_effect.start(); return false;" href="#"&gt;Click here to move the paragraph.&lt;/a&gt;&lt;/p&gt;
+. . .
+&lt;script type="text/javascript"&gt;
+var fromPos = new Spry.Effect.Utils.Position();
+fromPos.x = 0;
+fromPos.y = 0;
+var toPos = new Spry.Effect.Utils.Position();
+toPos.x = 300;
+toPos.y = 0;
+Spry.Effect.makePositioned(document.getElementById("move1"));
+var move_effect = new Spry.Effect.Move("move1", fromPos, toPos, {duration: 2000, toggle: true});
+&lt;/script&gt;</pre>
+
+                              <div class="note"><span class="notetitle">Note:  </span>It’s important that you add the <samp class="codeph">script</samp> tag <em>after</em> the
+code for the target element. Otherwise the page will return a JavaScript
+error when you try to trigger the effect.</div>
+
+                              <p>The first argument
+of the <samp class="codeph">Spry.Effect.Move</samp> method is always the target
+element’s ID (<samp class="codeph">"move1"</samp> in the preceding example). </p>
+
+                              <p>The
+second argument is the position that represents the starting coordinates
+of the element. The default units of measure are pixels. You can
+change this value by using the <samp class="codeph">units</samp> property of
+the position object: <samp class="codeph">fromPos.units = 'em';</samp>
+                              </p>
+
+                              <p>The
+third argument is the position that represents the ending coordinates
+of the element. The default units of measure are pixels. You can
+change this value by using the <samp class="codeph">units</samp> property of
+the position object: <samp class="codeph">toPos.units = 'em';</samp>
+                              </p>
+
+                              <div class="note"><span class="notetitle">Note:  </span>The
+units for both starting and ending positions should be the same;
+otherwise the effect will not accept them as valid parameters.</div>
+
+                              <p>Set
+the position CSS property for the target element to <samp class="codeph">absolute</samp> or <samp class="codeph">relative</samp>.
+The following code ensures that the element position property is
+correct and that the Move animation functions properly.</p>
+
+                              <pre>Spry.Effect.makePositioned(document.getElementById("move1"));</pre>
+
+                              <p>The
+complete code looks as follows:</p>
+
+                              <pre>&lt;head&gt;
+. . .
+&lt;script src="../includes/SpryEffects.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;a onclick="move_effect.start(); return false;" href="#"&gt;Click here to move the paragraph.&lt;/a&gt;&lt;/p&gt;
+&lt;div id="move1"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
+labore et dolore magna aliqt&lt;/p&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var fromPos = new Spry.Effect.Utils.Position();
+fromPos.x = 0;
+fromPos.y = 0;
+var toPos = new Spry.Effect.Utils.Position();
+toPos.x = 300;
+toPos.y = 0;
+Spry.Effect.makePositioned(document.getElementById("move1"));
+var move_effect = new Spry.Effect.Move("move1", fromPos, toPos, {duration: 2000, toggle: true});
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+
+                           </li>
+</ol>
+</div>
+<h3 class="topictitle3"><a href="#WS79CA9ABC-DBAD-4a2a-9D76-D2D7DF9D15FD" onclick="javascript:toggleLayer('WS79CA9ABC-DBAD-4a2a-9D76-D2D7DF9D15FD');return false;" title="Move effect options"><img src="images/off.gif" />Move effect options</a></h3><div id="WS79CA9ABC-DBAD-4a2a-9D76-D2D7DF9D15FD" class="mini"><a name="WS79CA9ABC-DBAD-4a2a-9D76-D2D7DF9D15FD"><!-- --></a><div>
+                        <div class="section">
+                           <p>The following table lists available options for the
+Move effect.</p>
+
+                           
+<div class="tablenoborder"><table border="0" cellpadding="0" cellspacing="0"><thead align="left"><tr><th valign="top" width="NaN%" id="d16e29248">
+                                          <p>Option</p>
+
+                                       </th>
+<th valign="top" width="NaN%" id="d16e29253">
+                                          <p>Description</p>
+
+                                       </th>
+</tr>
+</thead>
+<tbody><tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>duration</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Duration of the effect in milliseconds.
+The default value is 1000.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>toggle</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Lets you create a toggle effect. The default
+value is <samp class="codeph">false</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>transition</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Determines the type of transition. The default
+is <samp class="codeph">Spry.sinusoidalTransition</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>fps</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Determines the number of frames per second
+(fps) of the animation. The default is 60. </p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>setup</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Lets you define a function that is called
+before the effect begins, e.g.,<samp class="codeph"> setup:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+<tr><td valign="top" width="NaN%" headers="d16e29248 ">
+                                          <p>finish</p>
+
+                                       </td>
+<td valign="top" width="NaN%" headers="d16e29253 ">
+                                          <p>Lets you define a function that is called
+after the effect finishes, e.g., <samp class="codeph">finish:function (element,effect){/*
+... */}</samp>.</p>
+
+                                       </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                           <p>Sample code:</p>
+
+                           <pre>var fromPos = new Spry.Effect.Utils.Position();
+fromPos.x = 100;
+fromPos.y = 100;
+var toPos = new Spry.Effect.Utils.Position();
+toPos.x = 300;
+toPos.y = 300;
+Spry.Effect.makePositioned(document.getElementById("targetID"));
+var size_effect = new Spry.Effect.Move("targetID", fromPos, toPos, {duration: 2000, toggle: true, transition: Spry.fifthTransition});</pre>
+
+                        </div>
+
+                     </div></div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>

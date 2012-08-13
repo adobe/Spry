@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--livedocs:no--><!-- saved from url=(0022)http://help.adobe.com/ -->
+<html lang="en-us">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="lang" content="en-us" />
+		<meta name="area" content="livedocs" />
+		<meta name="product" content="Spry" />
+		<meta name="productv" content="SDG" />
+		<link rel="stylesheet" type="text/css" href="content.css" />
+		<title>
+			Spry * Validation Text Field widget overview and structure
+		</title>
+<!-- Changed by: , 12-Jun-2007 -->
+<script src="help.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+		
+		
+<script type="text/javascript">
+<!--[CDATA[
+handleContext(1);
+if (use_ie_6_behavior) {
+  document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"content-ie6.css\" />");
+}
+// ]]-->
+</script> 
+		
+<script src="scripts.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> <script src="terms.js" type="text/javascript" language="Javascript" charset="UTF-8">...</script> 
+	</head>
+	<body id="content_body">
+<!--googleoff: index-->
+<!-- BEGIN PAGE CONTENT WRAPPER -->
+		<div id="pneumonic">
+			<h1 class="Spry">Spry</h1>
+		</div>
+		<div id="page_content_wrapper">
+			
+<!-- BEGIN BREADCRUMBS -->
+			<div id="breadcrumb">
+<!-- BEGIN BREADCRUMBS -->
+				
+<div class="nav"><dl class="page"><dd class="prev"><a accesskey="p" class="prev" href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html" title="Working with the Validation Text Field widget"><img src="images/prev.gif" alt="Previous" /></a></dd><dd class="next"><a accesskey="n" class="next" href="WSE00BF98D-D537-4a1d-A4EF-FD1DF8880738.html" title="CSS code for the Validation Text Field widget"><img src="images/next.gif" alt="Next" /></a></dd></dl></div><div class="hierarchy"><a href="WSA773750E-E5C5-483b-8FF0-B7BEF0BD277D.html">Working with Spry widgets</a> /
+     <a href="WSBB1CE5A3-1915-477c-856A-C618D089165C.html"><b>Working with the Validation Text Field widget</b></a> 
+     </div>
+
+<!-- END BREADCRUMBS -->
+			</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE TITLE -->
+<!--googleon: index-->
+			<h1>
+				Validation Text Field widget overview and structure
+			</h1>
+<!--googleoff: index-->
+<!-- END PAGE TITLE -->
+			<div id="content_wrapper">
+<!--googleon: index-->
+				<div><p>
+                        A
+Spry Validation Text Field widget is a text field that displays
+valid or invalid states when the site visitor enters text. For example,
+you can add a Validation Text Field widget to a form in which visitors
+type their e-mail addresses. If they fail to type the @ sign and
+a period (.) in the e-mail address, the widget displays a message
+stating that the information the user entered is invalid.</p>
+<p>The following example shows a Validation Text Field widget in
+various states:</p>
+<div class="p">
+                        <div class="fignone"><img alt="" id="TextfieldDetails" src="images/TextfieldDetails.png" /><div class="figdesc"></div><br />
+                           
+                           <dl>
+                              
+                                 <dt class="dlterm">A.</dt>
+
+                                 <dd>Text Field widget, hint activated</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">B.</dt>
+
+                                 <dd>Text Field
+widget, valid state</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">C.</dt>
+
+                                 <dd>Text Field
+widget, invalid state</dd><p class="dlseparator"></p>
+                              
+                              
+                                 <dt class="dlterm">D.</dt>
+
+                                 <dd>Text Field
+widget, required state</dd><p class="dlseparator"></p>
+                              
+                           </dl>
+
+                        </div>
+                     </div>
+<p>The Validation Text Field widget includes a number of states
+(for example, valid, invalid, required value, and so on). You can
+alter the properties of these states by editing the corresponding
+CSS file (SpryValidationTextField.css), depending on the desired
+validation results. A Validation Text Field widget can validate
+at various points—for example, when the site visitor clicks outside
+the widget, when they type, or when they try to submit the form.</p>
+<dl><dt class="dlterm">Initial state</dt>
+<dd>
+                              When the page loads in the browser, or when the user resets
+the form.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Focus state</dt>
+<dd>
+                              When the user places the insertion point in the widget.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Valid state</dt>
+<dd>
+                              When the user enters information correctly, and the form
+can be submitted.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Invalid state</dt>
+<dd>
+                              When the user enters text in an invalid format. (For example,
+06 for a year instead of 2006).
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Required state</dt>
+<dd>
+                              When the user fails to enter required text in the text field.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Minimum Number Of Characters state</dt>
+<dd>
+                              When the user enters fewer than the minimum number of characters
+required in the text field.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Maximum Number Of Characters state</dt>
+<dd>
+                              When the user enters greater than the maximum number of characters
+allowed in the text field.
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Minimum Value state</dt>
+<dd>
+                              When the user enters a value that is less than the value that
+the text field requires. (Applies to integer, real, and data type
+validations.)
+                           </dd><p class="dlseparator"></p><dt class="dlterm">Maximum Value state</dt>
+<dd>
+                              When the user enters a value that is greater than the maximum
+value that the text field allows. (Applies to integer, real, and
+data type validations.)
+                              <p>Whenever a Validation Text Field widget
+enters one of these states through user interaction, the Spry framework
+logic applies a specific CSS class to the HTML container for the
+widget at run time. For example, if a user tries to submit a form, but
+enters no text in a required text field, Spry applies a class to
+the widget that causes it to display the error message, “A value
+is required,” and blocks the form submission. The rules that control
+the style and display states of error messages exist in the SpryValidationTextField.css
+file that accompanies the widget.</p>
+
+                           </dd><p class="dlseparator"></p></dl>
+<p>The default HTML code for the Validation Text Field widget, usually
+inside a form, is made up of a container <samp class="codeph">span</samp> tag
+that surrounds the <samp class="codeph">input</samp> tag of the text field.
+The HTML code for the Validation Text Field widget also includes <samp class="codeph">script</samp> tags
+in the head of the document and after the widget’s HTML code. The <samp class="codeph">script</samp> tag
+in the head of the document defines all of the JavaScript functions
+related to the Text Field widget. The <samp class="codeph">script</samp> tag
+after the widget code creates a JavaScript object that makes the
+text field interactive.</p>
+<p>Following is the HTML code for a Validation Text Field widget: </p>
+<pre>&lt;head&gt; 
+...  
+&lt;!-- Link the Spry Validation Text Field JavaScript library --&gt; 
+&lt;script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;!-- Link the CSS style sheet that styles the widget --&gt;
+&lt;link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" /&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id="form1" name="form1" method="post" action=""&gt;
+		&lt;!-- Create the text field widget and assign a unique id--&gt;
+		&lt;span id="sprytextfield1"&gt;
+			&lt;input type="text" name="mytextfield" id="mytextfield" /&gt;
+			&lt;!--Display an error message--&gt;
+			&lt;span class="textfieldRequiredMsg"&gt;A value is required.&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/form&gt;
+&lt;!-- Initialize the Validation Text Field widget object--&gt;
+&lt;script type="text/javascript"&gt;
+	var tf1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+<p>In the code, the <samp class="codeph">new</samp> JavaScript operator initializes
+the Text Field widget object, and transforms the <samp class="codeph">span</samp> content
+with the ID of <samp class="codeph">sprytextfield1</samp> from static HTML code
+into an interactive page element.</p>
+<p>The <samp class="codeph">span</samp> tag for the error message in the widget
+has a CSS class applied to it. This class (which is set to <samp class="codeph">display:none;</samp> by
+default), controls the style and visibility of the error message,
+and exists in the accompanying CSS file SpryValidationTextField.css.
+When the widget enters different states as a result of user interaction, Spry
+places different classes on the container for the widget, which
+in turn affects the error-message class.</p>
+<p>To add other error messages to a Validation Text Field widget,
+create a <samp class="codeph">span</samp> tag (or any other type of tag) to
+hold the text of the error message. Then, by applying a CSS class
+to it, you can hide or show the message, depending on the widget
+state.</p>
+<p>You can add other error messages to a Validation Text Field widget
+by creating the corresponding CSS rule in the SpryValidationTextField.css
+file. For example, to change the background color for a state, edit
+the corresponding rule or add a new rule (if it’s not already present)
+in the style sheet.</p>
+<div class="section"><h4 class="sectiontitle">Variation on tags used for Text Field widget structure</h4>
+                        
+                        <p>In
+the preceding example, we used <samp class="codeph">span</samp> tags to create
+the structure for the widget:</p>
+
+                        <pre>Container SPAN
+	INPUT type="text"
+	Error message SPAN</pre>
+
+                        <p>You can, however, use almost any
+container tag to create the widget:</p>
+
+                        <pre>Container DIV
+	INPUT type="text"
+	Error Message P</pre>
+
+                        <p>Spry uses the tag ID (not the tag
+itself) to create the widget. Spry also displays error messages
+using CSS code that is indifferent to the actual tag used to contain the
+error message.</p>
+
+                        <p>The ID passed into the widget constructor identifies
+a specific HTML element. The constructor finds this element and
+searches the identified container for a corresponding <samp class="codeph">input</samp> tag.
+If the ID passed to the constructor is the ID of the <samp class="codeph">input</samp> tag (rather
+than a container tag), the constructor attaches validation triggers
+directly to the <samp class="codeph">input</samp> tag. If no container tag
+is present, however, the widget cannot display error messages, and
+different validation states alter only the appearance of the <samp class="codeph">input</samp> tag
+element (for example, its background color).</p>
+
+                        <div class="note"><span class="notetitle">Note:  </span>Multiple INPUT
+tags do not work inside the same HTML widget container. Each text
+field should be its own widget.</div>
+
+                     </div>
+</div>
+
+<!--googleoff: index-->
+			</div>
+		</div>
+<!-- END PAGE CONTENT WRAPPER --><!--#include virtual="/livedocs/en_US/ssi/survey/surveyJune09.ssi" -->
+    <br clear="both" />
+<!-- The following start/end comments determine where comments are placed in LiveDocs. --> 
+<!-- start content wrapper --> 
+<!-- end content wrapper --> 
+
+</body>
