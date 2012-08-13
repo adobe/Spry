@@ -42,8 +42,8 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 
 ### What is included in 1.6.1
 
-<p><strong><a href="http://adobe.github.com/Spry/articles/">Articles</a></strong> - <a href="docs.html">Documentation</a> that describe the Spry framework.</p>
-<p><strong><a href="http://adobe.github.com/Spry/data/">Data</a></strong> - The XML data files used in all our sample files. </p>
+<p><strong><a href="http://adobe.github.com/Spry/docs.html">Articles</a></strong> - <a href="http://adobe.github.com/Spry/docs.html">Documentation</a> that describe the Spry framework.</p>
+<p><strong><a href="http://github.com/adobe/Spry/data/">Data</a></strong> - The XML data files used in all our sample files. </p>
 <p><strong><a href="http://adobe.github.com/Spry/demos/">Demos</a></strong> - More <a href="demos/index.html">complex samples</a> that show the Spry framework in action.</p>
 <ul>
 <li><a href="http://adobe.github.com/Spry/demos/effects/index.html">Effects</a> - A demo of all our Spry Effects. Rewritten in 1.5.</li>
@@ -53,7 +53,7 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 <li><a href="http://adobe.github.com/Spry/demos/rssreader/index.html" target="_blank">RSS Reader</a>&#8212;An RSS reader showing how multiple XML files can be used to build a rich interface.</li>
 <li><a href="http://adobe.github.com/Spry/demos/periodic_table/periodic_table.htm">Periodic Table</a> - A demo of the HTML data set and advanced CSS techniques.</li>
 </ul>
-<p><strong><a href="http://adobe.github.com/Spry/includes/">Includes</a></strong> - Core JavaScript files that implement the data framework. </p>
+<p><strong><a href="http://github.com/adobe/Spry/includes/">Includes</a></strong> - Core JavaScript files that implement the data framework. </p>
 <ul>
 <li><a href="http://adobe.github.com/Spry/includes/SpryCSVDataSet.js">SpryCSVDataSet.js</a> - Enables CSV files as a data source.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryData.js">SpryData.js</a> - Contains the code that defines XML data sets and dynamic regions.</li>
@@ -77,6 +77,6 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 <p><strong>includes_packed</strong> - <a href="http://dean.edwards.name/packer/">Packed</a> copies of all our javascript files.<br />
 </p>
 <p><strong><a href="http://adobe.github.com/Spry/samples/">Samples</a></strong> - A series of <a href="samples/index.html">simple files</a> (located within the /samples/ directory in the ZIP) that show basic functionality of Spry . These  provide working code samples of specific features of spry or common  techniques used on Spry pages. One of the more useful samples is the <a href="samples/data_region/DataSetExplorer.html">Data Set Explorer</a> page. </p>
-<p><strong><a href="http://adobe.github.com/Spry/widgets/">Widgets</a></strong> - Contains our released widget js, css and reference  files. <a href="widgets/widgets.html">Widget Map</a>.</p>
+<p><strong><a href="http://adobe.github.com/Spry/widgets/widgets.html">Widgets</a></strong> - Contains our released widget js, css and reference  files. <a href="http://adobe.github.com/Spry/widgets/widgets.html">Widget Map</a>.</p>
 <p><a href="http://adobe.github.com/Spry/License.html">License</a>&#8212;Spry is licensed under a MIT license. <br />
 <a href="http://adobe.github.com/Spry/ChangeLog.html">Spry change log</a>&#8212;Log of what changed between Spry releases.</p>
