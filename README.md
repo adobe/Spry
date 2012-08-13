@@ -78,5 +78,5 @@ The Spry framework has reached end-of-life and no further updates will be made. 
 </p>
 <p><strong><a href="http://adobe.github.com/Spry/samples/">Samples</a></strong> - A series of <a href="http://adobe.github.com/Spry/samples/index.html">simple files</a> (located within the /samples/ directory in the ZIP) that show basic functionality of Spry . These  provide working code samples of specific features of spry or common  techniques used on Spry pages. One of the more useful samples is the <a href="http://adobe.github.com/Spry/samples/data_region/DataSetExplorer.html">Data Set Explorer</a> page. </p>
 <p><strong><a href="http://adobe.github.com/Spry/widgets/widgets.html">Widgets</a></strong> - Contains our released widget js, css and reference  files. <a href="http://adobe.github.com/Spry/widgets/widgets.html">Widget Map</a>.</p>
-<p><a href="http://adobe.github.com/Spry/License.html">License</a>&#8212;Spry is licensed under a MIT license. <br />
+<p><a href="http://adobe.github.com/Spry/License.md">License</a>&#8212;Spry is licensed under a MIT license. <br />
 <a href="http://adobe.github.com/Spry/ChangeLog.html">Spry change log</a>&#8212;Log of what changed between Spry releases.</p>
