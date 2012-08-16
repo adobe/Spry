@@ -38,7 +38,7 @@ Spry can be used with any server-side technology (ColdFusion, PHP, ASP.Net etc.)
 </ul>
 
 ## Current Status
-The Spry framework has reached end-of-life and no further updates will be made. However, we do encourage you to fork and maintain your own version of this framework. 
+The Spry framework is no longer being actively developed by Adobe and no further updates will be made. However, we do encourage you to fork and maintain your own version of this framework. 
 
 ### What is included in 1.6.1
 
