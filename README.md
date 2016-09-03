@@ -58,7 +58,7 @@ The Spry framework is no longer being actively developed by Adobe and no further
 <li><a href="http://adobe.github.com/Spry/includes/SpryCSVDataSet.js">SpryCSVDataSet.js</a> - Enables CSV files as a data source.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryData.js">SpryData.js</a> - Contains the code that defines XML data sets and dynamic regions.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryDataExtensions.js">SpryDataExtensions.js</a> - Contains helper functions such as advanced filtering.</li>
-<li><a href="http://adobe.github.com/Spry/includes/SpryDataShell.js">SpryDataShell.js</a> - A placeholder data set that regions can bind to, which allows data sets of same/different formats to be swapped in and out.</li>
+<li><a href="http://adobe.github.com/Spry/includes/SpryDataSetShell.js">SpryDataSetShell.js</a> - A placeholder data set that regions can bind to, which allows data sets of same/different formats to be swapped in and out.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryDebug.js">SpryDebug.js</a> - A file that provides advanced debugging information for Spry pages.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryDOMUtils.js">SpryDOMUtils.js</a> - Our Element Selector. Manipulate the page using CSS Selectors.</li>
 <li><a href="http://adobe.github.com/Spry/includes/SpryEffects.js">SpryEffects.js</a> - The Spry Effects framework file. </li>
