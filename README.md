@@ -1,5 +1,10 @@
 # Spry
 
+## Deprecated
+
+This project is no longer maintained and is in an archived state. If you would like to revive it, please consider forking it!
+
+## Overview
 
 Spry is a JavaScript-based framework that enables the rapid development of Ajax-powered web pages. 
 
